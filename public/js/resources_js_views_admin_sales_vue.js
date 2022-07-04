@@ -149,6 +149,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Dashboard"
 });
@@ -257,7 +266,43 @@ var staticRenderFns = [
           staticClass:
             "d-sm-flex align-items-center justify-content-between mb-4"
         },
-        [_c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [_vm._v("Sales")])]
+        [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
+              _vm._v("Sales")
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-md-6", staticStyle: { "text-align": "right" } },
+            [
+              _c(
+                "button",
+                { staticClass: "btn admin-btn", attrs: { type: "button" } },
+                [_vm._v("Create Invoice")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                { staticClass: "btn admin-btn", attrs: { type: "button" } },
+                [_vm._v("Sales Reconsile")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                { staticClass: "btn admin-btn", attrs: { type: "button" } },
+                [_vm._v("Import")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                { staticClass: "btn admin-btn", attrs: { type: "button" } },
+                [_vm._v("Export")]
+              )
+            ]
+          )
+        ]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [

@@ -1,13 +1,13 @@
 <template>
   <div
-    class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="background-color:#EDF2F6 !important"
+    class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top" style="background-color:#EDF2F6 !important"
   >
     <!-- Sidebar Toggle (Topbar) -->
     <button
       id="sidebarToggleTop"
       class="btn btn-link d-md-none rounded-circle mr-3"
     >
-      <i class="fa fa-bars"></i>
+      <i class="fa fa-bars" style="color: #245387;"></i>
     </button>
 
     <!-- Topbar Search -->
@@ -112,7 +112,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          <i class="fas fa-user fa-topcustom"></i>
+          <i class="fas fa-user fa-topcustom" style="color: rgb(137 138 141);"></i>
         </a>
         <!-- Dropdown - User Information -->
         <div
@@ -156,7 +156,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          <i class="fas fa-bell fa-topcustom"></i>
+          <i class="fas fa-bell fa-topcustom" style="color: rgb(137 138 141);"></i>
           <!-- Counter - Alerts -->
           <span class="badge badge-danger badge-counter">3+</span>
         </a>

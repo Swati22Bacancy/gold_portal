@@ -2,7 +2,16 @@
   <div>
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800">Sales</h1>
+      <div class="col-md-6">
+        <h1 class="h3 mb-0 text-gray-800">Sales</h1>
+      </div>
+      <div class="col-md-6" style="text-align:right">
+        <button type="button" class="btn admin-btn">Create Invoice</button>
+        <button type="button" class="btn admin-btn">Sales Reconsile</button>
+        <button type="button" class="btn admin-btn">Import</button>
+        <button type="button" class="btn admin-btn">Export</button>
+      </div>
+      
       
     </div>
 

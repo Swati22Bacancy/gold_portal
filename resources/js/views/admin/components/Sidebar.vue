@@ -27,7 +27,7 @@
 
       <li class="nav-item active">
         <router-link class="nav-link" to="/sales">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-fw fa-shopping-cart"></i>
           <span>Sales</span></router-link
         >
       </li>

@@ -77165,7 +77165,7 @@ var render = function() {
             "router-link",
             { staticClass: "nav-link", attrs: { to: "/sales" } },
             [
-              _c("i", { staticClass: "fas fa-fw fa-tachometer-alt" }),
+              _c("i", { staticClass: "fas fa-fw fa-shopping-cart" }),
               _vm._v(" "),
               _c("span", [_vm._v("Sales")])
             ]
@@ -77254,7 +77254,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow",
+        "navbar navbar-expand navbar-light bg-white topbar mb-4 static-top",
       staticStyle: { "background-color": "#EDF2F6 !important" }
     },
     [
@@ -77325,7 +77325,12 @@ var staticRenderFns = [
         staticClass: "btn btn-link d-md-none rounded-circle mr-3",
         attrs: { id: "sidebarToggleTop" }
       },
-      [_c("i", { staticClass: "fa fa-bars" })]
+      [
+        _c("i", {
+          staticClass: "fa fa-bars",
+          staticStyle: { color: "#245387" }
+        })
+      ]
     )
   },
   function() {
@@ -77500,7 +77505,12 @@ var staticRenderFns = [
           "aria-expanded": "false"
         }
       },
-      [_c("i", { staticClass: "fas fa-user fa-topcustom" })]
+      [
+        _c("i", {
+          staticClass: "fas fa-user fa-topcustom",
+          staticStyle: { color: "rgb(137 138 141)" }
+        })
+      ]
     )
   },
   function() {
@@ -77549,7 +77559,10 @@ var staticRenderFns = [
           }
         },
         [
-          _c("i", { staticClass: "fas fa-bell fa-topcustom" }),
+          _c("i", {
+            staticClass: "fas fa-bell fa-topcustom",
+            staticStyle: { color: "rgb(137 138 141)" }
+          }),
           _vm._v(" "),
           _c("span", { staticClass: "badge badge-danger badge-counter" }, [
             _vm._v("3+")

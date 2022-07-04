@@ -12513,6 +12513,16 @@ button.bg-dark:focus {
     border-radius: 0 0.35rem 0.35rem 0;
     height: 40px;
 }
+.admin-btn
+{
+    background-color: #EDF2F6 !important;
+    width: auto;
+    font-size: 14px  !important;
+    color: #000;
+    border-radius: 5px;
+    height: 40px;
+    border: 1px solid #d1d3e2;
+}
 .input-group-append {
   display: -ms-flexbox;
   display: flex;
@@ -16593,7 +16603,7 @@ a:focus {
   background-color: #dddfeb;
 }
 .topbar .navbar-search {
-  width: 50rem;
+  width: 48.5rem;
   height: 40px;
   margin-left: 3rem;
 }
