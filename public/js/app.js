@@ -77301,13 +77301,10 @@ var render = function() {
           attrs: { to: "/" }
         },
         [
-          _c("div", { staticClass: "sidebar-brand-icon rotate-n-15" }, [
-            _c("i", { staticClass: "fas fa-laugh-wink" })
-          ]),
+          _c("div", { staticClass: "sidebar-brand-icon rotate-n-15" }),
           _vm._v(" "),
           _c("div", { staticClass: "sidebar-brand-text mx-3" }, [
-            _vm._v("SB 1123455 "),
-            _c("sup", [_vm._v("2")])
+            _vm._v("Admin Panel")
           ])
         ]
       ),
