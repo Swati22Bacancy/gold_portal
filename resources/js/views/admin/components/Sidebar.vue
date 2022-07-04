@@ -1,17 +1,17 @@
 <template>
     <ul
-      class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-      id="accordionSidebar"
+      class="navbar-nav sidebar sidebar-dark accordion"
+      id="accordionSidebar" style="background-color: #3377C2;"
     >
       <!-- Sidebar - Brand -->
       <router-link
         class="sidebar-brand d-flex align-items-center justify-content-center"
-        to="/"
+        to="/" style="background-color:#245387;"
       >
         <div class="sidebar-brand-icon rotate-n-15">
           <!-- <i class="fas fa-laugh-wink"></i> -->
         </div>
-        <div class="sidebar-brand-text mx-3">Admin Panel</div>
+        <div class="sidebar-brand-text mx-3">Admin Panel 21</div>
       </router-link>
 
       <!-- Divider -->

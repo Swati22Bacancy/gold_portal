@@ -77288,8 +77288,8 @@ var render = function() {
   return _c(
     "ul",
     {
-      staticClass:
-        "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion",
+      staticClass: "navbar-nav sidebar sidebar-dark accordion",
+      staticStyle: { "background-color": "#3377C2" },
       attrs: { id: "accordionSidebar" }
     },
     [
@@ -77298,13 +77298,14 @@ var render = function() {
         {
           staticClass:
             "sidebar-brand d-flex align-items-center justify-content-center",
+          staticStyle: { "background-color": "#245387" },
           attrs: { to: "/" }
         },
         [
           _c("div", { staticClass: "sidebar-brand-icon rotate-n-15" }),
           _vm._v(" "),
           _c("div", { staticClass: "sidebar-brand-text mx-3" }, [
-            _vm._v("Admin Panel")
+            _vm._v("Admin Panel 21")
           ])
         ]
       ),
