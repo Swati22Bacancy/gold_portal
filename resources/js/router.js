@@ -53,6 +53,15 @@ let router = new Router({
             }
         },
         {
+            path: "/sales",
+            name: "sales",
+            component: () => import("./views/admin/sales.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/admin/components/buttons",
             name: "buttons",
             component: () => import("./views/admin/buttons.vue"),

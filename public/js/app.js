@@ -2041,98 +2041,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Sidebar'
 });
@@ -2157,96 +2065,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2745,6 +2563,16 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__.default({
     name: "admin",
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_views_admin_dashboard_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/dashboard.vue */ "./resources/js/views/admin/dashboard.vue"));
+    },
+    meta: {
+      requiresAuth: true,
+      layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__.default
+    }
+  }, {
+    path: "/sales",
+    name: "sales",
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_sales_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/sales.vue */ "./resources/js/views/admin/sales.vue"));
     },
     meta: {
       requiresAuth: true,
@@ -77305,7 +77133,7 @@ var render = function() {
           _c("div", { staticClass: "sidebar-brand-icon rotate-n-15" }),
           _vm._v(" "),
           _c("div", { staticClass: "sidebar-brand-text mx-3" }, [
-            _vm._v("Admin Panel 21")
+            _vm._v("Admin Panel")
           ])
         ]
       ),
@@ -77329,181 +77157,17 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("hr", { staticClass: "sidebar-divider" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "sidebar-heading" }, [_vm._v("Interface")]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "collapse",
-            attrs: {
-              id: "collapseTwo",
-              "aria-labelledby": "headingTwo",
-              "data-parent": "#accordionSidebar"
-            }
-          },
-          [
-            _c(
-              "div",
-              { staticClass: "bg-white py-2 collapse-inner rounded" },
-              [
-                _c("h6", { staticClass: "collapse-header" }, [
-                  _vm._v("Custom Components:")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "collapse-item",
-                    attrs: { to: "/admin/components/buttons" }
-                  },
-                  [_vm._v("Buttons")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "collapse-item",
-                    attrs: { to: "/admin/components/cards" }
-                  },
-                  [_vm._v("Cards")]
-                )
-              ],
-              1
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _vm._m(1),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "collapse",
-            attrs: {
-              id: "collapseUtilities",
-              "aria-labelledby": "headingUtilities",
-              "data-parent": "#accordionSidebar"
-            }
-          },
-          [
-            _c(
-              "div",
-              { staticClass: "bg-white py-2 collapse-inner rounded" },
-              [
-                _c("h6", { staticClass: "collapse-header" }, [
-                  _vm._v("Custom Utilities:")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "collapse-item",
-                    attrs: { to: "/admin/utilities/colors" }
-                  },
-                  [_vm._v("Colors")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "collapse-item",
-                    attrs: { to: "/admin/utilities/borders" }
-                  },
-                  [_vm._v("Borders")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "collapse-item",
-                    attrs: { to: "/admin/utilities/animations" }
-                  },
-                  [_vm._v("Animations")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "collapse-item",
-                    attrs: { to: "/admin/utilities/other" }
-                  },
-                  [_vm._v("Other")]
-                )
-              ],
-              1
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("hr", { staticClass: "sidebar-divider" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "sidebar-heading" }, [_vm._v("Addons")]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _vm._m(2),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "collapse",
-            attrs: {
-              id: "collapsePages",
-              "aria-labelledby": "headingPages",
-              "data-parent": "#accordionSidebar"
-            }
-          },
-          [
-            _c(
-              "div",
-              { staticClass: "bg-white py-2 collapse-inner rounded" },
-              [
-                _c("h6", { staticClass: "collapse-header" }, [
-                  _vm._v("Other Pages:")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "collapse-item",
-                    attrs: { to: "/admin/pages/page-not-found" }
-                  },
-                  [_vm._v("404 Page")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "collapse-item",
-                    attrs: { to: "/admin/pages/blank" }
-                  },
-                  [_vm._v("Blank Page")]
-                )
-              ],
-              1
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
       _c(
         "li",
-        { staticClass: "nav-item" },
+        { staticClass: "nav-item active" },
         [
           _c(
             "router-link",
-            { staticClass: "nav-link", attrs: { to: "/admin/charts" } },
+            { staticClass: "nav-link", attrs: { to: "/sales" } },
             [
-              _c("i", { staticClass: "fas fa-fw fa-chart-area" }),
+              _c("i", { staticClass: "fas fa-fw fa-tachometer-alt" }),
               _vm._v(" "),
-              _c("span", [_vm._v("Charts")])
+              _c("span", [_vm._v("Sales")])
             ]
           )
         ],
@@ -77512,15 +77176,32 @@ var render = function() {
       _vm._v(" "),
       _c(
         "li",
-        { staticClass: "nav-item" },
+        { staticClass: "nav-item active" },
         [
           _c(
             "router-link",
-            { staticClass: "nav-link", attrs: { to: "/admin/tables" } },
+            { staticClass: "nav-link", attrs: { to: "/admin" } },
             [
-              _c("i", { staticClass: "fas fa-fw fa-table" }),
+              _c("i", { staticClass: "fas fa-fw fa-tachometer-alt" }),
               _vm._v(" "),
-              _c("span", [_vm._v("Tables")])
+              _c("span", [_vm._v("Purchases")])
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "li",
+        { staticClass: "nav-item active" },
+        [
+          _c(
+            "router-link",
+            { staticClass: "nav-link", attrs: { to: "/admin" } },
+            [
+              _c("i", { staticClass: "fas fa-fw fa-tachometer-alt" }),
+              _vm._v(" "),
+              _c("span", [_vm._v("Delivery Notes")])
             ]
           )
         ],
@@ -77529,81 +77210,12 @@ var render = function() {
       _vm._v(" "),
       _c("hr", { staticClass: "sidebar-divider d-none d-md-block" }),
       _vm._v(" "),
-      _vm._m(3)
+      _vm._m(0)
     ],
     1
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "nav-link collapsed",
-        attrs: {
-          href: "#",
-          "data-toggle": "collapse",
-          "data-target": "#collapseTwo",
-          "aria-expanded": "true",
-          "aria-controls": "collapseTwo"
-        }
-      },
-      [
-        _c("i", { staticClass: "fas fa-fw fa-cog" }),
-        _vm._v(" "),
-        _c("span", [_vm._v("Components")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "nav-link collapsed",
-        attrs: {
-          href: "#",
-          "data-toggle": "collapse",
-          "data-target": "#collapseUtilities",
-          "aria-expanded": "true",
-          "aria-controls": "collapseUtilities"
-        }
-      },
-      [
-        _c("i", { staticClass: "fas fa-fw fa-wrench" }),
-        _vm._v(" "),
-        _c("span", [_vm._v("Utilities")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "nav-link collapsed",
-        attrs: {
-          href: "#",
-          "data-toggle": "collapse",
-          "data-target": "#collapsePages",
-          "aria-expanded": "true",
-          "aria-controls": "collapsePages"
-        }
-      },
-      [
-        _c("i", { staticClass: "fas fa-fw fa-folder" }),
-        _vm._v(" "),
-        _c("span", [_vm._v("Pages")])
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -77642,7 +77254,8 @@ var render = function() {
     "div",
     {
       staticClass:
-        "\n    navbar navbar-expand navbar-light\n    bg-white\n    topbar\n    mb-4\n    static-top\n    shadow\n  "
+        "navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow",
+      staticStyle: { "background-color": "#EDF2F6 !important" }
     },
     [
       _vm._m(0),
@@ -77654,43 +77267,8 @@ var render = function() {
         _vm._v(" "),
         _vm._m(3),
         _vm._v(" "),
-        _vm._m(4),
-        _vm._v(" "),
-        _c("div", { staticClass: "topbar-divider d-none d-sm-block" }),
-        _vm._v(" "),
         _c("li", { staticClass: "nav-item dropdown no-arrow" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link dropdown-toggle",
-              attrs: {
-                href: "#",
-                id: "userDropdown",
-                role: "button",
-                "data-toggle": "dropdown",
-                "aria-haspopup": "true",
-                "aria-expanded": "false"
-              }
-            },
-            [
-              _c(
-                "span",
-                { staticClass: "mr-2 d-none d-lg-inline text-gray-600 small" },
-                [
-                  _vm._v(
-                    _vm._s(_vm.user.first_name) +
-                      " " +
-                      _vm._s(_vm.user.last_name)
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c("img", {
-                staticClass: "img-profile rounded-circle",
-                attrs: { src: "img/undraw_profile.svg" }
-              })
-            ]
-          ),
+          _vm._m(4),
           _vm._v(" "),
           _c(
             "div",
@@ -77729,7 +77307,9 @@ var render = function() {
               )
             ]
           )
-        ])
+        ]),
+        _vm._v(" "),
+        _vm._m(8)
       ])
     ]
   )
@@ -77756,28 +77336,36 @@ var staticRenderFns = [
       "form",
       {
         staticClass:
-          "\n      d-none d-sm-inline-block\n      form-inline\n      mr-auto\n      ml-md-3\n      my-2 my-md-0\n      mw-100\n      navbar-search\n    "
+          "d-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 navbar-search"
       },
       [
-        _c("div", { staticClass: "input-group" }, [
-          _c("input", {
-            staticClass: "form-control bg-light border-0 small",
-            attrs: {
-              type: "text",
-              placeholder: "Search for...",
-              "aria-label": "Search",
-              "aria-describedby": "basic-addon2"
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "input-group-append" }, [
-            _c(
-              "button",
-              { staticClass: "btn btn-primary", attrs: { type: "button" } },
-              [_c("i", { staticClass: "fas fa-search fa-sm" })]
-            )
-          ])
-        ])
+        _c(
+          "div",
+          { staticClass: "input-group", staticStyle: { height: "40px" } },
+          [
+            _c("input", {
+              staticClass: "form-control bg-light border-0 small",
+              staticStyle: {
+                "background-color": "#FFFFFF !important",
+                height: "auto"
+              },
+              attrs: {
+                type: "text",
+                placeholder: "Search for...",
+                "aria-label": "Search",
+                "aria-describedby": "basic-addon2"
+              }
+            }),
+            _vm._v(" "),
+            _c("div", {}, [
+              _c(
+                "button",
+                { staticClass: "btn search-btn", attrs: { type: "submit" } },
+                [_vm._v("\n                      Search\n        ")]
+              )
+            ])
+          ]
+        )
       ]
     )
   },
@@ -77846,7 +77434,107 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item dropdown no-arrow mx-1" }, [
+    return _c("li", { staticClass: "nav-item dropdown no-arrow" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link dropdown-toggle",
+          attrs: {
+            href: "#",
+            id: "userDropdown",
+            role: "button",
+            "data-toggle": "dropdown",
+            "aria-haspopup": "true",
+            "aria-expanded": "false"
+          }
+        },
+        [
+          _c("i", {
+            staticClass: "fas fa-plus fa-topcustom",
+            staticStyle: { color: "#3BBD82" }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "dropdown-menu dropdown-menu-right shadow animated--grow-in",
+          attrs: { "aria-labelledby": "userDropdown" }
+        },
+        [
+          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+            _vm._v("\n          Create New Invoice\n        ")
+          ]),
+          _vm._v(" "),
+          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+            _vm._v("\n          Create New Purchase\n        ")
+          ]),
+          _vm._v(" "),
+          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+            _vm._v("\n          Create New Delivery Note\n        ")
+          ]),
+          _vm._v(" "),
+          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+            _vm._v("\n          Create New Quote\n        ")
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "nav-link dropdown-toggle",
+        attrs: {
+          href: "#",
+          id: "userDropdown",
+          role: "button",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }
+      },
+      [_c("i", { staticClass: "fas fa-user fa-topcustom" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+      _c("i", { staticClass: "fas fa-user fa-sm fa-fw mr-2 text-gray-400" }),
+      _vm._v("\n          Profile\n        ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+      _c("i", { staticClass: "fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" }),
+      _vm._v("\n          Settings\n        ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+      _c("i", { staticClass: "fas fa-list fa-sm fa-fw mr-2 text-gray-400" }),
+      _vm._v("\n          Activity Log\n        ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item dropdown no-arrow" }, [
       _c(
         "a",
         {
@@ -77861,7 +77549,7 @@ var staticRenderFns = [
           }
         },
         [
-          _c("i", { staticClass: "fas fa-bell fa-fw" }),
+          _c("i", { staticClass: "fas fa-bell fa-topcustom" }),
           _vm._v(" "),
           _c("span", { staticClass: "badge badge-danger badge-counter" }, [
             _vm._v("3+")
@@ -77967,207 +77655,6 @@ var staticRenderFns = [
         ]
       )
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item dropdown no-arrow mx-1" }, [
-      _c(
-        "a",
-        {
-          staticClass: "nav-link dropdown-toggle",
-          attrs: {
-            href: "#",
-            id: "messagesDropdown",
-            role: "button",
-            "data-toggle": "dropdown",
-            "aria-haspopup": "true",
-            "aria-expanded": "false"
-          }
-        },
-        [
-          _c("i", { staticClass: "fas fa-envelope fa-fw" }),
-          _vm._v(" "),
-          _c("span", { staticClass: "badge badge-danger badge-counter" }, [
-            _vm._v("7")
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "\n          dropdown-list dropdown-menu dropdown-menu-right\n          shadow\n          animated--grow-in\n        ",
-          attrs: { "aria-labelledby": "messagesDropdown" }
-        },
-        [
-          _c("h6", { staticClass: "dropdown-header" }, [
-            _vm._v("Message Center")
-          ]),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "dropdown-item d-flex align-items-center",
-              attrs: { href: "#" }
-            },
-            [
-              _c("div", { staticClass: "dropdown-list-image mr-3" }, [
-                _c("img", {
-                  staticClass: "rounded-circle",
-                  attrs: { src: "img/undraw_profile_1.svg", alt: "..." }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "status-indicator bg-success" })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "font-weight-bold" }, [
-                _c("div", { staticClass: "text-truncate" }, [
-                  _vm._v(
-                    "\n              Hi there! I am wondering if you can help me with a problem I've\n              been having.\n            "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "small text-gray-500" }, [
-                  _vm._v("Emily Fowler · 58m")
-                ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "dropdown-item d-flex align-items-center",
-              attrs: { href: "#" }
-            },
-            [
-              _c("div", { staticClass: "dropdown-list-image mr-3" }, [
-                _c("img", {
-                  staticClass: "rounded-circle",
-                  attrs: { src: "img/undraw_profile_2.svg", alt: "..." }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "status-indicator" })
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _c("div", { staticClass: "text-truncate" }, [
-                  _vm._v(
-                    "\n              I have the photos that you ordered last month, how would you\n              like them sent to you?\n            "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "small text-gray-500" }, [
-                  _vm._v("Jae Chun · 1d")
-                ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "dropdown-item d-flex align-items-center",
-              attrs: { href: "#" }
-            },
-            [
-              _c("div", { staticClass: "dropdown-list-image mr-3" }, [
-                _c("img", {
-                  staticClass: "rounded-circle",
-                  attrs: { src: "img/undraw_profile_3.svg", alt: "..." }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "status-indicator bg-warning" })
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _c("div", { staticClass: "text-truncate" }, [
-                  _vm._v(
-                    "\n              Last month's report looks great, I am very happy with the\n              progress so far, keep up the good work!\n            "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "small text-gray-500" }, [
-                  _vm._v("Morgan Alvarez · 2d")
-                ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "dropdown-item d-flex align-items-center",
-              attrs: { href: "#" }
-            },
-            [
-              _c("div", { staticClass: "dropdown-list-image mr-3" }, [
-                _c("img", {
-                  staticClass: "rounded-circle",
-                  attrs: {
-                    src: "https://source.unsplash.com/Mv9hjnEUHR4/60x60",
-                    alt: "..."
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "status-indicator bg-success" })
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _c("div", { staticClass: "text-truncate" }, [
-                  _vm._v(
-                    "\n              Am I a good boy? The reason I ask is because someone told me\n              that people say this to all dogs, even if they aren't good...\n            "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "small text-gray-500" }, [
-                  _vm._v("Chicken the Dog · 2w")
-                ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "dropdown-item text-center small text-gray-500",
-              attrs: { href: "#" }
-            },
-            [_vm._v("Read More Messages")]
-          )
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "fas fa-user fa-sm fa-fw mr-2 text-gray-400" }),
-      _vm._v("\n          Profile\n        ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" }),
-      _vm._v("\n          Settings\n        ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "fas fa-list fa-sm fa-fw mr-2 text-gray-400" }),
-      _vm._v("\n          Activity Log\n        ")
-    ])
   }
 ]
 render._withStripped = true
@@ -78204,7 +77691,10 @@ var render = function() {
         [
           _c(
             "div",
-            { attrs: { id: "content" } },
+            {
+              staticStyle: { "background-color": "#F6F7F9" },
+              attrs: { id: "content" }
+            },
             [
               _c("Topbar"),
               _vm._v(" "),
@@ -78216,29 +77706,14 @@ var render = function() {
               )
             ],
             1
-          ),
-          _vm._v(" "),
-          _vm._m(0)
+          )
         ]
       )
     ],
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("footer", { staticClass: "sticky-footer bg-white" }, [
-      _c("div", { staticClass: "container my-auto" }, [
-        _c("div", { staticClass: "copyright text-center my-auto" }, [
-          _c("span")
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -94960,7 +94435,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_home_index_vue":1,"resources_js_views_login_index_vue":1,"resources_js_views_register_index_vue":1,"resources_js_views_verify_index_vue":1,"resources_js_views_forgot_index_vue":1,"resources_js_views_reset_index_vue":1,"resources_js_views_admin_dashboard_vue":1,"resources_js_views_admin_buttons_vue":1,"resources_js_views_admin_cards_vue":1,"resources_js_views_admin_colors_vue":1,"resources_js_views_admin_borders_vue":1,"resources_js_views_admin_animations_vue":1,"resources_js_views_admin_other_vue":1,"resources_js_views_admin_page-not-found_vue":1,"resources_js_views_admin_blank_vue":1,"resources_js_views_admin_charts_vue":1,"resources_js_views_admin_tables_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_home_index_vue":1,"resources_js_views_login_index_vue":1,"resources_js_views_register_index_vue":1,"resources_js_views_verify_index_vue":1,"resources_js_views_forgot_index_vue":1,"resources_js_views_reset_index_vue":1,"resources_js_views_admin_dashboard_vue":1,"resources_js_views_admin_sales_vue":1,"resources_js_views_admin_buttons_vue":1,"resources_js_views_admin_cards_vue":1,"resources_js_views_admin_colors_vue":1,"resources_js_views_admin_borders_vue":1,"resources_js_views_admin_animations_vue":1,"resources_js_views_admin_other_vue":1,"resources_js_views_admin_page-not-found_vue":1,"resources_js_views_admin_blank_vue":1,"resources_js_views_admin_charts_vue":1,"resources_js_views_admin_tables_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

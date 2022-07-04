@@ -7,7 +7,7 @@
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
       <!-- Main Content -->
-      <div id="content">
+      <div id="content" style="background-color: #F6F7F9;">
         <!-- Start of Topbar -->
         <Topbar />
         <!-- End of Topbar -->
@@ -21,13 +21,13 @@
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
+      <!-- <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span></span>
           </div>
         </div>
-      </footer>
+      </footer> -->
       <!-- End of Footer -->
     </div>
     <!-- End of Content Wrapper -->
