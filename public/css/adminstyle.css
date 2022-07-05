@@ -12522,6 +12522,7 @@ button.bg-dark:focus {
     border-radius: 5px;
     height: 40px;
     border: 1px solid #d1d3e2;
+    margin-left: 10px;
 }
 .input-group-append {
   display: -ms-flexbox;
@@ -12547,6 +12548,17 @@ button.bg-dark:focus {
   padding: 11px;
   border-radius: 50%;
 }
+.input-readonly
+{
+  border: 1px solid #EDF2F6;
+}
+.input-readonly::placeholder { 
+  color: #5D92CE;
+}
+#accordionSidebar:not(.toggled) .nav-item
+{
+  padding-left: 30%;
+}
 @media screen and (max-width:767px) {
   .login-div {
       width: 100%;
@@ -12557,6 +12569,26 @@ button.bg-dark:focus {
   }
   .login-container {
       padding-top: 35%;
+  }
+  .mobile-mb
+  {
+    margin-bottom: 10px;
+  }
+  .topbar .navbar-search
+  {
+    margin-left: 0 !important;
+  }
+  .input-group-append
+  {
+    padding: 0;
+  }
+  .topbar .navbar-search input
+  {
+    height: 38px;
+  }
+  #accordionSidebar .nav-item
+  {
+    padding-left: 0 !important;
   }
 }
 

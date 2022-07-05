@@ -1,6 +1,6 @@
 <template>
   <div
-    class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top" style="background-color:#EDF2F6 !important"
+    class="navbar navbar-expand navbar-light bg-white topbar mb-3 static-top" style="background-color:#EDF2F6 !important"
   >
     <!-- Sidebar Toggle (Topbar) -->
     <button

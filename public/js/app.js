@@ -77254,7 +77254,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "navbar navbar-expand navbar-light bg-white topbar mb-4 static-top",
+        "navbar navbar-expand navbar-light bg-white topbar mb-3 static-top",
       staticStyle: { "background-color": "#EDF2F6 !important" }
     },
     [

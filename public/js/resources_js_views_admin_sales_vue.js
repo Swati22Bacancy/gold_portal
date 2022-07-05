@@ -46,118 +46,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Dashboard"
 });
@@ -264,12 +152,33 @@ var staticRenderFns = [
         "div",
         {
           staticClass:
-            "d-sm-flex align-items-center justify-content-between mb-4"
+            "d-sm-flex align-items-center justify-content-between mb-3"
         },
         [
           _c("div", { staticClass: "col-md-6" }, [
-            _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
-              _vm._v("Sales")
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-3 mobile-mb" }, [
+                _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
+                  _vm._v("Sales")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-9 mobile-mb" }, [
+                _c("input", {
+                  staticClass: "form-control bg-light small input-readonly",
+                  staticStyle: {
+                    "background-color": "#FFFFFF !important",
+                    height: "auto"
+                  },
+                  attrs: {
+                    type: "text",
+                    placeholder: "Total Sales in Current Year",
+                    "aria-label": "Search",
+                    "aria-describedby": "basic-addon2",
+                    readonly: ""
+                  }
+                })
+              ])
             ])
           ]),
           _vm._v(" "),
@@ -279,241 +188,49 @@ var staticRenderFns = [
             [
               _c(
                 "button",
-                { staticClass: "btn admin-btn", attrs: { type: "button" } },
-                [_vm._v("Create Invoice")]
+                {
+                  staticClass: "btn admin-btn mobile-mb",
+                  attrs: { type: "button" }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fas fa-plus",
+                    staticStyle: { "margin-right": "5px" }
+                  }),
+                  _vm._v("Create Invoice")
+                ]
               ),
               _vm._v(" "),
               _c(
                 "button",
-                { staticClass: "btn admin-btn", attrs: { type: "button" } },
+                {
+                  staticClass: "btn admin-btn mobile-mb",
+                  attrs: { type: "button" }
+                },
                 [_vm._v("Sales Reconsile")]
               ),
               _vm._v(" "),
               _c(
                 "button",
-                { staticClass: "btn admin-btn", attrs: { type: "button" } },
+                {
+                  staticClass: "btn admin-btn mobile-mb",
+                  attrs: { type: "button" }
+                },
                 [_vm._v("Import")]
               ),
               _vm._v(" "),
               _c(
                 "button",
-                { staticClass: "btn admin-btn", attrs: { type: "button" } },
+                {
+                  staticClass: "btn admin-btn mobile-mb",
+                  attrs: { type: "button" }
+                },
                 [_vm._v("Export")]
               )
             ]
           )
         ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-xl-3 col-md-6 mb-4" }, [
-          _c(
-            "div",
-            { staticClass: "card border-left-primary shadow h-100 py-2" },
-            [
-              _c("div", { staticClass: "card-body" }, [
-                _c(
-                  "div",
-                  { staticClass: "row no-gutters align-items-center" },
-                  [
-                    _c("div", { staticClass: "col mr-2" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "\n                  text-xs\n                  font-weight-bold\n                  text-primary text-uppercase\n                  mb-1\n                "
-                        },
-                        [
-                          _vm._v(
-                            "\n                Earnings (Monthly)\n              "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "h5 mb-0 font-weight-bold text-gray-800"
-                        },
-                        [_vm._v("\n                $40,000\n              ")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-auto" }, [
-                      _c("i", {
-                        staticClass: "fas fa-calendar fa-2x text-gray-300"
-                      })
-                    ])
-                  ]
-                )
-              ])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xl-3 col-md-6 mb-4" }, [
-          _c(
-            "div",
-            { staticClass: "card border-left-success shadow h-100 py-2" },
-            [
-              _c("div", { staticClass: "card-body" }, [
-                _c(
-                  "div",
-                  { staticClass: "row no-gutters align-items-center" },
-                  [
-                    _c("div", { staticClass: "col mr-2" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "\n                  text-xs\n                  font-weight-bold\n                  text-success text-uppercase\n                  mb-1\n                "
-                        },
-                        [
-                          _vm._v(
-                            "\n                Earnings (Annual)\n              "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "h5 mb-0 font-weight-bold text-gray-800"
-                        },
-                        [_vm._v("\n                $215,000\n              ")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-auto" }, [
-                      _c("i", {
-                        staticClass: "fas fa-dollar-sign fa-2x text-gray-300"
-                      })
-                    ])
-                  ]
-                )
-              ])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xl-3 col-md-6 mb-4" }, [
-          _c(
-            "div",
-            { staticClass: "card border-left-info shadow h-100 py-2" },
-            [
-              _c("div", { staticClass: "card-body" }, [
-                _c(
-                  "div",
-                  { staticClass: "row no-gutters align-items-center" },
-                  [
-                    _c("div", { staticClass: "col mr-2" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "text-xs font-weight-bold text-info text-uppercase mb-1"
-                        },
-                        [_vm._v("\n                Tasks\n              ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "row no-gutters align-items-center" },
-                        [
-                          _c("div", { staticClass: "col-auto" }, [
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "h5 mb-0 mr-3 font-weight-bold text-gray-800"
-                              },
-                              [
-                                _vm._v(
-                                  "\n                    50%\n                  "
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col" }, [
-                            _c(
-                              "div",
-                              { staticClass: "progress progress-sm mr-2" },
-                              [
-                                _c("div", {
-                                  staticClass: "progress-bar bg-info",
-                                  staticStyle: { width: "50%" },
-                                  attrs: {
-                                    role: "progressbar",
-                                    "aria-valuenow": "50",
-                                    "aria-valuemin": "0",
-                                    "aria-valuemax": "100"
-                                  }
-                                })
-                              ]
-                            )
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-auto" }, [
-                      _c("i", {
-                        staticClass: "fas fa-clipboard-list fa-2x text-gray-300"
-                      })
-                    ])
-                  ]
-                )
-              ])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xl-3 col-md-6 mb-4" }, [
-          _c(
-            "div",
-            { staticClass: "card border-left-warning shadow h-100 py-2" },
-            [
-              _c("div", { staticClass: "card-body" }, [
-                _c(
-                  "div",
-                  { staticClass: "row no-gutters align-items-center" },
-                  [
-                    _c("div", { staticClass: "col mr-2" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "\n                  text-xs\n                  font-weight-bold\n                  text-warning text-uppercase\n                  mb-1\n                "
-                        },
-                        [
-                          _vm._v(
-                            "\n                Pending Requests\n              "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "h5 mb-0 font-weight-bold text-gray-800"
-                        },
-                        [_vm._v("18")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-auto" }, [
-                      _c("i", {
-                        staticClass: "fas fa-comments fa-2x text-gray-300"
-                      })
-                    ])
-                  ]
-                )
-              ])
-            ]
-          )
-        ])
-      ])
+      )
     ])
   }
 ]

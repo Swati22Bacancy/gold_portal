@@ -1,6 +1,6 @@
 <template>
     <ul
-      class="navbar-nav sidebar sidebar-dark accordion"
+      class="navbar-nav sidebar sidebar-dark accordion nottoggled"
       id="accordionSidebar" style="background-color: #3377C2;"
     >
       <!-- Sidebar - Brand -->
@@ -25,21 +25,21 @@
         >
       </li>
 
-      <li class="nav-item active">
+      <li class="nav-item">
         <router-link class="nav-link" to="/sales">
           <i class="fas fa-fw fa-shopping-cart"></i>
           <span>Sales</span></router-link
         >
       </li>
 
-      <li class="nav-item active">
+      <li class="nav-item">
         <router-link class="nav-link" to="/admin">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Purchases</span></router-link
         >
       </li>
 
-      <li class="nav-item active">
+      <li class="nav-item">
         <router-link class="nav-link" to="/admin">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Delivery Notes</span></router-link
