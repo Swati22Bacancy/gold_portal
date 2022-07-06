@@ -77116,7 +77116,7 @@ var render = function() {
   return _c(
     "ul",
     {
-      staticClass: "navbar-nav sidebar sidebar-dark accordion",
+      staticClass: "navbar-nav sidebar sidebar-dark accordion nottoggled",
       staticStyle: { "background-color": "#3377C2" },
       attrs: { id: "accordionSidebar" }
     },
@@ -77159,7 +77159,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "li",
-        { staticClass: "nav-item active" },
+        { staticClass: "nav-item" },
         [
           _c(
             "router-link",
@@ -77176,7 +77176,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "li",
-        { staticClass: "nav-item active" },
+        { staticClass: "nav-item" },
         [
           _c(
             "router-link",
@@ -77193,7 +77193,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "li",
-        { staticClass: "nav-item active" },
+        { staticClass: "nav-item" },
         [
           _c(
             "router-link",
