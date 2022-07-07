@@ -12559,6 +12559,35 @@ button.bg-dark:focus {
 {
   padding-left: 30%;
 }
+.table-btn
+{
+  background-color: #C94C4C !important;
+  font-size: 12px  !important;
+  color: #fff;
+  border-radius: 5px;
+  height: 28px;
+}
+.table-btn-green
+{
+  background-color: #00AA5B !important;
+  font-size: 12px  !important;
+  color: #fff;
+  border-radius: 5px;
+  height: 28px;
+}
+.bg-darkblue
+{
+  background-color: #245388;
+}
+.bg-lightblue
+{
+  background-color: #3376C2;
+}
+.bg-darkgrey
+{
+  background-color: #4B4B4B;
+}
+
 @media screen and (max-width:767px) {
   .login-div {
       width: 100%;

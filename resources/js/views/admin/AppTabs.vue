@@ -85,4 +85,32 @@ export default {
   padding: 9px 0px;
   border-radius: 0px 5px 5px 5px;
 }
+@media screen and (max-width:767px) {
+  .tabs-cstm li
+  {
+    padding: 13px 13px 9px 0px;
+  }
+  .tabs-cstm .flex
+  {
+    overflow-x: scroll;
+  }
+  .table-search
+  {
+    width: 100% !important ;
+    margin-bottom: 3%;
+  }
+  .table-date
+  {
+    width: 100% !important;
+    margin-bottom: 3%;
+  }
+  .tab-selector
+  {
+    width: 49% !important;
+  }
+  .tab-content .admin-btn
+  {
+    margin-top: 3% !important;
+  }
+}
 </style>

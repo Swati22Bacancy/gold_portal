@@ -204,6 +204,82 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -218,7 +294,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    $('#sales-datatable').DataTable();
+    $('#sales-datatable').DataTable({
+      "bFilter": false,
+      "bLengthChange": false
+    });
   }
 });
 
@@ -283,7 +362,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.flex {\r\n  display: flex;\n}\n.tabs-cstm li.active\r\n{\r\n  background: #245387;\r\n  color: #fff;\n}\n.tabs-cstm li\r\n{\r\n  background: #EDF2F6;\r\n  font-size: 12px;\r\n  color: #000;\r\n  padding: 13px 13px 9px 25px;\r\n  border-radius: 5px 5px 0px 0px;\r\n  min-width: 130px;\r\n  text-align: center;\n}\n.tabs-cstm .flex\r\n{\r\n  list-style: none;\r\n  padding: 0;\r\n  margin-bottom: 0;\n}\n.tab-content\r\n{\r\n  background-color: #fff;\r\n  padding: 9px 0px;\r\n  border-radius: 0px 5px 5px 5px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.flex {\r\n  display: flex;\n}\n.tabs-cstm li.active\r\n{\r\n  background: #245387;\r\n  color: #fff;\n}\n.tabs-cstm li\r\n{\r\n  background: #EDF2F6;\r\n  font-size: 12px;\r\n  color: #000;\r\n  padding: 13px 13px 9px 25px;\r\n  border-radius: 5px 5px 0px 0px;\r\n  min-width: 130px;\r\n  text-align: center;\n}\n.tabs-cstm .flex\r\n{\r\n  list-style: none;\r\n  padding: 0;\r\n  margin-bottom: 0;\n}\n.tab-content\r\n{\r\n  background-color: #fff;\r\n  padding: 9px 0px;\r\n  border-radius: 0px 5px 5px 5px;\n}\n@media screen and (max-width:767px) {\n.tabs-cstm li\r\n  {\r\n    padding: 13px 13px 9px 0px;\n}\n.tabs-cstm .flex\r\n  {\r\n    overflow-x: scroll;\n}\n.table-search\r\n  {\r\n    width: 100% !important ;\r\n    margin-bottom: 3%;\n}\n.table-date\r\n  {\r\n    width: 100% !important;\r\n    margin-bottom: 3%;\n}\n.tab-selector\r\n  {\r\n    width: 49% !important;\n}\n.tab-content .admin-btn\r\n  {\r\n    margin-top: 3% !important;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -307,7 +386,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.table-search[data-v-b85307c6]\r\n{\r\n  width: 25%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.table-date[data-v-b85307c6]\r\n{\r\n  width: 27%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.tab-selector[data-v-b85307c6]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 11%;\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-search[data-v-b85307c6]::-moz-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-b85307c6]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-b85307c6]::placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n#sales-datatable thead[data-v-b85307c6]\r\n{\r\n  background: #3376C2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#sales-datatable[data-v-b85307c6]\r\n{\r\n  color: #000;\r\n  font-size: 14px;\n}\ntable.dataTable.no-footer[data-v-b85307c6]\r\n{\r\n  border-bottom: 1px solid #e3e6f0;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.table-search[data-v-b85307c6]\r\n{\r\n  width: 25%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.table-date[data-v-b85307c6]\r\n{\r\n  width: 27%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.tab-selector[data-v-b85307c6]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 11%;\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-search[data-v-b85307c6]::-moz-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-b85307c6]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-b85307c6]::placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n#sales-datatable thead[data-v-b85307c6]\r\n{\r\n  background: #3376C2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#sales-datatable[data-v-b85307c6]\r\n{\r\n  color: #000;\r\n  font-size: 14px;\n}\ntable.dataTable.no-footer[data-v-b85307c6]\r\n{\r\n  border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-b85307c6]\r\n{\r\n    color: #fff !important;\r\n    border: 1px solid #3376c2 !important;\r\n    background-color: #3376c2 !important;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-b85307c6]\r\n{\r\n  padding: 0.3em 0.8em;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -16679,7 +16758,9 @@ var render = function() {
                                     _vm._v(" "),
                                     _c("th", [_vm._v("Start date")]),
                                     _vm._v(" "),
-                                    _c("th", [_vm._v("Salary")])
+                                    _c("th", [_vm._v("Salary")]),
+                                    _vm._v(" "),
+                                    _c("th", [_vm._v("Status")])
                                   ])
                                 ]),
                                 _vm._v(" "),
@@ -16695,7 +16776,21 @@ var render = function() {
                                     _vm._v(" "),
                                     _c("td", [_vm._v("2011/04/25")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("$320,800")])
+                                    _c("td", [_vm._v("$320,800")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn table-btn",
+                                          staticStyle: {
+                                            "margin-left": "auto"
+                                          },
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("UnPaid")]
+                                      )
+                                    ])
                                   ]),
                                   _vm._v(" "),
                                   _c("tr", [
@@ -16709,7 +16804,21 @@ var render = function() {
                                     _vm._v(" "),
                                     _c("td", [_vm._v("2011/07/25")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("$170,750")])
+                                    _c("td", [_vm._v("$170,750")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn table-btn-green",
+                                          staticStyle: {
+                                            "margin-left": "auto"
+                                          },
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("Paid")]
+                                      )
+                                    ])
                                   ]),
                                   _vm._v(" "),
                                   _c("tr", [
@@ -16725,7 +16834,21 @@ var render = function() {
                                     _vm._v(" "),
                                     _c("td", [_vm._v("2009/01/12")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("$86,000")])
+                                    _c("td", [_vm._v("$86,000")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn table-btn",
+                                          staticStyle: {
+                                            "margin-left": "auto"
+                                          },
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("UnPaid")]
+                                      )
+                                    ])
                                   ]),
                                   _vm._v(" "),
                                   _c("tr", [
@@ -16741,7 +16864,253 @@ var render = function() {
                                     _vm._v(" "),
                                     _c("td", [_vm._v("2012/03/29")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("$433,060")])
+                                    _c("td", [_vm._v("$433,060")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn table-btn",
+                                          staticStyle: {
+                                            "margin-left": "auto"
+                                          },
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("UnPaid")]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _c("td", [_vm._v("Tiger Nixon")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("System Architect")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Edinburgh")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("61")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("2011/04/25")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("$320,800")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn table-btn-green",
+                                          staticStyle: {
+                                            "margin-left": "auto"
+                                          },
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("Paid")]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _c("td", [_vm._v("Garrett Winters")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Accountant")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Tokyo")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("63")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("2011/07/25")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("$170,750")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn table-btn",
+                                          staticStyle: {
+                                            "margin-left": "auto"
+                                          },
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("UnPaid")]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _c("td", [_vm._v("Ashton Cox")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v("Junior Technical Author")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("San Francisco")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("66")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("2009/01/12")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("$86,000")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn table-btn-green",
+                                          staticStyle: {
+                                            "margin-left": "auto"
+                                          },
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("Paid")]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _c("td", [_vm._v("Cedric Kelly")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v("Senior Javascript Developer")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Edinburgh")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("22")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("2012/03/29")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("$433,060")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn table-btn",
+                                          staticStyle: {
+                                            "margin-left": "auto"
+                                          },
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("UnPaid")]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _c("td", [_vm._v("Tiger Nixon")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("System Architect")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Edinburgh")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("61")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("2011/04/25")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("$320,800")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn table-btn",
+                                          staticStyle: {
+                                            "margin-left": "auto"
+                                          },
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("UnPaid")]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _c("td", [_vm._v("Garrett Winters")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Accountant")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Tokyo")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("63")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("2011/07/25")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("$170,750")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn table-btn",
+                                          staticStyle: {
+                                            "margin-left": "auto"
+                                          },
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("UnPaid")]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _c("td", [_vm._v("Ashton Cox")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v("Junior Technical Author")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("San Francisco")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("66")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("2009/01/12")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("$86,000")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn table-btn",
+                                          staticStyle: {
+                                            "margin-left": "auto"
+                                          },
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("UnPaid")]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _c("td", [_vm._v("Cedric Kelly")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v("Senior Javascript Developer")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Edinburgh")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("22")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("2012/03/29")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("$433,060")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn table-btn-green",
+                                          staticStyle: {
+                                            "margin-left": "auto"
+                                          },
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("Paid")]
+                                      )
+                                    ])
                                   ])
                                 ])
                               ]

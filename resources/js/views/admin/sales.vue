@@ -60,6 +60,7 @@
                                             <th>Age</th>
                                             <th>Start date</th>
                                             <th>Salary</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -70,6 +71,7 @@
                                             <td>61</td>
                                             <td>2011/04/25</td>
                                             <td>$320,800</td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
                                         </tr>
                                         <tr>
                                             <td>Garrett Winters</td>
@@ -78,6 +80,7 @@
                                             <td>63</td>
                                             <td>2011/07/25</td>
                                             <td>$170,750</td>
+                                            <td><button type="button" class="btn table-btn-green" style="margin-left: auto;">Paid</button></td>
                                         </tr>
                                         <tr>
                                             <td>Ashton Cox</td>
@@ -86,6 +89,7 @@
                                             <td>66</td>
                                             <td>2009/01/12</td>
                                             <td>$86,000</td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
                                         </tr>
                                         <tr>
                                             <td>Cedric Kelly</td>
@@ -94,8 +98,80 @@
                                             <td>22</td>
                                             <td>2012/03/29</td>
                                             <td>$433,060</td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
                                         </tr>
-                                        
+                                        <tr>
+                                            <td>Tiger Nixon</td>
+                                            <td>System Architect</td>
+                                            <td>Edinburgh</td>
+                                            <td>61</td>
+                                            <td>2011/04/25</td>
+                                            <td>$320,800</td>
+                                            <td><button type="button" class="btn table-btn-green" style="margin-left: auto;">Paid</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Garrett Winters</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>63</td>
+                                            <td>2011/07/25</td>
+                                            <td>$170,750</td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ashton Cox</td>
+                                            <td>Junior Technical Author</td>
+                                            <td>San Francisco</td>
+                                            <td>66</td>
+                                            <td>2009/01/12</td>
+                                            <td>$86,000</td>
+                                            <td><button type="button" class="btn table-btn-green" style="margin-left: auto;">Paid</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cedric Kelly</td>
+                                            <td>Senior Javascript Developer</td>
+                                            <td>Edinburgh</td>
+                                            <td>22</td>
+                                            <td>2012/03/29</td>
+                                            <td>$433,060</td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tiger Nixon</td>
+                                            <td>System Architect</td>
+                                            <td>Edinburgh</td>
+                                            <td>61</td>
+                                            <td>2011/04/25</td>
+                                            <td>$320,800</td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Garrett Winters</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>63</td>
+                                            <td>2011/07/25</td>
+                                            <td>$170,750</td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ashton Cox</td>
+                                            <td>Junior Technical Author</td>
+                                            <td>San Francisco</td>
+                                            <td>66</td>
+                                            <td>2009/01/12</td>
+                                            <td>$86,000</td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cedric Kelly</td>
+                                            <td>Senior Javascript Developer</td>
+                                            <td>Edinburgh</td>
+                                            <td>22</td>
+                                            <td>2012/03/29</td>
+                                            <td>$433,060</td>
+                                            <td><button type="button" class="btn table-btn-green" style="margin-left: auto;">Paid</button></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -132,7 +208,10 @@ export default {
     };
   },
   mounted(){
-      $('#sales-datatable').DataTable();
+      $('#sales-datatable').DataTable({
+        "bFilter": false,
+        "bLengthChange": false
+      });
   }
 };
 </script>
@@ -179,5 +258,15 @@ export default {
 table.dataTable.no-footer
 {
   border-bottom: 1px solid #e3e6f0;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current
+{
+    color: #fff !important;
+    border: 1px solid #3376c2 !important;
+    background-color: #3376c2 !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button
+{
+  padding: 0.3em 0.8em;
 }
 </style>

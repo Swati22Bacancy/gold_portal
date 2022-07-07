@@ -8,123 +8,229 @@
 
     <!-- Content Row -->
     <div class="row">
-      <!-- Earnings (Monthly) Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-primary shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div
-                  class="
-                    text-xs
-                    font-weight-bold
-                    text-primary text-uppercase
-                    mb-1
-                  "
-                >
-                  Earnings (Monthly)
-                </div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                  $40,000
-                </div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-              </div>
-            </div>
+      <div class="col-md-4">
+        <div class="row bg-darkblue" style="border-radius: 5px 5px 0px 0px;">
+          <div class="col-md-8 dash-divs">
+            <p>Sales this month</p>
+            <h3><b>28,500.50</b></h3>
+            <span>(256 Invoices)</span>
+          </div>
+          <div class="">
+
+          </div>
+          <div class="col-md-4">
+
+          </div>
+        </div>
+        <div class="row bg-lightblue dash-row">
+          <span>Recent Sales</span>
+          <button type="button" class="btn dash-btn" style="background-color: rgb(122, 218, 170) !important;margin-left: auto;">View Sales</button>
+        </div>
+        <div class="row dash-table">
+          <div class="table-responsive">
+            <table class="table" id="dash-datatable" width="100%" cellspacing="0">
+                <tbody>
+                  <tr>
+                      <td>Tiger Nixon</td>
+                      <td>System Architect</td>
+                      <td>Edinburgh</td>
+                   </tr>
+                  <tr>
+                      <td>Garrett Winters</td>
+                      <td>Accountant</td>
+                      <td>Tokyo</td>
+                 </tr>
+                 <tr>
+                      <td>Tiger Nixon</td>
+                      <td>System Architect</td>
+                      <td>Edinburgh</td>
+                   </tr>
+                  <tr>
+                      <td>Garrett Winters</td>
+                      <td>Accountant</td>
+                      <td>Tokyo</td>
+                 </tr>
+                 <tr>
+                      <td>Tiger Nixon</td>
+                      <td>System Architect</td>
+                      <td>Edinburgh</td>
+                   </tr>
+                  <tr>
+                      <td>Garrett Winters</td>
+                      <td>Accountant</td>
+                      <td>Tokyo</td>
+                 </tr>
+                 <tr>
+                      <td>Tiger Nixon</td>
+                      <td>System Architect</td>
+                      <td>Edinburgh</td>
+                   </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row bg-darkgrey" style="border-radius: 0px 0px 5px 5px;">
+          <div class="col-md-8 dash-divs">
+            <p>Total Turnover</p>
+            <h3><b>28,500.50</b></h3>
+            <span>(12 Orders)</span>
+          </div>
+          <div class="">
+
+          </div>
+          <div class="col-md-4">
+
           </div>
         </div>
       </div>
+        
+      <div class="col-md-4">
+        <div class="row bg-darkblue" style="border-radius: 5px 5px 0px 0px;">
+          <div class="col-md-8 dash-divs">
+            <p>Sales this month</p>
+            <h3><b>28,500.50</b></h3>
+            <span>(256 Invoices)</span>
+          </div>
+          <div class="">
 
-      <!-- Earnings (Monthly) Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div
-                  class="
-                    text-xs
-                    font-weight-bold
-                    text-success text-uppercase
-                    mb-1
-                  "
-                >
-                  Earnings (Annual)
-                </div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                  $215,000
-                </div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-              </div>
-            </div>
+          </div>
+          <div class="col-md-4">
+
+          </div>
+        </div>
+        <div class="row bg-lightblue dash-row">
+          <span>Recent Sales</span>
+          <button type="button" class="btn dash-btn" style="background-color: rgb(122, 218, 170) !important;margin-left: auto;">View Sales</button>
+        </div>
+        <div class="row dash-table">
+          <div class="table-responsive">
+            <table class="table" id="dash-datatable" width="100%" cellspacing="0">
+                <tbody>
+                  <tr>
+                      <td>Tiger Nixon</td>
+                      <td>System Architect</td>
+                      <td>Edinburgh</td>
+                   </tr>
+                  <tr>
+                      <td>Garrett Winters</td>
+                      <td>Accountant</td>
+                      <td>Tokyo</td>
+                 </tr>
+                 <tr>
+                      <td>Tiger Nixon</td>
+                      <td>System Architect</td>
+                      <td>Edinburgh</td>
+                   </tr>
+                  <tr>
+                      <td>Garrett Winters</td>
+                      <td>Accountant</td>
+                      <td>Tokyo</td>
+                 </tr>
+                 <tr>
+                      <td>Tiger Nixon</td>
+                      <td>System Architect</td>
+                      <td>Edinburgh</td>
+                   </tr>
+                  <tr>
+                      <td>Garrett Winters</td>
+                      <td>Accountant</td>
+                      <td>Tokyo</td>
+                 </tr>
+                 <tr>
+                      <td>Tiger Nixon</td>
+                      <td>System Architect</td>
+                      <td>Edinburgh</td>
+                   </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row bg-darkgrey" style="border-radius: 0px 0px 5px 5px;">
+          <div class="col-md-8 dash-divs">
+            <p>Total Turnover</p>
+            <h3><b>28,500.50</b></h3>
+            <span>(12 Orders)</span>
+          </div>
+          <div class="">
+
+          </div>
+          <div class="col-md-4">
+
           </div>
         </div>
       </div>
+      <div class="col-md-4">
+        <div class="row bg-darkblue" style="border-radius: 5px 5px 0px 0px;">
+          <div class="col-md-8 dash-divs">
+            <p>Sales this month</p>
+            <h3><b>28,500.50</b></h3>
+            <span>(256 Invoices)</span>
+          </div>
+          <div class="">
 
-      <!-- Earnings (Monthly) Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-info shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div
-                  class="text-xs font-weight-bold text-info text-uppercase mb-1"
-                >
-                  Tasks
-                </div>
-                <div class="row no-gutters align-items-center">
-                  <div class="col-auto">
-                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                      50%
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="progress progress-sm mr-2">
-                      <div
-                        class="progress-bar bg-info"
-                        role="progressbar"
-                        style="width: 50%"
-                        aria-valuenow="50"
-                        aria-valuemin="0"
-                        aria-valuemax="100"
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-              </div>
-            </div>
+          </div>
+          <div class="col-md-4">
+
           </div>
         </div>
-      </div>
+        <div class="row bg-lightblue dash-row">
+          <span>Recent Sales</span>
+          <button type="button" class="btn dash-btn" style="background-color: rgb(122, 218, 170) !important;margin-left: auto;">View Sales</button>
+        </div>
+        <div class="row dash-table">
+          <div class="table-responsive">
+            <table class="table" id="dash-datatable" width="100%" cellspacing="0">
+                <tbody>
+                  <tr>
+                      <td>Tiger Nixon</td>
+                      <td>System Architect</td>
+                      <td>Edinburgh</td>
+                   </tr>
+                  <tr>
+                      <td>Garrett Winters</td>
+                      <td>Accountant</td>
+                      <td>Tokyo</td>
+                 </tr>
+                 <tr>
+                      <td>Tiger Nixon</td>
+                      <td>System Architect</td>
+                      <td>Edinburgh</td>
+                   </tr>
+                  <tr>
+                      <td>Garrett Winters</td>
+                      <td>Accountant</td>
+                      <td>Tokyo</td>
+                 </tr>
+                 <tr>
+                      <td>Tiger Nixon</td>
+                      <td>System Architect</td>
+                      <td>Edinburgh</td>
+                   </tr>
+                  <tr>
+                      <td>Garrett Winters</td>
+                      <td>Accountant</td>
+                      <td>Tokyo</td>
+                 </tr>
+                 <tr>
+                      <td>Tiger Nixon</td>
+                      <td>System Architect</td>
+                      <td>Edinburgh</td>
+                   </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row bg-darkgrey" style="border-radius: 0px 0px 5px 5px;">
+          <div class="col-md-8 dash-divs">
+            <p>Total Turnover</p>
+            <h3><b>28,500.50</b></h3>
+            <span>(12 Orders)</span>
+          </div>
+          <div class="">
 
-      <!-- Pending Requests Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-warning shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div
-                  class="
-                    text-xs
-                    font-weight-bold
-                    text-warning text-uppercase
-                    mb-1
-                  "
-                >
-                  Pending Requests
-                </div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-comments fa-2x text-gray-300"></i>
-              </div>
-            </div>
+          </div>
+          <div class="col-md-4">
+
           </div>
         </div>
       </div>
@@ -142,3 +248,37 @@ export default {
   name: "Dashboard"
 };
 </script>
+<style scoped>
+.dash-divs
+{
+  padding: 19px;
+  color: #fff;
+}
+.dash-divs p {
+  font-size: 14px;
+  margin-bottom: 0;
+}
+.dash-row
+{
+  padding: 10px 14px;
+  color: #fff;
+}
+.dash-btn
+{
+  width: auto;
+  font-size: 14px  !important;
+  color: #000;
+  border-radius: 5px;
+  height: 35px;
+  margin-left: 10px;
+}
+#dash-datatable
+{
+  font-size: 13px;
+  color: #000;
+}
+.dash-table
+{
+  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);
+}
+</style>
