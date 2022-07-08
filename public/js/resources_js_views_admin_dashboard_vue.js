@@ -241,20 +241,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Dashboard"
 });
@@ -278,7 +264,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.dash-divs[data-v-822d95b6]\r\n{\r\n  padding: 19px;\r\n  color: #fff;\n}\n.dash-divs p[data-v-822d95b6] {\r\n  font-size: 14px;\r\n  margin-bottom: 0;\n}\n.dash-row[data-v-822d95b6]\r\n{\r\n  padding: 10px 14px;\r\n  color: #fff;\n}\n.dash-btn[data-v-822d95b6]\r\n{\r\n  width: auto;\r\n  font-size: 14px  !important;\r\n  color: #000;\r\n  border-radius: 5px;\r\n  height: 35px;\r\n  margin-left: 10px;\n}\n#dash-datatable[data-v-822d95b6]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.dash-table[data-v-822d95b6]\r\n{\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.dash-divs[data-v-822d95b6]\r\n{\r\n  padding: 19px;\r\n  color: #fff;\n}\n.dash-divs p[data-v-822d95b6] {\r\n  font-size: 13px;\r\n  margin-bottom: 0;\n}\n.dash-row[data-v-822d95b6]\r\n{\r\n  padding: 10px 14px;\r\n  color: #fff;\n}\n.dash-btn[data-v-822d95b6]\r\n{\r\n  width: auto;\r\n  font-size: 13px  !important;\r\n  color: #000;\r\n  border-radius: 5px;\r\n  height: 35px;\r\n  margin-left: 10px;\n}\n#dash-datatable[data-v-822d95b6]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.dash-table[data-v-822d95b6]\r\n{\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.dash-divs span[data-v-822d95b6]\r\n{\r\n  font-size: 13px;\n}\n.mid-div1[data-v-822d95b6]\r\n{\r\n  width: 70%;\r\n  display: inline-block;\r\n  font-size: 13px;\n}\n.mid-div2[data-v-822d95b6]\r\n{\r\n  width: 29%;\r\n  display: inline-block;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -799,14 +785,16 @@ var staticRenderFns = [
           _c(
             "div",
             {
-              staticClass: "row bg-darkblue",
+              staticClass: "col-md-12 bg-darkblue",
               staticStyle: { "border-radius": "5px 5px 0px 0px" }
             },
             [
               _c("div", { staticClass: "col-md-8 dash-divs" }, [
                 _c("p", [_vm._v("Sales this month")]),
                 _vm._v(" "),
-                _c("h3", [_c("b", [_vm._v("28,500.50")])]),
+                _c("h4", { staticStyle: { "margin-bottom": "0" } }, [
+                  _c("b", [_vm._v("28,500.50")])
+                ]),
                 _vm._v(" "),
                 _c("span", [_vm._v("(256 Invoices)")])
               ]),
@@ -817,24 +805,28 @@ var staticRenderFns = [
             ]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "row bg-lightblue dash-row" }, [
-            _c("span", [_vm._v("Recent Sales")]),
+          _c("div", { staticClass: "col-md-12 bg-lightblue dash-row" }, [
+            _c("div", { staticClass: "mid-div1" }, [
+              _c("span", [_vm._v("Recent Sales")])
+            ]),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn dash-btn",
-                staticStyle: {
-                  "background-color": "rgb(122, 218, 170) !important",
-                  "margin-left": "auto"
+            _c("div", { staticClass: "mid-div2" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn dash-btn",
+                  staticStyle: {
+                    "background-color": "rgb(122, 218, 170) !important",
+                    "margin-left": "auto"
+                  },
+                  attrs: { type: "button" }
                 },
-                attrs: { type: "button" }
-              },
-              [_vm._v("View Sales")]
-            )
+                [_vm._v("View Sales")]
+              )
+            ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row dash-table" }, [
+          _c("div", { staticClass: "dash-table" }, [
             _c("div", { staticClass: "table-responsive" }, [
               _c(
                 "table",
@@ -849,59 +841,73 @@ var staticRenderFns = [
                 [
                   _c("tbody", [
                     _c("tr", [
-                      _c("td", [_vm._v("Tiger Nixon")]),
+                      _c("td", [_vm._v("INV-10232")]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("System Architect")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("Robert Malasawaliki")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Edinburgh")])
+                      _c("td", [_vm._v("5,203.50")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Garrett Winters")]),
+                      _c("td", [_vm._v("INV-10231")]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Accountant")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("ABC Jewellers LTD.")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Tokyo")])
+                      _c("td", [_vm._v("4,953.00")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Tiger Nixon")]),
+                      _c("td", [_vm._v("INV-10230")]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("System Architect")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("Haji Jewellers LTD.")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Edinburgh")])
+                      _c("td", [_vm._v("4,634.50")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Garrett Winters")]),
+                      _c("td", [_vm._v("INV-10232")]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Accountant")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("Robert Malasawaliki")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Tokyo")])
+                      _c("td", [_vm._v("5,203.50")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Tiger Nixon")]),
+                      _c("td", [_vm._v("INV-10231")]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("System Architect")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("ABC Jewellers LTD.")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Edinburgh")])
+                      _c("td", [_vm._v("4,953.00")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Garrett Winters")]),
+                      _c("td", [_vm._v("INV-10230")]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Accountant")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("Haji Jewellers LTD.")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Tokyo")])
+                      _c("td", [_vm._v("4,634.50")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Tiger Nixon")]),
+                      _c("td", [_vm._v("INV-10230")]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("System Architect")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("Haji Jewellers LTD.")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Edinburgh")])
+                      _c("td", [_vm._v("4,634.50")])
                     ])
                   ])
                 ]
@@ -912,14 +918,16 @@ var staticRenderFns = [
           _c(
             "div",
             {
-              staticClass: "row bg-darkgrey",
+              staticClass: "col-md-12 bg-darkgrey",
               staticStyle: { "border-radius": "0px 0px 5px 5px" }
             },
             [
               _c("div", { staticClass: "col-md-8 dash-divs" }, [
                 _c("p", [_vm._v("Total Turnover")]),
                 _vm._v(" "),
-                _c("h3", [_c("b", [_vm._v("28,500.50")])]),
+                _c("h4", { staticStyle: { "margin-bottom": "0" } }, [
+                  _c("b", [_vm._v("28,500.50")])
+                ]),
                 _vm._v(" "),
                 _c("span", [_vm._v("(12 Orders)")])
               ]),
@@ -935,14 +943,16 @@ var staticRenderFns = [
           _c(
             "div",
             {
-              staticClass: "row bg-darkblue",
+              staticClass: "col-md-12 bg-darkblue",
               staticStyle: { "border-radius": "5px 5px 0px 0px" }
             },
             [
               _c("div", { staticClass: "col-md-8 dash-divs" }, [
                 _c("p", [_vm._v("Sales this month")]),
                 _vm._v(" "),
-                _c("h3", [_c("b", [_vm._v("28,500.50")])]),
+                _c("h4", { staticStyle: { "margin-bottom": "0" } }, [
+                  _c("b", [_vm._v("28,500.50")])
+                ]),
                 _vm._v(" "),
                 _c("span", [_vm._v("(256 Invoices)")])
               ]),
@@ -953,24 +963,28 @@ var staticRenderFns = [
             ]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "row bg-lightblue dash-row" }, [
-            _c("span", [_vm._v("Recent Sales")]),
+          _c("div", { staticClass: "col-md-12 bg-lightblue dash-row" }, [
+            _c("div", { staticClass: "mid-div1" }, [
+              _c("span", [_vm._v("Recent Sales")])
+            ]),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn dash-btn",
-                staticStyle: {
-                  "background-color": "rgb(122, 218, 170) !important",
-                  "margin-left": "auto"
+            _c("div", { staticClass: "mid-div2" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn dash-btn",
+                  staticStyle: {
+                    "background-color": "rgb(122, 218, 170) !important",
+                    "margin-left": "auto"
+                  },
+                  attrs: { type: "button" }
                 },
-                attrs: { type: "button" }
-              },
-              [_vm._v("View Sales")]
-            )
+                [_vm._v("View Sales")]
+              )
+            ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row dash-table" }, [
+          _c("div", { staticClass: "dash-table" }, [
             _c("div", { staticClass: "table-responsive" }, [
               _c(
                 "table",
@@ -985,59 +999,59 @@ var staticRenderFns = [
                 [
                   _c("tbody", [
                     _c("tr", [
-                      _c("td", [_vm._v("Tiger Nixon")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("GB78602023(Jermaine Charlo)")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("System Architect")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Edinburgh")])
+                      _c("td", [_vm._v("5,203.50")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Garrett Winters")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("GB78602023(Jermaine Charlo)")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Accountant")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Tokyo")])
+                      _c("td", [_vm._v("4,953.00")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Tiger Nixon")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("GB78602023(Jermaine Charlo)")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("System Architect")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Edinburgh")])
+                      _c("td", [_vm._v("4,634.50")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Garrett Winters")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("GB78602023(Jermaine Charlo)")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Accountant")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Tokyo")])
+                      _c("td", [_vm._v("5,203.50")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Tiger Nixon")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("GB78602023(Jermaine Charlo)")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("System Architect")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Edinburgh")])
+                      _c("td", [_vm._v("4,953.00")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Garrett Winters")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("GB78602023(Jermaine Charlo)")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Accountant")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Tokyo")])
+                      _c("td", [_vm._v("4,634.50")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Tiger Nixon")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("GB78602023(Jermaine Charlo)")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("System Architect")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Edinburgh")])
+                      _c("td", [_vm._v("4,634.50")])
                     ])
                   ])
                 ]
@@ -1048,14 +1062,16 @@ var staticRenderFns = [
           _c(
             "div",
             {
-              staticClass: "row bg-darkgrey",
+              staticClass: "col-md-12 bg-darkgrey",
               staticStyle: { "border-radius": "0px 0px 5px 5px" }
             },
             [
               _c("div", { staticClass: "col-md-8 dash-divs" }, [
                 _c("p", [_vm._v("Total Turnover")]),
                 _vm._v(" "),
-                _c("h3", [_c("b", [_vm._v("28,500.50")])]),
+                _c("h4", { staticStyle: { "margin-bottom": "0" } }, [
+                  _c("b", [_vm._v("28,500.50")])
+                ]),
                 _vm._v(" "),
                 _c("span", [_vm._v("(12 Orders)")])
               ]),
@@ -1071,14 +1087,16 @@ var staticRenderFns = [
           _c(
             "div",
             {
-              staticClass: "row bg-darkblue",
+              staticClass: "col-md-12 bg-darkblue",
               staticStyle: { "border-radius": "5px 5px 0px 0px" }
             },
             [
               _c("div", { staticClass: "col-md-8 dash-divs" }, [
                 _c("p", [_vm._v("Sales this month")]),
                 _vm._v(" "),
-                _c("h3", [_c("b", [_vm._v("28,500.50")])]),
+                _c("h4", { staticStyle: { "margin-bottom": "0" } }, [
+                  _c("b", [_vm._v("28,500.50")])
+                ]),
                 _vm._v(" "),
                 _c("span", [_vm._v("(256 Invoices)")])
               ]),
@@ -1089,24 +1107,28 @@ var staticRenderFns = [
             ]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "row bg-lightblue dash-row" }, [
-            _c("span", [_vm._v("Recent Sales")]),
+          _c("div", { staticClass: "col-md-12 bg-lightblue dash-row" }, [
+            _c("div", { staticClass: "mid-div1" }, [
+              _c("span", [_vm._v("Recent Sales")])
+            ]),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn dash-btn",
-                staticStyle: {
-                  "background-color": "rgb(122, 218, 170) !important",
-                  "margin-left": "auto"
+            _c("div", { staticClass: "mid-div2" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn dash-btn",
+                  staticStyle: {
+                    "background-color": "rgb(122, 218, 170) !important",
+                    "margin-left": "auto"
+                  },
+                  attrs: { type: "button" }
                 },
-                attrs: { type: "button" }
-              },
-              [_vm._v("View Sales")]
-            )
+                [_vm._v("View Sales")]
+              )
+            ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row dash-table" }, [
+          _c("div", { staticClass: "dash-table" }, [
             _c("div", { staticClass: "table-responsive" }, [
               _c(
                 "table",
@@ -1121,59 +1143,59 @@ var staticRenderFns = [
                 [
                   _c("tbody", [
                     _c("tr", [
-                      _c("td", [_vm._v("Tiger Nixon")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("GB78602023(Jermaine Charlo)")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("System Architect")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Edinburgh")])
+                      _c("td", [_vm._v("5,203.50")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Garrett Winters")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("GB78602023(Jermaine Charlo)")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Accountant")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Tokyo")])
+                      _c("td", [_vm._v("4,953.00")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Tiger Nixon")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("GB78602023(Jermaine Charlo)")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("System Architect")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Edinburgh")])
+                      _c("td", [_vm._v("4,634.50")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Garrett Winters")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("GB78602023(Jermaine Charlo)")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Accountant")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Tokyo")])
+                      _c("td", [_vm._v("5,203.50")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Tiger Nixon")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("GB78602023(Jermaine Charlo)")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("System Architect")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Edinburgh")])
+                      _c("td", [_vm._v("4,953.00")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Garrett Winters")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("GB78602023(Jermaine Charlo)")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("Accountant")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Tokyo")])
+                      _c("td", [_vm._v("4,634.50")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
-                      _c("td", [_vm._v("Tiger Nixon")]),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v("GB78602023(Jermaine Charlo)")
+                      ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("System Architect")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Edinburgh")])
+                      _c("td", [_vm._v("4,634.50")])
                     ])
                   ])
                 ]
@@ -1184,14 +1206,16 @@ var staticRenderFns = [
           _c(
             "div",
             {
-              staticClass: "row bg-darkgrey",
+              staticClass: "col-md-12 bg-darkgrey",
               staticStyle: { "border-radius": "0px 0px 5px 5px" }
             },
             [
               _c("div", { staticClass: "col-md-8 dash-divs" }, [
                 _c("p", [_vm._v("Total Turnover")]),
                 _vm._v(" "),
-                _c("h3", [_c("b", [_vm._v("28,500.50")])]),
+                _c("h4", { staticStyle: { "margin-bottom": "0" } }, [
+                  _c("b", [_vm._v("28,500.50")])
+                ]),
                 _vm._v(" "),
                 _c("span", [_vm._v("(12 Orders)")])
               ]),

@@ -30,6 +30,23 @@
   src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.eot?77206a6bb316fa0aded5083cc57f92b9);
   src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.eot?77206a6bb316fa0aded5083cc57f92b9) format("embedded-opentype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff2?7a3337626410ca2f40718481c755640f) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff?bb58e57c48a3e911f15fa834ff00d44a) format("woff"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.ttf?491974d108fe4002b2aaf7ffc48249a0) format("truetype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.svg?4689f52cc96215721344e51e5831eec1) format("svg");
 }
+@font-face {
+  font-family: "ArgestaDisplay";
+  src: url('../fonts/fonts/ArgestaDisplay.eot');
+    src: url('../fonts/fonts/ArgestaDisplay.eot') format('embedded-opentype'),
+         url('../fonts/fonts/ArgestaDisplay.woff2') format('woff2'),
+         url('../fonts/fonts/ArgestaDisplay.woff') format('woff'),
+         url('../fonts/fonts/ArgestaDisplay.ttf') format('truetype'),
+         url('../fonts/fonts/ArgestaDisplay.svg#ArgestaDisplay') format('svg');
+}
+@font-face {
+  font-family: "Switzer-Medium";
+  src: url('../fonts/fonts/Switzer-Medium.woff2') format('woff2'),
+       url('../fonts/fonts/Switzer-Medium.woff') format('woff'),
+       url('../fonts/fonts/Switzer-Medium.ttf') format('truetype');
+       font-display: swap;
+       font-style: normal;
+}
 .far {
   font-family: "Font Awesome 5 Free";
   font-weight: 400;
@@ -6182,9 +6199,10 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+  font-family: Switzer-Medium;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 100;
   line-height: 1.5;
   color: #858796;
   text-align: left;
@@ -12507,7 +12525,7 @@ button.bg-dark:focus {
 {
     background-color: #7ADAAA !important;
     width: auto;
-    font-size: 14px  !important;
+    font-size: 13px  !important;
     color: #000;
     padding: 0.375rem 1.5rem;
     border-radius: 0 0.35rem 0.35rem 0;
@@ -12517,7 +12535,7 @@ button.bg-dark:focus {
 {
     background-color: #EDF2F6 !important;
     width: auto;
-    font-size: 14px  !important;
+    font-size: 13px  !important;
     color: #000;
     border-radius: 5px;
     height: 40px;
@@ -12557,7 +12575,11 @@ button.bg-dark:focus {
 }
 #accordionSidebar:not(.toggled) .nav-item
 {
-  padding-left: 30%;
+  /* padding-left: 30%; */
+}
+#accordionSidebar:not(.toggled) .nav-item i
+{
+  margin-right: 10%;
 }
 .table-btn
 {
@@ -12587,7 +12609,13 @@ button.bg-dark:focus {
 {
   background-color: #4B4B4B;
 }
-
+.custom-check-input
+{
+  left: 0;
+  z-index: -1;
+  width: 1rem;
+  height: 1.25rem;
+}
 @media screen and (max-width:767px) {
   .login-div {
       width: 100%;
@@ -16513,6 +16541,8 @@ a:focus {
 .text-gray-800 {
   color: #245388 !important;
   font-weight: 700;
+  font-family: ArgestaDisplay;
+  font-size: 23px;
 }
 
 .text-gray-900 {
@@ -16940,7 +16970,7 @@ a:focus {
 
 @media (min-width: 768px) {
   .sidebar {
-    width: 24rem !important;
+    width: 15rem !important;
   }
   .sidebar .nav-item .collapse {
     position: relative;
@@ -16966,7 +16996,7 @@ a:focus {
     display: block;
     width: 100%;
     text-align: left;
-    padding: 1rem;
+    padding: 0.6rem 1rem;
     width: 14rem;
   }
   .sidebar .nav-item .nav-link i {
@@ -17056,11 +17086,11 @@ a:focus {
   }
   .topbar
   {
-    padding-right: 10%;
+    /* padding-right: 10%; */
   }
   .container-fluid
   {
-    padding-right: 10%;
+    /* padding-right: 10%; */
   }
 }
 .sidebar-light .sidebar-brand {

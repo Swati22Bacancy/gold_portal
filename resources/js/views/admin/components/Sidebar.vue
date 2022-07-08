@@ -45,6 +45,49 @@
           <span>Delivery Notes</span></router-link
         >
       </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/admin">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Quotes</span></router-link
+        >
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/admin">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Customers</span></router-link
+        >
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/admin">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Bank Accounts</span></router-link
+        >
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/admin">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Users</span></router-link
+        >
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/admin">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Settings</span></router-link
+        >
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/admin">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Reports</span></router-link
+        >
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/admin">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Whatsapp</span></router-link
+        >
+      </li>
+
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block" />

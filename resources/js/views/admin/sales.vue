@@ -4,12 +4,12 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-3">
       <div class="col-md-6">
         <div class="row">
-          <div class="col-md-3 mobile-mb">
+          <div class="col-md-2 mobile-mb">
             <h1 class="h3 mb-0 text-gray-800">Sales</h1>
           </div>
-          <div class="col-md-9 mobile-mb">
+          <div class="col-md-8 mobile-mb">
             <input type="text" class="form-control bg-light small input-readonly" placeholder="Total Sales in Current Year" aria-label="Search"
-            aria-describedby="basic-addon2" style="background-color:#FFFFFF !important; height: auto;" readonly
+            aria-describedby="basic-addon2" style="background-color:#FFFFFF !important; height: 40px;font-size: 13px;" readonly
           />
           </div>
         </div>
@@ -54,123 +54,162 @@
                                 <table class="table" id="sales-datatable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th><input type="checkbox" class="custom-check-input"></th>
+                                            <th>Date</th>
+                                            <th>No</th>
+                                            <th>Customer</th>
+                                            <th>Item Type</th>
+                                            <th>Payment Method</th>
+                                            <th>Sub Total</th>
+                                            <th>Vat</th>
+                                            <th>Total</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
+                                            <td><input type="checkbox" class="custom-check-input"></td>
+                                            <td>16/5/2021</td>
+                                            <td>INV-2001</td>
                                             <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                            <td>Jewellery</td>
+                                            <td>Credit Card</td>
+                                            <td>8000</td>
+                                            <td>640</td>
+                                            <td>8640</td>
                                             <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
                                         </tr>
                                         <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
+                                            <td><input type="checkbox" class="custom-check-input"></td>
+                                            <td>16/5/2021</td>
+                                            <td>INV-1999</td>
+                                            <td>Robert</td>
+                                            <td>Delivery</td>
+                                            <td>Credit Card</td>
+                                            <td>8000</td>
+                                            <td>640</td>
+                                            <td>8640</td>
                                             <td><button type="button" class="btn table-btn-green" style="margin-left: auto;">Paid</button></td>
                                         </tr>
                                         <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                            <td>$86,000</td>
+                                            <td><input type="checkbox" class="custom-check-input"></td>
+                                            <td>14/5/2021</td>
+                                            <td>INV-1998</td>
+                                            <td>Robert</td>
+                                            <td>FG/Bullion(2)</td>
+                                            <td>Credit Card</td>
+                                            <td>8000</td>
+                                            <td>640</td>
+                                            <td>8640</td>
                                             <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
                                         </tr>
                                         <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
+                                            <td><input type="checkbox" class="custom-check-input"></td>
+                                            <td>16/5/2021</td>
+                                            <td>INV-2001</td>
                                             <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29</td>
-                                            <td>$433,060</td>
+                                            <td>Jewellery</td>
+                                            <td>Credit Card</td>
+                                            <td>8000</td>
+                                            <td>640</td>
+                                            <td>8640</td>
                                             <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
                                         </tr>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                            <td><input type="checkbox" class="custom-check-input"></td>
+                                            <td>16/5/2021</td>
+                                            <td>INV-1999</td>
+                                            <td>Robert</td>
+                                            <td>Delivery</td>
+                                            <td>Credit Card</td>
+                                            <td>8000</td>
+                                            <td>640</td>
+                                            <td>8640</td>
                                             <td><button type="button" class="btn table-btn-green" style="margin-left: auto;">Paid</button></td>
                                         </tr>
                                         <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
+                                            <td><input type="checkbox" class="custom-check-input"></td>
+                                            <td>16/5/2021</td>
+                                            <td>INV-2001</td>
+                                            <td>Edinburgh</td>
+                                            <td>Jewellery</td>
+                                            <td>Credit Card</td>
+                                            <td>8000</td>
+                                            <td>640</td>
+                                            <td>8640</td>
                                             <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
                                         </tr>
                                         <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                            <td>$86,000</td>
+                                            <td><input type="checkbox" class="custom-check-input"></td>
+                                            <td>16/5/2021</td>
+                                            <td>INV-1999</td>
+                                            <td>Robert</td>
+                                            <td>Delivery</td>
+                                            <td>Credit Card</td>
+                                            <td>8000</td>
+                                            <td>640</td>
+                                            <td>8640</td>
                                             <td><button type="button" class="btn table-btn-green" style="margin-left: auto;">Paid</button></td>
                                         </tr>
                                         <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
+                                            <td><input type="checkbox" class="custom-check-input"></td>
+                                            <td>14/5/2021</td>
+                                            <td>INV-1998</td>
+                                            <td>Robert</td>
+                                            <td>FG/Bullion(2)</td>
+                                            <td>Credit Card</td>
+                                            <td>8000</td>
+                                            <td>640</td>
+                                            <td>8640</td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="custom-check-input"></td>
+                                            <td>16/5/2021</td>
+                                            <td>INV-2001</td>
                                             <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29</td>
-                                            <td>$433,060</td>
+                                            <td>Jewellery</td>
+                                            <td>Credit Card</td>
+                                            <td>8000</td>
+                                            <td>640</td>
+                                            <td>8640</td>
                                             <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
                                         </tr>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
-                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                            <td>$86,000</td>
-                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29</td>
-                                            <td>$433,060</td>
+                                            <td><input type="checkbox" class="custom-check-input"></td>
+                                            <td>16/5/2021</td>
+                                            <td>INV-1999</td>
+                                            <td>Robert</td>
+                                            <td>Delivery</td>
+                                            <td>Credit Card</td>
+                                            <td>8000</td>
+                                            <td>640</td>
+                                            <td>8640</td>
                                             <td><button type="button" class="btn table-btn-green" style="margin-left: auto;">Paid</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="custom-check-input"></td>
+                                            <td>14/5/2021</td>
+                                            <td>INV-1998</td>
+                                            <td>Robert</td>
+                                            <td>FG/Bullion(2)</td>
+                                            <td>Credit Card</td>
+                                            <td>8000</td>
+                                            <td>640</td>
+                                            <td>8640</td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="custom-check-input"></td>
+                                            <td>14/5/2021</td>
+                                            <td>INV-1998</td>
+                                            <td>Robert</td>
+                                            <td>FG/Bullion(2)</td>
+                                            <td>Credit Card</td>
+                                            <td>8000</td>
+                                            <td>640</td>
+                                            <td>8640</td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -210,7 +249,10 @@ export default {
   mounted(){
       $('#sales-datatable').DataTable({
         "bFilter": false,
-        "bLengthChange": false
+        "bLengthChange": false,
+        "columnDefs": [
+          { "targets": [0], "searchable": false, "orderable": false, "visible": true }
+        ]
       });
   }
 };
@@ -250,10 +292,14 @@ export default {
   color: #fff;
   font-size: 13px;
 }
+.table-date::placeholder {
+  color: #3377c2;
+  font-size: 13px;
+}
 #sales-datatable
 {
   color: #000;
-  font-size: 14px;
+  font-size: 13px;
 }
 table.dataTable.no-footer
 {
@@ -268,5 +314,13 @@ table.dataTable.no-footer
 .dataTables_wrapper .dataTables_paginate .paginate_button
 {
   padding: 0.3em 0.8em;
+}
+#sales-datatable thead tr th 
+{
+  font-weight: 100 !important;
+}
+table.dataTable thead th
+{
+  padding: 10px 10px !important;
 }
 </style>

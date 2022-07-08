@@ -280,6 +280,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -296,7 +335,13 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     $('#sales-datatable').DataTable({
       "bFilter": false,
-      "bLengthChange": false
+      "bLengthChange": false,
+      "columnDefs": [{
+        "targets": [0],
+        "searchable": false,
+        "orderable": false,
+        "visible": true
+      }]
     });
   }
 });
@@ -386,7 +431,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.table-search[data-v-b85307c6]\r\n{\r\n  width: 25%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.table-date[data-v-b85307c6]\r\n{\r\n  width: 27%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.tab-selector[data-v-b85307c6]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 11%;\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-search[data-v-b85307c6]::-moz-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-b85307c6]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-b85307c6]::placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n#sales-datatable thead[data-v-b85307c6]\r\n{\r\n  background: #3376C2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#sales-datatable[data-v-b85307c6]\r\n{\r\n  color: #000;\r\n  font-size: 14px;\n}\ntable.dataTable.no-footer[data-v-b85307c6]\r\n{\r\n  border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-b85307c6]\r\n{\r\n    color: #fff !important;\r\n    border: 1px solid #3376c2 !important;\r\n    background-color: #3376c2 !important;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-b85307c6]\r\n{\r\n  padding: 0.3em 0.8em;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.table-search[data-v-b85307c6]\r\n{\r\n  width: 25%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.table-date[data-v-b85307c6]\r\n{\r\n  width: 27%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.tab-selector[data-v-b85307c6]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 11%;\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-search[data-v-b85307c6]::-moz-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-b85307c6]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-b85307c6]::placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n#sales-datatable thead[data-v-b85307c6]\r\n{\r\n  background: #3376C2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n.table-date[data-v-b85307c6]::-moz-placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-date[data-v-b85307c6]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-date[data-v-b85307c6]::placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n#sales-datatable[data-v-b85307c6]\r\n{\r\n  color: #000;\r\n  font-size: 13px;\n}\ntable.dataTable.no-footer[data-v-b85307c6]\r\n{\r\n  border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-b85307c6]\r\n{\r\n    color: #fff !important;\r\n    border: 1px solid #3376c2 !important;\r\n    background-color: #3376c2 !important;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-b85307c6]\r\n{\r\n  padding: 0.3em 0.8em;\n}\n#sales-datatable thead tr th[data-v-b85307c6] \r\n{\r\n  font-weight: 100 !important;\n}\ntable.dataTable thead th[data-v-b85307c6]\r\n{\r\n  padding: 10px 10px !important;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -16748,17 +16793,28 @@ var render = function() {
                               [
                                 _c("thead", [
                                   _c("tr", [
-                                    _c("th", [_vm._v("Name")]),
+                                    _c("th", [
+                                      _c("input", {
+                                        staticClass: "custom-check-input",
+                                        attrs: { type: "checkbox" }
+                                      })
+                                    ]),
                                     _vm._v(" "),
-                                    _c("th", [_vm._v("Position")]),
+                                    _c("th", [_vm._v("Date")]),
                                     _vm._v(" "),
-                                    _c("th", [_vm._v("Office")]),
+                                    _c("th", [_vm._v("No")]),
                                     _vm._v(" "),
-                                    _c("th", [_vm._v("Age")]),
+                                    _c("th", [_vm._v("Customer")]),
                                     _vm._v(" "),
-                                    _c("th", [_vm._v("Start date")]),
+                                    _c("th", [_vm._v("Item Type")]),
                                     _vm._v(" "),
-                                    _c("th", [_vm._v("Salary")]),
+                                    _c("th", [_vm._v("Payment Method")]),
+                                    _vm._v(" "),
+                                    _c("th", [_vm._v("Sub Total")]),
+                                    _vm._v(" "),
+                                    _c("th", [_vm._v("Vat")]),
+                                    _vm._v(" "),
+                                    _c("th", [_vm._v("Total")]),
                                     _vm._v(" "),
                                     _c("th", [_vm._v("Status")])
                                   ])
@@ -16766,17 +16822,28 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("tbody", [
                                   _c("tr", [
-                                    _c("td", [_vm._v("Tiger Nixon")]),
+                                    _c("td", [
+                                      _c("input", {
+                                        staticClass: "custom-check-input",
+                                        attrs: { type: "checkbox" }
+                                      })
+                                    ]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("System Architect")]),
+                                    _c("td", [_vm._v("16/5/2021")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("INV-2001")]),
                                     _vm._v(" "),
                                     _c("td", [_vm._v("Edinburgh")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("61")]),
+                                    _c("td", [_vm._v("Jewellery")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("2011/04/25")]),
+                                    _c("td", [_vm._v("Credit Card")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("$320,800")]),
+                                    _c("td", [_vm._v("8000")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("640")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8640")]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _c(
@@ -16794,17 +16861,28 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("tr", [
-                                    _c("td", [_vm._v("Garrett Winters")]),
+                                    _c("td", [
+                                      _c("input", {
+                                        staticClass: "custom-check-input",
+                                        attrs: { type: "checkbox" }
+                                      })
+                                    ]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("Accountant")]),
+                                    _c("td", [_vm._v("16/5/2021")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("Tokyo")]),
+                                    _c("td", [_vm._v("INV-1999")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("63")]),
+                                    _c("td", [_vm._v("Robert")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("2011/07/25")]),
+                                    _c("td", [_vm._v("Delivery")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("$170,750")]),
+                                    _c("td", [_vm._v("Credit Card")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8000")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("640")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8640")]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _c(
@@ -16822,19 +16900,28 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("tr", [
-                                    _c("td", [_vm._v("Ashton Cox")]),
-                                    _vm._v(" "),
                                     _c("td", [
-                                      _vm._v("Junior Technical Author")
+                                      _c("input", {
+                                        staticClass: "custom-check-input",
+                                        attrs: { type: "checkbox" }
+                                      })
                                     ]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("San Francisco")]),
+                                    _c("td", [_vm._v("14/5/2021")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("66")]),
+                                    _c("td", [_vm._v("INV-1998")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("2009/01/12")]),
+                                    _c("td", [_vm._v("Robert")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("$86,000")]),
+                                    _c("td", [_vm._v("FG/Bullion(2)")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Credit Card")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8000")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("640")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8640")]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _c(
@@ -16852,19 +16939,28 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("tr", [
-                                    _c("td", [_vm._v("Cedric Kelly")]),
-                                    _vm._v(" "),
                                     _c("td", [
-                                      _vm._v("Senior Javascript Developer")
+                                      _c("input", {
+                                        staticClass: "custom-check-input",
+                                        attrs: { type: "checkbox" }
+                                      })
                                     ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("16/5/2021")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("INV-2001")]),
                                     _vm._v(" "),
                                     _c("td", [_vm._v("Edinburgh")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("22")]),
+                                    _c("td", [_vm._v("Jewellery")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("2012/03/29")]),
+                                    _c("td", [_vm._v("Credit Card")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("$433,060")]),
+                                    _c("td", [_vm._v("8000")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("640")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8640")]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _c(
@@ -16882,17 +16978,28 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("tr", [
-                                    _c("td", [_vm._v("Tiger Nixon")]),
+                                    _c("td", [
+                                      _c("input", {
+                                        staticClass: "custom-check-input",
+                                        attrs: { type: "checkbox" }
+                                      })
+                                    ]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("System Architect")]),
+                                    _c("td", [_vm._v("16/5/2021")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("Edinburgh")]),
+                                    _c("td", [_vm._v("INV-1999")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("61")]),
+                                    _c("td", [_vm._v("Robert")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("2011/04/25")]),
+                                    _c("td", [_vm._v("Delivery")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("$320,800")]),
+                                    _c("td", [_vm._v("Credit Card")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8000")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("640")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8640")]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _c(
@@ -16910,17 +17017,28 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("tr", [
-                                    _c("td", [_vm._v("Garrett Winters")]),
+                                    _c("td", [
+                                      _c("input", {
+                                        staticClass: "custom-check-input",
+                                        attrs: { type: "checkbox" }
+                                      })
+                                    ]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("Accountant")]),
+                                    _c("td", [_vm._v("16/5/2021")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("Tokyo")]),
+                                    _c("td", [_vm._v("INV-2001")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("63")]),
+                                    _c("td", [_vm._v("Edinburgh")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("2011/07/25")]),
+                                    _c("td", [_vm._v("Jewellery")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("$170,750")]),
+                                    _c("td", [_vm._v("Credit Card")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8000")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("640")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8640")]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _c(
@@ -16938,19 +17056,28 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("tr", [
-                                    _c("td", [_vm._v("Ashton Cox")]),
-                                    _vm._v(" "),
                                     _c("td", [
-                                      _vm._v("Junior Technical Author")
+                                      _c("input", {
+                                        staticClass: "custom-check-input",
+                                        attrs: { type: "checkbox" }
+                                      })
                                     ]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("San Francisco")]),
+                                    _c("td", [_vm._v("16/5/2021")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("66")]),
+                                    _c("td", [_vm._v("INV-1999")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("2009/01/12")]),
+                                    _c("td", [_vm._v("Robert")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("$86,000")]),
+                                    _c("td", [_vm._v("Delivery")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Credit Card")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8000")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("640")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8640")]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _c(
@@ -16968,47 +17095,67 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("tr", [
-                                    _c("td", [_vm._v("Cedric Kelly")]),
+                                    _c("td", [
+                                      _c("input", {
+                                        staticClass: "custom-check-input",
+                                        attrs: { type: "checkbox" }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("14/5/2021")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("INV-1998")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Robert")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("FG/Bullion(2)")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Credit Card")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8000")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("640")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8640")]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v("Senior Javascript Developer")
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn table-btn",
+                                          staticStyle: {
+                                            "margin-left": "auto"
+                                          },
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("UnPaid")]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _c("td", [
+                                      _c("input", {
+                                        staticClass: "custom-check-input",
+                                        attrs: { type: "checkbox" }
+                                      })
                                     ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("16/5/2021")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("INV-2001")]),
                                     _vm._v(" "),
                                     _c("td", [_vm._v("Edinburgh")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("22")]),
+                                    _c("td", [_vm._v("Jewellery")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("2012/03/29")]),
+                                    _c("td", [_vm._v("Credit Card")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("$433,060")]),
+                                    _c("td", [_vm._v("8000")]),
                                     _vm._v(" "),
-                                    _c("td", [
-                                      _c(
-                                        "button",
-                                        {
-                                          staticClass: "btn table-btn",
-                                          staticStyle: {
-                                            "margin-left": "auto"
-                                          },
-                                          attrs: { type: "button" }
-                                        },
-                                        [_vm._v("UnPaid")]
-                                      )
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("tr", [
-                                    _c("td", [_vm._v("Tiger Nixon")]),
+                                    _c("td", [_vm._v("640")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("System Architect")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("Edinburgh")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("61")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("2011/04/25")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("$320,800")]),
+                                    _c("td", [_vm._v("8640")]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _c(
@@ -17026,77 +17173,28 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("tr", [
-                                    _c("td", [_vm._v("Garrett Winters")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("Accountant")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("Tokyo")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("63")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("2011/07/25")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("$170,750")]),
-                                    _vm._v(" "),
                                     _c("td", [
-                                      _c(
-                                        "button",
-                                        {
-                                          staticClass: "btn table-btn",
-                                          staticStyle: {
-                                            "margin-left": "auto"
-                                          },
-                                          attrs: { type: "button" }
-                                        },
-                                        [_vm._v("UnPaid")]
-                                      )
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("tr", [
-                                    _c("td", [_vm._v("Ashton Cox")]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v("Junior Technical Author")
+                                      _c("input", {
+                                        staticClass: "custom-check-input",
+                                        attrs: { type: "checkbox" }
+                                      })
                                     ]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("San Francisco")]),
+                                    _c("td", [_vm._v("16/5/2021")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("66")]),
+                                    _c("td", [_vm._v("INV-1999")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("2009/01/12")]),
+                                    _c("td", [_vm._v("Robert")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("$86,000")]),
+                                    _c("td", [_vm._v("Delivery")]),
                                     _vm._v(" "),
-                                    _c("td", [
-                                      _c(
-                                        "button",
-                                        {
-                                          staticClass: "btn table-btn",
-                                          staticStyle: {
-                                            "margin-left": "auto"
-                                          },
-                                          attrs: { type: "button" }
-                                        },
-                                        [_vm._v("UnPaid")]
-                                      )
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("tr", [
-                                    _c("td", [_vm._v("Cedric Kelly")]),
+                                    _c("td", [_vm._v("Credit Card")]),
                                     _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v("Senior Javascript Developer")
-                                    ]),
+                                    _c("td", [_vm._v("8000")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("Edinburgh")]),
+                                    _c("td", [_vm._v("640")]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("22")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("2012/03/29")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("$433,060")]),
+                                    _c("td", [_vm._v("8640")]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _c(
@@ -17109,6 +17207,84 @@ var render = function() {
                                           attrs: { type: "button" }
                                         },
                                         [_vm._v("Paid")]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _c("td", [
+                                      _c("input", {
+                                        staticClass: "custom-check-input",
+                                        attrs: { type: "checkbox" }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("14/5/2021")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("INV-1998")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Robert")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("FG/Bullion(2)")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Credit Card")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8000")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("640")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8640")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn table-btn",
+                                          staticStyle: {
+                                            "margin-left": "auto"
+                                          },
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("UnPaid")]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _c("td", [
+                                      _c("input", {
+                                        staticClass: "custom-check-input",
+                                        attrs: { type: "checkbox" }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("14/5/2021")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("INV-1998")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Robert")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("FG/Bullion(2)")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Credit Card")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8000")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("640")]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("8640")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn table-btn",
+                                          staticStyle: {
+                                            "margin-left": "auto"
+                                          },
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("UnPaid")]
                                       )
                                     ])
                                   ])
@@ -17172,18 +17348,19 @@ var staticRenderFns = [
       [
         _c("div", { staticClass: "col-md-6" }, [
           _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-3 mobile-mb" }, [
+            _c("div", { staticClass: "col-md-2 mobile-mb" }, [
               _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
                 _vm._v("Sales")
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-9 mobile-mb" }, [
+            _c("div", { staticClass: "col-md-8 mobile-mb" }, [
               _c("input", {
                 staticClass: "form-control bg-light small input-readonly",
                 staticStyle: {
                   "background-color": "#FFFFFF !important",
-                  height: "auto"
+                  height: "40px",
+                  "font-size": "13px"
                 },
                 attrs: {
                   type: "text",
