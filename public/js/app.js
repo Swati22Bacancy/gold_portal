@@ -2622,6 +2622,26 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__.default({
       layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__.default
     }
   }, {
+    path: "/createinvoice",
+    name: "createinvoice",
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_createinvoice_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/createinvoice.vue */ "./resources/js/views/admin/createinvoice.vue"));
+    },
+    meta: {
+      requiresAuth: true,
+      layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__.default
+    }
+  }, {
+    path: "/quotes",
+    name: "quotes",
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_quotes_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/quotes.vue */ "./resources/js/views/admin/quotes.vue"));
+    },
+    meta: {
+      requiresAuth: true,
+      layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__.default
+    }
+  }, {
     path: "/admin/components/buttons",
     name: "buttons",
     component: function component() {
@@ -77257,7 +77277,7 @@ var render = function() {
         [
           _c(
             "router-link",
-            { staticClass: "nav-link", attrs: { to: "/admin" } },
+            { staticClass: "nav-link", attrs: { to: "/quotes" } },
             [
               _c("i", { staticClass: "fas fa-fw fa-tachometer-alt" }),
               _vm._v(" "),
@@ -94610,7 +94630,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_home_index_vue":1,"resources_js_views_login_index_vue":1,"resources_js_views_register_index_vue":1,"resources_js_views_verify_index_vue":1,"resources_js_views_forgot_index_vue":1,"resources_js_views_reset_index_vue":1,"resources_js_views_admin_dashboard_vue":1,"resources_js_views_admin_sales_vue":1,"resources_js_views_admin_buttons_vue":1,"resources_js_views_admin_cards_vue":1,"resources_js_views_admin_colors_vue":1,"resources_js_views_admin_borders_vue":1,"resources_js_views_admin_animations_vue":1,"resources_js_views_admin_other_vue":1,"resources_js_views_admin_page-not-found_vue":1,"resources_js_views_admin_blank_vue":1,"resources_js_views_admin_charts_vue":1,"resources_js_views_admin_tables_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_home_index_vue":1,"resources_js_views_login_index_vue":1,"resources_js_views_register_index_vue":1,"resources_js_views_verify_index_vue":1,"resources_js_views_forgot_index_vue":1,"resources_js_views_reset_index_vue":1,"resources_js_views_admin_dashboard_vue":1,"resources_js_views_admin_sales_vue":1,"resources_js_views_admin_createinvoice_vue":1,"resources_js_views_admin_quotes_vue":1,"resources_js_views_admin_buttons_vue":1,"resources_js_views_admin_cards_vue":1,"resources_js_views_admin_colors_vue":1,"resources_js_views_admin_borders_vue":1,"resources_js_views_admin_animations_vue":1,"resources_js_views_admin_other_vue":1,"resources_js_views_admin_page-not-found_vue":1,"resources_js_views_admin_blank_vue":1,"resources_js_views_admin_charts_vue":1,"resources_js_views_admin_tables_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

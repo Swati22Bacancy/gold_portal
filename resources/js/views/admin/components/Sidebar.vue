@@ -46,7 +46,7 @@
         >
       </li>
       <li class="nav-item">
-        <router-link class="nav-link" to="/admin">
+        <router-link class="nav-link" to="/quotes">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Quotes</span></router-link
         >

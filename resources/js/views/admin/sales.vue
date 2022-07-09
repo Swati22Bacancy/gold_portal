@@ -16,7 +16,7 @@
         
       </div>
       <div class="col-md-6" style="text-align:right">
-        <button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Create Invoice</button>
+        <router-link to="/createinvoice"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Create Invoice</button></router-link>
         <button type="button" class="btn admin-btn mobile-mb">Sales Reconsile</button>
         <button type="button" class="btn admin-btn mobile-mb">Import</button>
         <button type="button" class="btn admin-btn mobile-mb">Export</button>
@@ -247,13 +247,16 @@ export default {
     };
   },
   mounted(){
-      $('#sales-datatable').DataTable({
+      var table = $('#sales-datatable').DataTable({
         "bFilter": false,
         "bLengthChange": false,
         "columnDefs": [
           { "targets": [0], "searchable": false, "orderable": false, "visible": true }
         ]
       });
+      table.columns().iterator( 'column', function (ctx, idx) {
+    $( table.column(idx).header() ).append('<span class="sort-icon"/>');
+  } );
   }
 };
 </script>
@@ -323,4 +326,17 @@ table.dataTable thead th
 {
   padding: 10px 10px !important;
 }
+table.dataTable thead span.sort-icon {
+  display: inline-block;
+  padding-left: 5px;
+  width: 16px;
+  height: 16px;
+}
+table.dataTable thead .sorting span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_both.png') no-repeat center right !important; }
+table.dataTable thead .sorting_asc span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_asc.png') no-repeat center right !important; }
+table.dataTable thead .sorting_desc span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_desc.png') no-repeat center right !important; }
+
+table.dataTable thead .sorting_asc_disabled span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_asc_disabled.png') no-repeat center right !important; }
+table.dataTable thead .sorting_desc_disabled span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_desc_disabled.png') no-repeat center right; }
+
 </style>

@@ -62,6 +62,24 @@ let router = new Router({
             }
         },
         {
+            path: "/createinvoice",
+            name: "createinvoice",
+            component: () => import("./views/admin/createinvoice.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/quotes",
+            name: "quotes",
+            component: () => import("./views/admin/quotes.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/admin/components/buttons",
             name: "buttons",
             component: () => import("./views/admin/buttons.vue"),
