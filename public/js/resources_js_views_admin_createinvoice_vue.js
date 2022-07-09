@@ -29,6 +29,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Dashboard"
 });
@@ -52,7 +81,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.dash-divs[data-v-2193c37c]\r\n{\r\n  padding: 19px;\r\n  color: #fff;\n}\n.dash-divs p[data-v-2193c37c] {\r\n  font-size: 13px;\r\n  margin-bottom: 0;\n}\n.dash-row[data-v-2193c37c]\r\n{\r\n  padding: 10px 14px;\r\n  color: #fff;\n}\n.dash-btn[data-v-2193c37c]\r\n{\r\n  width: auto;\r\n  font-size: 13px  !important;\r\n  color: #000;\r\n  border-radius: 5px;\r\n  height: 35px;\r\n  margin-left: 10px;\n}\n#dash-datatable[data-v-2193c37c]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.dash-table[data-v-2193c37c]\r\n{\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.dash-divs span[data-v-2193c37c]\r\n{\r\n  font-size: 13px;\n}\n.mid-div1[data-v-2193c37c]\r\n{\r\n  width: 70%;\r\n  display: inline-block;\r\n  font-size: 13px;\n}\n.mid-div2[data-v-2193c37c]\r\n{\r\n  width: 29%;\r\n  display: inline-block;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#dash-datatable[data-v-2193c37c]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createinv-div[data-v-2193c37c]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-2193c37c]\r\n{\r\n  font-size: 12px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -547,30 +576,87 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 createinv-div" }, [
+        _c(
+          "form",
+          {
+            staticClass: "crt-invoice",
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.create_invoice.apply(null, arguments)
+              }
+            }
+          },
+          [
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary btn-user btn-block",
+                attrs: { type: "submit" }
+              },
+              [_vm._v("\n            Submit\n          ")]
+            )
+          ]
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "div",
-        {
-          staticClass:
-            "d-sm-flex align-items-center justify-content-between mb-4"
-        },
-        [
-          _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
-            _vm._v("New Sales Invoice")
-          ])
-        ]
-      ),
+    return _c(
+      "div",
+      {
+        staticClass: "d-sm-flex align-items-center justify-content-between mb-4"
+      },
+      [
+        _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
+          _vm._v("New Sales Invoice")
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", [_vm._v("Customer")]),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" })
-      ])
+      _c("input", {
+        staticClass: "form-control form-control-user",
+        attrs: {
+          type: "text",
+          id: "crt-customer",
+          "aria-describedby": "emailHelp",
+          placeholder: ""
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", [_vm._v("Invoice No.")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control form-control-user",
+        attrs: { type: "text", id: "", placeholder: "Invoice No." }
+      })
     ])
   }
 ]

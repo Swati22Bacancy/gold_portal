@@ -7,8 +7,37 @@
     </div>
 
     <div class="row">
-      <div class="col-md-12">
-        
+      <div class="col-md-12 createinv-div">
+        <form class="crt-invoice" @submit.prevent="create_invoice">
+            <div class="form-group">
+              <label>Customer</label>
+              <input
+                type="text"
+                class="form-control form-control-user"
+                id="crt-customer"
+                aria-describedby="emailHelp"
+                placeholder=""
+                
+              />
+            </div>
+            <div class="form-group">
+              <label>Invoice No.</label>
+              <input
+                type="text"
+                class="form-control form-control-user"
+                id=""
+                placeholder="Invoice No."
+                
+              />
+            </div>
+            
+            <button
+              type="submit"
+              class="btn btn-primary btn-user btn-block"
+            >
+              Submit
+            </button>
+          </form>
       </div>
     </div>
 
@@ -23,51 +52,21 @@ export default {
 };
 </script>
 <style scoped>
-.dash-divs
-{
-  padding: 19px;
-  color: #fff;
-}
-.dash-divs p {
-  font-size: 13px;
-  margin-bottom: 0;
-}
-.dash-row
-{
-  padding: 10px 14px;
-  color: #fff;
-}
-.dash-btn
-{
-  width: auto;
-  font-size: 13px  !important;
-  color: #000;
-  border-radius: 5px;
-  height: 35px;
-  margin-left: 10px;
-}
+
 #dash-datatable
 {
   font-size: 13px;
   color: #000;
 }
-.dash-table
+.createinv-div
 {
+  background: #fff;
+  padding: 34px 23px;
+  border-radius: 8px;
   box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);
 }
-.dash-divs span
+.crt-invoice label
 {
-  font-size: 13px;
-}
-.mid-div1
-{
-  width: 70%;
-  display: inline-block;
-  font-size: 13px;
-}
-.mid-div2
-{
-  width: 29%;
-  display: inline-block;
+  font-size: 12px;
 }
 </style>
