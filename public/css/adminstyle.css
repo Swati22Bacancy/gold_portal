@@ -61,6 +61,18 @@
          url('../fonts/fonts/ArgestaDisplay.svg#ArgestaDisplay') format('svg');
 }
 @font-face {
+  font-family: "ArgestaHairline";
+  src: url('../fonts/fonts/ArgestaHairline.otf')
+}
+@font-face {
+  font-family: "ArgestaHeadline";
+  src: url('../fonts/fonts/ArgestaHeadline.otf')
+}
+@font-face {
+  font-family: "ArgestaText";
+  src: url('../fonts/fonts/ArgestaText.otf')
+}
+@font-face {
   font-family: "Switzer-Medium";
   src: url('../fonts/fonts/Switzer-Medium.woff2') format('woff2'),
        url('../fonts/fonts/Switzer-Medium.woff') format('woff'),
@@ -12655,7 +12667,10 @@ button.bg-dark:focus {
   font-size: 13px;
   width: 170px;
 }
-
+.btn-nwidth
+{
+  width: 120px;
+}
 @media screen and (max-width:767px) {
   .login-div {
       width: 100%;

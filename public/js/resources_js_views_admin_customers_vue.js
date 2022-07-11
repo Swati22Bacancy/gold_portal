@@ -16575,7 +16575,7 @@ var render = function() {
           "div",
           { staticClass: "col-md-6", staticStyle: { "text-align": "right" } },
           [
-            _c("router-link", { attrs: { to: "/createinvoice" } }, [
+            _c("router-link", { attrs: { to: "/createcustomer" } }, [
               _c(
                 "button",
                 {

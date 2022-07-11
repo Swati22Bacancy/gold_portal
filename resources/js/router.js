@@ -89,6 +89,15 @@ let router = new Router({
             }
         },
         {
+            path: "/createcustomer",
+            name: "createcustomer",
+            component: () => import("./views/admin/createcustomer.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/admin/components/buttons",
             name: "buttons",
             component: () => import("./views/admin/buttons.vue"),
