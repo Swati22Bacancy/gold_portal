@@ -18,7 +18,7 @@
       <hr class="sidebar-divider my-0" />
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <router-link class="nav-link" to="/admin">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></router-link
@@ -28,6 +28,9 @@
       <li class="nav-item">
         <router-link class="nav-link" to="/sales">
           <i class="fas fa-fw fa-shopping-cart"></i>
+          <!-- <span class="material-symbols-outlined">
+            shopping_cart
+          </span> -->
           <span>Sales</span></router-link
         >
       </li>
@@ -52,7 +55,7 @@
         >
       </li>
       <li class="nav-item">
-        <router-link class="nav-link" to="/admin">
+        <router-link class="nav-link" to="/customers">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Customers</span></router-link
         >

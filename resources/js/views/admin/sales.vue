@@ -67,149 +67,149 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <tr v-on:click="gotosite('id')" style="cursor:pointer;">
                                             <td><input type="checkbox" class="custom-check-input"></td>
                                             <td>16/5/2021</td>
                                             <td>INV-2001</td>
-                                            <td>Edinburgh</td>
+                                            <td style="color:#3376C2">Edinburgh</td>
                                             <td>Jewellery</td>
                                             <td>Credit Card</td>
                                             <td>8000</td>
                                             <td>640</td>
                                             <td>8640</td>
-                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;width: 68px;">UnPaid</button></td>
                                         </tr>
                                         <tr>
                                             <td><input type="checkbox" class="custom-check-input"></td>
                                             <td>16/5/2021</td>
                                             <td>INV-1999</td>
-                                            <td>Robert</td>
+                                            <td style="color:#3376C2">Robert</td>
                                             <td>Delivery</td>
                                             <td>Credit Card</td>
                                             <td>8000</td>
                                             <td>640</td>
                                             <td>8640</td>
-                                            <td><button type="button" class="btn table-btn-green" style="margin-left: auto;">Paid</button></td>
+                                            <td><button type="button" class="btn table-btn-green" style="margin-left: auto;width: 68px;">Paid</button></td>
                                         </tr>
                                         <tr>
                                             <td><input type="checkbox" class="custom-check-input"></td>
                                             <td>14/5/2021</td>
                                             <td>INV-1998</td>
-                                            <td>Robert</td>
+                                            <td style="color:#3376C2">Robert</td>
                                             <td>FG/Bullion(2)</td>
                                             <td>Credit Card</td>
                                             <td>8000</td>
                                             <td>640</td>
                                             <td>8640</td>
-                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;width: 68px;">UnPaid</button></td>
                                         </tr>
                                         <tr>
                                             <td><input type="checkbox" class="custom-check-input"></td>
                                             <td>16/5/2021</td>
                                             <td>INV-2001</td>
-                                            <td>Edinburgh</td>
+                                            <td style="color:#3376C2">Edinburgh</td>
                                             <td>Jewellery</td>
                                             <td>Credit Card</td>
                                             <td>8000</td>
                                             <td>640</td>
                                             <td>8640</td>
-                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;width: 68px;">UnPaid</button></td>
                                         </tr>
                                         <tr>
                                             <td><input type="checkbox" class="custom-check-input"></td>
                                             <td>16/5/2021</td>
                                             <td>INV-1999</td>
-                                            <td>Robert</td>
+                                            <td style="color:#3376C2">Robert</td>
                                             <td>Delivery</td>
                                             <td>Credit Card</td>
                                             <td>8000</td>
                                             <td>640</td>
                                             <td>8640</td>
-                                            <td><button type="button" class="btn table-btn-green" style="margin-left: auto;">Paid</button></td>
+                                            <td><button type="button" class="btn table-btn-green" style="margin-left: auto;width: 68px;">Paid</button></td>
                                         </tr>
                                         <tr>
                                             <td><input type="checkbox" class="custom-check-input"></td>
                                             <td>16/5/2021</td>
                                             <td>INV-2001</td>
-                                            <td>Edinburgh</td>
+                                            <td style="color:#3376C2">Edinburgh</td>
                                             <td>Jewellery</td>
                                             <td>Credit Card</td>
                                             <td>8000</td>
                                             <td>640</td>
                                             <td>8640</td>
-                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;width: 68px;">UnPaid</button></td>
                                         </tr>
                                         <tr>
                                             <td><input type="checkbox" class="custom-check-input"></td>
                                             <td>16/5/2021</td>
                                             <td>INV-1999</td>
-                                            <td>Robert</td>
+                                            <td style="color:#3376C2">Robert</td>
                                             <td>Delivery</td>
                                             <td>Credit Card</td>
                                             <td>8000</td>
                                             <td>640</td>
                                             <td>8640</td>
-                                            <td><button type="button" class="btn table-btn-green" style="margin-left: auto;">Paid</button></td>
+                                            <td><button type="button" class="btn table-btn-green" style="margin-left: auto;width: 68px;">Paid</button></td>
                                         </tr>
                                         <tr>
                                             <td><input type="checkbox" class="custom-check-input"></td>
                                             <td>14/5/2021</td>
                                             <td>INV-1998</td>
-                                            <td>Robert</td>
+                                            <td style="color:#3376C2">Robert</td>
                                             <td>FG/Bullion(2)</td>
                                             <td>Credit Card</td>
                                             <td>8000</td>
                                             <td>640</td>
                                             <td>8640</td>
-                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;width: 68px;">UnPaid</button></td>
                                         </tr>
                                         <tr>
                                             <td><input type="checkbox" class="custom-check-input"></td>
                                             <td>16/5/2021</td>
                                             <td>INV-2001</td>
-                                            <td>Edinburgh</td>
+                                            <td style="color:#3376C2">Edinburgh</td>
                                             <td>Jewellery</td>
                                             <td>Credit Card</td>
                                             <td>8000</td>
                                             <td>640</td>
                                             <td>8640</td>
-                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;width: 68px;">UnPaid</button></td>
                                         </tr>
                                         <tr>
                                             <td><input type="checkbox" class="custom-check-input"></td>
                                             <td>16/5/2021</td>
                                             <td>INV-1999</td>
-                                            <td>Robert</td>
+                                            <td style="color:#3376C2">Robert</td>
                                             <td>Delivery</td>
                                             <td>Credit Card</td>
                                             <td>8000</td>
                                             <td>640</td>
                                             <td>8640</td>
-                                            <td><button type="button" class="btn table-btn-green" style="margin-left: auto;">Paid</button></td>
+                                            <td><button type="button" class="btn table-btn-green" style="margin-left: auto;width: 68px;">Paid</button></td>
                                         </tr>
                                         <tr>
                                             <td><input type="checkbox" class="custom-check-input"></td>
                                             <td>14/5/2021</td>
                                             <td>INV-1998</td>
-                                            <td>Robert</td>
+                                            <td style="color:#3376C2">Robert</td>
                                             <td>FG/Bullion(2)</td>
                                             <td>Credit Card</td>
                                             <td>8000</td>
                                             <td>640</td>
                                             <td>8640</td>
-                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;width: 68px;">UnPaid</button></td>
                                         </tr>
                                         <tr>
                                             <td><input type="checkbox" class="custom-check-input"></td>
                                             <td>14/5/2021</td>
                                             <td>INV-1998</td>
-                                            <td>Robert</td>
+                                            <td style="color:#3376C2">Robert</td>
                                             <td>FG/Bullion(2)</td>
                                             <td>Credit Card</td>
                                             <td>8000</td>
                                             <td>640</td>
                                             <td>8640</td>
-                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;">UnPaid</button></td>
+                                            <td><button type="button" class="btn table-btn" style="margin-left: auto;width: 68px;">UnPaid</button></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -247,17 +247,35 @@ export default {
     };
   },
   mounted(){
+    $.fn.textWidth = function(){
+      var html_org = $(this).html();
+      var html_calc = '<span>' + html_org + '</span>';
+      $(this).html(html_calc);
+      var width = $(this).find('span:first').width();
+      $(this).html(html_org);
+      return width;
+    };
+    $('#sales-datatable').on( 'draw.dt', function (e) {
+      $('#sales-datatable thead tr th').each(function(idx, ele) {
+        var xPos = parseInt((($(ele).textWidth()))+12);
+        $(ele).css('background-position-x',  xPos + 'px')
+      })
+    });
       var table = $('#sales-datatable').DataTable({
         "bFilter": false,
         "bLengthChange": false,
         "columnDefs": [
-          { "targets": [0], "searchable": false, "orderable": false, "visible": true }
+          { "targets": [0,9], "searchable": false, "orderable": false, "visible": true }
         ]
       });
-      table.columns().iterator( 'column', function (ctx, idx) {
-    $( table.column(idx).header() ).append('<span class="sort-icon"/>');
-  } );
+  },
+  methods:{
+    gotosite(id)
+    {
+      this.$router.push({ name: 'customers' });
+    }
   }
+  
 };
 </script>
 <style scoped>
@@ -314,29 +332,22 @@ table.dataTable.no-footer
     border: 1px solid #3376c2 !important;
     background-color: #3376c2 !important;
 }
+table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc_disabled
+{
+  background-size: 13px 13px;
+  background-position: 0px 19px;
+}
 .dataTables_wrapper .dataTables_paginate .paginate_button
 {
   padding: 0.3em 0.8em;
+}
+
+table.dataTable thead th
+{
+  padding: 10px 10px !important;
 }
 #sales-datatable thead tr th 
 {
   font-weight: 100 !important;
 }
-table.dataTable thead th
-{
-  padding: 10px 10px !important;
-}
-table.dataTable thead span.sort-icon {
-  display: inline-block;
-  padding-left: 5px;
-  width: 16px;
-  height: 16px;
-}
-table.dataTable thead .sorting span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_both.png') no-repeat center right !important; }
-table.dataTable thead .sorting_asc span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_asc.png') no-repeat center right !important; }
-table.dataTable thead .sorting_desc span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_desc.png') no-repeat center right !important; }
-
-table.dataTable thead .sorting_asc_disabled span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_asc_disabled.png') no-repeat center right !important; }
-table.dataTable thead .sorting_desc_disabled span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_desc_disabled.png') no-repeat center right; }
-
 </style>

@@ -12,8 +12,9 @@
         <div class="col-md-12 bg-darkblue" style="border-radius: 5px 5px 0px 0px;">
           <div class="col-md-8 dash-divs">
             <p>Sales this month</p>
-            <h4 style="margin-bottom:0"><b>28,500.50</b></h4>
-            <span>(256 Invoices)</span>
+            <h4 style="margin-bottom:0"><b><i class="fa fa-pound-sign" style="font-size:20px;margin-right:6px;"></i>28,500.50</b></h4>
+            <span>(256 Invoices)</span><br>
+            <div class="green-div-info">40% up from last month</div>
           </div>
           <div class="">
 
@@ -33,37 +34,37 @@
                   <tr>
                       <td>INV-10232</td>
                       <td style="color:#3376C2">Robert Malasawaliki</td>
-                      <td>5,203.50</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>5,203.50</td>
                    </tr>
                   <tr>
                       <td>INV-10231</td>
                       <td style="color:#3376C2">ABC Jewellers LTD.</td>
-                      <td>4,953.00</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>4,953.00</td>
                  </tr>
                  <tr>
                       <td>INV-10230</td>
                       <td style="color:#3376C2">Haji Jewellers LTD.</td>
-                      <td>4,634.50</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>4,634.50</td>
                    </tr>
                   <tr>
                       <td>INV-10232</td>
                       <td style="color:#3376C2">Robert Malasawaliki</td>
-                      <td>5,203.50</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>5,203.50</td>
                    </tr>
                   <tr>
                       <td>INV-10231</td>
                       <td style="color:#3376C2">ABC Jewellers LTD.</td>
-                      <td>4,953.00</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>4,953.00</td>
                  </tr>
                  <tr>
                       <td>INV-10230</td>
                       <td style="color:#3376C2">Haji Jewellers LTD.</td>
-                      <td>4,634.50</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>4,634.50</td>
                    </tr>
                  <tr>
                       <td>INV-10230</td>
                       <td style="color:#3376C2">Haji Jewellers LTD.</td>
-                      <td>4,634.50</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>4,634.50</td>
                    </tr>
                 </tbody>
             </table>
@@ -72,7 +73,7 @@
         <div class="col-md-12 bg-darkgrey" style="border-radius: 0px 0px 5px 5px;">
           <div class="col-md-8 dash-divs">
             <p>Total Turnover</p>
-            <h4 style="margin-bottom:0"><b>28,500.50</b></h4>
+            <h4 style="margin-bottom:0"><b><i class="fa fa-pound-sign" style="font-size:20px;margin-right:6px;"></i>28,500.50</b></h4>
             <span>(12 Orders)</span>
           </div>
           <div class="">
@@ -87,9 +88,10 @@
       <div class="col-md-4">
         <div class="col-md-12 bg-darkblue" style="border-radius: 5px 5px 0px 0px;">
           <div class="col-md-8 dash-divs">
-            <p>Sales this month</p>
-            <h4 style="margin-bottom:0"><b>28,500.50</b></h4>
-            <span>(256 Invoices)</span>
+            <p>Purchase this month</p>
+            <h4 style="margin-bottom:0"><b><i class="fa fa-pound-sign" style="font-size:20px;margin-right:6px;"></i>12,200.50</b></h4>
+            <span>(12 Orders)</span>
+            <div class="red-div-info">5% down from last month</div>
           </div>
           <div class="">
 
@@ -108,31 +110,31 @@
                 <tbody>
                   <tr>
                       <td style="color:#3376C2">GB78602023(Jermaine Charlo)</td>
-                      <td>5,203.50</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>5,203.50</td>
                    </tr>
                   <tr>
                       <td style="color:#3376C2">GB78602023(Jermaine Charlo)</td>
-                      <td>4,953.00</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>4,953.00</td>
                  </tr>
                  <tr>
                       <td style="color:#3376C2">GB78602023(Jermaine Charlo)</td>
-                      <td>4,634.50</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>4,634.50</td>
                    </tr>
                   <tr>
                       <td style="color:#3376C2">GB78602023(Jermaine Charlo)</td>
-                      <td>5,203.50</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>5,203.50</td>
                    </tr>
                   <tr>
                       <td style="color:#3376C2">GB78602023(Jermaine Charlo)</td>
-                      <td>4,953.00</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>4,953.00</td>
                  </tr>
                  <tr>
                       <td style="color:#3376C2">GB78602023(Jermaine Charlo)</td>
-                      <td>4,634.50</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>4,634.50</td>
                    </tr>
                  <tr>
                       <td style="color:#3376C2">GB78602023(Jermaine Charlo)</td>
-                      <td>4,634.50</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>4,634.50</td>
                    </tr>
                 </tbody>
             </table>
@@ -141,7 +143,7 @@
         <div class="col-md-12 bg-darkgrey" style="border-radius: 0px 0px 5px 5px;">
           <div class="col-md-8 dash-divs">
             <p>Total Turnover</p>
-            <h4 style="margin-bottom:0"><b>28,500.50</b></h4>
+            <h4 style="margin-bottom:0"><b><i class="fa fa-pound-sign" style="font-size:20px;margin-right:6px;"></i>28,500.50</b></h4>
             <span>(12 Orders)</span>
           </div>
           <div class="">
@@ -155,9 +157,10 @@
       <div class="col-md-4">
         <div class="col-md-12 bg-darkblue" style="border-radius: 5px 5px 0px 0px;">
           <div class="col-md-8 dash-divs">
-            <p>Sales this month</p>
-            <h4 style="margin-bottom:0"><b>28,500.50</b></h4>
-            <span>(256 Invoices)</span>
+            <p>Invoices Unpaid</p>
+            <h4 style="margin-bottom:0"><b><i class="fa fa-pound-sign" style="font-size:20px;margin-right:6px;"></i>28,500.50</b></h4>
+            <span>(12 Orders)</span>
+            <div class="green-div-info">40% up from last month</div>
           </div>
           <div class="">
 
@@ -176,31 +179,31 @@
                 <tbody>
                   <tr>
                       <td style="color:#3376C2">GB78602023(Jermaine Charlo)</td>
-                      <td>5,203.50</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>5,203.50</td>
                    </tr>
                   <tr>
                       <td style="color:#3376C2">GB78602023(Jermaine Charlo)</td>
-                      <td>4,953.00</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>4,953.00</td>
                  </tr>
                  <tr>
                       <td style="color:#3376C2">GB78602023(Jermaine Charlo)</td>
-                      <td>4,634.50</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>4,634.50</td>
                    </tr>
                   <tr>
                       <td style="color:#3376C2">GB78602023(Jermaine Charlo)</td>
-                      <td>5,203.50</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>5,203.50</td>
                    </tr>
                   <tr>
                       <td style="color:#3376C2">GB78602023(Jermaine Charlo)</td>
-                      <td>4,953.00</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>4,953.00</td>
                  </tr>
                  <tr>
                       <td style="color:#3376C2">GB78602023(Jermaine Charlo)</td>
-                      <td>4,634.50</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>4,634.50</td>
                    </tr>
                  <tr>
                       <td style="color:#3376C2">GB78602023(Jermaine Charlo)</td>
-                      <td>4,634.50</td>
+                      <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>4,634.50</td>
                    </tr>
                 </tbody>
             </table>
@@ -209,7 +212,7 @@
         <div class="col-md-12 bg-darkgrey" style="border-radius: 0px 0px 5px 5px;">
           <div class="col-md-8 dash-divs">
             <p>Total Turnover</p>
-            <h4 style="margin-bottom:0"><b>28,500.50</b></h4>
+            <h4 style="margin-bottom:0"><b><i class="fa fa-pound-sign" style="font-size:20px;margin-right:6px;"></i>28,500.50</b></h4>
             <span>(12 Orders)</span>
           </div>
           <div class="">

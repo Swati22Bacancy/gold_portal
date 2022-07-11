@@ -241,6 +241,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Dashboard"
 });
@@ -793,10 +796,24 @@ var staticRenderFns = [
                 _c("p", [_vm._v("Sales this month")]),
                 _vm._v(" "),
                 _c("h4", { staticStyle: { "margin-bottom": "0" } }, [
-                  _c("b", [_vm._v("28,500.50")])
+                  _c("b", [
+                    _c("i", {
+                      staticClass: "fa fa-pound-sign",
+                      staticStyle: {
+                        "font-size": "20px",
+                        "margin-right": "6px"
+                      }
+                    }),
+                    _vm._v("28,500.50")
+                  ])
                 ]),
                 _vm._v(" "),
-                _c("span", [_vm._v("(256 Invoices)")])
+                _c("span", [_vm._v("(256 Invoices)")]),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "green-div-info" }, [
+                  _vm._v("40% up from last month")
+                ])
               ]),
               _vm._v(" "),
               _c("div", {}),
@@ -847,7 +864,16 @@ var staticRenderFns = [
                         _vm._v("Robert Malasawaliki")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("5,203.50")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("5,203.50")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -857,7 +883,16 @@ var staticRenderFns = [
                         _vm._v("ABC Jewellers LTD.")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("4,953.00")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("4,953.00")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -867,7 +902,16 @@ var staticRenderFns = [
                         _vm._v("Haji Jewellers LTD.")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("4,634.50")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("4,634.50")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -877,7 +921,16 @@ var staticRenderFns = [
                         _vm._v("Robert Malasawaliki")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("5,203.50")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("5,203.50")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -887,7 +940,16 @@ var staticRenderFns = [
                         _vm._v("ABC Jewellers LTD.")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("4,953.00")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("4,953.00")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -897,7 +959,16 @@ var staticRenderFns = [
                         _vm._v("Haji Jewellers LTD.")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("4,634.50")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("4,634.50")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -907,7 +978,16 @@ var staticRenderFns = [
                         _vm._v("Haji Jewellers LTD.")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("4,634.50")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("4,634.50")
+                      ])
                     ])
                   ])
                 ]
@@ -926,7 +1006,16 @@ var staticRenderFns = [
                 _c("p", [_vm._v("Total Turnover")]),
                 _vm._v(" "),
                 _c("h4", { staticStyle: { "margin-bottom": "0" } }, [
-                  _c("b", [_vm._v("28,500.50")])
+                  _c("b", [
+                    _c("i", {
+                      staticClass: "fa fa-pound-sign",
+                      staticStyle: {
+                        "font-size": "20px",
+                        "margin-right": "6px"
+                      }
+                    }),
+                    _vm._v("28,500.50")
+                  ])
                 ]),
                 _vm._v(" "),
                 _c("span", [_vm._v("(12 Orders)")])
@@ -948,13 +1037,26 @@ var staticRenderFns = [
             },
             [
               _c("div", { staticClass: "col-md-8 dash-divs" }, [
-                _c("p", [_vm._v("Sales this month")]),
+                _c("p", [_vm._v("Purchase this month")]),
                 _vm._v(" "),
                 _c("h4", { staticStyle: { "margin-bottom": "0" } }, [
-                  _c("b", [_vm._v("28,500.50")])
+                  _c("b", [
+                    _c("i", {
+                      staticClass: "fa fa-pound-sign",
+                      staticStyle: {
+                        "font-size": "20px",
+                        "margin-right": "6px"
+                      }
+                    }),
+                    _vm._v("12,200.50")
+                  ])
                 ]),
                 _vm._v(" "),
-                _c("span", [_vm._v("(256 Invoices)")])
+                _c("span", [_vm._v("(12 Orders)")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "red-div-info" }, [
+                  _vm._v("5% down from last month")
+                ])
               ]),
               _vm._v(" "),
               _c("div", {}),
@@ -1003,7 +1105,16 @@ var staticRenderFns = [
                         _vm._v("GB78602023(Jermaine Charlo)")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("5,203.50")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("5,203.50")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -1011,7 +1122,16 @@ var staticRenderFns = [
                         _vm._v("GB78602023(Jermaine Charlo)")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("4,953.00")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("4,953.00")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -1019,7 +1139,16 @@ var staticRenderFns = [
                         _vm._v("GB78602023(Jermaine Charlo)")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("4,634.50")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("4,634.50")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -1027,7 +1156,16 @@ var staticRenderFns = [
                         _vm._v("GB78602023(Jermaine Charlo)")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("5,203.50")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("5,203.50")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -1035,7 +1173,16 @@ var staticRenderFns = [
                         _vm._v("GB78602023(Jermaine Charlo)")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("4,953.00")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("4,953.00")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -1043,7 +1190,16 @@ var staticRenderFns = [
                         _vm._v("GB78602023(Jermaine Charlo)")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("4,634.50")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("4,634.50")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -1051,7 +1207,16 @@ var staticRenderFns = [
                         _vm._v("GB78602023(Jermaine Charlo)")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("4,634.50")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("4,634.50")
+                      ])
                     ])
                   ])
                 ]
@@ -1070,7 +1235,16 @@ var staticRenderFns = [
                 _c("p", [_vm._v("Total Turnover")]),
                 _vm._v(" "),
                 _c("h4", { staticStyle: { "margin-bottom": "0" } }, [
-                  _c("b", [_vm._v("28,500.50")])
+                  _c("b", [
+                    _c("i", {
+                      staticClass: "fa fa-pound-sign",
+                      staticStyle: {
+                        "font-size": "20px",
+                        "margin-right": "6px"
+                      }
+                    }),
+                    _vm._v("28,500.50")
+                  ])
                 ]),
                 _vm._v(" "),
                 _c("span", [_vm._v("(12 Orders)")])
@@ -1092,13 +1266,26 @@ var staticRenderFns = [
             },
             [
               _c("div", { staticClass: "col-md-8 dash-divs" }, [
-                _c("p", [_vm._v("Sales this month")]),
+                _c("p", [_vm._v("Invoices Unpaid")]),
                 _vm._v(" "),
                 _c("h4", { staticStyle: { "margin-bottom": "0" } }, [
-                  _c("b", [_vm._v("28,500.50")])
+                  _c("b", [
+                    _c("i", {
+                      staticClass: "fa fa-pound-sign",
+                      staticStyle: {
+                        "font-size": "20px",
+                        "margin-right": "6px"
+                      }
+                    }),
+                    _vm._v("28,500.50")
+                  ])
                 ]),
                 _vm._v(" "),
-                _c("span", [_vm._v("(256 Invoices)")])
+                _c("span", [_vm._v("(12 Orders)")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "green-div-info" }, [
+                  _vm._v("40% up from last month")
+                ])
               ]),
               _vm._v(" "),
               _c("div", {}),
@@ -1147,7 +1334,16 @@ var staticRenderFns = [
                         _vm._v("GB78602023(Jermaine Charlo)")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("5,203.50")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("5,203.50")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -1155,7 +1351,16 @@ var staticRenderFns = [
                         _vm._v("GB78602023(Jermaine Charlo)")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("4,953.00")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("4,953.00")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -1163,7 +1368,16 @@ var staticRenderFns = [
                         _vm._v("GB78602023(Jermaine Charlo)")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("4,634.50")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("4,634.50")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -1171,7 +1385,16 @@ var staticRenderFns = [
                         _vm._v("GB78602023(Jermaine Charlo)")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("5,203.50")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("5,203.50")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -1179,7 +1402,16 @@ var staticRenderFns = [
                         _vm._v("GB78602023(Jermaine Charlo)")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("4,953.00")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("4,953.00")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -1187,7 +1419,16 @@ var staticRenderFns = [
                         _vm._v("GB78602023(Jermaine Charlo)")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("4,634.50")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("4,634.50")
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -1195,7 +1436,16 @@ var staticRenderFns = [
                         _vm._v("GB78602023(Jermaine Charlo)")
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("4,634.50")])
+                      _c("td", [
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v("4,634.50")
+                      ])
                     ])
                   ])
                 ]
@@ -1214,7 +1464,16 @@ var staticRenderFns = [
                 _c("p", [_vm._v("Total Turnover")]),
                 _vm._v(" "),
                 _c("h4", { staticStyle: { "margin-bottom": "0" } }, [
-                  _c("b", [_vm._v("28,500.50")])
+                  _c("b", [
+                    _c("i", {
+                      staticClass: "fa fa-pound-sign",
+                      staticStyle: {
+                        "font-size": "20px",
+                        "margin-right": "6px"
+                      }
+                    }),
+                    _vm._v("28,500.50")
+                  ])
                 ]),
                 _vm._v(" "),
                 _c("span", [_vm._v("(12 Orders)")])

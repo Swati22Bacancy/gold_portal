@@ -80,6 +80,15 @@ let router = new Router({
             }
         },
         {
+            path: "/customers",
+            name: "customers",
+            component: () => import("./views/admin/customers.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/admin/components/buttons",
             name: "buttons",
             component: () => import("./views/admin/buttons.vue"),
