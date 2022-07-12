@@ -34,6 +34,68 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
+@font-face {
+  font-family: 'National2';
+  font-weight: 400;
+  src: url('https://www.xero.com/static/1657152298061/national2-web-regular.woff2')
+  format('woff2'),
+  url('https://www.xero.com/static/1657152298061/national2-web-regular.woff')
+  format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'National2';
+  font-weight: 400;
+  font-style: italic;
+  src: url('https://www.xero.com/static/1657152298061/national2-web-regular-italic.woff2')
+  format('woff2'),
+  url('https://www.xero.com/static/1657152298061/national2-web-regular-italic.woff')
+  format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'National2';
+  font-weight: 500;
+  src: url('https://www.xero.com/static/1657152298061/national2-web-medium.woff2')
+  format('woff2'),
+  url('https://www.xero.com/static/1657152298061/national2-web-medium.woff')
+  format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'National2';
+  font-weight: 500;
+  font-style: italic;
+  src: url('https://www.xero.com/static/1657152298061/national2-web-medium-italic.woff2')
+  format('woff2'),
+  url('https://www.xero.com/static/1657152298061/national2-web-medium-italic.woff')
+  format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'National2';
+  font-weight: 700;
+  src: url('https://www.xero.com/static/1657152298061/national2-web-bold.woff2')
+  format('woff2'),
+  url('https://www.xero.com/static/1657152298061/national2-web-bold.woff')
+  format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'National2';
+  font-weight: 700;
+  font-style: italic;
+  src: url('https://www.xero.com/static/1657152298061/national2-web-bold-italic.woff2')
+  format('woff2'),
+  url('https://www.xero.com/static/1657152298061/national2-web-bold-italic.woff')
+  format('woff');
+  font-display: swap;
+}
 .fab {
   font-family: "Font Awesome 5 Brands";
   font-weight: 400;

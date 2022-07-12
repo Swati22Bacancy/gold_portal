@@ -274,7 +274,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     changetype: function changetype(type) {
       this.customerType = type;
-      console.log(this.customerType);
     },
     create_customer: function create_customer() {
       var _this = this;
@@ -286,27 +285,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
-                _context.next = 3;
+                _this.formdata.customertype = _this.customerType;
+                _context.next = 4;
                 return axios.post("create_customer", {
-                  formdata: _this.formdata
+                  firstname: _this.formdata.firstname,
+                  lastname: _this.formdata.lastname,
+                  email: _this.formdata.email,
+                  companyname: _this.formdata.companyname,
+                  registeredaddress: _this.formdata.registeredaddress,
+                  vat: _this.formdata.vat,
+                  telephone: _this.formdata.telephone,
+                  whatsapp: _this.formdata.whatsapp,
+                  title: _this.formdata.title,
+                  creditlimit: _this.formdata.creditlimit,
+                  companycode: _this.formdata.companycode,
+                  customertype: _this.formdata.customertype
                 });
 
-              case 3:
+              case 4:
                 response = _context.sent;
-                _context.next = 9;
+                _context.next = 10;
                 break;
 
-              case 6:
-                _context.prev = 6;
+              case 7:
+                _context.prev = 7;
                 _context.t0 = _context["catch"](0);
-                notify.authError(_context.t0);
+                console.log(_context.t0);
 
-              case 9:
+              case 10:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 6]]);
+        }, _callee, null, [[0, 7]]);
       }))();
     }
   }

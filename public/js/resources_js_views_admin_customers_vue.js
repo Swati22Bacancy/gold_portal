@@ -199,6 +199,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -209,10 +220,24 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      tabList: ["All", "Business", "Individual"]
+      tabList: ["All", "Business", "Individual"],
+      customers: {}
     };
   },
+  created: function created() {//this.loadCustomers();
+  },
+  methods: {
+    loadCustomers: function loadCustomers() {//axios.get("customerlist").then(({ data }) => (this.customers = data));
+    }
+  },
   mounted: function mounted() {
+    var _this = this;
+
+    axios.get("customerlist").then(function (response) {
+      _this.customers = response.data;
+      console.log(_this.customers);
+    }); //axios.get("customerlist").then(({ data }) => (this.customers = data));
+
     $.fn.textWidth = function () {
       var html_org = $(this).html();
       var html_calc = '<span>' + html_org + '</span>';
@@ -16724,84 +16749,123 @@ var render = function() {
                                   ])
                                 ]),
                                 _vm._v(" "),
-                                _c("tbody", [
-                                  _c("tr", [
-                                    _c("td", [
-                                      _c("input", {
-                                        staticClass: "custom-check-input",
-                                        attrs: { type: "checkbox" }
-                                      })
+                                _c(
+                                  "tbody",
+                                  [
+                                    _vm._l(_vm.customers, function(customer) {
+                                      return _c("tr", { key: customer.id }, [
+                                        _c("td", [
+                                          _c("input", {
+                                            staticClass: "custom-check-input",
+                                            attrs: { type: "checkbox" }
+                                          })
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(
+                                            _vm._s(customer.first_name) +
+                                              " " +
+                                              _vm._s(customer.last_name)
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v("--")]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(customer.customer_type))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v("--")]),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v("--")]),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v("-")]),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v("--")]),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v("--")])
+                                      ])
+                                    }),
+                                    _vm._v(" "),
+                                    _c("tr", [
+                                      _c("td", [
+                                        _c("input", {
+                                          staticClass: "custom-check-input",
+                                          attrs: { type: "checkbox" }
+                                        })
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("ABC Jewellers Ltd.")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Southhall")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Business")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("665,395.00")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("232,500.00")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("-")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("45,500.00")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("8640")])
                                     ]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("ABC Jewellers Ltd.")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("Southhall")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("Business")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("665,395.00")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("232,500.00")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("-")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("45,500.00")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("8640")])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("tr", [
-                                    _c("td", [
-                                      _c("input", {
-                                        staticClass: "custom-check-input",
-                                        attrs: { type: "checkbox" }
-                                      })
+                                    _c("tr", [
+                                      _c("td", [
+                                        _c("input", {
+                                          staticClass: "custom-check-input",
+                                          attrs: { type: "checkbox" }
+                                        })
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("ABC Jewellers Ltd.")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Wembly")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Business")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("665,395.00")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("232,500.00")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("-")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("50,500.00")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("8640")])
                                     ]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v("ABC Jewellers Ltd.")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("Wembly")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("Business")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("665,395.00")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("232,500.00")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("-")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("50,500.00")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("8640")])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("tr", [
-                                    _c("td", [
-                                      _c("input", {
-                                        staticClass: "custom-check-input",
-                                        attrs: { type: "checkbox" }
-                                      })
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v("AMJUK LTD T/AS Jewellers Ltd.")
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("Southhhall")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("Business")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("665,395.00")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("232,500.00")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("-")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("50,500.00")]),
-                                    _vm._v(" "),
-                                    _c("td", [_vm._v("8640")])
-                                  ])
-                                ])
+                                    _c("tr", [
+                                      _c("td", [
+                                        _c("input", {
+                                          staticClass: "custom-check-input",
+                                          attrs: { type: "checkbox" }
+                                        })
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v("AMJUK LTD T/AS Jewellers Ltd.")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Southhhall")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Business")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("665,395.00")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("232,500.00")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("-")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("50,500.00")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("8640")])
+                                    ])
+                                  ],
+                                  2
+                                )
                               ]
                             )
                           ])

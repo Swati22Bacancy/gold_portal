@@ -24,5 +24,6 @@ Route::get('email/verify/{id}', [Api\VerifyController::class, 'verify'])->name('
     
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('user', [Api\AuthController::class, 'user']);
-    Route::post('create_customer', [CustomerController::class, 'createcustomer']);
+    Route::post('create_customer', [Api\CustomerController::class, 'createcustomer']);
+    Route::get('customerlist', [Api\CustomerController::class, 'customerlist']);
 });

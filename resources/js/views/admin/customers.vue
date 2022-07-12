@@ -60,6 +60,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <tr v-for="customer in customers" :key="customer.id">
+                                            <td><input type="checkbox" class="custom-check-input"></td>
+                                            <td>{{customer.first_name}} {{customer.last_name}}</td>
+                                            <td>--</td>
+                                            <td>{{customer.customer_type}}</td>
+                                            <td>--</td>
+                                            <td>--</td>
+                                            <td>-</td>
+                                            <td>--</td>
+                                            <td>--</td>
+                                        </tr>
                                         <tr>
                                             <td><input type="checkbox" class="custom-check-input"></td>
                                             <td>ABC Jewellers Ltd.</td>
@@ -124,9 +135,27 @@ export default {
   data() {
     return {
       tabList: ["All", "Business", "Individual"],
+      customers : {},
     };
   },
+  created() {
+      //this.loadCustomers();
+  },
+  methods:
+  {
+    loadCustomers(){
+      //axios.get("customerlist").then(({ data }) => (this.customers = data));
+    }
+  },
   mounted(){
+    axios.get("customerlist")
+        .then((response) => {
+          
+            this.customers = response.data;
+            console.log(this.customers);
+        })
+      //axios.get("customerlist").then(({ data }) => (this.customers = data));
+      
       $.fn.textWidth = function(){
         var html_org = $(this).html();
         var html_calc = '<span>' + html_org + '</span>';

@@ -258,17 +258,28 @@ export default {
     {
       
       this.customerType = type;
-      console.log(this.customerType);
     },
     async create_customer() {
       try {
+        this.formdata.customertype= this.customerType;
         const response = await axios.post("create_customer", {
-          formdata: this.formdata,
+          firstname: this.formdata.firstname,
+          lastname: this.formdata.lastname,
+          email: this.formdata.email,
+          companyname: this.formdata.companyname,
+          registeredaddress: this.formdata.registeredaddress,
+          vat: this.formdata.vat,
+          telephone: this.formdata.telephone,
+          whatsapp: this.formdata.whatsapp,
+          title: this.formdata.title,
+          creditlimit: this.formdata.creditlimit,
+          companycode: this.formdata.companycode,
+          customertype: this.formdata.customertype,
         });
 
         
       } catch (error) {
-        notify.authError(error);
+        console.log(error);
       }
     },
   }

@@ -11,6 +11,213 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -59,7 +266,64 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Dashboard"
+  name: "Dashboard",
+  data: function data() {
+    return {
+      customerType: 'business',
+      theme: 'cust-type',
+      formdata: {}
+    };
+  },
+  methods: {
+    changetype: function changetype(type) {
+      this.customerType = type;
+    },
+    create_invoice: function create_invoice() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _this.formdata.customertype = _this.customerType;
+                _context.next = 4;
+                return axios.post("create_invoice", {
+                  firstname: _this.formdata.firstname,
+                  lastname: _this.formdata.lastname,
+                  email: _this.formdata.email,
+                  companyname: _this.formdata.companyname,
+                  registeredaddress: _this.formdata.registeredaddress,
+                  vat: _this.formdata.vat,
+                  telephone: _this.formdata.telephone,
+                  whatsapp: _this.formdata.whatsapp,
+                  title: _this.formdata.title,
+                  creditlimit: _this.formdata.creditlimit,
+                  companycode: _this.formdata.companycode,
+                  customertype: _this.formdata.customertype
+                });
+
+              case 4:
+                response = _context.sent;
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0);
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 7]]);
+      }))();
+    }
+  }
 });
 
 /***/ }),
@@ -81,7 +345,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#dash-datatable[data-v-2193c37c]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createinv-div[data-v-2193c37c]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-2193c37c]\r\n{\r\n  font-size: 12px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-2193c37c] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-2193c37c] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-2193c37c]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createinvoice-div[data-v-2193c37c]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-2193c37c]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-2193c37c]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-2193c37c]\r\n{\r\n  border-radius: 8px;\n}\n.tab-selector[data-v-2193c37c]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-2193c37c]\r\n{\r\n  width: 130px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -577,38 +841,513 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12 createinv-div" }, [
-        _c(
-          "form",
-          {
-            staticClass: "crt-invoice",
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.create_invoice.apply(null, arguments)
-              }
-            }
-          },
-          [
-            _vm._m(1),
+    _c(
+      "form",
+      {
+        staticClass: "crt-invoice",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.create_invoice.apply(null, arguments)
+          }
+        }
+      },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12 createinvoice-div" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Customer")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formdata.companycode,
+                        expression: "formdata.companycode"
+                      }
+                    ],
+                    staticClass: "form-control form-control-user",
+                    attrs: {
+                      type: "text",
+                      id: "crt-invoice",
+                      "aria-describedby": "emailHelp",
+                      placeholder: ""
+                    },
+                    domProps: { value: _vm.formdata.companycode },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.formdata,
+                          "companycode",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Invoice No.")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formdata.companycode,
+                        expression: "formdata.companycode"
+                      }
+                    ],
+                    staticClass: "form-control form-control-user",
+                    attrs: {
+                      type: "text",
+                      id: "crt-invoice",
+                      "aria-describedby": "emailHelp",
+                      placeholder: ""
+                    },
+                    domProps: { value: _vm.formdata.companycode },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.formdata,
+                          "companycode",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Issue Date")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formdata.companycode,
+                        expression: "formdata.companycode"
+                      }
+                    ],
+                    staticClass: "form-control form-control-user",
+                    attrs: {
+                      type: "text",
+                      id: "crt-invoice",
+                      "aria-describedby": "emailHelp",
+                      placeholder: ""
+                    },
+                    domProps: { value: _vm.formdata.companycode },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.formdata,
+                          "companycode",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Due Date")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formdata.companycode,
+                        expression: "formdata.companycode"
+                      }
+                    ],
+                    staticClass: "form-control form-control-user",
+                    attrs: {
+                      type: "text",
+                      id: "crt-invoice",
+                      "aria-describedby": "emailHelp",
+                      placeholder: ""
+                    },
+                    domProps: { value: _vm.formdata.companycode },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.formdata,
+                          "companycode",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ])
+            ]),
             _vm._v(" "),
-            _vm._m(2),
+            _c("div", { staticClass: "row mb-4" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Delivery & Billing Address")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formdata.companycode,
+                        expression: "formdata.companycode"
+                      }
+                    ],
+                    staticClass: "form-control form-control-user",
+                    attrs: {
+                      type: "text",
+                      id: "crt-invoice",
+                      "aria-describedby": "emailHelp",
+                      placeholder: ""
+                    },
+                    domProps: { value: _vm.formdata.companycode },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.formdata,
+                          "companycode",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Reference")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formdata.companycode,
+                        expression: "formdata.companycode"
+                      }
+                    ],
+                    staticClass: "form-control form-control-user",
+                    attrs: {
+                      type: "text",
+                      id: "crt-invoice",
+                      "aria-describedby": "emailHelp",
+                      placeholder: ""
+                    },
+                    domProps: { value: _vm.formdata.companycode },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.formdata,
+                          "companycode",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Currency")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formdata.companycode,
+                        expression: "formdata.companycode"
+                      }
+                    ],
+                    staticClass: "form-control form-control-user",
+                    attrs: {
+                      type: "text",
+                      id: "crt-invoice",
+                      "aria-describedby": "emailHelp",
+                      placeholder: ""
+                    },
+                    domProps: { value: _vm.formdata.companycode },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.formdata,
+                          "companycode",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Amounts are")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formdata.companycode,
+                        expression: "formdata.companycode"
+                      }
+                    ],
+                    staticClass: "form-control form-control-user",
+                    attrs: {
+                      type: "text",
+                      id: "crt-invoice",
+                      "aria-describedby": "emailHelp",
+                      placeholder: ""
+                    },
+                    domProps: { value: _vm.formdata.companycode },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.formdata,
+                          "companycode",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ])
+            ]),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary btn-user btn-block",
-                attrs: { type: "submit" }
-              },
-              [_vm._v("\n            Submit\n          ")]
-            )
-          ]
-        )
-      ])
-    ])
+            _c("div", { staticClass: "row mb-4" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Frequency")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formdata.companycode,
+                        expression: "formdata.companycode"
+                      }
+                    ],
+                    staticClass: "form-control form-control-user",
+                    attrs: {
+                      type: "text",
+                      id: "crt-invoice",
+                      "aria-describedby": "emailHelp",
+                      placeholder: ""
+                    },
+                    domProps: { value: _vm.formdata.companycode },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.formdata,
+                          "companycode",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c(
+            "div",
+            {
+              staticClass: "col-md-12 createinvoice-div pb-3",
+              staticStyle: { padding: "0" }
+            },
+            [
+              _c("div", {}, [
+                _c("div", { staticClass: "table-responsive table-div" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass: "table",
+                      attrs: {
+                        id: "createinvoice-datatable",
+                        width: "100%",
+                        cellspacing: "0"
+                      }
+                    },
+                    [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("tbody", [
+                        _c("tr", [
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _vm._m(4),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.formdata.companycode,
+                                  expression: "formdata.companycode"
+                                }
+                              ],
+                              staticClass: "form-control form-control-user",
+                              attrs: {
+                                type: "text",
+                                id: "crt-invoice",
+                                "aria-describedby": "emailHelp",
+                                placeholder: ""
+                              },
+                              domProps: { value: _vm.formdata.companycode },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.formdata,
+                                    "companycode",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.formdata.companycode,
+                                  expression: "formdata.companycode"
+                                }
+                              ],
+                              staticClass: "form-control form-control-user",
+                              attrs: {
+                                type: "text",
+                                id: "crt-invoice",
+                                "aria-describedby": "emailHelp",
+                                placeholder: ""
+                              },
+                              domProps: { value: _vm.formdata.companycode },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.formdata,
+                                    "companycode",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.formdata.companycode,
+                                  expression: "formdata.companycode"
+                                }
+                              ],
+                              staticClass: "form-control form-control-user",
+                              attrs: {
+                                type: "text",
+                                id: "crt-invoice",
+                                "aria-describedby": "emailHelp",
+                                placeholder: ""
+                              },
+                              domProps: { value: _vm.formdata.companycode },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.formdata,
+                                    "companycode",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(5),
+                          _vm._v(" "),
+                          _c("td", [_vm._v("4320")]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v("GB78602023")])
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(6)
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _vm._m(7)
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -624,6 +1363,27 @@ var staticRenderFns = [
       [
         _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
           _vm._v("New Sales Invoice")
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c(
+            "button",
+            {
+              staticClass: "btn admin-btn mobile-mb btn-nwidth",
+              staticStyle: { "background-color": "#7ADAAA !important" },
+              attrs: { type: "submit" }
+            },
+            [_vm._v("Save")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn admin-btn mobile-mb btn-nwidth",
+              attrs: { type: "button" }
+            },
+            [_vm._v("Cancel")]
+          )
         ])
       ]
     )
@@ -632,31 +1392,146 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", [_vm._v("Customer")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control form-control-user",
-        attrs: {
-          type: "text",
-          id: "crt-customer",
-          "aria-describedby": "emailHelp",
-          placeholder: ""
-        }
-      })
+    return _c("div", { staticClass: "col-md-2" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("input", {
+          staticClass: "custom-control-input",
+          attrs: { type: "checkbox", id: "customCheck" }
+        }),
+        _vm._v(" "),
+        _c(
+          "label",
+          {
+            staticClass: "custom-control-label",
+            attrs: { for: "customCheck" }
+          },
+          [_vm._v("Recurring Invoice")]
+        )
+      ])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", [_vm._v("Invoice No.")]),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Type")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Product")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Weight(gm)")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Quantity")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Unit Price")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Vat")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Amount")]),
+        _vm._v(" "),
+        _c("th")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("select", { staticClass: "tab-selector" }, [
+        _c("option", { attrs: { value: "Option 1", selected: "" } }, [
+          _vm._v("Group")
+        ]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "Option 1" } }, [_vm._v("Option 1")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("select", { staticClass: "tab-selector" }, [
+        _c("option", { attrs: { value: "Option 1", selected: "" } }, [
+          _vm._v("Group")
+        ]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "Option 1" } }, [_vm._v("Option 1")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("select", { staticClass: "tab-selector" }, [
+        _c("option", { attrs: { value: "Option 1", selected: "" } }, [
+          _vm._v("Group")
+        ]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "Option 1" } }, [_vm._v("Option 1")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", {}, [
+      _c(
+        "button",
+        {
+          staticClass: "btn admin-btn mobile-mb btn-addwidth",
+          staticStyle: { "background-color": "#7ADAAA !important" },
+          attrs: { type: "submit" }
+        },
+        [
+          _c("i", {
+            staticClass: "fas fa-plus",
+            staticStyle: { "margin-right": "5px" }
+          }),
+          _vm._v("Add Line Item")
+        ]
+      ),
       _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control form-control-user",
-        attrs: { type: "text", id: "", placeholder: "Invoice No." }
-      })
+      _c(
+        "button",
+        {
+          staticClass: "btn admin-btn mobile-mb btn-addwidth",
+          attrs: { type: "button" }
+        },
+        [
+          _c("i", {
+            staticClass: "fas fa-plus",
+            staticStyle: { "margin-right": "5px" }
+          }),
+          _vm._v("Add Comment")
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 mt-4" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn admin-btn mobile-mb btn-nwidth",
+            staticStyle: {
+              "background-color": "#7ADAAA !important",
+              float: "right"
+            },
+            attrs: { type: "submit" }
+          },
+          [_vm._v("Save")]
+        )
+      ])
     ])
   }
 ]
