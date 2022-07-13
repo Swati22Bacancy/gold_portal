@@ -360,9 +360,9 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    gotosite: function gotosite(id) {
+    gotosales: function gotosales(id) {
       this.$router.push({
-        name: 'customers'
+        name: 'viewsales'
       });
     }
   }
@@ -16884,7 +16884,7 @@ var render = function() {
                                       staticStyle: { cursor: "pointer" },
                                       on: {
                                         click: function($event) {
-                                          return _vm.gotosite("id")
+                                          return _vm.gotosales("id")
                                         }
                                       }
                                     },

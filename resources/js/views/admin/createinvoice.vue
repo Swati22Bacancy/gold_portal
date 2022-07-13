@@ -101,27 +101,19 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label>Currency</label>
-                <input
-                  type="text"
-                  class="form-control form-control-user"
-                  id="crt-invoice"
-                  aria-describedby="emailHelp"
-                  placeholder=""
-                  v-model="formdata.companycode"
-                />
+                <select class="tab-selector" >
+                  <option value="Option 1" selected>Group</option>
+                  <option value="Option 1" >Option 1</option>
+                </select>
               </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
                 <label>Amounts are</label>
-                <input
-                  type="text"
-                  class="form-control form-control-user"
-                  id="crt-invoice"
-                  aria-describedby="emailHelp"
-                  placeholder=""
-                  v-model="formdata.companycode"
-                />
+                <select class="tab-selector" >
+                  <option value="Option 1" selected>Group</option>
+                  <option value="Option 1" >Option 1</option>
+                </select>
               </div>
             </div>
           </div>
@@ -155,8 +147,8 @@
       <div class="row mt-3">
         <div class="col-md-12 createinvoice-div pb-3" style="padding:0">
           <div class="">
-            <div class="table-responsive table-div">
-              <table class="table" id="createinvoice-datatable" width="100%" cellspacing="0">
+            <div class="table-responsive table-div mb-2">
+              <table class="table" id="createinvoice-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
                   <thead>
                     <tr>
                       <th>Type</th>
@@ -170,15 +162,15 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr v-for="(invoice_item, k) in invoice_items" :key="k">
                         <td>
-                          <select class="tab-selector">
+                          <select class="tab-selector" v-model="invoice_item.invoice_type">
                             <option value="Option 1" selected>Group</option>
                             <option value="Option 1" >Option 1</option>
                           </select>
                         </td>
                         <td>
-                          <select class="tab-selector">
+                          <select class="tab-selector" v-model="invoice_item.invoice_product">
                             <option value="Option 1" selected>Group</option>
                             <option value="Option 1" >Option 1</option>
                           </select>
@@ -190,7 +182,7 @@
                             id="crt-invoice"
                             aria-describedby="emailHelp"
                             placeholder=""
-                            v-model="formdata.companycode"
+                            v-model="invoice_item.weight"
                           />
                         </td>
                         <td>
@@ -200,7 +192,7 @@
                             id="crt-invoice"
                             aria-describedby="emailHelp"
                             placeholder=""
-                            v-model="formdata.companycode"
+                            v-model="invoice_item.quantity"
                           />
                         </td>
                         <td>
@@ -210,11 +202,11 @@
                             id="crt-invoice"
                             aria-describedby="emailHelp"
                             placeholder=""
-                            v-model="formdata.companycode"
+                            v-model="invoice_item.unitprice"
                           />
                         </td>
                         <td>
-                          <select class="tab-selector">
+                          <select class="tab-selector" v-model="invoice_item.vat">
                             <option value="Option 1" selected>Group</option>
                             <option value="Option 1" >Option 1</option>
                           </select>
@@ -227,10 +219,43 @@
               </table>
             </div>
           </div>
-          <div class="">
-            <button type="submit" class="btn admin-btn mobile-mb btn-addwidth" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Line Item</button>
-            <button type="button" class="btn admin-btn mobile-mb btn-addwidth"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Comment</button>
+          <div class="row">
+            <div class="col-md-6">
+              <button type="button" class="btn admin-btn mobile-mb btn-addwidth" style="background-color: #7ADAAA !important;" @click="addLine"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Line Item</button>
+              <button type="button" class="btn admin-btn mobile-mb btn-addwidth"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Comment</button>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2 sum-price">
+              <ul style="text-align: right;">
+                <li style="color:#3376C2">Sub Total (<i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>)</li>
+                <li style="color:#3376C2">VAT Total (<i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>)</li>
+                <li style="color:#3376C2">Total (<i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>)</li>
+              </ul>
+            </div>
+            <div class="col-md-2 sum-price">
+              <ul>
+                <li style="font-size:13px;">8000</li>
+                <li style="font-size:13px;">640</li>
+                <li style="font-size:13px;">8640</li>
+              </ul>
+            </div>
           </div>
+          <!-- <div class="row">
+            <div class="col-md-6">
+              
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2">Sub Total</div>
+            <div class="col-md-2">8000</div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2">Sub Total</div>
+            <div class="col-md-2">8000</div>
+          </div> -->
         </div>
         
       </div>
@@ -253,6 +278,16 @@ export default {
       customerType: 'business',
       theme: 'cust-type',
       formdata: {},
+      rows: [],
+      invoice_items: [{
+          invoice_type: '',
+          invoice_product: '',
+          weight: '',
+          quantity: '',
+          unitprice: '',
+          vat: '',
+          invoice_amount:''
+      }]
     };
   },
   methods:
@@ -261,6 +296,17 @@ export default {
     {
       
       this.customerType = type;
+    },
+    addLine(){
+      this.invoice_items.push({
+          invoice_type: '',
+          invoice_product: '',
+          weight: '',
+          quantity: '',
+          unitprice: '',
+          vat: '',
+          invoice_amount:''
+      });
     },
     async create_invoice() {
       try {
@@ -339,7 +385,7 @@ export default {
 }
 .table-div
 {
-  border-radius: 8px;
+  border-bottom: 1px solid #ccc;
 }
 .tab-selector
 {
@@ -353,4 +399,12 @@ export default {
 {
   width: 130px;
 }
+.sum-price ul
+{
+  list-style-type: none;
+}
+.sum-price li{
+  padding: 5px 0px;
+  font-size: 11px;
+};
 </style>

@@ -67,7 +67,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-on:click="gotosite('id')" style="cursor:pointer;">
+                                        <tr v-on:click="gotosales('id')" style="cursor:pointer;">
                                             <td><input type="checkbox" class="custom-check-input"></td>
                                             <td>16/5/2021</td>
                                             <td>INV-2001</td>
@@ -270,9 +270,9 @@ export default {
       });
   },
   methods:{
-    gotosite(id)
+    gotosales(id)
     {
-      this.$router.push({ name: 'customers' });
+      this.$router.push({ name: 'viewsales' });
     }
   }
   
