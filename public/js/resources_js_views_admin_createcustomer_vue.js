@@ -295,17 +295,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.formdata.customertype = _this.customerType;
                 _context.next = 4;
                 return axios.post("create_customer", {
-                  firstname: _this.formdata.firstname,
-                  lastname: _this.formdata.lastname,
+                  first_name: _this.formdata.first_name,
+                  last_name: _this.formdata.last_name,
                   email: _this.formdata.email,
-                  companyname: _this.formdata.companyname,
-                  registeredaddress: _this.formdata.registeredaddress,
+                  company_name: _this.formdata.company_name,
+                  registered_address: _this.formdata.registered_address,
                   vat: _this.formdata.vat,
                   telephone: _this.formdata.telephone,
                   whatsapp: _this.formdata.whatsapp,
                   title: _this.formdata.title,
-                  creditlimit: _this.formdata.creditlimit,
-                  companycode: _this.formdata.companycode,
+                  credit_limit: _this.formdata.credit_limit,
+                  company_code: _this.formdata.company_code,
                   customertype: _this.formdata.customertype
                 });
 
@@ -352,7 +352,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#dash-datatable[data-v-68016c19]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createcust-div[data-v-68016c19]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-customer label[data-v-68016c19]\r\n{\r\n  font-size: 12px;\n}\n.crt-customer[data-v-68016c19]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-68016c19]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-68016c19]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-68016c19]:focus, .btn.focus[data-v-68016c19]\r\n{\r\n  box-shadow: 0 0;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-68016c19]\r\n  {\r\n    border-right: 1.5px solid rgb(204, 204, 204);\r\n    padding-right: 8%;\n}\n.primary-div[data-v-68016c19]\r\n  {\r\n    padding-left: 8%;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#dash-datatable[data-v-68016c19]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createcust-div[data-v-68016c19]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-customer label[data-v-68016c19]\r\n{\r\n  font-size: 12px;\n}\n.crt-customer[data-v-68016c19]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-68016c19]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-68016c19]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-68016c19]:focus, .btn.focus[data-v-68016c19]\r\n{\r\n  box-shadow: 0 0;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-68016c19]\r\n  {\r\n    border-right: 2px solid #eee;\r\n    padding-right: 8%;\n}\n.primary-div[data-v-68016c19]\r\n  {\r\n    padding-left: 8%;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -860,7 +860,45 @@ var render = function() {
         }
       },
       [
-        _vm._m(0),
+        _c(
+          "div",
+          {
+            staticClass:
+              "d-sm-flex align-items-center justify-content-between mb-4"
+          },
+          [
+            _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
+              _vm._v("Create New Customer")
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn admin-btn mobile-mb btn-nwidth",
+                    staticStyle: { "background-color": "#7ADAAA !important" },
+                    attrs: { type: "submit" }
+                  },
+                  [_vm._v("Save")]
+                ),
+                _vm._v(" "),
+                _c("router-link", { attrs: { to: "/customers" } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb btn-nwidth",
+                      attrs: { type: "button" }
+                    },
+                    [_vm._v("Cancel")]
+                  )
+                ])
+              ],
+              1
+            )
+          ]
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-12 createcust-div" }, [
@@ -919,8 +957,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.formdata.companycode,
-                        expression: "formdata.companycode"
+                        value: _vm.formdata.company_code,
+                        expression: "formdata.company_code"
                       }
                     ],
                     staticClass: "form-control form-control-user",
@@ -930,7 +968,7 @@ var render = function() {
                       "aria-describedby": "emailHelp",
                       placeholder: ""
                     },
-                    domProps: { value: _vm.formdata.companycode },
+                    domProps: { value: _vm.formdata.company_code },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -938,7 +976,7 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.formdata,
-                          "companycode",
+                          "company_code",
                           $event.target.value
                         )
                       }
@@ -963,8 +1001,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formdata.companyname,
-                            expression: "formdata.companyname"
+                            value: _vm.formdata.company_name,
+                            expression: "formdata.company_name"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -974,7 +1012,7 @@ var render = function() {
                           "aria-describedby": "emailHelp",
                           placeholder: ""
                         },
-                        domProps: { value: _vm.formdata.companyname },
+                        domProps: { value: _vm.formdata.company_name },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -982,7 +1020,7 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.formdata,
-                              "companyname",
+                              "company_name",
                               $event.target.value
                             )
                           }
@@ -998,8 +1036,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formdata.registeredaddress,
-                            expression: "formdata.registeredaddress"
+                            value: _vm.formdata.registered_address,
+                            expression: "formdata.registered_address"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -1009,7 +1047,7 @@ var render = function() {
                           "aria-describedby": "emailHelp",
                           placeholder: ""
                         },
-                        domProps: { value: _vm.formdata.registeredaddress },
+                        domProps: { value: _vm.formdata.registered_address },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -1017,7 +1055,7 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.formdata,
-                              "registeredaddress",
+                              "registered_address",
                               $event.target.value
                             )
                           }
@@ -1202,8 +1240,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formdata.firstname,
-                            expression: "formdata.firstname"
+                            value: _vm.formdata.first_name,
+                            expression: "formdata.first_name"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -1213,7 +1251,7 @@ var render = function() {
                           "aria-describedby": "emailHelp",
                           placeholder: ""
                         },
-                        domProps: { value: _vm.formdata.firstname },
+                        domProps: { value: _vm.formdata.first_name },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -1221,7 +1259,7 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.formdata,
-                              "firstname",
+                              "first_name",
                               $event.target.value
                             )
                           }
@@ -1237,8 +1275,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formdata.lastname,
-                            expression: "formdata.lastname"
+                            value: _vm.formdata.last_name,
+                            expression: "formdata.last_name"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -1248,7 +1286,7 @@ var render = function() {
                           "aria-describedby": "emailHelp",
                           placeholder: ""
                         },
-                        domProps: { value: _vm.formdata.lastname },
+                        domProps: { value: _vm.formdata.last_name },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -1256,7 +1294,7 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.formdata,
-                              "lastname",
+                              "last_name",
                               $event.target.value
                             )
                           }
@@ -1267,15 +1305,15 @@ var render = function() {
                     _c("h6", [_vm._v("Settings")]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group customer-input" }, [
-                      _vm._m(1),
+                      _vm._m(0),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formdata.creditlimit,
-                            expression: "formdata.creditlimit"
+                            value: _vm.formdata.credit_limit,
+                            expression: "formdata.credit_limit"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -1285,7 +1323,7 @@ var render = function() {
                           "aria-describedby": "emailHelp",
                           placeholder: ""
                         },
-                        domProps: { value: _vm.formdata.creditlimit },
+                        domProps: { value: _vm.formdata.credit_limit },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -1293,7 +1331,7 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.formdata,
-                              "creditlimit",
+                              "credit_limit",
                               $event.target.value
                             )
                           }
@@ -1346,8 +1384,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formdata.firstname,
-                            expression: "formdata.firstname"
+                            value: _vm.formdata.first_name,
+                            expression: "formdata.first_name"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -1357,7 +1395,7 @@ var render = function() {
                           "aria-describedby": "emailHelp",
                           placeholder: ""
                         },
-                        domProps: { value: _vm.formdata.firstname },
+                        domProps: { value: _vm.formdata.first_name },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -1365,7 +1403,7 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.formdata,
-                              "firstname",
+                              "first_name",
                               $event.target.value
                             )
                           }
@@ -1381,8 +1419,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formdata.lastname,
-                            expression: "formdata.lastname"
+                            value: _vm.formdata.last_name,
+                            expression: "formdata.last_name"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -1392,7 +1430,7 @@ var render = function() {
                           "aria-describedby": "emailHelp",
                           placeholder: ""
                         },
-                        domProps: { value: _vm.formdata.lastname },
+                        domProps: { value: _vm.formdata.last_name },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -1400,7 +1438,7 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.formdata,
-                              "lastname",
+                              "last_name",
                               $event.target.value
                             )
                           }
@@ -1449,8 +1487,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formdata.registeredaddress,
-                            expression: "formdata.registeredaddress"
+                            value: _vm.formdata.registered_address,
+                            expression: "formdata.registered_address"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -1460,7 +1498,7 @@ var render = function() {
                           "aria-describedby": "emailHelp",
                           placeholder: ""
                         },
-                        domProps: { value: _vm.formdata.registeredaddress },
+                        domProps: { value: _vm.formdata.registered_address },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -1468,7 +1506,7 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.formdata,
-                              "registeredaddress",
+                              "registered_address",
                               $event.target.value
                             )
                           }
@@ -1555,43 +1593,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "d-sm-flex align-items-center justify-content-between mb-4"
-      },
-      [
-        _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
-          _vm._v("Create New Customer")
-        ]),
-        _vm._v(" "),
-        _c("div", [
-          _c(
-            "button",
-            {
-              staticClass: "btn admin-btn mobile-mb btn-nwidth",
-              staticStyle: { "background-color": "#7ADAAA !important" },
-              attrs: { type: "submit" }
-            },
-            [_vm._v("Save")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn admin-btn mobile-mb btn-nwidth",
-              attrs: { type: "button" }
-            },
-            [_vm._v("Cancel")]
-          )
-        ])
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

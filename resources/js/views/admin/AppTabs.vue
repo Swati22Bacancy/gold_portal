@@ -10,15 +10,8 @@
         flex: variant === 'vertical',
       }"
     >
-      <li v-for="(tab, index) in tabList" :key="index" :class="{active: currentTab === index}" @click="currentTab = index">
-        <label :for="`${_uid}${index}`" v-text="tab" />
-        <!-- <input
-          :id="`${_uid}${index}`"
-          type="radio"
-          :name="`${_uid}-tab`"
-          :value="index + 1"
-          v-model="activeTab"
-        /> -->
+      <li v-for="(tab, index) in tabList" :key="index" :class="{active: currentTab === index}"  @click="activeTab = index+1;currentTab = index">
+        <label :for="`${_uid}${index}`" v-text="tab" :id="`${_uid}${index}`"/>
       </li>
     </ul>
 
@@ -68,7 +61,7 @@ export default {
   background: #EDF2F6;
   font-size: 12px;
   color: #000;
-  padding: 13px 13px 9px 25px;
+  padding: 13px 13px 9px 13px;
   border-radius: 5px 5px 0px 0px;
   min-width: 130px;
   text-align: center;

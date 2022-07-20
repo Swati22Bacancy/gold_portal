@@ -69,7 +69,7 @@
                                             <td>--</td>
                                             <td>-</td>
                                             <td>--</td>
-                                            <td><router-link to="/viewcustomer"><i class="fas fa-eye" style="margin-right: 10px;color: #3376C2;"></i></router-link>
+                                            <td><router-link :to="{name : 'viewcustomer', params: {id : customer.id}}"><i class="fas fa-eye" style="margin-right: 10px;color: #3376C2;"></i></router-link>
                                             <i class="fas fa-trash" style="margin-right: 10px;color: red;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(customer.id)"></i>
                                             <i class="fa fa-ellipsis-v" aria-hidden="true" style="margin-right: 10px;color: #ccc;"></i></td>
                                         </tr>
@@ -82,8 +82,27 @@
               </div>
           </div>
         </template>
-        <template v-slot:tabPanel-2> <p>Content 2</p> </template>
-        <template v-slot:tabPanel-3> <p>Content 3</p> </template>
+        <template v-slot:tabPanel-2> 
+          <div class="col-md-12">
+            <input type="text" class="form-control bg-light border-0 small table-search" placeholder="Search Contacts" style="background-color:#FFFFFF !important;"/>
+            <select class="tab-selector">
+              <option value="Option 1" selected>Group</option>
+              <option value="Option 1" >Option 1</option>
+            </select>
+            <select class="tab-selector">
+              <option value="Option 1" selected>Type</option>
+              <option value="Option 1" >Option 1</option>
+            </select> 
+            <select class="tab-selector">
+              <option value="Option 1" selected>Show Entries</option>
+              <option value="Option 1">Option 1</option>
+            </select> 
+          </div>
+          <businesscustomers> </businesscustomers> 
+        </template>
+        <template v-slot:tabPanel-3> 
+          <individualcustomers> </individualcustomers> 
+        </template>
       </customer-tabs>
     </div>
   <!-- Modal -->
@@ -114,12 +133,16 @@
 
 <script>
 import CustomerTabs from "./CustomerTabs";
+import businesscustomers from "./businesscustomers";
+import individualcustomers from "./individualcustomers";
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 export default {
   name: "Customer",
   components: {
     CustomerTabs,
+    businesscustomers,
+    individualcustomers
   },
   props: ['products'],
   data() {
@@ -166,7 +189,7 @@ export default {
         })
     },
     getProjects() {
-        return axios.get("customerlist").then(response => {
+        return axios.get("customerlist/all").then(response => {
             this.products = response.data;
         });
     },
@@ -190,7 +213,7 @@ export default {
         $(this).html(html_org);
         return width;
       };
-      $(this.$el.querySelector('table')).on( 'draw.dt', function (e) {
+      $('#customer-datatable').on( 'draw.dt', function (e) {
         $('#customer-datatable thead tr th').each(function(idx, ele) {
           var xPos = parseInt((($(ele).textWidth()))+12);
           $(ele).css('background-position-x',  xPos + 'px')
@@ -216,7 +239,7 @@ export default {
             this.$nextTick(() => {
 
                 // initialize DataTable on rendered table
-                const table = $(this.$el.querySelector('table')).DataTable({
+                const table = $('#customer-datatable').DataTable({
                   "bFilter": false,
                   "bLengthChange": false,
                   "columnDefs": [

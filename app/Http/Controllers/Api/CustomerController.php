@@ -12,17 +12,17 @@ class CustomerController extends Controller
     {
         try {
             $customer = Customer::create([
-                'first_name' => $request->input('firstname'),
-                'last_name' => $request->input('lastname'),
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
                 'email' => $request->input('email'),
-                'company_name' => $request->input('companyname'),
-                'registered_address' => $request->input('registeredaddress'),
+                'company_name' => $request->input('company_name'),
+                'registered_address' => $request->input('registered_address'),
                 'vat' => $request->input('vat'),
                 'telephone' => $request->input('telephone'),
                 'whatsapp' => $request->input('whatsapp'),
                 'title' => $request->input('title'),
-                'credit_limit' => $request->input('creditlimit'),
-                'company_code' => $request->input('companycode'),
+                'credit_limit' => $request->input('credit_limit'),
+                'company_code' => $request->input('company_code'),
                 'customer_type' => $request->input('customertype')
             ]);
 
@@ -34,10 +34,16 @@ class CustomerController extends Controller
         }
     }
 
-    public function customerlist()
+    public function customerlist($type)
     {
-        $customers = Customer::select('*')->get();
-
+        if($type !='all')
+        {
+            $customers = Customer::select('*')->where('customer_type',$type)->get();
+        }
+        else
+        {
+            $customers = Customer::select('*')->get();
+        }
         return response()->json($customers);
     }
 
@@ -56,5 +62,38 @@ class CustomerController extends Controller
             }else{
                 return response()->json(['error' => 'Record does not exists'], 404);
             }
+    }
+
+    public function customerdetails($id)
+    {
+        $customer = Customer::where('id', $id)->first();
+
+        return response()->json($customer);
+    }
+
+    public function updatecustomer(Request $request)
+    {
+        try {
+            $customer = Customer::where('id', $request->input('id'))->update([
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'email' => $request->input('email'),
+                'company_name' => $request->input('company_name'),
+                'registered_address' => $request->input('registered_address'),
+                'vat' => $request->input('vat'),
+                'telephone' => $request->input('telephone'),
+                'whatsapp' => $request->input('whatsapp'),
+                'title' => $request->input('title'),
+                'credit_limit' => $request->input('credit_limit'),
+                'company_code' => $request->input('company_code'),
+                'customer_type' => $request->input('customertype')
+            ]);
+
+            return response()->json($customer);
+        } catch (\Exception $e) {
+            return response([
+                'message' => 'Internal error, please try again later.' //$e->getMessage()
+            ], 400);
+        }
     }
 }

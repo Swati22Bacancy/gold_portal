@@ -36,13 +36,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     tabList: {
@@ -429,7 +422,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.flex {\r\n  display: flex;\n}\n.tabs-cstm li.active\r\n{\r\n  background: #245387;\r\n  color: #fff;\n}\n.tabs-cstm li\r\n{\r\n  background: #EDF2F6;\r\n  font-size: 12px;\r\n  color: #000;\r\n  padding: 13px 13px 9px 25px;\r\n  border-radius: 5px 5px 0px 0px;\r\n  min-width: 130px;\r\n  text-align: center;\n}\n.tabs-cstm .flex\r\n{\r\n  list-style: none;\r\n  padding: 0;\r\n  margin-bottom: 0;\n}\n.tab-content\r\n{\r\n  background-color: #fff;\r\n  padding: 9px 0px;\r\n  border-radius: 0px 5px 5px 5px;\n}\n@media screen and (max-width:767px) {\n.tabs-cstm li\r\n  {\r\n    padding: 13px 13px 9px 0px;\n}\n.tabs-cstm .flex\r\n  {\r\n    overflow-x: scroll;\n}\n.table-search\r\n  {\r\n    width: 100% !important ;\r\n    margin-bottom: 3%;\n}\n.table-date\r\n  {\r\n    width: 100% !important;\r\n    margin-bottom: 3%;\n}\n.tab-selector\r\n  {\r\n    width: 49% !important;\n}\n.tab-content .admin-btn\r\n  {\r\n    margin-top: 3% !important;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.flex {\r\n  display: flex;\n}\n.tabs-cstm li.active\r\n{\r\n  background: #245387;\r\n  color: #fff;\n}\n.tabs-cstm li\r\n{\r\n  background: #EDF2F6;\r\n  font-size: 12px;\r\n  color: #000;\r\n  padding: 13px 13px 9px 13px;\r\n  border-radius: 5px 5px 0px 0px;\r\n  min-width: 130px;\r\n  text-align: center;\n}\n.tabs-cstm .flex\r\n{\r\n  list-style: none;\r\n  padding: 0;\r\n  margin-bottom: 0;\n}\n.tab-content\r\n{\r\n  background-color: #fff;\r\n  padding: 9px 0px;\r\n  border-radius: 0px 5px 5px 5px;\n}\n@media screen and (max-width:767px) {\n.tabs-cstm li\r\n  {\r\n    padding: 13px 13px 9px 0px;\n}\n.tabs-cstm .flex\r\n  {\r\n    overflow-x: scroll;\n}\n.table-search\r\n  {\r\n    width: 100% !important ;\r\n    margin-bottom: 3%;\n}\n.table-date\r\n  {\r\n    width: 100% !important;\r\n    margin-bottom: 3%;\n}\n.tab-selector\r\n  {\r\n    width: 49% !important;\n}\n.tab-content .admin-btn\r\n  {\r\n    margin-top: 3% !important;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -16636,13 +16629,17 @@ var render = function() {
               class: { active: _vm.currentTab === index },
               on: {
                 click: function($event) {
+                  _vm.activeTab = index + 1
                   _vm.currentTab = index
                 }
               }
             },
             [
               _c("label", {
-                attrs: { for: "" + _vm._uid + index },
+                attrs: {
+                  for: "" + _vm._uid + index,
+                  id: "" + _vm._uid + index
+                },
                 domProps: { textContent: _vm._s(tab) }
               })
             ]

@@ -2665,7 +2665,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__.default({
       layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__.default
     }
   }, {
-    path: "/viewcustomer",
+    path: "/viewcustomer/:id",
     name: "viewcustomer",
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_views_admin_viewcustomer_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/viewcustomer.vue */ "./resources/js/views/admin/viewcustomer.vue"));

@@ -36,13 +36,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     tabList: {
@@ -93,9 +86,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
 //
 //
 //
@@ -462,18 +452,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.prev = 0;
                 _this3.formdata.customertype = _this3.customerType;
                 _context.next = 4;
-                return axios.post("create_customer", {
-                  firstname: _this3.formdata.firstname,
-                  lastname: _this3.formdata.lastname,
+                return axios.post("update_customer", {
+                  id: _this3.$route.params.id,
+                  first_name: _this3.formdata.first_name,
+                  last_name: _this3.formdata.last_name,
                   email: _this3.formdata.email,
-                  companyname: _this3.formdata.companyname,
-                  registeredaddress: _this3.formdata.registeredaddress,
+                  company_name: _this3.formdata.company_name,
+                  registered_address: _this3.formdata.registered_address,
                   vat: _this3.formdata.vat,
                   telephone: _this3.formdata.telephone,
                   whatsapp: _this3.formdata.whatsapp,
                   title: _this3.formdata.title,
-                  creditlimit: _this3.formdata.creditlimit,
-                  companycode: _this3.formdata.companycode,
+                  credit_limit: _this3.formdata.credit_limit,
+                  company_code: _this3.formdata.company_code,
                   customertype: _this3.formdata.customertype
                 });
 
@@ -502,6 +493,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     var _this4 = this;
 
+    axios.get('/customerdetails/' + this.$route.params.id).then(function (response) {
+      _this4.formdata = response.data;
+      _this4.customerType = _this4.formdata.customer_type == 'Business' ? 'business' : 'individual';
+    })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
+    });
     this.getProjects(); // axios.get("customerlist")
     //     .then((response) => {
     //         this.customers = response.data;
@@ -625,7 +621,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.flex {\r\n  display: flex;\n}\n.tabs-cstm li.active\r\n{\r\n  background: #245387;\r\n  color: #fff;\n}\n.tabs-cstm li\r\n{\r\n  background: #EDF2F6;\r\n  font-size: 12px;\r\n  color: #000;\r\n  padding: 13px 13px 9px 25px;\r\n  border-radius: 5px 5px 0px 0px;\r\n  min-width: 130px;\r\n  text-align: center;\n}\n.tabs-cstm .flex\r\n{\r\n  list-style: none;\r\n  padding: 0;\r\n  margin-bottom: 0;\n}\n.tab-content\r\n{\r\n  background-color: #fff;\r\n  padding: 9px 0px;\r\n  border-radius: 0px 5px 5px 5px;\n}\n@media screen and (max-width:767px) {\n.tabs-cstm li\r\n  {\r\n    padding: 13px 13px 9px 0px;\n}\n.tabs-cstm .flex\r\n  {\r\n    overflow-x: scroll;\n}\n.table-search\r\n  {\r\n    width: 100% !important ;\r\n    margin-bottom: 3%;\n}\n.table-date\r\n  {\r\n    width: 100% !important;\r\n    margin-bottom: 3%;\n}\n.tab-selector\r\n  {\r\n    width: 49% !important;\n}\n.tab-content .admin-btn\r\n  {\r\n    margin-top: 3% !important;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.flex {\r\n  display: flex;\n}\n.tabs-cstm li.active\r\n{\r\n  background: #245387;\r\n  color: #fff;\n}\n.tabs-cstm li\r\n{\r\n  background: #EDF2F6;\r\n  font-size: 12px;\r\n  color: #000;\r\n  padding: 13px 13px 9px 13px;\r\n  border-radius: 5px 5px 0px 0px;\r\n  min-width: 130px;\r\n  text-align: center;\n}\n.tabs-cstm .flex\r\n{\r\n  list-style: none;\r\n  padding: 0;\r\n  margin-bottom: 0;\n}\n.tab-content\r\n{\r\n  background-color: #fff;\r\n  padding: 9px 0px;\r\n  border-radius: 0px 5px 5px 5px;\n}\n@media screen and (max-width:767px) {\n.tabs-cstm li\r\n  {\r\n    padding: 13px 13px 9px 0px;\n}\n.tabs-cstm .flex\r\n  {\r\n    overflow-x: scroll;\n}\n.table-search\r\n  {\r\n    width: 100% !important ;\r\n    margin-bottom: 3%;\n}\n.table-date\r\n  {\r\n    width: 100% !important;\r\n    margin-bottom: 3%;\n}\n.tab-selector\r\n  {\r\n    width: 49% !important;\n}\n.tab-content .admin-btn\r\n  {\r\n    margin-top: 3% !important;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -649,7 +645,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.table-search[data-v-081b0e02]\r\n{\r\n  width: 65%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.table-date[data-v-081b0e02]\r\n{\r\n  width: 27%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.tab-selector[data-v-081b0e02]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 11%;\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-search[data-v-081b0e02]::-moz-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-081b0e02]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-081b0e02]::placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n#customer-datatable thead[data-v-081b0e02]\r\n{\r\n  background: #3376C2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n.table-date[data-v-081b0e02]::-moz-placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-date[data-v-081b0e02]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-date[data-v-081b0e02]::placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n#customer-datatable[data-v-081b0e02]\r\n{\r\n  color: #000;\r\n  font-size: 13px;\n}\ntable.dataTable.no-footer[data-v-081b0e02]\r\n{\r\n  border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-081b0e02]\r\n{\r\n    color: #fff !important;\r\n    border: 1px solid #3376c2 !important;\r\n    background-color: #3376c2 !important;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-081b0e02]\r\n{\r\n  padding: 0.3em 0.8em;\n}\n#customer-datatable thead tr th[data-v-081b0e02] \r\n{\r\n  font-weight: 100 !important;\n}\ntable.dataTable thead th[data-v-081b0e02]\r\n{\r\n  padding: 10px 10px !important;\n}\ntable.dataTable thead .sorting[data-v-081b0e02], table.dataTable thead .sorting_asc[data-v-081b0e02], table.dataTable thead .sorting_desc[data-v-081b0e02], table.dataTable thead .sorting_asc_disabled[data-v-081b0e02], table.dataTable thead .sorting_desc_disabled[data-v-081b0e02]\r\n{\r\n  background-size: 13px 13px;\r\n  background-position: 0px 19px;\n}\n.createcust-div[data-v-081b0e02]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px;\n}\n.crt-customer label[data-v-081b0e02]\r\n{\r\n  font-size: 12px;\n}\n.crt-customer[data-v-081b0e02]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-081b0e02]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-081b0e02]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-081b0e02]:focus, .btn.focus[data-v-081b0e02]\r\n{\r\n  box-shadow: 0 0;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-081b0e02]\r\n  {\r\n    border-right: 1.5px solid rgb(204, 204, 204);\r\n    padding-right: 8%;\n}\n.primary-div[data-v-081b0e02]\r\n  {\r\n    padding-left: 8%;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.table-search[data-v-081b0e02]\r\n{\r\n  width: 65%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.table-date[data-v-081b0e02]\r\n{\r\n  width: 27%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.tab-selector[data-v-081b0e02]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 11%;\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-search[data-v-081b0e02]::-moz-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-081b0e02]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-081b0e02]::placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n#customer-datatable thead[data-v-081b0e02]\r\n{\r\n  background: #3376C2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n.table-date[data-v-081b0e02]::-moz-placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-date[data-v-081b0e02]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-date[data-v-081b0e02]::placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n#customer-datatable[data-v-081b0e02]\r\n{\r\n  color: #000;\r\n  font-size: 13px;\n}\ntable.dataTable.no-footer[data-v-081b0e02]\r\n{\r\n  border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-081b0e02]\r\n{\r\n    color: #fff !important;\r\n    border: 1px solid #3376c2 !important;\r\n    background-color: #3376c2 !important;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-081b0e02]\r\n{\r\n  padding: 0.3em 0.8em;\n}\n#customer-datatable thead tr th[data-v-081b0e02] \r\n{\r\n  font-weight: 100 !important;\n}\ntable.dataTable thead th[data-v-081b0e02]\r\n{\r\n  padding: 10px 10px !important;\n}\ntable.dataTable thead .sorting[data-v-081b0e02], table.dataTable thead .sorting_asc[data-v-081b0e02], table.dataTable thead .sorting_desc[data-v-081b0e02], table.dataTable thead .sorting_asc_disabled[data-v-081b0e02], table.dataTable thead .sorting_desc_disabled[data-v-081b0e02]\r\n{\r\n  background-size: 13px 13px;\r\n  background-position: 0px 19px;\n}\n.createcust-div[data-v-081b0e02]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px;\n}\n.crt-customer label[data-v-081b0e02]\r\n{\r\n  font-size: 12px;\n}\n.crt-customer[data-v-081b0e02]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-081b0e02]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-081b0e02]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-081b0e02]:focus, .btn.focus[data-v-081b0e02]\r\n{\r\n  box-shadow: 0 0;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-081b0e02]\r\n  {\r\n    border-right: 2px solid #eee;\r\n    padding-right: 8%;\n}\n.primary-div[data-v-081b0e02]\r\n  {\r\n    padding-left: 8%;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -16832,13 +16828,17 @@ var render = function() {
               class: { active: _vm.currentTab === index },
               on: {
                 click: function($event) {
+                  _vm.activeTab = index + 1
                   _vm.currentTab = index
                 }
               }
             },
             [
               _c("label", {
-                attrs: { for: "" + _vm._uid + index },
+                attrs: {
+                  for: "" + _vm._uid + index,
+                  id: "" + _vm._uid + index
+                },
                 domProps: { textContent: _vm._s(tab) }
               })
             ]
@@ -16893,59 +16893,21 @@ var render = function() {
         staticClass: "d-sm-flex align-items-center justify-content-between mb-3"
       },
       [
-        _vm._m(0),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-8 mobile-mb" }, [
+              _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
+                _vm._v(
+                  _vm._s(_vm.formdata.first_name) +
+                    " " +
+                    _vm._s(_vm.formdata.last_name)
+                )
+              ])
+            ])
+          ])
+        ]),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-md-6", staticStyle: { "text-align": "right" } },
-          [
-            _c("router-link", { attrs: { to: "/createcustomer" } }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn admin-btn mobile-mb",
-                  staticStyle: { "background-color": "#7ADAAA !important" },
-                  attrs: { type: "button" }
-                },
-                [
-                  _c("i", {
-                    staticClass: "fas fa-plus",
-                    staticStyle: { "margin-right": "5px" }
-                  }),
-                  _vm._v("Add Customer")
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn admin-btn mobile-mb",
-                attrs: { type: "button" }
-              },
-              [_vm._v("Send Statement")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn admin-btn mobile-mb",
-                attrs: { type: "button" }
-              },
-              [_vm._v("Print")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn admin-btn mobile-mb",
-                attrs: { type: "button" }
-              },
-              [_vm._v("Export")]
-            )
-          ],
-          1
-        )
+        _vm._m(0)
       ]
     ),
     _vm._v(" "),
@@ -16965,7 +16927,6 @@ var render = function() {
                       _c(
                         "form",
                         {
-                          staticClass: "crt-customer",
                           on: {
                             submit: function($event) {
                               $event.preventDefault()
@@ -16977,100 +16938,57 @@ var render = function() {
                           _c(
                             "div",
                             {
-                              staticClass:
-                                "d-sm-flex align-items-center justify-content-between mb-4"
+                              staticClass: "pb-4 mt-3",
+                              staticStyle: {
+                                "text-align": "right",
+                                "border-bottom": "1px solid #eee"
+                              }
                             },
                             [
-                              _c("div", [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn admin-btn mobile-mb btn-nwidth",
-                                    staticStyle: {
-                                      "background-color": "#7ADAAA !important"
+                              _c(
+                                "div",
+                                { staticClass: "pr-4" },
+                                [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn admin-btn mobile-mb btn-nwidth",
+                                      staticStyle: {
+                                        "background-color": "#7ADAAA !important"
+                                      },
+                                      attrs: { type: "submit" }
                                     },
-                                    attrs: { type: "submit" }
-                                  },
-                                  [_vm._v("Update")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn admin-btn mobile-mb btn-nwidth",
-                                    attrs: { type: "button" }
-                                  },
-                                  [_vm._v("Cancel")]
-                                )
-                              ])
+                                    [_vm._v("Update")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "router-link",
+                                    { attrs: { to: "/customers" } },
+                                    [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "btn admin-btn mobile-mb btn-nwidth",
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("Cancel")]
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
                             ]
                           ),
                           _vm._v(" "),
-                          _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "row crt-customer" }, [
                             _c(
                               "div",
                               { staticClass: "col-md-12 createcust-div" },
                               [
                                 _c("div", { staticClass: "row mb-4" }, [
-                                  _c("div", { staticClass: "col-md-3" }, [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "form-group customer-input"
-                                      },
-                                      [
-                                        _c("label", [_vm._v("Customer Type")]),
-                                        _c("br"),
-                                        _vm._v(" "),
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn admin-btn mobile-mb",
-                                            class:
-                                              _vm.customerType == "business"
-                                                ? "dark-theme-btn"
-                                                : "light-theme-btn",
-                                            staticStyle: { margin: "0" },
-                                            attrs: { type: "button" },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.changetype(
-                                                  "business"
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [_vm._v("Business")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn admin-btn mobile-mb",
-                                            class:
-                                              _vm.customerType == "individual"
-                                                ? "dark-theme-btn"
-                                                : "light-theme-btn",
-                                            staticStyle: { margin: "0" },
-                                            attrs: { type: "button" },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.changetype(
-                                                  "individual"
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [_vm._v("Individual")]
-                                        )
-                                      ]
-                                    )
-                                  ]),
-                                  _vm._v(" "),
                                   _c("div", { staticClass: "col-md-3" }, [
                                     _c(
                                       "div",
@@ -17085,8 +17003,9 @@ var render = function() {
                                             {
                                               name: "model",
                                               rawName: "v-model",
-                                              value: _vm.formdata.companycode,
-                                              expression: "formdata.companycode"
+                                              value: _vm.formdata.company_code,
+                                              expression:
+                                                "formdata.company_code"
                                             }
                                           ],
                                           staticClass:
@@ -17098,7 +17017,7 @@ var render = function() {
                                             placeholder: ""
                                           },
                                           domProps: {
-                                            value: _vm.formdata.companycode
+                                            value: _vm.formdata.company_code
                                           },
                                           on: {
                                             input: function($event) {
@@ -17107,12 +17026,31 @@ var render = function() {
                                               }
                                               _vm.$set(
                                                 _vm.formdata,
-                                                "companycode",
+                                                "company_code",
                                                 $event.target.value
                                               )
                                             }
                                           }
                                         })
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-3" }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass: "form-group customer-input"
+                                      },
+                                      [
+                                        _c("label", [_vm._v("Customer Type")]),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _c("span", [
+                                          _vm._v(
+                                            _vm._s(_vm.formdata.customer_type)
+                                          )
+                                        ])
                                       ]
                                     )
                                   ]),
@@ -17145,9 +17083,9 @@ var render = function() {
                                                     name: "model",
                                                     rawName: "v-model",
                                                     value:
-                                                      _vm.formdata.companyname,
+                                                      _vm.formdata.company_name,
                                                     expression:
-                                                      "formdata.companyname"
+                                                      "formdata.company_name"
                                                   }
                                                 ],
                                                 staticClass:
@@ -17161,7 +17099,7 @@ var render = function() {
                                                 },
                                                 domProps: {
                                                   value:
-                                                    _vm.formdata.companyname
+                                                    _vm.formdata.company_name
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -17172,7 +17110,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.formdata,
-                                                      "companyname",
+                                                      "company_name",
                                                       $event.target.value
                                                     )
                                                   }
@@ -17199,9 +17137,9 @@ var render = function() {
                                                     rawName: "v-model",
                                                     value:
                                                       _vm.formdata
-                                                        .registeredaddress,
+                                                        .registered_address,
                                                     expression:
-                                                      "formdata.registeredaddress"
+                                                      "formdata.registered_address"
                                                   }
                                                 ],
                                                 staticClass:
@@ -17216,7 +17154,7 @@ var render = function() {
                                                 domProps: {
                                                   value:
                                                     _vm.formdata
-                                                      .registeredaddress
+                                                      .registered_address
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -17227,7 +17165,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.formdata,
-                                                      "registeredaddress",
+                                                      "registered_address",
                                                       $event.target.value
                                                     )
                                                   }
@@ -17511,9 +17449,9 @@ var render = function() {
                                                     name: "model",
                                                     rawName: "v-model",
                                                     value:
-                                                      _vm.formdata.firstname,
+                                                      _vm.formdata.first_name,
                                                     expression:
-                                                      "formdata.firstname"
+                                                      "formdata.first_name"
                                                   }
                                                 ],
                                                 staticClass:
@@ -17526,7 +17464,7 @@ var render = function() {
                                                   placeholder: ""
                                                 },
                                                 domProps: {
-                                                  value: _vm.formdata.firstname
+                                                  value: _vm.formdata.first_name
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -17537,7 +17475,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.formdata,
-                                                      "firstname",
+                                                      "first_name",
                                                       $event.target.value
                                                     )
                                                   }
@@ -17563,9 +17501,9 @@ var render = function() {
                                                     name: "model",
                                                     rawName: "v-model",
                                                     value:
-                                                      _vm.formdata.lastname,
+                                                      _vm.formdata.last_name,
                                                     expression:
-                                                      "formdata.lastname"
+                                                      "formdata.last_name"
                                                   }
                                                 ],
                                                 staticClass:
@@ -17578,7 +17516,7 @@ var render = function() {
                                                   placeholder: ""
                                                 },
                                                 domProps: {
-                                                  value: _vm.formdata.lastname
+                                                  value: _vm.formdata.last_name
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -17589,7 +17527,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.formdata,
-                                                      "lastname",
+                                                      "last_name",
                                                       $event.target.value
                                                     )
                                                   }
@@ -17625,9 +17563,9 @@ var render = function() {
                                                     name: "model",
                                                     rawName: "v-model",
                                                     value:
-                                                      _vm.formdata.creditlimit,
+                                                      _vm.formdata.credit_limit,
                                                     expression:
-                                                      "formdata.creditlimit"
+                                                      "formdata.credit_limit"
                                                   }
                                                 ],
                                                 staticClass:
@@ -17641,7 +17579,7 @@ var render = function() {
                                                 },
                                                 domProps: {
                                                   value:
-                                                    _vm.formdata.creditlimit
+                                                    _vm.formdata.credit_limit
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -17652,7 +17590,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.formdata,
-                                                      "creditlimit",
+                                                      "credit_limit",
                                                       $event.target.value
                                                     )
                                                   }
@@ -17736,9 +17674,9 @@ var render = function() {
                                                     name: "model",
                                                     rawName: "v-model",
                                                     value:
-                                                      _vm.formdata.firstname,
+                                                      _vm.formdata.first_name,
                                                     expression:
-                                                      "formdata.firstname"
+                                                      "formdata.first_name"
                                                   }
                                                 ],
                                                 staticClass:
@@ -17751,7 +17689,7 @@ var render = function() {
                                                   placeholder: ""
                                                 },
                                                 domProps: {
-                                                  value: _vm.formdata.firstname
+                                                  value: _vm.formdata.first_name
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -17762,7 +17700,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.formdata,
-                                                      "firstname",
+                                                      "first_name",
                                                       $event.target.value
                                                     )
                                                   }
@@ -17788,9 +17726,9 @@ var render = function() {
                                                     name: "model",
                                                     rawName: "v-model",
                                                     value:
-                                                      _vm.formdata.lastname,
+                                                      _vm.formdata.last_name,
                                                     expression:
-                                                      "formdata.lastname"
+                                                      "formdata.last_name"
                                                   }
                                                 ],
                                                 staticClass:
@@ -17803,7 +17741,7 @@ var render = function() {
                                                   placeholder: ""
                                                 },
                                                 domProps: {
-                                                  value: _vm.formdata.lastname
+                                                  value: _vm.formdata.last_name
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -17814,7 +17752,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.formdata,
-                                                      "lastname",
+                                                      "last_name",
                                                       $event.target.value
                                                     )
                                                   }
@@ -17895,9 +17833,9 @@ var render = function() {
                                                     rawName: "v-model",
                                                     value:
                                                       _vm.formdata
-                                                        .registeredaddress,
+                                                        .registered_address,
                                                     expression:
-                                                      "formdata.registeredaddress"
+                                                      "formdata.registered_address"
                                                   }
                                                 ],
                                                 staticClass:
@@ -17912,7 +17850,7 @@ var render = function() {
                                                 domProps: {
                                                   value:
                                                     _vm.formdata
-                                                      .registeredaddress
+                                                      .registered_address
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -17923,7 +17861,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.formdata,
-                                                      "registeredaddress",
+                                                      "registered_address",
                                                       $event.target.value
                                                     )
                                                   }
@@ -18132,15 +18070,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 mobile-mb" }, [
-          _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
-            _vm._v("Customers")
-          ])
-        ])
-      ])
-    ])
+    return _c(
+      "div",
+      { staticClass: "col-md-6", staticStyle: { "text-align": "right" } },
+      [
+        _c(
+          "button",
+          { staticClass: "btn admin-btn mobile-mb", attrs: { type: "button" } },
+          [_vm._v("Archive Customer")]
+        )
+      ]
+    )
   },
   function() {
     var _vm = this

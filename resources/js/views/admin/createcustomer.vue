@@ -6,7 +6,7 @@
       <h1 class="h3 mb-0 text-gray-800">Create New Customer</h1>
       <div>
         <button type="submit" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;">Save</button>
-        <button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button>
+        <router-link to="/customers"><button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button></router-link>
       </div>
       
     </div>
@@ -32,7 +32,7 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.companycode"
+                    v-model="formdata.company_code"
                   />
                 </div>
               </div>
@@ -49,7 +49,7 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.companyname"
+                    v-model="formdata.company_name"
                   />
                 </div>
                 <div class="form-group customer-input">
@@ -60,7 +60,7 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.registeredaddress"
+                    v-model="formdata.registered_address"
                   />
                 </div>
                 <div class="form-group customer-input">
@@ -130,7 +130,7 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.firstname"
+                    v-model="formdata.first_name"
                   />
                 </div>
                 <div class="form-group customer-input">
@@ -141,7 +141,7 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.lastname"
+                    v-model="formdata.last_name"
                   />
                 </div>
                 <h6>Settings</h6>
@@ -153,7 +153,7 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.creditlimit"
+                    v-model="formdata.credit_limit"
                   />
                 </div>
               </div>
@@ -179,7 +179,7 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.firstname"
+                    v-model="formdata.first_name"
                   />
                 </div>
                 <div class="form-group customer-input">
@@ -190,7 +190,7 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.lastname"
+                    v-model="formdata.last_name"
                   />
                 </div>
                 <div class="form-group customer-input">
@@ -214,7 +214,7 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.registeredaddress"
+                    v-model="formdata.registered_address"
                   />
                 </div>
                 <div class="form-group customer-input">
@@ -270,17 +270,17 @@ export default {
       try {
         this.formdata.customertype= this.customerType;
         const response = await axios.post("create_customer", {
-          firstname: this.formdata.firstname,
-          lastname: this.formdata.lastname,
+          first_name: this.formdata.first_name,
+          last_name: this.formdata.last_name,
           email: this.formdata.email,
-          companyname: this.formdata.companyname,
-          registeredaddress: this.formdata.registeredaddress,
+          company_name: this.formdata.company_name,
+          registered_address: this.formdata.registered_address,
           vat: this.formdata.vat,
           telephone: this.formdata.telephone,
           whatsapp: this.formdata.whatsapp,
           title: this.formdata.title,
-          creditlimit: this.formdata.creditlimit,
-          companycode: this.formdata.companycode,
+          credit_limit: this.formdata.credit_limit,
+          company_code: this.formdata.company_code,
           customertype: this.formdata.customertype,
         });
 
@@ -337,7 +337,7 @@ export default {
 @media (min-width: 768px) {
   .detail-div
   {
-    border-right: 1.5px solid rgb(204, 204, 204);
+    border-right: 2px solid #eee;
     padding-right: 8%;
   }
   .primary-div

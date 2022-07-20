@@ -98,7 +98,7 @@ let router = new Router({
             }
         },
         {
-            path: "/viewcustomer",
+            path: "/viewcustomer/:id",
             name: "viewcustomer",
             component: () => import("./views/admin/viewcustomer.vue"),
             meta: {
