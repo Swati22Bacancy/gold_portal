@@ -11738,10 +11738,12 @@ a.close.disabled {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 1rem 1rem;
+  padding: 0.6rem 1rem;
   border-bottom: 1px solid #e3e6f0;
   border-top-left-radius: calc(0.3rem - 1px);
   border-top-right-radius: calc(0.3rem - 1px);
+  background-color: #3376C2;
+  color: #fff;
 }
 .modal-header .close {
   padding: 1rem 1rem;
@@ -11784,7 +11786,7 @@ a.close.disabled {
 @media (min-width: 576px) {
   .modal-dialog {
     max-width: 500px;
-    margin: 1.75rem auto;
+    margin: 9.75rem auto;
   }
 
   .modal-dialog-scrollable {

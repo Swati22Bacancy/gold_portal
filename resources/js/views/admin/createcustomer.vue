@@ -277,7 +277,7 @@ export default {
           customertype: this.formdata.customertype,
         });
 
-        
+        this.$router.push("/customers");
       } catch (error) {
         console.log(error);
       }

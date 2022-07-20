@@ -40,4 +40,21 @@ class CustomerController extends Controller
 
         return response()->json($customers);
     }
+
+    public function deletecustomer($id){
+        $customer = Customer::find($id);
+            if($customer){
+                $customer->delete();
+                
+                return response()->json(
+                    [
+                        'status' => 'success',
+                        'msg' => 'customer deleted successfully'
+                    ],
+                    200
+                );
+            }else{
+                return response()->json(['error' => 'Record does not exists'], 404);
+            }
+    }
 }

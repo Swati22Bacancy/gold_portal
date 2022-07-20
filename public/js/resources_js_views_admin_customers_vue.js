@@ -199,17 +199,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -218,25 +207,58 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     CustomerTabs: _CustomerTabs__WEBPACK_IMPORTED_MODULE_0__.default
   },
+  props: ['products'],
   data: function data() {
     return {
       tabList: ["All", "Business", "Individual"],
-      customers: {}
+      customers: {},
+      customerid: '',
+      dtRef: null
     };
   },
   created: function created() {//this.loadCustomers();
   },
   methods: {
     loadCustomers: function loadCustomers() {//axios.get("customerlist").then(({ data }) => (this.customers = data));
+    },
+    selectrecord: function selectrecord(id) {
+      this.customerid = id;
+    },
+    deleteCustomer: function deleteCustomer(id) {
+      if (confirm("Do you really want to delete?")) {
+        axios.get('/deletecustomer/' + id).then(function (resp) {//this.artists.data.splice(index, 1);
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    },
+    deleteRecord: function deleteRecord(id) {
+      var _this = this;
+
+      axios.get('/deletecustomer/' + id).then(function (resp) {
+        _this.$router.go();
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getProjects: function getProjects() {
+      var _this2 = this;
+
+      return axios.get("customerlist").then(function (response) {
+        _this2.products = response.data;
+      });
     }
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this3 = this;
 
-    axios.get("customerlist").then(function (response) {
-      _this.customers = response.data;
-      console.log(_this.customers);
-    }); //axios.get("customerlist").then(({ data }) => (this.customers = data));
+    this.getProjects(); // axios.get("customerlist")
+    //     .then((response) => {
+    //         this.customers = response.data;
+    //         this.dtRef.rows.add(response.data);
+    //         //console.log(this.customers);
+    //     })
+    //axios.get("customerlist").then(({ data }) => (this.customers = data));
 
     $.fn.textWidth = function () {
       var html_org = $(this).html();
@@ -247,20 +269,47 @@ __webpack_require__.r(__webpack_exports__);
       return width;
     };
 
-    $('#customer-datatable').on('draw.dt', function (e) {
+    $(this.$el.querySelector('table')).on('draw.dt', function (e) {
       $('#customer-datatable thead tr th').each(function (idx, ele) {
         var xPos = parseInt($(ele).textWidth() + 12);
         $(ele).css('background-position-x', xPos + 'px');
       });
-    });
-    var table = $('#customer-datatable').DataTable({
-      "bFilter": false,
-      "bLengthChange": false,
-      "columnDefs": [{
-        "targets": [0, 8],
-        "searchable": false,
-        "orderable": false
-      }]
+    }); // this.dtRef = $('#customer-datatable').DataTable({
+    //   "bFilter": false,
+    //   "bLengthChange": false,
+    //   "columnDefs": [
+    //     { "targets": [0,8], "searchable": false, "orderable": false }
+    //   ]
+    // });
+
+    var unwatch = this.$watch('products', function (products) {
+      // wait products prop to be filled
+      if (!Array.isArray(products) || products.length === 0) {
+        return;
+      } // stop watching for products change
+
+
+      unwatch(); // wait for vue to populate DOM
+
+      _this3.$nextTick(function () {
+        // initialize DataTable on rendered table
+        var table = $(_this3.$el.querySelector('table')).DataTable({
+          "bFilter": false,
+          "bLengthChange": false,
+          "columnDefs": [{
+            "targets": [0, 8],
+            "searchable": false,
+            "orderable": false
+          }]
+        }); // register hook so when this component is
+        // unmounted/removed, DataTable is removed properly
+
+        _this3.$once('hook:beforeDestroy', function () {
+          table.destroy();
+        });
+      }, {
+        immediate: true
+      });
     });
   }
 });
@@ -16751,120 +16800,81 @@ var render = function() {
                                 _vm._v(" "),
                                 _c(
                                   "tbody",
-                                  [
-                                    _vm._l(_vm.customers, function(customer) {
-                                      return _c("tr", { key: customer.id }, [
-                                        _c("td", [
-                                          _c("input", {
-                                            staticClass: "custom-check-input",
-                                            attrs: { type: "checkbox" }
-                                          })
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [
+                                  _vm._l(_vm.products, function(customer) {
+                                    return _c("tr", { key: customer.id }, [
+                                      _c("td", [
+                                        _c("input", {
+                                          staticClass: "custom-check-input",
+                                          attrs: { type: "checkbox" }
+                                        })
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        { staticStyle: { color: "#3376C2" } },
+                                        [
                                           _vm._v(
                                             _vm._s(customer.first_name) +
                                               " " +
                                               _vm._s(customer.last_name)
                                           )
-                                        ]),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("--")]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(customer.customer_type))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("--")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("--")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("-")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("--")]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _c("i", {
+                                          staticClass: "fas fa-eye",
+                                          staticStyle: {
+                                            "margin-right": "10px",
+                                            color: "#3376C2"
+                                          }
+                                        }),
                                         _vm._v(" "),
-                                        _c("td", [_vm._v("--")]),
+                                        _c("i", {
+                                          staticClass: "fas fa-trash",
+                                          staticStyle: {
+                                            "margin-right": "10px",
+                                            color: "red"
+                                          },
+                                          attrs: {
+                                            "data-toggle": "modal",
+                                            "data-target": "#deleteConfirmation"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.selectrecord(
+                                                customer.id
+                                              )
+                                            }
+                                          }
+                                        }),
                                         _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(_vm._s(customer.customer_type))
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("td", [_vm._v("--")]),
-                                        _vm._v(" "),
-                                        _c("td", [_vm._v("--")]),
-                                        _vm._v(" "),
-                                        _c("td", [_vm._v("-")]),
-                                        _vm._v(" "),
-                                        _c("td", [_vm._v("--")]),
-                                        _vm._v(" "),
-                                        _c("td", [_vm._v("--")])
+                                        _c("i", {
+                                          staticClass: "fa fa-ellipsis-v",
+                                          staticStyle: {
+                                            "margin-right": "10px",
+                                            color: "#ccc"
+                                          },
+                                          attrs: { "aria-hidden": "true" }
+                                        })
                                       ])
-                                    }),
-                                    _vm._v(" "),
-                                    _c("tr", [
-                                      _c("td", [
-                                        _c("input", {
-                                          staticClass: "custom-check-input",
-                                          attrs: { type: "checkbox" }
-                                        })
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("ABC Jewellers Ltd.")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("Southhall")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("Business")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("665,395.00")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("232,500.00")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("-")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("45,500.00")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("8640")])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("tr", [
-                                      _c("td", [
-                                        _c("input", {
-                                          staticClass: "custom-check-input",
-                                          attrs: { type: "checkbox" }
-                                        })
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("ABC Jewellers Ltd.")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("Wembly")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("Business")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("665,395.00")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("232,500.00")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("-")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("50,500.00")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("8640")])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("tr", [
-                                      _c("td", [
-                                        _c("input", {
-                                          staticClass: "custom-check-input",
-                                          attrs: { type: "checkbox" }
-                                        })
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v("AMJUK LTD T/AS Jewellers Ltd.")
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("Southhhall")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("Business")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("665,395.00")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("232,500.00")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("-")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("50,500.00")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("8640")])
                                     ])
-                                  ],
-                                  2
+                                  }),
+                                  0
                                 )
                               ]
                             )
@@ -16895,6 +16905,62 @@ var render = function() {
         })
       ],
       1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "deleteConfirmation",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "deleteConfirmationLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn admin-btn mobile-mb",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Cancel")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn admin-btn mobile-mb",
+                    staticStyle: {
+                      "background-color": "#ff0000 !important",
+                      color: "#fff"
+                    },
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteRecord(_vm.customerid)
+                      }
+                    }
+                  },
+                  [_vm._v("Delete")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
@@ -16910,6 +16976,53 @@ var staticRenderFns = [
             _vm._v("Customers")
           ])
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h6",
+        {
+          staticClass: "modal-title",
+          attrs: { id: "deleteConfirmationLabel" }
+        },
+        [_vm._v("Confirmation")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [
+          _c(
+            "span",
+            {
+              staticStyle: { color: "#fff" },
+              attrs: { "aria-hidden": "true" }
+            },
+            [_vm._v("×")]
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("p", { staticStyle: { color: "#000", "font-size": "14px" } }, [
+        _vm._v("Are you sure you want to delete this customer?")
       ])
     ])
   }

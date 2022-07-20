@@ -26,4 +26,5 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('user', [Api\AuthController::class, 'user']);
     Route::post('create_customer', [Api\CustomerController::class, 'createcustomer']);
     Route::get('customerlist', [Api\CustomerController::class, 'customerlist']);
+    Route::get('deletecustomer/{id}', [Api\CustomerController::class, 'deletecustomer']);
 });

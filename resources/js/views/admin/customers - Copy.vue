@@ -60,20 +60,50 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="customer in products" :key="customer.id">
+                                        <tr v-for="customer in customers" :key="customer.id">
                                             <td><input type="checkbox" class="custom-check-input"></td>
-                                            <td style="color:#3376C2">{{customer.first_name}} {{customer.last_name}}</td>
+                                            <td>{{customer.first_name}} {{customer.last_name}}</td>
                                             <td>--</td>
                                             <td>{{customer.customer_type}}</td>
                                             <td>--</td>
                                             <td>--</td>
                                             <td>-</td>
                                             <td>--</td>
-                                            <td><i class="fas fa-eye" style="margin-right: 10px;color: #3376C2;"></i>
-                                            <i class="fas fa-trash" style="margin-right: 10px;color: red;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(customer.id)"></i>
-                                            <i class="fa fa-ellipsis-v" aria-hidden="true" style="margin-right: 10px;color: #ccc;"></i></td>
+                                            <td>--</td>
                                         </tr>
-                                        
+                                        <tr>
+                                            <td><input type="checkbox" class="custom-check-input"></td>
+                                            <td>ABC Jewellers Ltd.</td>
+                                            <td>Southhall</td>
+                                            <td>Business</td>
+                                            <td>665,395.00</td>
+                                            <td>232,500.00</td>
+                                            <td>-</td>
+                                            <td>45,500.00</td>
+                                            <td>8640</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="custom-check-input"></td>
+                                            <td>ABC Jewellers Ltd.</td>
+                                            <td>Wembly</td>
+                                            <td>Business</td>
+                                            <td>665,395.00</td>
+                                            <td>232,500.00</td>
+                                            <td>-</td>
+                                            <td>50,500.00</td>
+                                            <td>8640</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="custom-check-input"></td>
+                                            <td>AMJUK LTD T/AS Jewellers Ltd.</td>
+                                            <td>Southhhall</td>
+                                            <td>Business</td>
+                                            <td>665,395.00</td>
+                                            <td>232,500.00</td>
+                                            <td>-</td>
+                                            <td>50,500.00</td>
+                                            <td>8640</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -86,26 +116,7 @@
         <template v-slot:tabPanel-3> <p>Content 3</p> </template>
       </customer-tabs>
     </div>
-  <!-- Modal -->
-<div class="modal fade" id="deleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title" id="deleteConfirmationLabel">Confirmation</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" style="color:#fff">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p style="color:#000;font-size:14px;">Are you sure you want to delete this customer?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn admin-btn mobile-mb" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteRecord(customerid)">Delete</button>
-            </div>
-        </div>
-    </div>
-</div>
+
     
 
     
@@ -121,13 +132,10 @@ export default {
   components: {
     CustomerTabs,
   },
-  props: ['products'],
   data() {
     return {
       tabList: ["All", "Business", "Individual"],
       customers : {},
-      customerid:'',
-      dtRef: null
     };
   },
   created() {
@@ -137,49 +145,15 @@ export default {
   {
     loadCustomers(){
       //axios.get("customerlist").then(({ data }) => (this.customers = data));
-    },
-    selectrecord(id)
-    {
-      this.customerid=id;
-    },
-    deleteCustomer(id) {
-      
-
-      if(confirm("Do you really want to delete?")){
-
-                    axios.get('/deletecustomer/'+id)
-                    .then(resp => {
-                        //this.artists.data.splice(index, 1);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    })
-      }
-    },
-    deleteRecord(id) {
-      axios.get('/deletecustomer/'+id)
-        .then(resp => {
-            this.$router.go();
-        })
-        .catch(error => {
-            console.log(error);
-        })
-    },
-    getProjects() {
-        return axios.get("customerlist").then(response => {
-            this.products = response.data;
-        });
-    },
+    }
   },
   mounted(){
-    this.getProjects();
-    // axios.get("customerlist")
-    //     .then((response) => {
+    axios.get("customerlist")
+        .then((response) => {
           
-    //         this.customers = response.data;
-    //         this.dtRef.rows.add(response.data);
-    //         //console.log(this.customers);
-    //     })
+            this.customers = response.data;
+            console.log(this.customers);
+        })
       //axios.get("customerlist").then(({ data }) => (this.customers = data));
       
       $.fn.textWidth = function(){
@@ -190,47 +164,20 @@ export default {
         $(this).html(html_org);
         return width;
       };
-      $(this.$el.querySelector('table')).on( 'draw.dt', function (e) {
+      $('#customer-datatable').on( 'draw.dt', function (e) {
         $('#customer-datatable thead tr th').each(function(idx, ele) {
           var xPos = parseInt((($(ele).textWidth()))+12);
           $(ele).css('background-position-x',  xPos + 'px')
         })
       });
-      // this.dtRef = $('#customer-datatable').DataTable({
-      //   "bFilter": false,
-      //   "bLengthChange": false,
-      //   "columnDefs": [
-      //     { "targets": [0,8], "searchable": false, "orderable": false }
-      //   ]
-      // });
-      const unwatch = this.$watch('products', (products) => {
-            // wait products prop to be filled
-            if (!Array.isArray(products) || products.length === 0) {
-                return;
-            }
-
-            // stop watching for products change
-            unwatch();
-
-            // wait for vue to populate DOM
-            this.$nextTick(() => {
-
-                // initialize DataTable on rendered table
-                const table = $(this.$el.querySelector('table')).DataTable({
-                  "bFilter": false,
-                  "bLengthChange": false,
-                  "columnDefs": [
-                    { "targets": [0,8], "searchable": false, "orderable": false }
-                  ]
-                });
-
-                // register hook so when this component is
-                // unmounted/removed, DataTable is removed properly
-                this.$once('hook:beforeDestroy', function () {
-                    table.destroy();
-                });
-            }, {immediate: true});
-        });
+      var table = $('#customer-datatable').DataTable({
+        "bFilter": false,
+        "bLengthChange": false,
+        "columnDefs": [
+          { "targets": [0,8], "searchable": false, "orderable": false }
+        ]
+      });
+      
   }
 };
 </script>
