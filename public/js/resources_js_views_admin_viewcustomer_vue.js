@@ -1,9 +1,9 @@
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_views_admin_customers_vue"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_views_admin_viewcustomer_vue"],{
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/CustomerTabs.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/CustomerTabs.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -70,10 +70,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/customers.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/customers.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewcustomer.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewcustomer.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -81,10 +81,209 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _CustomerTabs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CustomerTabs */ "./resources/js/views/admin/CustomerTabs.vue");
-/* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! datatables.net-dt/js/dataTables.dataTables */ "./node_modules/datatables.net-dt/js/dataTables.dataTables.js");
-/* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var datatables_net_dt_css_jquery_dataTables_min_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! datatables.net-dt/css/jquery.dataTables.min.css */ "./node_modules/datatables.net-dt/css/jquery.dataTables.min.css");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ViewCustomerTabs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ViewCustomerTabs */ "./resources/js/views/admin/ViewCustomerTabs.vue");
+/* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! datatables.net-dt/js/dataTables.dataTables */ "./node_modules/datatables.net-dt/js/dataTables.dataTables.js");
+/* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var datatables_net_dt_css_jquery_dataTables_min_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! datatables.net-dt/css/jquery.dataTables.min.css */ "./node_modules/datatables.net-dt/css/jquery.dataTables.min.css");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -203,17 +402,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Customer",
+  name: "ViewCustomer",
   components: {
-    CustomerTabs: _CustomerTabs__WEBPACK_IMPORTED_MODULE_0__.default
+    ViewCustomerTabs: _ViewCustomerTabs__WEBPACK_IMPORTED_MODULE_1__.default
   },
   props: ['products'],
   data: function data() {
     return {
-      tabList: ["All", "Business", "Individual"],
+      tabList: ["Profile", "Transactions", "Summary"],
       customers: {},
       customerid: '',
-      dtRef: null
+      dtRef: null,
+      formdata: {},
+      customerType: 'business',
+      theme: 'cust-type'
     };
   },
   created: function created() {//this.loadCustomers();
@@ -247,10 +449,58 @@ __webpack_require__.r(__webpack_exports__);
       return axios.get("customerlist").then(function (response) {
         _this2.products = response.data;
       });
+    },
+    update_customer: function update_customer() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _this3.formdata.customertype = _this3.customerType;
+                _context.next = 4;
+                return axios.post("create_customer", {
+                  firstname: _this3.formdata.firstname,
+                  lastname: _this3.formdata.lastname,
+                  email: _this3.formdata.email,
+                  companyname: _this3.formdata.companyname,
+                  registeredaddress: _this3.formdata.registeredaddress,
+                  vat: _this3.formdata.vat,
+                  telephone: _this3.formdata.telephone,
+                  whatsapp: _this3.formdata.whatsapp,
+                  title: _this3.formdata.title,
+                  creditlimit: _this3.formdata.creditlimit,
+                  companycode: _this3.formdata.companycode,
+                  customertype: _this3.formdata.customertype
+                });
+
+              case 4:
+                response = _context.sent;
+
+                _this3.$router.push("/customers");
+
+                _context.next = 11;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0);
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 8]]);
+      }))();
     }
   },
   mounted: function mounted() {
-    var _this3 = this;
+    var _this4 = this;
 
     this.getProjects(); // axios.get("customerlist")
     //     .then((response) => {
@@ -291,9 +541,9 @@ __webpack_require__.r(__webpack_exports__);
 
       unwatch(); // wait for vue to populate DOM
 
-      _this3.$nextTick(function () {
+      _this4.$nextTick(function () {
         // initialize DataTable on rendered table
-        var table = $(_this3.$el.querySelector('table')).DataTable({
+        var table = $(_this4.$el.querySelector('table')).DataTable({
           "bFilter": false,
           "bLengthChange": false,
           "columnDefs": [{
@@ -304,7 +554,7 @@ __webpack_require__.r(__webpack_exports__);
         }); // register hook so when this component is
         // unmounted/removed, DataTable is removed properly
 
-        _this3.$once('hook:beforeDestroy', function () {
+        _this4.$once('hook:beforeDestroy', function () {
           table.destroy();
         });
       }, {
@@ -358,10 +608,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, "table.dataTable{width:100%;margin:0 au
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/CustomerTabs.vue?vue&type=style&index=0&lang=css&":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/CustomerTabs.vue?vue&type=style&index=0&lang=css& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=style&index=0&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=style&index=0&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -382,10 +632,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n.flex {\r\n  display: flex;\n}\n.tab
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/customers.vue?vue&type=style&index=0&id=69dbfe66&scoped=true&lang=css&":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/customers.vue?vue&type=style&index=0&id=69dbfe66&scoped=true&lang=css& ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewcustomer.vue?vue&type=style&index=0&id=081b0e02&scoped=true&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewcustomer.vue?vue&type=style&index=0&id=081b0e02&scoped=true&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -399,7 +649,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.table-search[data-v-69dbfe66]\r\n{\r\n  width: 65%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.table-date[data-v-69dbfe66]\r\n{\r\n  width: 27%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.tab-selector[data-v-69dbfe66]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 11%;\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-search[data-v-69dbfe66]::-moz-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-69dbfe66]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-69dbfe66]::placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n#customer-datatable thead[data-v-69dbfe66]\r\n{\r\n  background: #3376C2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n.table-date[data-v-69dbfe66]::-moz-placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-date[data-v-69dbfe66]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-date[data-v-69dbfe66]::placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n#customer-datatable[data-v-69dbfe66]\r\n{\r\n  color: #000;\r\n  font-size: 13px;\n}\ntable.dataTable.no-footer[data-v-69dbfe66]\r\n{\r\n  border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-69dbfe66]\r\n{\r\n    color: #fff !important;\r\n    border: 1px solid #3376c2 !important;\r\n    background-color: #3376c2 !important;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-69dbfe66]\r\n{\r\n  padding: 0.3em 0.8em;\n}\n#customer-datatable thead tr th[data-v-69dbfe66] \r\n{\r\n  font-weight: 100 !important;\n}\ntable.dataTable thead th[data-v-69dbfe66]\r\n{\r\n  padding: 10px 10px !important;\n}\ntable.dataTable thead .sorting[data-v-69dbfe66], table.dataTable thead .sorting_asc[data-v-69dbfe66], table.dataTable thead .sorting_desc[data-v-69dbfe66], table.dataTable thead .sorting_asc_disabled[data-v-69dbfe66], table.dataTable thead .sorting_desc_disabled[data-v-69dbfe66]\r\n{\r\n  background-size: 13px 13px;\r\n  background-position: 0px 19px;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.table-search[data-v-081b0e02]\r\n{\r\n  width: 65%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.table-date[data-v-081b0e02]\r\n{\r\n  width: 27%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.tab-selector[data-v-081b0e02]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 11%;\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-search[data-v-081b0e02]::-moz-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-081b0e02]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-081b0e02]::placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n#customer-datatable thead[data-v-081b0e02]\r\n{\r\n  background: #3376C2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n.table-date[data-v-081b0e02]::-moz-placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-date[data-v-081b0e02]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-date[data-v-081b0e02]::placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n#customer-datatable[data-v-081b0e02]\r\n{\r\n  color: #000;\r\n  font-size: 13px;\n}\ntable.dataTable.no-footer[data-v-081b0e02]\r\n{\r\n  border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-081b0e02]\r\n{\r\n    color: #fff !important;\r\n    border: 1px solid #3376c2 !important;\r\n    background-color: #3376c2 !important;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-081b0e02]\r\n{\r\n  padding: 0.3em 0.8em;\n}\n#customer-datatable thead tr th[data-v-081b0e02] \r\n{\r\n  font-weight: 100 !important;\n}\ntable.dataTable thead th[data-v-081b0e02]\r\n{\r\n  padding: 10px 10px !important;\n}\ntable.dataTable thead .sorting[data-v-081b0e02], table.dataTable thead .sorting_asc[data-v-081b0e02], table.dataTable thead .sorting_desc[data-v-081b0e02], table.dataTable thead .sorting_asc_disabled[data-v-081b0e02], table.dataTable thead .sorting_desc_disabled[data-v-081b0e02]\r\n{\r\n  background-size: 13px 13px;\r\n  background-position: 0px 19px;\n}\n.createcust-div[data-v-081b0e02]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px;\n}\n.crt-customer label[data-v-081b0e02]\r\n{\r\n  font-size: 12px;\n}\n.crt-customer[data-v-081b0e02]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-081b0e02]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-081b0e02]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-081b0e02]:focus, .btn.focus[data-v-081b0e02]\r\n{\r\n  box-shadow: 0 0;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-081b0e02]\r\n  {\r\n    border-right: 1.5px solid rgb(204, 204, 204);\r\n    padding-right: 8%;\n}\n.primary-div[data-v-081b0e02]\r\n  {\r\n    padding-left: 8%;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -16030,10 +16280,10 @@ var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMP
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/CustomerTabs.vue?vue&type=style&index=0&lang=css&":
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/CustomerTabs.vue?vue&type=style&index=0&lang=css& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=style&index=0&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -16043,7 +16293,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomerTabs_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CustomerTabs.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/CustomerTabs.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewCustomerTabs_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ViewCustomerTabs.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=style&index=0&lang=css&");
 
             
 
@@ -16052,18 +16302,18 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomerTabs_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewCustomerTabs_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomerTabs_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewCustomerTabs_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/customers.vue?vue&type=style&index=0&id=69dbfe66&scoped=true&lang=css&":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/customers.vue?vue&type=style&index=0&id=69dbfe66&scoped=true&lang=css& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewcustomer.vue?vue&type=style&index=0&id=081b0e02&scoped=true&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewcustomer.vue?vue&type=style&index=0&id=081b0e02&scoped=true&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -16073,7 +16323,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_customers_vue_vue_type_style_index_0_id_69dbfe66_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./customers.vue?vue&type=style&index=0&id=69dbfe66&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/customers.vue?vue&type=style&index=0&id=69dbfe66&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_viewcustomer_vue_vue_type_style_index_0_id_081b0e02_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./viewcustomer.vue?vue&type=style&index=0&id=081b0e02&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewcustomer.vue?vue&type=style&index=0&id=081b0e02&scoped=true&lang=css&");
 
             
 
@@ -16082,11 +16332,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_customers_vue_vue_type_style_index_0_id_69dbfe66_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_viewcustomer_vue_vue_type_style_index_0_id_081b0e02_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_customers_vue_vue_type_style_index_0_id_69dbfe66_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_viewcustomer_vue_vue_type_style_index_0_id_081b0e02_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
@@ -16369,9 +16619,50 @@ module.exports = function (list, options) {
 
 /***/ }),
 
-/***/ "./resources/js/views/admin/CustomerTabs.vue":
+/***/ "./resources/js/views/admin/ViewCustomerTabs.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/views/admin/ViewCustomerTabs.vue ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ViewCustomerTabs_vue_vue_type_template_id_168369e0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ViewCustomerTabs.vue?vue&type=template&id=168369e0& */ "./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=template&id=168369e0&");
+/* harmony import */ var _ViewCustomerTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ViewCustomerTabs.vue?vue&type=script&lang=js& */ "./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=script&lang=js&");
+/* harmony import */ var _ViewCustomerTabs_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ViewCustomerTabs.vue?vue&type=style&index=0&lang=css& */ "./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
+  _ViewCustomerTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _ViewCustomerTabs_vue_vue_type_template_id_168369e0___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ViewCustomerTabs_vue_vue_type_template_id_168369e0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/admin/ViewCustomerTabs.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/admin/viewcustomer.vue":
 /*!***************************************************!*\
-  !*** ./resources/js/views/admin/CustomerTabs.vue ***!
+  !*** ./resources/js/views/admin/viewcustomer.vue ***!
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -16380,9 +16671,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _CustomerTabs_vue_vue_type_template_id_ce1a1eca___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CustomerTabs.vue?vue&type=template&id=ce1a1eca& */ "./resources/js/views/admin/CustomerTabs.vue?vue&type=template&id=ce1a1eca&");
-/* harmony import */ var _CustomerTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CustomerTabs.vue?vue&type=script&lang=js& */ "./resources/js/views/admin/CustomerTabs.vue?vue&type=script&lang=js&");
-/* harmony import */ var _CustomerTabs_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CustomerTabs.vue?vue&type=style&index=0&lang=css& */ "./resources/js/views/admin/CustomerTabs.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _viewcustomer_vue_vue_type_template_id_081b0e02_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./viewcustomer.vue?vue&type=template&id=081b0e02&scoped=true& */ "./resources/js/views/admin/viewcustomer.vue?vue&type=template&id=081b0e02&scoped=true&");
+/* harmony import */ var _viewcustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./viewcustomer.vue?vue&type=script&lang=js& */ "./resources/js/views/admin/viewcustomer.vue?vue&type=script&lang=js&");
+/* harmony import */ var _viewcustomer_vue_vue_type_style_index_0_id_081b0e02_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./viewcustomer.vue?vue&type=style&index=0&id=081b0e02&scoped=true&lang=css& */ "./resources/js/views/admin/viewcustomer.vue?vue&type=style&index=0&id=081b0e02&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -16393,27 +16684,27 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
-  _CustomerTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _CustomerTabs_vue_vue_type_template_id_ce1a1eca___WEBPACK_IMPORTED_MODULE_0__.render,
-  _CustomerTabs_vue_vue_type_template_id_ce1a1eca___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _viewcustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _viewcustomer_vue_vue_type_template_id_081b0e02_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _viewcustomer_vue_vue_type_template_id_081b0e02_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  null,
+  "081b0e02",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/admin/CustomerTabs.vue"
+component.options.__file = "resources/js/views/admin/viewcustomer.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/views/admin/customers.vue":
-/*!************************************************!*\
-  !*** ./resources/js/views/admin/customers.vue ***!
-  \************************************************/
+/***/ "./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -16421,39 +16712,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _customers_vue_vue_type_template_id_69dbfe66_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./customers.vue?vue&type=template&id=69dbfe66&scoped=true& */ "./resources/js/views/admin/customers.vue?vue&type=template&id=69dbfe66&scoped=true&");
-/* harmony import */ var _customers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./customers.vue?vue&type=script&lang=js& */ "./resources/js/views/admin/customers.vue?vue&type=script&lang=js&");
-/* harmony import */ var _customers_vue_vue_type_style_index_0_id_69dbfe66_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./customers.vue?vue&type=style&index=0&id=69dbfe66&scoped=true&lang=css& */ "./resources/js/views/admin/customers.vue?vue&type=style&index=0&id=69dbfe66&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-;
-
-
-/* normalize component */
-
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
-  _customers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _customers_vue_vue_type_template_id_69dbfe66_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
-  _customers_vue_vue_type_template_id_69dbfe66_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  "69dbfe66",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/views/admin/customers.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewCustomerTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ViewCustomerTabs.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewCustomerTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
-/***/ "./resources/js/views/admin/CustomerTabs.vue?vue&type=script&lang=js&":
+/***/ "./resources/js/views/admin/viewcustomer.vue?vue&type=script&lang=js&":
 /*!****************************************************************************!*\
-  !*** ./resources/js/views/admin/CustomerTabs.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/js/views/admin/viewcustomer.vue?vue&type=script&lang=js& ***!
   \****************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -16462,91 +16728,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomerTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CustomerTabs.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/CustomerTabs.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomerTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_viewcustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./viewcustomer.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewcustomer.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_viewcustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
-/***/ "./resources/js/views/admin/customers.vue?vue&type=script&lang=js&":
-/*!*************************************************************************!*\
-  !*** ./resources/js/views/admin/customers.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************/
+/***/ "./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=style&index=0&lang=css&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=style&index=0&lang=css& ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewCustomerTabs_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ViewCustomerTabs.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=style&index=0&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/admin/viewcustomer.vue?vue&type=style&index=0&id=081b0e02&scoped=true&lang=css&":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/views/admin/viewcustomer.vue?vue&type=style&index=0&id=081b0e02&scoped=true&lang=css& ***!
+  \************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_viewcustomer_vue_vue_type_style_index_0_id_081b0e02_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./viewcustomer.vue?vue&type=style&index=0&id=081b0e02&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewcustomer.vue?vue&type=style&index=0&id=081b0e02&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=template&id=168369e0&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=template&id=168369e0& ***!
+  \**************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewCustomerTabs_vue_vue_type_template_id_168369e0___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewCustomerTabs_vue_vue_type_template_id_168369e0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_customers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./customers.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/customers.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_customers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
-
-/***/ }),
-
-/***/ "./resources/js/views/admin/CustomerTabs.vue?vue&type=style&index=0&lang=css&":
-/*!************************************************************************************!*\
-  !*** ./resources/js/views/admin/CustomerTabs.vue?vue&type=style&index=0&lang=css& ***!
-  \************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomerTabs_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CustomerTabs.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/CustomerTabs.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ViewCustomerTabs_vue_vue_type_template_id_168369e0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ViewCustomerTabs.vue?vue&type=template&id=168369e0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=template&id=168369e0&");
 
 
 /***/ }),
 
-/***/ "./resources/js/views/admin/customers.vue?vue&type=style&index=0&id=69dbfe66&scoped=true&lang=css&":
-/*!*********************************************************************************************************!*\
-  !*** ./resources/js/views/admin/customers.vue?vue&type=style&index=0&id=69dbfe66&scoped=true&lang=css& ***!
-  \*********************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_customers_vue_vue_type_style_index_0_id_69dbfe66_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./customers.vue?vue&type=style&index=0&id=69dbfe66&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/customers.vue?vue&type=style&index=0&id=69dbfe66&scoped=true&lang=css&");
-
-
-/***/ }),
-
-/***/ "./resources/js/views/admin/CustomerTabs.vue?vue&type=template&id=ce1a1eca&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/views/admin/CustomerTabs.vue?vue&type=template&id=ce1a1eca& ***!
-  \**********************************************************************************/
+/***/ "./resources/js/views/admin/viewcustomer.vue?vue&type=template&id=081b0e02&scoped=true&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/views/admin/viewcustomer.vue?vue&type=template&id=081b0e02&scoped=true& ***!
+  \**********************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomerTabs_vue_vue_type_template_id_ce1a1eca___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomerTabs_vue_vue_type_template_id_ce1a1eca___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_viewcustomer_vue_vue_type_template_id_081b0e02_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_viewcustomer_vue_vue_type_template_id_081b0e02_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomerTabs_vue_vue_type_template_id_ce1a1eca___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CustomerTabs.vue?vue&type=template&id=ce1a1eca& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/CustomerTabs.vue?vue&type=template&id=ce1a1eca&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_viewcustomer_vue_vue_type_template_id_081b0e02_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./viewcustomer.vue?vue&type=template&id=081b0e02&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewcustomer.vue?vue&type=template&id=081b0e02&scoped=true&");
 
 
 /***/ }),
 
-/***/ "./resources/js/views/admin/customers.vue?vue&type=template&id=69dbfe66&scoped=true&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/views/admin/customers.vue?vue&type=template&id=69dbfe66&scoped=true& ***!
-  \*******************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_customers_vue_vue_type_template_id_69dbfe66_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_customers_vue_vue_type_template_id_69dbfe66_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_customers_vue_vue_type_template_id_69dbfe66_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./customers.vue?vue&type=template&id=69dbfe66&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/customers.vue?vue&type=template&id=69dbfe66&scoped=true&");
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/CustomerTabs.vue?vue&type=template&id=ce1a1eca&":
-/*!*************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/CustomerTabs.vue?vue&type=template&id=ce1a1eca& ***!
-  \*************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=template&id=168369e0&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/ViewCustomerTabs.vue?vue&type=template&id=168369e0& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -16620,10 +16870,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/customers.vue?vue&type=template&id=69dbfe66&scoped=true&":
-/*!**********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/customers.vue?vue&type=template&id=69dbfe66&scoped=true& ***!
-  \**********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewcustomer.vue?vue&type=template&id=081b0e02&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewcustomer.vue?vue&type=template&id=081b0e02&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -16703,195 +16953,1097 @@ var render = function() {
       "div",
       { staticClass: "tabs-cstm" },
       [
-        _c("customer-tabs", {
+        _c("view-customer-tabs", {
           attrs: { tabList: _vm.tabList },
           scopedSlots: _vm._u([
             {
               key: "tabPanel-1",
               fn: function() {
                 return [
-                  _c("div", { staticClass: "col-md-12" }, [
-                    _c("input", {
-                      staticClass:
-                        "form-control bg-light border-0 small table-search",
-                      staticStyle: { "background-color": "#FFFFFF !important" },
-                      attrs: { type: "text", placeholder: "Search Contacts" }
-                    }),
-                    _vm._v(" "),
-                    _c("select", { staticClass: "tab-selector" }, [
-                      _c(
-                        "option",
-                        { attrs: { value: "Option 1", selected: "" } },
-                        [_vm._v("Group")]
-                      ),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "Option 1" } }, [
-                        _vm._v("Option 1")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("select", { staticClass: "tab-selector" }, [
-                      _c(
-                        "option",
-                        { attrs: { value: "Option 1", selected: "" } },
-                        [_vm._v("Type")]
-                      ),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "Option 1" } }, [
-                        _vm._v("Option 1")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("select", { staticClass: "tab-selector" }, [
-                      _c(
-                        "option",
-                        { attrs: { value: "Option 1", selected: "" } },
-                        [_vm._v("Show Entries")]
-                      ),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "Option 1" } }, [
-                        _vm._v("Option 1")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
                   _c("div", {}, [
                     _c("div", [
-                      _c("div", { staticClass: "mt-2 mb-4" }, [
-                        _c("div", {}, [
-                          _c("div", { staticClass: "table-responsive" }, [
-                            _c(
-                              "table",
-                              {
-                                staticClass: "table",
-                                attrs: {
-                                  id: "customer-datatable",
-                                  width: "100%",
-                                  cellspacing: "0"
-                                }
-                              },
-                              [
-                                _c("thead", [
-                                  _c("tr", [
-                                    _c("th", [
-                                      _c("input", {
-                                        staticClass: "custom-check-input",
-                                        attrs: { type: "checkbox" }
-                                      })
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("th", [_vm._v("Customer Name")]),
-                                    _vm._v(" "),
-                                    _c("th", [_vm._v("Group")]),
-                                    _vm._v(" "),
-                                    _c("th", [_vm._v("Type")]),
-                                    _vm._v(" "),
-                                    _c("th", [_vm._v("Total Sales")]),
-                                    _vm._v(" "),
-                                    _c("th", [_vm._v("Total Purchases")]),
-                                    _vm._v(" "),
-                                    _c("th", [_vm._v("You Owe Them")]),
-                                    _vm._v(" "),
-                                    _c("th", [_vm._v("They Owe You")]),
-                                    _vm._v(" "),
-                                    _c("th", [_vm._v("Actions")])
-                                  ])
-                                ]),
+                      _c(
+                        "form",
+                        {
+                          staticClass: "crt-customer",
+                          on: {
+                            submit: function($event) {
+                              $event.preventDefault()
+                              return _vm.update_customer.apply(null, arguments)
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "d-sm-flex align-items-center justify-content-between mb-4"
+                            },
+                            [
+                              _c("div", [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn admin-btn mobile-mb btn-nwidth",
+                                    staticStyle: {
+                                      "background-color": "#7ADAAA !important"
+                                    },
+                                    attrs: { type: "submit" }
+                                  },
+                                  [_vm._v("Update")]
+                                ),
                                 _vm._v(" "),
                                 _c(
-                                  "tbody",
-                                  _vm._l(_vm.products, function(customer) {
-                                    return _c("tr", { key: customer.id }, [
-                                      _c("td", [
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn admin-btn mobile-mb btn-nwidth",
+                                    attrs: { type: "button" }
+                                  },
+                                  [_vm._v("Cancel")]
+                                )
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-md-12 createcust-div" },
+                              [
+                                _c("div", { staticClass: "row mb-4" }, [
+                                  _c("div", { staticClass: "col-md-3" }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass: "form-group customer-input"
+                                      },
+                                      [
+                                        _c("label", [_vm._v("Customer Type")]),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn admin-btn mobile-mb",
+                                            class:
+                                              _vm.customerType == "business"
+                                                ? "dark-theme-btn"
+                                                : "light-theme-btn",
+                                            staticStyle: { margin: "0" },
+                                            attrs: { type: "button" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.changetype(
+                                                  "business"
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [_vm._v("Business")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn admin-btn mobile-mb",
+                                            class:
+                                              _vm.customerType == "individual"
+                                                ? "dark-theme-btn"
+                                                : "light-theme-btn",
+                                            staticStyle: { margin: "0" },
+                                            attrs: { type: "button" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.changetype(
+                                                  "individual"
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [_vm._v("Individual")]
+                                        )
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-3" }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass: "form-group customer-input"
+                                      },
+                                      [
+                                        _c("label", [_vm._v("Company Code")]),
+                                        _vm._v(" "),
                                         _c("input", {
-                                          staticClass: "custom-check-input",
-                                          attrs: { type: "checkbox" }
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.formdata.companycode,
+                                              expression: "formdata.companycode"
+                                            }
+                                          ],
+                                          staticClass:
+                                            "form-control form-control-user",
+                                          attrs: {
+                                            type: "text",
+                                            id: "crt-customer",
+                                            "aria-describedby": "emailHelp",
+                                            placeholder: ""
+                                          },
+                                          domProps: {
+                                            value: _vm.formdata.companycode
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.formdata,
+                                                "companycode",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
                                         })
-                                      ]),
-                                      _vm._v(" "),
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-6" })
+                                ]),
+                                _vm._v(" "),
+                                _vm.customerType == "business"
+                                  ? _c("div", { staticClass: "row" }, [
                                       _c(
-                                        "td",
-                                        { staticStyle: { color: "#3376C2" } },
+                                        "div",
+                                        { staticClass: "col-md-6 detail-div" },
                                         [
-                                          _vm._v(
-                                            _vm._s(customer.first_name) +
-                                              " " +
-                                              _vm._s(customer.last_name)
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("--")]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(customer.customer_type))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("--")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("--")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("-")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("--")]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        [
+                                          _c("h6", [_vm._v("Company Details")]),
+                                          _vm._v(" "),
                                           _c(
-                                            "router-link",
-                                            { attrs: { to: "/viewcustomer" } },
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
                                             [
-                                              _c("i", {
-                                                staticClass: "fas fa-eye",
-                                                staticStyle: {
-                                                  "margin-right": "10px",
-                                                  color: "#3376C2"
+                                              _c("label", [
+                                                _vm._v("Company Name")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata.companyname,
+                                                    expression:
+                                                      "formdata.companyname"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value:
+                                                    _vm.formdata.companyname
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "companyname",
+                                                      $event.target.value
+                                                    )
+                                                  }
                                                 }
                                               })
                                             ]
                                           ),
                                           _vm._v(" "),
-                                          _c("i", {
-                                            staticClass: "fas fa-trash",
-                                            staticStyle: {
-                                              "margin-right": "10px",
-                                              color: "red"
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
                                             },
-                                            attrs: {
-                                              "data-toggle": "modal",
-                                              "data-target":
-                                                "#deleteConfirmation"
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.selectrecord(
-                                                  customer.id
-                                                )
-                                              }
-                                            }
-                                          }),
+                                            [
+                                              _c("label", [
+                                                _vm._v("Registered Address")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata
+                                                        .registeredaddress,
+                                                    expression:
+                                                      "formdata.registeredaddress"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value:
+                                                    _vm.formdata
+                                                      .registeredaddress
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "registeredaddress",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
                                           _vm._v(" "),
-                                          _c("i", {
-                                            staticClass: "fa fa-ellipsis-v",
-                                            staticStyle: {
-                                              "margin-right": "10px",
-                                              color: "#ccc"
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
                                             },
-                                            attrs: { "aria-hidden": "true" }
-                                          })
-                                        ],
-                                        1
+                                            [
+                                              _c("label", [_vm._v("VAT No.")]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: _vm.formdata.vat,
+                                                    expression: "formdata.vat"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value: _vm.formdata.vat
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "vat",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("h6", [_vm._v("Company Details")]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [_vm._v("Email")]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: _vm.formdata.email,
+                                                    expression: "formdata.email"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value: _vm.formdata.email
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "email",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Telephone")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata.telephone,
+                                                    expression:
+                                                      "formdata.telephone"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value: _vm.formdata.telephone
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "telephone",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Whatsapp Number")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata.whatsapp,
+                                                    expression:
+                                                      "formdata.whatsapp"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value: _vm.formdata.whatsapp
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "whatsapp",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "col-md-6 primary-div" },
+                                        [
+                                          _c("h6", [_vm._v("Primary Contact")]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [_vm._v("Title")]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: _vm.formdata.title,
+                                                    expression: "formdata.title"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value: _vm.formdata.title
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "title",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("First Name")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata.firstname,
+                                                    expression:
+                                                      "formdata.firstname"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value: _vm.formdata.firstname
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "firstname",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Last Name")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata.lastname,
+                                                    expression:
+                                                      "formdata.lastname"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value: _vm.formdata.lastname
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "lastname",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("h6", [_vm._v("Settings")]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Credit Limit ("),
+                                                _c("i", {
+                                                  staticClass:
+                                                    "fa fa-pound-sign",
+                                                  staticStyle: {
+                                                    "font-size": "10px"
+                                                  }
+                                                }),
+                                                _vm._v(")")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata.creditlimit,
+                                                    expression:
+                                                      "formdata.creditlimit"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value:
+                                                    _vm.formdata.creditlimit
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "creditlimit",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
                                       )
                                     ])
-                                  }),
-                                  0
-                                )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.customerType == "individual"
+                                  ? _c("div", { staticClass: "row" }, [
+                                      _c(
+                                        "div",
+                                        { staticClass: "col-md-6 detail-div" },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [_vm._v("Title")]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: _vm.formdata.title,
+                                                    expression: "formdata.title"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value: _vm.formdata.title
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "title",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("First Name")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata.firstname,
+                                                    expression:
+                                                      "formdata.firstname"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value: _vm.formdata.firstname
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "firstname",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Last Name")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata.lastname,
+                                                    expression:
+                                                      "formdata.lastname"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value: _vm.formdata.lastname
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "lastname",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [_vm._v("Email")]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: _vm.formdata.email,
+                                                    expression: "formdata.email"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value: _vm.formdata.email
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "email",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "col-md-6 primary-div" },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Registered Address")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata
+                                                        .registeredaddress,
+                                                    expression:
+                                                      "formdata.registeredaddress"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value:
+                                                    _vm.formdata
+                                                      .registeredaddress
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "registeredaddress",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Telephone")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata.telephone,
+                                                    expression:
+                                                      "formdata.telephone"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value: _vm.formdata.telephone
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "telephone",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Whatsapp Number")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata.whatsapp,
+                                                    expression:
+                                                      "formdata.whatsapp"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value: _vm.formdata.whatsapp
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "whatsapp",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  : _vm._e()
                               ]
                             )
                           ])
-                        ])
-                      ])
+                        ]
+                      )
                     ])
                   ])
                 ]

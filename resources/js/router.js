@@ -98,6 +98,15 @@ let router = new Router({
             }
         },
         {
+            path: "/viewcustomer",
+            name: "viewcustomer",
+            component: () => import("./views/admin/viewcustomer.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/viewsales",
             name: "viewsales",
             component: () => import("./views/admin/viewsales.vue"),

@@ -69,7 +69,7 @@
                                             <td>--</td>
                                             <td>-</td>
                                             <td>--</td>
-                                            <td><i class="fas fa-eye" style="margin-right: 10px;color: #3376C2;"></i>
+                                            <td><router-link to="/viewcustomer"><i class="fas fa-eye" style="margin-right: 10px;color: #3376C2;"></i></router-link>
                                             <i class="fas fa-trash" style="margin-right: 10px;color: red;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(customer.id)"></i>
                                             <i class="fa fa-ellipsis-v" aria-hidden="true" style="margin-right: 10px;color: #ccc;"></i></td>
                                         </tr>
@@ -117,7 +117,7 @@ import CustomerTabs from "./CustomerTabs";
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 export default {
-  name: "Dashboard",
+  name: "Customer",
   components: {
     CustomerTabs,
   },

@@ -251,7 +251,7 @@
 <script>
 
 export default {
-  name: "CreateCustomer",
+  name: "Dashboard",
   data() {
     return {
       customerType: 'business',

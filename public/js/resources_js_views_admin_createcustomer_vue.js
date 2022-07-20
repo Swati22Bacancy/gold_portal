@@ -262,8 +262,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Dashboard",
+  name: "CreateCustomer",
   data: function data() {
     return {
       customerType: 'business',
@@ -1299,9 +1306,246 @@ var render = function() {
             _vm._v(" "),
             _vm.customerType == "individual"
               ? _c("div", { staticClass: "row" }, [
-                  _vm._m(2),
+                  _c("div", { staticClass: "col-md-6 detail-div" }, [
+                    _c("div", { staticClass: "form-group customer-input" }, [
+                      _c("label", [_vm._v("Title")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.title,
+                            expression: "formdata.title"
+                          }
+                        ],
+                        staticClass: "form-control form-control-user",
+                        attrs: {
+                          type: "text",
+                          id: "crt-customer",
+                          "aria-describedby": "emailHelp",
+                          placeholder: ""
+                        },
+                        domProps: { value: _vm.formdata.title },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.formdata, "title", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group customer-input" }, [
+                      _c("label", [_vm._v("First Name")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.firstname,
+                            expression: "formdata.firstname"
+                          }
+                        ],
+                        staticClass: "form-control form-control-user",
+                        attrs: {
+                          type: "text",
+                          id: "crt-customer",
+                          "aria-describedby": "emailHelp",
+                          placeholder: ""
+                        },
+                        domProps: { value: _vm.formdata.firstname },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.formdata,
+                              "firstname",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group customer-input" }, [
+                      _c("label", [_vm._v("Last Name")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.lastname,
+                            expression: "formdata.lastname"
+                          }
+                        ],
+                        staticClass: "form-control form-control-user",
+                        attrs: {
+                          type: "text",
+                          id: "crt-customer",
+                          "aria-describedby": "emailHelp",
+                          placeholder: ""
+                        },
+                        domProps: { value: _vm.formdata.lastname },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.formdata,
+                              "lastname",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group customer-input" }, [
+                      _c("label", [_vm._v("Email")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.email,
+                            expression: "formdata.email"
+                          }
+                        ],
+                        staticClass: "form-control form-control-user",
+                        attrs: {
+                          type: "text",
+                          id: "crt-customer",
+                          "aria-describedby": "emailHelp",
+                          placeholder: ""
+                        },
+                        domProps: { value: _vm.formdata.email },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.formdata, "email", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
                   _vm._v(" "),
-                  _vm._m(3)
+                  _c("div", { staticClass: "col-md-6 primary-div" }, [
+                    _c("div", { staticClass: "form-group customer-input" }, [
+                      _c("label", [_vm._v("Registered Address")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.registeredaddress,
+                            expression: "formdata.registeredaddress"
+                          }
+                        ],
+                        staticClass: "form-control form-control-user",
+                        attrs: {
+                          type: "text",
+                          id: "crt-customer",
+                          "aria-describedby": "emailHelp",
+                          placeholder: ""
+                        },
+                        domProps: { value: _vm.formdata.registeredaddress },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.formdata,
+                              "registeredaddress",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group customer-input" }, [
+                      _c("label", [_vm._v("Telephone")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.telephone,
+                            expression: "formdata.telephone"
+                          }
+                        ],
+                        staticClass: "form-control form-control-user",
+                        attrs: {
+                          type: "text",
+                          id: "crt-customer",
+                          "aria-describedby": "emailHelp",
+                          placeholder: ""
+                        },
+                        domProps: { value: _vm.formdata.telephone },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.formdata,
+                              "telephone",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group customer-input" }, [
+                      _c("label", [_vm._v("Whatsapp Number")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.whatsapp,
+                            expression: "formdata.whatsapp"
+                          }
+                        ],
+                        staticClass: "form-control form-control-user",
+                        attrs: {
+                          type: "text",
+                          id: "crt-customer",
+                          "aria-describedby": "emailHelp",
+                          placeholder: ""
+                        },
+                        domProps: { value: _vm.formdata.whatsapp },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.formdata,
+                              "whatsapp",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ])
                 ])
               : _vm._e()
           ])
@@ -1359,116 +1603,6 @@ var staticRenderFns = [
         staticStyle: { "font-size": "10px" }
       }),
       _vm._v(")")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6 detail-div" }, [
-      _c("div", { staticClass: "form-group customer-input" }, [
-        _c("label", [_vm._v("Title")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-user",
-          attrs: {
-            type: "text",
-            id: "crt-customer",
-            "aria-describedby": "emailHelp",
-            placeholder: ""
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group customer-input" }, [
-        _c("label", [_vm._v("First Name")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-user",
-          attrs: {
-            type: "text",
-            id: "crt-customer",
-            "aria-describedby": "emailHelp",
-            placeholder: ""
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group customer-input" }, [
-        _c("label", [_vm._v("Last Name")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-user",
-          attrs: {
-            type: "text",
-            id: "crt-customer",
-            "aria-describedby": "emailHelp",
-            placeholder: ""
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group customer-input" }, [
-        _c("label", [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-user",
-          attrs: {
-            type: "text",
-            id: "crt-customer",
-            "aria-describedby": "emailHelp",
-            placeholder: ""
-          }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6 primary-div" }, [
-      _c("div", { staticClass: "form-group customer-input" }, [
-        _c("label", [_vm._v("Registered Address")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-user",
-          attrs: {
-            type: "text",
-            id: "crt-customer",
-            "aria-describedby": "emailHelp",
-            placeholder: ""
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group customer-input" }, [
-        _c("label", [_vm._v("Telephone")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-user",
-          attrs: {
-            type: "text",
-            id: "crt-customer",
-            "aria-describedby": "emailHelp",
-            placeholder: ""
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group customer-input" }, [
-        _c("label", [_vm._v("Whatsapp Number")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-user",
-          attrs: {
-            type: "text",
-            id: "crt-customer",
-            "aria-describedby": "emailHelp",
-            placeholder: ""
-          }
-        })
-      ])
     ])
   }
 ]
