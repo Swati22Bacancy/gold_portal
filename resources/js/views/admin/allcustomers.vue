@@ -5,7 +5,7 @@
             <div class="mt-2 mb-4">
                 <div class="">
                     <div class="table-responsive">
-                        <table class="table" id="icustomer-datatable" width="100%" cellspacing="0">
+                        <table class="table" id="acustomer-datatable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" class="custom-check-input"></th>
@@ -41,25 +41,25 @@
             </div>
       </div>
        <!-- Modal -->
-          <div class="modal fade" id="deleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <h6 class="modal-title" id="deleteConfirmationLabel">Confirmation</h6>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true" style="color:#fff">&times;</span>
-                          </button>
-                      </div>
-                      <div class="modal-body">
-                          <p style="color:#000;font-size:14px;">Are you sure you want to delete this customer?</p>
-                      </div>
-                      <div class="modal-footer">
-                          <button type="button" class="btn admin-btn mobile-mb" data-dismiss="modal">Cancel</button>
-                          <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteRecord(customerid)">Delete</button>
-                      </div>
+      <div class="modal fade" id="deleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h6 class="modal-title" id="deleteConfirmationLabel">Confirmation</h6>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true" style="color:#fff">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <p style="color:#000;font-size:14px;">Are you sure you want to delete this customer?</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn admin-btn mobile-mb" data-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteRecord(customerid)">Delete</button>
                   </div>
               </div>
           </div>
+      </div>
   </div>
 </template>
 
@@ -67,7 +67,7 @@
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 export default {
-  name: "IndividualCustomer",
+  name: "AllCustomer",
   components: {
     
   },
@@ -77,7 +77,7 @@ export default {
       customers : {},
       customerid:'',
       dtRef: null,
-      typecustomer:'individual'
+      typecustomer:'all'
     };
   },
   created() {
@@ -146,13 +146,13 @@ export default {
         $(this).html(html_org);
         return width;
       };
-      $('#icustomer-datatable').on( 'draw.dt', function (e) {
-        $('#icustomer-datatable thead tr th').each(function(idx, ele) {
+      $('#acustomer-datatable').on( 'draw.dt', function (e) {
+        $('#acustomer-datatable thead tr th').each(function(idx, ele) {
           var xPos = parseInt((($(ele).textWidth()))+12);
           $(ele).css('background-position-x',  xPos + 'px')
         })
       });
-      // this.dtRef = $('#icustomer-datatable').DataTable({
+      // this.dtRef = $('#acustomer-datatable').DataTable({
       //   "bFilter": false,
       //   "bLengthChange": false,
       //   "columnDefs": [
@@ -172,7 +172,7 @@ export default {
             this.$nextTick(() => {
 
                 // initialize DataTable on rendered table
-                const table = $('#icustomer-datatable').DataTable({
+                const table = $('#acustomer-datatable').DataTable({
                   "bFilter": false,
                   "bLengthChange": false,
                   "columnDefs": [
@@ -219,7 +219,7 @@ export default {
   opacity: 0.4;
   font-size: 11px;
 }
-#icustomer-datatable thead
+#acustomer-datatable thead
 {
   background: #3376C2;
   color: #fff;
@@ -229,7 +229,7 @@ export default {
   color: #3377c2;
   font-size: 13px;
 }
-#icustomer-datatable
+#acustomer-datatable
 {
   color: #000;
   font-size: 13px;
@@ -248,7 +248,7 @@ table.dataTable.no-footer
 {
   padding: 0.3em 0.8em;
 }
-#icustomer-datatable thead tr th 
+#acustomer-datatable thead tr th 
 {
   font-weight: 100 !important;
 }

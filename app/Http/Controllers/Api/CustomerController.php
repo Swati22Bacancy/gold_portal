@@ -38,11 +38,11 @@ class CustomerController extends Controller
     {
         if($type !='all')
         {
-            $customers = Customer::select('*')->where('customer_type',$type)->get();
+            $customers = Customer::select('*')->where('customer_type',$type)->orderBy('id', 'DESC')->get();
         }
         else
         {
-            $customers = Customer::select('*')->get();
+            $customers = Customer::select('*')->orderBy('id', 'DESC')->get();
         }
         return response()->json($customers);
     }

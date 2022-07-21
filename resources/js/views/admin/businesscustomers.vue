@@ -30,7 +30,7 @@
                                     <td>-</td>
                                     <td>--</td>
                                     <td><router-link :to="{name : 'viewcustomer', params: {id : customer.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">visibility</span></router-link>
-                                    <span class="material-symbols-outlined" style="margin-right: 5px;color: red;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(customer.id)">delete</span>
+                                    <span class="material-symbols-outlined" style="margin-right: 5px;color: red;    cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(customer.id)">delete</span>
                                     <span class="material-symbols-outlined" style="margin-right: 5px;color: #ccc;font-weight: 700;">more_vert</span></td>
                                 </tr>
                                 
@@ -40,6 +40,26 @@
                 </div>
             </div>
       </div>
+       <!-- Modal -->
+        <div class="modal fade" id="deleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="deleteConfirmationLabel">Confirmation</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="color:#fff">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p style="color:#000;font-size:14px;">Are you sure you want to delete this customer?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn admin-btn mobile-mb" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteRecord(customerid)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
   </div>
 </template>
 
