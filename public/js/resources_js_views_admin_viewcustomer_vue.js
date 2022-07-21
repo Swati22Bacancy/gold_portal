@@ -387,7 +387,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -16920,7 +16919,10 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", {
+          staticClass: "col-md-6",
+          staticStyle: { "text-align": "right" }
+        })
       ]
     ),
     _vm._v(" "),
@@ -18039,9 +18041,9 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
-              _vm._m(2),
+              _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
                 _c(
@@ -18079,22 +18081,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "col-md-6", staticStyle: { "text-align": "right" } },
-      [
-        _c(
-          "button",
-          { staticClass: "btn admin-btn mobile-mb", attrs: { type: "button" } },
-          [_vm._v("Archive Customer")]
-        )
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

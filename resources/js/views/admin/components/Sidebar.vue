@@ -62,6 +62,12 @@
         >
       </li>
       <li class="nav-item">
+        <router-link class="nav-link" to="/groups">
+          <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">group</span>
+          <span>Groups</span></router-link
+        >
+      </li>
+      <li class="nav-item">
         <router-link class="nav-link" to="/admin">
           <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">account_balance</span>
           <span>Bank Accounts</span></router-link

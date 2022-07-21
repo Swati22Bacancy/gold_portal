@@ -13,7 +13,6 @@
       </div>
       <div class="col-md-6" style="text-align:right">
         <router-link to="/createcustomer"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Customer</button></router-link>
-        <button type="button" class="btn admin-btn mobile-mb">Send Statement</button>
         <button type="button" class="btn admin-btn mobile-mb">Print</button>
         <button type="button" class="btn admin-btn mobile-mb">Export</button>
       </div>

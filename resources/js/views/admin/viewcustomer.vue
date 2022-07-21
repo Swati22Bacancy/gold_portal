@@ -12,7 +12,6 @@
         
       </div>
       <div class="col-md-6" style="text-align:right">
-        <button type="button" class="btn admin-btn mobile-mb">Archive Customer</button>
       </div>
       
       

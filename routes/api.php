@@ -30,4 +30,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('deletecustomer/{id}', [Api\CustomerController::class, 'deletecustomer']);
     Route::get('customerdetails/{id}', [Api\CustomerController::class, 'customerdetails']);
     Route::post('update_customer', [Api\CustomerController::class, 'updatecustomer']);
+
+    Route::post('create_group', [Api\GroupController::class, 'creategroup']);
+    Route::get('grouplist', [Api\GroupController::class, 'grouplist']);
+    Route::get('deletegroup/{id}', [Api\GroupController::class, 'deletegroup']);
+    Route::get('groupdetails/{id}', [Api\GroupController::class, 'groupdetails']);
+    Route::post('update_group', [Api\GroupController::class, 'updategroup']);
 });

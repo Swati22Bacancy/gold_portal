@@ -107,6 +107,33 @@ let router = new Router({
             }
         },
         {
+            path: "/groups",
+            name: "groups",
+            component: () => import("./views/admin/groups.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/creategroup",
+            name: "creategroup",
+            component: () => import("./views/admin/creategroup.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/editgroup/:id",
+            name: "editgroup",
+            component: () => import("./views/admin/editgroup.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/viewsales",
             name: "viewsales",
             component: () => import("./views/admin/viewsales.vue"),
