@@ -29,9 +29,9 @@
                                     <td>--</td>
                                     <td>-</td>
                                     <td>--</td>
-                                    <td><router-link :to="{name : 'viewcustomer', params: {id : customer.id}}"><i class="fas fa-eye" style="margin-right: 10px;color: #3376C2;"></i></router-link>
-                                    <i class="fas fa-trash" style="margin-right: 10px;color: red;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(customer.id)"></i>
-                                    <i class="fa fa-ellipsis-v" aria-hidden="true" style="margin-right: 10px;color: #ccc;"></i></td>
+                                    <td><router-link :to="{name : 'viewcustomer', params: {id : customer.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">visibility</span></router-link>
+                                    <span class="material-symbols-outlined" style="margin-right: 5px;color: red;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(customer.id)">delete</span>
+                                    <span class="material-symbols-outlined" style="margin-right: 5px;color: #ccc;font-weight: 700;">more_vert</span></td>
                                 </tr>
                                 
                             </tbody>
@@ -47,7 +47,7 @@
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 export default {
-  name: "Customer",
+  name: "IndividualCustomer",
   components: {
     
   },
@@ -92,6 +92,12 @@ export default {
             this.$router.go();
         })
         .catch(error => {
+          let message = 'Something went wrong, Please try again';
+          let toast = Vue.toasted.show(message, {
+            theme: "toasted-error",
+            position: "top-center",
+            duration: 5000,
+          });
             console.log(error);
         })
     },

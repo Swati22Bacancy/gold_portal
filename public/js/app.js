@@ -2087,6 +2087,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Sidebar'
 });
@@ -77254,7 +77255,14 @@ var render = function() {
             "router-link",
             { staticClass: "nav-link", attrs: { to: "/admin" } },
             [
-              _c("i", { staticClass: "fas fa-fw fa-tachometer-alt" }),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
+                },
+                [_vm._v("speed")]
+              ),
               _vm._v(" "),
               _c("span", [_vm._v("Dashboard")])
             ]
@@ -77271,7 +77279,14 @@ var render = function() {
             "router-link",
             { staticClass: "nav-link", attrs: { to: "/sales" } },
             [
-              _c("i", { staticClass: "fas fa-fw fa-shopping-cart" }),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
+                },
+                [_vm._v("shopping_cart")]
+              ),
               _vm._v(" "),
               _c("span", [_vm._v("Sales")])
             ]
@@ -77288,7 +77303,14 @@ var render = function() {
             "router-link",
             { staticClass: "nav-link", attrs: { to: "/admin" } },
             [
-              _c("i", { staticClass: "fas fa-fw fa-tachometer-alt" }),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
+                },
+                [_vm._v("inventory_2")]
+              ),
               _vm._v(" "),
               _c("span", [_vm._v("Purchases")])
             ]
@@ -77305,7 +77327,14 @@ var render = function() {
             "router-link",
             { staticClass: "nav-link", attrs: { to: "/admin" } },
             [
-              _c("i", { staticClass: "fas fa-fw fa-tachometer-alt" }),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
+                },
+                [_vm._v("local_shipping")]
+              ),
               _vm._v(" "),
               _c("span", [_vm._v("Delivery Notes")])
             ]
@@ -77322,7 +77351,14 @@ var render = function() {
             "router-link",
             { staticClass: "nav-link", attrs: { to: "/quotes" } },
             [
-              _c("i", { staticClass: "fas fa-fw fa-tachometer-alt" }),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
+                },
+                [_vm._v("description")]
+              ),
               _vm._v(" "),
               _c("span", [_vm._v("Quotes")])
             ]
@@ -77339,7 +77375,14 @@ var render = function() {
             "router-link",
             { staticClass: "nav-link", attrs: { to: "/customers" } },
             [
-              _c("i", { staticClass: "fas fa-fw fa-tachometer-alt" }),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
+                },
+                [_vm._v("group")]
+              ),
               _vm._v(" "),
               _c("span", [_vm._v("Customers")])
             ]
@@ -77356,7 +77399,14 @@ var render = function() {
             "router-link",
             { staticClass: "nav-link", attrs: { to: "/admin" } },
             [
-              _c("i", { staticClass: "fas fa-fw fa-tachometer-alt" }),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
+                },
+                [_vm._v("account_balance")]
+              ),
               _vm._v(" "),
               _c("span", [_vm._v("Bank Accounts")])
             ]
@@ -77373,7 +77423,14 @@ var render = function() {
             "router-link",
             { staticClass: "nav-link", attrs: { to: "/admin" } },
             [
-              _c("i", { staticClass: "fas fa-fw fa-tachometer-alt" }),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
+                },
+                [_vm._v("person")]
+              ),
               _vm._v(" "),
               _c("span", [_vm._v("Users")])
             ]
@@ -77390,7 +77447,14 @@ var render = function() {
             "router-link",
             { staticClass: "nav-link", attrs: { to: "/admin" } },
             [
-              _c("i", { staticClass: "fas fa-fw fa-tachometer-alt" }),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
+                },
+                [_vm._v("settings")]
+              ),
               _vm._v(" "),
               _c("span", [_vm._v("Settings")])
             ]
@@ -77407,7 +77471,14 @@ var render = function() {
             "router-link",
             { staticClass: "nav-link", attrs: { to: "/admin" } },
             [
-              _c("i", { staticClass: "fas fa-fw fa-tachometer-alt" }),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
+                },
+                [_vm._v("analytics")]
+              ),
               _vm._v(" "),
               _c("span", [_vm._v("Reports")])
             ]
@@ -77424,7 +77495,14 @@ var render = function() {
             "router-link",
             { staticClass: "nav-link", attrs: { to: "/admin" } },
             [
-              _c("i", { staticClass: "fas fa-fw fa-tachometer-alt" }),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
+                },
+                [_vm._v("speed")]
+              ),
               _vm._v(" "),
               _c("span", [_vm._v("Whatsapp")])
             ]

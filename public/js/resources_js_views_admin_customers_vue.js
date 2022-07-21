@@ -126,7 +126,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Customer",
+  name: "BusinessCustomer",
   components: {},
   props: ['products'],
   data: function data() {
@@ -159,6 +159,12 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/deletecustomer/' + id).then(function (resp) {
         _this.$router.go();
       })["catch"](function (error) {
+        var message = 'Something went wrong, Please try again';
+        var toast = Vue.toasted.show(message, {
+          theme: "toasted-error",
+          position: "top-center",
+          duration: 5000
+        });
         console.log(error);
       });
     },
@@ -387,6 +393,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -430,6 +455,12 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/deletecustomer/' + id).then(function (resp) {
         _this.$router.go();
       })["catch"](function (error) {
+        var message = 'Something went wrong, Please try again';
+        var toast = Vue.toasted.show(message, {
+          theme: "toasted-error",
+          position: "top-center",
+          duration: 5000
+        });
         console.log(error);
       });
     },
@@ -570,7 +601,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Customer",
+  name: "IndividualCustomer",
   components: {},
   props: ['products'],
   data: function data() {
@@ -603,6 +634,12 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/deletecustomer/' + id).then(function (resp) {
         _this.$router.go();
       })["catch"](function (error) {
+        var message = 'Something went wrong, Please try again';
+        var toast = Vue.toasted.show(message, {
+          theme: "toasted-error",
+          position: "top-center",
+          duration: 5000
+        });
         console.log(error);
       });
     },
@@ -788,7 +825,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.table-search[data-v-69dbfe66]\r\n{\r\n  width: 65%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.table-date[data-v-69dbfe66]\r\n{\r\n  width: 27%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.tab-selector[data-v-69dbfe66]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 11%;\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-search[data-v-69dbfe66]::-moz-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-69dbfe66]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-69dbfe66]::placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n#customer-datatable thead[data-v-69dbfe66]\r\n{\r\n  background: #3376C2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n.table-date[data-v-69dbfe66]::-moz-placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-date[data-v-69dbfe66]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-date[data-v-69dbfe66]::placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n#customer-datatable[data-v-69dbfe66]\r\n{\r\n  color: #000;\r\n  font-size: 13px;\n}\ntable.dataTable.no-footer[data-v-69dbfe66]\r\n{\r\n  border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-69dbfe66]\r\n{\r\n    color: #fff !important;\r\n    border: 1px solid #3376c2 !important;\r\n    background-color: #3376c2 !important;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-69dbfe66]\r\n{\r\n  padding: 0.3em 0.8em;\n}\n#customer-datatable thead tr th[data-v-69dbfe66] \r\n{\r\n  font-weight: 100 !important;\n}\ntable.dataTable thead th[data-v-69dbfe66]\r\n{\r\n  padding: 10px 10px !important;\n}\ntable.dataTable thead .sorting[data-v-69dbfe66], table.dataTable thead .sorting_asc[data-v-69dbfe66], table.dataTable thead .sorting_desc[data-v-69dbfe66], table.dataTable thead .sorting_asc_disabled[data-v-69dbfe66], table.dataTable thead .sorting_desc_disabled[data-v-69dbfe66]\r\n{\r\n  background-size: 13px 13px;\r\n  background-position: 0px 19px;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.table-search[data-v-69dbfe66]\r\n{\r\n  width: 65%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.table-date[data-v-69dbfe66]\r\n{\r\n  width: 27%;\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\n}\n.tab-selector[data-v-69dbfe66]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 11%;\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-search[data-v-69dbfe66]::-moz-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-69dbfe66]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-69dbfe66]::placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n#customer-datatable thead[data-v-69dbfe66]\r\n{\r\n  background: #3376C2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n.table-date[data-v-69dbfe66]::-moz-placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-date[data-v-69dbfe66]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.table-date[data-v-69dbfe66]::placeholder {\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n#customer-datatable[data-v-69dbfe66]\r\n{\r\n  color: #000;\r\n  font-size: 13px;\n}\ntable.dataTable.no-footer[data-v-69dbfe66]\r\n{\r\n  border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-69dbfe66]\r\n{\r\n    color: #fff !important;\r\n    border: 1px solid #3376c2 !important;\r\n    background-color: #3376c2 !important;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-69dbfe66]\r\n{\r\n  padding: 0.3em 0.8em;\n}\n#customer-datatable thead tr th[data-v-69dbfe66] \r\n{\r\n  font-weight: 100 !important;\n}\ntable.dataTable thead th[data-v-69dbfe66]\r\n{\r\n  padding: 10px 10px !important;\n}\ntable.dataTable thead .sorting[data-v-69dbfe66], table.dataTable thead .sorting_asc[data-v-69dbfe66], table.dataTable thead .sorting_desc[data-v-69dbfe66], table.dataTable thead .sorting_asc_disabled[data-v-69dbfe66], table.dataTable thead .sorting_desc_disabled[data-v-69dbfe66]\r\n{\r\n  background-size: 13px 13px;\r\n  background-position: 0px 19px;\n}\n.dataTables_wrapper .dataTables_info[data-v-69dbfe66]\r\n{\r\n  font-size: 13px !important;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -17345,41 +17382,53 @@ var render = function() {
                               }
                             },
                             [
-                              _c("i", {
-                                staticClass: "fas fa-eye",
-                                staticStyle: {
-                                  "margin-right": "10px",
-                                  color: "#3376C2"
-                                }
-                              })
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "material-symbols-outlined",
+                                  staticStyle: {
+                                    "margin-right": "10px",
+                                    color: "#3376C2"
+                                  }
+                                },
+                                [_vm._v("visibility")]
+                              )
                             ]
                           ),
                           _vm._v(" "),
-                          _c("i", {
-                            staticClass: "fas fa-trash",
-                            staticStyle: {
-                              "margin-right": "10px",
-                              color: "red"
-                            },
-                            attrs: {
-                              "data-toggle": "modal",
-                              "data-target": "#deleteConfirmation"
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.selectrecord(customer.id)
+                          _c(
+                            "span",
+                            {
+                              staticClass: "material-symbols-outlined",
+                              staticStyle: {
+                                "margin-right": "5px",
+                                color: "red"
+                              },
+                              attrs: {
+                                "data-toggle": "modal",
+                                "data-target": "#deleteConfirmation"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.selectrecord(customer.id)
+                                }
                               }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("i", {
-                            staticClass: "fa fa-ellipsis-v",
-                            staticStyle: {
-                              "margin-right": "10px",
-                              color: "#ccc"
                             },
-                            attrs: { "aria-hidden": "true" }
-                          })
+                            [_vm._v("delete")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "material-symbols-outlined",
+                              staticStyle: {
+                                "margin-right": "5px",
+                                color: "#ccc",
+                                "font-weight": "700"
+                              }
+                            },
+                            [_vm._v("more_vert")]
+                          )
                         ],
                         1
                       )
@@ -17562,8 +17611,12 @@ var render = function() {
                         [_vm._v("Type")]
                       ),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Option 1" } }, [
-                        _vm._v("Option 1")
+                      _c("option", { attrs: { value: "business" } }, [
+                        _vm._v("Business")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "individual" } }, [
+                        _vm._v("Individual")
                       ])
                     ]),
                     _vm._v(" "),
@@ -17674,44 +17727,59 @@ var render = function() {
                                               }
                                             },
                                             [
-                                              _c("i", {
-                                                staticClass: "fas fa-eye",
-                                                staticStyle: {
-                                                  "margin-right": "10px",
-                                                  color: "#3376C2"
-                                                }
-                                              })
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "material-symbols-outlined",
+                                                  staticStyle: {
+                                                    "margin-right": "10px",
+                                                    color: "#3376C2"
+                                                  }
+                                                },
+                                                [_vm._v("visibility")]
+                                              )
                                             ]
                                           ),
                                           _vm._v(" "),
-                                          _c("i", {
-                                            staticClass: "fas fa-trash",
-                                            staticStyle: {
-                                              "margin-right": "10px",
-                                              color: "red"
-                                            },
-                                            attrs: {
-                                              "data-toggle": "modal",
-                                              "data-target":
-                                                "#deleteConfirmation"
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.selectrecord(
-                                                  customer.id
-                                                )
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "material-symbols-outlined",
+                                              staticStyle: {
+                                                "margin-right": "5px",
+                                                color: "red"
+                                              },
+                                              attrs: {
+                                                "data-toggle": "modal",
+                                                "data-target":
+                                                  "#deleteConfirmation"
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.selectrecord(
+                                                    customer.id
+                                                  )
+                                                }
                                               }
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("i", {
-                                            staticClass: "fa fa-ellipsis-v",
-                                            staticStyle: {
-                                              "margin-right": "10px",
-                                              color: "#ccc"
                                             },
-                                            attrs: { "aria-hidden": "true" }
-                                          })
+                                            [_vm._v("delete")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "material-symbols-outlined",
+                                              staticStyle: {
+                                                "margin-right": "5px",
+                                                color: "#ccc",
+                                                "font-weight": "700"
+                                              }
+                                            },
+                                            [_vm._v("more_vert")]
+                                          )
                                         ],
                                         1
                                       )
@@ -17750,7 +17818,7 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("option", { attrs: { value: "Option 1" } }, [
-                        _vm._v("Option 1")
+                        _vm._v("Option")
                       ])
                     ]),
                     _vm._v(" "),
@@ -17761,8 +17829,12 @@ var render = function() {
                         [_vm._v("Type")]
                       ),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Option 1" } }, [
-                        _vm._v("Option 1")
+                      _c("option", { attrs: { value: "business" } }, [
+                        _vm._v("Business")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "individual" } }, [
+                        _vm._v("Individual")
                       ])
                     ]),
                     _vm._v(" "),
@@ -17787,7 +17859,58 @@ var render = function() {
             {
               key: "tabPanel-3",
               fn: function() {
-                return [_c("individualcustomers")]
+                return [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("input", {
+                      staticClass:
+                        "form-control bg-light border-0 small table-search",
+                      staticStyle: { "background-color": "#FFFFFF !important" },
+                      attrs: { type: "text", placeholder: "Search Contacts" }
+                    }),
+                    _vm._v(" "),
+                    _c("select", { staticClass: "tab-selector" }, [
+                      _c(
+                        "option",
+                        { attrs: { value: "Option 1", selected: "" } },
+                        [_vm._v("Group")]
+                      ),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Option 1" } }, [
+                        _vm._v("Option")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("select", { staticClass: "tab-selector" }, [
+                      _c(
+                        "option",
+                        { attrs: { value: "Option 1", selected: "" } },
+                        [_vm._v("Type")]
+                      ),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "business" } }, [
+                        _vm._v("Business")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "individual" } }, [
+                        _vm._v("Individual")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("select", { staticClass: "tab-selector" }, [
+                      _c(
+                        "option",
+                        { attrs: { value: "Option 1", selected: "" } },
+                        [_vm._v("Show Entries")]
+                      ),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Option 1" } }, [
+                        _vm._v("Option 1")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("individualcustomers")
+                ]
               },
               proxy: true
             }
@@ -17997,41 +18120,53 @@ var render = function() {
                               }
                             },
                             [
-                              _c("i", {
-                                staticClass: "fas fa-eye",
-                                staticStyle: {
-                                  "margin-right": "10px",
-                                  color: "#3376C2"
-                                }
-                              })
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "material-symbols-outlined",
+                                  staticStyle: {
+                                    "margin-right": "10px",
+                                    color: "#3376C2"
+                                  }
+                                },
+                                [_vm._v("visibility")]
+                              )
                             ]
                           ),
                           _vm._v(" "),
-                          _c("i", {
-                            staticClass: "fas fa-trash",
-                            staticStyle: {
-                              "margin-right": "10px",
-                              color: "red"
-                            },
-                            attrs: {
-                              "data-toggle": "modal",
-                              "data-target": "#deleteConfirmation"
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.selectrecord(customer.id)
+                          _c(
+                            "span",
+                            {
+                              staticClass: "material-symbols-outlined",
+                              staticStyle: {
+                                "margin-right": "5px",
+                                color: "red"
+                              },
+                              attrs: {
+                                "data-toggle": "modal",
+                                "data-target": "#deleteConfirmation"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.selectrecord(customer.id)
+                                }
                               }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("i", {
-                            staticClass: "fa fa-ellipsis-v",
-                            staticStyle: {
-                              "margin-right": "10px",
-                              color: "#ccc"
                             },
-                            attrs: { "aria-hidden": "true" }
-                          })
+                            [_vm._v("delete")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "material-symbols-outlined",
+                              staticStyle: {
+                                "margin-right": "5px",
+                                color: "#ccc",
+                                "font-weight": "700"
+                              }
+                            },
+                            [_vm._v("more_vert")]
+                          )
                         ],
                         1
                       )

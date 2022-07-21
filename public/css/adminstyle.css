@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
+@import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
 
 @charset "UTF-8";
 /*!
@@ -21,9 +22,9 @@
 }
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
-  font-weight: normal;
+  font-weight: 300;
   font-style: normal;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1;
   letter-spacing: normal;
   text-transform: none;
@@ -12734,6 +12735,33 @@ button.bg-dark:focus {
 .btn-nwidth
 {
   width: 120px;
+}
+.toasted .primary, .toasted.toasted-primary
+{
+  font-size: 13px !important;
+  letter-spacing: 0.5px !important;
+}
+.toasted.toasted-error {
+  border-radius: 2px;
+  min-height: 38px;
+  line-height: 1.1em;
+  background-color: red;
+  padding: 6px 20px;
+  font-size: 13px;
+  font-weight: 300;
+  color: #fff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+}
+.toasted.toasted-success {
+  border-radius: 2px;
+  min-height: 38px;
+  line-height: 1.1em;
+  background-color: green;
+  padding: 6px 20px;
+  font-size: 13px;
+  font-weight: 300;
+  color: #fff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
 }
 @media screen and (max-width:767px) {
   .login-div {

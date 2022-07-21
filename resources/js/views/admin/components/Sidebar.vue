@@ -20,14 +20,15 @@
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
         <router-link class="nav-link" to="/admin">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">speed</span>
           <span>Dashboard</span></router-link
         >
       </li>
 
       <li class="nav-item">
         <router-link class="nav-link" to="/sales">
-          <i class="fas fa-fw fa-shopping-cart"></i>
+          <!-- <i class="fas fa-fw fa-shopping-cart"></i> -->
+          <span class="material-symbols-outlined" style="font-size: 19px;margin-right:10%;">shopping_cart</span>
           <!-- <span class="material-symbols-outlined">
             shopping_cart
           </span> -->
@@ -37,56 +38,56 @@
 
       <li class="nav-item">
         <router-link class="nav-link" to="/admin">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">inventory_2</span>
           <span>Purchases</span></router-link
         >
       </li>
 
       <li class="nav-item">
         <router-link class="nav-link" to="/admin">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">local_shipping</span>
           <span>Delivery Notes</span></router-link
         >
       </li>
       <li class="nav-item">
         <router-link class="nav-link" to="/quotes">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">description</span>
           <span>Quotes</span></router-link
         >
       </li>
       <li class="nav-item">
         <router-link class="nav-link" to="/customers">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">group</span>
           <span>Customers</span></router-link
         >
       </li>
       <li class="nav-item">
         <router-link class="nav-link" to="/admin">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">account_balance</span>
           <span>Bank Accounts</span></router-link
         >
       </li>
       <li class="nav-item">
         <router-link class="nav-link" to="/admin">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">person</span>
           <span>Users</span></router-link
         >
       </li>
       <li class="nav-item">
         <router-link class="nav-link" to="/admin">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">settings</span>
           <span>Settings</span></router-link
         >
       </li>
       <li class="nav-item">
         <router-link class="nav-link" to="/admin">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">analytics</span>
           <span>Reports</span></router-link
         >
       </li>
       <li class="nav-item">
         <router-link class="nav-link" to="/admin">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">speed</span>
           <span>Whatsapp</span></router-link
         >
       </li>

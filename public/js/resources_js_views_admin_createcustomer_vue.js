@@ -13,6 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _rules_customerRules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rules/customerRules */ "./resources/js/views/admin/rules/customerRules.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -269,10 +270,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CreateCustomer",
   data: function data() {
     return {
+      rules: _rules_customerRules__WEBPACK_IMPORTED_MODULE_1__.customerRules,
       customerType: 'business',
       theme: 'cust-type',
       formdata: {}
@@ -286,52 +292,93 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
-                _this.formdata.customertype = _this.customerType;
-                _context.next = 4;
-                return axios.post("create_customer", {
-                  first_name: _this.formdata.first_name,
-                  last_name: _this.formdata.last_name,
-                  email: _this.formdata.email,
-                  company_name: _this.formdata.company_name,
-                  registered_address: _this.formdata.registered_address,
-                  vat: _this.formdata.vat,
-                  telephone: _this.formdata.telephone,
-                  whatsapp: _this.formdata.whatsapp,
-                  title: _this.formdata.title,
-                  credit_limit: _this.formdata.credit_limit,
-                  company_code: _this.formdata.company_code,
-                  customertype: _this.formdata.customertype
+                _this.$validator.validate().then(function (valid) {
+                  if (valid) {
+                    try {
+                      _this.formdata.customertype = _this.customerType;
+                      var response = axios.post("create_customer", {
+                        first_name: _this.formdata.first_name,
+                        last_name: _this.formdata.last_name,
+                        email: _this.formdata.email,
+                        company_name: _this.formdata.company_name,
+                        registered_address: _this.formdata.registered_address,
+                        vat: _this.formdata.vat,
+                        telephone: _this.formdata.telephone,
+                        whatsapp: _this.formdata.whatsapp,
+                        title: _this.formdata.title,
+                        credit_limit: _this.formdata.credit_limit,
+                        company_code: _this.formdata.company_code,
+                        customertype: _this.formdata.customertype
+                      });
+                      var message = "Customer has been successfully added.";
+                      var toast = Vue.toasted.show(message, {
+                        theme: "toasted-success",
+                        position: "top-center",
+                        duration: 5000
+                      });
+
+                      _this.$router.push("/customers");
+                    } catch (error) {
+                      var _message = 'Something went wrong, Please try again';
+
+                      var _toast = Vue.toasted.show(_message, {
+                        theme: "toasted-error",
+                        position: "top-center",
+                        duration: 5000
+                      });
+
+                      console.log(error);
+                    }
+                  } else {
+                    var _message2 = "Please fill the required fields.";
+
+                    var _toast2 = Vue.toasted.show(_message2, {
+                      theme: "toasted-error",
+                      position: "top-center",
+                      duration: 5000
+                    });
+                  }
                 });
 
-              case 4:
-                response = _context.sent;
-
-                _this.$router.push("/customers");
-
-                _context.next = 11;
-                break;
-
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](0);
-                console.log(_context.t0);
-
-              case 11:
+              case 1:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee);
       }))();
     }
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/views/admin/rules/customerRules.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/views/admin/rules/customerRules.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "customerRules": () => (/* binding */ customerRules)
+/* harmony export */ });
+var customerRules = {
+  first_name: {
+    required: true
+  },
+  last_name: {
+    required: true
+  },
+  email: {
+    required: true
+  }
+};
 
 /***/ }),
 
@@ -1106,6 +1153,12 @@ var render = function() {
                             rawName: "v-model",
                             value: _vm.formdata.email,
                             expression: "formdata.email"
+                          },
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: _vm.rules.email,
+                            expression: "rules.email"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -1242,6 +1295,12 @@ var render = function() {
                             rawName: "v-model",
                             value: _vm.formdata.first_name,
                             expression: "formdata.first_name"
+                          },
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: _vm.rules.first_name,
+                            expression: "rules.first_name"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -1277,6 +1336,12 @@ var render = function() {
                             rawName: "v-model",
                             value: _vm.formdata.last_name,
                             expression: "formdata.last_name"
+                          },
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: _vm.rules.last_name,
+                            expression: "rules.last_name"
                           }
                         ],
                         staticClass: "form-control form-control-user",

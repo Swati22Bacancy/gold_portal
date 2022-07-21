@@ -444,7 +444,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var response;
+        var response, message, toast, _message, _toast;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -470,23 +471,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 response = _context.sent;
+                message = "Customer has been successfully updated.";
+                toast = Vue.toasted.show(message, {
+                  theme: "toasted-success",
+                  position: "top-center",
+                  duration: 5000
+                });
 
                 _this3.$router.push("/customers");
 
-                _context.next = 11;
+                _context.next = 15;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 10:
+                _context.prev = 10;
                 _context.t0 = _context["catch"](0);
+                _message = 'Something went wrong, Please try again';
+                _toast = Vue.toasted.show(_message, {
+                  theme: "toasted-error",
+                  position: "top-center",
+                  duration: 5000
+                });
                 console.log(_context.t0);
 
-              case 11:
+              case 15:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[0, 10]]);
       }))();
     }
   },

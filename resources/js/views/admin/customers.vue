@@ -32,8 +32,9 @@
             </select>
             <select class="tab-selector">
               <option value="Option 1" selected>Type</option>
-              <option value="Option 1" >Option 1</option>
-            </select> 
+              <option value="business" >Business</option>
+              <option value="individual" >Individual</option>
+            </select>
             <select class="tab-selector">
               <option value="Option 1" selected>Show Entries</option>
               <option value="Option 1">Option 1</option>
@@ -69,9 +70,10 @@
                                             <td>--</td>
                                             <td>-</td>
                                             <td>--</td>
-                                            <td><router-link :to="{name : 'viewcustomer', params: {id : customer.id}}"><i class="fas fa-eye" style="margin-right: 10px;color: #3376C2;"></i></router-link>
-                                            <i class="fas fa-trash" style="margin-right: 10px;color: red;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(customer.id)"></i>
-                                            <i class="fa fa-ellipsis-v" aria-hidden="true" style="margin-right: 10px;color: #ccc;"></i></td>
+                                            <td><router-link :to="{name : 'viewcustomer', params: {id : customer.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">visibility</span></router-link>
+                                            <span class="material-symbols-outlined" style="margin-right: 5px;color: red;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(customer.id)">delete</span>
+                                            <span class="material-symbols-outlined" style="margin-right: 5px;color: #ccc;font-weight: 700;">more_vert</span>
+                                            </td>
                                         </tr>
                                         
                                     </tbody>
@@ -87,11 +89,12 @@
             <input type="text" class="form-control bg-light border-0 small table-search" placeholder="Search Contacts" style="background-color:#FFFFFF !important;"/>
             <select class="tab-selector">
               <option value="Option 1" selected>Group</option>
-              <option value="Option 1" >Option 1</option>
+              <option value="Option 1" >Option</option>
             </select>
             <select class="tab-selector">
               <option value="Option 1" selected>Type</option>
-              <option value="Option 1" >Option 1</option>
+              <option value="business" >Business</option>
+              <option value="individual" >Individual</option>
             </select> 
             <select class="tab-selector">
               <option value="Option 1" selected>Show Entries</option>
@@ -101,6 +104,22 @@
           <businesscustomers> </businesscustomers> 
         </template>
         <template v-slot:tabPanel-3> 
+          <div class="col-md-12">
+            <input type="text" class="form-control bg-light border-0 small table-search" placeholder="Search Contacts" style="background-color:#FFFFFF !important;"/>
+            <select class="tab-selector">
+              <option value="Option 1" selected>Group</option>
+              <option value="Option 1" >Option</option>
+            </select>
+            <select class="tab-selector">
+              <option value="Option 1" selected>Type</option>
+              <option value="business" >Business</option>
+              <option value="individual" >Individual</option>
+            </select> 
+            <select class="tab-selector">
+              <option value="Option 1" selected>Show Entries</option>
+              <option value="Option 1">Option 1</option>
+            </select> 
+          </div>
           <individualcustomers> </individualcustomers> 
         </template>
       </customer-tabs>
@@ -185,6 +204,12 @@ export default {
             this.$router.go();
         })
         .catch(error => {
+          let message = 'Something went wrong, Please try again';
+          let toast = Vue.toasted.show(message, {
+            theme: "toasted-error",
+            position: "top-center",
+            duration: 5000,
+          });
             console.log(error);
         })
     },
@@ -328,5 +353,8 @@ table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTa
   background-size: 13px 13px;
   background-position: 0px 19px;
 }
-
+.dataTables_wrapper .dataTables_info
+{
+  font-size: 13px !important;
+}
 </style>

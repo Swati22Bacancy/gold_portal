@@ -84,6 +84,7 @@
                     aria-describedby="emailHelp"
                     placeholder=""
                     v-model="formdata.email"
+                    v-validate="rules.email"
                   />
                 </div>
                 <div class="form-group customer-input">
@@ -131,6 +132,7 @@
                     aria-describedby="emailHelp"
                     placeholder=""
                     v-model="formdata.first_name"
+                    v-validate="rules.first_name"
                   />
                 </div>
                 <div class="form-group customer-input">
@@ -142,6 +144,7 @@
                     aria-describedby="emailHelp"
                     placeholder=""
                     v-model="formdata.last_name"
+                    v-validate="rules.last_name"
                   />
                 </div>
                 <h6>Settings</h6>
@@ -249,11 +252,12 @@
 </template>
 
 <script>
-
+import { customerRules } from './rules/customerRules'
 export default {
   name: "CreateCustomer",
   data() {
     return {
+      rules : customerRules,
       customerType: 'business',
       theme: 'cust-type',
       formdata: {},
@@ -267,27 +271,54 @@ export default {
       this.customerType = type;
     },
     async create_customer() {
-      try {
-        this.formdata.customertype= this.customerType;
-        const response = await axios.post("create_customer", {
-          first_name: this.formdata.first_name,
-          last_name: this.formdata.last_name,
-          email: this.formdata.email,
-          company_name: this.formdata.company_name,
-          registered_address: this.formdata.registered_address,
-          vat: this.formdata.vat,
-          telephone: this.formdata.telephone,
-          whatsapp: this.formdata.whatsapp,
-          title: this.formdata.title,
-          credit_limit: this.formdata.credit_limit,
-          company_code: this.formdata.company_code,
-          customertype: this.formdata.customertype,
+      
+        this.$validator.validate().then(valid => {
+          if(valid){
+            try {
+              this.formdata.customertype= this.customerType;
+              const response = axios.post("create_customer", {
+                first_name: this.formdata.first_name,
+                last_name: this.formdata.last_name,
+                email: this.formdata.email,
+                company_name: this.formdata.company_name,
+                registered_address: this.formdata.registered_address,
+                vat: this.formdata.vat,
+                telephone: this.formdata.telephone,
+                whatsapp: this.formdata.whatsapp,
+                title: this.formdata.title,
+                credit_limit: this.formdata.credit_limit,
+                company_code: this.formdata.company_code,
+                customertype: this.formdata.customertype,
+              });
+              let message =
+                  "Customer has been successfully added.";
+                let toast = Vue.toasted.show(message, {
+                  theme: "toasted-success",
+                  position: "top-center",
+                  duration: 5000,
+                });
+              this.$router.push("/customers");
+            } catch (error) {
+              let message = 'Something went wrong, Please try again';
+                let toast = Vue.toasted.show(message, {
+                  theme: "toasted-error",
+                  position: "top-center",
+                  duration: 5000,
+                });
+              console.log(error);
+            }
+          }
+          else
+          {
+            let message = "Please fill the required fields.";
+            let toast = Vue.toasted.show(message, {
+              theme: "toasted-error",
+              position: "top-center",
+              duration: 5000,
+            });
+          }
         });
-
-        this.$router.push("/customers");
-      } catch (error) {
-        console.log(error);
-      }
+      
     },
   }
 };

@@ -379,9 +379,21 @@ export default {
           company_code: this.formdata.company_code,
           customertype: this.formdata.customertype,
         });
-
+          let message =
+            "Customer has been successfully updated.";
+          let toast = Vue.toasted.show(message, {
+            theme: "toasted-success",
+            position: "top-center",
+            duration: 5000,
+          });
         this.$router.push("/customers");
       } catch (error) {
+        let message = 'Something went wrong, Please try again';
+          let toast = Vue.toasted.show(message, {
+            theme: "toasted-error",
+            position: "top-center",
+            duration: 5000,
+          });
         console.log(error);
       }
     },
