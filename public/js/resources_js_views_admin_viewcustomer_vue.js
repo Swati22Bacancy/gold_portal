@@ -387,6 +387,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -404,7 +416,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       dtRef: null,
       formdata: {},
       customerType: 'business',
-      theme: 'cust-type'
+      theme: 'cust-type',
+      groups: {}
     };
   },
   created: function created() {//this.loadCustomers();
@@ -465,7 +478,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   title: _this3.formdata.title,
                   credit_limit: _this3.formdata.credit_limit,
                   company_code: _this3.formdata.company_code,
-                  customertype: _this3.formdata.customertype
+                  customertype: _this3.formdata.customertype,
+                  group_id: _this3.formdata.group_id
                 });
 
               case 4:
@@ -500,14 +514,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee, null, [[0, 10]]);
       }))();
+    },
+    getGroups: function getGroups() {
+      var _this4 = this;
+
+      return axios.get("grouplist").then(function (response) {
+        _this4.groups = response.data;
+      });
     }
   },
   mounted: function mounted() {
-    var _this4 = this;
+    var _this5 = this;
 
+    this.getGroups();
     axios.get('/customerdetails/' + this.$route.params.id).then(function (response) {
-      _this4.formdata = response.data;
-      _this4.customerType = _this4.formdata.customer_type == 'Business' ? 'business' : 'individual';
+      _this5.formdata = response.data;
+      _this5.customerType = _this5.formdata.customer_type == 'Business' ? 'business' : 'individual';
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
     this.getProjects(); // axios.get("customerlist")
@@ -549,9 +571,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       unwatch(); // wait for vue to populate DOM
 
-      _this4.$nextTick(function () {
+      _this5.$nextTick(function () {
         // initialize DataTable on rendered table
-        var table = $(_this4.$el.querySelector('table')).DataTable({
+        var table = $(_this5.$el.querySelector('table')).DataTable({
           "bFilter": false,
           "bLengthChange": false,
           "columnDefs": [{
@@ -562,7 +584,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }); // register hook so when this component is
         // unmounted/removed, DataTable is removed properly
 
-        _this4.$once('hook:beforeDestroy', function () {
+        _this5.$once('hook:beforeDestroy', function () {
           table.destroy();
         });
       }, {
@@ -17612,6 +17634,78 @@ var render = function() {
                                                 }
                                               })
                                             ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Select Group")
+                                              ]),
+                                              _c("br"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "select",
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.formdata.group_id,
+                                                      expression:
+                                                        "formdata.group_id"
+                                                    }
+                                                  ],
+                                                  staticClass:
+                                                    "form-control form-control-user",
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$selectedVal = Array.prototype.filter
+                                                        .call(
+                                                          $event.target.options,
+                                                          function(o) {
+                                                            return o.selected
+                                                          }
+                                                        )
+                                                        .map(function(o) {
+                                                          var val =
+                                                            "_value" in o
+                                                              ? o._value
+                                                              : o.value
+                                                          return val
+                                                        })
+                                                      _vm.$set(
+                                                        _vm.formdata,
+                                                        "group_id",
+                                                        $event.target.multiple
+                                                          ? $$selectedVal
+                                                          : $$selectedVal[0]
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                _vm._l(_vm.groups, function(
+                                                  group
+                                                ) {
+                                                  return _c(
+                                                    "option",
+                                                    {
+                                                      key: group.id,
+                                                      domProps: {
+                                                        value: group.id
+                                                      }
+                                                    },
+                                                    [_vm._v(_vm._s(group.name))]
+                                                  )
+                                                }),
+                                                0
+                                              )
+                                            ]
                                           )
                                         ]
                                       )
@@ -17986,6 +18080,78 @@ var render = function() {
                                                   }
                                                 }
                                               })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Select Group")
+                                              ]),
+                                              _c("br"),
+                                              _vm._v(" "),
+                                              _c(
+                                                "select",
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value:
+                                                        _vm.formdata.group_id,
+                                                      expression:
+                                                        "formdata.group_id"
+                                                    }
+                                                  ],
+                                                  staticClass:
+                                                    "form-control form-control-user",
+                                                  on: {
+                                                    change: function($event) {
+                                                      var $$selectedVal = Array.prototype.filter
+                                                        .call(
+                                                          $event.target.options,
+                                                          function(o) {
+                                                            return o.selected
+                                                          }
+                                                        )
+                                                        .map(function(o) {
+                                                          var val =
+                                                            "_value" in o
+                                                              ? o._value
+                                                              : o.value
+                                                          return val
+                                                        })
+                                                      _vm.$set(
+                                                        _vm.formdata,
+                                                        "group_id",
+                                                        $event.target.multiple
+                                                          ? $$selectedVal
+                                                          : $$selectedVal[0]
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                _vm._l(_vm.groups, function(
+                                                  group
+                                                ) {
+                                                  return _c(
+                                                    "option",
+                                                    {
+                                                      key: group.id,
+                                                      domProps: {
+                                                        value: group.id
+                                                      }
+                                                    },
+                                                    [_vm._v(_vm._s(group.name))]
+                                                  )
+                                                }),
+                                                0
+                                              )
                                             ]
                                           )
                                         ]

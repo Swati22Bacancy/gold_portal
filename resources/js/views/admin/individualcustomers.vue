@@ -23,7 +23,7 @@
                                 <tr v-for="customer in products" :key="customer.id">
                                     <td><input type="checkbox" class="custom-check-input"></td>
                                     <td style="color:#3376C2">{{customer.first_name}} {{customer.last_name}}</td>
-                                    <td>--</td>
+                                    <td>{{customer.name}}</td>
                                     <td>{{customer.customer_type}}</td>
                                     <td>--</td>
                                     <td>--</td>

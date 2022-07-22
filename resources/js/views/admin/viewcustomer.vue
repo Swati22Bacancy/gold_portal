@@ -177,6 +177,12 @@
                                   v-model="formdata.credit_limit"
                                 />
                               </div>
+                              <div class="form-group customer-input">
+                                <label>Select Group</label><br>
+                                <select class="form-control form-control-user" v-model="formdata.group_id">
+                                  <option v-for="group in groups" :key="group.id" :value="group.id">{{group.name}}</option>
+                                </select>
+                              </div>
                             </div>
                           </div>
                           <div class="row" v-if="customerType=='individual'">
@@ -260,6 +266,12 @@
                                   v-model="formdata.whatsapp"
                                 />
                               </div>
+                              <div class="form-group customer-input">
+                                <label>Select Group</label><br>
+                                <select class="form-control form-control-user" v-model="formdata.group_id">
+                                  <option v-for="group in groups" :key="group.id" :value="group.id">{{group.name}}</option>
+                                </select>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -318,6 +330,7 @@ export default {
       formdata: {},
       customerType: 'business',
       theme: 'cust-type',
+      groups:{}
     };
   },
   created() {
@@ -377,6 +390,7 @@ export default {
           credit_limit: this.formdata.credit_limit,
           company_code: this.formdata.company_code,
           customertype: this.formdata.customertype,
+          group_id: this.formdata.group_id,
         });
           let message =
             "Customer has been successfully updated.";
@@ -396,9 +410,14 @@ export default {
         console.log(error);
       }
     },
+    getGroups() {
+        return axios.get("grouplist").then(response => {
+            this.groups = response.data;
+        });
+    },
   },
   mounted(){
-    
+    this.getGroups();
     axios.get('/customerdetails/'+this.$route.params.id)
         .then((response) => {
             

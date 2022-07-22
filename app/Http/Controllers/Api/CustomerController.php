@@ -23,7 +23,8 @@ class CustomerController extends Controller
                 'title' => $request->input('title'),
                 'credit_limit' => $request->input('credit_limit'),
                 'company_code' => $request->input('company_code'),
-                'customer_type' => $request->input('customertype')
+                'customer_type' => $request->input('customertype'),
+                'group_id' => $request->input('group_id'),
             ]);
 
             return response()->json($customer);
@@ -38,11 +39,11 @@ class CustomerController extends Controller
     {
         if($type !='all')
         {
-            $customers = Customer::select('*')->where('customer_type',$type)->orderBy('id', 'DESC')->get();
+            $customers = Customer::leftjoin('groups', 'groups.id', '=', 'customers.group_id')->select('customers.*','groups.name')->where('customer_type',$type)->orderBy('customers.id', 'DESC')->get();
         }
         else
         {
-            $customers = Customer::select('*')->orderBy('id', 'DESC')->get();
+            $customers = Customer::leftjoin('groups', 'groups.id', '=', 'customers.group_id')->select('customers.*','groups.name')->orderBy('customers.id', 'DESC')->get();
         }
         return response()->json($customers);
     }
@@ -86,7 +87,8 @@ class CustomerController extends Controller
                 'title' => $request->input('title'),
                 'credit_limit' => $request->input('credit_limit'),
                 'company_code' => $request->input('company_code'),
-                'customer_type' => $request->input('customertype')
+                'customer_type' => $request->input('customertype'),
+                'group_id' => $request->input('group_id')
             ]);
 
             return response()->json($customer);

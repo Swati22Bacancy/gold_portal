@@ -74,7 +74,7 @@
                     v-model="formdata.vat"
                   />
                 </div>
-                <h6>Company Details</h6>
+                <h6>Contact Details</h6>
                 <div class="form-group customer-input">
                   <label>Email</label>
                   <input
@@ -155,6 +155,12 @@
                     placeholder=""
                     v-model="formdata.credit_limit"
                   />
+                </div>
+                <div class="form-group customer-input">
+                  <label>Select Group</label><br>
+                  <select class="form-control form-control-user" v-model="formdata.group_id">
+                    <option v-for="group in groups" :key="group.id" :value="group.id">{{group.name}}</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -239,6 +245,12 @@
                     v-model="formdata.whatsapp"
                   />
                 </div>
+                <div class="form-group customer-input">
+                  <label>Select Group</label><br>
+                  <select class="form-control form-control-user" v-model="formdata.group_id">
+                    <option v-for="group in groups" :key="group.id" :value="group.id">{{group.name}}</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
@@ -258,6 +270,7 @@ export default {
       customerType: 'business',
       theme: 'cust-type',
       formdata: {},
+      groups:{}
     };
   },
   methods:
@@ -283,6 +296,7 @@ export default {
           credit_limit: this.formdata.credit_limit,
           company_code: this.formdata.company_code,
           customertype: this.formdata.customertype,
+          group_id: this.formdata.group_id,
         });
         let message =
             "Customer has been successfully added.";
@@ -302,6 +316,15 @@ export default {
         console.log(error);
       }
     },
+    getGroups() {
+        return axios.get("grouplist").then(response => {
+            this.groups = response.data;
+        });
+    },
+  },
+  mounted()
+  {
+    this.getGroups();
   }
 };
 </script>

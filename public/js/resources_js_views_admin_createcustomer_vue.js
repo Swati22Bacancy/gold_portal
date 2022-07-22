@@ -270,6 +270,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CreateCustomer",
@@ -278,7 +290,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       rules: _rules_customerRules__WEBPACK_IMPORTED_MODULE_1__.customerRules,
       customerType: 'business',
       theme: 'cust-type',
-      formdata: {}
+      formdata: {},
+      groups: {}
     };
   },
   methods: {
@@ -310,7 +323,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   title: _this.formdata.title,
                   credit_limit: _this.formdata.credit_limit,
                   company_code: _this.formdata.company_code,
-                  customertype: _this.formdata.customertype
+                  customertype: _this.formdata.customertype,
+                  group_id: _this.formdata.group_id
                 });
 
               case 4:
@@ -345,7 +359,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee, null, [[0, 10]]);
       }))();
+    },
+    getGroups: function getGroups() {
+      var _this2 = this;
+
+      return axios.get("grouplist").then(function (response) {
+        _this2.groups = response.data;
+      });
     }
+  },
+  mounted: function mounted() {
+    this.getGroups();
   }
 });
 
@@ -1135,7 +1159,7 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("h6", [_vm._v("Company Details")]),
+                    _c("h6", [_vm._v("Contact Details")]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group customer-input" }, [
                       _c("label", [_vm._v("Email")]),
@@ -1378,6 +1402,53 @@ var render = function() {
                           }
                         }
                       })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group customer-input" }, [
+                      _c("label", [_vm._v("Select Group")]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formdata.group_id,
+                              expression: "formdata.group_id"
+                            }
+                          ],
+                          staticClass: "form-control form-control-user",
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.formdata,
+                                "group_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        _vm._l(_vm.groups, function(group) {
+                          return _c(
+                            "option",
+                            { key: group.id, domProps: { value: group.id } },
+                            [_vm._v(_vm._s(group.name))]
+                          )
+                        }),
+                        0
+                      )
                     ])
                   ])
                 ])
@@ -1623,6 +1694,53 @@ var render = function() {
                           }
                         }
                       })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group customer-input" }, [
+                      _c("label", [_vm._v("Select Group")]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formdata.group_id,
+                              expression: "formdata.group_id"
+                            }
+                          ],
+                          staticClass: "form-control form-control-user",
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.formdata,
+                                "group_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        _vm._l(_vm.groups, function(group) {
+                          return _c(
+                            "option",
+                            { key: group.id, domProps: { value: group.id } },
+                            [_vm._v(_vm._s(group.name))]
+                          )
+                        }),
+                        0
+                      )
                     ])
                   ])
                 ])

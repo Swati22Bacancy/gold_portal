@@ -24,6 +24,7 @@ class Customer extends Authenticatable
         'credit_limit',
         'company_code',
         'customer_type',
-        'company_name'
+        'company_name',
+        'group_id'
     ];
 }
