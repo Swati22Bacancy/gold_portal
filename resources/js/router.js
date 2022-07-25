@@ -188,6 +188,60 @@ let router = new Router({
             }
         },
         {
+            path: "/product-types",
+            name: "producttypes",
+            component: () => import("./views/admin/producttypes.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/create-product-type",
+            name: "createproducttype",
+            component: () => import("./views/admin/createproducttype.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/edit-product-type/:id",
+            name: "editproducttype",
+            component: () => import("./views/admin/editproducttype.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/products",
+            name: "products",
+            component: () => import("./views/admin/products.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/create-product",
+            name: "createproduct",
+            component: () => import("./views/admin/createproduct.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/edit-product/:id",
+            name: "editproduct",
+            component: () => import("./views/admin/editproduct.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/admin/components/buttons",
             name: "buttons",
             component: () => import("./views/admin/buttons.vue"),

@@ -24,6 +24,8 @@ Route::get('email/verify/{id}', [Api\VerifyController::class, 'verify'])->name('
     
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('user', [Api\AuthController::class, 'user']);
+
+    // Customer Routes
     Route::post('create_customer', [Api\CustomerController::class, 'createcustomer']);
     Route::get('customerlist', [Api\CustomerController::class, 'customerlist']);
     Route::get('customerlist/{type}', [Api\CustomerController::class, 'customerlist']);
@@ -31,9 +33,24 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('customerdetails/{id}', [Api\CustomerController::class, 'customerdetails']);
     Route::post('update_customer', [Api\CustomerController::class, 'updatecustomer']);
 
+    // Group Routes
     Route::post('create_group', [Api\GroupController::class, 'creategroup']);
     Route::get('grouplist', [Api\GroupController::class, 'grouplist']);
     Route::get('deletegroup/{id}', [Api\GroupController::class, 'deletegroup']);
     Route::get('groupdetails/{id}', [Api\GroupController::class, 'groupdetails']);
     Route::post('update_group', [Api\GroupController::class, 'updategroup']);
+
+    // Product Type Routes
+    Route::post('create_producttype', [Api\ProductTypeController::class, 'createproducttype']);
+    Route::get('producttypelist', [Api\ProductTypeController::class, 'producttypelist']);
+    Route::get('deleteproducttype/{id}', [Api\ProductTypeController::class, 'deleteproducttype']);
+    Route::get('producttypedetails/{id}', [Api\ProductTypeController::class, 'producttypedetails']);
+    Route::post('update_producttype', [Api\ProductTypeController::class, 'updateproducttype']);
+
+    // Product Routes
+    Route::post('create_product', [Api\ProductController::class, 'createproduct']);
+    Route::get('productlist', [Api\ProductController::class, 'productlist']);
+    Route::get('deleteproduct/{id}', [Api\ProductController::class, 'deleteproduct']);
+    Route::get('productdetails/{id}', [Api\ProductController::class, 'productdetails']);
+    Route::post('update_product', [Api\ProductController::class, 'updateproduct']);
 });

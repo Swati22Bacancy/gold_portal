@@ -5,41 +5,49 @@
       <div class="col-md-6">
         <div class="row">
           <div class="col-md-8 mobile-mb">
-            <h1 class="h3 mb-0 text-gray-800">Groups</h1>
+            <h1 class="h3 mb-0 text-gray-800">Products</h1>
           </div>
           
         </div>
         
       </div>
       <div class="col-md-6" style="text-align:right">
-        <router-link to="/creategroup"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Group</button></router-link>
+        <router-link to="/create-product"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Create New Product</button></router-link>
       </div>
       
       
     </div>
-
     <div class="contentgrp">
-          <div class="col-md-6">
-            <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search by Group" style="background-color:#FFFFFF !important;"/>
+
+        <div class="col-md-6">
+            <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search by Product Type" style="background-color:#FFFFFF !important;"/>
              
           </div>
             <div class="pb-2 mb-4">
                 <div class="">
                     <div class="table-responsive">
-                        <table class="table" id="group-datatable" width="100%" cellspacing="0">
+                        <table class="table" id="product-datatable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" class="custom-check-input"></th>
-                                    <th>Group Name</th>
+                                    <th>Product Type</th>
+                                    <th>Product Name</th>
+                                    <th>Weight (gm)</th>
+                                    <th>Tax Rate (%)</th>
+                                    <th>Output Tax</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="group in groups" :key="group.id">
+                                <tr v-for="product in products" :key="product.id">
                                     <td><input type="checkbox" class="custom-check-input"></td>
-                                    <td>{{group.name}}</td>
-                                    <td><router-link :to="{name : 'editgroup', params: {id : group.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">edit</span></router-link>
-                                    <span class="material-symbols-outlined" style="margin-right: 5px;color: red;    cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(group.id)">delete</span>
+                                    <td>{{product.type}}</td>
+                                    <td>{{product.name}}</td>
+                                    <td>{{product.weight}}</td>
+                                    <td>{{product.rate}}</td>
+                                    <td>{{(product.output_tax)?'Yes':'No'}}</td>
+                                    <td><router-link :to="{name : 'editproduct', params: {id : product.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">edit</span></router-link>
+                                    <span class="material-symbols-outlined" style="margin-right: 5px;color: red;    cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(product.id)">delete</span>
                                     </td>
                                 </tr>
                                 
@@ -60,11 +68,11 @@
                       </button>
                   </div>
                   <div class="modal-body">
-                      <p style="color:#000;font-size:14px;">Are you sure you want to delete this group?</p>
+                      <p style="color:#000;font-size:14px;">Are you sure you want to delete this product?</p>
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn admin-btn mobile-mb" data-dismiss="modal">Cancel</button>
-                      <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteRecord(groupid)">Delete</button>
+                      <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteRecord(productid)">Delete</button>
                   </div>
               </div>
           </div>
@@ -76,13 +84,13 @@
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 export default {
-  name: "Group",
+  name: "Products",
   components: {
   },
-  props: ['groups'],
+  props: ['products'],
   data() {
     return {
-      groupid:'',
+      productid:'',
     };
   },
   created() {
@@ -92,10 +100,10 @@ export default {
   {
     selectrecord(id)
     {
-      this.groupid=id;
+      this.productid=id;
     },
     deleteRecord(id) {
-      axios.get('/deletegroup/'+id)
+      axios.get('/deleteproduct/'+id)
         .then(resp => {
             this.$router.go();
         })
@@ -109,14 +117,14 @@ export default {
             console.log(error);
         })
     },
-    getGroups() {
-        return axios.get("grouplist").then(response => {
-            this.groups = response.data;
+    getProducttypes() {
+        return axios.get("productlist").then(response => {
+            this.products = response.data;
         });
     },
   },
   mounted(){
-    this.getGroups();
+    this.getProducttypes();
     $.fn.textWidth = function(){
         var html_org = $(this).html();
         var html_calc = '<span>' + html_org + '</span>';
@@ -125,28 +133,28 @@ export default {
         $(this).html(html_org);
         return width;
       };
-      $('#group-datatable').on( 'draw.dt', function (e) {
-        $('#group-datatable thead tr th').each(function(idx, ele) {
+      $('#product-datatable').on( 'draw.dt', function (e) {
+        $('#product-datatable thead tr th').each(function(idx, ele) {
           var xPos = parseInt((($(ele).textWidth()))+12);
           $(ele).css('background-position-x',  xPos + 'px')
         })
       });
-      const unwatch = this.$watch('groups', (groups) => {
-        if (!Array.isArray(groups) || groups.length === 0) {
+      const unwatch = this.$watch('products', (products) => {
+        if (!Array.isArray(products) || products.length === 0) {
             return;
         }
         unwatch();
         this.$nextTick(() => {
-        const table = $('#group-datatable').DataTable({
+        const table = $('#product-datatable').DataTable({
               //"bFilter": false,
               "bLengthChange": false,
               "columnDefs": [
-                { "targets": [0,2], "searchable": false, "orderable": false }
+                { "targets": [0,6], "searchable": false, "orderable": false }
               ]
             });
             $(".searchbox").keyup(function() {
-              table.search(this.value).draw();
-            });
+                  table.search(this.value).draw();
+                });
             this.$once('hook:beforeDestroy', function () {
                 table.destroy();
             });
@@ -161,19 +169,19 @@ export default {
   background-color: #fff;
   border-radius: 0px 5px 5px 5px;
 }
-#group-datatable thead
+#product-datatable thead
 {
   background: #3376C2;
   color: #fff;
   font-size: 13px;
 }
 
-#group-datatable
+#product-datatable
 {
   color: #000;
   font-size: 13px;
 }
-#group-datatable thead tr th 
+#product-datatable thead tr th 
 {
   font-weight: 100 !important;
 }

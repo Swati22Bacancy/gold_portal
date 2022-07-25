@@ -174,8 +174,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Settings",
   components: {},
-  data: function data() {},
-  created: function created() {},
   methods: {
     goto_currencies: function goto_currencies() {
       this.$router.push({
@@ -185,6 +183,16 @@ __webpack_require__.r(__webpack_exports__);
     goto_chartaccounts: function goto_chartaccounts() {
       this.$router.push({
         name: 'chartaccounts'
+      });
+    },
+    goto_producttypes: function goto_producttypes() {
+      this.$router.push({
+        name: 'producttypes'
+      });
+    },
+    goto_products: function goto_products() {
+      this.$router.push({
+        name: 'products'
       });
     }
   }
@@ -745,7 +753,41 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(7)
+    _c("div", { staticClass: "row content-div" }, [
+      _vm._m(7),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-4" }, [
+        _c(
+          "div",
+          {
+            staticClass: "row",
+            staticStyle: { cursor: "pointer" },
+            on: {
+              click: function($event) {
+                return _vm.goto_producttypes()
+              }
+            }
+          },
+          [_vm._m(8), _vm._v(" "), _vm._m(9)]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-4" }, [
+        _c(
+          "div",
+          {
+            staticClass: "row",
+            staticStyle: { cursor: "pointer" },
+            on: {
+              click: function($event) {
+                return _vm.goto_products()
+              }
+            }
+          },
+          [_vm._m(10), _vm._v(" "), _vm._m(11)]
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -1024,82 +1066,84 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row content-div" }, [
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-3" }, [
-            _c(
-              "span",
-              {
-                staticClass: "material-symbols-outlined",
-                staticStyle: { "font-size": "80px", color: "#595959" }
-              },
-              [_vm._v("article")]
-            )
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-3" }, [
+          _c(
+            "span",
+            {
+              staticClass: "material-symbols-outlined",
+              staticStyle: { "font-size": "80px", color: "#595959" }
+            },
+            [_vm._v("article")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-9" }, [
+          _c("h6", { staticClass: "setting-subheading" }, [
+            _vm._v("VAT Settings")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-9" }, [
-            _c("h6", { staticClass: "setting-subheading" }, [
-              _vm._v("VAT Settings")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticStyle: { "font-size": "12px" } }, [
-              _vm._v(
-                "Set various VAT settings, such as  which scheme you are on, online filling options, etc."
-              )
-            ])
+          _c("span", { staticStyle: { "font-size": "12px" } }, [
+            _vm._v(
+              "Set various VAT settings, such as  which scheme you are on, online filling options, etc."
+            )
           ])
         ])
-      ]),
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c(
+        "span",
+        {
+          staticClass: "material-symbols-outlined",
+          staticStyle: { "font-size": "80px", color: "#595959" }
+        },
+        [_vm._v("inbox")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-9" }, [
+      _c("h6", { staticClass: "setting-subheading" }, [_vm._v("Product Type")]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-3" }, [
-            _c(
-              "span",
-              {
-                staticClass: "material-symbols-outlined",
-                staticStyle: { "font-size": "80px", color: "#595959" }
-              },
-              [_vm._v("inbox")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-9" }, [
-            _c("h6", { staticClass: "setting-subheading" }, [
-              _vm._v("Product Type")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticStyle: { "font-size": "12px" } }, [
-              _vm._v("Create & Manage Product Categories here")
-            ])
-          ])
-        ])
-      ]),
+      _c("span", { staticStyle: { "font-size": "12px" } }, [
+        _vm._v("Create & Manage Product Categories here")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c(
+        "span",
+        {
+          staticClass: "material-symbols-outlined",
+          staticStyle: { "font-size": "80px", color: "#595959" }
+        },
+        [_vm._v("inbox")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-9" }, [
+      _c("h6", { staticClass: "setting-subheading" }, [_vm._v("Products")]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-3" }, [
-            _c(
-              "span",
-              {
-                staticClass: "material-symbols-outlined",
-                staticStyle: { "font-size": "80px", color: "#595959" }
-              },
-              [_vm._v("inbox")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-9" }, [
-            _c("h6", { staticClass: "setting-subheading" }, [
-              _vm._v("Products")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticStyle: { "font-size": "12px" } }, [
-              _vm._v("Create & Manage Products here")
-            ])
-          ])
-        ])
+      _c("span", { staticStyle: { "font-size": "12px" } }, [
+        _vm._v("Create & Manage Products here")
       ])
     ])
   }

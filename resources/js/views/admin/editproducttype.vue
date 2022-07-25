@@ -1,47 +1,46 @@
 <template>
   <div>
-    <form class="crt-type" @submit.prevent="create_accounttype">
+    <form class="crt-producttype" @submit.prevent="update_producttype">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800">Add New Account Type</h1>
+      <h1 class="h3 mb-0 text-gray-800">{{formdata.name}}</h1>
       <div>
         <button type="submit" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;">Save</button>
-        <router-link to="/chart-accounts"><button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button></router-link>
+        <router-link to="/product-types"><button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button></router-link>
       </div>
       
     </div>
 
     <div class="row">
-      <div class="col-md-12 createtype-div">
+      <div class="col-md-12 createproducttype-div">
         
             <div class="row mb-4">
               <div class="col-md-6">
-                <div class="form-group customer-input">
-                  <label>Code</label>
+                <div class="form-producttype customer-input">
+                  <label>Product Type Name</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
-                    id="crt-typename"
-                    aria-describedby="emailHelp"
-                    placeholder=""
-                    v-model="formdata.code"
-                  />
-                </div>
-                
-              </div>
-              <div class="col-md-6">
-                <div class="form-group customer-input">
-                  <label>Name</label>
-                  <input
-                    type="text"
-                    class="form-control form-control-user"
-                    id="crt-typename"
+                    id="crt-producttypename"
                     aria-describedby="emailHelp"
                     placeholder=""
                     v-model="formdata.name"
                   />
                 </div>
                 
+              </div>
+              <div class="col-md-6">
+                <div class="form-producttype customer-input">
+                  <label>Tax Rate (in %)</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-user"
+                    id="crt-producttypename"
+                    aria-describedby="emailHelp"
+                    placeholder=""
+                    v-model="formdata.rate"
+                  />
+                </div>
               </div>
             </div>
             
@@ -55,7 +54,7 @@
 <script>
 import { customerRules } from './rules/customerRules'
 export default {
-  name: "CreateAccountType",
+  name: "UpdateProducttype",
   data() {
     return {
       rules : customerRules,
@@ -64,20 +63,21 @@ export default {
   },
   methods:
   {
-    async create_accounttype() {
+    async update_producttype() {
       try {
-        const response = await axios.post("create_accounttype", {
-          code: this.formdata.code,
+        const response = await axios.post("update_producttype", {
+          id: this.$route.params.id,
           name: this.formdata.name,
+          rate: this.formdata.rate,
         });
         let message =
-            "Account type has been successfully added.";
+            "Product Type has been successfully updated.";
           let toast = Vue.toasted.show(message, {
             theme: "toasted-success",
             position: "top-center",
             duration: 5000,
           });
-        this.$router.push("/chart-accounts");
+        this.$router.push("/product-types");
       } catch (error) {
         let message = 'Something went wrong, Please try again';
           let toast = Vue.toasted.show(message, {
@@ -88,23 +88,35 @@ export default {
         console.log(error);
       }
     },
+  },
+  mounted()
+  {
+    axios.get('/producttypedetails/'+this.$route.params.id)
+        .then((response) => {
+            
+            this.formdata = response.data;
+            
+        })
+        .catch(function(error) {
+            //app.$notify(error.response.data.error, "error");
+        });
   }
 };
 </script>
 <style scoped>
 
-.createtype-div
+.createproducttype-div
 {
   background: #fff;
   padding: 34px 23px;
   border-radius: 8px;
   box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);
 }
-.crt-type label
+.crt-producttype label
 {
   font-size: 12px;
 }
-.crt-type
+.crt-producttype
 {
   padding: 0px 2%;
   color: #000;

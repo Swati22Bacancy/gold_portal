@@ -131,7 +131,7 @@
         </div>
       </div>
       <div class="col-md-4">
-        <div class="row">
+        <div class="row" v-on:click="goto_producttypes()" style="cursor:pointer;">
           <div class="col-md-3">
             <span class="material-symbols-outlined" style="font-size:80px;color: #595959;">inbox</span>
           </div>
@@ -142,7 +142,7 @@
         </div>
       </div>
       <div class="col-md-4">
-        <div class="row">
+        <div class="row" v-on:click="goto_products()" style="cursor:pointer;">
           <div class="col-md-3">
             <span class="material-symbols-outlined" style="font-size:80px;color: #595959;">inbox</span>
           </div>
@@ -164,12 +164,6 @@ export default {
   name: "Settings",
   components: {
   },
-  data() {
-   
-  },
-  created() {
-      
-  },
   methods:
   {
     goto_currencies()
@@ -179,6 +173,14 @@ export default {
     goto_chartaccounts()
     {
       this.$router.push({ name: 'chartaccounts' });
+    },
+    goto_producttypes()
+    {
+      this.$router.push({ name: 'producttypes' });
+    },
+    goto_products()
+    {
+      this.$router.push({ name: 'products' });
     }
   }
 };
