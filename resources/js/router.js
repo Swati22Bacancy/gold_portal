@@ -143,6 +143,51 @@ let router = new Router({
             }
         },
         {
+            path: "/settings",
+            name: "settings",
+            component: () => import("./views/admin/settings.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/currencies",
+            name: "currencies",
+            component: () => import("./views/admin/currencies.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/createcurrency",
+            name: "createcurrency",
+            component: () => import("./views/admin/createcurrency.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/chart-accounts",
+            name: "chartaccounts",
+            component: () => import("./views/admin/chartaccounts.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/create-account-type",
+            name: "createaccounttype",
+            component: () => import("./views/admin/createaccounttype.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/admin/components/buttons",
             name: "buttons",
             component: () => import("./views/admin/buttons.vue"),

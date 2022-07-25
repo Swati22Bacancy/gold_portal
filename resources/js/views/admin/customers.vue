@@ -24,10 +24,10 @@
       <customer-tabs :tabList="tabList">
         <template v-slot:tabPanel-1> 
           <div class="col-md-12">
-            <input type="text" class="form-control bg-light border-0 small table-search" placeholder="Search Contacts" style="background-color:#FFFFFF !important;"/>
+            <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search Customers" style="background-color:#FFFFFF !important;"/>
             <select class="tab-selector">
               <option value="Option 1" selected>Group</option>
-              <option value="Option 1" >Option 1</option>
+              <!-- <option v-for="group in groups" :key="group.id" :value="group.id">{{group.name}}</option> -->
             </select>
             <select class="tab-selector">
               <option value="Option 1" selected>Type</option>
@@ -43,7 +43,7 @@
         </template>
         <template v-slot:tabPanel-2> 
           <div class="col-md-12">
-            <input type="text" class="form-control bg-light border-0 small table-search" placeholder="Search Contacts" style="background-color:#FFFFFF !important;"/>
+            <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search Contacts" style="background-color:#FFFFFF !important;"/>
             <select class="tab-selector">
               <option value="Option 1" selected>Group</option>
               <option value="Option 1" >Option</option>
@@ -62,7 +62,7 @@
         </template>
         <template v-slot:tabPanel-3> 
           <div class="col-md-12">
-            <input type="text" class="form-control bg-light border-0 small table-search" placeholder="Search Contacts" style="background-color:#FFFFFF !important;"/>
+            <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search Customers" style="background-color:#FFFFFF !important;"/>
             <select class="tab-selector">
               <option value="Option 1" selected>Group</option>
               <option value="Option 1" >Option</option>
@@ -105,6 +105,7 @@ export default {
       tabList: ["All", "Business", "Individual"],
       customers : {},
       customerid:'',
+      groups:{}
     };
   },
   created() {
@@ -112,10 +113,14 @@ export default {
   },
   methods:
   {
-    
+    getGroups() {
+        return axios.get("grouplist").then(response => {
+            this.groups = response.data;
+        });
+    },
   },
   mounted(){
-    
+    this.getGroups();
   }
 };
 </script>

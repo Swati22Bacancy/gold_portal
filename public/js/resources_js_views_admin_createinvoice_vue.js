@@ -290,6 +290,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Dashboard",
   data: function data() {
@@ -297,6 +299,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       customerType: 'business',
       theme: 'cust-type',
       formdata: {},
+      customers: {},
       rows: [],
       invoice_items: [{
         invoice_type: '',
@@ -368,7 +371,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee, null, [[0, 7]]);
       }))();
+    },
+    getCustomers: function getCustomers() {
+      var _this2 = this;
+
+      return axios.get("customerlist/all").then(function (response) {
+        _this2.customers = response.data;
+      });
     }
+  },
+  mounted: function mounted() {
+    this.getCustomers();
   }
 });
 
@@ -908,36 +921,60 @@ var render = function() {
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", [_vm._v("Customer")]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
+                  _c("div", { staticClass: "input-group mb-3" }, [
+                    _c(
+                      "select",
                       {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.formdata.companycode,
-                        expression: "formdata.companycode"
-                      }
-                    ],
-                    staticClass: "form-control form-control-user",
-                    attrs: {
-                      type: "text",
-                      id: "crt-invoice",
-                      "aria-describedby": "emailHelp",
-                      placeholder: ""
-                    },
-                    domProps: { value: _vm.formdata.companycode },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.customer_id,
+                            expression: "formdata.customer_id"
+                          }
+                        ],
+                        staticClass: "form-control form-control-user",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.formdata,
+                              "customer_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
                         }
-                        _vm.$set(
-                          _vm.formdata,
-                          "companycode",
-                          $event.target.value
+                      },
+                      _vm._l(_vm.customers, function(customer) {
+                        return _c(
+                          "option",
+                          {
+                            key: customer.id,
+                            domProps: { value: customer.id }
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(customer.first_name) +
+                                " " +
+                                _vm._s(customer.last_name)
+                            )
+                          ]
                         )
-                      }
-                    }
-                  })
+                      }),
+                      0
+                    ),
+                    _vm._v(" "),
+                    _vm._m(1)
+                  ])
                 ])
               ]),
               _vm._v(" "),
@@ -1128,13 +1165,13 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
-              _vm._m(2)
+              _vm._m(3)
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row mb-4" }, [
-              _vm._m(3),
+              _vm._m(4),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }, [
                 _c("div", { staticClass: "form-group" }, [
@@ -1198,7 +1235,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(4),
+                      _vm._m(5),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -1496,20 +1533,20 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _vm._m(5)
+                  _vm._m(6)
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-2" }),
                 _vm._v(" "),
-                _vm._m(6),
+                _vm._m(7),
                 _vm._v(" "),
-                _vm._m(7)
+                _vm._m(8)
               ])
             ]
           )
         ]),
         _vm._v(" "),
-        _vm._m(8)
+        _vm._m(9)
       ]
     )
   ])
@@ -1551,6 +1588,16 @@ var staticRenderFns = [
         ])
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "select-group-append" }, [
+      _c("div", { staticClass: "input-icons" }, [
+        _c("span", { staticClass: "fas fa-plus" })
+      ])
+    ])
   },
   function() {
     var _vm = this

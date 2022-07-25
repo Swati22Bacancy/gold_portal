@@ -173,24 +173,32 @@ export default {
 
                 // initialize DataTable on rendered table
                 const table = $('#acustomer-datatable').DataTable({
-                  "bFilter": false,
+                  //"bFilter": false,
                   "bLengthChange": false,
+                  // pageLength: 5,
+                  // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
                   "columnDefs": [
                     { "targets": [0,8], "searchable": false, "orderable": false }
                   ]
                 });
-
+                $(".searchbox").keyup(function() {
+                  table.search(this.value).draw();
+                }); 
                 // register hook so when this component is
                 // unmounted/removed, DataTable is removed properly
                 this.$once('hook:beforeDestroy', function () {
                     table.destroy();
                 });
+                
             }, {immediate: true});
         });
+
+        
   }
 };
 </script>
 <style scoped>
+
 .table-search
 {
   width: 65%;

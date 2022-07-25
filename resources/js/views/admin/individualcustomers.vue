@@ -173,18 +173,21 @@ export default {
 
                 // initialize DataTable on rendered table
                 const table = $('#icustomer-datatable').DataTable({
-                  "bFilter": false,
+                  //"bFilter": false,
                   "bLengthChange": false,
                   "columnDefs": [
                     { "targets": [0,8], "searchable": false, "orderable": false }
                   ]
                 });
-
+                $(".searchbox").keyup(function() {
+                  table.search(this.value).draw();
+                }); 
                 // register hook so when this component is
                 // unmounted/removed, DataTable is removed properly
                 this.$once('hook:beforeDestroy', function () {
                     table.destroy();
                 });
+                
             }, {immediate: true});
         });
   }

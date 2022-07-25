@@ -80,7 +80,7 @@
         >
       </li>
       <li class="nav-item">
-        <router-link class="nav-link" to="/admin">
+        <router-link class="nav-link" to="/settings">
           <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">settings</span>
           <span>Settings</span></router-link
         >

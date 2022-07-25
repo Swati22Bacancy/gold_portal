@@ -5,14 +5,14 @@
       <div class="col-md-6">
         <div class="row">
           <div class="col-md-8 mobile-mb">
-            <h1 class="h3 mb-0 text-gray-800">Groups</h1>
+            <h1 class="h3 mb-0 text-gray-800">Currencies</h1>
           </div>
           
         </div>
         
       </div>
       <div class="col-md-6" style="text-align:right">
-        <router-link to="/creategroup"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Group</button></router-link>
+        <router-link to="/createcurrency"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Currency</button></router-link>
       </div>
       
       

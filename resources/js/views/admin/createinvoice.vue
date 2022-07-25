@@ -18,14 +18,16 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label>Customer</label>
-                <input
-                  type="text"
-                  class="form-control form-control-user"
-                  id="crt-invoice"
-                  aria-describedby="emailHelp"
-                  placeholder=""
-                  v-model="formdata.companycode"
-                />
+                <div class="input-group mb-3">
+                  <select class="form-control form-control-user" v-model="formdata.customer_id">
+                    <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{customer.first_name}} {{customer.last_name}}</option>
+                  </select>
+                  <div class="select-group-append">
+                      <div class="input-icons">
+                      <span class="fas fa-plus"></span>
+                      </div>
+                  </div>
+                </div>
               </div>
               
             </div>
@@ -278,6 +280,7 @@ export default {
       customerType: 'business',
       theme: 'cust-type',
       formdata: {},
+      customers: {},
       rows: [],
       invoice_items: [{
           invoice_type: '',
@@ -331,6 +334,15 @@ export default {
         console.log(error);
       }
     },
+    getCustomers() {
+        return axios.get("customerlist/all").then(response => {
+            this.customers = response.data;
+        });
+    },
+  },
+  mounted()
+  {
+    this.getCustomers();
   }
 };
 </script>

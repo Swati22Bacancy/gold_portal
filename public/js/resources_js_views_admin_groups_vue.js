@@ -16360,7 +16360,7 @@ var render = function() {
                                     color: "#3376C2"
                                   }
                                 },
-                                [_vm._v("visibility")]
+                                [_vm._v("edit")]
                               )
                             ]
                           ),
