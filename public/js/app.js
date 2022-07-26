@@ -2742,10 +2742,20 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__.default({
       layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__.default
     }
   }, {
-    path: "/createcurrency",
+    path: "/create-currency",
     name: "createcurrency",
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_views_admin_createcurrency_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/createcurrency.vue */ "./resources/js/views/admin/createcurrency.vue"));
+    },
+    meta: {
+      requiresAuth: true,
+      layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__.default
+    }
+  }, {
+    path: "/edit-currency/:id",
+    name: "editcurrency",
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_editcurrency_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/editcurrency.vue */ "./resources/js/views/admin/editcurrency.vue"));
     },
     meta: {
       requiresAuth: true,
@@ -94921,7 +94931,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_home_index_vue":1,"resources_js_views_login_index_vue":1,"resources_js_views_register_index_vue":1,"resources_js_views_verify_index_vue":1,"resources_js_views_forgot_index_vue":1,"resources_js_views_reset_index_vue":1,"resources_js_views_admin_dashboard_vue":1,"resources_js_views_admin_sales_vue":1,"resources_js_views_admin_createinvoice_vue":1,"resources_js_views_admin_quotes_vue":1,"resources_js_views_admin_customers_vue":1,"resources_js_views_admin_createcustomer_vue":1,"resources_js_views_admin_viewcustomer_vue":1,"resources_js_views_admin_groups_vue":1,"resources_js_views_admin_creategroup_vue":1,"resources_js_views_admin_editgroup_vue":1,"resources_js_views_admin_viewsales_vue":1,"resources_js_views_admin_settings_vue":1,"resources_js_views_admin_currencies_vue":1,"resources_js_views_admin_createcurrency_vue":1,"resources_js_views_admin_chartaccounts_vue":1,"resources_js_views_admin_createaccounttype_vue":1,"resources_js_views_admin_producttypes_vue":1,"resources_js_views_admin_createproducttype_vue":1,"resources_js_views_admin_editproducttype_vue":1,"resources_js_views_admin_products_vue":1,"resources_js_views_admin_createproduct_vue":1,"resources_js_views_admin_editproduct_vue":1,"resources_js_views_admin_buttons_vue":1,"resources_js_views_admin_cards_vue":1,"resources_js_views_admin_colors_vue":1,"resources_js_views_admin_borders_vue":1,"resources_js_views_admin_animations_vue":1,"resources_js_views_admin_other_vue":1,"resources_js_views_admin_page-not-found_vue":1,"resources_js_views_admin_blank_vue":1,"resources_js_views_admin_charts_vue":1,"resources_js_views_admin_tables_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_home_index_vue":1,"resources_js_views_login_index_vue":1,"resources_js_views_register_index_vue":1,"resources_js_views_verify_index_vue":1,"resources_js_views_forgot_index_vue":1,"resources_js_views_reset_index_vue":1,"resources_js_views_admin_dashboard_vue":1,"resources_js_views_admin_sales_vue":1,"resources_js_views_admin_createinvoice_vue":1,"resources_js_views_admin_quotes_vue":1,"resources_js_views_admin_customers_vue":1,"resources_js_views_admin_createcustomer_vue":1,"resources_js_views_admin_viewcustomer_vue":1,"resources_js_views_admin_groups_vue":1,"resources_js_views_admin_creategroup_vue":1,"resources_js_views_admin_editgroup_vue":1,"resources_js_views_admin_viewsales_vue":1,"resources_js_views_admin_settings_vue":1,"resources_js_views_admin_currencies_vue":1,"resources_js_views_admin_createcurrency_vue":1,"resources_js_views_admin_editcurrency_vue":1,"resources_js_views_admin_chartaccounts_vue":1,"resources_js_views_admin_createaccounttype_vue":1,"resources_js_views_admin_producttypes_vue":1,"resources_js_views_admin_createproducttype_vue":1,"resources_js_views_admin_editproducttype_vue":1,"resources_js_views_admin_products_vue":1,"resources_js_views_admin_createproduct_vue":1,"resources_js_views_admin_editproduct_vue":1,"resources_js_views_admin_buttons_vue":1,"resources_js_views_admin_cards_vue":1,"resources_js_views_admin_colors_vue":1,"resources_js_views_admin_borders_vue":1,"resources_js_views_admin_animations_vue":1,"resources_js_views_admin_other_vue":1,"resources_js_views_admin_page-not-found_vue":1,"resources_js_views_admin_blank_vue":1,"resources_js_views_admin_charts_vue":1,"resources_js_views_admin_tables_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

@@ -161,9 +161,18 @@ let router = new Router({
             }
         },
         {
-            path: "/createcurrency",
+            path: "/create-currency",
             name: "createcurrency",
             component: () => import("./views/admin/createcurrency.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/edit-currency/:id",
+            name: "editcurrency",
+            component: () => import("./views/admin/editcurrency.vue"),
             meta: {
                 requiresAuth: true,
                 layout: AdminLayout

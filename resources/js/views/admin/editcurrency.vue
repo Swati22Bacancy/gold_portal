@@ -1,9 +1,9 @@
 <template>
   <div>
-    <form class="crt-group" @submit.prevent="create_currency">
+    <form class="crt-currency" @submit.prevent="update_currency">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800">Create New Currency</h1>
+      <h1 class="h3 mb-0 text-gray-800">{{formdata.name}}</h1>
       <div>
         <button type="submit" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;">Save</button>
         <router-link to="/currencies"><button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button></router-link>
@@ -81,6 +81,7 @@
                 </div>
               </div>
             </div>
+            
           </div>
         </div>
     </form>
@@ -91,7 +92,7 @@
 <script>
 import { customerRules } from './rules/customerRules'
 export default {
-  name: "CreateCurrency",
+  name: "UpdateCurrency",
   data() {
     return {
       rules : customerRules,
@@ -100,9 +101,10 @@ export default {
   },
   methods:
   {
-    async create_currency() {
+    async update_currency() {
       try {
-        const response = await axios.post("create_currency", {
+        const response = await axios.post("update_currency", {
+          id: this.$route.params.id,
           name: this.formdata.name,
           symbol: this.formdata.symbol,
           exchange_rate: this.formdata.exchange_rate,
@@ -110,7 +112,7 @@ export default {
           update_rates: this.formdata.update_rates,
         });
         let message =
-            "Currency has been successfully added.";
+            "Currency has been successfully updated.";
           let toast = Vue.toasted.show(message, {
             theme: "toasted-success",
             position: "top-center",
@@ -127,6 +129,18 @@ export default {
         console.log(error);
       }
     },
+  },
+  mounted()
+  {
+    axios.get('/currencydetails/'+this.$route.params.id)
+        .then((response) => {
+            
+            this.formdata = response.data;
+            
+        })
+        .catch(function(error) {
+            //app.$notify(error.response.data.error, "error");
+        });
   }
 };
 </script>
@@ -139,11 +153,11 @@ export default {
   border-radius: 8px;
   box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);
 }
-.crt-group label
+.crt-currency label
 {
   font-size: 12px;
 }
-.crt-group
+.crt-currency
 {
   padding: 0px 2%;
   color: #000;

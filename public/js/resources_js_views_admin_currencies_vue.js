@@ -85,26 +85,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Group",
+  name: "Currency",
   components: {},
-  props: ['groups'],
+  props: ['currencies'],
   data: function data() {
     return {
-      groupid: ''
+      currencyid: ''
     };
   },
   created: function created() {},
   methods: {
     selectrecord: function selectrecord(id) {
-      this.groupid = id;
+      this.currencyid = id;
     },
     deleteRecord: function deleteRecord(id) {
       var _this = this;
 
-      axios.get('/deletegroup/' + id).then(function (resp) {
+      axios.get('/deletecurrency/' + id).then(function (resp) {
         _this.$router.go();
       })["catch"](function (error) {
         var message = 'Something went wrong, Please try again';
@@ -116,18 +122,18 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    getGroups: function getGroups() {
+    getCurrencies: function getCurrencies() {
       var _this2 = this;
 
-      return axios.get("grouplist").then(function (response) {
-        _this2.groups = response.data;
+      return axios.get("currencylist").then(function (response) {
+        _this2.currencies = response.data;
       });
     }
   },
   mounted: function mounted() {
     var _this3 = this;
 
-    this.getGroups();
+    this.getCurrencies();
 
     $.fn.textWidth = function () {
       var html_org = $(this).html();
@@ -138,28 +144,31 @@ __webpack_require__.r(__webpack_exports__);
       return width;
     };
 
-    $('#group-datatable').on('draw.dt', function (e) {
-      $('#group-datatable thead tr th').each(function (idx, ele) {
+    $('#currency-datatable').on('draw.dt', function (e) {
+      $('#currency-datatable thead tr th').each(function (idx, ele) {
         var xPos = parseInt($(ele).textWidth() + 12);
         $(ele).css('background-position-x', xPos + 'px');
       });
     });
-    var unwatch = this.$watch('groups', function (groups) {
-      if (!Array.isArray(groups) || groups.length === 0) {
+    var unwatch = this.$watch('currencies', function (currencys) {
+      if (!Array.isArray(currencys) || currencys.length === 0) {
         return;
       }
 
       unwatch();
 
       _this3.$nextTick(function () {
-        var table = $('#group-datatable').DataTable({
-          "bFilter": false,
+        var table = $('#currency-datatable').DataTable({
+          //"bFilter": false,
           "bLengthChange": false,
           "columnDefs": [{
-            "targets": [0, 2],
+            "targets": [0, 1, 3, 4],
             "searchable": false,
             "orderable": false
           }]
+        });
+        $(".searchbox").keyup(function () {
+          table.search(this.value).draw();
         });
 
         _this3.$once('hook:beforeDestroy', function () {
@@ -233,7 +242,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.contentgrp[data-v-2d07bea4]\r\n{\r\n  background-color: #fff;\r\n  border-radius: 0px 5px 5px 5px;\n}\n#group-datatable thead[data-v-2d07bea4]\r\n{\r\n  background: #3376C2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#group-datatable[data-v-2d07bea4]\r\n{\r\n  color: #000;\r\n  font-size: 13px;\n}\n#group-datatable thead tr th[data-v-2d07bea4] \r\n{\r\n  font-weight: 100 !important;\n}\ntable.dataTable thead th[data-v-2d07bea4]\r\n{\r\n  padding: 10px 10px !important;\n}\ntable.dataTable.no-footer[data-v-2d07bea4]\r\n{\r\n  border-bottom: 1px solid #e3e6f0;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.contentgrp[data-v-2d07bea4]\r\n{\r\n  background-color: #fff;\r\n  border-radius: 0px 5px 5px 5px;\n}\n#currency-datatable thead[data-v-2d07bea4]\r\n{\r\n  background: #3376C2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#currency-datatable[data-v-2d07bea4]\r\n{\r\n  color: #000;\r\n  font-size: 13px;\n}\n#currency-datatable thead tr th[data-v-2d07bea4] \r\n{\r\n  font-weight: 100 !important;\n}\ntable.dataTable thead th[data-v-2d07bea4]\r\n{\r\n  padding: 10px 10px !important;\n}\ntable.dataTable.no-footer[data-v-2d07bea4]\r\n{\r\n  border-bottom: 1px solid #e3e6f0;\n}\n.table-search[data-v-2d07bea4]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  display: inline-block;\r\n  height: 40px;\r\n  margin: 8px 0px;\n}\n.table-search[data-v-2d07bea4]::-moz-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-2d07bea4]:-ms-input-placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\n.table-search[data-v-2d07bea4]::placeholder {\r\n  color: #3377c2;\r\n  opacity: 0.4;\r\n  font-size: 11px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -16289,7 +16298,7 @@ var render = function() {
           "div",
           { staticClass: "col-md-6", staticStyle: { "text-align": "right" } },
           [
-            _c("router-link", { attrs: { to: "/createcurrency" } }, [
+            _c("router-link", { attrs: { to: "/create-currency" } }, [
               _c(
                 "button",
                 {
@@ -16313,6 +16322,8 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "contentgrp" }, [
+      _vm._m(1),
+      _vm._v(" "),
       _c("div", { staticClass: "pb-2 mb-4" }, [
         _c("div", {}, [
           _c("div", { staticClass: "table-responsive" }, [
@@ -16321,21 +16332,25 @@ var render = function() {
               {
                 staticClass: "table",
                 attrs: {
-                  id: "group-datatable",
+                  id: "currency-datatable",
                   width: "100%",
                   cellspacing: "0"
                 }
               },
               [
-                _vm._m(1),
+                _vm._m(2),
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.groups, function(group) {
-                    return _c("tr", { key: group.id }, [
-                      _vm._m(2, true),
+                  _vm._l(_vm.currencies, function(currency) {
+                    return _c("tr", { key: currency.id }, [
+                      _vm._m(3, true),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(group.name))]),
+                      _c("td", [_vm._v(_vm._s(currency.symbol))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(currency.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(currency.exchange_rate))]),
                       _vm._v(" "),
                       _c(
                         "td",
@@ -16345,8 +16360,8 @@ var render = function() {
                             {
                               attrs: {
                                 to: {
-                                  name: "editgroup",
-                                  params: { id: group.id }
+                                  name: "editcurrency",
+                                  params: { id: currency.id }
                                 }
                               }
                             },
@@ -16380,7 +16395,7 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  return _vm.selectrecord(group.id)
+                                  return _vm.selectrecord(currency.id)
                                 }
                               }
                             },
@@ -16418,9 +16433,9 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
-              _vm._v(" "),
               _vm._m(4),
+              _vm._v(" "),
+              _vm._m(5),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
                 _c(
@@ -16443,7 +16458,7 @@ var render = function() {
                     attrs: { type: "button" },
                     on: {
                       click: function($event) {
-                        return _vm.deleteRecord(_vm.groupid)
+                        return _vm.deleteRecord(_vm.currencyid)
                       }
                     }
                   },
@@ -16476,6 +16491,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("input", {
+        staticClass:
+          "form-control bg-light border-0 small table-search searchbox",
+        staticStyle: { "background-color": "#FFFFFF !important" },
+        attrs: { type: "text", placeholder: "Search by Currency" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
         _c("th", [
@@ -16485,7 +16513,11 @@ var staticRenderFns = [
           })
         ]),
         _vm._v(" "),
-        _c("th", [_vm._v("Group Name")]),
+        _c("th", [_vm._v("Symbol")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Exchange Rate")]),
         _vm._v(" "),
         _c("th", [_vm._v("Actions")])
       ])
@@ -16545,7 +16577,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-body" }, [
       _c("p", { staticStyle: { color: "#000", "font-size": "14px" } }, [
-        _vm._v("Are you sure you want to delete this group?")
+        _vm._v("Are you sure you want to delete this currency?")
       ])
     ])
   }

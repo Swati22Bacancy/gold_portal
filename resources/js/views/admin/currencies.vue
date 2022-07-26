@@ -12,31 +12,37 @@
         
       </div>
       <div class="col-md-6" style="text-align:right">
-        <router-link to="/createcurrency"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Currency</button></router-link>
+        <router-link to="/create-currency"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Currency</button></router-link>
       </div>
       
       
     </div>
 
     <div class="contentgrp">
-<!-- Page Heading -->
+          <div class="col-md-6">
+            <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search by Currency" style="background-color:#FFFFFF !important;"/>
+          </div>
             <div class="pb-2 mb-4">
                 <div class="">
                     <div class="table-responsive">
-                        <table class="table" id="group-datatable" width="100%" cellspacing="0">
+                        <table class="table" id="currency-datatable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" class="custom-check-input"></th>
-                                    <th>Group Name</th>
+                                    <th>Symbol</th>
+                                    <th>Name</th>
+                                    <th>Exchange Rate</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="group in groups" :key="group.id">
+                                <tr v-for="currency in currencies" :key="currency.id">
                                     <td><input type="checkbox" class="custom-check-input"></td>
-                                    <td>{{group.name}}</td>
-                                    <td><router-link :to="{name : 'editgroup', params: {id : group.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">edit</span></router-link>
-                                    <span class="material-symbols-outlined" style="margin-right: 5px;color: red;    cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(group.id)">delete</span>
+                                    <td>{{currency.symbol}}</td>
+                                    <td>{{currency.name}}</td>
+                                    <td>{{currency.exchange_rate}}</td>
+                                    <td><router-link :to="{name : 'editcurrency', params: {id : currency.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">edit</span></router-link>
+                                    <span class="material-symbols-outlined" style="margin-right: 5px;color: red;cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(currency.id)">delete</span>
                                     </td>
                                 </tr>
                                 
@@ -57,11 +63,11 @@
                       </button>
                   </div>
                   <div class="modal-body">
-                      <p style="color:#000;font-size:14px;">Are you sure you want to delete this group?</p>
+                      <p style="color:#000;font-size:14px;">Are you sure you want to delete this currency?</p>
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn admin-btn mobile-mb" data-dismiss="modal">Cancel</button>
-                      <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteRecord(groupid)">Delete</button>
+                      <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteRecord(currencyid)">Delete</button>
                   </div>
               </div>
           </div>
@@ -73,13 +79,13 @@
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 export default {
-  name: "Group",
+  name: "Currency",
   components: {
   },
-  props: ['groups'],
+  props: ['currencies'],
   data() {
     return {
-      groupid:'',
+      currencyid:'',
     };
   },
   created() {
@@ -89,10 +95,10 @@ export default {
   {
     selectrecord(id)
     {
-      this.groupid=id;
+      this.currencyid=id;
     },
     deleteRecord(id) {
-      axios.get('/deletegroup/'+id)
+      axios.get('/deletecurrency/'+id)
         .then(resp => {
             this.$router.go();
         })
@@ -106,14 +112,14 @@ export default {
             console.log(error);
         })
     },
-    getGroups() {
-        return axios.get("grouplist").then(response => {
-            this.groups = response.data;
+    getCurrencies() {
+        return axios.get("currencylist").then(response => {
+            this.currencies = response.data;
         });
     },
   },
   mounted(){
-    this.getGroups();
+    this.getCurrencies();
     $.fn.textWidth = function(){
         var html_org = $(this).html();
         var html_calc = '<span>' + html_org + '</span>';
@@ -122,26 +128,28 @@ export default {
         $(this).html(html_org);
         return width;
       };
-      $('#group-datatable').on( 'draw.dt', function (e) {
-        $('#group-datatable thead tr th').each(function(idx, ele) {
+      $('#currency-datatable').on( 'draw.dt', function (e) {
+        $('#currency-datatable thead tr th').each(function(idx, ele) {
           var xPos = parseInt((($(ele).textWidth()))+12);
           $(ele).css('background-position-x',  xPos + 'px')
         })
       });
-      const unwatch = this.$watch('groups', (groups) => {
-        if (!Array.isArray(groups) || groups.length === 0) {
+      const unwatch = this.$watch('currencies', (currencys) => {
+        if (!Array.isArray(currencys) || currencys.length === 0) {
             return;
         }
         unwatch();
         this.$nextTick(() => {
-        const table = $('#group-datatable').DataTable({
-              "bFilter": false,
+        const table = $('#currency-datatable').DataTable({
+              //"bFilter": false,
               "bLengthChange": false,
               "columnDefs": [
-                { "targets": [0,2], "searchable": false, "orderable": false }
+                { "targets": [0,1,3,4], "searchable": false, "orderable": false }
               ]
             });
-
+            $(".searchbox").keyup(function() {
+                  table.search(this.value).draw();
+                });
             this.$once('hook:beforeDestroy', function () {
                 table.destroy();
             });
@@ -156,19 +164,19 @@ export default {
   background-color: #fff;
   border-radius: 0px 5px 5px 5px;
 }
-#group-datatable thead
+#currency-datatable thead
 {
   background: #3376C2;
   color: #fff;
   font-size: 13px;
 }
 
-#group-datatable
+#currency-datatable
 {
   color: #000;
   font-size: 13px;
 }
-#group-datatable thead tr th 
+#currency-datatable thead tr th 
 {
   font-weight: 100 !important;
 }
@@ -179,5 +187,17 @@ table.dataTable thead th
 table.dataTable.no-footer
 {
   border-bottom: 1px solid #e3e6f0;
+}
+.table-search
+{
+  border: 1px solid #D6E3F2 !important;
+  display: inline-block;
+  height: 40px;
+  margin: 8px 0px;
+}
+.table-search::placeholder {
+  color: #3377c2;
+  opacity: 0.4;
+  font-size: 11px;
 }
 </style>
