@@ -47,6 +47,7 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label>Issue Date</label>
+                <Datepicker></Datepicker>
                 <input
                   type="text"
                   class="form-control form-control-user"
@@ -272,9 +273,12 @@
 </template>
 
 <script>
-
+import Datepicker from 'vuejs-datepicker';
 export default {
-  name: "Dashboard",
+  name: "CreateInvoice",
+  components: {
+    Datepicker
+  },
   data() {
     return {
       customerType: 'business',

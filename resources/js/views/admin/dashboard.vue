@@ -282,7 +282,7 @@ export default {
 }
 .mid-div2
 {
-  width: 29%;
+  width: 24%;
   display: inline-block;
 }
 </style>

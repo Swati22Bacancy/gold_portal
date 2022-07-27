@@ -60,4 +60,12 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('deletecurrency/{id}', [Api\CurrencyController::class, 'deletecurrency']);
     Route::get('currencydetails/{id}', [Api\CurrencyController::class, 'currencydetails']);
     Route::post('update_currency', [Api\CurrencyController::class, 'updatecurrency']);
+
+    // User Routes
+    Route::post('create_user', [Api\UserController::class, 'createuser']);
+    Route::get('userlist', [Api\UserController::class, 'userlist']);
+    Route::get('deleteuser/{id}', [Api\UserController::class, 'deleteuser']);
+    Route::get('userdetails/{id}', [Api\UserController::class, 'userdetails']);
+    Route::post('update_user', [Api\UserController::class, 'updateuser']);
+
 });

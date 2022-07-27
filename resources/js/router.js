@@ -251,6 +251,33 @@ let router = new Router({
             }
         },
         {
+            path: "/users",
+            name: "users",
+            component: () => import("./views/admin/users.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/create-user",
+            name: "createuser",
+            component: () => import("./views/admin/createuser.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/edit-user/:id",
+            name: "edituser",
+            component: () => import("./views/admin/edituser.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/admin/components/buttons",
             name: "buttons",
             component: () => import("./views/admin/buttons.vue"),
