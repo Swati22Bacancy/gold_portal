@@ -6,6 +6,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\UsersRoles;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Message;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -27,6 +31,19 @@ class UserController extends Controller
                 'role_id' => $request->input('role_id')
             ]);
 
+            $token = Str::random(10);
+
+            DB::table('password_resets')->insert([
+                'email' => $request->input('email'),
+                'token' => $token
+            ]);
+            $email = $request->input('email');
+            //send email
+            Mail::send('Mails.setpassword', ['token' => $token], function(Message $message) use ($email){
+                $message->to($email);
+                $message->subject('Set your password');
+            });
+
             return response()->json($user);
         } catch (\Exception $e) {
             return response([
@@ -37,7 +54,7 @@ class UserController extends Controller
 
     public function userlist()
     {
-        $users = User::leftjoin('roles', 'roles.id', '=', 'users.role_id')->select('users.*','roles.name as userlevel')->orderBy('users.id', 'DESC')->get();
+        $users = User::leftjoin('roles', 'roles.id', '=', 'users.role_id')->select('users.*','roles.name as userlevel')->where('users.role_id','!=',1)->orderBy('users.id', 'DESC')->get();
         return response()->json($users);
     }
 

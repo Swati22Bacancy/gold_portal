@@ -14,8 +14,8 @@
     </div>
 
     <div class="row content-div">
-      <div class="col-md-4">
-        <div class="row">
+      <div class="col-md-4" v-if="is_super_admin() || checkPermission('user-list')">
+        <div class="row" v-on:click="goto_users()" style="cursor:pointer;">
           <div class="col-md-3">
             <span class="material-symbols-outlined" style="font-size:80px;color: #595959;">person_add</span>
           </div>
@@ -184,6 +184,10 @@ export default {
     goto_products()
     {
       this.$router.push({ name: 'products' });
+    },
+    goto_users()
+    {
+      this.$router.push({ name: 'users' });
     },
     is_super_admin(){
       if(this.user)
