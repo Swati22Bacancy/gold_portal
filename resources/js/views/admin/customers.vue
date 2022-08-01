@@ -12,7 +12,7 @@
         
       </div>
       <div class="col-md-6" style="text-align:right">
-        <router-link to="/createcustomer"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Customer</button></router-link>
+        <router-link v-if="is_super_admin() || checkPermission('customer-create')" to="/createcustomer"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Customer</button></router-link>
         <button type="button" class="btn admin-btn mobile-mb">Print</button>
         <button type="button" class="btn admin-btn mobile-mb">Export</button>
       </div>
@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import CustomerTabs from "./CustomerTabs";
 import allcustomers from "./allcustomers";
 import businesscustomers from "./businesscustomers";
@@ -94,6 +95,9 @@ import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 export default {
   name: "Customer",
+  computed: {
+    ...mapGetters(["user","permissions"]),
+  },
   components: {
     CustomerTabs,
     allcustomers,
@@ -117,6 +121,27 @@ export default {
         return axios.get("grouplist").then(response => {
             this.groups = response.data;
         });
+    },
+    is_super_admin(){
+      if(this.user)
+      {
+        if(this.user.role_id==1){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+    },
+    checkPermission(permission) {
+      if(this.permissions.length>0)
+      {
+        for (var i = 0; i <= this.permissions.length; i++) {
+          if (this.permissions[i] === permission) {
+            return true;
+          } else false;
+        }
+      }
     },
   },
   mounted(){

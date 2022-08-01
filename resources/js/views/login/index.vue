@@ -148,10 +148,13 @@ export default {
           email: this.email,
           password: this.password,
         });
-
         localStorage.setItem("token", response.data.token);
         this.$store.dispatch("user", response.data.user);
-        this.$router.push("/admin");
+        axios.get("check_permisssion/"+response.data.user.role_id).then(result => {
+          this.$store.dispatch("permissions", result.data);
+        });
+        document.location.href = "/admin";
+        //this.$router.push("/admin");
       } catch (error) {
         notify.authError(error);
       }

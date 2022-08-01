@@ -5,24 +5,36 @@ import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex);
 
 const state = {
-    user: null
+    user: null,
+    permissions: null,
 };
 
 const store = new Vuex.Store({
-    state,
+    state:{
+        //permissions:[]
+    },
     getters: {
         user: (state) => {
             return state.user;
+        },
+        permissions: (state) => {
+            return state.permissions;
         }
     },
     actions: {
         user: (context, user) => {
             context.commit('user', user);
+        },
+        permissions: (context, permissions) => {
+            context.commit('permissions', permissions);
         }
     },
     mutations: {
         user: (state, user) => {
             state.user = user;
+        },
+        permissions: (state, permissions) => {
+            state.permissions = permissions;
         }
     },
     plugins: [createPersistedState()]

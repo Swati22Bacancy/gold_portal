@@ -57,9 +57,15 @@
                     v-model="formdata.username"
                   />
                 </div>
-                
               </div>
-              
+              <div class="col-md-6">
+                <div class="form-group customer-input">
+                  <label>Select Role</label>
+                  <select class="form-control form-control-user" v-model="formdata.role_id">
+                    <option v-for="role in roles" :key="role.id" :value="role.id">{{role.name}}</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -76,6 +82,7 @@ export default {
     return {
       rules : customerRules,
       formdata: {},
+      roles:{}
     };
   },
   methods:
@@ -87,6 +94,7 @@ export default {
           username: this.formdata.username,
           name: this.formdata.name,
           email: this.formdata.email,
+          role_id: this.formdata.role_id
         });
         let message =
             "User has been successfully updated.";
@@ -106,9 +114,15 @@ export default {
         console.log(error);
       }
     },
+    getRoles() {
+        return axios.get("rolelist").then(response => {
+            this.roles = response.data;
+        });
+    },
   },
   mounted()
   {
+    this.getRoles();
     axios.get('/userdetails/'+this.$route.params.id)
         .then((response) => {
             

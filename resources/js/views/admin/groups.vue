@@ -12,7 +12,7 @@
         
       </div>
       <div class="col-md-6" style="text-align:right">
-        <router-link to="/creategroup"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Group</button></router-link>
+        <router-link v-if="is_super_admin() || checkPermission('group-create')" to="/creategroup"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Group</button></router-link>
       </div>
       
       
@@ -38,8 +38,8 @@
                                 <tr v-for="group in groups" :key="group.id">
                                     <td><input type="checkbox" class="custom-check-input"></td>
                                     <td>{{group.name}}</td>
-                                    <td><router-link :to="{name : 'editgroup', params: {id : group.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">edit</span></router-link>
-                                    <span class="material-symbols-outlined" style="margin-right: 5px;color: red;    cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(group.id)">delete</span>
+                                    <td><router-link v-if="is_super_admin() || checkPermission('group-edit')" :to="{name : 'editgroup', params: {id : group.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">edit</span></router-link>
+                                    <span v-if="is_super_admin() || checkPermission('group-delete')" class="material-symbols-outlined" style="margin-right: 5px;color: red; cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(group.id)">delete</span>
                                     </td>
                                 </tr>
                                 
@@ -73,10 +73,14 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 export default {
   name: "Group",
+  computed: {
+    ...mapGetters(["user","permissions"]),
+  },
   components: {
   },
   props: ['groups'],
@@ -113,6 +117,27 @@ export default {
         return axios.get("grouplist").then(response => {
             this.groups = response.data;
         });
+    },
+    is_super_admin(){
+      if(this.user)
+      {
+        if(this.user.role_id==1){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+    },
+    checkPermission(permission) {
+      if(this.permissions.length>0)
+      {
+        for (var i = 0; i <= this.permissions.length; i++) {
+          if (this.permissions[i] === permission) {
+            return true;
+          } else false;
+        }
+      }
     },
   },
   mounted(){

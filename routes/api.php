@@ -21,6 +21,7 @@ Route::post('forgot', [Api\ForgotController::class, 'forgot']);
 Route::post('reset', [Api\ForgotController::class, 'reset']);
 Route::get('email/resend/{user}', [Api\VerifyController::class, 'resend'])->name('verification.resend');
 Route::get('email/verify/{id}', [Api\VerifyController::class, 'verify'])->name('verification.verify');; // Make sure to keep this as your route name
+Route::get('check_permisssion/{id}',[Api\AuthController::class, 'check_permisssion']);
     
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('user', [Api\AuthController::class, 'user']);
@@ -68,4 +69,16 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('userdetails/{id}', [Api\UserController::class, 'userdetails']);
     Route::post('update_user', [Api\UserController::class, 'updateuser']);
 
+    // Roles Routes
+    Route::post('create_role', [Api\RoleController::class, 'createrole']);
+    Route::get('rolelist', [Api\RoleController::class, 'rolelist']);
+    Route::get('deleterole/{id}', [Api\RoleController::class, 'deleterole']);
+    Route::get('roledetails/{id}', [Api\RoleController::class, 'roledetails']);
+    Route::post('update_role', [Api\RoleController::class, 'updaterole']);
+
+    // Permission Routes
+    Route::post('assign_permission',[Api\PermissionController::class, 'sync']);
+    Route::get('show_permission/{id}',[Api\PermissionController::class, 'show']);
+    //Route::get('check_permisssion',[Api\PermissionController::class, 'check_permisssion']);
+    
 });

@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Auth\Events\Registered;
-
+use App\Models\Permission;
+use App\Models\RolesPermissions;
 
 class AuthController extends Controller
 {
@@ -49,5 +50,18 @@ class AuthController extends Controller
     public function user()
     {
         return response()->json(Auth::user());
+    }
+
+    public function check_permisssion($id)
+    {
+        $permission_ids = RolesPermissions::where('role_id',$id)->pluck('permission_id')->join(',');
+        $idsArr = explode(',',$permission_ids);  
+        $permissions = Permission::select('name')->whereIn('id',$idsArr)->get();
+        $rolepermission = array();
+        foreach($permissions as $key => $permission)
+        {
+            $rolepermission[$key] = $permission->name;
+        }
+        return response()->json($rolepermission);
     }
 }

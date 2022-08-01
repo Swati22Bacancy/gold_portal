@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\UsersRoles;
 
 class UserController extends Controller
 {
@@ -17,7 +18,13 @@ class UserController extends Controller
                 'first_name' => $name[0],
                 'last_name' => (isset($name[1]))?$name[1]:'',
                 'username' => $request->input('username'),
-                'email' => $request->input('email')
+                'email' => $request->input('email'),
+                'role_id' => $request->input('role_id')
+            ]);
+
+            $user_roles = UsersRoles::insert([
+                'user_id' => $user->id,
+                'role_id' => $request->input('role_id')
             ]);
 
             return response()->json($user);
@@ -30,7 +37,7 @@ class UserController extends Controller
 
     public function userlist()
     {
-        $users = User::select('*')->orderBy('id', 'DESC')->get();
+        $users = User::leftjoin('roles', 'roles.id', '=', 'users.role_id')->select('users.*','roles.name as userlevel')->orderBy('users.id', 'DESC')->get();
         return response()->json($users);
     }
 
@@ -67,9 +74,14 @@ class UserController extends Controller
                 'first_name' => $name[0],
                 'last_name' => (isset($name[1]))?$name[1]:'',
                 'username' => $request->input('username'),
-                'email' => $request->input('email')
+                'email' => $request->input('email'),
+                'role_id' => $request->input('role_id')
             ]);
-
+            $role = UsersRoles::where('user_id',$request->input('id'))->delete();
+            $user_roles = UsersRoles::insert([
+                'user_id' => $request->input('id'),
+                'role_id' => $request->input('role_id')
+            ]);
             return response()->json($user);
         } catch (\Exception $e) {
             return response([

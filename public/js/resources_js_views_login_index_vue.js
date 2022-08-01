@@ -187,22 +187,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.$store.dispatch("user", response.data.user);
 
-                _this.$router.push("/admin");
+                axios__WEBPACK_IMPORTED_MODULE_1___default().get("check_permisssion/" + response.data.user.role_id).then(function (result) {
+                  _this.$store.dispatch("permissions", result.data);
+                });
+                document.location.href = "/admin"; //this.$router.push("/admin");
 
-                _context.next = 12;
+                _context.next = 13;
                 break;
 
-              case 9:
-                _context.prev = 9;
+              case 10:
+                _context.prev = 10;
                 _context.t0 = _context["catch"](0);
                 _utils_notify_js__WEBPACK_IMPORTED_MODULE_3__.authError(_context.t0);
 
-              case 12:
+              case 13:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 9]]);
+        }, _callee, null, [[0, 10]]);
       }))();
     }
   }

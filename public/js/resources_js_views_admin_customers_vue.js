@@ -75,9 +75,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! datatables.net-dt/js/dataTables.dataTables */ "./node_modules/datatables.net-dt/js/dataTables.dataTables.js");
 /* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var datatables_net_dt_css_jquery_dataTables_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! datatables.net-dt/css/jquery.dataTables.min.css */ "./node_modules/datatables.net-dt/css/jquery.dataTables.min.css");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -143,10 +150,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AllCustomer",
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(["user", "permissions"])),
   components: {},
   props: ['products'],
   data: function data() {
@@ -194,6 +203,24 @@ __webpack_require__.r(__webpack_exports__);
       return axios.get("customerlist/" + this.typecustomer).then(function (response) {
         _this2.products = response.data;
       });
+    },
+    is_super_admin: function is_super_admin() {
+      if (this.user) {
+        if (this.user.role_id == 1) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    checkPermission: function checkPermission(permission) {
+      if (this.permissions.length > 0) {
+        for (var i = 0; i <= this.permissions.length; i++) {
+          if (this.permissions[i] === permission) {
+            return true;
+          } else false;
+        }
+      }
     }
   },
   mounted: function mounted() {
@@ -279,9 +306,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! datatables.net-dt/js/dataTables.dataTables */ "./node_modules/datatables.net-dt/js/dataTables.dataTables.js");
 /* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var datatables_net_dt_css_jquery_dataTables_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! datatables.net-dt/css/jquery.dataTables.min.css */ "./node_modules/datatables.net-dt/css/jquery.dataTables.min.css");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -347,10 +381,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "BusinessCustomer",
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(["user", "permissions"])),
   components: {},
   props: ['products'],
   data: function data() {
@@ -398,6 +434,24 @@ __webpack_require__.r(__webpack_exports__);
       return axios.get("customerlist/" + this.typecustomer).then(function (response) {
         _this2.products = response.data;
       });
+    },
+    is_super_admin: function is_super_admin() {
+      if (this.user) {
+        if (this.user.role_id == 1) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    checkPermission: function checkPermission(permission) {
+      if (this.permissions.length > 0) {
+        for (var i = 0; i <= this.permissions.length; i++) {
+          if (this.permissions[i] === permission) {
+            return true;
+          } else false;
+        }
+      }
     }
   },
   mounted: function mounted() {
@@ -481,6 +535,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _CustomerTabs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CustomerTabs */ "./resources/js/views/admin/CustomerTabs.vue");
 /* harmony import */ var _allcustomers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./allcustomers */ "./resources/js/views/admin/allcustomers.vue");
 /* harmony import */ var _businesscustomers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./businesscustomers */ "./resources/js/views/admin/businesscustomers.vue");
@@ -488,6 +543,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! datatables.net-dt/js/dataTables.dataTables */ "./node_modules/datatables.net-dt/js/dataTables.dataTables.js");
 /* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var datatables_net_dt_css_jquery_dataTables_min_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! datatables.net-dt/css/jquery.dataTables.min.css */ "./node_modules/datatables.net-dt/css/jquery.dataTables.min.css");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -575,6 +636,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -583,6 +645,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Customer",
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapGetters)(["user", "permissions"])),
   components: {
     CustomerTabs: _CustomerTabs__WEBPACK_IMPORTED_MODULE_0__.default,
     allcustomers: _allcustomers__WEBPACK_IMPORTED_MODULE_1__.default,
@@ -606,6 +669,24 @@ __webpack_require__.r(__webpack_exports__);
       return axios.get("grouplist").then(function (response) {
         _this.groups = response.data;
       });
+    },
+    is_super_admin: function is_super_admin() {
+      if (this.user) {
+        if (this.user.role_id == 1) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    checkPermission: function checkPermission(permission) {
+      if (this.permissions.length > 0) {
+        for (var i = 0; i <= this.permissions.length; i++) {
+          if (this.permissions[i] === permission) {
+            return true;
+          } else false;
+        }
+      }
     }
   },
   mounted: function mounted() {
@@ -626,9 +707,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! datatables.net-dt/js/dataTables.dataTables */ "./node_modules/datatables.net-dt/js/dataTables.dataTables.js");
 /* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var datatables_net_dt_css_jquery_dataTables_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! datatables.net-dt/css/jquery.dataTables.min.css */ "./node_modules/datatables.net-dt/css/jquery.dataTables.min.css");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -694,10 +782,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "IndividualCustomer",
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(["user", "permissions"])),
   components: {},
   props: ['products'],
   data: function data() {
@@ -745,6 +835,24 @@ __webpack_require__.r(__webpack_exports__);
       return axios.get("customerlist/" + this.typecustomer).then(function (response) {
         _this2.products = response.data;
       });
+    },
+    is_super_admin: function is_super_admin() {
+      if (this.user) {
+        if (this.user.role_id == 1) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    checkPermission: function checkPermission(permission) {
+      if (this.permissions.length > 0) {
+        for (var i = 0; i <= this.permissions.length; i++) {
+          if (this.permissions[i] === permission) {
+            return true;
+          } else false;
+        }
+      }
     }
   },
   mounted: function mounted() {
@@ -17611,52 +17719,58 @@ var render = function() {
                       _c(
                         "td",
                         [
-                          _c(
-                            "router-link",
-                            {
-                              attrs: {
-                                to: {
-                                  name: "viewcustomer",
-                                  params: { id: customer.id }
-                                }
-                              }
-                            },
-                            [
-                              _c(
+                          _vm.is_super_admin() ||
+                          _vm.checkPermission("customer-edit")
+                            ? _c(
+                                "router-link",
+                                {
+                                  attrs: {
+                                    to: {
+                                      name: "viewcustomer",
+                                      params: { id: customer.id }
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "material-symbols-outlined",
+                                      staticStyle: {
+                                        "margin-right": "10px",
+                                        color: "#3376C2"
+                                      }
+                                    },
+                                    [_vm._v("visibility")]
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.is_super_admin() ||
+                          _vm.checkPermission("customer-delete")
+                            ? _c(
                                 "span",
                                 {
                                   staticClass: "material-symbols-outlined",
                                   staticStyle: {
-                                    "margin-right": "10px",
-                                    color: "#3376C2"
+                                    "margin-right": "5px",
+                                    color: "red",
+                                    cursor: "pointer"
+                                  },
+                                  attrs: {
+                                    "data-toggle": "modal",
+                                    "data-target": "#deleteConfirmation"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.selectrecord(customer.id)
+                                    }
                                   }
                                 },
-                                [_vm._v("visibility")]
+                                [_vm._v("delete")]
                               )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              staticClass: "material-symbols-outlined",
-                              staticStyle: {
-                                "margin-right": "5px",
-                                color: "red",
-                                cursor: "pointer"
-                              },
-                              attrs: {
-                                "data-toggle": "modal",
-                                "data-target": "#deleteConfirmation"
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.selectrecord(customer.id)
-                                }
-                              }
-                            },
-                            [_vm._v("delete")]
-                          ),
+                            : _vm._e(),
                           _vm._v(" "),
                           _c(
                             "span",
@@ -17901,52 +18015,58 @@ var render = function() {
                       _c(
                         "td",
                         [
-                          _c(
-                            "router-link",
-                            {
-                              attrs: {
-                                to: {
-                                  name: "viewcustomer",
-                                  params: { id: customer.id }
-                                }
-                              }
-                            },
-                            [
-                              _c(
+                          _vm.is_super_admin() ||
+                          _vm.checkPermission("customer-edit")
+                            ? _c(
+                                "router-link",
+                                {
+                                  attrs: {
+                                    to: {
+                                      name: "viewcustomer",
+                                      params: { id: customer.id }
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "material-symbols-outlined",
+                                      staticStyle: {
+                                        "margin-right": "10px",
+                                        color: "#3376C2"
+                                      }
+                                    },
+                                    [_vm._v("visibility")]
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.is_super_admin() ||
+                          _vm.checkPermission("customer-delete")
+                            ? _c(
                                 "span",
                                 {
                                   staticClass: "material-symbols-outlined",
                                   staticStyle: {
-                                    "margin-right": "10px",
-                                    color: "#3376C2"
+                                    "margin-right": "5px",
+                                    color: "red",
+                                    cursor: "pointer"
+                                  },
+                                  attrs: {
+                                    "data-toggle": "modal",
+                                    "data-target": "#deleteConfirmation"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.selectrecord(customer.id)
+                                    }
                                   }
                                 },
-                                [_vm._v("visibility")]
+                                [_vm._v("delete")]
                               )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              staticClass: "material-symbols-outlined",
-                              staticStyle: {
-                                "margin-right": "5px",
-                                color: "red",
-                                cursor: "pointer"
-                              },
-                              attrs: {
-                                "data-toggle": "modal",
-                                "data-target": "#deleteConfirmation"
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.selectrecord(customer.id)
-                                }
-                              }
-                            },
-                            [_vm._v("delete")]
-                          ),
+                            : _vm._e(),
                           _vm._v(" "),
                           _c(
                             "span",
@@ -18157,23 +18277,25 @@ var render = function() {
           "div",
           { staticClass: "col-md-6", staticStyle: { "text-align": "right" } },
           [
-            _c("router-link", { attrs: { to: "/createcustomer" } }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn admin-btn mobile-mb",
-                  staticStyle: { "background-color": "#7ADAAA !important" },
-                  attrs: { type: "button" }
-                },
-                [
-                  _c("i", {
-                    staticClass: "fas fa-plus",
-                    staticStyle: { "margin-right": "5px" }
-                  }),
-                  _vm._v("Add Customer")
-                ]
-              )
-            ]),
+            _vm.is_super_admin() || _vm.checkPermission("customer-create")
+              ? _c("router-link", { attrs: { to: "/createcustomer" } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb",
+                      staticStyle: { "background-color": "#7ADAAA !important" },
+                      attrs: { type: "button" }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fas fa-plus",
+                        staticStyle: { "margin-right": "5px" }
+                      }),
+                      _vm._v("Add Customer")
+                    ]
+                  )
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c(
               "button",
@@ -18467,52 +18589,58 @@ var render = function() {
                       _c(
                         "td",
                         [
-                          _c(
-                            "router-link",
-                            {
-                              attrs: {
-                                to: {
-                                  name: "viewcustomer",
-                                  params: { id: customer.id }
-                                }
-                              }
-                            },
-                            [
-                              _c(
+                          _vm.is_super_admin() ||
+                          _vm.checkPermission("customer-edit")
+                            ? _c(
+                                "router-link",
+                                {
+                                  attrs: {
+                                    to: {
+                                      name: "viewcustomer",
+                                      params: { id: customer.id }
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "material-symbols-outlined",
+                                      staticStyle: {
+                                        "margin-right": "10px",
+                                        color: "#3376C2"
+                                      }
+                                    },
+                                    [_vm._v("visibility")]
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.is_super_admin() ||
+                          _vm.checkPermission("customer-delete")
+                            ? _c(
                                 "span",
                                 {
                                   staticClass: "material-symbols-outlined",
                                   staticStyle: {
-                                    "margin-right": "10px",
-                                    color: "#3376C2"
+                                    "margin-right": "5px",
+                                    color: "red",
+                                    cursor: "pointer"
+                                  },
+                                  attrs: {
+                                    "data-toggle": "modal",
+                                    "data-target": "#deleteConfirmation"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.selectrecord(customer.id)
+                                    }
                                   }
                                 },
-                                [_vm._v("visibility")]
+                                [_vm._v("delete")]
                               )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              staticClass: "material-symbols-outlined",
-                              staticStyle: {
-                                "margin-right": "5px",
-                                color: "red",
-                                cursor: "pointer"
-                              },
-                              attrs: {
-                                "data-toggle": "modal",
-                                "data-target": "#deleteConfirmation"
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.selectrecord(customer.id)
-                                }
-                              }
-                            },
-                            [_vm._v("delete")]
-                          ),
+                            : _vm._e(),
                           _vm._v(" "),
                           _c(
                             "span",

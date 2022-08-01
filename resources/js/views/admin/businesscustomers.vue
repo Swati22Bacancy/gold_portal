@@ -29,8 +29,8 @@
                                     <td>--</td>
                                     <td>-</td>
                                     <td>--</td>
-                                    <td><router-link :to="{name : 'viewcustomer', params: {id : customer.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">visibility</span></router-link>
-                                    <span class="material-symbols-outlined" style="margin-right: 5px;color: red;    cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(customer.id)">delete</span>
+                                    <td><router-link v-if="is_super_admin() || checkPermission('customer-edit')" :to="{name : 'viewcustomer', params: {id : customer.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">visibility</span></router-link>
+                                    <span v-if="is_super_admin() || checkPermission('customer-delete')" class="material-symbols-outlined" style="margin-right: 5px;color: red;    cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(customer.id)">delete</span>
                                     <span class="material-symbols-outlined" style="margin-right: 5px;color: #ccc;font-weight: 700;">more_vert</span></td>
                                 </tr>
                                 
@@ -64,10 +64,14 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 export default {
   name: "BusinessCustomer",
+  computed: {
+    ...mapGetters(["user","permissions"]),
+  },
   components: {
     
   },
@@ -125,6 +129,27 @@ export default {
         return axios.get("customerlist/"+this.typecustomer).then(response => {
             this.products = response.data;
         });
+    },
+    is_super_admin(){
+      if(this.user)
+      {
+        if(this.user.role_id==1){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+    },
+    checkPermission(permission) {
+      if(this.permissions.length>0)
+      {
+        for (var i = 0; i <= this.permissions.length; i++) {
+          if (this.permissions[i] === permission) {
+            return true;
+          } else false;
+        }
+      }
     },
   },
   mounted(){

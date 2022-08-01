@@ -1963,6 +1963,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     logout: function logout() {
       localStorage.removeItem("token");
       this.$store.dispatch("user", null);
+      this.$store.dispatch("permissions", null);
       this.$router.push("/login");
     }
   },
@@ -1982,6 +1983,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2094,8 +2102,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'Sidebar'
+  name: 'Sidebar',
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(["user", "permissions"])),
+  methods: {
+    is_super_admin: function is_super_admin() {
+      if (this.user) {
+        if (this.user.role_id == 1) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    checkPermission: function checkPermission(permission) {
+      if (this.permissions.length > 0) {
+        for (var i = 0; i <= this.permissions.length; i++) {
+          if (this.permissions[i] === permission) {
+            return true;
+          } else false;
+        }
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -2872,6 +2908,46 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__.default({
       layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__.default
     }
   }, {
+    path: "/roles",
+    name: "roles",
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_roles_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/roles.vue */ "./resources/js/views/admin/roles.vue"));
+    },
+    meta: {
+      requiresAuth: true,
+      layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__.default
+    }
+  }, {
+    path: "/create-role",
+    name: "createrole",
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_createrole_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/createrole.vue */ "./resources/js/views/admin/createrole.vue"));
+    },
+    meta: {
+      requiresAuth: true,
+      layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__.default
+    }
+  }, {
+    path: "/edit-role/:id",
+    name: "editrole",
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_editrole_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/editrole.vue */ "./resources/js/views/admin/editrole.vue"));
+    },
+    meta: {
+      requiresAuth: true,
+      layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__.default
+    }
+  }, {
+    path: "/assign-permission/:id",
+    name: "assignpermission",
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_assignpermission_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/assignpermission.vue */ "./resources/js/views/admin/assignpermission.vue"));
+    },
+    meta: {
+      requiresAuth: true,
+      layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__.default
+    }
+  }, {
     path: "/admin/components/buttons",
     name: "buttons",
     component: function component() {
@@ -3079,23 +3155,34 @@ __webpack_require__.r(__webpack_exports__);
 
 vue__WEBPACK_IMPORTED_MODULE_1__.default.use(vuex__WEBPACK_IMPORTED_MODULE_2__.default);
 var state = {
-  user: null
+  user: null,
+  permissions: null
 };
 var store = new vuex__WEBPACK_IMPORTED_MODULE_2__.default.Store({
-  state: state,
+  state: {//permissions:[]
+  },
   getters: {
     user: function user(state) {
       return state.user;
+    },
+    permissions: function permissions(state) {
+      return state.permissions;
     }
   },
   actions: {
     user: function user(context, _user) {
       context.commit('user', _user);
+    },
+    permissions: function permissions(context, _permissions) {
+      context.commit('permissions', _permissions);
     }
   },
   mutations: {
     user: function user(state, _user2) {
       state.user = _user2;
+    },
+    permissions: function permissions(state, _permissions2) {
+      state.permissions = _permissions2;
     }
   },
   plugins: [(0,vuex_persistedstate__WEBPACK_IMPORTED_MODULE_0__.default)()]
@@ -77457,269 +77544,353 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "li",
-        { staticClass: "nav-item" },
-        [
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: "/sales" } },
+      _vm.is_super_admin()
+        ? _c(
+            "li",
+            { staticClass: "nav-item" },
             [
               _c(
-                "span",
-                {
-                  staticClass: "material-symbols-outlined",
-                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
-                },
-                [_vm._v("shopping_cart")]
-              ),
-              _vm._v(" "),
-              _c("span", [_vm._v("Sales")])
-            ]
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: "/sales" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "material-symbols-outlined",
+                      staticStyle: {
+                        "font-size": "19px",
+                        "margin-right": "10%"
+                      }
+                    },
+                    [_vm._v("shopping_cart")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Sales")])
+                ]
+              )
+            ],
+            1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "li",
-        { staticClass: "nav-item" },
-        [
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: "/admin" } },
+      _vm.is_super_admin()
+        ? _c(
+            "li",
+            { staticClass: "nav-item" },
             [
               _c(
-                "span",
-                {
-                  staticClass: "material-symbols-outlined",
-                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
-                },
-                [_vm._v("inventory_2")]
-              ),
-              _vm._v(" "),
-              _c("span", [_vm._v("Purchases")])
-            ]
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: "/admin" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "material-symbols-outlined",
+                      staticStyle: {
+                        "font-size": "19px",
+                        "margin-right": "10%"
+                      }
+                    },
+                    [_vm._v("inventory_2")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Purchases")])
+                ]
+              )
+            ],
+            1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "li",
-        { staticClass: "nav-item" },
-        [
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: "/admin" } },
+      _vm.is_super_admin()
+        ? _c(
+            "li",
+            { staticClass: "nav-item" },
             [
               _c(
-                "span",
-                {
-                  staticClass: "material-symbols-outlined",
-                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
-                },
-                [_vm._v("local_shipping")]
-              ),
-              _vm._v(" "),
-              _c("span", [_vm._v("Delivery Notes")])
-            ]
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: "/admin" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "material-symbols-outlined",
+                      staticStyle: {
+                        "font-size": "19px",
+                        "margin-right": "10%"
+                      }
+                    },
+                    [_vm._v("local_shipping")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Delivery Notes")])
+                ]
+              )
+            ],
+            1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "li",
-        { staticClass: "nav-item" },
-        [
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: "/quotes" } },
+      _vm.is_super_admin()
+        ? _c(
+            "li",
+            { staticClass: "nav-item" },
             [
               _c(
-                "span",
-                {
-                  staticClass: "material-symbols-outlined",
-                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
-                },
-                [_vm._v("description")]
-              ),
-              _vm._v(" "),
-              _c("span", [_vm._v("Quotes")])
-            ]
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: "/quotes" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "material-symbols-outlined",
+                      staticStyle: {
+                        "font-size": "19px",
+                        "margin-right": "10%"
+                      }
+                    },
+                    [_vm._v("description")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Quotes")])
+                ]
+              )
+            ],
+            1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "li",
-        { staticClass: "nav-item" },
-        [
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: "/customers" } },
+      _vm.is_super_admin() || _vm.checkPermission("customer-list")
+        ? _c(
+            "li",
+            { staticClass: "nav-item" },
             [
               _c(
-                "span",
-                {
-                  staticClass: "material-symbols-outlined",
-                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
-                },
-                [_vm._v("group")]
-              ),
-              _vm._v(" "),
-              _c("span", [_vm._v("Customers")])
-            ]
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: "/customers" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "material-symbols-outlined",
+                      staticStyle: {
+                        "font-size": "19px",
+                        "margin-right": "10%"
+                      }
+                    },
+                    [_vm._v("group")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Customers")])
+                ]
+              )
+            ],
+            1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "li",
-        { staticClass: "nav-item" },
-        [
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: "/groups" } },
+      _vm.is_super_admin() || _vm.checkPermission("group-list")
+        ? _c(
+            "li",
+            { staticClass: "nav-item" },
             [
               _c(
-                "span",
-                {
-                  staticClass: "material-symbols-outlined",
-                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
-                },
-                [_vm._v("group")]
-              ),
-              _vm._v(" "),
-              _c("span", [_vm._v("Groups")])
-            ]
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: "/groups" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "material-symbols-outlined",
+                      staticStyle: {
+                        "font-size": "19px",
+                        "margin-right": "10%"
+                      }
+                    },
+                    [_vm._v("group")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Groups")])
+                ]
+              )
+            ],
+            1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "li",
-        { staticClass: "nav-item" },
-        [
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: "/admin" } },
+      _vm.is_super_admin()
+        ? _c(
+            "li",
+            { staticClass: "nav-item" },
             [
               _c(
-                "span",
-                {
-                  staticClass: "material-symbols-outlined",
-                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
-                },
-                [_vm._v("account_balance")]
-              ),
-              _vm._v(" "),
-              _c("span", [_vm._v("Bank Accounts")])
-            ]
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: "/admin" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "material-symbols-outlined",
+                      staticStyle: {
+                        "font-size": "19px",
+                        "margin-right": "10%"
+                      }
+                    },
+                    [_vm._v("account_balance")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Bank Accounts")])
+                ]
+              )
+            ],
+            1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "li",
-        { staticClass: "nav-item" },
-        [
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: "/users" } },
+      _vm.is_super_admin() || _vm.checkPermission("user-list")
+        ? _c(
+            "li",
+            { staticClass: "nav-item" },
             [
               _c(
-                "span",
-                {
-                  staticClass: "material-symbols-outlined",
-                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
-                },
-                [_vm._v("person")]
-              ),
-              _vm._v(" "),
-              _c("span", [_vm._v("Users")])
-            ]
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: "/users" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "material-symbols-outlined",
+                      staticStyle: {
+                        "font-size": "19px",
+                        "margin-right": "10%"
+                      }
+                    },
+                    [_vm._v("person")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Users")])
+                ]
+              )
+            ],
+            1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "li",
-        { staticClass: "nav-item" },
-        [
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: "/settings" } },
+      _vm.is_super_admin()
+        ? _c(
+            "li",
+            { staticClass: "nav-item" },
             [
               _c(
-                "span",
-                {
-                  staticClass: "material-symbols-outlined",
-                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
-                },
-                [_vm._v("settings")]
-              ),
-              _vm._v(" "),
-              _c("span", [_vm._v("Settings")])
-            ]
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: "/roles" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "material-symbols-outlined",
+                      staticStyle: {
+                        "font-size": "19px",
+                        "margin-right": "10%"
+                      }
+                    },
+                    [_vm._v("lock_person")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Roles")])
+                ]
+              )
+            ],
+            1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "li",
-        { staticClass: "nav-item" },
-        [
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: "/admin" } },
+      _vm.is_super_admin()
+        ? _c(
+            "li",
+            { staticClass: "nav-item" },
             [
               _c(
-                "span",
-                {
-                  staticClass: "material-symbols-outlined",
-                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
-                },
-                [_vm._v("analytics")]
-              ),
-              _vm._v(" "),
-              _c("span", [_vm._v("Reports")])
-            ]
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: "/settings" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "material-symbols-outlined",
+                      staticStyle: {
+                        "font-size": "19px",
+                        "margin-right": "10%"
+                      }
+                    },
+                    [_vm._v("settings")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Settings")])
+                ]
+              )
+            ],
+            1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "li",
-        { staticClass: "nav-item" },
-        [
-          _c(
-            "router-link",
-            { staticClass: "nav-link", attrs: { to: "/admin" } },
+      _vm.is_super_admin()
+        ? _c(
+            "li",
+            { staticClass: "nav-item" },
             [
               _c(
-                "span",
-                {
-                  staticClass: "material-symbols-outlined",
-                  staticStyle: { "font-size": "19px", "margin-right": "10%" }
-                },
-                [_vm._v("speed")]
-              ),
-              _vm._v(" "),
-              _c("span", [_vm._v("Whatsapp")])
-            ]
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: "/admin" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "material-symbols-outlined",
+                      staticStyle: {
+                        "font-size": "19px",
+                        "margin-right": "10%"
+                      }
+                    },
+                    [_vm._v("analytics")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Reports")])
+                ]
+              )
+            ],
+            1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.is_super_admin()
+        ? _c(
+            "li",
+            { staticClass: "nav-item" },
+            [
+              _c(
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: "/admin" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "material-symbols-outlined",
+                      staticStyle: {
+                        "font-size": "19px",
+                        "margin-right": "10%"
+                      }
+                    },
+                    [_vm._v("speed")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Whatsapp")])
+                ]
+              )
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("hr", { staticClass: "sidebar-divider d-none d-md-block" }),
       _vm._v(" "),
@@ -94961,7 +95132,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_home_index_vue":1,"resources_js_views_login_index_vue":1,"resources_js_views_register_index_vue":1,"resources_js_views_verify_index_vue":1,"resources_js_views_forgot_index_vue":1,"resources_js_views_reset_index_vue":1,"resources_js_views_admin_dashboard_vue":1,"resources_js_views_admin_sales_vue":1,"resources_js_views_admin_createinvoice_vue":1,"resources_js_views_admin_quotes_vue":1,"resources_js_views_admin_customers_vue":1,"resources_js_views_admin_createcustomer_vue":1,"resources_js_views_admin_viewcustomer_vue":1,"resources_js_views_admin_groups_vue":1,"resources_js_views_admin_creategroup_vue":1,"resources_js_views_admin_editgroup_vue":1,"resources_js_views_admin_viewsales_vue":1,"resources_js_views_admin_settings_vue":1,"resources_js_views_admin_currencies_vue":1,"resources_js_views_admin_createcurrency_vue":1,"resources_js_views_admin_editcurrency_vue":1,"resources_js_views_admin_chartaccounts_vue":1,"resources_js_views_admin_createaccounttype_vue":1,"resources_js_views_admin_producttypes_vue":1,"resources_js_views_admin_createproducttype_vue":1,"resources_js_views_admin_editproducttype_vue":1,"resources_js_views_admin_products_vue":1,"resources_js_views_admin_createproduct_vue":1,"resources_js_views_admin_editproduct_vue":1,"resources_js_views_admin_users_vue":1,"resources_js_views_admin_createuser_vue":1,"resources_js_views_admin_edituser_vue":1,"resources_js_views_admin_buttons_vue":1,"resources_js_views_admin_cards_vue":1,"resources_js_views_admin_colors_vue":1,"resources_js_views_admin_borders_vue":1,"resources_js_views_admin_animations_vue":1,"resources_js_views_admin_other_vue":1,"resources_js_views_admin_page-not-found_vue":1,"resources_js_views_admin_blank_vue":1,"resources_js_views_admin_charts_vue":1,"resources_js_views_admin_tables_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_home_index_vue":1,"resources_js_views_login_index_vue":1,"resources_js_views_register_index_vue":1,"resources_js_views_verify_index_vue":1,"resources_js_views_forgot_index_vue":1,"resources_js_views_reset_index_vue":1,"resources_js_views_admin_dashboard_vue":1,"resources_js_views_admin_sales_vue":1,"resources_js_views_admin_createinvoice_vue":1,"resources_js_views_admin_quotes_vue":1,"resources_js_views_admin_customers_vue":1,"resources_js_views_admin_createcustomer_vue":1,"resources_js_views_admin_viewcustomer_vue":1,"resources_js_views_admin_groups_vue":1,"resources_js_views_admin_creategroup_vue":1,"resources_js_views_admin_editgroup_vue":1,"resources_js_views_admin_viewsales_vue":1,"resources_js_views_admin_settings_vue":1,"resources_js_views_admin_currencies_vue":1,"resources_js_views_admin_createcurrency_vue":1,"resources_js_views_admin_editcurrency_vue":1,"resources_js_views_admin_chartaccounts_vue":1,"resources_js_views_admin_createaccounttype_vue":1,"resources_js_views_admin_producttypes_vue":1,"resources_js_views_admin_createproducttype_vue":1,"resources_js_views_admin_editproducttype_vue":1,"resources_js_views_admin_products_vue":1,"resources_js_views_admin_createproduct_vue":1,"resources_js_views_admin_editproduct_vue":1,"resources_js_views_admin_users_vue":1,"resources_js_views_admin_createuser_vue":1,"resources_js_views_admin_edituser_vue":1,"resources_js_views_admin_roles_vue":1,"resources_js_views_admin_createrole_vue":1,"resources_js_views_admin_editrole_vue":1,"resources_js_views_admin_assignpermission_vue":1,"resources_js_views_admin_buttons_vue":1,"resources_js_views_admin_cards_vue":1,"resources_js_views_admin_colors_vue":1,"resources_js_views_admin_borders_vue":1,"resources_js_views_admin_animations_vue":1,"resources_js_views_admin_other_vue":1,"resources_js_views_admin_page-not-found_vue":1,"resources_js_views_admin_blank_vue":1,"resources_js_views_admin_charts_vue":1,"resources_js_views_admin_tables_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

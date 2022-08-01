@@ -12,7 +12,7 @@
         
       </div>
       <div class="col-md-6" style="text-align:right">
-        <router-link to="/create-currency"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Currency</button></router-link>
+        <router-link v-if="is_super_admin() || checkPermission('currency-create')" to="/create-currency"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Currency</button></router-link>
       </div>
       
       
@@ -41,8 +41,8 @@
                                     <td>{{currency.symbol}}</td>
                                     <td>{{currency.name}}</td>
                                     <td>{{currency.exchange_rate}}</td>
-                                    <td><router-link :to="{name : 'editcurrency', params: {id : currency.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">edit</span></router-link>
-                                    <span class="material-symbols-outlined" style="margin-right: 5px;color: red;cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(currency.id)">delete</span>
+                                    <td><router-link v-if="is_super_admin() || checkPermission('currency-edit')" :to="{name : 'editcurrency', params: {id : currency.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">edit</span></router-link>
+                                    <span v-if="is_super_admin() || checkPermission('currency-delete')" class="material-symbols-outlined" style="margin-right: 5px;color: red;cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(currency.id)">delete</span>
                                     </td>
                                 </tr>
                                 
@@ -76,10 +76,14 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 export default {
   name: "Currency",
+  computed: {
+    ...mapGetters(["user","permissions"]),
+  },
   components: {
   },
   props: ['currencies'],
@@ -116,6 +120,27 @@ export default {
         return axios.get("currencylist").then(response => {
             this.currencies = response.data;
         });
+    },
+    is_super_admin(){
+      if(this.user)
+      {
+        if(this.user.role_id==1){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+    },
+    checkPermission(permission) {
+      if(this.permissions.length>0)
+      {
+        for (var i = 0; i <= this.permissions.length; i++) {
+          if (this.permissions[i] === permission) {
+            return true;
+          } else false;
+        }
+      }
     },
   },
   mounted(){

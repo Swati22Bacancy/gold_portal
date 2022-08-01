@@ -47,6 +47,7 @@ export default {
     logout() {
       localStorage.removeItem("token");
       this.$store.dispatch("user", null);
+      this.$store.dispatch("permissions", null);
       this.$router.push("/login");
     },
   },

@@ -278,6 +278,42 @@ let router = new Router({
             }
         },
         {
+            path: "/roles",
+            name: "roles",
+            component: () => import("./views/admin/roles.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/create-role",
+            name: "createrole",
+            component: () => import("./views/admin/createrole.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/edit-role/:id",
+            name: "editrole",
+            component: () => import("./views/admin/editrole.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/assign-permission/:id",
+            name: "assignpermission",
+            component: () => import("./views/admin/assignpermission.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/admin/components/buttons",
             name: "buttons",
             component: () => import("./views/admin/buttons.vue"),

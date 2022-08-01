@@ -95,7 +95,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4" v-on:click="goto_currencies()" style="cursor:pointer;">
+      <div class="col-md-4" v-if="is_super_admin() || checkPermission('currency-list')" v-on:click="goto_currencies()" style="cursor:pointer;">
         <div class="row">
           <div class="col-md-3">
             <span class="material-symbols-outlined" style="font-size:70px;color: #595959;">currency_exchange</span>
@@ -159,9 +159,12 @@
 </template>
 
 <script>
-
+import { mapGetters } from "vuex";
 export default {
   name: "Settings",
+  computed: {
+    ...mapGetters(["user","permissions"]),
+  },
   components: {
   },
   methods:
@@ -181,7 +184,28 @@ export default {
     goto_products()
     {
       this.$router.push({ name: 'products' });
-    }
+    },
+    is_super_admin(){
+      if(this.user)
+      {
+        if(this.user.role_id==1){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+    },
+    checkPermission(permission) {
+      if(this.permissions.length>0)
+      {
+        for (var i = 0; i <= this.permissions.length; i++) {
+          if (this.permissions[i] === permission) {
+            return true;
+          } else false;
+        }
+      }
+    },
   }
 };
 </script>

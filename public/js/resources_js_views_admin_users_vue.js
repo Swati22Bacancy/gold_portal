@@ -11,9 +11,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! datatables.net-dt/js/dataTables.dataTables */ "./node_modules/datatables.net-dt/js/dataTables.dataTables.js");
 /* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var datatables_net_dt_css_jquery_dataTables_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! datatables.net-dt/css/jquery.dataTables.min.css */ "./node_modules/datatables.net-dt/css/jquery.dataTables.min.css");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -88,10 +95,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Users",
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(["user", "permissions"])),
   components: {},
   props: ['users'],
   data: function data() {
@@ -125,6 +137,24 @@ __webpack_require__.r(__webpack_exports__);
       return axios.get("userlist").then(function (response) {
         _this2.users = response.data;
       });
+    },
+    is_super_admin: function is_super_admin() {
+      if (this.user) {
+        if (this.user.role_id == 1) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    checkPermission: function checkPermission(permission) {
+      if (this.permissions.length > 0) {
+        for (var i = 0; i <= this.permissions.length; i++) {
+          if (this.permissions[i] === permission) {
+            return true;
+          } else false;
+        }
+      }
     }
   },
   mounted: function mounted() {
@@ -159,7 +189,7 @@ __webpack_require__.r(__webpack_exports__);
           //"bFilter": false,
           "bLengthChange": false,
           "columnDefs": [{
-            "targets": [0, 2],
+            "targets": [0, 3],
             "searchable": false,
             "orderable": false
           }]
@@ -16295,23 +16325,38 @@ var render = function() {
           "div",
           { staticClass: "col-md-6", staticStyle: { "text-align": "right" } },
           [
-            _c("router-link", { attrs: { to: "/create-user" } }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn admin-btn mobile-mb",
-                  staticStyle: { "background-color": "#7ADAAA !important" },
-                  attrs: { type: "button" }
-                },
-                [
-                  _c("i", {
-                    staticClass: "fas fa-plus",
-                    staticStyle: { "margin-right": "5px" }
-                  }),
-                  _vm._v("Create User")
-                ]
-              )
-            ])
+            _vm.is_super_admin() || _vm.checkPermission("user-create")
+              ? _c("router-link", { attrs: { to: "/create-user" } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb",
+                      staticStyle: { "background-color": "#7ADAAA !important" },
+                      attrs: { type: "button" }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fas fa-plus",
+                        staticStyle: { "margin-right": "5px" }
+                      }),
+                      _vm._v("Create User")
+                    ]
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.is_super_admin()
+              ? _c("router-link", { attrs: { to: "/create-role" } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb btn-nwidth",
+                      attrs: { type: "button" }
+                    },
+                    [_vm._v("Create Role")]
+                  )
+                ])
+              : _vm._e()
           ],
           1
         )
@@ -16345,55 +16390,63 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.userlevel))]),
+                      _vm._v(" "),
                       _c(
                         "td",
                         [
-                          _c(
-                            "router-link",
-                            {
-                              attrs: {
-                                to: {
-                                  name: "edituser",
-                                  params: { id: user.id }
-                                }
-                              }
-                            },
-                            [
-                              _c(
+                          _vm.is_super_admin() ||
+                          _vm.checkPermission("user-edit")
+                            ? _c(
+                                "router-link",
+                                {
+                                  attrs: {
+                                    to: {
+                                      name: "edituser",
+                                      params: { id: user.id }
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "material-symbols-outlined",
+                                      staticStyle: {
+                                        "margin-right": "10px",
+                                        color: "#3376C2"
+                                      }
+                                    },
+                                    [_vm._v("edit")]
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.is_super_admin() ||
+                          _vm.checkPermission("user-delete")
+                            ? _c(
                                 "span",
                                 {
                                   staticClass: "material-symbols-outlined",
                                   staticStyle: {
-                                    "margin-right": "10px",
-                                    color: "#3376C2"
+                                    "margin-right": "5px",
+                                    color: "red",
+                                    cursor: "pointer"
+                                  },
+                                  attrs: {
+                                    "data-toggle": "modal",
+                                    "data-target": "#deleteConfirmation"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.selectrecord(user.id)
+                                    }
                                   }
                                 },
-                                [_vm._v("edit")]
+                                [_vm._v("delete")]
                               )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              staticClass: "material-symbols-outlined",
-                              staticStyle: {
-                                "margin-right": "5px",
-                                color: "red",
-                                cursor: "pointer"
-                              },
-                              attrs: {
-                                "data-toggle": "modal",
-                                "data-target": "#deleteConfirmation"
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.selectrecord(user.id)
-                                }
-                              }
-                            },
-                            [_vm._v("delete")]
-                          )
+                            : _vm._e()
                         ],
                         1
                       )
@@ -16504,7 +16557,9 @@ var staticRenderFns = [
           })
         ]),
         _vm._v(" "),
-        _c("th", [_vm._v("Name")]),
+        _c("th", [_vm._v("User")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("User Level")]),
         _vm._v(" "),
         _c("th", [_vm._v("Actions")])
       ])

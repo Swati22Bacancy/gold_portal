@@ -12,7 +12,8 @@
         
       </div>
       <div class="col-md-6" style="text-align:right">
-        <router-link to="/create-user"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Create User</button></router-link>
+        <router-link v-if="is_super_admin() || checkPermission('user-create')" to="/create-user"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Create User</button></router-link>
+        <router-link v-if="is_super_admin()" to="/create-role"><button type="button" class="btn admin-btn mobile-mb btn-nwidth">Create Role</button></router-link>
       </div>
       
       
@@ -30,7 +31,8 @@
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" class="custom-check-input"></th>
-                                    <th>Name</th>
+                                    <th>User</th>
+                                    <th>User Level</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -38,8 +40,9 @@
                                 <tr v-for="user in users" :key="user.id">
                                     <td><input type="checkbox" class="custom-check-input"></td>
                                     <td>{{user.first_name}} {{user.last_name}}</td>
-                                    <td><router-link :to="{name : 'edituser', params: {id : user.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">edit</span></router-link>
-                                    <span class="material-symbols-outlined" style="margin-right: 5px;color: red;    cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(user.id)">delete</span>
+                                    <td>{{user.userlevel}}</td>
+                                    <td><router-link v-if="is_super_admin() || checkPermission('user-edit')" :to="{name : 'edituser', params: {id : user.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">edit</span></router-link>
+                                    <span v-if="is_super_admin() || checkPermission('user-delete')" class="material-symbols-outlined" style="margin-right: 5px;color: red;    cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(user.id)">delete</span>
                                     </td>
                                 </tr>
                                 
@@ -73,10 +76,14 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 export default {
   name: "Users",
+  computed: {
+    ...mapGetters(["user","permissions"]),
+  },
   components: {
   },
   props: ['users'],
@@ -114,6 +121,27 @@ export default {
             this.users = response.data;
         });
     },
+    is_super_admin(){
+      if(this.user)
+      {
+        if(this.user.role_id==1){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+    },
+    checkPermission(permission) {
+      if(this.permissions.length>0)
+      {
+        for (var i = 0; i <= this.permissions.length; i++) {
+          if (this.permissions[i] === permission) {
+            return true;
+          } else false;
+        }
+      }
+    },
   },
   mounted(){
     this.getUser();
@@ -141,7 +169,7 @@ export default {
               //"bFilter": false,
               "bLengthChange": false,
               "columnDefs": [
-                { "targets": [0,2], "searchable": false, "orderable": false }
+                { "targets": [0,3], "searchable": false, "orderable": false }
               ]
             });
             $(".searchbox").keyup(function() {

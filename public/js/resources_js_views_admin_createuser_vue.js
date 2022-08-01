@@ -90,13 +90,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CreateUser",
   data: function data() {
     return {
       rules: _rules_customerRules__WEBPACK_IMPORTED_MODULE_1__.customerRules,
-      formdata: {}
+      formdata: {},
+      roles: {}
     };
   },
   methods: {
@@ -115,7 +123,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.post("create_user", {
                   username: _this.formdata.username,
                   name: _this.formdata.name,
-                  email: _this.formdata.email
+                  email: _this.formdata.email,
+                  role_id: _this.formdata.role_id
                 });
 
               case 3:
@@ -150,7 +159,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee, null, [[0, 9]]);
       }))();
+    },
+    getRoles: function getRoles() {
+      var _this2 = this;
+
+      return axios.get("rolelist").then(function (response) {
+        _this2.roles = response.data;
+      });
     }
+  },
+  mounted: function mounted() {
+    this.getRoles();
   }
 });
 
@@ -847,6 +866,54 @@ var render = function() {
                       }
                     }
                   })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group customer-input" }, [
+                  _c("label", [_vm._v("Select Role")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.formdata.role_id,
+                          expression: "formdata.role_id"
+                        }
+                      ],
+                      staticClass: "form-control form-control-user",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.formdata,
+                            "role_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    _vm._l(_vm.roles, function(role) {
+                      return _c(
+                        "option",
+                        { key: role.id, domProps: { value: role.id } },
+                        [_vm._v(_vm._s(role.name))]
+                      )
+                    }),
+                    0
+                  )
                 ])
               ])
             ])
