@@ -204,6 +204,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: 'products'
       });
     },
+    goto_users: function goto_users() {
+      this.$router.push({
+        name: 'users'
+      });
+    },
     is_super_admin: function is_super_admin() {
       if (this.user) {
         if (this.user.role_id == 1) {
@@ -742,12 +747,34 @@ var render = function() {
   return _c("div", { staticClass: "setting-div" }, [
     _vm._m(0),
     _vm._v(" "),
-    _vm._m(1),
+    _c("div", { staticClass: "row content-div" }, [
+      _vm.is_super_admin() || _vm.checkPermission("user-list")
+        ? _c("div", { staticClass: "col-md-4" }, [
+            _c(
+              "div",
+              {
+                staticClass: "row",
+                staticStyle: { cursor: "pointer" },
+                on: {
+                  click: function($event) {
+                    return _vm.goto_users()
+                  }
+                }
+              },
+              [_vm._m(1), _vm._v(" "), _vm._m(2)]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._m(3),
+      _vm._v(" "),
+      _vm._m(4)
+    ]),
     _vm._v(" "),
-    _vm._m(2),
+    _vm._m(5),
     _vm._v(" "),
     _c("div", { staticClass: "row content-div" }, [
-      _vm._m(3),
+      _vm._m(6),
       _vm._v(" "),
       _vm.is_super_admin() || _vm.checkPermission("currency-list")
         ? _c(
@@ -761,7 +788,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._m(4)]
+            [_vm._m(7)]
           )
         : _vm._e(),
       _vm._v(" "),
@@ -777,13 +804,13 @@ var render = function() {
               }
             }
           },
-          [_vm._m(5), _vm._v(" "), _vm._m(6)]
+          [_vm._m(8), _vm._v(" "), _vm._m(9)]
         )
       ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row content-div" }, [
-      _vm._m(7),
+      _vm._m(10),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-4" }, [
         _c(
@@ -797,7 +824,7 @@ var render = function() {
               }
             }
           },
-          [_vm._m(8), _vm._v(" "), _vm._m(9)]
+          [_vm._m(11), _vm._v(" "), _vm._m(12)]
         )
       ]),
       _vm._v(" "),
@@ -813,7 +840,7 @@ var render = function() {
               }
             }
           },
-          [_vm._m(10), _vm._v(" "), _vm._m(11)]
+          [_vm._m(13), _vm._v(" "), _vm._m(14)]
         )
       ])
     ])
@@ -846,80 +873,86 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row content-div" }, [
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-3" }, [
-            _c(
-              "span",
-              {
-                staticClass: "material-symbols-outlined",
-                staticStyle: { "font-size": "80px", color: "#595959" }
-              },
-              [_vm._v("person_add")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-9" }, [
-            _c("h6", { staticClass: "setting-subheading" }, [
-              _vm._v("Additional Users")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticStyle: { "font-size": "12px" } }, [
-              _vm._v("Manage additional users and their access to your account")
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c(
+        "span",
+        {
+          staticClass: "material-symbols-outlined",
+          staticStyle: { "font-size": "80px", color: "#595959" }
+        },
+        [_vm._v("person_add")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-9" }, [
+      _c("h6", { staticClass: "setting-subheading" }, [
+        _vm._v("Additional Users")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-3" }, [
-            _c(
-              "span",
-              {
-                staticClass: "material-symbols-outlined",
-                staticStyle: { "font-size": "80px", color: "#595959" }
-              },
-              [_vm._v("location_city")]
-            )
+      _c("span", { staticStyle: { "font-size": "12px" } }, [
+        _vm._v("Manage additional users and their access to your account")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-3" }, [
+          _c(
+            "span",
+            {
+              staticClass: "material-symbols-outlined",
+              staticStyle: { "font-size": "80px", color: "#595959" }
+            },
+            [_vm._v("location_city")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-9" }, [
+          _c("h6", { staticClass: "setting-subheading" }, [
+            _vm._v("Company Details")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-9" }, [
-            _c("h6", { staticClass: "setting-subheading" }, [
-              _vm._v("Company Details")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticStyle: { "font-size": "12px" } }, [
-              _vm._v("Update your company address, telephone number, etc.")
-            ])
+          _c("span", { staticStyle: { "font-size": "12px" } }, [
+            _vm._v("Update your company address, telephone number, etc.")
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-3" }, [
-            _c(
-              "span",
-              {
-                staticClass: "material-symbols-outlined",
-                staticStyle: { "font-size": "80px", color: "#595959" }
-              },
-              [_vm._v("mark_email_unread")]
-            )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-3" }, [
+          _c(
+            "span",
+            {
+              staticClass: "material-symbols-outlined",
+              staticStyle: { "font-size": "80px", color: "#595959" }
+            },
+            [_vm._v("mark_email_unread")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-9" }, [
+          _c("h6", { staticClass: "setting-subheading" }, [
+            _vm._v("Email Options")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-9" }, [
-            _c("h6", { staticClass: "setting-subheading" }, [
-              _vm._v("Email Options")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticStyle: { "font-size": "12px" } }, [
-              _vm._v(
-                "From here you can decide when KashFlow should send your emails."
-              )
-            ])
+          _c("span", { staticStyle: { "font-size": "12px" } }, [
+            _vm._v(
+              "From here you can decide when KashFlow should send your emails."
+            )
           ])
         ])
       ])
