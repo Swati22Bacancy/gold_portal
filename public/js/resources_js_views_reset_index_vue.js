@@ -76,6 +76,45 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -87,7 +126,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       password: "",
-      password_confirm: ""
+      password_confirm: "",
+      iserror: false
     };
   },
   methods: {
@@ -95,20 +135,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var response, toast;
+        var response, toast, _toast;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
-                _context.next = 3;
+
+                if (!(_this.password == _this.password_confirm)) {
+                  _context.next = 9;
+                  break;
+                }
+
+                _context.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().post("reset", {
                   password: _this.password,
                   password_confirm: _this.password_confirm,
                   token: _this.$route.params.token
                 });
 
-              case 3:
+              case 4:
                 response = _context.sent;
                 toast = _this.$toasted.show("Password updated successfully", {
                   theme: "toasted-primary",
@@ -118,20 +165,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.$router.push("/login");
 
-                _context.next = 11;
+                _context.next = 10;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 9:
+                _toast = _this.$toasted.show("Password Must be Same", {
+                  theme: "toasted-primary",
+                  position: "top-right",
+                  duration: 5000
+                });
+
+              case 10:
+                _context.next = 15;
+                break;
+
+              case 12:
+                _context.prev = 12;
                 _context.t0 = _context["catch"](0);
                 _utils_notify_js__WEBPACK_IMPORTED_MODULE_2__.authError(_context.t0);
 
-              case 11:
+              case 15:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[0, 12]]);
       }))();
     }
   }
@@ -260,42 +318,56 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("Nav"),
+  return _c("div", [
+    _c("div", { staticClass: "login-container" }, [
+      _vm.verificationStatus
+        ? _c("div", { staticClass: "row justify-content-center" }, [
+            _c("div", { staticClass: "col-xl-10 col-lg-12 col-md-9" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "alert alert-dismissible fade show mt-5",
+                  class: _vm.verificationAlertClasses,
+                  attrs: { role: "alert" }
+                },
+                [
+                  _c("div", [_vm._v(_vm._s(_vm.verificationMessage))]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ]
+              )
+            ])
+          ])
+        : _vm._e(),
       _vm._v(" "),
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row justify-content-center" }, [
-          _c("div", { staticClass: "col-xl-10 col-lg-12 col-md-9" }, [
-            _c(
-              "div",
-              { staticClass: "card o-hidden border-0 shadow-lg my-5" },
-              [
-                _c("div", { staticClass: "card-body p-0" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", {
-                      staticClass:
-                        "col-lg-6 d-none d-lg-block bg-password-image"
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-lg-6" }, [
-                      _c("div", { staticClass: "p-5" }, [
-                        _vm._m(0),
-                        _vm._v(" "),
-                        _c(
-                          "form",
-                          {
-                            staticClass: "user",
-                            on: {
-                              submit: function($event) {
-                                $event.preventDefault()
-                                return _vm.reset.apply(null, arguments)
-                              }
+      _c("div", { staticClass: "row justify-content-center login-div" }, [
+        _c("div", { staticClass: "col-xl-10 col-lg-12 col-md-9" }, [
+          _c(
+            "div",
+            { staticClass: "card o-hidden border-0 shadow-lg my-5 login-form" },
+            [
+              _c("div", { staticClass: "card-body p-0" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-lg-12" }, [
+                    _c("div", { staticClass: "p-5" }, [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "form",
+                        {
+                          staticClass: "user",
+                          on: {
+                            submit: function($event) {
+                              $event.preventDefault()
+                              return _vm.reset.apply(null, arguments)
                             }
-                          },
-                          [
-                            _c("div", { staticClass: "form-group" }, [
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("div", { staticClass: "input-group mb-3" }, [
+                              _vm._m(2),
+                              _vm._v(" "),
                               _c("input", {
                                 directives: [
                                   {
@@ -305,11 +377,12 @@ var render = function() {
                                     expression: "password"
                                   }
                                 ],
-                                staticClass: "form-control form-control-user",
+                                staticClass: "form-control custom-input",
                                 attrs: {
                                   type: "password",
                                   id: "exampleInputPassword",
-                                  placeholder: "Password"
+                                  placeholder: "Password",
+                                  required: ""
                                 },
                                 domProps: { value: _vm.password },
                                 on: {
@@ -324,71 +397,127 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "form-group" }, [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.password_confirm,
-                                    expression: "password_confirm"
-                                  }
-                                ],
-                                staticClass: "form-control form-control-user",
-                                attrs: {
-                                  type: "password",
-                                  id: "exampleRepeatPassword",
-                                  placeholder: "Repeat Password"
-                                },
-                                domProps: { value: _vm.password_confirm },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
+                              _c("div", { staticClass: "input-group mb-3" }, [
+                                _vm._m(3),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.password_confirm,
+                                      expression: "password_confirm"
                                     }
-                                    _vm.password_confirm = $event.target.value
+                                  ],
+                                  staticClass: "form-control custom-input",
+                                  attrs: {
+                                    type: "password",
+                                    id: "exampleInputPassword",
+                                    placeholder: "Repeat Password",
+                                    required: ""
+                                  },
+                                  domProps: { value: _vm.password_confirm },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.password_confirm = $event.target.value
+                                    }
                                   }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-primary btn-user btn-block",
-                                attrs: { type: "submit" }
-                              },
-                              [
-                                _vm._v(
-                                  "\r\n                      Reset Password\r\n                    "
-                                )
-                              ]
-                            )
-                          ]
-                        )
-                      ])
+                                })
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(4)
+                        ]
+                      )
                     ])
                   ])
                 ])
-              ]
-            )
-          ])
+              ])
+            ]
+          )
         ])
       ])
-    ],
-    1
-  )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "alert",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
-      _c("h1", { staticClass: "h4 text-gray-900 mb-2" }, [
-        _vm._v("Reset your password")
+      _c(
+        "h6",
+        {
+          staticStyle: {
+            "text-align": "center",
+            color: "#fff",
+            "padding-bottom": "20px"
+          }
+        },
+        [_vm._v("Reset your password")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-append" }, [
+      _c("div", { staticClass: "input-icons" }, [
+        _c("span", { staticClass: "fas fa-lock" })
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-append" }, [
+      _c("div", { staticClass: "input-icons" }, [
+        _c("span", { staticClass: "fas fa-lock" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "form-outline py-3",
+        staticStyle: { "text-align": "center" }
+      },
+      [
+        _c(
+          "button",
+          { staticClass: "btn submit-btn", attrs: { type: "submit" } },
+          [_vm._v("\n                    Reset Password\n                  ")]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
