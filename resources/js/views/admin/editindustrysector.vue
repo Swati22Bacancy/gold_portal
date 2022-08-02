@@ -1,30 +1,30 @@
 <template>
   <div>
-    <form class="crt-role" @submit.prevent="update_role">
+    <form class="crt-industrysector" @submit.prevent="update_industrysector">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800">{{formdata.name}}</h1>
+      <h1 class="h3 mb-0 text-gray-800">{{formdata.title}}</h1>
       <div>
         <button type="submit" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;">Save</button>
-        <router-link to="/roles"><button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button></router-link>
+        <router-link to="/industry-sectors"><button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button></router-link>
       </div>
       
     </div>
 
     <div class="row">
-      <div class="col-md-12 createrole-div">
+      <div class="col-md-12 createindustrysector-div">
         
             <div class="row mb-4">
               <div class="col-md-6">
                 <div class="form-group customer-input">
-                  <label>Name</label>
+                  <label>Title</label>
                   <input
                     type="text"
                     class="form-control form-control-role"
                     id="crt-typename"
                     aria-describedby="emailHelp"
-                    placeholder="Enter name here"
-                    v-model="formdata.name"
+                    placeholder="Enter title here"
+                    v-model="formdata.title"
                   />
                 </div>
                 
@@ -49,20 +49,20 @@ export default {
   },
   methods:
   {
-    async update_role() {
+    async update_industrysector() {
       try {
-        const response = await axios.post("update_role", {
+        const response = await axios.post("update_industrysector", {
           id: this.$route.params.id,
-          name: this.formdata.name,
+          title: this.formdata.title,
         });
         let message =
-            "Role has been successfully updated.";
+            "Industry Sector has been successfully updated.";
           let toast = Vue.toasted.show(message, {
             theme: "toasted-success",
             position: "top-center",
             duration: 5000,
           });
-        this.$router.push("/roles");
+        this.$router.push("/industry-sectors");
       } catch (error) {
         let message = 'Something went wrong, Please try again';
           let toast = Vue.toasted.show(message, {
@@ -76,7 +76,7 @@ export default {
   },
   mounted()
   {
-    axios.get('/roledetails/'+this.$route.params.id)
+    axios.get('/industrysector_details/'+this.$route.params.id)
         .then((response) => {
             this.formdata = response.data;
         })
@@ -88,18 +88,18 @@ export default {
 </script>
 <style scoped>
 
-.createrole-div
+.createindustrysector-div
 {
   background: #fff;
   padding: 34px 23px;
   border-radius: 8px;
   box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);
 }
-.crt-role label
+.crt-industrysector label
 {
   font-size: 12px;
 }
-.crt-role
+.crt-industrysector
 {
   padding: 0px 2%;
   color: #000;

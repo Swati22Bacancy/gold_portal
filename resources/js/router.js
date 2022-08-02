@@ -314,6 +314,33 @@ let router = new Router({
             }
         },
         {
+            path: "/industry-sectors",
+            name: "industrysector",
+            component: () => import("./views/admin/industrysector.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/create-industrysector",
+            name: "createindustrysector",
+            component: () => import("./views/admin/createindustrysector.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/edit-industrysector/:id",
+            name: "editindustrysector",
+            component: () => import("./views/admin/editindustrysector.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/invoice-options",
             name: "invoiceoptions",
             component: () => import("./views/admin/invoiceoptions.vue"),

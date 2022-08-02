@@ -178,6 +178,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Settings",
@@ -217,6 +228,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     goto_roles: function goto_roles() {
       this.$router.push({
         name: 'roles'
+      });
+    },
+    goto_sectors: function goto_sectors() {
+      this.$router.push({
+        name: 'industrysector'
       });
     },
     is_super_admin: function is_super_admin() {
@@ -887,6 +903,24 @@ var render = function() {
           [_vm._m(15), _vm._v(" "), _vm._m(16)]
         )
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row content-div" }, [
+      _vm.is_super_admin()
+        ? _c(
+            "div",
+            {
+              staticClass: "col-md-4",
+              staticStyle: { cursor: "pointer" },
+              on: {
+                click: function($event) {
+                  return _vm.goto_sectors()
+                }
+              }
+            },
+            [_vm._m(17)]
+          )
+        : _vm._e()
     ])
   ])
 }
@@ -1250,6 +1284,33 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("span", { staticStyle: { "font-size": "12px" } }, [
         _vm._v("Create & Manage Products here")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-3" }, [
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: { "font-size": "80px", color: "#595959" }
+          },
+          [_vm._v("article")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-9" }, [
+        _c("h6", { staticClass: "setting-subheading" }, [
+          _vm._v("Industry Sectors")
+        ]),
+        _vm._v(" "),
+        _c("span", { staticStyle: { "font-size": "12px" } }, [
+          _vm._v("Manage your industry sectors here.")
+        ])
       ])
     ])
   }

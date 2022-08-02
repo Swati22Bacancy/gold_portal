@@ -153,8 +153,19 @@
         </div>
       </div>
     </div>
-    
-    
+    <div class="row content-div">
+      <div class="col-md-4" v-if="is_super_admin()" v-on:click="goto_sectors()" style="cursor:pointer;">
+        <div class="row">
+          <div class="col-md-3">
+            <span class="material-symbols-outlined" style="font-size:80px;color: #595959;">article</span>
+          </div>
+          <div class="col-md-9">
+            <h6 class="setting-subheading">Industry Sectors</h6>
+            <span style="font-size: 12px;">Manage your industry sectors here.</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -196,6 +207,10 @@ export default {
     goto_roles()
     {
       this.$router.push({ name: 'roles' });
+    },
+    goto_sectors()
+    {
+      this.$router.push({ name: 'industrysector' });
     },
     is_super_admin(){
       if(this.user)
