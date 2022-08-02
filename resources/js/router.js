@@ -314,6 +314,15 @@ let router = new Router({
             }
         },
         {
+            path: "/invoice-options",
+            name: "invoiceoptions",
+            component: () => import("./views/admin/invoiceoptions.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/admin/components/buttons",
             name: "buttons",
             component: () => import("./views/admin/buttons.vue"),

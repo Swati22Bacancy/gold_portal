@@ -15,7 +15,7 @@
       <div class="col-md-12 createuser-div">
         
             <div class="row mb-4">
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="form-group customer-input">
                   <label>Name</label>
                   <input
@@ -29,7 +29,7 @@
                 </div>
                 
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="form-group customer-input">
                   <label>Email</label>
                   <input
@@ -41,11 +41,23 @@
                     v-model="formdata.email"
                   />
                 </div>
-                
+              </div>
+              <div class="col-md-4">
+                <div class="form-group customer-input">
+                  <label>Mobile Number</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-user"
+                    id="crt-typename"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter mobile number here"
+                    v-model="formdata.mobile_number"
+                  />
+                </div>
               </div>
             </div>
             <div class="row mb-4">
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="form-group customer-input">
                   <label>User Name</label>
                   <input
@@ -58,7 +70,21 @@
                   />
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
+                <div class="form-group customer-input">
+                  <label>Branch</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-user"
+                    id="crt-typename"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter branch here"
+                    v-model="formdata.branch"
+                  />
+                </div>
+                
+              </div>
+              <div class="col-md-4">
                 <div class="form-group customer-input">
                   <label>Select Role</label>
                   <select class="form-control form-control-user" v-model="formdata.role_id">
@@ -94,7 +120,9 @@ export default {
           username: this.formdata.username,
           name: this.formdata.name,
           email: this.formdata.email,
-          role_id: this.formdata.role_id
+          role_id: this.formdata.role_id,
+          branch: this.formdata.branch,
+          mobile_number: this.formdata.mobile_number
         });
         let message =
             "User has been successfully updated.";

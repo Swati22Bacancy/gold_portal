@@ -80,5 +80,11 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('assign_permission',[Api\PermissionController::class, 'sync']);
     Route::get('show_permission/{id}',[Api\PermissionController::class, 'show']);
     //Route::get('check_permisssion',[Api\PermissionController::class, 'check_permisssion']);
-    
+
+    // Invoice Options Routes
+    Route::post('store_basic',[Api\InvoiceOptionsController::class, 'storebasic']);
+    Route::post('store_fields',[Api\InvoiceOptionsController::class, 'storefields']);
+    Route::get('saved_invoiceoptions',[Api\InvoiceOptionsController::class, 'saved_invoiceoptions']);
+    Route::post('update_basic',[Api\InvoiceOptionsController::class, 'update_basic']);
+    Route::post('update_fields',[Api\InvoiceOptionsController::class, 'update_fields']);
 });

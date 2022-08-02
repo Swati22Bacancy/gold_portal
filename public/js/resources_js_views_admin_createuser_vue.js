@@ -97,6 +97,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CreateUser",
@@ -124,7 +152,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   username: _this.formdata.username,
                   name: _this.formdata.name,
                   email: _this.formdata.email,
-                  role_id: _this.formdata.role_id
+                  role_id: _this.formdata.role_id,
+                  branch: _this.formdata.branch,
+                  mobile_number: _this.formdata.mobile_number
                 });
 
               case 3:
@@ -768,7 +798,7 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-12 createtype-div" }, [
             _c("div", { staticClass: "row mb-4" }, [
-              _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "col-md-4" }, [
                 _c("div", { staticClass: "form-group customer-input" }, [
                   _c("label", [_vm._v("Name")]),
                   _vm._v(" "),
@@ -801,7 +831,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "col-md-4" }, [
                 _c("div", { staticClass: "form-group customer-input" }, [
                   _c("label", [_vm._v("Email")]),
                   _vm._v(" "),
@@ -832,11 +862,48 @@ var render = function() {
                     }
                   })
                 ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("div", { staticClass: "form-group customer-input" }, [
+                  _c("label", [_vm._v("Mobile Number")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formdata.mobile_number,
+                        expression: "formdata.mobile_number"
+                      }
+                    ],
+                    staticClass: "form-control form-control-user",
+                    attrs: {
+                      type: "text",
+                      id: "crt-typename",
+                      "aria-describedby": "emailHelp",
+                      placeholder: "Enter mobile number here"
+                    },
+                    domProps: { value: _vm.formdata.mobile_number },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.formdata,
+                          "mobile_number",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
               ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row mb-4" }, [
-              _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "col-md-4" }, [
                 _c("div", { staticClass: "form-group customer-input" }, [
                   _c("label", [_vm._v("User Name")]),
                   _vm._v(" "),
@@ -869,7 +936,40 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("div", { staticClass: "form-group customer-input" }, [
+                  _c("label", [_vm._v("Branch")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formdata.branch,
+                        expression: "formdata.branch"
+                      }
+                    ],
+                    staticClass: "form-control form-control-user",
+                    attrs: {
+                      type: "text",
+                      id: "crt-typename",
+                      "aria-describedby": "emailHelp",
+                      placeholder: "Enter branch here"
+                    },
+                    domProps: { value: _vm.formdata.branch },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.formdata, "branch", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
                 _c("div", { staticClass: "form-group customer-input" }, [
                   _c("label", [_vm._v("Select Role")]),
                   _vm._v(" "),

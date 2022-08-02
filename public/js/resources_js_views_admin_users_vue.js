@@ -98,6 +98,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -189,7 +191,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           //"bFilter": false,
           "bLengthChange": false,
           "columnDefs": [{
-            "targets": [0, 3],
+            "targets": [0, 4],
             "searchable": false,
             "orderable": false
           }]
@@ -16392,6 +16394,8 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(user.userlevel))]),
                       _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.branch))]),
+                      _vm._v(" "),
                       _c(
                         "td",
                         [
@@ -16560,6 +16564,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("User")]),
         _vm._v(" "),
         _c("th", [_vm._v("User Level")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Branch")]),
         _vm._v(" "),
         _c("th", [_vm._v("Actions")])
       ])

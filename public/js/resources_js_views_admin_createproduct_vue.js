@@ -157,7 +157,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.$router.push("/products");
 
-                _context.next = 14;
+                _context.next = 13;
                 break;
 
               case 9:
@@ -169,9 +169,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   position: "top-center",
                   duration: 5000
                 });
-                console.log(_context.t0);
 
-              case 14:
+              case 13:
               case "end":
                 return _context.stop();
             }

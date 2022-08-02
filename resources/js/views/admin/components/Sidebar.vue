@@ -73,18 +73,6 @@
           <span>Bank Accounts</span></router-link
         >
       </li>
-      <li class="nav-item" v-if="is_super_admin() || checkPermission('user-list')">
-        <router-link class="nav-link" to="/users">
-          <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">person</span>
-          <span>Users</span></router-link
-        >
-      </li>
-      <li class="nav-item" v-if="is_super_admin()">
-        <router-link class="nav-link" to="/roles">
-          <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">lock_person</span>
-          <span>Roles</span></router-link
-        >
-      </li>
       <li class="nav-item" v-if="is_super_admin()">
         <router-link class="nav-link" to="/settings">
           <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">settings</span>
