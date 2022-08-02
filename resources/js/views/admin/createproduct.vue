@@ -130,7 +130,6 @@ export default {
             position: "top-center",
             duration: 5000,
           });
-        console.log(error);
       }
     },
     getProductTypes() {

@@ -20,8 +20,8 @@
             <span class="material-symbols-outlined" style="font-size:80px;color: #595959;">person_add</span>
           </div>
           <div class="col-md-9">
-            <h6 class="setting-subheading">Additional Users</h6>
-            <span style="font-size: 12px;">Manage additional users and their access to your account</span>
+            <h6 class="setting-subheading">Users</h6>
+            <span style="font-size: 12px;">Manage users and their access to your account</span>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4" v-if="is_super_admin()" v-on:click="goto_invoiceoptions()" style="cursor:pointer;">
         <div class="row">
           <div class="col-md-3">
             <span class="material-symbols-outlined" style="font-size:80px;color: #595959;">difference</span>
@@ -71,7 +71,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4" v-if="is_super_admin()" v-on:click="goto_roles()" style="cursor:pointer;">
         <div class="row">
           <div class="col-md-3">
             <span class="material-symbols-outlined" style="font-size:80px;color: #595959;">lock_person</span>
@@ -189,6 +189,14 @@ export default {
     {
       this.$router.push({ name: 'users' });
     },
+    goto_invoiceoptions()
+    {
+      this.$router.push({ name: 'invoiceoptions' });
+    },
+    goto_roles()
+    {
+      this.$router.push({ name: 'roles' });
+    },
     is_super_admin(){
       if(this.user)
       {
@@ -229,5 +237,7 @@ export default {
   color: #245388;
   font-weight: 700;
   margin-top: 10px;
+  font-size: 17px;
+  font-family: Titillium-Web-Bold;
 }
 </style>

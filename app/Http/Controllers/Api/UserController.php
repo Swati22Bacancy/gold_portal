@@ -23,7 +23,9 @@ class UserController extends Controller
                 'last_name' => (isset($name[1]))?$name[1]:'',
                 'username' => $request->input('username'),
                 'email' => $request->input('email'),
-                'role_id' => $request->input('role_id')
+                'role_id' => $request->input('role_id'),
+                'mobile_number' => $request->input('mobile_number'),
+                'branch' => $request->input('branch')
             ]);
 
             $user_roles = UsersRoles::insert([
@@ -92,7 +94,9 @@ class UserController extends Controller
                 'last_name' => (isset($name[1]))?$name[1]:'',
                 'username' => $request->input('username'),
                 'email' => $request->input('email'),
-                'role_id' => $request->input('role_id')
+                'role_id' => $request->input('role_id'),
+                'mobile_number' => $request->input('mobile_number'),
+                'branch' => $request->input('branch')
             ]);
             $role = UsersRoles::where('user_id',$request->input('id'))->delete();
             $user_roles = UsersRoles::insert([

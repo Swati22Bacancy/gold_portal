@@ -209,6 +209,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: 'users'
       });
     },
+    goto_invoiceoptions: function goto_invoiceoptions() {
+      this.$router.push({
+        name: 'invoiceoptions'
+      });
+    },
+    goto_roles: function goto_roles() {
+      this.$router.push({
+        name: 'roles'
+      });
+    },
     is_super_admin: function is_super_admin() {
       if (this.user) {
         if (this.user.role_id == 1) {
@@ -249,7 +259,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.content-div[data-v-98a5ffbc]\r\n{\r\n  margin: 0 15px;\r\n  background-color: #fff;\n}\n.content-div .col-md-4[data-v-98a5ffbc]\r\n{\r\n  border: 1px solid #eee;\r\n  padding: 20px;\n}\n.setting-subheading[data-v-98a5ffbc]\r\n{\r\n  color: #245388;\r\n  font-weight: 700;\r\n  margin-top: 10px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.content-div[data-v-98a5ffbc]\r\n{\r\n  margin: 0 15px;\r\n  background-color: #fff;\n}\n.content-div .col-md-4[data-v-98a5ffbc]\r\n{\r\n  border: 1px solid #eee;\r\n  padding: 20px;\n}\n.setting-subheading[data-v-98a5ffbc]\r\n{\r\n  color: #245388;\r\n  font-weight: 700;\r\n  margin-top: 10px;\r\n  font-size: 17px;\r\n  font-family: Titillium-Web-Bold;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -771,10 +781,44 @@ var render = function() {
       _vm._m(4)
     ]),
     _vm._v(" "),
-    _vm._m(5),
+    _c("div", { staticClass: "row content-div" }, [
+      _vm._m(5),
+      _vm._v(" "),
+      _vm.is_super_admin()
+        ? _c(
+            "div",
+            {
+              staticClass: "col-md-4",
+              staticStyle: { cursor: "pointer" },
+              on: {
+                click: function($event) {
+                  return _vm.goto_invoiceoptions()
+                }
+              }
+            },
+            [_vm._m(6)]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.is_super_admin()
+        ? _c(
+            "div",
+            {
+              staticClass: "col-md-4",
+              staticStyle: { cursor: "pointer" },
+              on: {
+                click: function($event) {
+                  return _vm.goto_roles()
+                }
+              }
+            },
+            [_vm._m(7)]
+          )
+        : _vm._e()
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "row content-div" }, [
-      _vm._m(6),
+      _vm._m(8),
       _vm._v(" "),
       _vm.is_super_admin() || _vm.checkPermission("currency-list")
         ? _c(
@@ -788,7 +832,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._m(7)]
+            [_vm._m(9)]
           )
         : _vm._e(),
       _vm._v(" "),
@@ -804,13 +848,13 @@ var render = function() {
               }
             }
           },
-          [_vm._m(8), _vm._v(" "), _vm._m(9)]
+          [_vm._m(10), _vm._v(" "), _vm._m(11)]
         )
       ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row content-div" }, [
-      _vm._m(10),
+      _vm._m(12),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-4" }, [
         _c(
@@ -824,7 +868,7 @@ var render = function() {
               }
             }
           },
-          [_vm._m(11), _vm._v(" "), _vm._m(12)]
+          [_vm._m(13), _vm._v(" "), _vm._m(14)]
         )
       ]),
       _vm._v(" "),
@@ -840,7 +884,7 @@ var render = function() {
               }
             }
           },
-          [_vm._m(13), _vm._v(" "), _vm._m(14)]
+          [_vm._m(15), _vm._v(" "), _vm._m(16)]
         )
       ])
     ])
@@ -889,12 +933,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-9" }, [
-      _c("h6", { staticClass: "setting-subheading" }, [
-        _vm._v("Additional Users")
-      ]),
+      _c("h6", { staticClass: "setting-subheading" }, [_vm._v("Users")]),
       _vm._v(" "),
       _c("span", { staticStyle: { "font-size": "12px" } }, [
-        _vm._v("Manage additional users and their access to your account")
+        _vm._v("Manage users and their access to your account")
       ])
     ])
   },
@@ -962,79 +1004,81 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row content-div" }, [
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-3" }, [
-            _c(
-              "span",
-              {
-                staticClass: "material-symbols-outlined",
-                staticStyle: { "font-size": "80px", color: "#595959" }
-              },
-              [_vm._v("move_to_inbox")]
-            )
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-3" }, [
+          _c(
+            "span",
+            {
+              staticClass: "material-symbols-outlined",
+              staticStyle: { "font-size": "80px", color: "#595959" }
+            },
+            [_vm._v("move_to_inbox")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-9" }, [
+          _c("h6", { staticClass: "setting-subheading" }, [
+            _vm._v("Data Import")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-9" }, [
-            _c("h6", { staticClass: "setting-subheading" }, [
-              _vm._v("Data Import")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticStyle: { "font-size": "12px" } }, [
-              _vm._v("Import data into your KashFlow Account.")
-            ])
+          _c("span", { staticStyle: { "font-size": "12px" } }, [
+            _vm._v("Import data into your KashFlow Account.")
           ])
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-3" }, [
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: { "font-size": "80px", color: "#595959" }
+          },
+          [_vm._v("difference")]
+        )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-3" }, [
-            _c(
-              "span",
-              {
-                staticClass: "material-symbols-outlined",
-                staticStyle: { "font-size": "80px", color: "#595959" }
-              },
-              [_vm._v("difference")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-9" }, [
-            _c("h6", { staticClass: "setting-subheading" }, [
-              _vm._v("Invoice Options")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticStyle: { "font-size": "12px" } }, [
-              _vm._v("Configure invoices, discounts and packing slips.")
-            ])
-          ])
+      _c("div", { staticClass: "col-md-9" }, [
+        _c("h6", { staticClass: "setting-subheading" }, [
+          _vm._v("Invoice Options")
+        ]),
+        _vm._v(" "),
+        _c("span", { staticStyle: { "font-size": "12px" } }, [
+          _vm._v("Configure invoices, discounts and packing slips.")
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-3" }, [
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: { "font-size": "80px", color: "#595959" }
+          },
+          [_vm._v("lock_person")]
+        )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-3" }, [
-            _c(
-              "span",
-              {
-                staticClass: "material-symbols-outlined",
-                staticStyle: { "font-size": "80px", color: "#595959" }
-              },
-              [_vm._v("lock_person")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-9" }, [
-            _c("h6", { staticClass: "setting-subheading" }, [
-              _vm._v("Roles & Permissions")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticStyle: { "font-size": "12px" } }, [
-              _vm._v("Set User permissions of what users have access to.")
-            ])
-          ])
+      _c("div", { staticClass: "col-md-9" }, [
+        _c("h6", { staticClass: "setting-subheading" }, [
+          _vm._v("Roles & Permissions")
+        ]),
+        _vm._v(" "),
+        _c("span", { staticStyle: { "font-size": "12px" } }, [
+          _vm._v("Set User permissions of what users have access to.")
         ])
       ])
     ])

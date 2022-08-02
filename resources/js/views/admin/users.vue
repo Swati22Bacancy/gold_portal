@@ -33,6 +33,7 @@
                                     <th><input type="checkbox" class="custom-check-input"></th>
                                     <th>User</th>
                                     <th>User Level</th>
+                                    <th>Branch</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -41,6 +42,7 @@
                                     <td><input type="checkbox" class="custom-check-input"></td>
                                     <td>{{user.first_name}} {{user.last_name}}</td>
                                     <td>{{user.userlevel}}</td>
+                                    <td>{{user.branch}}</td>
                                     <td><router-link v-if="is_super_admin() || checkPermission('user-edit')" :to="{name : 'edituser', params: {id : user.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">edit</span></router-link>
                                     <span v-if="is_super_admin() || checkPermission('user-delete')" class="material-symbols-outlined" style="margin-right: 5px;color: red;    cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(user.id)">delete</span>
                                     </td>
@@ -169,7 +171,7 @@ export default {
               //"bFilter": false,
               "bLengthChange": false,
               "columnDefs": [
-                { "targets": [0,3], "searchable": false, "orderable": false }
+                { "targets": [0,4], "searchable": false, "orderable": false }
               ]
             });
             $(".searchbox").keyup(function() {
