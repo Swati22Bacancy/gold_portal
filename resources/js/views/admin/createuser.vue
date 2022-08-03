@@ -27,21 +27,24 @@
                     v-model="formdata.name"
                   />
                 </div>
+                <p v-if="anyError && !isNameValid">Please enter valid name.</p>
                 
               </div>
               <div class="col-md-6">
                 <div class="form-group customer-input">
                   <label>Email</label>
                   <input
-                    type="text"
+                    type="email"
                     class="form-control form-control-user"
                     id="crt-typerate"
                     aria-describedby="emailHelp"
                     placeholder="Enter email here"
                     v-model="formdata.email"
+                    
                   />
+                  
                 </div>
-                
+                 <p v-if="anyError && !isEmailValid">Please enter valid email.</p>
               </div>
             </div>
             <div class="row mb-4">
@@ -57,6 +60,8 @@
                     v-model="formdata.username"
                   />
                 </div>
+              
+               
                 
               </div>
               <div class="col-md-6">
@@ -83,12 +88,15 @@ export default {
     return {
       rules : customerRules,
       formdata: {},
-      roles:{}
+      roles:{},
+      anyError: false,
     };
   },
   methods:
   {
     async create_user() {
+      this.anyError= true;
+      if(this.isNameValid && this.isEmailValid){
       try {
         const response = await axios.post("create_user", {
           username: this.formdata.username,
@@ -113,12 +121,34 @@ export default {
           });
         console.log(error);
       }
+      }
     },
     getRoles() {
         return axios.get("rolelist").then(response => {
             this.roles = response.data;
         });
     },
+  },
+  computed: {
+        isNameValid(){
+          console.log(this.formdata.name)
+            const regx = new RegExp(/^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
+            if(!this.formdata.name || !regx.test(this.formdata.name)){
+             
+                return false;
+            }
+           
+            return true;
+        },
+        isEmailValid(){
+            const regx = new RegExp(/^[a-zA-Z0-9]{1,}[a-zA-Z0-9.-_]{1,}@[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,}[.]{0,1}[a-zA-Z]{0,}$/);
+            if(this.formdata.email === '' || !regx.test(this.formdata.email)){
+           
+                return false;
+            }
+            return true;
+        },
+      
   },
   mounted()
   {
@@ -149,5 +179,7 @@ export default {
 {
   box-shadow: 0 0;
 }
-
+p{
+  color: red;
+}
 </style>

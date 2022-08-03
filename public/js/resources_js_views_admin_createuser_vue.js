@@ -97,6 +97,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CreateUser",
@@ -104,7 +109,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       rules: _rules_customerRules__WEBPACK_IMPORTED_MODULE_1__.customerRules,
       formdata: {},
-      roles: {}
+      roles: {},
+      anyError: false
     };
   },
   methods: {
@@ -118,8 +124,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
-                _context.next = 3;
+                _this.anyError = true;
+
+                if (!(_this.isNameValid && _this.isEmailValid)) {
+                  _context.next = 16;
+                  break;
+                }
+
+                _context.prev = 2;
+                _context.next = 5;
                 return axios.post("create_user", {
                   username: _this.formdata.username,
                   name: _this.formdata.name,
@@ -127,7 +140,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   role_id: _this.formdata.role_id
                 });
 
-              case 3:
+              case 5:
                 response = _context.sent;
                 message = "User has been successfully added.";
                 toast = Vue.toasted.show(message, {
@@ -138,12 +151,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.$router.push("/users");
 
-                _context.next = 14;
+                _context.next = 16;
                 break;
 
-              case 9:
-                _context.prev = 9;
-                _context.t0 = _context["catch"](0);
+              case 11:
+                _context.prev = 11;
+                _context.t0 = _context["catch"](2);
                 _message = 'Something went wrong, Please try again';
                 _toast = Vue.toasted.show(_message, {
                   theme: "toasted-error",
@@ -152,12 +165,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
                 console.log(_context.t0);
 
-              case 14:
+              case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 9]]);
+        }, _callee, null, [[2, 11]]);
       }))();
     },
     getRoles: function getRoles() {
@@ -166,6 +179,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return axios.get("rolelist").then(function (response) {
         _this2.roles = response.data;
       });
+    }
+  },
+  computed: {
+    isNameValid: function isNameValid() {
+      console.log(this.formdata.name);
+      var regx = new RegExp(/^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
+
+      if (!this.formdata.name || !regx.test(this.formdata.name)) {
+        return false;
+      }
+
+      return true;
+    },
+    isEmailValid: function isEmailValid() {
+      var regx = new RegExp(/^[a-zA-Z0-9]{1,}[a-zA-Z0-9.-_]{1,}@[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,}[.]{0,1}[a-zA-Z]{0,}$/);
+
+      if (this.formdata.email === '' || !regx.test(this.formdata.email)) {
+        return false;
+      }
+
+      return true;
     }
   },
   mounted: function mounted() {
@@ -217,7 +251,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.createtype-div[data-v-4f68e306]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-type label[data-v-4f68e306]\r\n{\r\n  font-size: 12px;\n}\n.crt-type[data-v-4f68e306]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.btn[data-v-4f68e306]:focus, .btn.focus[data-v-4f68e306]\r\n{\r\n  box-shadow: 0 0;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.createtype-div[data-v-4f68e306]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-type label[data-v-4f68e306]\r\n{\r\n  font-size: 12px;\n}\n.crt-type[data-v-4f68e306]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.btn[data-v-4f68e306]:focus, .btn.focus[data-v-4f68e306]\r\n{\r\n  box-shadow: 0 0;\n}\np[data-v-4f68e306]{\r\n  color: red;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -798,7 +832,11 @@ var render = function() {
                       }
                     }
                   })
-                ])
+                ]),
+                _vm._v(" "),
+                _vm.anyError && !_vm.isNameValid
+                  ? _c("p", [_vm._v("Please enter valid name.")])
+                  : _vm._e()
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6" }, [
@@ -816,7 +854,7 @@ var render = function() {
                     ],
                     staticClass: "form-control form-control-user",
                     attrs: {
-                      type: "text",
+                      type: "email",
                       id: "crt-typerate",
                       "aria-describedby": "emailHelp",
                       placeholder: "Enter email here"
@@ -831,7 +869,11 @@ var render = function() {
                       }
                     }
                   })
-                ])
+                ]),
+                _vm._v(" "),
+                _vm.anyError && !_vm.isEmailValid
+                  ? _c("p", [_vm._v("Please enter valid email.")])
+                  : _vm._e()
               ])
             ]),
             _vm._v(" "),
