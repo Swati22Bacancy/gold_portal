@@ -350,6 +350,15 @@ let router = new Router({
             }
         },
         {
+            path: "/company-details",
+            name: "companydetails",
+            component: () => import("./views/admin/companydetails.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/admin/components/buttons",
             name: "buttons",
             component: () => import("./views/admin/buttons.vue"),

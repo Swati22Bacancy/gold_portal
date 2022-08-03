@@ -94,4 +94,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('delete_industrysector/{id}', [Api\IndustrySectorController::class, 'deleteindustrysector']);
     Route::get('industrysector_details/{id}', [Api\IndustrySectorController::class, 'industrysectordetails']);
     Route::post('update_industrysector', [Api\IndustrySectorController::class, 'updateindustrysector']);
+
+    // Company Details Routes
+    Route::post('store_details',[Api\CompanyDetailsController::class, 'storedetails']);
+    Route::get('saved_companydetails',[Api\CompanyDetailsController::class, 'saved_companydetails']);
+    Route::post('update_details',[Api\CompanyDetailsController::class, 'update_details']);
+    
 });

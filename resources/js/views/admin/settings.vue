@@ -25,7 +25,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4" v-on:click="goto_companydetails()" style="cursor:pointer;">
         <div class="row">
           <div class="col-md-3">
             <span class="material-symbols-outlined" style="font-size:80px;color: #595959;">location_city</span>
@@ -211,6 +211,10 @@ export default {
     goto_sectors()
     {
       this.$router.push({ name: 'industrysector' });
+    },
+    goto_companydetails()
+    {
+      this.$router.push({ name: 'companydetails' });
     },
     is_super_admin(){
       if(this.user)
