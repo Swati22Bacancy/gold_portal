@@ -100,4 +100,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('saved_companydetails',[Api\CompanyDetailsController::class, 'saved_companydetails']);
     Route::post('update_details',[Api\CompanyDetailsController::class, 'update_details']);
     Route::get('download',[Api\CompanyDetailsController::class, 'download']);
+
+    // Customer Settings Routes
+    Route::post('store_customersettings',[Api\CustomerSettingsController::class, 'storecustomersettings']);
+    Route::get('saved_customersettings',[Api\CustomerSettingsController::class, 'savedcustomersettings']);
+    Route::post('update_customersettings',[Api\CustomerSettingsController::class, 'updatecustomersettings']);
 });

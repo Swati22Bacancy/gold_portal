@@ -84,7 +84,7 @@
       </div>
     </div>
     <div class="row content-div">
-      <div class="col-md-4">
+      <div class="col-md-4" v-on:click="goto_customersettings()" style="cursor:pointer;">
         <div class="row">
           <div class="col-md-3">
             <span class="material-symbols-outlined" style="font-size:80px;color: #595959;">manage_accounts</span>
@@ -215,6 +215,10 @@ export default {
     goto_companydetails()
     {
       this.$router.push({ name: 'companydetails' });
+    },
+    goto_customersettings()
+    {
+      this.$router.push({ name: 'customersettings' });
     },
     is_super_admin(){
       if(this.user)
