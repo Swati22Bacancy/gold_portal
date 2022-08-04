@@ -13,7 +13,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _object_to_formdata__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../object-to-formdata */ "./resources/js/object-to-formdata.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -253,16 +254,93 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CompanyDetails",
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)(["user", "permissions"])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(["user", "permissions"])),
   data: function data() {
     return {
       tabList: ["Basic Settings", "Field Names"],
       formdata: {},
       industrysectors: {},
-      currencies: {}
+      currencies: {},
+      filename: '',
+      file: '',
+      credit_filename: '',
+      creditfile: '',
+      vat_filename: '',
+      vatfile: '',
+      incorporation_filename: '',
+      incorporationfile: '',
+      accounting_filename: '',
+      accountingfile: '',
+      filename1: '',
+      credit_filename1: '',
+      vat_filename1: '',
+      incorporation_filename1: '',
+      accounting_filename1: ''
     };
   },
   methods: {
@@ -302,39 +380,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
-                _context.next = 3;
-                return axios.post("store_details", {
-                  company_name: _this2.formdata.company_name,
-                  address1: _this2.formdata.address1,
-                  address2: _this2.formdata.address2,
-                  postcode: _this2.formdata.postcode,
-                  country: _this2.formdata.country,
-                  contact_name: _this2.formdata.contact_name,
-                  contact_email: _this2.formdata.contact_email,
-                  contact_telephone: _this2.formdata.contact_telephone,
-                  contact_mobile: _this2.formdata.contact_mobile,
-                  payment_days: _this2.formdata.payment_days,
-                  payment_condition: _this2.formdata.payment_condition,
-                  currency_id: _this2.formdata.currency_id,
-                  vat_status: _this2.formdata.vat_status,
-                  vat_number: _this2.formdata.vat_number,
-                  sector_id: _this2.formdata.sector_id,
-                  business_type: _this2.formdata.business_type
-                });
+                _this2.formdata.file = _this2.file;
+                _this2.formdata.creditfile = _this2.creditfile;
+                _this2.formdata.vatfile = _this2.vatfile;
+                _this2.formdata.incorporationfile = _this2.incorporationfile;
+                _this2.formdata.accountingfile = _this2.accountingfile;
+                _context.next = 8;
+                return axios.post("store_details", (0,_object_to_formdata__WEBPACK_IMPORTED_MODULE_1__.objectToFormData)(_this2.formdata));
 
-              case 3:
+              case 8:
                 response = _context.sent;
+                _this2.file = '';
+                _this2.creditfile = '';
+                _this2.vatfile = '';
+                _this2.incorporationfile = '';
+                _this2.accountingfile = '';
                 message = "Company Details has been successfully saved.";
                 toast = Vue.toasted.show(message, {
                   theme: "toasted-success",
                   position: "top-center",
                   duration: 5000
                 });
-                _context.next = 12;
+                _context.next = 22;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 18:
+                _context.prev = 18;
                 _context.t0 = _context["catch"](0);
                 _message = 'Something went wrong, Please try again';
                 _toast = Vue.toasted.show(_message, {
@@ -343,12 +414,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   duration: 5000
                 });
 
-              case 12:
+              case 22:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[0, 18]]);
       }))();
     },
     updateCompanyDetails: function updateCompanyDetails() {
@@ -362,39 +433,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.prev = 0;
-                _context2.next = 3;
-                return axios.post("update_details", {
-                  company_name: _this3.formdata.company_name,
-                  address1: _this3.formdata.address1,
-                  address2: _this3.formdata.address2,
-                  postcode: _this3.formdata.postcode,
-                  country: _this3.formdata.country,
-                  contact_name: _this3.formdata.contact_name,
-                  contact_email: _this3.formdata.contact_email,
-                  contact_telephone: _this3.formdata.contact_telephone,
-                  contact_mobile: _this3.formdata.contact_mobile,
-                  payment_days: _this3.formdata.payment_days,
-                  payment_condition: _this3.formdata.payment_condition,
-                  currency_id: _this3.formdata.currency_id,
-                  vat_status: _this3.formdata.vat_status,
-                  vat_number: _this3.formdata.vat_number,
-                  sector_id: _this3.formdata.sector_id,
-                  business_type: _this3.formdata.business_type
-                });
+                _this3.formdata.file = _this3.file;
+                _this3.formdata.creditfile = _this3.creditfile;
+                _this3.formdata.vatfile = _this3.vatfile;
+                _this3.formdata.incorporationfile = _this3.incorporationfile;
+                _this3.formdata.accountingfile = _this3.accountingfile;
+                _context2.next = 8;
+                return axios.post("update_details", (0,_object_to_formdata__WEBPACK_IMPORTED_MODULE_1__.objectToFormData)(_this3.formdata));
 
-              case 3:
+              case 8:
                 response = _context2.sent;
+                _this3.file = '';
+                _this3.creditfile = '';
+                _this3.vatfile = '';
+                _this3.incorporationfile = '';
+                _this3.accountingfile = '';
                 message = "Company Details has been successfully saved.";
                 toast = Vue.toasted.show(message, {
                   theme: "toasted-success",
                   position: "top-center",
                   duration: 5000
                 });
-                _context2.next = 12;
+                _context2.next = 22;
                 break;
 
-              case 8:
-                _context2.prev = 8;
+              case 18:
+                _context2.prev = 18;
                 _context2.t0 = _context2["catch"](0);
                 _message2 = 'Something went wrong, Please try again';
                 _toast2 = Vue.toasted.show(_message2, {
@@ -403,12 +467,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   duration: 5000
                 });
 
-              case 12:
+              case 22:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 8]]);
+        }, _callee2, null, [[0, 18]]);
       }))();
     },
     getIndustrySectors: function getIndustrySectors() {
@@ -424,6 +488,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return axios.get("currencylist").then(function (response) {
         _this5.currencies = response.data;
       });
+    },
+    onFileChange: function onFileChange(e) {
+      this.filename = "Selected File: " + e.target.files[0].name;
+      this.file = e.target.files[0];
+    },
+    onCreditFileChange: function onCreditFileChange(e) {
+      this.credit_filename = "Selected File: " + e.target.files[0].name;
+      this.creditfile = e.target.files[0];
+    },
+    onVatFileChange: function onVatFileChange(e) {
+      this.vat_filename = "Selected File: " + e.target.files[0].name;
+      this.vatfile = e.target.files[0];
+    },
+    onIncorporationFileChange: function onIncorporationFileChange(e) {
+      this.incorporation_filename = "Selected File: " + e.target.files[0].name;
+      this.incorporationfile = e.target.files[0];
+    },
+    onAccountingFileChange: function onAccountingFileChange(e) {
+      this.accounting_filename = "Selected File: " + e.target.files[0].name;
+      this.accountingfile = e.target.files[0];
+    },
+    download: function download(image) {
+      axios.get("/download?image=" + image, {
+        responseType: 'blob'
+      }).then(function (response) {
+        var url = window.URL.createObjectURL(new Blob([response.data]));
+        var link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', image);
+        document.body.appendChild(link);
+        link.click();
+      })["catch"](function (e) {
+        console.log(e);
+      });
     }
   },
   mounted: function mounted() {
@@ -433,10 +531,112 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.getCurrencies();
     axios.get('/saved_companydetails/').then(function (response) {
       _this6.formdata = response.data;
+      _this6.filename1 = response.data.identification_file;
+      _this6.credit_filename1 = response.data.credit_file;
+      _this6.vat_filename1 = response.data.vat_file;
+      _this6.incorporation_filename1 = response.data.incorporation_file;
+      _this6.accounting_filename1 = response.data.accounting_file;
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/object-to-formdata.js":
+/*!********************************************!*\
+  !*** ./resources/js/object-to-formdata.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "objectToFormData": () => (/* binding */ objectToFormData)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function isUndefined(value) {
+  return value === undefined;
+}
+
+function isNull(value) {
+  return value === null;
+}
+
+function isObject(value) {
+  return value === Object(value);
+}
+
+function isArray(value) {
+  return Array.isArray(value);
+}
+
+function isDate(value) {
+  return value instanceof Date;
+}
+
+function isBlob(value) {
+  return value && typeof value.size === 'number' && typeof value.type === 'string' && typeof value.slice === 'function';
+}
+
+function isFile(value) {
+  return isBlob(value) && (_typeof(value.lastModifiedDate) === 'object' || typeof value.lastModified === 'number') && typeof value.name === 'string';
+}
+
+function isFormData(value) {
+  return value instanceof FormData;
+}
+
+var objectToFormData = function objectToFormData(obj, cfg, fd, pre) {
+  if (isFormData(cfg)) {
+    pre = fd;
+    fd = cfg;
+    cfg = null;
+  }
+
+  cfg = cfg || {};
+  cfg.indices = isUndefined(cfg.indices) ? false : cfg.indices;
+  cfg.nulls = isUndefined(cfg.nulls) ? true : cfg.nulls;
+  fd = fd || new FormData();
+
+  if (isUndefined(obj)) {
+    return fd;
+  } else if (isNull(obj)) {
+    if (cfg.nulls) {
+      fd.append(pre, '');
+    }
+  } else if (isArray(obj)) {
+    if (!obj.length) {
+      var key = pre + '[]';
+      fd.append(key, '');
+    } else {
+      obj.forEach(function (value, index) {
+        var key = pre + '[' + (cfg.indices ? index : '') + ']';
+        objectToFormData(value, cfg, fd, key);
+      });
+    }
+  } else if (isDate(obj)) {
+    fd.append(pre, obj.toISOString());
+  } else if (isObject(obj) && !isFile(obj) && !isBlob(obj)) {
+    Object.keys(obj).forEach(function (prop) {
+      var value = obj[prop];
+
+      if (isArray(value)) {
+        while (prop.length > 2 && prop.lastIndexOf('[]') === prop.length - 2) {
+          prop = prop.substring(0, prop.length - 2);
+        }
+      }
+
+      var key = pre ? pre + '[' + prop + ']' : prop;
+      objectToFormData(value, cfg, fd, key);
+    });
+  } else {
+    fd.append(pre, obj);
+  }
+
+  return fd;
+};
 
 /***/ }),
 
@@ -457,7 +657,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.tab-selector[data-v-59ba08e4]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 11%;\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.check-position[data-v-59ba08e4]\r\n{\r\n  margin-left: 2%;\n}\n.inv_setting_input[data-v-59ba08e4]\r\n{\r\n  width: 20%;\n}\n.invoice_basic[data-v-59ba08e4]\r\n{\r\n  max-width:80%;\n}\n.radio-label[data-v-59ba08e4]\r\n{\r\n  font-size: 15px !important;\r\n  margin-left: 5px;\n}\n.company_setting label[data-v-59ba08e4] {\r\n    font-size: 14px;\n}\n.invoice_basic span[data-v-59ba08e4]\r\n{\r\n  color: #807e7e;\r\n  font-size: 11px;\n}\n.company_setting label[data-v-59ba08e4] {\r\n    font-size: 12px;\n}\n.check-position[data-v-59ba08e4]\r\n{\r\n  margin-left: 10%;\n}\n.box-content h6[data-v-59ba08e4]\r\n{\r\n padding: 2% 0 1% 0;\r\n font-family: 'Titillium-Web-Bold';\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.tab-selector[data-v-59ba08e4]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 11%;\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.check-position[data-v-59ba08e4]\r\n{\r\n  margin-left: 2%;\n}\n.inv_setting_input[data-v-59ba08e4]\r\n{\r\n  width: 20%;\n}\n.invoice_basic[data-v-59ba08e4]\r\n{\r\n  max-width:80%;\n}\n.radio-label[data-v-59ba08e4]\r\n{\r\n  font-size: 15px !important;\r\n  margin-left: 5px;\n}\n.company_setting label[data-v-59ba08e4] {\r\n    font-size: 14px;\n}\n.invoice_basic span[data-v-59ba08e4]\r\n{\r\n  color: #807e7e;\r\n  font-size: 11px;\n}\n.company_setting label[data-v-59ba08e4] {\r\n    font-size: 12px;\n}\n.check-position[data-v-59ba08e4]\r\n{\r\n  margin-left: 10%;\n}\n.box-content h6[data-v-59ba08e4]\r\n{\r\n padding: 2% 0 1% 0;\r\n font-family: 'Titillium-Web-Bold';\n}\n.upload_text[data-v-59ba08e4]\r\n{\r\n  font-size: 14px;\r\n  margin-left: 1%;\n}\n.document_title[data-v-59ba08e4]\r\n{\r\n  font-size: 15px;\n}\n.download_link[data-v-59ba08e4]\r\n{\r\n  display: inline-block;\r\n  padding: 0.375rem 0.75rem;\r\n  background-color: #7ADAAA;\r\n  font-size: 13px !important;\r\n  color: #000;\r\n  border-radius: 5px;\r\n  height: auto;\r\n  margin-left: 10px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1918,6 +2118,238 @@ var render = function() {
                       0
                     )
                   ])
+                ]),
+                _vm._v(" "),
+                _c("h6", [_vm._v("Documents")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-3" }, [
+                    _c("input", {
+                      staticClass: "custom-file-input",
+                      attrs: {
+                        type: "file",
+                        name: "filename",
+                        id: "inputFileUpload"
+                      },
+                      on: { change: _vm.onFileChange }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-file-label",
+                        attrs: { for: "inputFileUpload" }
+                      },
+                      [_vm._v("Choose file")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "upload_text" }, [
+                    _vm._v(_vm._s(_vm.filename))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "upload_text" }, [
+                    _vm.filename1
+                      ? _c(
+                          "a",
+                          {
+                            staticClass: "download_link",
+                            on: {
+                              click: function($event) {
+                                return _vm.download(_vm.filename1)
+                              }
+                            }
+                          },
+                          [_vm._v("Download")]
+                        )
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-3" }, [
+                    _c("input", {
+                      staticClass: "custom-file-input",
+                      attrs: {
+                        type: "file",
+                        name: "credit_filename",
+                        id: "inputCreditFileUpload"
+                      },
+                      on: { change: _vm.onCreditFileChange }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-file-label",
+                        attrs: { for: "inputCreditFileUpload" }
+                      },
+                      [_vm._v("Choose file")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "upload_text" }, [
+                    _vm._v(_vm._s(_vm.credit_filename))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "upload_text" }, [
+                    _vm.credit_filename1
+                      ? _c(
+                          "a",
+                          {
+                            staticClass: "download_link",
+                            on: {
+                              click: function($event) {
+                                return _vm.download(_vm.credit_filename1)
+                              }
+                            }
+                          },
+                          [_vm._v("Download")]
+                        )
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-3" }, [
+                    _c("input", {
+                      staticClass: "custom-file-input",
+                      attrs: {
+                        type: "file",
+                        name: "vat_filename",
+                        id: "inputVatFileUpload"
+                      },
+                      on: { change: _vm.onVatFileChange }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-file-label",
+                        attrs: { for: "inputVatFileUpload" }
+                      },
+                      [_vm._v("Choose file")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "upload_text" }, [
+                    _vm._v(_vm._s(_vm.vat_filename))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "upload_text" }, [
+                    _vm.vat_filename1
+                      ? _c(
+                          "a",
+                          {
+                            staticClass: "download_link",
+                            on: {
+                              click: function($event) {
+                                return _vm.download(_vm.vat_filename1)
+                              }
+                            }
+                          },
+                          [_vm._v("Download")]
+                        )
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-3" }, [
+                    _c("input", {
+                      staticClass: "custom-file-input",
+                      attrs: {
+                        type: "file",
+                        name: "incorporation_filename",
+                        id: "inputIncorporationFileUpload"
+                      },
+                      on: { change: _vm.onIncorporationFileChange }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-file-label",
+                        attrs: { for: "inputIncorporationFileUpload" }
+                      },
+                      [_vm._v("Choose file")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "upload_text" }, [
+                    _vm._v(_vm._s(_vm.incorporation_filename))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "upload_text" }, [
+                    _vm.incorporation_filename1
+                      ? _c(
+                          "a",
+                          {
+                            staticClass: "download_link",
+                            on: {
+                              click: function($event) {
+                                return _vm.download(_vm.incorporation_filename1)
+                              }
+                            }
+                          },
+                          [_vm._v("Download")]
+                        )
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-3" }, [
+                    _c("input", {
+                      staticClass: "custom-file-input",
+                      attrs: {
+                        type: "file",
+                        name: "accounting_filename",
+                        id: "inputAccountingFileUpload"
+                      },
+                      on: { change: _vm.onAccountingFileChange }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-file-label",
+                        attrs: { for: "inputAccountingFileUpload" }
+                      },
+                      [_vm._v("Choose file")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "upload_text" }, [
+                    _vm._v(_vm._s(_vm.accounting_filename))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "upload_text" }, [
+                    _vm.accounting_filename1
+                      ? _c(
+                          "a",
+                          {
+                            staticClass: "download_link",
+                            on: {
+                              click: function($event) {
+                                return _vm.download(_vm.accounting_filename1)
+                              }
+                            }
+                          },
+                          [_vm._v("Download")]
+                        )
+                      : _vm._e()
+                  ])
                 ])
               ])
             ])
@@ -1927,7 +2359,50 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-2" }, [
+      _c("p", { staticClass: "document_title" }, [_vm._v("Identification:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-2" }, [
+      _c("p", { staticClass: "document_title" }, [_vm._v("Credit Report:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-2" }, [
+      _c("p", { staticClass: "document_title" }, [_vm._v("VAT Certificate:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-2" }, [
+      _c("p", { staticClass: "document_title" }, [
+        _vm._v("Incorporation Certificate:")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-2" }, [
+      _c("p", { staticClass: "document_title" }, [_vm._v("Accounting Form:")])
+    ])
+  }
+]
 render._withStripped = true
 
 

@@ -217,6 +217,67 @@
                   </select>
                 </div>
               </div>
+              <h6>Documents</h6>
+              <div class="row">
+                <div class="col-md-2">
+                  <p class="document_title">Identification:</p>
+                </div>
+                <div class="form-group col-md-3">
+                  <input type="file" name="filename" class="custom-file-input" id="inputFileUpload"
+                  v-on:change="onFileChange">
+                  <label class="custom-file-label" for="inputFileUpload">Choose file</label>
+                </div>
+                <p class="upload_text">{{filename}}</p>
+                <p class="upload_text"><a class="download_link" v-if="filename1" @click="download(filename1)">Download</a></p>
+              </div>
+              <div class="row">
+                <div class="col-md-2">
+                  <p class="document_title">Credit Report:</p>
+                </div>
+                <div class="form-group col-md-3">
+                  <input type="file" name="credit_filename" class="custom-file-input" id="inputCreditFileUpload"
+                  v-on:change="onCreditFileChange">
+                  <label class="custom-file-label" for="inputCreditFileUpload">Choose file</label>
+                </div>
+                <p class="upload_text">{{credit_filename}}</p>
+                <p class="upload_text"><a class="download_link" v-if="credit_filename1" @click="download(credit_filename1)">Download</a></p>
+              </div>
+              <div class="row">
+                <div class="col-md-2">
+                  <p class="document_title">VAT Certificate:</p>
+                </div>
+                <div class="form-group col-md-3">
+                  <input type="file" name="vat_filename" class="custom-file-input" id="inputVatFileUpload"
+                  v-on:change="onVatFileChange">
+                  <label class="custom-file-label" for="inputVatFileUpload">Choose file</label>
+                </div>
+                <p class="upload_text">{{vat_filename}}</p>
+                <p class="upload_text"><a class="download_link" v-if="vat_filename1" @click="download(vat_filename1)">Download</a></p>
+              </div>
+              <div class="row">
+                <div class="col-md-2">
+                  <p class="document_title">Incorporation Certificate:</p>
+                </div>
+                <div class="form-group col-md-3">
+                  <input type="file" name="incorporation_filename" class="custom-file-input" id="inputIncorporationFileUpload"
+                  v-on:change="onIncorporationFileChange">
+                  <label class="custom-file-label" for="inputIncorporationFileUpload">Choose file</label>
+                </div>
+                <p class="upload_text">{{incorporation_filename}}</p>
+                <p class="upload_text"><a class="download_link" v-if="incorporation_filename1" @click="download(incorporation_filename1)">Download</a></p>
+              </div>
+              <div class="row">
+                <div class="col-md-2">
+                  <p class="document_title">Accounting Form:</p>
+                </div>
+                <div class="form-group col-md-3">
+                  <input type="file" name="accounting_filename" class="custom-file-input" id="inputAccountingFileUpload"
+                  v-on:change="onAccountingFileChange">
+                  <label class="custom-file-label" for="inputAccountingFileUpload">Choose file</label>
+                </div>
+                <p class="upload_text">{{accounting_filename}}</p>
+                <p class="upload_text"><a class="download_link" v-if="accounting_filename1" @click="download(accounting_filename1)">Download</a></p>
+              </div>
             </div>
           </div>
         </div>
@@ -227,7 +288,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-
+import {objectToFormData} from '../../object-to-formdata';
 export default {
   name: "CompanyDetails",
   computed: {
@@ -238,7 +299,22 @@ export default {
       tabList: ["Basic Settings", "Field Names"],
       formdata: {},
       industrysectors:{},
-      currencies:{}
+      currencies:{},
+      filename: '',
+      file: '',
+      credit_filename: '',
+      creditfile: '',
+      vat_filename: '',
+      vatfile: '',
+      incorporation_filename: '',
+      incorporationfile: '',
+      accounting_filename: '',
+      accountingfile: '',
+      filename1: '',
+      credit_filename1: '',
+      vat_filename1: '',
+      incorporation_filename1: '',
+      accounting_filename1: '',
     };
   },
   methods:
@@ -275,24 +351,17 @@ export default {
     },
     async storeCompanyDetails() {
       try {
-        const response = await axios.post("store_details", {
-          company_name: this.formdata.company_name,
-          address1: this.formdata.address1,
-          address2: this.formdata.address2,
-          postcode: this.formdata.postcode,
-          country: this.formdata.country,
-          contact_name: this.formdata.contact_name,
-          contact_email: this.formdata.contact_email,
-          contact_telephone: this.formdata.contact_telephone,
-          contact_mobile: this.formdata.contact_mobile,
-          payment_days: this.formdata.payment_days,
-          payment_condition: this.formdata.payment_condition,
-          currency_id: this.formdata.currency_id,
-          vat_status: this.formdata.vat_status,
-          vat_number: this.formdata.vat_number,
-          sector_id: this.formdata.sector_id,
-          business_type: this.formdata.business_type
-        });
+        this.formdata.file=this.file;
+        this.formdata.creditfile=this.creditfile;
+        this.formdata.vatfile=this.vatfile;
+        this.formdata.incorporationfile=this.incorporationfile;
+        this.formdata.accountingfile=this.accountingfile;
+        const response = await axios.post("store_details", objectToFormData(this.formdata));
+        this.file='';
+        this.creditfile='';
+        this.vatfile='';
+        this.incorporationfile='';
+        this.accountingfile='';
         let message =
             "Company Details has been successfully saved.";
           let toast = Vue.toasted.show(message, {
@@ -311,24 +380,18 @@ export default {
     },
     async updateCompanyDetails() {
       try {
-        const response = await axios.post("update_details", {
-          company_name: this.formdata.company_name,
-          address1: this.formdata.address1,
-          address2: this.formdata.address2,
-          postcode: this.formdata.postcode,
-          country: this.formdata.country,
-          contact_name: this.formdata.contact_name,
-          contact_email: this.formdata.contact_email,
-          contact_telephone: this.formdata.contact_telephone,
-          contact_mobile: this.formdata.contact_mobile,
-          payment_days: this.formdata.payment_days,
-          payment_condition: this.formdata.payment_condition,
-          currency_id: this.formdata.currency_id,
-          vat_status: this.formdata.vat_status,
-          vat_number: this.formdata.vat_number,
-          sector_id: this.formdata.sector_id,
-          business_type: this.formdata.business_type
-        });
+        this.formdata.file=this.file;
+        this.formdata.creditfile=this.creditfile;
+        this.formdata.vatfile=this.vatfile;
+        this.formdata.incorporationfile=this.incorporationfile;
+        this.formdata.accountingfile=this.accountingfile;
+        const response = await axios.post("update_details", objectToFormData(this.formdata));
+
+        this.file='';
+        this.creditfile='';
+        this.vatfile='';
+        this.incorporationfile='';
+        this.accountingfile='';
         let message =
             "Company Details has been successfully saved.";
           let toast = Vue.toasted.show(message, {
@@ -355,6 +418,40 @@ export default {
           this.currencies = response.data;
       });
     },
+    onFileChange(e) {
+      this.filename = "Selected File: " + e.target.files[0].name;
+      this.file = e.target.files[0];
+    },
+    onCreditFileChange(e) {
+      this.credit_filename = "Selected File: " + e.target.files[0].name;
+      this.creditfile = e.target.files[0];
+    },
+    onVatFileChange(e) {
+      this.vat_filename = "Selected File: " + e.target.files[0].name;
+      this.vatfile = e.target.files[0];
+    },
+    onIncorporationFileChange(e) {
+      this.incorporation_filename = "Selected File: " + e.target.files[0].name;
+      this.incorporationfile = e.target.files[0];
+    },
+    onAccountingFileChange(e) {
+      this.accounting_filename = "Selected File: " + e.target.files[0].name;
+      this.accountingfile = e.target.files[0];
+    },
+    download(image){
+      axios.get("/download?image=" + image, {responseType: 'blob'})
+        .then(response => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', image);
+          document.body.appendChild(link);
+          link.click();
+        })
+        .catch(e => {
+        console.log(e);
+      });
+    },
   },
   mounted()
   {
@@ -363,6 +460,11 @@ export default {
     axios.get('/saved_companydetails/')
         .then((response) => {
             this.formdata = response.data;
+            this.filename1 = response.data.identification_file;
+            this.credit_filename1 = response.data.credit_file;
+            this.vat_filename1 = response.data.vat_file;
+            this.incorporation_filename1 = response.data.incorporation_file;
+            this.accounting_filename1 = response.data.accounting_file;
         })
         .catch(function(error) {
             //app.$notify(error.response.data.error, "error");
@@ -416,5 +518,25 @@ export default {
 {
  padding: 2% 0 1% 0;
  font-family: 'Titillium-Web-Bold';
+}
+.upload_text
+{
+  font-size: 14px;
+  margin-left: 1%;
+}
+.document_title
+{
+  font-size: 15px;
+}
+.download_link
+{
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  background-color: #7ADAAA;
+  font-size: 13px !important;
+  color: #000;
+  border-radius: 5px;
+  height: auto;
+  margin-left: 10px;
 }
 </style>
