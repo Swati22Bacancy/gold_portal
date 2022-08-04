@@ -99,5 +99,5 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('store_details',[Api\CompanyDetailsController::class, 'storedetails']);
     Route::get('saved_companydetails',[Api\CompanyDetailsController::class, 'saved_companydetails']);
     Route::post('update_details',[Api\CompanyDetailsController::class, 'update_details']);
-    
+    Route::get('download',[Api\CompanyDetailsController::class, 'download']);
 });
