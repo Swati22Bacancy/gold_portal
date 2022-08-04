@@ -359,6 +359,15 @@ let router = new Router({
             }
         },
         {
+            path: "/customer-settings",
+            name: "customersettings",
+            component: () => import("./views/admin/customersettings.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/admin/components/buttons",
             name: "buttons",
             component: () => import("./views/admin/buttons.vue"),
