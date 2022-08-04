@@ -87,4 +87,17 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('saved_invoiceoptions',[Api\InvoiceOptionsController::class, 'saved_invoiceoptions']);
     Route::post('update_basic',[Api\InvoiceOptionsController::class, 'update_basic']);
     Route::post('update_fields',[Api\InvoiceOptionsController::class, 'update_fields']);
+
+    // Industry Sector Routes
+    Route::post('create_industrysector', [Api\IndustrySectorController::class, 'createindustrysector']);
+    Route::get('industrysector_list', [Api\IndustrySectorController::class, 'industrysectorlist']);
+    Route::get('delete_industrysector/{id}', [Api\IndustrySectorController::class, 'deleteindustrysector']);
+    Route::get('industrysector_details/{id}', [Api\IndustrySectorController::class, 'industrysectordetails']);
+    Route::post('update_industrysector', [Api\IndustrySectorController::class, 'updateindustrysector']);
+
+    // Company Details Routes
+    Route::post('store_details',[Api\CompanyDetailsController::class, 'storedetails']);
+    Route::get('saved_companydetails',[Api\CompanyDetailsController::class, 'saved_companydetails']);
+    Route::post('update_details',[Api\CompanyDetailsController::class, 'update_details']);
+    
 });
