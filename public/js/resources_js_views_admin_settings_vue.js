@@ -245,6 +245,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: 'customersettings'
       });
     },
+    goto_vatsettings: function goto_vatsettings() {
+      this.$router.push({
+        name: 'vatsettings'
+      });
+    },
     is_super_admin: function is_super_admin() {
       if (this.user) {
         if (this.user.role_id == 1) {
@@ -904,7 +909,19 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row content-div" }, [
-      _vm._m(12),
+      _c(
+        "div",
+        {
+          staticClass: "col-md-4",
+          staticStyle: { cursor: "pointer" },
+          on: {
+            click: function($event) {
+              return _vm.goto_vatsettings()
+            }
+          }
+        },
+        [_vm._m(12)]
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-4" }, [
         _c(
@@ -1236,29 +1253,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-3" }, [
-          _c(
-            "span",
-            {
-              staticClass: "material-symbols-outlined",
-              staticStyle: { "font-size": "80px", color: "#595959" }
-            },
-            [_vm._v("article")]
-          )
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-3" }, [
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: { "font-size": "80px", color: "#595959" }
+          },
+          [_vm._v("article")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-9" }, [
+        _c("h6", { staticClass: "setting-subheading" }, [
+          _vm._v("VAT Settings")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-9" }, [
-          _c("h6", { staticClass: "setting-subheading" }, [
-            _vm._v("VAT Settings")
-          ]),
-          _vm._v(" "),
-          _c("span", { staticStyle: { "font-size": "12px" } }, [
-            _vm._v(
-              "Set various VAT settings, such as  which scheme you are on, online filling options, etc."
-            )
-          ])
+        _c("span", { staticStyle: { "font-size": "12px" } }, [
+          _vm._v(
+            "Set various VAT settings, such as  which scheme you are on, online filling options, etc."
+          )
         ])
       ])
     ])
