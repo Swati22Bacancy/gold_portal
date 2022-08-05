@@ -14,6 +14,20 @@
           <div class="col-md-12">
             <div class="box-content box-align box-padding">
               <h6 >Business Type</h6>
+              <GmapAutocomplete @place_changed="setPlace" />
+              <button class="btn" @click="addMarker">Add</button>
+              <GmapMap
+                :center="center"
+                :zoom="12"
+                style="width: 100%; height: 400px; margin-top: 20px"
+              >
+                <GmapMarker
+                  :key="index"
+                  v-for="(m, index) in markers"
+                  :position="m.position"
+                  @click="center = m.position"
+                />
+              </GmapMap>
               <div class="row">
                 <div class="form-group col-md-12">
                   <input type="radio" id="limited" name="business_type" v-model="formdata.business_type" value="limited">
@@ -315,6 +329,9 @@ export default {
       vat_filename1: '',
       incorporation_filename1: '',
       accounting_filename1: '',
+      center: { lat: 45.508, lng: -73.587 },
+      currentPlace: null,
+      markers: [],
     };
   },
   methods:
@@ -451,6 +468,20 @@ export default {
         .catch(e => {
         console.log(e);
       });
+    },
+    setPlace(place) {
+      this.currentPlace = place;
+    },
+    addMarker() {
+      if (this.currentPlace) {
+        const marker = {
+          lat: this.currentPlace.geometry.location.lat(),
+          lng: this.currentPlace.geometry.location.lng(),
+        };
+        this.markers.push({ position: marker });
+        this.center = marker;
+        this.currentPlace = null;
+      }
     },
   },
   mounted()

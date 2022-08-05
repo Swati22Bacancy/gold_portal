@@ -11,9 +11,16 @@ import "./axios";
 import store from "./vuex";
 import Toasted from "vue-toasted";
 import Chart from "chart.js";
+import * as VueGoogleMaps from "vue2-google-maps";
 
 window.Vue = require("vue").default;
 Vue.use(Toasted);
+Vue.use(VueGoogleMaps, {
+    load: {
+      key: "AIzaSyAfFfNaFElWocIyQOanAZhjylRF-l1NDt8",
+      libraries: "places",
+    },
+  });
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
