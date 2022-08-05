@@ -13,11 +13,10 @@
 
     <div class="row">
       <div class="col-md-12 createtype-div">
-        
             <div class="row mb-4">
               <div class="col-md-6">
                 <div class="form-group customer-input">
-                  <label>Name</label>
+                  <label class="required-field">Name</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -27,49 +26,44 @@
                     v-model="formdata.name"
                   />
                 </div>
-                <p v-if="anyError && !isNameValid">Please enter valid name.</p>
-                
-              </div>
+                <span v-if="$v.formdata.name.$error" class="text-danger">Please enter valid name</span>
+                </div>
               <div class="col-md-6">
                 <div class="form-group customer-input">
-                  <label>Email</label>
+                  <label class="required-field">Email</label>
                   <input
                     type="email"
                     class="form-control form-control-user"
                     id="crt-typerate"
                     aria-describedby="emailHelp"
                     placeholder="Enter email here"
-                    v-model="formdata.email"
-                    
-                  />
-                  
+                    v-model="formdata.email"/>
                 </div>
-                 <p v-if="anyError && !isEmailValid">Please enter valid email.</p>
+                <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
               </div>
             </div>
             <div class="row mb-4">
               <div class="col-md-6">
                 <div class="form-group customer-input">
-                  <label>User Name</label>
+                  <label class="required-field">User Name</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
                     id="crt-typename"
                     aria-describedby="emailHelp"
                     placeholder="Enter user name here"
-                    v-model="formdata.username"
-                  />
+                    v-model="formdata.username"/>
                 </div>
-              
-               
-                
+                 <span v-if="$v.formdata.username.$error" class="text-danger"
+               >Please enter valid name</span>
               </div>
               <div class="col-md-6">
                 <div class="form-group customer-input">
-                  <label>Select Role</label>
+                  <label class="required-field">Select Role</label>
                   <select class="form-control form-control-user" v-model="formdata.role_id">
                     <option v-for="role in roles" :key="role.id" :value="role.id">{{role.name}}</option>
                   </select>
+                  <span v-if="$v.formdata.role_id.$error" class="text-danger">Role is required</span>
                 </div>
               </div>
             </div>
@@ -81,22 +75,32 @@
 </template>
 
 <script>
+import { required, email,helpers} from "vuelidate/lib/validators";
 import { customerRules } from './rules/customerRules'
+const isName = helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 export default {
   name: "CreateUser",
   data() {
     return {
       rules : customerRules,
-      formdata: {},
+      formdata: {
+        name: "",
+        email: "",
+        username: "",
+      },
+      errors: {},
       roles:{},
-      anyError: false,
     };
   },
   methods:
   {
     async create_user() {
-      this.anyError= true;
-      if(this.isNameValid && this.isEmailValid){
+        this.$v.formdata.$touch();
+      if (this.$v.formdata.$error) {
+        return;
+      }
+     
+      
       try {
         const response = await axios.post("create_user", {
           username: this.formdata.username,
@@ -121,7 +125,7 @@ export default {
           });
         console.log(error);
       }
-      }
+      
     },
     getRoles() {
         return axios.get("rolelist").then(response => {
@@ -129,26 +133,24 @@ export default {
         });
     },
   },
-  computed: {
-        isNameValid(){
-          console.log(this.formdata.name)
-            const regx = new RegExp(/^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
-            if(!this.formdata.name || !regx.test(this.formdata.name)){
-             
-                return false;
-            }
-           
-            return true;
-        },
-        isEmailValid(){
-            const regx = new RegExp(/^[a-zA-Z0-9]{1,}[a-zA-Z0-9.-_]{1,}@[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,}[.]{0,1}[a-zA-Z]{0,}$/);
-            if(this.formdata.email === '' || !regx.test(this.formdata.email)){
-           
-                return false;
-            }
-            return true;
-        },
-      
+ 
+  validations: {
+    formdata: {
+      name: {
+        required,
+        isName,
+      },
+      email: {
+        required,
+        email,
+      },
+      username: {
+        required,
+      },
+      role_id: {
+       required
+      }
+    },
   },
   mounted()
   {
@@ -179,7 +181,11 @@ export default {
 {
   box-shadow: 0 0;
 }
-p{
+.required-field::after {
+  content: "*";
   color: red;
 }
+/* p{
+  color: red;
+} */
 </style>
