@@ -120,4 +120,7 @@ export default {
   content: "*";
   color: red;
 }
+.text-danger{
+  font-size: 12px;
+}
 </style>

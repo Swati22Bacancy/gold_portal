@@ -189,7 +189,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.createtype-div[data-v-4f672a31]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-type label[data-v-4f672a31]\r\n{\r\n  font-size: 12px;\n}\n.crt-type[data-v-4f672a31]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.btn[data-v-4f672a31]:focus, .btn.focus[data-v-4f672a31]\r\n{\r\n  box-shadow: 0 0;\n}\n.required-field[data-v-4f672a31]::after {\r\n  content: \"*\";\r\n  color: red;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.createtype-div[data-v-4f672a31]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-type label[data-v-4f672a31]\r\n{\r\n  font-size: 12px;\n}\n.crt-type[data-v-4f672a31]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.btn[data-v-4f672a31]:focus, .btn.focus[data-v-4f672a31]\r\n{\r\n  box-shadow: 0 0;\n}\n.required-field[data-v-4f672a31]::after {\r\n  content: \"*\";\r\n  color: red;\n}\n.text-danger[data-v-4f672a31]{\r\n  font-size: 12px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

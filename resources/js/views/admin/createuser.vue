@@ -185,7 +185,7 @@ export default {
   content: "*";
   color: red;
 }
-/* p{
-  color: red;
-} */
+.text-danger{
+  font-size: 12px;
+}
 </style>
