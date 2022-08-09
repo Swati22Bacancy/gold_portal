@@ -296,6 +296,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
@@ -406,7 +407,8 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex
         isName: isName
       },
       email: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.required,
+        email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.email
       },
       registered_address: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.required
@@ -1244,7 +1246,7 @@ var render = function() {
                         ],
                         staticClass: "form-control form-control-user",
                         attrs: {
-                          type: "text",
+                          type: "email",
                           id: "crt-customer",
                           "aria-describedby": "emailHelp",
                           placeholder: ""
@@ -1681,7 +1683,7 @@ var render = function() {
                         ],
                         staticClass: "form-control form-control-user",
                         attrs: {
-                          type: "text",
+                          type: "email",
                           id: "crt-customer",
                           "aria-describedby": "emailHelp",
                           placeholder: ""
@@ -1740,14 +1742,14 @@ var render = function() {
                             )
                           }
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.$v.formdata.registered_address.$error
-                        ? _c("span", { staticClass: "text-danger" }, [
-                            _vm._v("Please enter address")
-                          ])
-                        : _vm._e()
+                      })
                     ]),
+                    _vm._v(" "),
+                    _vm.$v.formdata.registered_address.$error
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v("Please enter address")
+                        ])
+                      : _vm._e(),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group customer-input" }, [
                       _c("label", [_vm._v("Telephone")]),
