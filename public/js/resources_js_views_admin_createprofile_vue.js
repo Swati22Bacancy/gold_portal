@@ -133,7 +133,7 @@ var isPhone = function isPhone(value) {
     };
   },
   methods: {
-    createprofile: function createprofile() {
+    updateprofile: function updateprofile() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -155,7 +155,7 @@ var isPhone = function isPhone(value) {
               case 3:
                 _context.prev = 3;
                 _context.next = 6;
-                return axios.post("createprofile", {
+                return axios.post("updateprofile", {
                   first_name: _this.formdata.first_name,
                   last_name: _this.formdata.last_name,
                   email: _this.formdata.email,
@@ -164,20 +164,18 @@ var isPhone = function isPhone(value) {
 
               case 6:
                 response = _context.sent;
-                message = "User has been successfully added.";
+                message = "Profile has been successfully updated.";
                 toast = Vue.toasted.show(message, {
                   theme: "toasted-success",
                   position: "top-center",
                   duration: 5000
-                });
+                }); //this.$router.push("/profile");
 
-                _this.$router.push("/profile");
-
-                _context.next = 17;
+                _context.next = 16;
                 break;
 
-              case 12:
-                _context.prev = 12;
+              case 11:
+                _context.prev = 11;
                 _context.t0 = _context["catch"](3);
                 _message = 'Something went wrong, Please try again';
                 _toast = Vue.toasted.show(_message, {
@@ -187,12 +185,12 @@ var isPhone = function isPhone(value) {
                 });
                 console.log(_context.t0);
 
-              case 17:
+              case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[3, 12]]);
+        }, _callee, null, [[3, 11]]);
       }))();
     },
     getProfile: function getProfile() {
@@ -775,7 +773,7 @@ var render = function() {
         on: {
           submit: function($event) {
             $event.preventDefault()
-            return _vm.createprofile.apply(null, arguments)
+            return _vm.updateprofile.apply(null, arguments)
           }
         }
       },

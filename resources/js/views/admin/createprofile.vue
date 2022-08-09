@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form class="crt-type" @submit.prevent="createprofile">
+    <form class="crt-type" @submit.prevent="updateprofile">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h1 class="h3 mb-0 text-gray-800">Update Profile</h1>
@@ -104,7 +104,7 @@ export default {
   },
   methods:
   {
-    async createprofile() {
+    async updateprofile() {
         this.$v.formdata.$touch();
       if (this.$v.formdata.$error) {
         return;
@@ -112,20 +112,20 @@ export default {
      
       
       try {
-        const response = await axios.post("createprofile", {
+        const response = await axios.post("updateprofile", {
           first_name: this.formdata.first_name,
           last_name: this.formdata.last_name,
           email: this.formdata.email,
           telephone: this.formdata.telephone,
         });
         let message =
-            "User has been successfully added.";
+            "Profile has been successfully updated.";
           let toast = Vue.toasted.show(message, {
             theme: "toasted-success",
             position: "top-center",
             duration: 5000,
           });
-        this.$router.push("/profile");
+        //this.$router.push("/profile");
       } catch (error) {
         let message = 'Something went wrong, Please try again';
           let toast = Vue.toasted.show(message, {

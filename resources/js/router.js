@@ -53,8 +53,8 @@ let router = new Router({
             }
         },
         {
-            path: "/createprofile",
-            name: "createprofile",
+            path: "/updateprofile",
+            name: "updateprofile",
             component: () => import("./views/admin/createprofile.vue"),
             meta: {
                 requiresAuth: true,
