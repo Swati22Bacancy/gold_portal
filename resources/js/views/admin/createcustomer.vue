@@ -80,7 +80,7 @@
                 <div class="form-group customer-input">
                   <label class="required-field">Email</label>
                   <input
-                    type="text"
+                    type="email"
                     class="form-control form-control-user"
                     id="crt-customer"
                     aria-describedby="emailHelp"
@@ -213,15 +213,16 @@
                 <div class="form-group customer-input">
                   <label class="required-field">Email</label>
                   <input
-                    type="text"
+                    type="email"
                     class="form-control form-control-user"
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
                     v-model="formdata.email"
                   />
-                  <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
+                   <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
                 </div>
+                
               </div>
               <div class="col-md-6 primary-div">
                 <div class="form-group customer-input">
@@ -234,8 +235,8 @@
                     placeholder=""
                     v-model="formdata.registered_address"
                   />
-                  <span v-if="$v.formdata.registered_address.$error" class="text-danger">Please enter address</span>
                 </div>
+                <span v-if="$v.formdata.registered_address.$error" class="text-danger">Please enter address</span>
                 <div class="form-group customer-input">
                   <label>Telephone</label>
                   <input
@@ -274,7 +275,7 @@
 </template>
 
 <script>
-import { required,helpers} from "vuelidate/lib/validators";
+import { required,email,helpers} from "vuelidate/lib/validators";
 import { customerRules } from './rules/customerRules'
 const isName = helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 export default {
@@ -354,6 +355,7 @@ export default {
       },
        email: {
         required,
+        email
       },
       registered_address: {
         required,
