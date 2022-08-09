@@ -51,8 +51,8 @@
                     placeholder=""
                     v-model="formdata.company_name"
                   />
-                </div>
-                <span v-if="$v.formdata.company_name.$error" class="text-danger">Please enter valid name</span>
+                  <span v-if="$v.formdata.company_name.$error" class="text-danger">Please enter valid name</span>
+                </div>    
                 <div class="form-group customer-input">
                   <label class="required-field">Registered Address</label>
                   <input
@@ -63,8 +63,8 @@
                     placeholder=""
                     v-model="formdata.registered_address"
                   />
+                  <span v-if="$v.formdata.registered_address.$error" class="text-danger">Please enter address</span>
                 </div>
-                <span v-if="$v.formdata.registered_address.$error" class="text-danger">Please enter address</span>
                 <div class="form-group customer-input">
                   <label>VAT No.</label>
                   <input
@@ -87,8 +87,8 @@
                     placeholder=""
                     v-model="formdata.email"
                   />
+                  <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
                 </div>
-                <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
                 <div class="form-group customer-input">
                   <label>Telephone</label>
                   <input
@@ -135,8 +135,8 @@
                     placeholder=""
                     v-model="formdata.first_name"
                   />
+                  <span v-if="$v.formdata.first_name.$error" class="text-danger">Please your first name</span>
                 </div>
-                <span v-if="$v.formdata.first_name.$error" class="text-danger">Please your first name</span>
 
                 <div class="form-group customer-input">
                   <label class="required-field">Last Name</label>
@@ -148,8 +148,8 @@
                     placeholder=""
                     v-model="formdata.last_name"
                   />
+                  <span v-if="$v.formdata.last_name.$error" class="text-danger">Please your last name</span>
                 </div>
-                <span v-if="$v.formdata.last_name.$error" class="text-danger">Please your last name</span>
 
                 <h6>Settings</h6>
                 <div class="form-group customer-input">
@@ -194,8 +194,8 @@
                     placeholder=""
                     v-model="formdata.first_name"
                   />
+                  <span v-if="$v.formdata.first_name.$error" class="text-danger">Please your first name</span>
                 </div>
-                <span v-if="$v.formdata.first_name.$error" class="text-danger">Please your first name</span>
 
                 <div class="form-group customer-input">
                   <label class="required-field">Last Name</label>
@@ -207,9 +207,9 @@
                     placeholder=""
                     v-model="formdata.last_name"
                   />
+                  <span v-if="$v.formdata.last_name.$error" class="text-danger">Please your last name</span>
                 </div>
-                <span v-if="$v.formdata.last_name.$error" class="text-danger">Please your last name</span>
-
+                
                 <div class="form-group customer-input">
                   <label class="required-field">Email</label>
                   <input
@@ -220,8 +220,8 @@
                     placeholder=""
                     v-model="formdata.email"
                   />
+                  <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
                 </div>
-                <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
               </div>
               <div class="col-md-6 primary-div">
                 <div class="form-group customer-input">
@@ -234,8 +234,8 @@
                     placeholder=""
                     v-model="formdata.registered_address"
                   />
+                  <span v-if="$v.formdata.registered_address.$error" class="text-danger">Please enter address</span>
                 </div>
-                <span v-if="$v.formdata.registered_address.$error" class="text-danger">Please enter address</span>
                 <div class="form-group customer-input">
                   <label>Telephone</label>
                   <input

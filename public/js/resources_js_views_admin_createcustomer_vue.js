@@ -1143,14 +1143,14 @@ var render = function() {
                             )
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.$v.formdata.company_name.$error
+                        ? _c("span", { staticClass: "text-danger" }, [
+                            _vm._v("Please enter valid name")
+                          ])
+                        : _vm._e()
                     ]),
-                    _vm._v(" "),
-                    _vm.$v.formdata.company_name.$error
-                      ? _c("span", { staticClass: "text-danger" }, [
-                          _vm._v("Please enter valid name")
-                        ])
-                      : _vm._e(),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group customer-input" }, [
                       _c("label", { staticClass: "required-field" }, [
@@ -1186,14 +1186,14 @@ var render = function() {
                             )
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.$v.formdata.registered_address.$error
+                        ? _c("span", { staticClass: "text-danger" }, [
+                            _vm._v("Please enter address")
+                          ])
+                        : _vm._e()
                     ]),
-                    _vm._v(" "),
-                    _vm.$v.formdata.registered_address.$error
-                      ? _c("span", { staticClass: "text-danger" }, [
-                          _vm._v("Please enter address")
-                        ])
-                      : _vm._e(),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group customer-input" }, [
                       _c("label", [_vm._v("VAT No.")]),
@@ -1258,14 +1258,14 @@ var render = function() {
                             _vm.$set(_vm.formdata, "email", $event.target.value)
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.$v.formdata.email.$error
+                        ? _c("span", { staticClass: "text-danger" }, [
+                            _vm._v("Email must be valid")
+                          ])
+                        : _vm._e()
                     ]),
-                    _vm._v(" "),
-                    _vm.$v.formdata.email.$error
-                      ? _c("span", { staticClass: "text-danger" }, [
-                          _vm._v("Email must be valid")
-                        ])
-                      : _vm._e(),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group customer-input" }, [
                       _c("label", [_vm._v("Telephone")]),
@@ -1406,14 +1406,14 @@ var render = function() {
                             )
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.$v.formdata.first_name.$error
+                        ? _c("span", { staticClass: "text-danger" }, [
+                            _vm._v("Please your first name")
+                          ])
+                        : _vm._e()
                     ]),
-                    _vm._v(" "),
-                    _vm.$v.formdata.first_name.$error
-                      ? _c("span", { staticClass: "text-danger" }, [
-                          _vm._v("Please your first name")
-                        ])
-                      : _vm._e(),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group customer-input" }, [
                       _c("label", { staticClass: "required-field" }, [
@@ -1449,14 +1449,14 @@ var render = function() {
                             )
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.$v.formdata.last_name.$error
+                        ? _c("span", { staticClass: "text-danger" }, [
+                            _vm._v("Please your last name")
+                          ])
+                        : _vm._e()
                     ]),
-                    _vm._v(" "),
-                    _vm.$v.formdata.last_name.$error
-                      ? _c("span", { staticClass: "text-danger" }, [
-                          _vm._v("Please your last name")
-                        ])
-                      : _vm._e(),
                     _vm._v(" "),
                     _c("h6", [_vm._v("Settings")]),
                     _vm._v(" "),
@@ -1613,14 +1613,14 @@ var render = function() {
                             )
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.$v.formdata.first_name.$error
+                        ? _c("span", { staticClass: "text-danger" }, [
+                            _vm._v("Please your first name")
+                          ])
+                        : _vm._e()
                     ]),
-                    _vm._v(" "),
-                    _vm.$v.formdata.first_name.$error
-                      ? _c("span", { staticClass: "text-danger" }, [
-                          _vm._v("Please your first name")
-                        ])
-                      : _vm._e(),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group customer-input" }, [
                       _c("label", { staticClass: "required-field" }, [
@@ -1656,14 +1656,14 @@ var render = function() {
                             )
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.$v.formdata.last_name.$error
+                        ? _c("span", { staticClass: "text-danger" }, [
+                            _vm._v("Please your last name")
+                          ])
+                        : _vm._e()
                     ]),
-                    _vm._v(" "),
-                    _vm.$v.formdata.last_name.$error
-                      ? _c("span", { staticClass: "text-danger" }, [
-                          _vm._v("Please your last name")
-                        ])
-                      : _vm._e(),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group customer-input" }, [
                       _c("label", { staticClass: "required-field" }, [
@@ -1695,14 +1695,14 @@ var render = function() {
                             _vm.$set(_vm.formdata, "email", $event.target.value)
                           }
                         }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _vm.$v.formdata.email.$error
-                      ? _c("span", { staticClass: "text-danger" }, [
-                          _vm._v("Email must be valid")
-                        ])
-                      : _vm._e()
+                      }),
+                      _vm._v(" "),
+                      _vm.$v.formdata.email.$error
+                        ? _c("span", { staticClass: "text-danger" }, [
+                            _vm._v("Email must be valid")
+                          ])
+                        : _vm._e()
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6 primary-div" }, [
@@ -1740,14 +1740,14 @@ var render = function() {
                             )
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.$v.formdata.registered_address.$error
+                        ? _c("span", { staticClass: "text-danger" }, [
+                            _vm._v("Please enter address")
+                          ])
+                        : _vm._e()
                     ]),
-                    _vm._v(" "),
-                    _vm.$v.formdata.registered_address.$error
-                      ? _c("span", { staticClass: "text-danger" }, [
-                          _vm._v("Please enter address")
-                        ])
-                      : _vm._e(),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group customer-input" }, [
                       _c("label", [_vm._v("Telephone")]),
