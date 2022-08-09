@@ -1,9 +1,9 @@
 <template>
   <div>
-    <form class="crt-type" @submit.prevent="create_user">
+    <form class="crt-type" @submit.prevent="createprofile">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800">Create New User</h1>
+      <h1 class="h3 mb-0 text-gray-800">Update Profile</h1>
       <div>
         <button type="submit" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;">Save</button>
         <router-link to="/users"><button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button></router-link>
@@ -14,21 +14,37 @@
     <div class="row">
       <div class="col-md-12 createtype-div">
             <div class="row mb-4">
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <div class="form-group customer-input">
-                  <label class="required-field">Name</label>
+                  <label class="required-field">First Name</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
-                    id="crt-typename"
+                    id="crt-customer"
                     aria-describedby="emailHelp"
-                    placeholder="Enter full name here"
-                    v-model="formdata.name"
+                    placeholder="Enter First name"
+                    v-model="formdata.first_name"
                   />
-                  <span v-if="$v.formdata.name.$error" class="text-danger">Please enter valid name</span>
+                  <span v-if="$v.formdata.first_name.$error" class="text-danger">Please enter your first name</span>
                 </div>
                 
               </div>
+                <div class="col-md-6">
+                <div class="form-group customer-input">
+                  <label class="required-field">Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-user"
+                    id="crt-customer"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter Last name"
+                    v-model="formdata.last_name"
+                  />
+                  <span v-if="$v.formdata.last_name.$error" class="text-danger">Please enter your last name</span>
+                </div>
+                </div>
+              </div>
+            <div class="row mb-4">
               <div class="col-md-6">
                 <div class="form-group customer-input">
                   <label class="required-field">Email</label>
@@ -38,65 +54,57 @@
                     id="crt-typerate"
                     aria-describedby="emailHelp"
                     placeholder="Enter email here"
-                    v-model="formdata.email"
-                  />
+                    v-model="formdata.email"/>
+                     <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
                 </div>
-                
               </div>
-            </div>
-            <div class="row mb-4">
-              <div class="col-md-4">
-                <div class="form-group customer-input">
-                  <label class="required-field">User Name</label>
+              <div class="col-md-6">
+               <div class="form-group customer-input">
+                  <label class="required-field">Contact Number</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
-                    id="crt-typename"
+                    id="crt-customer"
+                    v-mask="'(###) ###-####'"
                     aria-describedby="emailHelp"
-                    placeholder="Enter user name here"
-                    v-model="formdata.username"
+                    placeholder="Enter Contact number"
+                    v-model="formdata.contact"
                   />
-                </div>
-                
-              </div>
-              <div class="col-md-6">
-                <div class="form-group customer-input">
-                  <label class="required-field">Select Role</label>
-                  <select class="form-control form-control-user" v-model="formdata.role_id">
-                    <option v-for="role in roles" :key="role.id" :value="role.id">{{role.name}}</option>
-                  </select>
-                  <span v-if="$v.formdata.role_id.$error" class="text-danger">Role is required</span>
+                  <span v-if="$v.formdata.contact.$error" class="text-danger">Phone format should be : (000) 000-0000</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
     </form>
-    
   </div>
 </template>
 
 <script>
 import { required, email,helpers} from "vuelidate/lib/validators";
 import { customerRules } from './rules/customerRules'
+import { mask } from "vue-the-mask";
 const isName = helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
+const isPhone = (value) => /^\(\d{3}\)\s?\d{3}-\d{4}$/.test(value);
 export default {
   name: "CreateUser",
+  directives: { mask },
   data() {
     return {
       rules : customerRules,
       formdata: {
-        name: "",
+        first_name: "",
+        last_name: "",
         email: "",
-        username: "",
+        contact: "",
       },
       errors: {},
-      roles:{},
+      profile:{},
     };
   },
   methods:
   {
-    async create_user() {
+    async createprofile() {
         this.$v.formdata.$touch();
       if (this.$v.formdata.$error) {
         return;
@@ -104,13 +112,11 @@ export default {
      
       
       try {
-        const response = await axios.post("create_user", {
-          username: this.formdata.username,
-          name: this.formdata.name,
+        const response = await axios.post("createprofile", {
+          first_name: this.formdata.first_name,
+          last_name: this.formdata.last_name,
           email: this.formdata.email,
-          role_id: this.formdata.role_id,
-          branch: this.formdata.branch,
-          mobile_number: this.formdata.mobile_number
+          telephone: this.formdata.telephone,
         });
         let message =
             "User has been successfully added.";
@@ -119,7 +125,7 @@ export default {
             position: "top-center",
             duration: 5000,
           });
-        this.$router.push("/users");
+        this.$router.push("/profile");
       } catch (error) {
         let message = 'Something went wrong, Please try again';
           let toast = Vue.toasted.show(message, {
@@ -131,34 +137,36 @@ export default {
       }
       
     },
-    getRoles() {
-        return axios.get("rolelist").then(response => {
-            this.roles = response.data;
+    getProfile() {
+        return axios.get("profilelist").then(response => {
+            this.profile = response.data;
         });
     },
   },
  
   validations: {
     formdata: {
-      name: {
+      first_name: {
         required,
-        isName,
+        isName
+      },
+      last_name: {
+        required,
+        isName
       },
       email: {
         required,
         email,
       },
-      username: {
+       contact: {
         required,
+         isPhone,
       },
-      role_id: {
-       required
-      }
     },
   },
   mounted()
   {
-    this.getRoles();
+    this.getProfile();
   }
 };
 </script>

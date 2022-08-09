@@ -119,7 +119,7 @@
           class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
           aria-labelledby="userDropdown"
         >
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item" href="#" @click="profile">
             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
             Profile
           </a>
@@ -224,6 +224,9 @@ export default {
     ...mapGetters(["user"]),
   },
   methods: {
+    profile(){
+      this.$router.push("/createprofile");
+    },
     logout() {
       localStorage.removeItem("token");
       this.$store.dispatch("user", null);

@@ -42,7 +42,7 @@
               <div class="col-md-6 detail-div">
                 <h6>Company Details</h6>
                 <div class="form-group customer-input">
-                  <label>Company Name</label>
+                  <label class="required-field">Company Name</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -51,9 +51,10 @@
                     placeholder=""
                     v-model="formdata.company_name"
                   />
-                </div>
+                  <span v-if="$v.formdata.company_name.$error" class="text-danger">Please enter valid name</span>
+                </div>    
                 <div class="form-group customer-input">
-                  <label>Registered Address</label>
+                  <label class="required-field">Registered Address</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -62,6 +63,7 @@
                     placeholder=""
                     v-model="formdata.registered_address"
                   />
+                  <span v-if="$v.formdata.registered_address.$error" class="text-danger">Please enter address</span>
                 </div>
                 <div class="form-group customer-input">
                   <label>VAT No.</label>
@@ -76,7 +78,7 @@
                 </div>
                 <h6>Contact Details</h6>
                 <div class="form-group customer-input">
-                  <label>Email</label>
+                  <label class="required-field">Email</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -85,6 +87,7 @@
                     placeholder=""
                     v-model="formdata.email"
                   />
+                  <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
                 </div>
                 <div class="form-group customer-input">
                   <label>Telephone</label>
@@ -123,7 +126,7 @@
                   />
                 </div>
                 <div class="form-group customer-input">
-                  <label>First Name</label>
+                  <label class="required-field">First Name</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -132,9 +135,11 @@
                     placeholder=""
                     v-model="formdata.first_name"
                   />
+                  <span v-if="$v.formdata.first_name.$error" class="text-danger">Please your first name</span>
                 </div>
+
                 <div class="form-group customer-input">
-                  <label>Last Name</label>
+                  <label class="required-field">Last Name</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -143,7 +148,9 @@
                     placeholder=""
                     v-model="formdata.last_name"
                   />
+                  <span v-if="$v.formdata.last_name.$error" class="text-danger">Please your last name</span>
                 </div>
+
                 <h6>Settings</h6>
                 <div class="form-group customer-input">
                   <label>Credit Limit (<i class="fa fa-pound-sign" style="font-size:10px;"></i>)</label>
@@ -178,7 +185,7 @@
                   />
                 </div>
                 <div class="form-group customer-input">
-                  <label>First Name</label>
+                  <label class="required-field">First Name</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -187,9 +194,11 @@
                     placeholder=""
                     v-model="formdata.first_name"
                   />
+                  <span v-if="$v.formdata.first_name.$error" class="text-danger">Please your first name</span>
                 </div>
+
                 <div class="form-group customer-input">
-                  <label>Last Name</label>
+                  <label class="required-field">Last Name</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -198,9 +207,11 @@
                     placeholder=""
                     v-model="formdata.last_name"
                   />
+                  <span v-if="$v.formdata.last_name.$error" class="text-danger">Please your last name</span>
                 </div>
+                
                 <div class="form-group customer-input">
-                  <label>Email</label>
+                  <label class="required-field">Email</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -209,11 +220,12 @@
                     placeholder=""
                     v-model="formdata.email"
                   />
+                  <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
                 </div>
               </div>
               <div class="col-md-6 primary-div">
                 <div class="form-group customer-input">
-                  <label>Registered Address</label>
+                  <label class="required-field">Registered Address</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -222,6 +234,7 @@
                     placeholder=""
                     v-model="formdata.registered_address"
                   />
+                  <span v-if="$v.formdata.registered_address.$error" class="text-danger">Please enter address</span>
                 </div>
                 <div class="form-group customer-input">
                   <label>Telephone</label>
@@ -261,7 +274,9 @@
 </template>
 
 <script>
+import { required,helpers} from "vuelidate/lib/validators";
 import { customerRules } from './rules/customerRules'
+const isName = helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 export default {
   name: "CreateCustomer",
   data() {
@@ -269,7 +284,12 @@ export default {
       rules : customerRules,
       customerType: 'business',
       theme: 'cust-type',
-      formdata: {},
+      formdata: {
+        company_name: "",
+        registered_address:"",
+        first_name: "",
+        last_name: "",
+      },
       groups:{}
     };
   },
@@ -281,6 +301,10 @@ export default {
       this.customerType = type;
     },
     async create_customer() {
+      this.$v.formdata.$touch();
+      if (this.$v.formdata.$error) {
+        return;
+      }
       try {
         this.formdata.customertype= this.customerType;
         const response = await axios.post("create_customer", {
@@ -322,6 +346,26 @@ export default {
         });
     },
   },
+   validations: {
+    formdata: {
+      company_name: {
+        required,
+        isName,
+      },
+       email: {
+        required,
+      },
+      registered_address: {
+        required,
+      },
+      first_name: {
+        required,
+      },
+      last_name: {
+        required,
+      }
+    }
+   },
   mounted()
   {
     this.getGroups();
@@ -330,6 +374,13 @@ export default {
 </script>
 <style scoped>
 
+.required-field::after {
+  content: "*";
+  color: red;
+}
+.text-danger{
+  font-size: 12px;
+}
 #dash-datatable
 {
   font-size: 13px;

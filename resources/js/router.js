@@ -43,6 +43,24 @@ let router = new Router({
         /**
          * Admin routes
          */
+         {
+            path: "/profile",
+            name: "profile",
+            component: () => import("./views/admin/profile.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/createprofile",
+            name: "createprofile",
+            component: () => import("./views/admin/createprofile.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
         {
             path: "/admin",
             name: "admin",
@@ -52,6 +70,7 @@ let router = new Router({
                 layout: AdminLayout
             }
         },
+        
         {
             path: "/sales",
             name: "sales",
@@ -88,6 +107,7 @@ let router = new Router({
                 layout: AdminLayout
             }
         },
+       
         {
             path: "/createcustomer",
             name: "createcustomer",
