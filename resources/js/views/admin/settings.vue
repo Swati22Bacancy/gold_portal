@@ -119,7 +119,7 @@
       </div>
     </div>
     <div class="row content-div">
-      <div class="col-md-4">
+      <div class="col-md-4" v-on:click="goto_vatsettings()" style="cursor:pointer;">
         <div class="row">
           <div class="col-md-3">
             <span class="material-symbols-outlined" style="font-size:80px;color: #595959;">article</span>
@@ -219,6 +219,10 @@ export default {
     goto_customersettings()
     {
       this.$router.push({ name: 'customersettings' });
+    },
+    goto_vatsettings()
+    {
+      this.$router.push({ name: 'vatsettings' });
     },
     is_super_admin(){
       if(this.user)
