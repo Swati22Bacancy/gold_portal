@@ -285,83 +285,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -370,24 +293,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       tabList: ["Basic Settings", "Field Names"],
-      formdata: {},
-      industrysectors: {},
-      currencies: {},
-      filename: '',
-      file: '',
-      credit_filename: '',
-      creditfile: '',
-      vat_filename: '',
-      vatfile: '',
-      incorporation_filename: '',
-      incorporationfile: '',
-      accounting_filename: '',
-      accountingfile: '',
-      filename1: '',
-      credit_filename1: '',
-      vat_filename1: '',
-      incorporation_filename1: '',
-      accounting_filename1: ''
+      formdata: {}
     };
   },
   methods: {
@@ -409,15 +315,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }
     },
-    fetchCurrency: function fetchCurrency() {
-      var _this = this;
-
-      axios.get('/currencydetails/' + this.formdata.currency_id).then(function (response) {
-        _this.formdata.currency_symbol = response.data.symbol;
-      })["catch"](function (error) {});
-    },
     storeVatSettings: function storeVatSettings() {
-      var _this2 = this;
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var response, message, toast, _message, _toast;
@@ -427,32 +326,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
-                _this2.formdata.file = _this2.file;
-                _this2.formdata.creditfile = _this2.creditfile;
-                _this2.formdata.vatfile = _this2.vatfile;
-                _this2.formdata.incorporationfile = _this2.incorporationfile;
-                _this2.formdata.accountingfile = _this2.accountingfile;
-                _context.next = 8;
-                return axios.post("store_details", (0,_object_to_formdata__WEBPACK_IMPORTED_MODULE_1__.objectToFormData)(_this2.formdata));
+                _context.next = 3;
+                return axios.post("store_vatsettings", _this.formdata);
 
-              case 8:
+              case 3:
                 response = _context.sent;
-                _this2.file = '';
-                _this2.creditfile = '';
-                _this2.vatfile = '';
-                _this2.incorporationfile = '';
-                _this2.accountingfile = '';
-                message = "Company Details has been successfully saved.";
+                message = "VAT Settings has been successfully saved.";
                 toast = Vue.toasted.show(message, {
                   theme: "toasted-success",
                   position: "top-center",
                   duration: 5000
                 });
-                _context.next = 22;
+                _context.next = 12;
                 break;
 
-              case 18:
-                _context.prev = 18;
+              case 8:
+                _context.prev = 8;
                 _context.t0 = _context["catch"](0);
                 _message = 'Something went wrong, Please try again';
                 _toast = Vue.toasted.show(_message, {
@@ -461,16 +350,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   duration: 5000
                 });
 
-              case 22:
+              case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 18]]);
+        }, _callee, null, [[0, 8]]);
       }))();
     },
     updateVatSettings: function updateVatSettings() {
-      var _this3 = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var response, message, toast, _message2, _toast2;
@@ -480,32 +369,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.prev = 0;
-                _this3.formdata.file = _this3.file;
-                _this3.formdata.creditfile = _this3.creditfile;
-                _this3.formdata.vatfile = _this3.vatfile;
-                _this3.formdata.incorporationfile = _this3.incorporationfile;
-                _this3.formdata.accountingfile = _this3.accountingfile;
-                _context2.next = 8;
-                return axios.post("update_details", (0,_object_to_formdata__WEBPACK_IMPORTED_MODULE_1__.objectToFormData)(_this3.formdata));
+                _context2.next = 3;
+                return axios.post("update_vatsettings", _this2.formdata);
 
-              case 8:
+              case 3:
                 response = _context2.sent;
-                _this3.file = '';
-                _this3.creditfile = '';
-                _this3.vatfile = '';
-                _this3.incorporationfile = '';
-                _this3.accountingfile = '';
-                message = "Company Details has been successfully saved.";
+                message = "VAT Settings has been successfully saved.";
                 toast = Vue.toasted.show(message, {
                   theme: "toasted-success",
                   position: "top-center",
                   duration: 5000
                 });
-                _context2.next = 22;
+                _context2.next = 12;
                 break;
 
-              case 18:
-                _context2.prev = 18;
+              case 8:
+                _context2.prev = 8;
                 _context2.t0 = _context2["catch"](0);
                 _message2 = 'Something went wrong, Please try again';
                 _toast2 = Vue.toasted.show(_message2, {
@@ -514,75 +393,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   duration: 5000
                 });
 
-              case 22:
+              case 12:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 18]]);
+        }, _callee2, null, [[0, 8]]);
       }))();
-    },
-    getIndustrySectors: function getIndustrySectors() {
-      var _this4 = this;
-
-      return axios.get("industrysector_list").then(function (response) {
-        _this4.industrysectors = response.data;
-      });
-    },
-    getCurrencies: function getCurrencies() {
-      var _this5 = this;
-
-      return axios.get("currencylist").then(function (response) {
-        _this5.currencies = response.data;
-      });
-    },
-    onFileChange: function onFileChange(e) {
-      this.filename = "Selected File: " + e.target.files[0].name;
-      this.file = e.target.files[0];
-    },
-    onCreditFileChange: function onCreditFileChange(e) {
-      this.credit_filename = "Selected File: " + e.target.files[0].name;
-      this.creditfile = e.target.files[0];
-    },
-    onVatFileChange: function onVatFileChange(e) {
-      this.vat_filename = "Selected File: " + e.target.files[0].name;
-      this.vatfile = e.target.files[0];
-    },
-    onIncorporationFileChange: function onIncorporationFileChange(e) {
-      this.incorporation_filename = "Selected File: " + e.target.files[0].name;
-      this.incorporationfile = e.target.files[0];
-    },
-    onAccountingFileChange: function onAccountingFileChange(e) {
-      this.accounting_filename = "Selected File: " + e.target.files[0].name;
-      this.accountingfile = e.target.files[0];
-    },
-    download: function download(image) {
-      axios.get("/download?image=" + image, {
-        responseType: 'blob'
-      }).then(function (response) {
-        var url = window.URL.createObjectURL(new Blob([response.data]));
-        var link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', image);
-        document.body.appendChild(link);
-        link.click();
-      })["catch"](function (e) {
-        console.log(e);
-      });
     }
   },
   mounted: function mounted() {
-    var _this6 = this;
+    var _this3 = this;
 
-    this.getIndustrySectors();
-    this.getCurrencies();
-    axios.get('/saved_companydetails/').then(function (response) {
-      _this6.formdata = response.data;
-      _this6.filename1 = response.data.identification_file;
-      _this6.credit_filename1 = response.data.credit_file;
-      _this6.vat_filename1 = response.data.vat_file;
-      _this6.incorporation_filename1 = response.data.incorporation_file;
-      _this6.accounting_filename1 = response.data.accounting_file;
+    axios.get('/saved_vatsettings/').then(function (response) {
+      _this3.formdata = response.data;
+      _this3.formdata.password = "";
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
   }
@@ -1377,7 +1202,6 @@ var render = function() {
                           staticClass: "form-control form-control-user",
                           attrs: {
                             type: "text",
-                            id: "crt-customer",
                             "aria-describedby": "emailHelp",
                             placeholder: ""
                           },
@@ -1410,7 +1234,6 @@ var render = function() {
                           staticClass: "form-control form-control-user",
                           attrs: {
                             type: "text",
-                            id: "crt-customer",
                             "aria-describedby": "emailHelp",
                             placeholder: ""
                           },
@@ -1447,8 +1270,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.formdata.turnove,
-                          expression: "formdata.turnove"
+                          value: _vm.formdata.turnover,
+                          expression: "formdata.turnover"
                         }
                       ],
                       attrs: {
@@ -1458,13 +1281,13 @@ var render = function() {
                         value: "turnover_above"
                       },
                       domProps: {
-                        checked: _vm._q(_vm.formdata.turnove, "turnover_above")
+                        checked: _vm._q(_vm.formdata.turnover, "turnover_above")
                       },
                       on: {
                         change: function($event) {
                           return _vm.$set(
                             _vm.formdata,
-                            "turnove",
+                            "turnover",
                             "turnover_above"
                           )
                         }
@@ -1930,9 +1753,11 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("h6", [_vm._v("Calculation Method:")]),
+                _c("h6", { staticClass: "pb-0" }, [
+                  _vm._v("Calculation Method:")
+                ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "row pb-4" }, [
                   _c("div", { staticClass: "form-group col-md-8" }, [
                     _vm._m(0),
                     _c("br"),
@@ -2022,395 +1847,32 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "form-group col-md-3" }, [
-                    _c("label", [_vm._v("Address Line 1")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formdata.address1,
-                          expression: "formdata.address1"
-                        }
-                      ],
-                      staticClass: "form-control form-control-user",
-                      attrs: {
-                        type: "text",
-                        id: "crt-customer",
-                        "aria-describedby": "emailHelp",
-                        placeholder: ""
-                      },
-                      domProps: { value: _vm.formdata.address1 },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.formdata,
-                            "address1",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-3" }, [
-                    _c("label", [_vm._v("Address Line 2")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formdata.address2,
-                          expression: "formdata.address2"
-                        }
-                      ],
-                      staticClass: "form-control form-control-user",
-                      attrs: {
-                        type: "text",
-                        id: "crt-customer",
-                        "aria-describedby": "emailHelp",
-                        placeholder: ""
-                      },
-                      domProps: { value: _vm.formdata.address2 },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.formdata,
-                            "address2",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-3" }, [
-                    _c("label", [_vm._v("Post Code")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formdata.postcode,
-                          expression: "formdata.postcode"
-                        }
-                      ],
-                      staticClass: "form-control form-control-user",
-                      attrs: {
-                        type: "text",
-                        id: "crt-customer",
-                        "aria-describedby": "emailHelp",
-                        placeholder: ""
-                      },
-                      domProps: { value: _vm.formdata.postcode },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.formdata,
-                            "postcode",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-3" }, [
-                    _c("label", [_vm._v("Country")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formdata.country,
-                          expression: "formdata.country"
-                        }
-                      ],
-                      staticClass: "form-control form-control-user",
-                      attrs: {
-                        type: "text",
-                        id: "crt-customer",
-                        "aria-describedby": "emailHelp",
-                        placeholder: ""
-                      },
-                      domProps: { value: _vm.formdata.country },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.formdata, "country", $event.target.value)
-                        }
-                      }
-                    })
-                  ])
-                ]),
+                _c("h6", { staticClass: "pb-0" }, [_vm._v("VAT Rates:")]),
                 _vm._v(" "),
-                _c("h6", [_vm._v("Contact Details")]),
+                _vm._m(1),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "form-group col-md-3" }, [
-                    _c("label", [_vm._v("Name")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-2",
+                      staticStyle: { display: "inline-flex" }
+                    },
+                    [
+                      _c(
+                        "select",
                         {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formdata.contact_name,
-                          expression: "formdata.contact_name"
-                        }
-                      ],
-                      staticClass: "form-control form-control-user",
-                      attrs: {
-                        type: "text",
-                        id: "crt-customer",
-                        "aria-describedby": "emailHelp",
-                        placeholder: ""
-                      },
-                      domProps: { value: _vm.formdata.contact_name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.formdata,
-                            "contact_name",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-3" }, [
-                    _c("label", [_vm._v("Email")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formdata.contact_email,
-                          expression: "formdata.contact_email"
-                        }
-                      ],
-                      staticClass: "form-control form-control-user",
-                      attrs: {
-                        type: "text",
-                        id: "crt-customer",
-                        "aria-describedby": "emailHelp",
-                        placeholder: ""
-                      },
-                      domProps: { value: _vm.formdata.contact_email },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.formdata,
-                            "contact_email",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-3" }, [
-                    _c("label", [_vm._v("Telephone")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formdata.contact_telephone,
-                          expression: "formdata.contact_telephone"
-                        }
-                      ],
-                      staticClass: "form-control form-control-user",
-                      attrs: {
-                        type: "text",
-                        id: "crt-customer",
-                        "aria-describedby": "emailHelp",
-                        placeholder: ""
-                      },
-                      domProps: { value: _vm.formdata.contact_telephone },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.formdata,
-                            "contact_telephone",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-3" }, [
-                    _c("label", [_vm._v("Mobile")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formdata.contact_mobile,
-                          expression: "formdata.contact_mobile"
-                        }
-                      ],
-                      staticClass: "form-control form-control-user",
-                      attrs: {
-                        type: "text",
-                        id: "crt-customer",
-                        "aria-describedby": "emailHelp",
-                        placeholder: ""
-                      },
-                      domProps: { value: _vm.formdata.contact_mobile },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.formdata,
-                            "contact_mobile",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("h6", [_vm._v("Default Payment Terms")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "form-group col-md-1" }, [
-                    _c("label", [_vm._v("Days")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formdata.payment_days,
-                          expression: "formdata.payment_days"
-                        }
-                      ],
-                      staticClass: "form-control form-control-user",
-                      attrs: {
-                        type: "text",
-                        id: "crt-customer",
-                        "aria-describedby": "emailHelp",
-                        placeholder: ""
-                      },
-                      domProps: { value: _vm.formdata.payment_days },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.formdata,
-                            "payment_days",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-3" }, [
-                    _c("label", [_vm._v("Condition")]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.formdata.payment_condition,
-                            expression: "formdata.payment_condition"
-                          }
-                        ],
-                        staticClass: "form-control form-control-user",
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.formdata,
-                              "payment_condition",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { value: "after_invoice" } }, [
-                          _vm._v("Days after sales invoice date")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "after_delivery" } }, [
-                          _vm._v("Days after delivery date")
-                        ])
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("h6", [_vm._v("Home Currency")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "form-group col-md-3" }, [
-                    _c("label", [_vm._v("Currency Name")]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.formdata.currency_id,
-                            expression: "formdata.currency_id"
-                          }
-                        ],
-                        staticClass: "form-control form-control-user",
-                        on: {
-                          change: [
-                            function($event) {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formdata.vat_rate,
+                              expression: "formdata.vat_rate"
+                            }
+                          ],
+                          staticClass: "form-control form-control-user",
+                          on: {
+                            change: function($event) {
                               var $$selectedVal = Array.prototype.filter
                                 .call($event.target.options, function(o) {
                                   return o.selected
@@ -2421,143 +1883,83 @@ var render = function() {
                                 })
                               _vm.$set(
                                 _vm.formdata,
-                                "currency_id",
+                                "vat_rate",
                                 $event.target.multiple
                                   ? $$selectedVal
                                   : $$selectedVal[0]
                               )
-                            },
-                            function($event) {
-                              return _vm.fetchCurrency()
                             }
-                          ]
-                        }
-                      },
-                      _vm._l(_vm.currencies, function(currency) {
-                        return _c(
-                          "option",
-                          {
-                            key: currency.id,
-                            domProps: { value: currency.id }
-                          },
-                          [_vm._v(_vm._s(currency.name))]
-                        )
-                      }),
-                      0
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-1" }, [
-                    _c("label", [_vm._v("Symbol")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formdata.currency_symbol,
-                          expression: "formdata.currency_symbol"
-                        }
-                      ],
-                      staticClass: "form-control form-control-user",
-                      attrs: {
-                        type: "text",
-                        id: "crt-customer",
-                        "aria-describedby": "emailHelp",
-                        placeholder: "",
-                        readonly: ""
-                      },
-                      domProps: { value: _vm.formdata.currency_symbol },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
                           }
-                          _vm.$set(
-                            _vm.formdata,
-                            "currency_symbol",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label"),
+                        },
+                        [
+                          _c("option", { attrs: { value: "january" } }, [
+                            _vm._v("January")
+                          ])
+                        ]
+                      ),
                       _vm._v(" "),
                       _c(
-                        "div",
-                        { staticClass: "custom-checkbox small check-position" },
-                        [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.formdata.output_tax,
-                                expression: "formdata.output_tax"
-                              }
-                            ],
-                            staticClass: "custom-control-input",
-                            attrs: { type: "checkbox", id: "customCheck" },
-                            domProps: {
-                              checked: Array.isArray(_vm.formdata.output_tax)
-                                ? _vm._i(_vm.formdata.output_tax, null) > -1
-                                : _vm.formdata.output_tax
-                            },
-                            on: {
-                              change: function($event) {
-                                var $$a = _vm.formdata.output_tax,
-                                  $$el = $event.target,
-                                  $$c = $$el.checked ? true : false
-                                if (Array.isArray($$a)) {
-                                  var $$v = null,
-                                    $$i = _vm._i($$a, $$v)
-                                  if ($$el.checked) {
-                                    $$i < 0 &&
-                                      _vm.$set(
-                                        _vm.formdata,
-                                        "output_tax",
-                                        $$a.concat([$$v])
-                                      )
-                                  } else {
-                                    $$i > -1 &&
-                                      _vm.$set(
-                                        _vm.formdata,
-                                        "output_tax",
-                                        $$a
-                                          .slice(0, $$i)
-                                          .concat($$a.slice($$i + 1))
-                                      )
-                                  }
-                                } else {
-                                  _vm.$set(_vm.formdata, "output_tax", $$c)
-                                }
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "label",
-                            {
-                              staticClass: "custom-control-label",
-                              staticStyle: { color: "#000" },
-                              attrs: { for: "customCheck" }
-                            },
-                            [_vm._v("Position to the right of the value")]
-                          )
-                        ]
+                        "span",
+                        {
+                          staticClass: "material-symbols-outlined",
+                          staticStyle: {
+                            "margin-right": "5px",
+                            color: "red",
+                            cursor: "pointer"
+                          }
+                        },
+                        [_vm._v("delete")]
                       )
-                    ])
-                  ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group col-md-2",
+                      staticStyle: { display: "inline-flex" }
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.entered_vatrate,
+                            expression: "formdata.entered_vatrate"
+                          }
+                        ],
+                        staticClass: "form-control form-control-user",
+                        attrs: {
+                          type: "text",
+                          "aria-describedby": "emailHelp",
+                          placeholder: ""
+                        },
+                        domProps: { value: _vm.formdata.entered_vatrate },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.formdata,
+                              "entered_vatrate",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("i", {
+                        staticClass: "fas fa-plus",
+                        staticStyle: { "margin-right": "5px" }
+                      })
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
-                _c("h6", [_vm._v("Industry Sector")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "form-group col-md-3" }, [
+                _c("div", { staticClass: "row pb-4" }, [
+                  _c("div", { staticClass: "form-group col-md-2" }, [
                     _c(
                       "select",
                       {
@@ -2565,8 +1967,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formdata.sector_id,
-                            expression: "formdata.sector_id"
+                            value: _vm.formdata.default_vatrate,
+                            expression: "formdata.default_vatrate"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -2582,7 +1984,7 @@ var render = function() {
                               })
                             _vm.$set(
                               _vm.formdata,
-                              "sector_id",
+                              "default_vatrate",
                               $event.target.multiple
                                 ? $$selectedVal
                                 : $$selectedVal[0]
@@ -2590,251 +1992,806 @@ var render = function() {
                           }
                         }
                       },
-                      _vm._l(_vm.industrysectors, function(industrysector) {
-                        return _c(
-                          "option",
-                          {
-                            key: industrysector.id,
-                            domProps: { value: industrysector.id }
+                      [
+                        _c("option", { attrs: { value: "20" } }, [
+                          _vm._v("20%")
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(2)
+                ]),
+                _vm._v(" "),
+                _c("h6", { staticClass: "pb-0" }, [_vm._v("Cash Accounting:")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row pb-4" }, [
+                  _c("div", { staticClass: "form-group col-md-8" }, [
+                    _c("span", { staticStyle: { "font-size": "12px" } }, [
+                      _vm._v(
+                        'Some nusinesses uses a VAT scheme called "Cash Accounting". This allows you to only pay/reclaim VT on payments actually made/received - as opposed to sales invoices issued.'
+                      )
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "custom-checkbox small check-position vat_checkbox mb-2 pt-2"
+                      },
+                      [
+                        _c("label"),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formdata.scheme_cash,
+                              expression: "formdata.scheme_cash"
+                            }
+                          ],
+                          staticClass: "custom-control-input",
+                          attrs: { type: "checkbox", id: "scheme_cash" },
+                          domProps: {
+                            checked: Array.isArray(_vm.formdata.scheme_cash)
+                              ? _vm._i(_vm.formdata.scheme_cash, null) > -1
+                              : _vm.formdata.scheme_cash
                           },
-                          [_vm._v(_vm._s(industrysector.title))]
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.formdata.scheme_cash,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    _vm.$set(
+                                      _vm.formdata,
+                                      "scheme_cash",
+                                      $$a.concat([$$v])
+                                    )
+                                } else {
+                                  $$i > -1 &&
+                                    _vm.$set(
+                                      _vm.formdata,
+                                      "scheme_cash",
+                                      $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1))
+                                    )
+                                }
+                              } else {
+                                _vm.$set(_vm.formdata, "scheme_cash", $$c)
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass: "custom-control-label",
+                            staticStyle: { color: "#000" },
+                            attrs: { for: "scheme_cash" }
+                          },
+                          [_vm._v("I am on the Cash Accounting Scheme")]
                         )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.formdata.cash_scheme,
+                          expression: "formdata.cash_scheme"
+                        }
+                      ],
+                      attrs: {
+                        type: "radio",
+                        id: "sales_scheme",
+                        name: "cash_scheme",
+                        value: "sales_scheme"
+                      },
+                      domProps: {
+                        checked: _vm._q(
+                          _vm.formdata.cash_scheme,
+                          "sales_scheme"
+                        )
+                      },
+                      on: {
+                        change: function($event) {
+                          return _vm.$set(
+                            _vm.formdata,
+                            "cash_scheme",
+                            "sales_scheme"
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "radio-label pt-3 pr-5",
+                        staticStyle: { "font-size": "12px !important" },
+                        attrs: { for: "sales_scheme" }
+                      },
+                      [_vm._v("Sales invoice & Purchases")]
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.formdata.cash_scheme,
+                          expression: "formdata.cash_scheme"
+                        }
+                      ],
+                      attrs: {
+                        type: "radio",
+                        id: "invoice_scheme",
+                        name: "cash_scheme",
+                        value: "invoice_scheme"
+                      },
+                      domProps: {
+                        checked: _vm._q(
+                          _vm.formdata.cash_scheme,
+                          "invoice_scheme"
+                        )
+                      },
+                      on: {
+                        change: function($event) {
+                          return _vm.$set(
+                            _vm.formdata,
+                            "cash_scheme",
+                            "invoice_scheme"
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "radio-label",
+                        staticStyle: { "font-size": "12px !important" },
+                        attrs: { for: "invoice_scheme" }
+                      },
+                      [_vm._v("Sales invoices only")]
+                    ),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.formdata.cash_scheme,
+                          expression: "formdata.cash_scheme"
+                        }
+                      ],
+                      attrs: {
+                        type: "radio",
+                        id: "purchase_scheme",
+                        name: "cash_scheme",
+                        value: "purchase_scheme"
+                      },
+                      domProps: {
+                        checked: _vm._q(
+                          _vm.formdata.cash_scheme,
+                          "purchase_scheme"
+                        )
+                      },
+                      on: {
+                        change: function($event) {
+                          return _vm.$set(
+                            _vm.formdata,
+                            "cash_scheme",
+                            "purchase_scheme"
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "radio-label",
+                        staticStyle: { "font-size": "12px !important" },
+                        attrs: { for: "purchase_scheme" }
+                      },
+                      [_vm._v("Purchases only")]
+                    ),
+                    _c("br")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("h6", { staticClass: "pb-0" }, [
+                  _vm._v("Flat Rate Scheme (FRS)")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "custom-checkbox small check-position vat_checkbox mb-2 pt-2"
+                    },
+                    [
+                      _c("label"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.flatrate_scheme,
+                            expression: "formdata.flatrate_scheme"
+                          }
+                        ],
+                        staticClass: "custom-control-input",
+                        attrs: { type: "checkbox", id: "flatrate_scheme" },
+                        domProps: {
+                          checked: Array.isArray(_vm.formdata.flatrate_scheme)
+                            ? _vm._i(_vm.formdata.flatrate_scheme, null) > -1
+                            : _vm.formdata.flatrate_scheme
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.formdata.flatrate_scheme,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.formdata,
+                                    "flatrate_scheme",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.formdata,
+                                    "flatrate_scheme",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.formdata, "flatrate_scheme", $$c)
+                            }
+                          }
+                        }
                       }),
-                      0
-                    )
-                  ])
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "custom-control-label",
+                          staticStyle: { color: "#000" },
+                          attrs: { for: "flatrate_scheme" }
+                        },
+                        [_vm._v("I use the Flat Rate Sceheme for VAT")]
+                      ),
+                      _c("br")
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
-                _c("h6", [_vm._v("Documents")]),
+                _vm.formdata.flatrate_scheme
+                  ? _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "form-group col-md-4" }, [
+                        _c("label", [_vm._v("FRS Rate (%)")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formdata.frs_rate,
+                              expression: "formdata.frs_rate"
+                            }
+                          ],
+                          staticClass: "form-control form-control-user",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                            placeholder: ""
+                          },
+                          domProps: { value: _vm.formdata.frs_rate },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.formdata,
+                                "frs_rate",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-3" }, [
-                    _c("input", {
-                      staticClass: "custom-file-input",
-                      attrs: {
-                        type: "file",
-                        name: "filename",
-                        id: "inputFileUpload"
-                      },
-                      on: { change: _vm.onFileChange }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "custom-file-label",
-                        attrs: { for: "inputFileUpload" }
-                      },
-                      [_vm._v("Choose file")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "upload_text" }, [
-                    _vm._v(_vm._s(_vm.filename))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "upload_text" }, [
-                    _vm.filename1
-                      ? _c(
-                          "a",
+                _vm.formdata.flatrate_scheme
+                  ? _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "form-group col-md-4" }, [
+                        _c("label", [
+                          _vm._v(
+                            "Retained VAT Code - Code for recording any gain you make from FRS"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
                           {
-                            staticClass: "download_link",
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.formdata.flatvat_rate,
+                                expression: "formdata.flatvat_rate"
+                              }
+                            ],
+                            staticClass: "form-control form-control-user",
                             on: {
-                              click: function($event) {
-                                return _vm.download(_vm.filename1)
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.formdata,
+                                  "flatvat_rate",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
                               }
                             }
                           },
-                          [_vm._v("Download")]
+                          [
+                            _c("option", { attrs: { value: "january" } }, [
+                              _vm._v("0 - Other")
+                            ])
+                          ]
                         )
-                      : _vm._e()
-                  ])
+                      ])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.formdata.flatrate_scheme
+                  ? _c("div", { staticClass: "row pb-4" }, [
+                      _c("div", { staticClass: "form-group col-md-2" }, [
+                        _c("label", [_vm._v("Prior FRS Rate (%)")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formdata.priorfrs_rate,
+                              expression: "formdata.priorfrs_rate"
+                            }
+                          ],
+                          staticClass: "form-control form-control-user",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                            placeholder: ""
+                          },
+                          domProps: { value: _vm.formdata.priorfrs_rate },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.formdata,
+                                "priorfrs_rate",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group col-md-2" }, [
+                        _c("label", [_vm._v("Prior To")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formdata.prior_to,
+                              expression: "formdata.prior_to"
+                            }
+                          ],
+                          staticClass: "form-control form-control-user",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                            placeholder: ""
+                          },
+                          domProps: { value: _vm.formdata.prior_to },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.formdata,
+                                "prior_to",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("h6", { staticClass: "pb-0" }, [_vm._v("ECS Sales List")]),
+                _vm._v(" "),
+                _c("span", { staticStyle: { "font-size": "12px" } }, [
+                  _vm._v(
+                    "If you register for online filing of VAT returns, then we can send your EC Sales List to HMRC electronically on your behalf."
+                  )
                 ]),
+                _c("br"),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-3" }, [
-                    _c("input", {
-                      staticClass: "custom-file-input",
-                      attrs: {
-                        type: "file",
-                        name: "credit_filename",
-                        id: "inputCreditFileUpload"
-                      },
-                      on: { change: _vm.onCreditFileChange }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "custom-file-label",
-                        attrs: { for: "inputCreditFileUpload" }
-                      },
-                      [_vm._v("Choose file")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "upload_text" }, [
-                    _vm._v(_vm._s(_vm.credit_filename))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "upload_text" }, [
-                    _vm.credit_filename1
-                      ? _c(
-                          "a",
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "custom-checkbox small check-position vat_checkbox mb-2 pt-2"
+                    },
+                    [
+                      _c("label"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
                           {
-                            staticClass: "download_link",
-                            on: {
-                              click: function($event) {
-                                return _vm.download(_vm.credit_filename1)
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.enable_filing,
+                            expression: "formdata.enable_filing"
+                          }
+                        ],
+                        staticClass: "custom-control-input",
+                        attrs: { type: "checkbox", id: "enable_filing" },
+                        domProps: {
+                          checked: Array.isArray(_vm.formdata.enable_filing)
+                            ? _vm._i(_vm.formdata.enable_filing, null) > -1
+                            : _vm.formdata.enable_filing
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.formdata.enable_filing,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.formdata,
+                                    "enable_filing",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.formdata,
+                                    "enable_filing",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
                               }
+                            } else {
+                              _vm.$set(_vm.formdata, "enable_filing", $$c)
                             }
-                          },
-                          [_vm._v("Download")]
-                        )
-                      : _vm._e()
-                  ])
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "custom-control-label",
+                          staticStyle: { color: "#000" },
+                          attrs: { for: "enable_filing" }
+                        },
+                        [_vm._v("Enable Online Filing")]
+                      ),
+                      _c("br")
+                    ]
+                  ),
+                  _c("br")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _vm._m(3),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-3" }, [
-                    _c("input", {
-                      staticClass: "custom-file-input",
-                      attrs: {
-                        type: "file",
-                        name: "vat_filename",
-                        id: "inputVatFileUpload"
-                      },
-                      on: { change: _vm.onVatFileChange }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "custom-file-label",
-                        attrs: { for: "inputVatFileUpload" }
-                      },
-                      [_vm._v("Choose file")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "upload_text" }, [
-                    _vm._v(_vm._s(_vm.vat_filename))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "upload_text" }, [
-                    _vm.vat_filename1
-                      ? _c(
-                          "a",
-                          {
-                            staticClass: "download_link",
-                            on: {
-                              click: function($event) {
-                                return _vm.download(_vm.vat_filename1)
-                              }
+                _vm.formdata.enable_filing
+                  ? _c("p", { staticClass: "pt-4" }, [
+                      _vm._v(" HRMC Online Filing Username &  Password")
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.formdata.enable_filing
+                  ? _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "form-group col-md-3" }, [
+                        _c("label", [_vm._v("Username")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formdata.username,
+                              expression: "formdata.username"
                             }
+                          ],
+                          staticClass: "form-control form-control-user",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                            placeholder: "Enter Username"
                           },
-                          [_vm._v("Download")]
-                        )
-                      : _vm._e()
-                  ])
-                ]),
+                          domProps: { value: _vm.formdata.username },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.formdata,
+                                "username",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group col-md-3" }, [
+                        _c("label", [_vm._v("Password")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formdata.password,
+                              expression: "formdata.password"
+                            }
+                          ],
+                          staticClass: "form-control form-control-user",
+                          attrs: {
+                            type: "password",
+                            "aria-describedby": "emailHelp",
+                            placeholder: "Enter Password"
+                          },
+                          domProps: { value: _vm.formdata.password },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.formdata,
+                                "password",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.formdata.enable_filing
+                  ? _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "form-group col-md-3" }, [
+                        _c("label", [_vm._v("Branch")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formdata.branch,
+                              expression: "formdata.branch"
+                            }
+                          ],
+                          staticClass: "form-control form-control-user",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                            placeholder: ""
+                          },
+                          domProps: { value: _vm.formdata.branch },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.formdata,
+                                "branch",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(3)
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.formdata.enable_filing
+                  ? _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "form-group col-md-3" }, [
+                        _c("label", [_vm._v("Postcode")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formdata.postcode,
+                              expression: "formdata.postcode"
+                            }
+                          ],
+                          staticClass: "form-control form-control-user",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                            placeholder: "Enter Postcode"
+                          },
+                          domProps: { value: _vm.formdata.postcode },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.formdata,
+                                "postcode",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group col-md-3" }, [
+                        _c("label", [_vm._v("VAT No.")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.formdata.ecs_vat,
+                              expression: "formdata.ecs_vat"
+                            }
+                          ],
+                          staticClass: "form-control form-control-user",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                            placeholder: "Enter VAT No."
+                          },
+                          domProps: { value: _vm.formdata.ecs_vat },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.formdata,
+                                "ecs_vat",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-3" }, [
-                    _c("input", {
-                      staticClass: "custom-file-input",
-                      attrs: {
-                        type: "file",
-                        name: "incorporation_filename",
-                        id: "inputIncorporationFileUpload"
-                      },
-                      on: { change: _vm.onIncorporationFileChange }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "custom-file-label",
-                        attrs: { for: "inputIncorporationFileUpload" }
-                      },
-                      [_vm._v("Choose file")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "upload_text" }, [
-                    _vm._v(_vm._s(_vm.incorporation_filename))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "upload_text" }, [
-                    _vm.incorporation_filename1
-                      ? _c(
-                          "a",
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "custom-checkbox small check-position vat_checkbox mb-2 pt-2"
+                    },
+                    [
+                      _c("label"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
                           {
-                            staticClass: "download_link",
-                            on: {
-                              click: function($event) {
-                                return _vm.download(_vm.incorporation_filename1)
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.ecs_exclude,
+                            expression: "formdata.ecs_exclude"
+                          }
+                        ],
+                        staticClass: "custom-control-input",
+                        attrs: { type: "checkbox", id: "ecs_exclude" },
+                        domProps: {
+                          checked: Array.isArray(_vm.formdata.ecs_exclude)
+                            ? _vm._i(_vm.formdata.ecs_exclude, null) > -1
+                            : _vm.formdata.ecs_exclude
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.formdata.ecs_exclude,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.formdata,
+                                    "ecs_exclude",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.formdata,
+                                    "ecs_exclude",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
                               }
+                            } else {
+                              _vm.$set(_vm.formdata, "ecs_exclude", $$c)
                             }
-                          },
-                          [_vm._v("Download")]
-                        )
-                      : _vm._e()
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _vm._m(5),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-3" }, [
-                    _c("input", {
-                      staticClass: "custom-file-input",
-                      attrs: {
-                        type: "file",
-                        name: "accounting_filename",
-                        id: "inputAccountingFileUpload"
-                      },
-                      on: { change: _vm.onAccountingFileChange }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "custom-file-label",
-                        attrs: { for: "inputAccountingFileUpload" }
-                      },
-                      [_vm._v("Choose file")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "upload_text" }, [
-                    _vm._v(_vm._s(_vm.accounting_filename))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "upload_text" }, [
-                    _vm.accounting_filename1
-                      ? _c(
-                          "a",
-                          {
-                            staticClass: "download_link",
-                            on: {
-                              click: function($event) {
-                                return _vm.download(_vm.accounting_filename1)
-                              }
-                            }
-                          },
-                          [_vm._v("Download")]
-                        )
-                      : _vm._e()
-                  ])
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "custom-control-label",
+                          staticStyle: { color: "#000" },
+                          attrs: { for: "ecs_exclude" }
+                        },
+                        [
+                          _vm._v(
+                            "Don't include EC Sales List with  VAT return. Select this option if your EC Sales List needs  to be submitted seperately from your VAT return."
+                          )
+                        ]
+                      ),
+                      _c("br")
+                    ]
+                  ),
+                  _c("br")
                 ])
               ])
             ])
@@ -2865,33 +2822,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2" }, [
-      _c("p", { staticClass: "document_title" }, [_vm._v("Identification:")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2" }, [
-      _c("p", { staticClass: "document_title" }, [_vm._v("Credit Report:")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2" }, [
-      _c("p", { staticClass: "document_title" }, [_vm._v("VAT Certificate:")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2" }, [
-      _c("p", { staticClass: "document_title" }, [
-        _vm._v("Incorporation Certificate:")
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "form-group col-md-4" }, [
+        _c("span", { staticStyle: { "font-size": "12px" } }, [
+          _vm._v(
+            "To delete a VAT rate, select it from the list and click the Trash icon."
+          ),
+          _c("br"),
+          _vm._v(
+            "\n                To add a VAT rate, enter it in the box and click the 'Add' icon"
+          )
+        ]),
+        _c("br")
       ])
     ])
   },
@@ -2899,8 +2841,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2" }, [
-      _c("p", { staticClass: "document_title" }, [_vm._v("Accounting Form:")])
+    return _c("div", { staticClass: "form-group col-md-6" }, [
+      _c("span", { staticStyle: { "font-size": "12px" } }, [
+        _vm._v(
+          "Select the default tax rate for newly created sales invoices and receipts."
+        )
+      ]),
+      _c("br")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-md-6" }, [
+      _c("label"),
+      _vm._v(" "),
+      _c("span", { staticStyle: { "font-size": "12px" } }, [
+        _vm._v("Only required for sending EC Sales Lists\n                ")
+      ])
     ])
   }
 ]

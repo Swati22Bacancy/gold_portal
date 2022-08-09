@@ -28,7 +28,7 @@
                   <input
                     type="text"
                     class="form-control form-control-user"
-                    id="crt-customer"
+                    
                     aria-describedby="emailHelp"
                     placeholder=""
                     v-model="formdata.tax_name"
@@ -37,7 +37,7 @@
                   <input
                     type="text"
                     class="form-control form-control-user"
-                    id="crt-customer"
+                    
                     aria-describedby="emailHelp"
                     placeholder=""
                     v-model="formdata.vat_number"
@@ -48,7 +48,7 @@
               <span style="font-size:12px;">(Select No if you are exempt from MTD for VAT)</span>
               <div class="row pt-2 pb-4">
                 <div class="form-group col-md-4">
-                  <input type="radio" id="turnover_above" name="turnover" v-model="formdata.turnove" value="turnover_above">
+                  <input type="radio" id="turnover_above" name="turnover" v-model="formdata.turnover" value="turnover_above">
                   <label class="radio-label pr-5" for="turnover_above">Yes</label>
                   <input type="radio" id="turnover_below" name="turnover" v-model="formdata.turnover" value="turnover_below">
                   <label class="radio-label" for="turnover_below">No</label><br>
@@ -96,8 +96,8 @@
                   </div>
                 </div>
               </div>
-              <h6>Calculation Method:</h6>
-              <div class="row">
+              <h6 class="pb-0">Calculation Method:</h6>
+              <div class="row pb-4">
                 <div class="form-group col-md-8">
                   <span style="font-size:12px;">There are two ways to calculate the tax on your sales invoices:<br>
                   You can work out the tax due on the total value of the line amount (qty x rate) or you can calculate the tax due on a single item<br>
@@ -108,222 +108,145 @@
                   <label class="radio-label" for="tax_individual" style="">B - Calculate tax on individual unit price</label><br>
                 </div>
               </div>
+              <h6 class="pb-0">VAT Rates:</h6>
               <div class="row">
-                <div class="form-group col-md-3">
-                    <label>Address Line 1</label>
-                    <input
-                      type="text"
-                      class="form-control form-control-user"
-                      id="crt-customer"
-                      aria-describedby="emailHelp"
-                      placeholder=""
-                      v-model="formdata.address1"
-                    />
-                  </div>
-                  <div class="form-group col-md-3">
-                    <label>Address Line 2</label>
-                    <input
-                      type="text"
-                      class="form-control form-control-user"
-                      id="crt-customer"
-                      aria-describedby="emailHelp"
-                      placeholder=""
-                      v-model="formdata.address2"
-                    />
-                  </div>
-                  <div class="form-group col-md-3">
-                    <label>Post Code</label>
-                    <input
-                      type="text"
-                      class="form-control form-control-user"
-                      id="crt-customer"
-                      aria-describedby="emailHelp"
-                      placeholder=""
-                      v-model="formdata.postcode"
-                    />
-                  </div>
-                  <div class="form-group col-md-3">
-                    <label>Country</label>
-                    <input
-                      type="text"
-                      class="form-control form-control-user"
-                      id="crt-customer"
-                      aria-describedby="emailHelp"
-                      placeholder=""
-                      v-model="formdata.country"
-                    />
-                  </div>
-                
-              </div>
-              <h6 >Contact Details</h6>
-              <div class="row">
-                <div class="form-group col-md-3">
-                    <label>Name</label>
-                    <input
-                      type="text"
-                      class="form-control form-control-user"
-                      id="crt-customer"
-                      aria-describedby="emailHelp"
-                      placeholder=""
-                      v-model="formdata.contact_name"
-                    />
-                  </div>
-                  <div class="form-group col-md-3">
-                    <label>Email</label>
-                    <input
-                      type="text"
-                      class="form-control form-control-user"
-                      id="crt-customer"
-                      aria-describedby="emailHelp"
-                      placeholder=""
-                      v-model="formdata.contact_email"
-                    />
-                  </div>
-                  <div class="form-group col-md-3">
-                    <label>Telephone</label>
-                    <input
-                      type="text"
-                      class="form-control form-control-user"
-                      id="crt-customer"
-                      aria-describedby="emailHelp"
-                      placeholder=""
-                      v-model="formdata.contact_telephone"
-                    />
-                  </div>
-                  <div class="form-group col-md-3">
-                    <label>Mobile</label>
-                    <input
-                      type="text"
-                      class="form-control form-control-user"
-                      id="crt-customer"
-                      aria-describedby="emailHelp"
-                      placeholder=""
-                      v-model="formdata.contact_mobile"
-                    />
-                  </div>
-                
-              </div>
-              <h6 >Default Payment Terms</h6>
-              <div class="row">
-                <div class="form-group col-md-1">
-                  <label>Days</label>
-                  <input
-                    type="text"
-                    class="form-control form-control-user"
-                    id="crt-customer"
-                    aria-describedby="emailHelp"
-                    placeholder=""
-                    v-model="formdata.payment_days"
-                  />
+                <div class="form-group col-md-4">
+                  <span style="font-size:12px;">To delete a VAT rate, select it from the list and click the Trash icon.<br>
+                  To add a VAT rate, enter it in the box and click the 'Add' icon</span><br>
                 </div>
-                <div class="form-group col-md-3">
-                  <label>Condition</label>
-                  <select class="form-control form-control-user" v-model="formdata.payment_condition">
-                    <option value="after_invoice">Days after sales invoice date</option>
-                    <option value="after_delivery">Days after delivery date</option>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-2" style="display: inline-flex;">
+                  <select class="form-control form-control-user" v-model="formdata.vat_rate">
+                    <option value="january">January</option>
+                  </select>
+                  <span class="material-symbols-outlined" style="margin-right: 5px;color: red;cursor: pointer;">delete</span>
+                </div>
+                <div class="form-group col-md-2" style="display: inline-flex;">
+                  <input type="text" class="form-control form-control-user"  aria-describedby="emailHelp" placeholder="" v-model="formdata.entered_vatrate"
+                  />
+                  <i class="fas fa-plus" style="margin-right: 5px;"></i>
+                </div>
+              </div>
+              <div class="row pb-4">
+                <div class="form-group col-md-2">
+                  <select class="form-control form-control-user" v-model="formdata.default_vatrate">
+                    <option value="20">20%</option>
                   </select>
                 </div>
+                <div class="form-group col-md-6">
+                  <span style="font-size:12px;">Select the default tax rate for newly created sales invoices and receipts.</span><br>
+                </div>
               </div>
-              <h6 >Home Currency</h6>
-              <div class="row">
-                <div class="form-group col-md-3">
-                  <label>Currency Name</label>
-                  <select class="form-control form-control-user" @change="fetchCurrency()" v-model="formdata.currency_id">
-                    <option v-for="currency in currencies" :key="currency.id" :value="currency.id">{{currency.name}}</option>
-                  </select>
-                </div>
-                <div class="form-group col-md-1">
-                  <label>Symbol</label>
-                  <input
-                    type="text"
-                    class="form-control form-control-user"
-                    id="crt-customer"
-                    aria-describedby="emailHelp"
-                    placeholder=""
-                    v-model="formdata.currency_symbol" readonly
-                  />
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
+              <h6 class="pb-0">Cash Accounting:</h6>
+              <div class="row pb-4">
+                <div class="form-group col-md-8">
+                  <span style="font-size:12px;">Some nusinesses uses a VAT scheme called "Cash Accounting". This allows you to only pay/reclaim VT on payments actually made/received - as opposed to sales invoices issued.</span><br>
+                  <div class="custom-checkbox small check-position vat_checkbox mb-2 pt-2">
                     <label></label>
-                    <div class="custom-checkbox small check-position">
-                      <input type="checkbox" class="custom-control-input" id="customCheck" v-model="formdata.output_tax"
-                      />
-                      <label class="custom-control-label" for="customCheck" style="color:#000"
-                        >Position to the right of the value</label>
-                    </div>
+                    <input type="checkbox" class="custom-control-input" id="scheme_cash" v-model="formdata.scheme_cash"/>
+                    <label class="custom-control-label" for="scheme_cash" style="color:#000;"
+                      >I am on the Cash Accounting Scheme</label>
                   </div>
+                  <input type="radio" id="sales_scheme" name="cash_scheme" v-model="formdata.cash_scheme" value="sales_scheme">
+                  <label class="radio-label pt-3 pr-5" for="sales_scheme" style="font-size:12px !important;">Sales invoice & Purchases</label><br>
+                  <input type="radio" id="invoice_scheme" name="cash_scheme" v-model="formdata.cash_scheme" value="invoice_scheme">
+                  <label class="radio-label" for="invoice_scheme" style="font-size:12px !important;">Sales invoices only</label><br>
+                  <input type="radio" id="purchase_scheme" name="cash_scheme" v-model="formdata.cash_scheme" value="purchase_scheme">
+                  <label class="radio-label" for="purchase_scheme" style="font-size:12px !important;">Purchases only</label><br>
                 </div>
               </div>
-              
-              <h6 >Industry Sector</h6>
+              <h6 class="pb-0">Flat Rate Scheme (FRS)</h6>
               <div class="row">
-                <div class="form-group col-md-3">
-                  <select class="form-control form-control-user" v-model="formdata.sector_id">
-                    <option v-for="industrysector in industrysectors" :key="industrysector.id" :value="industrysector.id">{{industrysector.title}}</option>
+                <div class="custom-checkbox small check-position vat_checkbox mb-2 pt-2">
+                  <label></label>
+                  <input type="checkbox" class="custom-control-input" id="flatrate_scheme" v-model="formdata.flatrate_scheme"/>
+                  <label class="custom-control-label" for="flatrate_scheme" style="color:#000;"
+                    >I use the Flat Rate Sceheme for VAT</label><br>
+                </div>
+              </div>
+              <div class="row" v-if="formdata.flatrate_scheme">
+                <div class="form-group col-md-4">
+                  <label>FRS Rate (%)</label>
+                  <input type="text" class="form-control form-control-user"  aria-describedby="emailHelp" placeholder="" v-model="formdata.frs_rate"
+                  />
+                </div>
+              </div>
+              <div class="row" v-if="formdata.flatrate_scheme">
+                <div class="form-group col-md-4">
+                  <label>Retained VAT Code - Code for recording any gain you make from FRS</label>
+                  <select class="form-control form-control-user" v-model="formdata.flatvat_rate">
+                    <option value="january">0 - Other</option>
                   </select>
                 </div>
               </div>
-              <h6>Documents</h6>
+              <div class="row pb-4" v-if="formdata.flatrate_scheme">
+                <div class="form-group col-md-2">
+                  <label>Prior FRS Rate (%)</label>
+                  <input type="text" class="form-control form-control-user"  aria-describedby="emailHelp" placeholder="" v-model="formdata.priorfrs_rate"
+                  />
+                </div>
+                <div class="form-group col-md-2">
+                  <label>Prior To</label>
+                  <input type="text" class="form-control form-control-user"  aria-describedby="emailHelp" placeholder="" v-model="formdata.prior_to"
+                  />
+                </div>
+              </div>
+
+              <h6 class="pb-0">ECS Sales List</h6>
+              <span style="font-size:12px;">If you register for online filing of VAT returns, then we can send your EC Sales List to HMRC electronically on your behalf.</span><br>
               <div class="row">
-                <div class="col-md-2">
-                  <p class="document_title">Identification:</p>
+                <div class="custom-checkbox small check-position vat_checkbox mb-2 pt-2">
+                  <label></label>
+                  <input type="checkbox" class="custom-control-input" id="enable_filing" v-model="formdata.enable_filing"/>
+                  <label class="custom-control-label" for="enable_filing" style="color:#000;"
+                    >Enable Online Filing</label><br>
+                </div><br>
+              </div>
+              <p class="pt-4" v-if="formdata.enable_filing"> HRMC Online Filing Username &  Password</p>
+              <div class="row" v-if="formdata.enable_filing">
+                <div class="form-group col-md-3">
+                  <label>Username</label>
+                  <input type="text" class="form-control form-control-user"  aria-describedby="emailHelp" placeholder="Enter Username" v-model="formdata.username"
+                  />
                 </div>
                 <div class="form-group col-md-3">
-                  <input type="file" name="filename" class="custom-file-input" id="inputFileUpload"
-                  v-on:change="onFileChange">
-                  <label class="custom-file-label" for="inputFileUpload">Choose file</label>
+                  <label>Password</label>
+                  <input type="password" class="form-control form-control-user"  aria-describedby="emailHelp" placeholder="Enter Password" v-model="formdata.password"
+                  />
                 </div>
-                <p class="upload_text">{{filename}}</p>
-                <p class="upload_text"><a class="download_link" v-if="filename1" @click="download(filename1)">Download</a></p>
+              </div>
+              <div class="row" v-if="formdata.enable_filing">
+                <div class="form-group col-md-3">
+                  <label>Branch</label>
+                  <input type="text" class="form-control form-control-user"  aria-describedby="emailHelp" placeholder="" v-model="formdata.branch"
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label></label>
+                  <span style="font-size:12px;">Only required for sending EC Sales Lists
+                  </span>
+                </div>
+              </div>
+              <div class="row" v-if="formdata.enable_filing">
+                <div class="form-group col-md-3">
+                  <label>Postcode</label>
+                  <input type="text" class="form-control form-control-user"  aria-describedby="emailHelp" placeholder="Enter Postcode" v-model="formdata.postcode"
+                  />
+                </div>
+                <div class="form-group col-md-3">
+                  <label>VAT No.</label>
+                  <input type="text" class="form-control form-control-user"  aria-describedby="emailHelp" placeholder="Enter VAT No." v-model="formdata.ecs_vat"
+                  />
+                </div>
               </div>
               <div class="row">
-                <div class="col-md-2">
-                  <p class="document_title">Credit Report:</p>
-                </div>
-                <div class="form-group col-md-3">
-                  <input type="file" name="credit_filename" class="custom-file-input" id="inputCreditFileUpload"
-                  v-on:change="onCreditFileChange">
-                  <label class="custom-file-label" for="inputCreditFileUpload">Choose file</label>
-                </div>
-                <p class="upload_text">{{credit_filename}}</p>
-                <p class="upload_text"><a class="download_link" v-if="credit_filename1" @click="download(credit_filename1)">Download</a></p>
-              </div>
-              <div class="row">
-                <div class="col-md-2">
-                  <p class="document_title">VAT Certificate:</p>
-                </div>
-                <div class="form-group col-md-3">
-                  <input type="file" name="vat_filename" class="custom-file-input" id="inputVatFileUpload"
-                  v-on:change="onVatFileChange">
-                  <label class="custom-file-label" for="inputVatFileUpload">Choose file</label>
-                </div>
-                <p class="upload_text">{{vat_filename}}</p>
-                <p class="upload_text"><a class="download_link" v-if="vat_filename1" @click="download(vat_filename1)">Download</a></p>
-              </div>
-              <div class="row">
-                <div class="col-md-2">
-                  <p class="document_title">Incorporation Certificate:</p>
-                </div>
-                <div class="form-group col-md-3">
-                  <input type="file" name="incorporation_filename" class="custom-file-input" id="inputIncorporationFileUpload"
-                  v-on:change="onIncorporationFileChange">
-                  <label class="custom-file-label" for="inputIncorporationFileUpload">Choose file</label>
-                </div>
-                <p class="upload_text">{{incorporation_filename}}</p>
-                <p class="upload_text"><a class="download_link" v-if="incorporation_filename1" @click="download(incorporation_filename1)">Download</a></p>
-              </div>
-              <div class="row">
-                <div class="col-md-2">
-                  <p class="document_title">Accounting Form:</p>
-                </div>
-                <div class="form-group col-md-3">
-                  <input type="file" name="accounting_filename" class="custom-file-input" id="inputAccountingFileUpload"
-                  v-on:change="onAccountingFileChange">
-                  <label class="custom-file-label" for="inputAccountingFileUpload">Choose file</label>
-                </div>
-                <p class="upload_text">{{accounting_filename}}</p>
-                <p class="upload_text"><a class="download_link" v-if="accounting_filename1" @click="download(accounting_filename1)">Download</a></p>
+                <div class="custom-checkbox small check-position vat_checkbox mb-2 pt-2">
+                  <label></label>
+                  <input type="checkbox" class="custom-control-input" id="ecs_exclude" v-model="formdata.ecs_exclude"/>
+                  <label class="custom-control-label" for="ecs_exclude" style="color:#000;"
+                    >Don't include EC Sales List with  VAT return. Select this option if your EC Sales List needs  to be submitted seperately from your VAT return.</label><br>
+                </div><br>
               </div>
             </div>
           </div>
@@ -344,24 +267,7 @@ export default {
   data() {
     return {
       tabList: ["Basic Settings", "Field Names"],
-      formdata: {},
-      industrysectors:{},
-      currencies:{},
-      filename: '',
-      file: '',
-      credit_filename: '',
-      creditfile: '',
-      vat_filename: '',
-      vatfile: '',
-      incorporation_filename: '',
-      incorporationfile: '',
-      accounting_filename: '',
-      accountingfile: '',
-      filename1: '',
-      credit_filename1: '',
-      vat_filename1: '',
-      incorporation_filename1: '',
-      accounting_filename1: '',
+      formdata: {}
     };
   },
   methods:
@@ -387,30 +293,11 @@ export default {
         }
       }
     },
-    fetchCurrency()
-    {
-      axios.get('/currencydetails/'+this.formdata.currency_id)
-        .then((response) => {
-            this.formdata.currency_symbol = response.data.symbol;
-        })
-        .catch(function(error) {
-        });
-    },
     async storeVatSettings() {
       try {
-        this.formdata.file=this.file;
-        this.formdata.creditfile=this.creditfile;
-        this.formdata.vatfile=this.vatfile;
-        this.formdata.incorporationfile=this.incorporationfile;
-        this.formdata.accountingfile=this.accountingfile;
-        const response = await axios.post("store_details", objectToFormData(this.formdata));
-        this.file='';
-        this.creditfile='';
-        this.vatfile='';
-        this.incorporationfile='';
-        this.accountingfile='';
+        const response = await axios.post("store_vatsettings", this.formdata);
         let message =
-            "Company Details has been successfully saved.";
+            "VAT Settings has been successfully saved.";
           let toast = Vue.toasted.show(message, {
             theme: "toasted-success",
             position: "top-center",
@@ -427,20 +314,10 @@ export default {
     },
     async updateVatSettings() {
       try {
-        this.formdata.file=this.file;
-        this.formdata.creditfile=this.creditfile;
-        this.formdata.vatfile=this.vatfile;
-        this.formdata.incorporationfile=this.incorporationfile;
-        this.formdata.accountingfile=this.accountingfile;
-        const response = await axios.post("update_details", objectToFormData(this.formdata));
+        const response = await axios.post("update_vatsettings",this.formdata);
 
-        this.file='';
-        this.creditfile='';
-        this.vatfile='';
-        this.incorporationfile='';
-        this.accountingfile='';
         let message =
-            "Company Details has been successfully saved.";
+            "VAT Settings has been successfully saved.";
           let toast = Vue.toasted.show(message, {
             theme: "toasted-success",
             position: "top-center",
@@ -455,63 +332,13 @@ export default {
           });
       }
     },
-    getIndustrySectors() {
-      return axios.get("industrysector_list").then(response => {
-          this.industrysectors = response.data;
-      });
-    },
-    getCurrencies() {
-      return axios.get("currencylist").then(response => {
-          this.currencies = response.data;
-      });
-    },
-    onFileChange(e) {
-      this.filename = "Selected File: " + e.target.files[0].name;
-      this.file = e.target.files[0];
-    },
-    onCreditFileChange(e) {
-      this.credit_filename = "Selected File: " + e.target.files[0].name;
-      this.creditfile = e.target.files[0];
-    },
-    onVatFileChange(e) {
-      this.vat_filename = "Selected File: " + e.target.files[0].name;
-      this.vatfile = e.target.files[0];
-    },
-    onIncorporationFileChange(e) {
-      this.incorporation_filename = "Selected File: " + e.target.files[0].name;
-      this.incorporationfile = e.target.files[0];
-    },
-    onAccountingFileChange(e) {
-      this.accounting_filename = "Selected File: " + e.target.files[0].name;
-      this.accountingfile = e.target.files[0];
-    },
-    download(image){
-      axios.get("/download?image=" + image, {responseType: 'blob'})
-        .then(response => {
-          const url = window.URL.createObjectURL(new Blob([response.data]));
-          const link = document.createElement('a');
-          link.href = url;
-          link.setAttribute('download', image);
-          document.body.appendChild(link);
-          link.click();
-        })
-        .catch(e => {
-        console.log(e);
-      });
-    },
   },
   mounted()
   {
-    this.getIndustrySectors();
-    this.getCurrencies();
-    axios.get('/saved_companydetails/')
+    axios.get('/saved_vatsettings/')
         .then((response) => {
             this.formdata = response.data;
-            this.filename1 = response.data.identification_file;
-            this.credit_filename1 = response.data.credit_file;
-            this.vat_filename1 = response.data.vat_file;
-            this.incorporation_filename1 = response.data.incorporation_file;
-            this.accounting_filename1 = response.data.accounting_file;
+            this.formdata.password = "";
         })
         .catch(function(error) {
             //app.$notify(error.response.data.error, "error");
