@@ -25,6 +25,8 @@ Route::get('check_permisssion/{id}',[Api\AuthController::class, 'check_permisssi
     
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('user', [Api\AuthController::class, 'user']);
+    Route::post('updateprofile', [Api\AuthController::class, 'updateprofile']);
+    Route::post('updatepassword', [Api\AuthController::class, 'updatepassword']);
 
     // Customer Routes
     Route::post('create_customer', [Api\CustomerController::class, 'createcustomer']);

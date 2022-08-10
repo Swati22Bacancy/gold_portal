@@ -64,4 +64,47 @@ class AuthController extends Controller
         }
         return response()->json($rolepermission);
     }
+
+    public function updateprofile(Request $request)
+    {
+        try {
+            $user = User::where('id', Auth::user()->id)->update([
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'email' => $request->input('email'),
+                'mobile_number' => $request->input('mobile_number')
+            ]);
+
+            return response()->json($user);
+        } catch (\Exception $e) {
+            return response([
+                'message' => 'Internal error, please try again later.' //$e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function updatepassword(Request $request)
+    {
+        try {
+            $userdata = User::where('id', Auth::user()->id)->first();
+            if (\Hash::check($request->input('oldpassword'), $userdata->password)) {
+                $user = User::where('id', Auth::user()->id)->update([
+                    'password' => Hash::make($request->input('password'))
+                ]);
+    
+                return response()->json($user);            
+            }
+            else{
+                return response()->json([
+                    'message' => "Old password didn't matched.",
+                ], 400);
+            } 
+            
+            
+        } catch (\Exception $e) {
+            return response([
+                'message' => 'Internal error, please try again later.' //$e->getMessage()
+            ], 400);
+        }
+    }
 }

@@ -2359,9 +2359,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Topbar",
@@ -2659,6 +2656,16 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__.default({
     name: "updateprofile",
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_views_admin_createprofile_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/createprofile.vue */ "./resources/js/views/admin/createprofile.vue"));
+    },
+    meta: {
+      requiresAuth: true,
+      layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__.default
+    }
+  }, {
+    path: "/change-password",
+    name: "changepassword",
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_changepassword_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/changepassword.vue */ "./resources/js/views/admin/changepassword.vue"));
     },
     meta: {
       requiresAuth: true,
@@ -78000,9 +78007,18 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(5),
-              _vm._v(" "),
-              _vm._m(6),
+              _c("router-link", { attrs: { to: "/change-password" } }, [
+                _c(
+                  "a",
+                  { staticClass: "dropdown-item", attrs: { href: "#" } },
+                  [
+                    _c("i", {
+                      staticClass: "fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"
+                    }),
+                    _vm._v("\n            Change Password\n          ")
+                  ]
+                )
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "dropdown-divider" }),
               _vm._v(" "),
@@ -78030,7 +78046,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _vm._m(7)
+        _vm._m(5)
       ])
     ]
   )
@@ -78233,24 +78249,6 @@ var staticRenderFns = [
         })
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" }),
-      _vm._v("\n          Settings\n        ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "fas fa-list fa-sm fa-fw mr-2 text-gray-400" }),
-      _vm._v("\n          Activity Log\n        ")
-    ])
   },
   function() {
     var _vm = this
@@ -96122,7 +96120,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_home_index_vue":1,"resources_js_views_login_index_vue":1,"resources_js_views_register_index_vue":1,"resources_js_views_verify_index_vue":1,"resources_js_views_forgot_index_vue":1,"resources_js_views_reset_index_vue":1,"resources_js_views_admin_profile_vue":1,"resources_js_views_admin_createprofile_vue":1,"resources_js_views_admin_dashboard_vue":1,"resources_js_views_admin_sales_vue":1,"resources_js_views_admin_createinvoice_vue":1,"resources_js_views_admin_quotes_vue":1,"resources_js_views_admin_customers_vue":1,"resources_js_views_admin_createcustomer_vue":1,"resources_js_views_admin_viewcustomer_vue":1,"resources_js_views_admin_groups_vue":1,"resources_js_views_admin_creategroup_vue":1,"resources_js_views_admin_editgroup_vue":1,"resources_js_views_admin_viewsales_vue":1,"resources_js_views_admin_settings_vue":1,"resources_js_views_admin_currencies_vue":1,"resources_js_views_admin_createcurrency_vue":1,"resources_js_views_admin_editcurrency_vue":1,"resources_js_views_admin_chartaccounts_vue":1,"resources_js_views_admin_createaccounttype_vue":1,"resources_js_views_admin_producttypes_vue":1,"resources_js_views_admin_createproducttype_vue":1,"resources_js_views_admin_editproducttype_vue":1,"resources_js_views_admin_products_vue":1,"resources_js_views_admin_createproduct_vue":1,"resources_js_views_admin_editproduct_vue":1,"resources_js_views_admin_users_vue":1,"resources_js_views_admin_createuser_vue":1,"resources_js_views_admin_edituser_vue":1,"resources_js_views_admin_roles_vue":1,"resources_js_views_admin_createrole_vue":1,"resources_js_views_admin_editrole_vue":1,"resources_js_views_admin_assignpermission_vue":1,"resources_js_views_admin_industrysector_vue":1,"resources_js_views_admin_createindustrysector_vue":1,"resources_js_views_admin_editindustrysector_vue":1,"resources_js_views_admin_invoiceoptions_vue":1,"resources_js_views_admin_companydetails_vue":1,"resources_js_views_admin_customersettings_vue":1,"resources_js_views_admin_vatsettings_vue":1,"resources_js_views_admin_buttons_vue":1,"resources_js_views_admin_cards_vue":1,"resources_js_views_admin_colors_vue":1,"resources_js_views_admin_borders_vue":1,"resources_js_views_admin_animations_vue":1,"resources_js_views_admin_other_vue":1,"resources_js_views_admin_page-not-found_vue":1,"resources_js_views_admin_blank_vue":1,"resources_js_views_admin_charts_vue":1,"resources_js_views_admin_tables_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_home_index_vue":1,"resources_js_views_login_index_vue":1,"resources_js_views_register_index_vue":1,"resources_js_views_verify_index_vue":1,"resources_js_views_forgot_index_vue":1,"resources_js_views_reset_index_vue":1,"resources_js_views_admin_profile_vue":1,"resources_js_views_admin_createprofile_vue":1,"resources_js_views_admin_changepassword_vue":1,"resources_js_views_admin_dashboard_vue":1,"resources_js_views_admin_sales_vue":1,"resources_js_views_admin_createinvoice_vue":1,"resources_js_views_admin_quotes_vue":1,"resources_js_views_admin_customers_vue":1,"resources_js_views_admin_createcustomer_vue":1,"resources_js_views_admin_viewcustomer_vue":1,"resources_js_views_admin_groups_vue":1,"resources_js_views_admin_creategroup_vue":1,"resources_js_views_admin_editgroup_vue":1,"resources_js_views_admin_viewsales_vue":1,"resources_js_views_admin_settings_vue":1,"resources_js_views_admin_currencies_vue":1,"resources_js_views_admin_createcurrency_vue":1,"resources_js_views_admin_editcurrency_vue":1,"resources_js_views_admin_chartaccounts_vue":1,"resources_js_views_admin_createaccounttype_vue":1,"resources_js_views_admin_producttypes_vue":1,"resources_js_views_admin_createproducttype_vue":1,"resources_js_views_admin_editproducttype_vue":1,"resources_js_views_admin_products_vue":1,"resources_js_views_admin_createproduct_vue":1,"resources_js_views_admin_editproduct_vue":1,"resources_js_views_admin_users_vue":1,"resources_js_views_admin_createuser_vue":1,"resources_js_views_admin_edituser_vue":1,"resources_js_views_admin_roles_vue":1,"resources_js_views_admin_createrole_vue":1,"resources_js_views_admin_editrole_vue":1,"resources_js_views_admin_assignpermission_vue":1,"resources_js_views_admin_industrysector_vue":1,"resources_js_views_admin_createindustrysector_vue":1,"resources_js_views_admin_editindustrysector_vue":1,"resources_js_views_admin_invoiceoptions_vue":1,"resources_js_views_admin_companydetails_vue":1,"resources_js_views_admin_customersettings_vue":1,"resources_js_views_admin_vatsettings_vue":1,"resources_js_views_admin_buttons_vue":1,"resources_js_views_admin_cards_vue":1,"resources_js_views_admin_colors_vue":1,"resources_js_views_admin_borders_vue":1,"resources_js_views_admin_animations_vue":1,"resources_js_views_admin_other_vue":1,"resources_js_views_admin_page-not-found_vue":1,"resources_js_views_admin_blank_vue":1,"resources_js_views_admin_charts_vue":1,"resources_js_views_admin_tables_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

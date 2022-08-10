@@ -62,6 +62,15 @@ let router = new Router({
             }
         },
         {
+            path: "/change-password",
+            name: "changepassword",
+            component: () => import("./views/admin/changepassword.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/admin",
             name: "admin",
             component: () => import("./views/admin/dashboard.vue"),

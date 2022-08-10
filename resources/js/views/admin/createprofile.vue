@@ -60,7 +60,7 @@
               </div>
               <div class="col-md-6">
                <div class="form-group customer-input">
-                  <label class="required-field">Contact Number</label>
+                  <label>Contact Number</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -68,9 +68,9 @@
                     v-mask="'(###) ###-####'"
                     aria-describedby="emailHelp"
                     placeholder="Enter Contact number"
-                    v-model="formdata.contact"
+                    v-model="formdata.mobile_number"
                   />
-                  <span v-if="$v.formdata.contact.$error" class="text-danger">Phone format should be : (000) 000-0000</span>
+                  <span v-if="$v.formdata.mobile_number.$error" class="text-danger">Phone format should be : (000) 000-0000</span>
                 </div>
               </div>
             </div>
@@ -87,17 +87,12 @@ import { mask } from "vue-the-mask";
 const isName = helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 const isPhone = (value) => /^\(\d{3}\)\s?\d{3}-\d{4}$/.test(value);
 export default {
-  name: "CreateUser",
+  name: "UpdatePassword",
   directives: { mask },
   data() {
     return {
       rules : customerRules,
-      formdata: {
-        first_name: "",
-        last_name: "",
-        email: "",
-        contact: "",
-      },
+      formdata: {},
       errors: {},
       profile:{},
     };
@@ -116,7 +111,7 @@ export default {
           first_name: this.formdata.first_name,
           last_name: this.formdata.last_name,
           email: this.formdata.email,
-          telephone: this.formdata.telephone,
+          mobile_number: this.formdata.mobile_number,
         });
         let message =
             "Profile has been successfully updated.";
@@ -138,8 +133,8 @@ export default {
       
     },
     getProfile() {
-        return axios.get("profilelist").then(response => {
-            this.profile = response.data;
+        return axios.get("user").then(response => {
+          this.formdata = response.data;
         });
     },
   },
@@ -158,9 +153,8 @@ export default {
         required,
         email,
       },
-       contact: {
-        required,
-         isPhone,
+       mobile_number: {
+        //isPhone,
       },
     },
   },
