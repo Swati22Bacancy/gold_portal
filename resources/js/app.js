@@ -12,6 +12,7 @@ import store from "./vuex";
 import Toasted from "vue-toasted";
 import Chart from "chart.js";
 import Vuelidate from "vuelidate";
+import 'vue-search-select/dist/VueSearchSelect.css'
 
 window.Vue = require("vue").default;
 Vue.use(Toasted);
