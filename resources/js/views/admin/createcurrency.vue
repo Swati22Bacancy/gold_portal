@@ -17,7 +17,7 @@
             <div class="row mb-4">
               <div class="col-md-4">
                 <div class="form-group customer-input">
-                  <label>Name</label>
+                  <label class="required-field">Name</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -26,11 +26,12 @@
                     placeholder=""
                     v-model="formdata.name"
                   />
+                  <span v-if="$v.formdata.name.$error" class="text-danger">Please enter valid name</span>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group customer-input">
-                  <label>Symbol</label>
+                  <label class="required-field">Symbol</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -39,6 +40,7 @@
                     placeholder=""
                     v-model="formdata.symbol"
                   />
+                  <span v-if="$v.formdata.symbol.$error" class="text-danger">Please enter symbols </span>
                 </div>
               </div>
               <div class="col-md-4">
@@ -89,18 +91,27 @@
 </template>
 
 <script>
+import { required,helpers} from "vuelidate/lib/validators";
 import { customerRules } from './rules/customerRules'
+const isName = helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 export default {
   name: "CreateCurrency",
   data() {
     return {
       rules : customerRules,
-      formdata: {},
+      formdata: {
+        name: "",
+        symbol: "",
+      },
     };
   },
   methods:
   {
     async create_currency() {
+        this.$v.formdata.$touch();
+      if (this.$v.formdata.$error) {
+        return;
+      }
       try {
         const response = await axios.post("create_currency", {
           name: this.formdata.name,
@@ -127,6 +138,17 @@ export default {
         console.log(error);
       }
     },
+  },
+  validations: {
+    formdata: {
+      name: {
+        required,
+        isName,
+      },
+      symbol: {
+        required,
+      }
+    }
   }
 };
 </script>
@@ -156,5 +178,12 @@ export default {
 .check-position
 {
   margin-left: 4%;
+}
+.required-field::after {
+  content: "*";
+  color: red;
+}
+.text-danger{
+  font-size: 12px;
 }
 </style>

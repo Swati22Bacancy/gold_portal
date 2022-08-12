@@ -771,14 +771,14 @@ var render = function() {
                         _vm.$set(_vm.formdata, "name", $event.target.value)
                       }
                     }
-                  })
-                ]),
-                _vm._v(" "),
-                _vm.$v.formdata.name.$error
-                  ? _c("span", { staticClass: "text-danger" }, [
-                      _vm._v("Please enter valid name")
-                    ])
-                  : _vm._e()
+                  }),
+                  _vm._v(" "),
+                  _vm.$v.formdata.name.$error
+                    ? _c("span", { staticClass: "text-danger" }, [
+                        _vm._v("Please enter valid name")
+                      ])
+                    : _vm._e()
+                ])
               ])
             ])
           ])
