@@ -26,8 +26,8 @@
                     placeholder="Enter name here"
                     v-model="formdata.name"
                   />
+                  <span v-if="$v.formdata.name.$error" class="text-danger">Please enter valid name</span>
                 </div>
-                <span v-if="$v.formdata.name.$error" class="text-danger">Please enter valid name</span>
               </div>
             </div>
           </div>

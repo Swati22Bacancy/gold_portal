@@ -17,7 +17,7 @@
             <div class="row mb-4">
               <div class="col-md-4">
                 <div class="form-group customer-input">
-                  <label>Name</label>
+                  <label class="required-field">Name</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -26,12 +26,13 @@
                     placeholder="Enter full name here"
                     v-model="formdata.name"
                   />
+                   <span v-if="$v.formdata.name.$error" class="text-danger">Please enter valid name</span>
                 </div>
                 
               </div>
               <div class="col-md-4">
                 <div class="form-group customer-input">
-                  <label>Email</label>
+                  <label class="required-field">Email</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -40,6 +41,7 @@
                     placeholder="Enter email here"
                     v-model="formdata.email"
                   />
+                  <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
                 </div>
               </div>
               <div class="col-md-4">
@@ -59,7 +61,7 @@
             <div class="row mb-4">
               <div class="col-md-4">
                 <div class="form-group customer-input">
-                  <label>User Name</label>
+                  <label class="required-field">User Name</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -68,6 +70,7 @@
                     placeholder="Enter user name here"
                     v-model="formdata.username"
                   />
+                  <span v-if="$v.formdata.username.$error" class="text-danger">Please enter valid name</span>
                 </div>
               </div>
               <div class="col-md-4">
@@ -86,10 +89,11 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group customer-input">
-                  <label>Select Role</label>
+                  <label class="required-field">Select Role</label>
                   <select class="form-control form-control-user" v-model="formdata.role_id">
                     <option v-for="role in roles" :key="role.id" :value="role.id">{{role.name}}</option>
                   </select>
+                  <span v-if="$v.formdata.role_id.$error" class="text-danger">Role is required</span>
                 </div>
               </div>
             </div>
@@ -101,19 +105,31 @@
 </template>
 
 <script>
+import { required, email,helpers} from "vuelidate/lib/validators";
 import { customerRules } from './rules/customerRules'
+const isName = helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 export default {
   name: "UpdateUser",
   data() {
     return {
       rules : customerRules,
-      formdata: {},
+      formdata: {
+         name: "",
+        email: "",
+        username: "",
+      },
+      errors: {},
       roles:{}
     };
   },
   methods:
   {
     async update_user() {
+       this.$v.formdata.$touch();
+      if (this.$v.formdata.$error) {
+        return;
+      }
+     
       try {
         const response = await axios.post("update_user", {
           id: this.$route.params.id,
@@ -146,6 +162,24 @@ export default {
         return axios.get("rolelist").then(response => {
             this.roles = response.data;
         });
+    },
+  },
+   validations: {
+    formdata: {
+      name: {
+        required,
+        isName,
+      },
+      email: {
+        required,
+        email,
+      },
+      username: {
+        required,
+      },
+      role_id: {
+       required
+      }
     },
   },
   mounted()
@@ -187,5 +221,11 @@ export default {
 {
   box-shadow: 0 0;
 }
-
+.required-field::after {
+  content: "*";
+  color: red;
+}
+.text-danger{
+  font-size: 12px;
+}
 </style>

@@ -17,7 +17,7 @@
             <div class="row mb-4">
               <div class="col-md-6">
                 <div class="form-group customer-input">
-                  <label>Name</label>
+                  <label class="required-field">Name</label>
                   <input
                     type="text"
                     class="form-control form-control-role"
@@ -26,6 +26,7 @@
                     placeholder="Enter name here"
                     v-model="formdata.name"
                   />
+                   <span v-if="$v.formdata.name.$error" class="text-danger">Please enter valid name</span>
                 </div>
                 
               </div>
@@ -38,18 +39,23 @@
 </template>
 
 <script>
+import { required,helpers } from "vuelidate/lib/validators";
 import { customerRules } from './rules/customerRules'
+const isName = helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 export default {
   name: "UpdateRole",
   data() {
     return {
       rules : customerRules,
-      formdata: {},
+      formdata: {
+        name: "",
+      },
     };
   },
   methods:
   {
     async update_role() {
+      
       try {
         const response = await axios.post("update_role", {
           id: this.$route.params.id,
@@ -73,6 +79,14 @@ export default {
         console.log(error);
       }
     },
+  },
+   validations: {
+    formdata: {
+      name: {
+        required,
+        isName,
+      },
+    }
   },
   mounted()
   {
@@ -109,5 +123,11 @@ export default {
 {
   box-shadow: 0 0;
 }
-
+.required-field::after {
+  content: "*";
+  color: red;
+}
+.text-danger{
+  font-size: 12px;
+}
 </style>

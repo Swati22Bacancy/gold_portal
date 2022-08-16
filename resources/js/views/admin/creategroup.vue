@@ -17,22 +17,19 @@
             <div class="row mb-4">
               <div class="col-md-6">
                 <div class="form-group customer-input">
-                  <label>Group Name</label>
+                  <label class="required-field">Group Name</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
                     id="crt-groupname"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.name"
-                  />
+                    v-model="formdata.name"/>
+                  <span v-if="$v.formdata.name.$error" class="text-danger">Please enter valid name</span>
                 </div>
-                
               </div>
-              
             </div>
-            
-          </div>
+         </div>
         </div>
     </form>
     
@@ -40,18 +37,27 @@
 </template>
 
 <script>
+import { required,helpers} from "vuelidate/lib/validators";
 import { customerRules } from './rules/customerRules'
+const isName = helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 export default {
   name: "CreateGroup",
   data() {
     return {
       rules : customerRules,
-      formdata: {},
+      formdata: {
+        name: "",
+      },
     };
   },
   methods:
   {
     async create_group() {
+       this.$v.formdata.$touch();
+      if (this.$v.formdata.$error) {
+        return;
+      }
+     
       try {
         const response = await axios.post("create_group", {
           name: this.formdata.name,
@@ -74,6 +80,14 @@ export default {
         console.log(error);
       }
     },
+  },
+  validations: {
+    formdata: {
+      name: {
+        required,
+        isName,
+      },
+    }
   }
 };
 </script>
@@ -100,5 +114,11 @@ export default {
 {
   box-shadow: 0 0;
 }
-
+.required-field::after {
+  content: "*";
+  color: red;
+}
+.text-danger{
+  font-size: 12px;
+}
 </style>
