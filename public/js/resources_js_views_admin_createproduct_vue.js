@@ -179,7 +179,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex
 
                 _this.$router.push("/products");
 
-                _context.next = 17;
+                _context.next = 16;
                 break;
 
               case 12:
@@ -192,8 +192,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex
                   duration: 5000
                 });
 
-
-
+              case 16:
               case "end":
                 return _context.stop();
             }
