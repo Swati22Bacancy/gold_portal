@@ -19,187 +19,122 @@
               <div class="form-group">
                 <label>Customer</label>
                 <div class="input-group mb-3 d-flex">
-                  <model-select class="modal-selection" :options="customers" v-model="formdata.customer_id" 
-                  placeholder="select item"></model-select>
+                  <model-select class="modal-selection" :options="customers" :on-change="fetchAddress()" v-model="formdata.customer_id" 
+                  placeholder="Select Customer"></model-select>
                   <div class="select-group-append">
                       <div class="input-icons">
                         <button class="btn-modal" data-toggle="modal" data-target="#addcreateinvoice">
                       <span class="fas fa-plus"></span></button>
                       <!-- Modal -->
-<div
-  class="modal fade"
-  id="addcreateinvoice"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="addcreateinvoice"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h6 class="modal-title" id="addcreateinvoice">Add Customer</h6>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true" style="color: #fff">&times;</span>
-        </button>
-      </div>
+                        <div
+                        class="modal fade"
+                        id="addcreateinvoice"
+                        tabindex="-1"
+                        role="dialog"
+                        aria-labelledby="addcreateinvoice"
+                        aria-hidden="true"
+                        >
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h6 class="modal-title" id="addcreateinvoice">Add Customer</h6>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true" style="color: #fff">&times;</span>
+                                </button>
+                            </div>
 
-      <div class="modal-body">
-        <div class="row mb-4">
-          <div class="col-md-4">
-            <div class="form-group customer-input">
-              <label>Customer Type</label><br />
-              <div class="button-container">
-              <button
-                type="button"
-                v-on:click="changetype('business')"
-                class="btn admin-btn mobile-mb"
-                :class="customerType=='business' ? 'dark-theme-btn' : 'light-theme-btn'"
-                style="margin: 0">Business</button>
-              <button
-                type="button"
-                v-on:click="changetype('individual')"
-                class="btn admin-btn mobile-mb"
-                :class="customerType=='individual' ? 'dark-theme-btn' : 'light-theme-btn'"
-                style="margin: 0">Individual</button></div>
-            </div>
-          </div>
-          <div class="col-md-8"></div>
-        </div>
-        <div class="row" v-if="customerType=='business'">
-          <div class="col-md-6 detail-div">
-            <div class="form-group customer-input">
-              <label class="required-field">Registered Address</label>
-              <input
-                type="text"
-                class="form-control form-control-user"
-                id="crt-customer"
-                aria-describedby="emailHelp"
-                placeholder=""
-                v-model="formdata.registered_address"
-              />
-              <span v-if="$v.formdata.registered_address.$error" class="text-danger">Please enter address</span>
-            </div>
-            <div class="form-group customer-input">
-              <label class="required-field">Email</label>
-              <input
-                type="text"
-                class="form-control form-control-user"
-                id="crt-customer"
-                aria-describedby="emailHelp"
-                placeholder=""
-                v-model="formdata.email"
-              />
-              <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
-            </div>
-        </div>
-            
-            <div class="col-md-6 primary-div">
-                <div class="form-group customer-input">
-                  <label class="required-field">First Name</label>
-                  <input
-                    type="text"
-                    class="form-control form-control-user"
-                    id="crt-customer"
-                    aria-describedby="emailHelp"
-                    placeholder=""
-                    v-model="formdata.first_name"
-                  /> 
-                <span v-if="$v.formdata.first_name.$error" class="text-danger">Please your first name</span>
-                </div>
+                            <div class="modal-body">
+                                <div class="row mb-4">
+                                  <div class="col-md-4">
+                                      <div class="form-group customer-input">
+                                      <label>Customer Type</label><br />
+                                      <div class="button-container">
+                                      <button
+                                          type="button"
+                                          v-on:click="changetype('business')"
+                                          class="btn admin-btn mobile-mb"
+                                          :class="customerType=='business' ? 'dark-theme-btn' : 'light-theme-btn'"
+                                          style="margin: 0">Business</button>
+                                      <button
+                                          type="button"
+                                          v-on:click="changetype('individual')"
+                                          class="btn admin-btn mobile-mb"
+                                          :class="customerType=='individual' ? 'dark-theme-btn' : 'light-theme-btn'"
+                                          style="margin: 0">Individual</button></div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-8"></div>
+                                </div>
+                                <div class="row" v-if="customerType=='business'">
+                                  <div class="col-md-6 detail-div">
+                                      <div class="form-group customer-input">
+                                        <label class="required-field">Registered Address</label>
+                                        <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.registered_address" />
+                                        <span v-if="$v.formdata.registered_address.$error" class="text-danger">Please enter address</span>
+                                      </div>
+                                      <div class="form-group customer-input">
+                                        <label class="required-field">Email</label>
+                                        <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.email"
+                                        />
+                                        <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
+                                      </div>
+                                  </div>
+                                    
+                                    <div class="col-md-6 primary-div">
+                                        <div class="form-group customer-input">
+                                          <label class="required-field">First Name</label>
+                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.first_name"/> 
+                                          <span v-if="$v.formdata.first_name.$error" class="text-danger">Please your first name</span>
+                                        </div>
 
-                <div class="form-group customer-input">
-                  <label class="required-field">Last Name</label>
-                  <input
-                    type="text"
-                    class="form-control form-control-user"
-                    id="crt-customer"
-                    aria-describedby="emailHelp"
-                    placeholder=""
-                    v-model="formdata.last_name"
-                  />
-                  <span v-if="$v.formdata.last_name.$error" class="text-danger">Please your last name</span>
-                  </div>
-          </div>
-        </div>
-        
-        <div class="row" v-if="customerType=='individual'">
-            <div class="col-md-6 detail-div">
-              <div class="form-group customer-input">
-                <label class="required-field">First Name</label>
-                <input
-                  type="text"
-                  class="form-control form-control-user"
-                  id="crt-customer"
-                  aria-describedby="emailHelp"
-                  placeholder=""
-                  v-model="formdata.first_name"
-                />
-                <span v-if="$v.formdata.first_name.$error" class="text-danger">Please your first name</span>
-              </div>
+                                        <div class="form-group customer-input">
+                                          <label class="required-field">Last Name</label>
+                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.last_name"/>
+                                          <span v-if="$v.formdata.last_name.$error" class="text-danger">Please your last name</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row" v-if="customerType=='individual'">
+                                    <div class="col-md-6 detail-div">
+                                      <div class="form-group customer-input">
+                                          <label class="required-field">First Name</label>
+                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.first_name"/>
+                                          <span v-if="$v.formdata.first_name.$error" class="text-danger">Please your first name</span>
+                                      </div>
 
-              <div class="form-group customer-input">
-                <label class="required-field">Last Name</label>
-                <input
-                  type="text"
-                  class="form-control form-control-user"
-                  id="crt-customer"
-                  aria-describedby="emailHelp"
-                  placeholder=""
-                  v-model="formdata.last_name"
-                />
-                <span v-if="$v.formdata.last_name.$error" class="text-danger">Please your last name</span>
-              </div>
-              
-              
-            </div>
-            <div class="col-md-6 primary-div">
-              <div class="form-group customer-input">
-                <label class="required-field">Registered Address</label>
-                <input
-                  type="text"
-                  class="form-control form-control-user"
-                  id="crt-customer"
-                  aria-describedby="emailHelp"
-                  placeholder=""
-                  v-model="formdata.registered_address"
-                />
-                <span v-if="$v.formdata.registered_address.$error" class="text-danger">Please enter address</span>
-              </div>
-               <div class="form-group customer-input">
-                <label class="required-field">Email</label>
-                <input
-                  type="text"
-                  class="form-control form-control-user"
-                  id="crt-customer"
-                  aria-describedby="emailHelp"
-                  placeholder=""
-                  v-model="formdata.email"
-                />
-            <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
-              </div>
-            
-              </div>
-              
-            </div>
-          </div>
-
-      
-      <div class="modal-footer">
-        <router-link to="/sales"><button type="submit" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Save</button></router-link>
-        <router-link to="/sales"><button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button></router-link>
-      </div>
-    </div>
-  </div>
-</div>
-
- 
-
-                      </div>
+                                      <div class="form-group customer-input">
+                                          <label class="required-field">Last Name</label>
+                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.last_name"/>
+                                          <span v-if="$v.formdata.last_name.$error" class="text-danger">Please your last name</span>
+                                      </div>
+                                    
+                                    
+                                    </div>
+                                    <div class="col-md-6 primary-div">
+                                      <div class="form-group customer-input">
+                                          <label class="required-field">Registered Address</label>
+                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.registered_address"/>
+                                          <span v-if="$v.formdata.registered_address.$error" class="text-danger">Please enter address</span>
+                                      </div>
+                                      <div class="form-group customer-input">
+                                          <label class="required-field">Email</label>
+                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.email"/>
+                                        <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
+                                      </div>
+                                    </div>
+                                    
+                                    </div>
+                                </div>
+                            <div class="modal-footer">
+                                <router-link to="/sales"><button type="submit" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Save</button></router-link>
+                                <button type="button" data-dismiss="modal"
+                                aria-label="Close" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -228,9 +163,7 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label>Due Date</label>
-                <Datepicker class="form-control form-control-user"
-                  id="crt-invoice"
-                  aria-describedby="emailHelp"></Datepicker>
+                <Datepicker></Datepicker>
                 
               </div>
             </div>
@@ -243,10 +176,8 @@
                 <input
                   type="text"
                   class="form-control form-control-user"
-                  id="crt-invoice"
-                  aria-describedby="emailHelp"
                   placeholder=""
-                  v-model="formdata.companycode"
+                  v-model="formdata.billing_address"
                 />
               </div>
               
@@ -257,57 +188,31 @@
                 <input
                   type="text"
                   class="form-control form-control-user"
-                  id="crt-invoice"
-                  aria-describedby="emailHelp"
                   placeholder=""
-                  v-model="formdata.companycode"
+                  v-model="formdata.reference"
                 />
               </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
                 <label>Currency</label>
-                <select class="tab-selector" >
-                  <option value="Option 1" selected>Group</option>
-                  <option value="Option 1" >Option 1</option>
+                <select class="form-control form-control-user"  v-model="formdata.currency_id">
+                    <option v-for="currency in currencies" :key="currency.id" :value="currency.id">{{currency.name}}</option>
                 </select>
               </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
-                <label>Amounts are</label>
-                <select class="tab-selector" >
-                  <option value="Option 1" selected>Group</option>
-                  <option value="Option 1" >Option 1</option>
+                <label>Recurring Invoice</label>
+                <select class="form-control form-control-user" v-model="formdata.recurring_invoice">
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+                  <option value="yearly">Yearly</option>
                 </select>
               </div>
             </div>
           </div>
           
-          <div class="row mb-4">
-            <div class="col-md-2">
-              <div class="form-group">
-                <input type="checkbox" class="custom-control-input" id="customCheck" />
-                <label class="custom-control-label" for="customCheck"
-                  >Recurring Invoice</label>
-              </div>
-              
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <label>Frequency</label>
-                <input
-                  type="text"
-                  class="form-control form-control-user"
-                  id="crt-invoice"
-                  aria-describedby="emailHelp"
-                  placeholder=""
-                  v-model="formdata.companycode"
-                />
-              </div>
-            </div>
-                
-          </div>
         </div>
       </div>
       <div class="row mt-3">
@@ -330,57 +235,34 @@
                   <tbody>
                     <tr v-for="(invoice_item, k) in invoice_items" :key="k">
                         <td>
-                          <select class="tab-selector" v-model="invoice_item.invoice_type">
-                            <option value="Option 1" selected>Group</option>
-                            <option value="Option 1" >Option 1</option>
+                          <select class="form-control form-control-user" @change="fetchProducts(k)" v-model="invoice_item.invoice_type">
+                            <option v-for="producttype in producttypes" :key="producttype.id" :value="producttype.id">{{producttype.name}}</option>
                           </select>
                         </td>
                         <td>
-                          <select class="tab-selector" v-model="invoice_item.invoice_product">
-                            <option value="Option 1" selected>Group</option>
-                            <option value="Option 1" >Option 1</option>
+                          <select class="form-control form-control-user" @change="fetchProductDetails(k)" v-model="invoice_item.invoice_product">
+                            <!-- <option value="Option 1" selected>Group</option>
+                            <option value="Option 1" >Option 1</option> -->
+                            <option v-for="product in products[k]" :key="product.id" :value="product.id">{{product.name}}</option>
                           </select>
                         </td>
                         <td>
-                          <input
-                            type="text"
-                            class="form-control form-control-user"
-                            id="crt-invoice"
-                            aria-describedby="emailHelp"
-                            placeholder=""
-                            v-model="invoice_item.weight"
-                          />
+                          <input type="text" class="form-control form-control-user" placeholder="" v-model="invoice_item.weight" readonly/>
                         </td>
                         <td>
-                          <input
-                            type="text"
-                            class="form-control form-control-user"
-                            id="crt-invoice"
-                            aria-describedby="emailHelp"
-                            placeholder=""
-                            v-model="invoice_item.quantity"
-                          />
+                          <input type="number" class="form-control form-control-user" @blur="calculatePrice(k)" placeholder="" v-model="invoice_item.quantity"/>
                         </td>
                         <td>
-                          <input
-                            type="text"
-                            class="form-control form-control-user"
-                            id="crt-invoice"
-                            aria-describedby="emailHelp"
-                            placeholder=""
-                            v-model="invoice_item.unitprice"
-                          />
+                          <input type="number" class="form-control form-control-user" placeholder="" v-model="invoice_item.unitprice" readonly/>
                         </td>
                         <td>
-                          <select class="tab-selector" v-model="invoice_item.vat">
-                            <option value="Option 1" selected>Group</option>
-                            <option value="Option 1" >Option 1</option>
-                          </select>
+                          <input type="number" class="form-control form-control-user" placeholder="" v-model="invoice_item.vat" readonly/>
                         </td>
-                        <td>4320</td>
-                        <td>GB78602023</td>
+                        <td>
+                          <input type="number" class="form-control form-control-user" @blur="calculatePrice(k)" placeholder="" v-model="invoice_item.invoice_amount"/>
+                        </td>
+                        <td><span class="material-symbols-outlined" style="margin-right: 5px;color: red;cursor: pointer;" @click="removeLine(k)">delete</span></td>
                     </tr>
-                    
                   </tbody>
               </table>
             </div>
@@ -400,9 +282,9 @@
             </div>
             <div class="col-md-2 sum-price">
               <ul>
-                <li style="font-size:13px;">8000</li>
-                <li style="font-size:13px;">640</li>
-                <li style="font-size:13px;">8640</li>
+                <li style="font-size:13px;">{{subtotal}}</li>
+                <li style="font-size:13px;">{{vattotal}}</li>
+                <li style="font-size:13px;">{{totalamount}}</li>
               </ul>
             </div>
           </div>
@@ -425,11 +307,7 @@
         </div>
         
       </div>
-      <div class="row">
-        <div class="col-md-12 mt-4">
-            <button type="submit" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;float: right;">Save</button>
-        </div>
-      </div>
+      
     </form>
     
   </div>
@@ -460,10 +338,12 @@ export default {
         registered_address:"",
         first_name: "",
         last_name: "",
+        billing_address:""
       },
       errors: {},
       groups:{},
       customers: [],
+      products: [{}],
       rows: [],
       invoice_items: [{
           invoice_type: '',
@@ -473,12 +353,16 @@ export default {
           unitprice: '',
           vat: '',
           invoice_amount:''
-      }]
+      }],
+      currencies:{},
+      producttypes:{},
+      subtotal:'',
+      vattotal:'',
+      totalamount:''
     };
   },
   methods:
   {
-  
     addLine(){
       this.invoice_items.push({
           invoice_type: '',
@@ -490,9 +374,12 @@ export default {
           invoice_amount:''
       });
     },
-      changetype(type)
+    removeLine(index)
     {
-      
+      this.invoice_items.splice(index,1);
+    },
+    changetype(type)
+    {
       this.customerType = type;
     },
     async create_invoice() {
@@ -518,7 +405,6 @@ export default {
     getCustomers() {
         return axios.get("customerlist/all").then(response => {
             this.customers = response.data;
-            console.log(this.customers)
             this.customers = this.customers.map(customer => {
               return {
                 value: customer.id,
@@ -526,9 +412,94 @@ export default {
                 
               } 
             })
-            console.log(this.customers)
         });
     },
+    getCurrencies() {
+        return axios.get("currencylist").then(response => {
+            this.currencies = response.data;
+        });
+    },
+    getProducttypes() {
+        return axios.get("producttypelist").then(response => {
+            this.producttypes = response.data;
+        });
+    },
+    fetchProducts(index)
+    {
+      //this.products[index]=[];
+      axios.get('/productdata/'+this.invoice_items[index].invoice_type)
+        .then((response) => {
+            console.log(response);
+            //this.formdata.currency_symbol = response.data.symbol;
+            // this.products[index].push(response.data);
+            this.products[index]=response.data;
+            console.log(this.products[index]);
+            // this.products[index] = this.products[index].map(product => {
+            //   return {
+            //     value: product.id,
+            //     text: `${product.name} `,
+                
+            //   } 
+            // })
+        })
+        .catch(function(error) {
+        });
+    },
+    fetchProductDetails(index)
+    {
+      console.log(this.invoice_items[index].invoice_product);
+      
+      axios.get('/productdetails/'+this.invoice_items[index].invoice_product)
+        .then((response) => {
+            console.log(response);
+            this.invoice_items[index].weight=response.data.weight;
+            this.invoice_items[index].vat=response.data.rate;
+        })
+        .catch(function(error) {
+        });
+    },
+    fetchAddress()
+    {
+      if(this.formdata.customer_id)
+      {
+        axios.get('/customerdetails/'+this.formdata.customer_id)
+        .then((response) => {
+          this.formdata.billing_address = response.data.registered_address;
+        })
+      }
+    },
+    calculatePrice(index)
+    {
+      var invtotalamount = parseFloat(this.invoice_items[index].invoice_amount);
+      var quantity = this.invoice_items[index].quantity;
+      var vat = this.invoice_items[index].vat;
+      if(vat)
+      {
+        var vatdeduct = vat/100;
+        var vatquantity = quantity*(1+vatdeduct);
+        var v = invtotalamount/vatquantity;
+        var rounded = Math.round(v * 10) / 10
+        var unitprice= Math.floor(rounded + 0.1) === rounded + 0.1? rounded + 0.1: rounded;
+      }
+      else
+      {
+        var unitprice = invtotalamount/quantity;
+      }
+      this.invoice_items[index].unitprice = unitprice;
+      // var totalsub=0;
+      // for(var j=0; j<this.invoice_items.length;j++)
+      // {
+      //   console.log(this.invoice_items[j].unitprice);
+      //   totalsub += this.invoice_items[j].unitprice;
+      // }
+      console.log(this.subtotal);
+      if(this.subtotal)
+      {
+        this.subtotal=0;
+      }
+      console.log(unitprice);
+      this.subtotal = this.subtotal+unitprice;
+    }
   },
     validations: {
     formdata: {
@@ -550,6 +521,8 @@ export default {
   mounted()
   {
     this.getCustomers();
+    this.getCurrencies();
+    this.getProducttypes();
   }
 };
 </script>
@@ -662,6 +635,10 @@ export default {
 .btn:focus, .btn.focus
 {
   box-shadow: 0 0;
+}
+.check-position
+{
+  margin-left: 15%;
 }
 @media (min-width: 768px) {
   .detail-div

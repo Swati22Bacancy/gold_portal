@@ -435,7 +435,7 @@ var render = function() {
           },
           [
             _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
-              _vm._v("Create New Product Type")
+              _vm._v("Create New Product")
             ]),
             _vm._v(" "),
             _c(

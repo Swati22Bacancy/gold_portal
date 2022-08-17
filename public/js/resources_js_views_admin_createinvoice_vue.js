@@ -338,128 +338,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 
@@ -482,11 +360,13 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       formdata: {
         registered_address: "",
         first_name: "",
-        last_name: ""
+        last_name: "",
+        billing_address: ""
       },
       errors: {},
       groups: {},
       customers: [],
+      products: [{}],
       rows: [],
       invoice_items: [{
         invoice_type: '',
@@ -496,7 +376,12 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         unitprice: '',
         vat: '',
         invoice_amount: ''
-      }]
+      }],
+      currencies: {},
+      producttypes: {},
+      subtotal: '',
+      vattotal: '',
+      totalamount: ''
     };
   },
   methods: {
@@ -510,6 +395,9 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         vat: '',
         invoice_amount: ''
       });
+    },
+    removeLine: function removeLine(index) {
+      this.invoice_items.splice(index, 1);
     },
     changetype: function changetype(type) {
       this.customerType = type;
@@ -567,15 +455,94 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
 
       return axios.get("customerlist/all").then(function (response) {
         _this2.customers = response.data;
-        console.log(_this2.customers);
         _this2.customers = _this2.customers.map(function (customer) {
           return {
             value: customer.id,
             text: "".concat(customer.first_name || "", " ").concat(customer.last_name || "", " ")
           };
         });
-        console.log(_this2.customers);
       });
+    },
+    getCurrencies: function getCurrencies() {
+      var _this3 = this;
+
+      return axios.get("currencylist").then(function (response) {
+        _this3.currencies = response.data;
+      });
+    },
+    getProducttypes: function getProducttypes() {
+      var _this4 = this;
+
+      return axios.get("producttypelist").then(function (response) {
+        _this4.producttypes = response.data;
+      });
+    },
+    fetchProducts: function fetchProducts(index) {
+      var _this5 = this;
+
+      //this.products[index]=[];
+      axios.get('/productdata/' + this.invoice_items[index].invoice_type).then(function (response) {
+        console.log(response); //this.formdata.currency_symbol = response.data.symbol;
+        // this.products[index].push(response.data);
+
+        _this5.products[index] = response.data;
+        console.log(_this5.products[index]); // this.products[index] = this.products[index].map(product => {
+        //   return {
+        //     value: product.id,
+        //     text: `${product.name} `,
+        //   } 
+        // })
+      })["catch"](function (error) {});
+    },
+    fetchProductDetails: function fetchProductDetails(index) {
+      var _this6 = this;
+
+      console.log(this.invoice_items[index].invoice_product);
+      axios.get('/productdetails/' + this.invoice_items[index].invoice_product).then(function (response) {
+        console.log(response);
+        _this6.invoice_items[index].weight = response.data.weight;
+        _this6.invoice_items[index].vat = response.data.rate;
+      })["catch"](function (error) {});
+    },
+    fetchAddress: function fetchAddress() {
+      var _this7 = this;
+
+      if (this.formdata.customer_id) {
+        axios.get('/customerdetails/' + this.formdata.customer_id).then(function (response) {
+          _this7.formdata.billing_address = response.data.registered_address;
+        });
+      }
+    },
+    calculatePrice: function calculatePrice(index) {
+      var invtotalamount = parseFloat(this.invoice_items[index].invoice_amount);
+      var quantity = this.invoice_items[index].quantity;
+      var vat = this.invoice_items[index].vat;
+
+      if (vat) {
+        var vatdeduct = vat / 100;
+        var vatquantity = quantity * (1 + vatdeduct);
+        var v = invtotalamount / vatquantity;
+        var rounded = Math.round(v * 10) / 10;
+        var unitprice = Math.floor(rounded + 0.1) === rounded + 0.1 ? rounded + 0.1 : rounded;
+      } else {
+        var unitprice = invtotalamount / quantity;
+      }
+
+      this.invoice_items[index].unitprice = unitprice; // var totalsub=0;
+      // for(var j=0; j<this.invoice_items.length;j++)
+      // {
+      //   console.log(this.invoice_items[j].unitprice);
+      //   totalsub += this.invoice_items[j].unitprice;
+      // }
+
+      console.log(this.subtotal);
+
+      if (this.subtotal) {
+        this.subtotal = 0;
+      }
+
+      console.log(unitprice);
+      this.subtotal = this.subtotal + unitprice;
     }
   },
   validations: {
@@ -597,6 +564,8 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
   },
   mounted: function mounted() {
     this.getCustomers();
+    this.getCurrencies();
+    this.getProducttypes();
   }
 });
 
@@ -619,7 +588,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.required-field[data-v-2193c37c]::after {\r\n  content: \"*\";\r\n  color: red;\n}\n.text-danger[data-v-2193c37c]{\r\n  font-size: 12px;\n}\n.button-container[data-v-2193c37c]{\r\n    display: flex;\r\n    justify-content: space-between;\n}\n.btn-modal[data-v-2193c37c]{\r\n  color: black;\r\n  border: 0;\r\n  background:#7ADAAA ;\n}\n.modal-selection[data-v-2193c37c]{\r\n  flex: 1 !important;\n}\n#createinvoice-datatable thead[data-v-2193c37c] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-2193c37c] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-2193c37c]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createinvoice-div[data-v-2193c37c]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-2193c37c]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-2193c37c]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-2193c37c]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-2193c37c]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-2193c37c]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-2193c37c]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-2193c37c]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-2193c37c]\r\n  {\r\n    border-right: 2px solid #eee;\r\n    padding-right: 8%;\n}\n.primary-div[data-v-2193c37c]\r\n  {\r\n    padding-left: 8%;\n}\n}\n#mydatepicker[data-v-2193c37c]{\r\n    display: block;\r\n    width: 100%;\r\n    height: calc(1.5em + 0.75rem + 2px);\r\n    padding: 0.375rem 0.75rem;\r\n    font-size: 1rem;\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    color: #6e707e;\r\n    background-color: #fff;\r\n    background-clip: padding-box;\r\n    border: 1px solid #d1d3e2;\r\n    border-radius: 0.35rem;\r\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.required-field[data-v-2193c37c]::after {\r\n  content: \"*\";\r\n  color: red;\n}\n.text-danger[data-v-2193c37c]{\r\n  font-size: 12px;\n}\n.button-container[data-v-2193c37c]{\r\n    display: flex;\r\n    justify-content: space-between;\n}\n.btn-modal[data-v-2193c37c]{\r\n  color: black;\r\n  border: 0;\r\n  background:#7ADAAA ;\n}\n.modal-selection[data-v-2193c37c]{\r\n  flex: 1 !important;\n}\n#createinvoice-datatable thead[data-v-2193c37c] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-2193c37c] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-2193c37c]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createinvoice-div[data-v-2193c37c]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-2193c37c]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-2193c37c]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-2193c37c]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-2193c37c]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-2193c37c]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-2193c37c]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-2193c37c]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.check-position[data-v-2193c37c]\r\n{\r\n  margin-left: 15%;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-2193c37c]\r\n  {\r\n    border-right: 2px solid #eee;\r\n    padding-right: 8%;\n}\n.primary-div[data-v-2193c37c]\r\n  {\r\n    padding-left: 8%;\n}\n}\n#mydatepicker[data-v-2193c37c]{\r\n    display: block;\r\n    width: 100%;\r\n    height: calc(1.5em + 0.75rem + 2px);\r\n    padding: 0.375rem 0.75rem;\r\n    font-size: 1rem;\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    color: #6e707e;\r\n    background-color: #fff;\r\n    background-clip: padding-box;\r\n    border: 1px solid #d1d3e2;\r\n    border-radius: 0.35rem;\r\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -789,7 +758,8 @@ var render = function() {
                         staticClass: "modal-selection",
                         attrs: {
                           options: _vm.customers,
-                          placeholder: "select item"
+                          "on-change": _vm.fetchAddress(),
+                          placeholder: "Select Customer"
                         },
                         model: {
                           value: _vm.formdata.customer_id,
@@ -956,9 +926,6 @@ var render = function() {
                                                         "form-control form-control-user",
                                                       attrs: {
                                                         type: "text",
-                                                        id: "crt-customer",
-                                                        "aria-describedby":
-                                                          "emailHelp",
                                                         placeholder: ""
                                                       },
                                                       domProps: {
@@ -1034,9 +1001,6 @@ var render = function() {
                                                         "form-control form-control-user",
                                                       attrs: {
                                                         type: "text",
-                                                        id: "crt-customer",
-                                                        "aria-describedby":
-                                                          "emailHelp",
                                                         placeholder: ""
                                                       },
                                                       domProps: {
@@ -1120,9 +1084,6 @@ var render = function() {
                                                         "form-control form-control-user",
                                                       attrs: {
                                                         type: "text",
-                                                        id: "crt-customer",
-                                                        "aria-describedby":
-                                                          "emailHelp",
                                                         placeholder: ""
                                                       },
                                                       domProps: {
@@ -1199,9 +1160,6 @@ var render = function() {
                                                         "form-control form-control-user",
                                                       attrs: {
                                                         type: "text",
-                                                        id: "crt-customer",
-                                                        "aria-describedby":
-                                                          "emailHelp",
                                                         placeholder: ""
                                                       },
                                                       domProps: {
@@ -1290,9 +1248,6 @@ var render = function() {
                                                         "form-control form-control-user",
                                                       attrs: {
                                                         type: "text",
-                                                        id: "crt-customer",
-                                                        "aria-describedby":
-                                                          "emailHelp",
                                                         placeholder: ""
                                                       },
                                                       domProps: {
@@ -1369,9 +1324,6 @@ var render = function() {
                                                         "form-control form-control-user",
                                                       attrs: {
                                                         type: "text",
-                                                        id: "crt-customer",
-                                                        "aria-describedby":
-                                                          "emailHelp",
                                                         placeholder: ""
                                                       },
                                                       domProps: {
@@ -1460,9 +1412,6 @@ var render = function() {
                                                         "form-control form-control-user",
                                                       attrs: {
                                                         type: "text",
-                                                        id: "crt-customer",
-                                                        "aria-describedby":
-                                                          "emailHelp",
                                                         placeholder: ""
                                                       },
                                                       domProps: {
@@ -1538,9 +1487,6 @@ var render = function() {
                                                         "form-control form-control-user",
                                                       attrs: {
                                                         type: "text",
-                                                        id: "crt-customer",
-                                                        "aria-describedby":
-                                                          "emailHelp",
                                                         placeholder: ""
                                                       },
                                                       domProps: {
@@ -1613,19 +1559,17 @@ var render = function() {
                                         ),
                                         _vm._v(" "),
                                         _c(
-                                          "router-link",
-                                          { attrs: { to: "/sales" } },
-                                          [
-                                            _c(
-                                              "button",
-                                              {
-                                                staticClass:
-                                                  "btn admin-btn mobile-mb btn-nwidth",
-                                                attrs: { type: "button" }
-                                              },
-                                              [_vm._v("Cancel")]
-                                            )
-                                          ]
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn admin-btn mobile-mb btn-nwidth",
+                                            attrs: {
+                                              type: "button",
+                                              "data-dismiss": "modal",
+                                              "aria-label": "Close"
+                                            }
+                                          },
+                                          [_vm._v("Cancel")]
                                         )
                                       ],
                                       1
@@ -1703,13 +1647,7 @@ var render = function() {
                   [
                     _c("label", [_vm._v("Due Date")]),
                     _vm._v(" "),
-                    _c("Datepicker", {
-                      staticClass: "form-control form-control-user",
-                      attrs: {
-                        id: "crt-invoice",
-                        "aria-describedby": "emailHelp"
-                      }
-                    })
+                    _c("Datepicker")
                   ],
                   1
                 )
@@ -1726,18 +1664,13 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.formdata.companycode,
-                        expression: "formdata.companycode"
+                        value: _vm.formdata.billing_address,
+                        expression: "formdata.billing_address"
                       }
                     ],
                     staticClass: "form-control form-control-user",
-                    attrs: {
-                      type: "text",
-                      id: "crt-invoice",
-                      "aria-describedby": "emailHelp",
-                      placeholder: ""
-                    },
-                    domProps: { value: _vm.formdata.companycode },
+                    attrs: { type: "text", placeholder: "" },
+                    domProps: { value: _vm.formdata.billing_address },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -1745,7 +1678,7 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.formdata,
-                          "companycode",
+                          "billing_address",
                           $event.target.value
                         )
                       }
@@ -1763,76 +1696,123 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.formdata.companycode,
-                        expression: "formdata.companycode"
+                        value: _vm.formdata.reference,
+                        expression: "formdata.reference"
                       }
                     ],
                     staticClass: "form-control form-control-user",
-                    attrs: {
-                      type: "text",
-                      id: "crt-invoice",
-                      "aria-describedby": "emailHelp",
-                      placeholder: ""
-                    },
-                    domProps: { value: _vm.formdata.companycode },
+                    attrs: { type: "text", placeholder: "" },
+                    domProps: { value: _vm.formdata.reference },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(
-                          _vm.formdata,
-                          "companycode",
-                          $event.target.value
-                        )
+                        _vm.$set(_vm.formdata, "reference", $event.target.value)
                       }
                     }
                   })
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(3),
-              _vm._v(" "),
-              _vm._m(4)
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row mb-4" }, [
-              _vm._m(5),
+              _c("div", { staticClass: "col-md-2" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Currency")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.formdata.currency_id,
+                          expression: "formdata.currency_id"
+                        }
+                      ],
+                      staticClass: "form-control form-control-user",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.formdata,
+                            "currency_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    _vm._l(_vm.currencies, function(currency) {
+                      return _c(
+                        "option",
+                        { key: currency.id, domProps: { value: currency.id } },
+                        [_vm._v(_vm._s(currency.name))]
+                      )
+                    }),
+                    0
+                  )
+                ])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }, [
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Frequency")]),
+                  _c("label", [_vm._v("Recurring Invoice")]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.formdata.companycode,
-                        expression: "formdata.companycode"
-                      }
-                    ],
-                    staticClass: "form-control form-control-user",
-                    attrs: {
-                      type: "text",
-                      id: "crt-invoice",
-                      "aria-describedby": "emailHelp",
-                      placeholder: ""
-                    },
-                    domProps: { value: _vm.formdata.companycode },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.formdata.recurring_invoice,
+                          expression: "formdata.recurring_invoice"
                         }
-                        _vm.$set(
-                          _vm.formdata,
-                          "companycode",
-                          $event.target.value
-                        )
+                      ],
+                      staticClass: "form-control form-control-user",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.formdata,
+                            "recurring_invoice",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
                       }
-                    }
-                  })
+                    },
+                    [
+                      _c("option", { attrs: { value: "weekly" } }, [
+                        _vm._v("Weekly")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "monthly" } }, [
+                        _vm._v("Monthly")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "yearly" } }, [
+                        _vm._v("Yearly")
+                      ])
+                    ]
+                  )
                 ])
               ])
             ])
@@ -1861,7 +1841,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(6),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -1879,45 +1859,46 @@ var render = function() {
                                       expression: "invoice_item.invoice_type"
                                     }
                                   ],
-                                  staticClass: "tab-selector",
+                                  staticClass: "form-control form-control-user",
                                   on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        invoice_item,
-                                        "invoice_type",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
+                                    change: [
+                                      function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          invoice_item,
+                                          "invoice_type",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      },
+                                      function($event) {
+                                        return _vm.fetchProducts(k)
+                                      }
+                                    ]
                                   }
                                 },
-                                [
-                                  _c(
+                                _vm._l(_vm.producttypes, function(producttype) {
+                                  return _c(
                                     "option",
                                     {
-                                      attrs: { value: "Option 1", selected: "" }
+                                      key: producttype.id,
+                                      domProps: { value: producttype.id }
                                     },
-                                    [_vm._v("Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Option 1" } },
-                                    [_vm._v("Option 1")]
+                                    [_vm._v(_vm._s(producttype.name))]
                                   )
-                                ]
+                                }),
+                                0
                               )
                             ]),
                             _vm._v(" "),
@@ -1933,45 +1914,46 @@ var render = function() {
                                       expression: "invoice_item.invoice_product"
                                     }
                                   ],
-                                  staticClass: "tab-selector",
+                                  staticClass: "form-control form-control-user",
                                   on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        invoice_item,
-                                        "invoice_product",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
+                                    change: [
+                                      function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          invoice_item,
+                                          "invoice_product",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      },
+                                      function($event) {
+                                        return _vm.fetchProductDetails(k)
+                                      }
+                                    ]
                                   }
                                 },
-                                [
-                                  _c(
+                                _vm._l(_vm.products[k], function(product) {
+                                  return _c(
                                     "option",
                                     {
-                                      attrs: { value: "Option 1", selected: "" }
+                                      key: product.id,
+                                      domProps: { value: product.id }
                                     },
-                                    [_vm._v("Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Option 1" } },
-                                    [_vm._v("Option 1")]
+                                    [_vm._v(_vm._s(product.name))]
                                   )
-                                ]
+                                }),
+                                0
                               )
                             ]),
                             _vm._v(" "),
@@ -1988,9 +1970,8 @@ var render = function() {
                                 staticClass: "form-control form-control-user",
                                 attrs: {
                                   type: "text",
-                                  id: "crt-invoice",
-                                  "aria-describedby": "emailHelp",
-                                  placeholder: ""
+                                  placeholder: "",
+                                  readonly: ""
                                 },
                                 domProps: { value: invoice_item.weight },
                                 on: {
@@ -2019,14 +2000,12 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control form-control-user",
-                                attrs: {
-                                  type: "text",
-                                  id: "crt-invoice",
-                                  "aria-describedby": "emailHelp",
-                                  placeholder: ""
-                                },
+                                attrs: { type: "number", placeholder: "" },
                                 domProps: { value: invoice_item.quantity },
                                 on: {
+                                  blur: function($event) {
+                                    return _vm.calculatePrice(k)
+                                  },
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
@@ -2053,10 +2032,9 @@ var render = function() {
                                 ],
                                 staticClass: "form-control form-control-user",
                                 attrs: {
-                                  type: "text",
-                                  id: "crt-invoice",
-                                  "aria-describedby": "emailHelp",
-                                  placeholder: ""
+                                  type: "number",
+                                  placeholder: "",
+                                  readonly: ""
                                 },
                                 domProps: { value: invoice_item.unitprice },
                                 on: {
@@ -2075,62 +2053,89 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("td", [
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: invoice_item.vat,
-                                      expression: "invoice_item.vat"
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: invoice_item.vat,
+                                    expression: "invoice_item.vat"
+                                  }
+                                ],
+                                staticClass: "form-control form-control-user",
+                                attrs: {
+                                  type: "number",
+                                  placeholder: "",
+                                  readonly: ""
+                                },
+                                domProps: { value: invoice_item.vat },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
                                     }
-                                  ],
-                                  staticClass: "tab-selector",
+                                    _vm.$set(
+                                      invoice_item,
+                                      "vat",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: invoice_item.invoice_amount,
+                                    expression: "invoice_item.invoice_amount"
+                                  }
+                                ],
+                                staticClass: "form-control form-control-user",
+                                attrs: { type: "number", placeholder: "" },
+                                domProps: {
+                                  value: invoice_item.invoice_amount
+                                },
+                                on: {
+                                  blur: function($event) {
+                                    return _vm.calculatePrice(k)
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      invoice_item,
+                                      "invoice_amount",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "material-symbols-outlined",
+                                  staticStyle: {
+                                    "margin-right": "5px",
+                                    color: "red",
+                                    cursor: "pointer"
+                                  },
                                   on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        invoice_item,
-                                        "vat",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
+                                    click: function($event) {
+                                      return _vm.removeLine(k)
                                     }
                                   }
                                 },
-                                [
-                                  _c(
-                                    "option",
-                                    {
-                                      attrs: { value: "Option 1", selected: "" }
-                                    },
-                                    [_vm._v("Group")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Option 1" } },
-                                    [_vm._v("Option 1")]
-                                  )
-                                ]
+                                [_vm._v("delete")]
                               )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("4320")]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("GB78602023")])
+                            ])
                           ])
                         }),
                         0
@@ -2159,20 +2164,32 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _vm._m(7)
+                  _vm._m(4)
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-2" }),
                 _vm._v(" "),
-                _vm._m(8),
+                _vm._m(5),
                 _vm._v(" "),
-                _vm._m(9)
+                _c("div", { staticClass: "col-md-2 sum-price" }, [
+                  _c("ul", [
+                    _c("li", { staticStyle: { "font-size": "13px" } }, [
+                      _vm._v(_vm._s(_vm.subtotal))
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticStyle: { "font-size": "13px" } }, [
+                      _vm._v(_vm._s(_vm.vattotal))
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticStyle: { "font-size": "13px" } }, [
+                      _vm._v(_vm._s(_vm.totalamount))
+                    ])
+                  ])
+                ])
               ])
             ]
           )
-        ]),
-        _vm._v(" "),
-        _vm._m(10)
+        ])
       ]
     )
   ])
@@ -2266,64 +2283,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Currency")]),
-        _vm._v(" "),
-        _c("select", { staticClass: "tab-selector" }, [
-          _c("option", { attrs: { value: "Option 1", selected: "" } }, [
-            _vm._v("Group")
-          ]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "Option 1" } }, [_vm._v("Option 1")])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Amounts are")]),
-        _vm._v(" "),
-        _c("select", { staticClass: "tab-selector" }, [
-          _c("option", { attrs: { value: "Option 1", selected: "" } }, [
-            _vm._v("Group")
-          ]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "Option 1" } }, [_vm._v("Option 1")])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("input", {
-          staticClass: "custom-control-input",
-          attrs: { type: "checkbox", id: "customCheck" }
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          {
-            staticClass: "custom-control-label",
-            attrs: { for: "customCheck" }
-          },
-          [_vm._v("Recurring Invoice")]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("Type")]),
@@ -2395,41 +2354,6 @@ var staticRenderFns = [
           }),
           _vm._v(")")
         ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2 sum-price" }, [
-      _c("ul", [
-        _c("li", { staticStyle: { "font-size": "13px" } }, [_vm._v("8000")]),
-        _vm._v(" "),
-        _c("li", { staticStyle: { "font-size": "13px" } }, [_vm._v("640")]),
-        _vm._v(" "),
-        _c("li", { staticStyle: { "font-size": "13px" } }, [_vm._v("8640")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12 mt-4" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn admin-btn mobile-mb btn-nwidth",
-            staticStyle: {
-              "background-color": "#7ADAAA !important",
-              float: "right"
-            },
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Save")]
-        )
       ])
     ])
   }

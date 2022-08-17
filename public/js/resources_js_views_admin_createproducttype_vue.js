@@ -382,7 +382,7 @@ var render = function() {
                   [_vm._v("Save")]
                 ),
                 _vm._v(" "),
-                _c("router-link", { attrs: { to: "/producttypes" } }, [
+                _c("router-link", { attrs: { to: "/product-types" } }, [
                   _c(
                     "button",
                     {

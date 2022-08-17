@@ -3,7 +3,7 @@
     <form class="crt-type" @submit.prevent="create_product">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800">Create New Product Type</h1>
+      <h1 class="h3 mb-0 text-gray-800">Create New Product</h1>
       <div>
         <button type="submit" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;">Save</button>
         <router-link to="/products"><button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button></router-link>

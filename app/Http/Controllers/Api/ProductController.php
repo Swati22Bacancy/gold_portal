@@ -75,4 +75,10 @@ class ProductController extends Controller
             ], 400);
         }
     }
+
+    public function productdata($id)
+    {
+        $products = Product::where('type_id', $id)->get();
+        return response()->json($products);
+    }
 }
