@@ -163,6 +163,15 @@ let router = new Router({
             }
         },
         {
+            path: "/bankaccount",
+            name: "bankaccount",
+            component: () => import("./views/admin/bankaccount.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/viewsales",
             name: "viewsales",
             component: () => import("./views/admin/viewsales.vue"),
