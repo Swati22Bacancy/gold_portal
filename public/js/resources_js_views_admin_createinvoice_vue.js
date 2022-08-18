@@ -338,6 +338,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 
@@ -363,10 +372,10 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         last_name: "",
         billing_address: ""
       },
+      postdata: {},
       errors: {},
       groups: {},
       customers: [],
-      products: [],
       rows: [],
       invoice_items: [{
         invoice_type: '',
@@ -400,6 +409,33 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
     },
     removeLine: function removeLine(index) {
       this.invoice_items.splice(index, 1);
+      var totalsub = 0;
+
+      for (var j = 0; j < this.invoice_items.length; j++) {
+        if (!isNaN(this.invoice_items[j].unitprice)) {
+          totalsub += this.invoice_items[j].unitprice * this.invoice_items[j].quantity;
+        }
+      }
+
+      var totalvat = 0;
+
+      for (var k = 0; k < this.invoice_items.length; k++) {
+        if (!isNaN(this.invoice_items[k].unitprice)) {
+          if (this.invoice_items[k].vat) {
+            totalvat += this.invoice_items[k].unitprice * this.invoice_items[k].quantity * (this.invoice_items[k].vat / 100);
+          } else {
+            totalvat += 0;
+          }
+        }
+      }
+
+      this.subtotal = totalsub.toFixed(2);
+      this.vattotal = totalvat.toFixed(2);
+      var invoicetotal = totalsub + totalvat;
+      this.totalamount = invoicetotal.toFixed(2);
+      this.formdata.subtotal = Number(this.subtotal);
+      this.formdata.vattotal = Number(this.vattotal);
+      this.formdata.totalamount = Number(this.totalamount);
     },
     changetype: function changetype(type) {
       this.customerType = type;
@@ -408,48 +444,49 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var response;
+        var response, message, toast, _message, _toast;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.$v.formdata.$touch();
-
-                if (!_this.$v.formdata.$error) {
-                  _context.next = 3;
-                  break;
-                }
-
-                return _context.abrupt("return");
-
-              case 3:
-                _context.prev = 3;
+                _context.prev = 0;
                 _this.formdata.customertype = _this.customerType;
-                _context.next = 7;
-                return axios.post("create_invoice", {
-                  firstname: _this.formdata.firstname,
-                  lastname: _this.formdata.lastname,
-                  email: _this.formdata.email,
-                  companyname: _this.formdata.companyname,
-                  registeredaddress: _this.formdata.registeredaddress
+                _this.postdata.formfields = _this.formdata;
+                _this.postdata.itemfields = _this.invoice_items;
+                _context.next = 6;
+                return axios.post("create_invoice", _this.postdata);
+
+              case 6:
+                response = _context.sent;
+                message = "Sales Invoice has been successfully created.";
+                toast = Vue.toasted.show(message, {
+                  theme: "toasted-success",
+                  position: "top-center",
+                  duration: 5000
                 });
 
-              case 7:
-                response = _context.sent;
-                _context.next = 13;
+                _this.$router.push("/sales");
+
+                _context.next = 16;
                 break;
 
-              case 10:
-                _context.prev = 10;
-                _context.t0 = _context["catch"](3);
-                console.log(_context.t0);
+              case 12:
+                _context.prev = 12;
+                _context.t0 = _context["catch"](0);
+                _message = 'Something went wrong, Please try again';
+                _toast = Vue.toasted.show(_message, {
+                  theme: "toasted-error",
+                  position: "top-center",
+                  duration: 5000
+                });
 
-              case 13:
+              case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[3, 10]]);
+        }, _callee, null, [[0, 12]]);
       }))();
     },
     getCustomers: function getCustomers() {
@@ -482,7 +519,38 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
     fetchProducts: function fetchProducts(index) {
       var _this5 = this;
 
-      this.products[index];
+      this.invoice_items[index].weight = '';
+      this.invoice_items[index].vat = '';
+      this.invoice_items[index].quantity = '';
+      this.invoice_items[index].unitprice = '';
+      this.invoice_items[index].invoice_amount = '';
+      var totalsub = 0;
+
+      for (var j = 0; j < this.invoice_items.length; j++) {
+        if (!isNaN(this.invoice_items[j].unitprice)) {
+          totalsub += this.invoice_items[j].unitprice * this.invoice_items[j].quantity;
+        }
+      }
+
+      var totalvat = 0;
+
+      for (var k = 0; k < this.invoice_items.length; k++) {
+        if (!isNaN(this.invoice_items[k].unitprice)) {
+          if (this.invoice_items[k].vat) {
+            totalvat += this.invoice_items[k].unitprice * this.invoice_items[k].quantity * (this.invoice_items[k].vat / 100);
+          } else {
+            totalvat += 0;
+          }
+        }
+      }
+
+      this.subtotal = totalsub.toFixed(2);
+      this.vattotal = totalvat.toFixed(2);
+      var invoicetotal = totalsub + totalvat;
+      this.totalamount = invoicetotal.toFixed(2);
+      this.formdata.subtotal = Number(this.subtotal);
+      this.formdata.vattotal = Number(this.vattotal);
+      this.formdata.totalamount = Number(this.totalamount);
       axios.get('/productdata/' + this.invoice_items[index].invoice_type).then(function (response) {
         _this5.invoice_items[index].products = response.data;
       })["catch"](function (error) {});
@@ -490,9 +558,40 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
     fetchProductDetails: function fetchProductDetails(index) {
       var _this6 = this;
 
-      console.log(this.invoice_items[index].invoice_product);
+      this.invoice_items[index].weight = '';
+      this.invoice_items[index].vat = '';
+      this.invoice_items[index].quantity = '';
+      this.invoice_items[index].unitprice = '';
+      this.invoice_items[index].invoice_amount = '';
+      var totalsub = 0;
+
+      for (var j = 0; j < this.invoice_items.length; j++) {
+        if (!isNaN(this.invoice_items[j].unitprice)) {
+          totalsub += this.invoice_items[j].unitprice * this.invoice_items[j].quantity;
+        }
+      }
+
+      var totalvat = 0;
+
+      for (var k = 0; k < this.invoice_items.length; k++) {
+        if (!isNaN(this.invoice_items[k].unitprice)) {
+          if (this.invoice_items[k].vat) {
+            totalvat += this.invoice_items[k].unitprice * this.invoice_items[k].quantity * (this.invoice_items[k].vat / 100);
+          } else {
+            totalvat += 0;
+          }
+        }
+      }
+
+      this.subtotal = totalsub.toFixed(2);
+      this.vattotal = totalvat.toFixed(2);
+      var invoicetotal = totalsub + totalvat;
+      this.totalamount = invoicetotal.toFixed(2);
+      this.formdata.subtotal = Number(this.subtotal);
+      this.formdata.vattotal = Number(this.vattotal);
+      this.formdata.totalamount = Number(this.totalamount); //this.invoice_items[index].vat='';
+
       axios.get('/productdetails/' + this.invoice_items[index].invoice_product).then(function (response) {
-        console.log(response);
         _this6.invoice_items[index].weight = response.data.weight;
         _this6.invoice_items[index].vat = response.data.rate;
       })["catch"](function (error) {});
@@ -525,17 +624,30 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       var totalsub = 0;
 
       for (var j = 0; j < this.invoice_items.length; j++) {
-        console.log(this.invoice_items[j].unitprice);
-        totalsub += this.invoice_items[j].unitprice;
-      } // console.log(this.subtotal);
-      // if(!this.subtotal)
-      // {
-      //   this.subtotal=0;
-      // }
-      // console.log(unitprice);
+        if (!isNaN(this.invoice_items[j].unitprice)) {
+          totalsub += this.invoice_items[j].unitprice * this.invoice_items[j].quantity;
+        }
+      }
 
+      var totalvat = 0;
 
-      this.subtotal = totalsub;
+      for (var k = 0; k < this.invoice_items.length; k++) {
+        if (!isNaN(this.invoice_items[k].unitprice)) {
+          if (this.invoice_items[k].vat) {
+            totalvat += this.invoice_items[k].unitprice * this.invoice_items[k].quantity * (this.invoice_items[k].vat / 100);
+          } else {
+            totalvat += 0;
+          }
+        }
+      }
+
+      this.subtotal = totalsub.toFixed(2);
+      this.vattotal = totalvat.toFixed(2);
+      var invoicetotal = totalsub + totalvat;
+      this.totalamount = invoicetotal.toFixed(2);
+      this.formdata.subtotal = Number(this.subtotal);
+      this.formdata.vattotal = Number(this.vattotal);
+      this.formdata.totalamount = Number(this.totalamount);
     }
   },
   validations: {
@@ -1589,8 +1701,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.formdata.companycode,
-                        expression: "formdata.companycode"
+                        value: _vm.formdata.invoiceno,
+                        expression: "formdata.invoiceno"
                       }
                     ],
                     staticClass: "form-control form-control-user",
@@ -1600,17 +1712,13 @@ var render = function() {
                       "aria-describedby": "emailHelp",
                       placeholder: ""
                     },
-                    domProps: { value: _vm.formdata.companycode },
+                    domProps: { value: _vm.formdata.invoiceno },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(
-                          _vm.formdata,
-                          "companycode",
-                          $event.target.value
-                        )
+                        _vm.$set(_vm.formdata, "invoiceno", $event.target.value)
                       }
                     }
                   })
@@ -1626,7 +1734,14 @@ var render = function() {
                     _vm._v(" "),
                     _c("Datepicker", {
                       staticClass: "datapicker",
-                      attrs: { id: "mydatepicker" }
+                      attrs: { id: "mydatepicker" },
+                      model: {
+                        value: _vm.formdata.issue_date,
+                        callback: function($$v) {
+                          _vm.$set(_vm.formdata, "issue_date", $$v)
+                        },
+                        expression: "formdata.issue_date"
+                      }
                     })
                   ],
                   1
@@ -1640,7 +1755,15 @@ var render = function() {
                   [
                     _c("label", [_vm._v("Due Date")]),
                     _vm._v(" "),
-                    _c("Datepicker")
+                    _c("Datepicker", {
+                      model: {
+                        value: _vm.formdata.due_date,
+                        callback: function($$v) {
+                          _vm.$set(_vm.formdata, "due_date", $$v)
+                        },
+                        expression: "formdata.due_date"
+                      }
+                    })
                   ],
                   1
                 )
@@ -2169,15 +2292,99 @@ var render = function() {
                 _c("div", { staticClass: "col-md-2 sum-price" }, [
                   _c("ul", [
                     _c("li", { staticStyle: { "font-size": "13px" } }, [
-                      _vm._v(_vm._s(_vm.subtotal))
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.subtotal,
+                            expression: "formdata.subtotal"
+                          }
+                        ],
+                        attrs: { type: "hidden" },
+                        domProps: { value: _vm.formdata.subtotal },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.formdata,
+                              "subtotal",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.subtotal) +
+                          "\n              "
+                      )
                     ]),
                     _vm._v(" "),
                     _c("li", { staticStyle: { "font-size": "13px" } }, [
-                      _vm._v(_vm._s(_vm.vattotal))
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.vattotal,
+                            expression: "formdata.vattotal"
+                          }
+                        ],
+                        attrs: { type: "hidden" },
+                        domProps: { value: _vm.formdata.vattotal },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.formdata,
+                              "vattotal",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.vattotal) +
+                          "\n              "
+                      )
                     ]),
                     _vm._v(" "),
                     _c("li", { staticStyle: { "font-size": "13px" } }, [
-                      _vm._v(_vm._s(_vm.totalamount))
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.totalamount,
+                            expression: "formdata.totalamount"
+                          }
+                        ],
+                        attrs: { type: "hidden" },
+                        domProps: { value: _vm.formdata.totalamount },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.formdata,
+                              "totalamount",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.totalamount) +
+                          "\n              "
+                      )
                     ])
                   ])
                 ])

@@ -113,4 +113,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('store_vatsettings',[Api\VatSettingsController::class, 'storevatsettings']);
     Route::get('saved_vatsettings',[Api\VatSettingsController::class, 'savedvatsettings']);
     Route::post('update_vatsettings',[Api\VatSettingsController::class, 'updatevatsettings']);
+
+    // Sales Invoice Routes
+    Route::post('create_invoice',[Api\SalesController::class, 'create_invoice']);
 });

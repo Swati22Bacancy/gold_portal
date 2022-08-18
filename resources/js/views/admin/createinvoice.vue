@@ -149,21 +149,21 @@
                   id="crt-invoice"
                   aria-describedby="emailHelp"
                   placeholder=""
-                  v-model="formdata.companycode"
+                  v-model="formdata.invoiceno"
                 />
               </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
                 <label>Issue Date</label>
-                <Datepicker class="datapicker" id="mydatepicker"></Datepicker>
+                <Datepicker v-model="formdata.issue_date" class="datapicker" id="mydatepicker"></Datepicker>
                 
               </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
                 <label>Due Date</label>
-                <Datepicker></Datepicker>
+                <Datepicker v-model="formdata.due_date"></Datepicker>
                 
               </div>
             </div>
@@ -282,9 +282,18 @@
             </div>
             <div class="col-md-2 sum-price">
               <ul>
-                <li style="font-size:13px;">{{subtotal}}</li>
-                <li style="font-size:13px;">{{vattotal}}</li>
-                <li style="font-size:13px;">{{totalamount}}</li>
+                <li style="font-size:13px;">
+                  <input type="hidden" v-model="formdata.subtotal"/>
+                  {{subtotal}}
+                </li>
+                <li style="font-size:13px;">
+                  <input type="hidden" v-model="formdata.vattotal"/>
+                  {{vattotal}}
+                </li>
+                <li style="font-size:13px;">
+                  <input type="hidden" v-model="formdata.totalamount"/>
+                  {{totalamount}}
+                </li>
               </ul>
             </div>
           </div>
@@ -340,10 +349,10 @@ export default {
         last_name: "",
         billing_address:""
       },
+      postdata:{},
       errors: {},
       groups:{},
       customers: [],
-      products: [],
       rows: [],
       invoice_items: [{
           invoice_type: '',
@@ -379,29 +388,70 @@ export default {
     removeLine(index)
     {
       this.invoice_items.splice(index,1);
+      var totalsub=0;
+      for(var j=0; j<this.invoice_items.length;j++)
+      {
+        if(!isNaN(this.invoice_items[j].unitprice))  
+        {
+          totalsub += this.invoice_items[j].unitprice*this.invoice_items[j].quantity;
+        }
+      }
+      
+      var totalvat=0;
+      for(var k=0; k<this.invoice_items.length;k++)
+      {
+        if(!isNaN(this.invoice_items[k].unitprice))  
+        {
+          if(this.invoice_items[k].vat)
+          {
+            totalvat += (this.invoice_items[k].unitprice*this.invoice_items[k].quantity)*(this.invoice_items[k].vat/100);
+          }
+          else
+          {
+            totalvat += 0;
+          }
+        }
+      }
+      
+      this.subtotal = totalsub.toFixed(2);
+      this.vattotal = totalvat.toFixed(2);
+      var invoicetotal = totalsub + totalvat;
+      this.totalamount = invoicetotal.toFixed(2);
+      this.formdata.subtotal = Number(this.subtotal);
+      this.formdata.vattotal = Number(this.vattotal);
+      this.formdata.totalamount = Number(this.totalamount);
     },
     changetype(type)
     {
       this.customerType = type;
     },
     async create_invoice() {
-        this.$v.formdata.$touch();
-      if (this.$v.formdata.$error) {
-        return;
-      }
+      //   this.$v.formdata.$touch();
+      // if (this.$v.formdata.$error) {
+      //   return;
+      // }
       try {
         this.formdata.customertype= this.customerType;
-        const response = await axios.post("create_invoice", {
-          firstname: this.formdata.firstname,
-          lastname: this.formdata.lastname,
-          email: this.formdata.email,
-          companyname: this.formdata.companyname,
-          registeredaddress: this.formdata.registeredaddress,
-        });
+        this.postdata.formfields = this.formdata;
+        this.postdata.itemfields = this.invoice_items;
 
+        const response = await axios.post("create_invoice", this.postdata);
+        let message =
+            "Sales Invoice has been successfully created.";
+          let toast = Vue.toasted.show(message, {
+            theme: "toasted-success",
+            position: "top-center",
+            duration: 5000,
+          });
+        this.$router.push("/sales");
         
       } catch (error) {
-        console.log(error);
+        let message = 'Something went wrong, Please try again';
+          let toast = Vue.toasted.show(message, {
+            theme: "toasted-error",
+            position: "top-center",
+            duration: 5000,
+          });
       }
     },
     getCustomers() {
@@ -428,7 +478,44 @@ export default {
     },
     fetchProducts(index)
     {
-      this.products[index];
+      this.invoice_items[index].weight='';
+      this.invoice_items[index].vat='';
+      this.invoice_items[index].quantity='';
+      this.invoice_items[index].unitprice='';
+      this.invoice_items[index].invoice_amount='';
+      var totalsub=0;
+      for(var j=0; j<this.invoice_items.length;j++)
+      {
+        if(!isNaN(this.invoice_items[j].unitprice))  
+        {
+          totalsub += this.invoice_items[j].unitprice*this.invoice_items[j].quantity;
+        }
+      }
+
+      var totalvat=0;
+      for(var k=0; k<this.invoice_items.length;k++)
+      {
+        if(!isNaN(this.invoice_items[k].unitprice))  
+        {
+          if(this.invoice_items[k].vat)
+          {
+            totalvat += (this.invoice_items[k].unitprice*this.invoice_items[k].quantity)*(this.invoice_items[k].vat/100);
+          }
+          else
+          {
+            totalvat += 0;
+          }
+        }
+      }
+      
+      this.subtotal = totalsub.toFixed(2);
+      this.vattotal = totalvat.toFixed(2);
+      var invoicetotal = totalsub + totalvat;
+      this.totalamount = invoicetotal.toFixed(2);
+      this.formdata.subtotal = Number(this.subtotal);
+      this.formdata.vattotal = Number(this.vattotal);
+      this.formdata.totalamount = Number(this.totalamount);
+
       axios.get('/productdata/'+this.invoice_items[index].invoice_type)
         .then((response) => {
           this.invoice_items[index].products=response.data;
@@ -438,11 +525,47 @@ export default {
     },
     fetchProductDetails(index)
     {
-      console.log(this.invoice_items[index].invoice_product);
+      this.invoice_items[index].weight='';
+      this.invoice_items[index].vat='';
+      this.invoice_items[index].quantity='';
+      this.invoice_items[index].unitprice='';
+      this.invoice_items[index].invoice_amount='';
+      var totalsub=0;
+      for(var j=0; j<this.invoice_items.length;j++)
+      {
+        if(!isNaN(this.invoice_items[j].unitprice))  
+        {
+          totalsub += this.invoice_items[j].unitprice*this.invoice_items[j].quantity;
+        }
+      }
+
+      var totalvat=0;
+      for(var k=0; k<this.invoice_items.length;k++)
+      {
+        if(!isNaN(this.invoice_items[k].unitprice))  
+        {
+          if(this.invoice_items[k].vat)
+          {
+            totalvat += (this.invoice_items[k].unitprice*this.invoice_items[k].quantity)*(this.invoice_items[k].vat/100);
+          }
+          else
+          {
+            totalvat += 0;
+          }
+        }
+      }
       
+      this.subtotal = totalsub.toFixed(2);
+      this.vattotal = totalvat.toFixed(2);
+      var invoicetotal = totalsub + totalvat;
+      this.totalamount = invoicetotal.toFixed(2);
+      this.formdata.subtotal = Number(this.subtotal);
+      this.formdata.vattotal = Number(this.vattotal);
+      this.formdata.totalamount = Number(this.totalamount);
+
+      //this.invoice_items[index].vat='';
       axios.get('/productdetails/'+this.invoice_items[index].invoice_product)
         .then((response) => {
-            console.log(response);
             this.invoice_items[index].weight=response.data.weight;
             this.invoice_items[index].vat=response.data.rate;
         })
@@ -480,16 +603,35 @@ export default {
       var totalsub=0;
       for(var j=0; j<this.invoice_items.length;j++)
       {
-        console.log(this.invoice_items[j].unitprice);
-        totalsub += this.invoice_items[j].unitprice;
+        if(!isNaN(this.invoice_items[j].unitprice))  
+        {
+          totalsub += this.invoice_items[j].unitprice*this.invoice_items[j].quantity;
+        }
       }
-      // console.log(this.subtotal);
-      // if(!this.subtotal)
-      // {
-      //   this.subtotal=0;
-      // }
-      // console.log(unitprice);
-      this.subtotal = totalsub;
+
+      var totalvat=0;
+      for(var k=0; k<this.invoice_items.length;k++)
+      {
+        if(!isNaN(this.invoice_items[k].unitprice))  
+        {
+          if(this.invoice_items[k].vat)
+          {
+            totalvat += (this.invoice_items[k].unitprice*this.invoice_items[k].quantity)*(this.invoice_items[k].vat/100);
+          }
+          else
+          {
+            totalvat += 0;
+          }
+        }
+      }
+      
+      this.subtotal = totalsub.toFixed(2);
+      this.vattotal = totalvat.toFixed(2);
+      var invoicetotal = totalsub + totalvat;
+      this.totalamount = invoicetotal.toFixed(2);
+      this.formdata.subtotal = Number(this.subtotal);
+      this.formdata.vattotal = Number(this.vattotal);
+      this.formdata.totalamount = Number(this.totalamount);
     }
   },
     validations: {
