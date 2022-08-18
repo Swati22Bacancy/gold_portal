@@ -304,14 +304,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           id: Date.now(),
           value: this.formdata.entered_vatrate
         });
-        console.log(this.vatRates);
-        this.formdata.entered_vatrate = "";
+        his.formdata.entered_vatrate = "";
       }
     },
     deletedata: function deletedata() {
       var _this = this;
 
-      console.log(this.formdata.vat_rate);
       var index = this.vatRates.findIndex(function (rate) {
         return rate.id == _this.formdata.vat_rate;
       });
@@ -1684,7 +1682,7 @@ var render = function() {
                   _c("div", { staticClass: "form-group col-md-8" }, [
                     _c("span", { staticStyle: { "font-size": "12px" } }, [
                       _vm._v(
-                        'Some nusinesses uses a VAT scheme called "Cash Accounting". This allows you to only pay/reclaim VT on payments actually made/received - as opposed to sales invoices issued.'
+                        'Some businesses uses a VAT scheme called "Cash Accounting". This allows you to only pay/reclaim VT on payments actually made/received - as opposed to sales invoices issued.'
                       )
                     ]),
                     _c("br"),

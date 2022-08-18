@@ -141,7 +141,7 @@
               <h6 class="pb-0">Cash Accounting:</h6>
               <div class="row pb-4">
                 <div class="form-group col-md-8">
-                  <span style="font-size:12px;">Some nusinesses uses a VAT scheme called "Cash Accounting". This allows you to only pay/reclaim VT on payments actually made/received - as opposed to sales invoices issued.</span><br>
+                  <span style="font-size:12px;">Some businesses uses a VAT scheme called "Cash Accounting". This allows you to only pay/reclaim VT on payments actually made/received - as opposed to sales invoices issued.</span><br>
                   <div class="custom-checkbox small check-position vat_checkbox mb-2 pt-2">
                     <label></label>
                     <input type="checkbox" class="custom-control-input" id="scheme_cash" v-model="formdata.scheme_cash"/>
@@ -279,13 +279,11 @@ export default {
           id:Date.now(),
           value:this.formdata.entered_vatrate
           });
-          console.log(this.vatRates);
-          this.formdata.entered_vatrate = "";
+          his.formdata.entered_vatrate = "";
       }
 
     },
     deletedata(){
-      console.log(this.formdata.vat_rate);
       let index = this.vatRates.findIndex(rate => {
         return rate.id == this.formdata.vat_rate
       })

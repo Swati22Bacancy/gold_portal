@@ -366,7 +366,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       errors: {},
       groups: {},
       customers: [],
-      products: [{}],
+      products: [],
       rows: [],
       invoice_items: [{
         invoice_type: '',
@@ -375,7 +375,8 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         quantity: '',
         unitprice: '',
         vat: '',
-        invoice_amount: ''
+        invoice_amount: '',
+        products: []
       }],
       currencies: {},
       producttypes: {},
@@ -393,7 +394,8 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         quantity: '',
         unitprice: '',
         vat: '',
-        invoice_amount: ''
+        invoice_amount: '',
+        products: []
       });
     },
     removeLine: function removeLine(index) {
@@ -480,18 +482,9 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
     fetchProducts: function fetchProducts(index) {
       var _this5 = this;
 
-      //this.products[index]=[];
+      this.products[index];
       axios.get('/productdata/' + this.invoice_items[index].invoice_type).then(function (response) {
-        console.log(response); //this.formdata.currency_symbol = response.data.symbol;
-        // this.products[index].push(response.data);
-
-        _this5.products[index] = response.data;
-        console.log(_this5.products[index]); // this.products[index] = this.products[index].map(product => {
-        //   return {
-        //     value: product.id,
-        //     text: `${product.name} `,
-        //   } 
-        // })
+        _this5.invoice_items[index].products = response.data;
       })["catch"](function (error) {});
     },
     fetchProductDetails: function fetchProductDetails(index) {
@@ -528,21 +521,21 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         var unitprice = invtotalamount / quantity;
       }
 
-      this.invoice_items[index].unitprice = unitprice; // var totalsub=0;
-      // for(var j=0; j<this.invoice_items.length;j++)
+      this.invoice_items[index].unitprice = unitprice;
+      var totalsub = 0;
+
+      for (var j = 0; j < this.invoice_items.length; j++) {
+        console.log(this.invoice_items[j].unitprice);
+        totalsub += this.invoice_items[j].unitprice;
+      } // console.log(this.subtotal);
+      // if(!this.subtotal)
       // {
-      //   console.log(this.invoice_items[j].unitprice);
-      //   totalsub += this.invoice_items[j].unitprice;
+      //   this.subtotal=0;
       // }
+      // console.log(unitprice);
 
-      console.log(this.subtotal);
 
-      if (this.subtotal) {
-        this.subtotal = 0;
-      }
-
-      console.log(unitprice);
-      this.subtotal = this.subtotal + unitprice;
+      this.subtotal = totalsub;
     }
   },
   validations: {
@@ -1943,7 +1936,9 @@ var render = function() {
                                     ]
                                   }
                                 },
-                                _vm._l(_vm.products[k], function(product) {
+                                _vm._l(_vm.invoice_items[k].products, function(
+                                  product
+                                ) {
                                   return _c(
                                     "option",
                                     {

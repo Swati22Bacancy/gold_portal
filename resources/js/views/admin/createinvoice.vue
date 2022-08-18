@@ -243,7 +243,7 @@
                           <select class="form-control form-control-user" @change="fetchProductDetails(k)" v-model="invoice_item.invoice_product">
                             <!-- <option value="Option 1" selected>Group</option>
                             <option value="Option 1" >Option 1</option> -->
-                            <option v-for="product in products[k]" :key="product.id" :value="product.id">{{product.name}}</option>
+                            <option v-for="product in invoice_items[k].products" :key="product.id" :value="product.id">{{product.name}}</option>
                           </select>
                         </td>
                         <td>
@@ -343,7 +343,7 @@ export default {
       errors: {},
       groups:{},
       customers: [],
-      products: [{}],
+      products: [],
       rows: [],
       invoice_items: [{
           invoice_type: '',
@@ -352,7 +352,8 @@ export default {
           quantity: '',
           unitprice: '',
           vat: '',
-          invoice_amount:''
+          invoice_amount:'',
+          products:[]
       }],
       currencies:{},
       producttypes:{},
@@ -371,7 +372,8 @@ export default {
           quantity: '',
           unitprice: '',
           vat: '',
-          invoice_amount:''
+          invoice_amount:'',
+          products:[]
       });
     },
     removeLine(index)
@@ -426,24 +428,13 @@ export default {
     },
     fetchProducts(index)
     {
-      //this.products[index]=[];
+      this.products[index];
       axios.get('/productdata/'+this.invoice_items[index].invoice_type)
         .then((response) => {
-            console.log(response);
-            //this.formdata.currency_symbol = response.data.symbol;
-            // this.products[index].push(response.data);
-            this.products[index]=response.data;
-            console.log(this.products[index]);
-            // this.products[index] = this.products[index].map(product => {
-            //   return {
-            //     value: product.id,
-            //     text: `${product.name} `,
-                
-            //   } 
-            // })
-        })
-        .catch(function(error) {
-        });
+          this.invoice_items[index].products=response.data;
+      })
+      .catch(function(error) {
+      });
     },
     fetchProductDetails(index)
     {
@@ -486,19 +477,19 @@ export default {
         var unitprice = invtotalamount/quantity;
       }
       this.invoice_items[index].unitprice = unitprice;
-      // var totalsub=0;
-      // for(var j=0; j<this.invoice_items.length;j++)
-      // {
-      //   console.log(this.invoice_items[j].unitprice);
-      //   totalsub += this.invoice_items[j].unitprice;
-      // }
-      console.log(this.subtotal);
-      if(this.subtotal)
+      var totalsub=0;
+      for(var j=0; j<this.invoice_items.length;j++)
       {
-        this.subtotal=0;
+        console.log(this.invoice_items[j].unitprice);
+        totalsub += this.invoice_items[j].unitprice;
       }
-      console.log(unitprice);
-      this.subtotal = this.subtotal+unitprice;
+      // console.log(this.subtotal);
+      // if(!this.subtotal)
+      // {
+      //   this.subtotal=0;
+      // }
+      // console.log(unitprice);
+      this.subtotal = totalsub;
     }
   },
     validations: {
