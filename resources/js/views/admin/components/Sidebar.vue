@@ -68,10 +68,9 @@
         >
       </li>
       <li class="nav-item" v-if="is_super_admin()">
-        <router-link class="nav-link" to="/admin">
+        <router-link class="nav-link" to="/bankaccount">
           <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">account_balance</span>
-          <span>Bank Accounts</span></router-link
-        >
+          <span>Bank Accounts</span></router-link>
       </li>
       <li class="nav-item" v-if="is_super_admin()">
         <router-link class="nav-link" to="/settings">

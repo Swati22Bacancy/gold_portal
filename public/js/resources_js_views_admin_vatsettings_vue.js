@@ -293,10 +293,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       tabList: ["Basic Settings", "Field Names"],
-      formdata: {}
+      formdata: {},
+      vatRates: []
     };
   },
   methods: {
+    adddata: function adddata() {
+      if (this.formdata.entered_vatrate) {
+        this.vatRates.push({
+          id: Date.now(),
+          value: this.formdata.entered_vatrate
+        });
+        console.log(this.vatRates);
+        this.formdata.entered_vatrate = "";
+      }
+    },
+    deletedata: function deletedata() {
+      var _this = this;
+
+      console.log(this.formdata.vat_rate);
+      var index = this.vatRates.findIndex(function (rate) {
+        return rate.id == _this.formdata.vat_rate;
+      });
+
+      if (index != -1) {
+        this.vatRates.splice(index, 1);
+      }
+    },
     is_super_admin: function is_super_admin() {
       if (this.user) {
         if (this.user.role_id == 1) {
@@ -316,7 +339,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     storeVatSettings: function storeVatSettings() {
-      var _this = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var response, message, toast, _message, _toast;
@@ -327,7 +350,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios.post("store_vatsettings", _this.formdata);
+                return axios.post("store_vatsettings", _this2.formdata);
 
               case 3:
                 response = _context.sent;
@@ -359,7 +382,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     },
     updateVatSettings: function updateVatSettings() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var response, message, toast, _message2, _toast2;
@@ -370,7 +393,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 _context2.prev = 0;
                 _context2.next = 3;
-                return axios.post("update_vatsettings", _this2.formdata);
+                return axios.post("update_vatsettings", _this3.formdata);
 
               case 3:
                 response = _context2.sent;
@@ -403,11 +426,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   mounted: function mounted() {
-    var _this3 = this;
+    var _this4 = this;
 
     axios.get('/saved_vatsettings/').then(function (response) {
-      _this3.formdata = response.data;
-      _this3.formdata.password = "";
+      _this4.formdata = response.data;
+      _this4.formdata.password = "";
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
   }
@@ -529,7 +552,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.tab-selector[data-v-e37b42c6]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 11%;\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.check-position[data-v-e37b42c6]\r\n{\r\n  margin-left: 0;\n}\n.vat_checkbox label[data-v-e37b42c6]{\r\n  font-size: 14px !important;\r\n  letter-spacing: 0.7px;\n}\n.inv_setting_input[data-v-e37b42c6]\r\n{\r\n  width: 20%;\n}\n.invoice_basic[data-v-e37b42c6]\r\n{\r\n  max-width:80%;\n}\n.radio-label[data-v-e37b42c6]\r\n{\r\n  font-size: 15px !important;\r\n  margin-left: 5px;\n}\n.vat_setting label[data-v-e37b42c6] {\r\n    font-size: 14px;\n}\n.invoice_basic span[data-v-e37b42c6]\r\n{\r\n  color: #807e7e;\r\n  font-size: 11px;\n}\n.vat_setting label[data-v-e37b42c6] {\r\n    font-size: 12px;\n}\n.check-position[data-v-e37b42c6]\r\n{\r\n  margin-left: 4%;\n}\n.box-content h6[data-v-e37b42c6]\r\n{\r\n padding: 2% 0 1% 0;\r\n font-family: 'Titillium-Web-Bold';\n}\n.upload_text[data-v-e37b42c6]\r\n{\r\n  font-size: 14px;\r\n  margin-left: 1%;\n}\n.document_title[data-v-e37b42c6]\r\n{\r\n  font-size: 15px;\n}\n.download_link[data-v-e37b42c6]\r\n{\r\n  display: inline-block;\r\n  padding: 0.375rem 0.75rem;\r\n  background-color: #7ADAAA;\r\n  font-size: 13px !important;\r\n  color: #000;\r\n  border-radius: 5px;\r\n  height: auto;\r\n  margin-left: 10px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.tab-selector[data-v-e37b42c6]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 11%;\r\n  color: #3377c2;\r\n  font-size: 13px;\n}\n.check-position[data-v-e37b42c6]\r\n{\r\n  margin-left: 0;\n}\n.vat_checkbox label[data-v-e37b42c6]{\r\n  font-size: 14px !important;\r\n  letter-spacing: 0.7px;\n}\n.inv_setting_input[data-v-e37b42c6]\r\n{\r\n  width: 20%;\n}\n.invoice_basic[data-v-e37b42c6]\r\n{\r\n  max-width:80%;\n}\n.radio-label[data-v-e37b42c6]\r\n{\r\n  font-size: 15px !important;\r\n  margin-left: 5px;\n}\n.vat_setting label[data-v-e37b42c6] {\r\n    font-size: 14px;\n}\n.invoice_basic span[data-v-e37b42c6]\r\n{\r\n  color: #807e7e;\r\n  font-size: 11px;\n}\n.vat_setting label[data-v-e37b42c6] {\r\n    font-size: 12px;\n}\n.check-position[data-v-e37b42c6]\r\n{\r\n  margin-left: 4%;\n}\n.box-content h6[data-v-e37b42c6]\r\n{\r\n padding: 2% 0 1% 0;\r\n font-family: 'Titillium-Web-Bold';\n}\n.upload_text[data-v-e37b42c6]\r\n{\r\n  font-size: 14px;\r\n  margin-left: 1%;\n}\n.document_title[data-v-e37b42c6]\r\n{\r\n  font-size: 15px;\n}\n.download_link[data-v-e37b42c6]\r\n{\r\n  display: inline-block;\r\n  padding: 0.375rem 0.75rem;\r\n  background-color: #7ADAAA;\r\n  font-size: 13px !important;\r\n  color: #000;\r\n  border-radius: 5px;\r\n  height: auto;\r\n  margin-left: 10px;\n}\n.material-symbols-outlined[data-v-e37b42c6]{\r\n  position: absolute;\r\n  margin-right: 30px;\r\n  top: 10px;\r\n  right: -20px;\n}\n.fa-plus[data-v-e37b42c6]{\r\n  position: absolute;\r\n  color: green;\r\n  top: 10px;\r\n  left: 160px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1516,6 +1539,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control form-control-user",
+                          staticStyle: { "margin-right": "30px" },
                           on: {
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter
@@ -1536,11 +1560,14 @@ var render = function() {
                             }
                           }
                         },
-                        [
-                          _c("option", { attrs: { value: "january" } }, [
-                            _vm._v("January")
-                          ])
-                        ]
+                        _vm._l(_vm.vatRates, function(rate) {
+                          return _c(
+                            "option",
+                            { key: rate.id, domProps: { value: rate.id } },
+                            [_vm._v(_vm._s(rate.value))]
+                          )
+                        }),
+                        0
                       ),
                       _vm._v(" "),
                       _c(
@@ -1548,10 +1575,11 @@ var render = function() {
                         {
                           staticClass: "material-symbols-outlined",
                           staticStyle: {
-                            "margin-right": "5px",
+                            "margin-right": "30px",
                             color: "red",
                             cursor: "pointer"
-                          }
+                          },
+                          on: { click: _vm.deletedata }
                         },
                         [_vm._v("delete")]
                       )
@@ -1575,6 +1603,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control form-control-user",
+                        staticStyle: { "margin-right": "30px" },
                         attrs: {
                           type: "text",
                           "aria-describedby": "emailHelp",
@@ -1597,7 +1626,8 @@ var render = function() {
                       _vm._v(" "),
                       _c("i", {
                         staticClass: "fas fa-plus",
-                        staticStyle: { "margin-right": "5px" }
+                        staticStyle: { "margin-right": "30px", right: "200px" },
+                        on: { click: _vm.adddata }
                       })
                     ]
                   )

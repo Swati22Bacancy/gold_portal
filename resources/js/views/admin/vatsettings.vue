@@ -117,15 +117,15 @@
               </div>
               <div class="row">
                 <div class="form-group col-md-2" style="display: inline-flex;">
-                  <select class="form-control form-control-user" v-model="formdata.vat_rate">
-                    <option value="january">January</option>
+                  <select class="form-control form-control-user"  v-model="formdata.vat_rate" style="margin-right: 30px;">
+                    <option :value="rate.id" v-for="rate in vatRates" :key="rate.id">{{ rate.value }}</option>
                   </select>
-                  <span class="material-symbols-outlined" style="margin-right: 5px;color: red;cursor: pointer;">delete</span>
+                  <span class="material-symbols-outlined" style="margin-right: 30px;color: red;cursor: pointer;" @click="deletedata">delete</span>
                 </div>
                 <div class="form-group col-md-2" style="display: inline-flex;">
-                  <input type="text" class="form-control form-control-user"  aria-describedby="emailHelp" placeholder="" v-model="formdata.entered_vatrate"
+                  <input type="text" class="form-control form-control-user" style="margin-right:30px" aria-describedby="emailHelp" placeholder="" v-model="formdata.entered_vatrate"
                   />
-                  <i class="fas fa-plus" style="margin-right: 5px;"></i>
+                  <i class="fas fa-plus" style="margin-right: 30px; right:200px;" @click="adddata"></i>
                 </div>
               </div>
               <div class="row pb-4">
@@ -267,11 +267,32 @@ export default {
   data() {
     return {
       tabList: ["Basic Settings", "Field Names"],
-      formdata: {}
+      formdata: {},
+      vatRates:[],
     };
   },
   methods:
   {
+    adddata(){
+      if(this.formdata.entered_vatrate){
+        this.vatRates.push({
+          id:Date.now(),
+          value:this.formdata.entered_vatrate
+          });
+          console.log(this.vatRates);
+          this.formdata.entered_vatrate = "";
+      }
+
+    },
+    deletedata(){
+      console.log(this.formdata.vat_rate);
+      let index = this.vatRates.findIndex(rate => {
+        return rate.id == this.formdata.vat_rate
+      })
+      if(index != -1){
+        this.vatRates.splice(index, 1);
+      }
+    },
     is_super_admin(){
       if(this.user)
       {
@@ -416,5 +437,17 @@ export default {
   border-radius: 5px;
   height: auto;
   margin-left: 10px;
+}
+.material-symbols-outlined{
+  position: absolute;
+  margin-right: 30px;
+  top: 10px;
+  right: -20px; 
+}
+ .fa-plus{
+  position: absolute;
+  color: green;
+  top: 10px;
+  left: 160px; 
 }
 </style>
