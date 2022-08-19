@@ -12,7 +12,8 @@ class SalesController extends Controller
 {
     public function create_invoice(Request $request)
     {
-        $invoiceoptions = InvoiceOptions::where('id',1)->first();
+        try {
+            $invoiceoptions = InvoiceOptions::where('id',1)->first();
             if(!empty($invoiceoptions))
             {
                 $invprefix = ($invoiceoptions->invoice_name)?$invoiceoptions->invoice_name:'INV';
@@ -56,9 +57,6 @@ class SalesController extends Controller
                     ]);
                 }
             }
-            exit;
-        try {
-            
 
             return response()->json($sales);
         } catch (\Exception $e) {

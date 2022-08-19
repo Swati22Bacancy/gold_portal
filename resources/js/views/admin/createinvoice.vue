@@ -5,8 +5,8 @@
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">New Sales Invoice</h1>
         <div>
-          <button type="submit" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;">Save</button>
-          <button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button>
+          <button type="button" @click="create_invoice(k)" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;">Save</button>
+          <router-link to="/sales"><button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button></router-link>
         </div>
         
       </div>
@@ -23,7 +23,7 @@
                   placeholder="Select Customer"></model-select>
                   <div class="select-group-append">
                       <div class="input-icons">
-                        <button class="btn-modal" data-toggle="modal" data-target="#addcreateinvoice">
+                        <button type="button" class="btn-modal" data-toggle="modal" data-target="#addcreateinvoice">
                       <span class="fas fa-plus"></span></button>
                       <!-- Modal -->
                         <div
@@ -69,28 +69,28 @@
                                   <div class="col-md-6 detail-div">
                                       <div class="form-group customer-input">
                                         <label class="required-field">Registered Address</label>
-                                        <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.registered_address" />
-                                        <span v-if="$v.formdata.registered_address.$error" class="text-danger">Please enter address</span>
+                                        <input type="text" class="form-control form-control-user" placeholder="" v-model="customerdata.registered_address" />
+                                        <span v-if="$v.customerdata.registered_address.$error" class="text-danger">Please enter address</span>
                                       </div>
                                       <div class="form-group customer-input">
                                         <label class="required-field">Email</label>
-                                        <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.email"
+                                        <input type="text" class="form-control form-control-user" placeholder="" v-model="customerdata.email"
                                         />
-                                        <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
+                                        <span v-if="$v.customerdata.email.$error" class="text-danger">Email must be valid</span>
                                       </div>
                                   </div>
                                     
                                     <div class="col-md-6 primary-div">
                                         <div class="form-group customer-input">
                                           <label class="required-field">First Name</label>
-                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.first_name"/> 
-                                          <span v-if="$v.formdata.first_name.$error" class="text-danger">Please your first name</span>
+                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="customerdata.first_name"/> 
+                                          <span v-if="$v.customerdata.first_name.$error" class="text-danger">Please your first name</span>
                                         </div>
 
                                         <div class="form-group customer-input">
                                           <label class="required-field">Last Name</label>
-                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.last_name"/>
-                                          <span v-if="$v.formdata.last_name.$error" class="text-danger">Please your last name</span>
+                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="customerdata.last_name"/>
+                                          <span v-if="$v.customerdata.last_name.$error" class="text-danger">Please your last name</span>
                                         </div>
                                     </div>
                                 </div>
@@ -99,14 +99,14 @@
                                     <div class="col-md-6 detail-div">
                                       <div class="form-group customer-input">
                                           <label class="required-field">First Name</label>
-                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.first_name"/>
-                                          <span v-if="$v.formdata.first_name.$error" class="text-danger">Please your first name</span>
+                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="customerdata.first_name"/>
+                                          <span v-if="$v.customerdata.first_name.$error" class="text-danger">Please your first name</span>
                                       </div>
 
                                       <div class="form-group customer-input">
                                           <label class="required-field">Last Name</label>
-                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.last_name"/>
-                                          <span v-if="$v.formdata.last_name.$error" class="text-danger">Please your last name</span>
+                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="customerdata.last_name"/>
+                                          <span v-if="$v.customerdata.last_name.$error" class="text-danger">Please your last name</span>
                                       </div>
                                     
                                     
@@ -114,20 +114,20 @@
                                     <div class="col-md-6 primary-div">
                                       <div class="form-group customer-input">
                                           <label class="required-field">Registered Address</label>
-                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.registered_address"/>
-                                          <span v-if="$v.formdata.registered_address.$error" class="text-danger">Please enter address</span>
+                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="customerdata.registered_address"/>
+                                          <span v-if="$v.customerdata.registered_address.$error" class="text-danger">Please enter address</span>
                                       </div>
                                       <div class="form-group customer-input">
                                           <label class="required-field">Email</label>
-                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.email"/>
-                                        <span v-if="$v.formdata.email.$error" class="text-danger">Email must be valid</span>
+                                          <input type="text" class="form-control form-control-user" placeholder="" v-model="customerdata.email"/>
+                                        <span v-if="$v.customerdata.email.$error" class="text-danger">Email must be valid</span>
                                       </div>
                                     </div>
                                     
                                     </div>
                                 </div>
                             <div class="modal-footer">
-                                <router-link to="/sales"><button type="submit" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Save</button></router-link>
+                                <button type="button" @click="add_customer()" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Save</button>
                                 <button type="button" data-dismiss="modal"
                                 aria-label="Close" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button>
                             </div>
@@ -137,6 +137,7 @@
                     </div>
                   </div>
                 </div>
+                <span v-if="$v.formdata.customer_id.$error" class="text-danger">Please Select Customer</span>
               </div>
               
             </div>
@@ -160,6 +161,7 @@
                 
               </div>
             </div>
+            <span v-if="$v.formdata.issue_date.$error" class="text-danger">Please Select Issue Date</span>
             <div class="col-md-2">
               <div class="form-group">
                 <label>Due Date</label>
@@ -167,6 +169,7 @@
                 
               </div>
             </div>
+            <span v-if="$v.formdata.due_date.$error" class="text-danger">Please Select Due Date</span>
           </div>
 
           <div class="row mb-4">
@@ -180,8 +183,8 @@
                   v-model="formdata.billing_address"
                 />
               </div>
-              
             </div>
+            <span v-if="$v.formdata.billing_address.$error" class="text-danger">Please Enter Delivery & Billing Address</span>
             <div class="col-md-2">
               <div class="form-group">
                 <label>Reference</label>
@@ -201,6 +204,7 @@
                 </select>
               </div>
             </div>
+            <span v-if="$v.formdata.currency_id.$error" class="text-danger">Please Select Currency</span>
             <div class="col-md-2">
               <div class="form-group">
                 <label>Recurring Invoice</label>
@@ -268,11 +272,32 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
-              <button type="button" class="btn admin-btn mobile-mb btn-addwidth" style="background-color: #7ADAAA !important;" @click="addLine"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Line Item</button>
-              <button type="button" class="btn admin-btn mobile-mb btn-addwidth"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Comment</button>
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-5">
+                  <button type="button" class="btn admin-btn mobile-mb btn-addwidth" style="background-color: #7ADAAA !important;" @click="addLine"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Line Item</button>
+                  <button type="button" @click="showcommentbox()" class="btn admin-btn mobile-mb btn-addwidth"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Comment</button>
+                </div>
+                <div class="col-md-6" v-if="commentshow">
+                  <input
+                    type="text"
+                    class="form-control form-control-user"
+                    placeholder="Add comment here"
+                    v-model="formdata.comment"
+                  />
+                </div>
+              </div>
+              
+              
             </div>
-            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+              <input
+                  type="text"
+                  class="form-control form-control-user"
+                  placeholder="Add comment here"
+                  v-model="formdata.comment"
+                />
+            </div> -->
             <div class="col-md-2 sum-price">
               <ul style="text-align: right;">
                 <li style="color:#3376C2">Sub Total (<i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>)</li>
@@ -328,6 +353,7 @@ import { required,email,helpers} from "vuelidate/lib/validators";
 const isName = helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
  import { ModelSelect } from 'vue-search-select'
 import Datepicker from 'vuejs-datepicker';
+import { exit } from "process";
 export default {
   name: "CreateInvoice",
   components: {
@@ -368,7 +394,9 @@ export default {
       producttypes:{},
       subtotal:'',
       vattotal:'',
-      totalamount:''
+      totalamount:'',
+      customerdata:{},
+      commentshow: '',
     };
   },
   methods:
@@ -426,10 +454,10 @@ export default {
       this.customerType = type;
     },
     async create_invoice() {
-      //   this.$v.formdata.$touch();
-      // if (this.$v.formdata.$error) {
-      //   return;
-      // }
+        this.$v.formdata.$touch();
+      if (this.$v.formdata.$error) {
+        return;
+      }
       try {
         this.formdata.customertype= this.customerType;
         this.postdata.formfields = this.formdata;
@@ -632,10 +660,34 @@ export default {
       this.formdata.subtotal = Number(this.subtotal);
       this.formdata.vattotal = Number(this.vattotal);
       this.formdata.totalamount = Number(this.totalamount);
+    },
+    async add_customer()
+    {
+      this.$v.customerdata.$touch();
+      if (this.$v.customerdata.$error) {
+        return;
+      }
+      const response = await axios.post("create_customer", {
+          first_name: this.customerdata.first_name,
+          last_name: this.customerdata.last_name,
+          email: this.customerdata.email,
+          registered_address: this.customerdata.registered_address,
+          customertype: this.customerType
+        });
+      
+      this.formdata.billing_address = this.customerdata.registered_address;
+      var newdata = {value: response.data.id,text: `${response.data.first_name || ""} ${response.data.last_name || ""} `};
+      this.customers.push(newdata);
+      this.formdata.customer_id=response.data.id;
+      $('#addcreateinvoice').modal('hide');
+    },
+    showcommentbox()
+    {
+      this.commentshow='show';
     }
   },
     validations: {
-    formdata: {
+    customerdata: {
        email: {
         required,
         email
@@ -647,6 +699,23 @@ export default {
         required,
       },
       last_name: {
+        required,
+      }
+    },
+    formdata: {
+       customer_id: {
+        required,
+      },
+      billing_address: {
+        required,
+      },
+      issue_date: {
+        required,
+      },
+      due_date: {
+        required,
+      },
+      currency_id: {
         required,
       }
     }

@@ -17,6 +17,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-search-select */ "./node_modules/vue-search-select/dist/VueSearchSelect.common.js");
 /* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_search_select__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! process */ "./node_modules/process/browser.js");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(process__WEBPACK_IMPORTED_MODULE_4__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -347,8 +349,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -391,7 +419,9 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       producttypes: {},
       subtotal: '',
       vattotal: '',
-      totalamount: ''
+      totalamount: '',
+      customerdata: {},
+      commentshow: ''
     };
   },
   methods: {
@@ -450,14 +480,24 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
+                _this.$v.formdata.$touch();
+
+                if (!_this.$v.formdata.$error) {
+                  _context.next = 3;
+                  break;
+                }
+
+                return _context.abrupt("return");
+
+              case 3:
+                _context.prev = 3;
                 _this.formdata.customertype = _this.customerType;
                 _this.postdata.formfields = _this.formdata;
                 _this.postdata.itemfields = _this.invoice_items;
-                _context.next = 6;
+                _context.next = 9;
                 return axios.post("create_invoice", _this.postdata);
 
-              case 6:
+              case 9:
                 response = _context.sent;
                 message = "Sales Invoice has been successfully created.";
                 toast = Vue.toasted.show(message, {
@@ -468,12 +508,12 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
 
                 _this.$router.push("/sales");
 
-                _context.next = 16;
+                _context.next = 19;
                 break;
 
-              case 12:
-                _context.prev = 12;
-                _context.t0 = _context["catch"](0);
+              case 15:
+                _context.prev = 15;
+                _context.t0 = _context["catch"](3);
                 _message = 'Something went wrong, Please try again';
                 _toast = Vue.toasted.show(_message, {
                   theme: "toasted-error",
@@ -481,12 +521,12 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                   duration: 5000
                 });
 
-              case 16:
+              case 19:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 12]]);
+        }, _callee, null, [[3, 15]]);
       }))();
     },
     getCustomers: function getCustomers() {
@@ -648,10 +688,62 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       this.formdata.subtotal = Number(this.subtotal);
       this.formdata.vattotal = Number(this.vattotal);
       this.formdata.totalamount = Number(this.totalamount);
+    },
+    add_customer: function add_customer() {
+      var _this8 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var response, newdata;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _this8.$v.customerdata.$touch();
+
+                if (!_this8.$v.customerdata.$error) {
+                  _context2.next = 3;
+                  break;
+                }
+
+                return _context2.abrupt("return");
+
+              case 3:
+                _context2.next = 5;
+                return axios.post("create_customer", {
+                  first_name: _this8.customerdata.first_name,
+                  last_name: _this8.customerdata.last_name,
+                  email: _this8.customerdata.email,
+                  registered_address: _this8.customerdata.registered_address,
+                  customertype: _this8.customerType
+                });
+
+              case 5:
+                response = _context2.sent;
+                _this8.formdata.billing_address = _this8.customerdata.registered_address;
+                newdata = {
+                  value: response.data.id,
+                  text: "".concat(response.data.first_name || "", " ").concat(response.data.last_name || "", " ")
+                };
+
+                _this8.customers.push(newdata);
+
+                _this8.formdata.customer_id = response.data.id;
+                $('#addcreateinvoice').modal('hide');
+
+              case 11:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    showcommentbox: function showcommentbox() {
+      this.commentshow = 'show';
     }
   },
   validations: {
-    formdata: {
+    customerdata: {
       email: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required,
         email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.email
@@ -663,6 +755,23 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
       },
       last_name: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+      }
+    },
+    formdata: {
+      customer_id: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+      },
+      billing_address: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+      },
+      issue_date: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+      },
+      due_date: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+      },
+      currency_id: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
       }
     }
@@ -846,7 +955,50 @@ var render = function() {
         }
       },
       [
-        _vm._m(0),
+        _c(
+          "div",
+          {
+            staticClass:
+              "d-sm-flex align-items-center justify-content-between mb-4"
+          },
+          [
+            _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
+              _vm._v("New Sales Invoice")
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn admin-btn mobile-mb btn-nwidth",
+                    staticStyle: { "background-color": "#7ADAAA !important" },
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.create_invoice(_vm.k)
+                      }
+                    }
+                  },
+                  [_vm._v("Save")]
+                ),
+                _vm._v(" "),
+                _c("router-link", { attrs: { to: "/sales" } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb btn-nwidth",
+                      attrs: { type: "button" }
+                    },
+                    [_vm._v("Cancel")]
+                  )
+                ])
+              ],
+              1
+            )
+          ]
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-12 createinvoice-div" }, [
@@ -877,7 +1029,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "select-group-append" }, [
                         _c("div", { staticClass: "input-icons" }, [
-                          _vm._m(1),
+                          _vm._m(0),
                           _vm._v(" "),
                           _c(
                             "div",
@@ -900,7 +1052,7 @@ var render = function() {
                                 },
                                 [
                                   _c("div", { staticClass: "modal-content" }, [
-                                    _vm._m(2),
+                                    _vm._m(1),
                                     _vm._v(" "),
                                     _c("div", { staticClass: "modal-body" }, [
                                       _c("div", { staticClass: "row mb-4" }, [
@@ -1021,10 +1173,10 @@ var render = function() {
                                                           name: "model",
                                                           rawName: "v-model",
                                                           value:
-                                                            _vm.formdata
+                                                            _vm.customerdata
                                                               .registered_address,
                                                           expression:
-                                                            "formdata.registered_address"
+                                                            "customerdata.registered_address"
                                                         }
                                                       ],
                                                       staticClass:
@@ -1035,7 +1187,7 @@ var render = function() {
                                                       },
                                                       domProps: {
                                                         value:
-                                                          _vm.formdata
+                                                          _vm.customerdata
                                                             .registered_address
                                                       },
                                                       on: {
@@ -1049,7 +1201,7 @@ var render = function() {
                                                             return
                                                           }
                                                           _vm.$set(
-                                                            _vm.formdata,
+                                                            _vm.customerdata,
                                                             "registered_address",
                                                             $event.target.value
                                                           )
@@ -1057,7 +1209,7 @@ var render = function() {
                                                       }
                                                     }),
                                                     _vm._v(" "),
-                                                    _vm.$v.formdata
+                                                    _vm.$v.customerdata
                                                       .registered_address.$error
                                                       ? _c(
                                                           "span",
@@ -1097,9 +1249,10 @@ var render = function() {
                                                           name: "model",
                                                           rawName: "v-model",
                                                           value:
-                                                            _vm.formdata.email,
+                                                            _vm.customerdata
+                                                              .email,
                                                           expression:
-                                                            "formdata.email"
+                                                            "customerdata.email"
                                                         }
                                                       ],
                                                       staticClass:
@@ -1110,7 +1263,7 @@ var render = function() {
                                                       },
                                                       domProps: {
                                                         value:
-                                                          _vm.formdata.email
+                                                          _vm.customerdata.email
                                                       },
                                                       on: {
                                                         input: function(
@@ -1123,7 +1276,7 @@ var render = function() {
                                                             return
                                                           }
                                                           _vm.$set(
-                                                            _vm.formdata,
+                                                            _vm.customerdata,
                                                             "email",
                                                             $event.target.value
                                                           )
@@ -1131,7 +1284,8 @@ var render = function() {
                                                       }
                                                     }),
                                                     _vm._v(" "),
-                                                    _vm.$v.formdata.email.$error
+                                                    _vm.$v.customerdata.email
+                                                      .$error
                                                       ? _c(
                                                           "span",
                                                           {
@@ -1179,10 +1333,10 @@ var render = function() {
                                                           name: "model",
                                                           rawName: "v-model",
                                                           value:
-                                                            _vm.formdata
+                                                            _vm.customerdata
                                                               .first_name,
                                                           expression:
-                                                            "formdata.first_name"
+                                                            "customerdata.first_name"
                                                         }
                                                       ],
                                                       staticClass:
@@ -1193,7 +1347,7 @@ var render = function() {
                                                       },
                                                       domProps: {
                                                         value:
-                                                          _vm.formdata
+                                                          _vm.customerdata
                                                             .first_name
                                                       },
                                                       on: {
@@ -1207,7 +1361,7 @@ var render = function() {
                                                             return
                                                           }
                                                           _vm.$set(
-                                                            _vm.formdata,
+                                                            _vm.customerdata,
                                                             "first_name",
                                                             $event.target.value
                                                           )
@@ -1215,8 +1369,8 @@ var render = function() {
                                                       }
                                                     }),
                                                     _vm._v(" "),
-                                                    _vm.$v.formdata.first_name
-                                                      .$error
+                                                    _vm.$v.customerdata
+                                                      .first_name.$error
                                                       ? _c(
                                                           "span",
                                                           {
@@ -1255,10 +1409,10 @@ var render = function() {
                                                           name: "model",
                                                           rawName: "v-model",
                                                           value:
-                                                            _vm.formdata
+                                                            _vm.customerdata
                                                               .last_name,
                                                           expression:
-                                                            "formdata.last_name"
+                                                            "customerdata.last_name"
                                                         }
                                                       ],
                                                       staticClass:
@@ -1269,7 +1423,8 @@ var render = function() {
                                                       },
                                                       domProps: {
                                                         value:
-                                                          _vm.formdata.last_name
+                                                          _vm.customerdata
+                                                            .last_name
                                                       },
                                                       on: {
                                                         input: function(
@@ -1282,7 +1437,7 @@ var render = function() {
                                                             return
                                                           }
                                                           _vm.$set(
-                                                            _vm.formdata,
+                                                            _vm.customerdata,
                                                             "last_name",
                                                             $event.target.value
                                                           )
@@ -1290,8 +1445,8 @@ var render = function() {
                                                       }
                                                     }),
                                                     _vm._v(" "),
-                                                    _vm.$v.formdata.last_name
-                                                      .$error
+                                                    _vm.$v.customerdata
+                                                      .last_name.$error
                                                       ? _c(
                                                           "span",
                                                           {
@@ -1343,10 +1498,10 @@ var render = function() {
                                                           name: "model",
                                                           rawName: "v-model",
                                                           value:
-                                                            _vm.formdata
+                                                            _vm.customerdata
                                                               .first_name,
                                                           expression:
-                                                            "formdata.first_name"
+                                                            "customerdata.first_name"
                                                         }
                                                       ],
                                                       staticClass:
@@ -1357,7 +1512,7 @@ var render = function() {
                                                       },
                                                       domProps: {
                                                         value:
-                                                          _vm.formdata
+                                                          _vm.customerdata
                                                             .first_name
                                                       },
                                                       on: {
@@ -1371,7 +1526,7 @@ var render = function() {
                                                             return
                                                           }
                                                           _vm.$set(
-                                                            _vm.formdata,
+                                                            _vm.customerdata,
                                                             "first_name",
                                                             $event.target.value
                                                           )
@@ -1379,8 +1534,8 @@ var render = function() {
                                                       }
                                                     }),
                                                     _vm._v(" "),
-                                                    _vm.$v.formdata.first_name
-                                                      .$error
+                                                    _vm.$v.customerdata
+                                                      .first_name.$error
                                                       ? _c(
                                                           "span",
                                                           {
@@ -1419,10 +1574,10 @@ var render = function() {
                                                           name: "model",
                                                           rawName: "v-model",
                                                           value:
-                                                            _vm.formdata
+                                                            _vm.customerdata
                                                               .last_name,
                                                           expression:
-                                                            "formdata.last_name"
+                                                            "customerdata.last_name"
                                                         }
                                                       ],
                                                       staticClass:
@@ -1433,7 +1588,8 @@ var render = function() {
                                                       },
                                                       domProps: {
                                                         value:
-                                                          _vm.formdata.last_name
+                                                          _vm.customerdata
+                                                            .last_name
                                                       },
                                                       on: {
                                                         input: function(
@@ -1446,7 +1602,7 @@ var render = function() {
                                                             return
                                                           }
                                                           _vm.$set(
-                                                            _vm.formdata,
+                                                            _vm.customerdata,
                                                             "last_name",
                                                             $event.target.value
                                                           )
@@ -1454,8 +1610,8 @@ var render = function() {
                                                       }
                                                     }),
                                                     _vm._v(" "),
-                                                    _vm.$v.formdata.last_name
-                                                      .$error
+                                                    _vm.$v.customerdata
+                                                      .last_name.$error
                                                       ? _c(
                                                           "span",
                                                           {
@@ -1507,10 +1663,10 @@ var render = function() {
                                                           name: "model",
                                                           rawName: "v-model",
                                                           value:
-                                                            _vm.formdata
+                                                            _vm.customerdata
                                                               .registered_address,
                                                           expression:
-                                                            "formdata.registered_address"
+                                                            "customerdata.registered_address"
                                                         }
                                                       ],
                                                       staticClass:
@@ -1521,7 +1677,7 @@ var render = function() {
                                                       },
                                                       domProps: {
                                                         value:
-                                                          _vm.formdata
+                                                          _vm.customerdata
                                                             .registered_address
                                                       },
                                                       on: {
@@ -1535,7 +1691,7 @@ var render = function() {
                                                             return
                                                           }
                                                           _vm.$set(
-                                                            _vm.formdata,
+                                                            _vm.customerdata,
                                                             "registered_address",
                                                             $event.target.value
                                                           )
@@ -1543,7 +1699,7 @@ var render = function() {
                                                       }
                                                     }),
                                                     _vm._v(" "),
-                                                    _vm.$v.formdata
+                                                    _vm.$v.customerdata
                                                       .registered_address.$error
                                                       ? _c(
                                                           "span",
@@ -1583,9 +1739,10 @@ var render = function() {
                                                           name: "model",
                                                           rawName: "v-model",
                                                           value:
-                                                            _vm.formdata.email,
+                                                            _vm.customerdata
+                                                              .email,
                                                           expression:
-                                                            "formdata.email"
+                                                            "customerdata.email"
                                                         }
                                                       ],
                                                       staticClass:
@@ -1596,7 +1753,7 @@ var render = function() {
                                                       },
                                                       domProps: {
                                                         value:
-                                                          _vm.formdata.email
+                                                          _vm.customerdata.email
                                                       },
                                                       on: {
                                                         input: function(
@@ -1609,7 +1766,7 @@ var render = function() {
                                                             return
                                                           }
                                                           _vm.$set(
-                                                            _vm.formdata,
+                                                            _vm.customerdata,
                                                             "email",
                                                             $event.target.value
                                                           )
@@ -1617,7 +1774,8 @@ var render = function() {
                                                       }
                                                     }),
                                                     _vm._v(" "),
-                                                    _vm.$v.formdata.email.$error
+                                                    _vm.$v.customerdata.email
+                                                      .$error
                                                       ? _c(
                                                           "span",
                                                           {
@@ -1639,46 +1797,40 @@ var render = function() {
                                         : _vm._e()
                                     ]),
                                     _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      { staticClass: "modal-footer" },
-                                      [
-                                        _c(
-                                          "router-link",
-                                          { attrs: { to: "/sales" } },
-                                          [
-                                            _c(
-                                              "button",
-                                              {
-                                                staticClass:
-                                                  "btn admin-btn mobile-mb btn-nwidth",
-                                                staticStyle: {
-                                                  "background-color":
-                                                    "#7adaaa !important"
-                                                },
-                                                attrs: { type: "submit" }
-                                              },
-                                              [_vm._v("Save")]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn admin-btn mobile-mb btn-nwidth",
-                                            attrs: {
-                                              type: "button",
-                                              "data-dismiss": "modal",
-                                              "aria-label": "Close"
-                                            }
+                                    _c("div", { staticClass: "modal-footer" }, [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "btn admin-btn mobile-mb btn-nwidth",
+                                          staticStyle: {
+                                            "background-color":
+                                              "#7adaaa !important"
                                           },
-                                          [_vm._v("Cancel")]
-                                        )
-                                      ],
-                                      1
-                                    )
+                                          attrs: { type: "button" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.add_customer()
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Save")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "btn admin-btn mobile-mb btn-nwidth",
+                                          attrs: {
+                                            type: "button",
+                                            "data-dismiss": "modal",
+                                            "aria-label": "Close"
+                                          }
+                                        },
+                                        [_vm._v("Cancel")]
+                                      )
+                                    ])
                                   ])
                                 ]
                               )
@@ -1688,7 +1840,13 @@ var render = function() {
                       ])
                     ],
                     1
-                  )
+                  ),
+                  _vm._v(" "),
+                  _vm.$v.formdata.customer_id.$error
+                    ? _c("span", { staticClass: "text-danger" }, [
+                        _vm._v("Please Select Customer")
+                      ])
+                    : _vm._e()
                 ])
               ]),
               _vm._v(" "),
@@ -1748,6 +1906,12 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
+              _vm.$v.formdata.issue_date.$error
+                ? _c("span", { staticClass: "text-danger" }, [
+                    _vm._v("Please Select Issue Date")
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }, [
                 _c(
                   "div",
@@ -1767,7 +1931,13 @@ var render = function() {
                   ],
                   1
                 )
-              ])
+              ]),
+              _vm._v(" "),
+              _vm.$v.formdata.due_date.$error
+                ? _c("span", { staticClass: "text-danger" }, [
+                    _vm._v("Please Select Due Date")
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row mb-4" }, [
@@ -1802,6 +1972,12 @@ var render = function() {
                   })
                 ])
               ]),
+              _vm._v(" "),
+              _vm.$v.formdata.billing_address.$error
+                ? _c("span", { staticClass: "text-danger" }, [
+                    _vm._v("Please Enter Delivery & Billing Address")
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }, [
                 _c("div", { staticClass: "form-group" }, [
@@ -1878,6 +2054,12 @@ var render = function() {
                   )
                 ])
               ]),
+              _vm._v(" "),
+              _vm.$v.formdata.currency_id.$error
+                ? _c("span", { staticClass: "text-danger" }, [
+                    _vm._v("Please Select Currency")
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }, [
                 _c("div", { staticClass: "form-group" }, [
@@ -1957,7 +2139,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(3),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -2264,30 +2446,85 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn admin-btn mobile-mb btn-addwidth",
-                      staticStyle: { "background-color": "#7ADAAA !important" },
-                      attrs: { type: "button" },
-                      on: { click: _vm.addLine }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-plus",
-                        staticStyle: { "margin-right": "5px" }
-                      }),
-                      _vm._v("Add Line Item")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm._m(4)
+                _c("div", { staticClass: "col-md-8" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-5" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn admin-btn mobile-mb btn-addwidth",
+                          staticStyle: {
+                            "background-color": "#7ADAAA !important"
+                          },
+                          attrs: { type: "button" },
+                          on: { click: _vm.addLine }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fas fa-plus",
+                            staticStyle: { "margin-right": "5px" }
+                          }),
+                          _vm._v("Add Line Item")
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn admin-btn mobile-mb btn-addwidth",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.showcommentbox()
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fas fa-plus",
+                            staticStyle: { "margin-right": "5px" }
+                          }),
+                          _vm._v("Add Comment")
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm.commentshow
+                      ? _c("div", { staticClass: "col-md-6" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.formdata.comment,
+                                expression: "formdata.comment"
+                              }
+                            ],
+                            staticClass: "form-control form-control-user",
+                            attrs: {
+                              type: "text",
+                              placeholder: "Add comment here"
+                            },
+                            domProps: { value: _vm.formdata.comment },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.formdata,
+                                  "comment",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      : _vm._e()
+                  ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-2" }),
-                _vm._v(" "),
-                _vm._m(5),
+                _vm._m(3),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-2 sum-price" }, [
                   _c("ul", [
@@ -2402,47 +2639,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "div",
-      {
-        staticClass: "d-sm-flex align-items-center justify-content-between mb-4"
-      },
-      [
-        _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
-          _vm._v("New Sales Invoice")
-        ]),
-        _vm._v(" "),
-        _c("div", [
-          _c(
-            "button",
-            {
-              staticClass: "btn admin-btn mobile-mb btn-nwidth",
-              staticStyle: { "background-color": "#7ADAAA !important" },
-              attrs: { type: "submit" }
-            },
-            [_vm._v("Save")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn admin-btn mobile-mb btn-nwidth",
-              attrs: { type: "button" }
-            },
-            [_vm._v("Cancel")]
-          )
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
       "button",
       {
         staticClass: "btn-modal",
-        attrs: { "data-toggle": "modal", "data-target": "#addcreateinvoice" }
+        attrs: {
+          type: "button",
+          "data-toggle": "modal",
+          "data-target": "#addcreateinvoice"
+        }
       },
       [_c("span", { staticClass: "fas fa-plus" })]
     )
@@ -2504,25 +2708,6 @@ var staticRenderFns = [
         _c("th")
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn admin-btn mobile-mb btn-addwidth",
-        attrs: { type: "button" }
-      },
-      [
-        _c("i", {
-          staticClass: "fas fa-plus",
-          staticStyle: { "margin-right": "5px" }
-        }),
-        _vm._v("Add Comment")
-      ]
-    )
   },
   function() {
     var _vm = this
