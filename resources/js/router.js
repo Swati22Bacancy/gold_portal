@@ -172,7 +172,7 @@ let router = new Router({
             }
         },
         {
-            path: "/viewsales",
+            path: "/viewsales/:id",
             name: "viewsales",
             component: () => import("./views/admin/viewsales.vue"),
             meta: {

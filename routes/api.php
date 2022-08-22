@@ -116,4 +116,5 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     // Sales Invoice Routes
     Route::post('create_invoice',[Api\SalesController::class, 'create_invoice']);
+    Route::get('sales_list', [Api\SalesController::class, 'saleslist']);
 });

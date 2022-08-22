@@ -7,6 +7,7 @@ use App\Models\SalesItems;
 use App\Models\InvoiceOptions;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 
 class SalesController extends Controller
 {
@@ -66,10 +67,16 @@ class SalesController extends Controller
         }
     }
 
-    public function industrysectorlist()
+    public function saleslist()
     {
-        $industrysectors = IndustrySector::select('*')->orderBy('id', 'DESC')->get();
-        return response()->json($industrysectors);
+        $sales = Sales::leftjoin('customers', 'customers.id', '=', 'sales_invoice.customer_id')->select('sales_invoice.*','customers.first_name as firstname','customers.last_name as lastname')->orderBy('sales_invoice.id', 'DESC')->get();
+        
+        foreach($sales as $key => $sale)
+        {
+            $saleitems = SalesItems::leftjoin('producttypes', 'producttypes.id', '=', 'sales_items.producttype_id')->select(DB::raw('group_concat(producttypes.name) as typename'))->where('sales_id',$sale->id)->groupby('sales_id')->first();
+            $sales[$key]->typename = $saleitems->typename;
+        }
+        return response()->json($sales);
     }
 
     public function deleteindustrysector($id){
