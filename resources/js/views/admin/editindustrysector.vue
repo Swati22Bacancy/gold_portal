@@ -17,7 +17,7 @@
             <div class="row mb-4">
               <div class="col-md-6">
                 <div class="form-group customer-input">
-                  <label>Title</label>
+                  <label class="required-field">Title</label>
                   <input
                     type="text"
                     class="form-control form-control-role"
@@ -26,6 +26,7 @@
                     placeholder="Enter title here"
                     v-model="formdata.title"
                   />
+                  <span v-if="$v.formdata.title.$error" class="text-danger">Please enter title</span>
                 </div>
                 
               </div>
@@ -38,18 +39,26 @@
 </template>
 
 <script>
+import { required} from "vuelidate/lib/validators";
 import { customerRules } from './rules/customerRules'
 export default {
   name: "UpdateRole",
   data() {
     return {
       rules : customerRules,
-      formdata: {},
+      formdata: {
+        title:"",
+      },
+      errors: {},
     };
   },
   methods:
   {
     async update_industrysector() {
+       this.$v.formdata.$touch();
+      if (this.$v.formdata.$error) {
+        return;
+      }
       try {
         const response = await axios.post("update_industrysector", {
           id: this.$route.params.id,
@@ -74,6 +83,14 @@ export default {
       }
     },
   },
+  validations: {
+    formdata: {
+      title: {
+        required,
+       
+      },
+    }
+   },
   mounted()
   {
     axios.get('/industrysector_details/'+this.$route.params.id)
@@ -87,7 +104,13 @@ export default {
 };
 </script>
 <style scoped>
-
+.required-field::after {
+  content: "*";
+  color: red;
+}
+.text-danger{
+  font-size: 12px;
+}
 .createindustrysector-div
 {
   background: #fff;
