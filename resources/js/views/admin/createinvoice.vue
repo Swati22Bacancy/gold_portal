@@ -152,6 +152,7 @@
                   placeholder=""
                   v-model="formdata.invoiceno"
                 />
+                <span v-if="$v.formdata.invoiceno.$error" class="text-danger">Please Enter invoice no</span>
               </div>
             </div>
             <div class="col-md-2">
@@ -173,14 +174,15 @@
 
           <div class="row mb-4">
             <div class="col-md-4">
-              <div class="form-group">
+              <div class="form-group" >
                 <label>Delivery & Billing Address</label>
                 <input
                   type="text"
                   class="form-control form-control-user"
                   placeholder=""
                   v-model="formdata.billing_address"
-                />
+                :readonly="!editflag"/>
+                <button class="edit-cont" @click="editButton"><i class="fas fa-pencil-alt"></i></button>
                 <span v-if="$v.formdata.billing_address.$error" class="text-danger">Please Enter Delivery & Billing Address</span>
               </div>
             </div>
@@ -201,6 +203,7 @@
                 <label>Currency</label>
                 <select class="form-control form-control-user"  v-model="formdata.currency_id">
                     <option v-for="currency in currencies" :key="currency.id" :value="currency.id">{{currency.name}}</option>
+
                 </select>
                 <span v-if="$v.formdata.currency_id.$error" class="text-danger">Please Select Currency</span>
               </div>
@@ -376,6 +379,9 @@ export default {
       customerType: 'business',
       theme: 'cust-type',
       formdata: {
+        issue_date:Date.now(),
+        due_date:Date.now(),
+        invoiceno:"INV-",
         registered_address:"",
         first_name: "",
         last_name: "",
@@ -403,10 +409,15 @@ export default {
       totalamount:'',
       customerdata:{},
       commentshow: '',
+      editflag:false,
     };
   },
   methods:
   {
+
+    editButton(){
+      this.editflag = !this.editflag;
+    },
     addLine(){
      
       this.invoice_items.push({
@@ -722,6 +733,9 @@ export default {
        customer_id: {
         required,
       },
+      invoiceno:{
+        required,
+      },
       billing_address: {
         required,
       },
@@ -762,6 +776,12 @@ export default {
 };
 </script>
 <style scoped>
+.edit-cont{
+  position: absolute;
+  top: 35px;
+   left: 350px;
+   border: none;
+}
 .select-cont{
   width: 200px;
 }
