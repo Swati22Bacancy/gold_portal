@@ -152,39 +152,41 @@
                   placeholder=""
                   v-model="formdata.invoiceno"
                 />
+                <span v-if="$v.formdata.invoiceno.$error" class="text-danger">Please Enter invoice no</span>
               </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
                 <label>Issue Date</label>
                 <Datepicker v-model="formdata.issue_date" class="datapicker" id="mydatepicker"></Datepicker>
-                
+                <span v-if="$v.formdata.issue_date.$error" class="text-danger">Please Select Issue Date</span>
               </div>
             </div>
-            <span v-if="$v.formdata.issue_date.$error" class="text-danger">Please Select Issue Date</span>
             <div class="col-md-2">
               <div class="form-group">
                 <label>Due Date</label>
                 <Datepicker v-model="formdata.due_date"></Datepicker>
-                
+                <span v-if="$v.formdata.due_date.$error" class="text-danger">Please Select Due Date</span>
               </div>
             </div>
-            <span v-if="$v.formdata.due_date.$error" class="text-danger">Please Select Due Date</span>
+      
           </div>
 
           <div class="row mb-4">
             <div class="col-md-4">
-              <div class="form-group">
+              <div class="form-group" >
                 <label>Delivery & Billing Address</label>
                 <input
                   type="text"
                   class="form-control form-control-user"
                   placeholder=""
                   v-model="formdata.billing_address"
-                />
+                :readonly="!editflag"/>
+                <button class="edit-cont" @click="editButton"><i class="fas fa-pencil-alt"></i></button>
+                <span v-if="$v.formdata.billing_address.$error" class="text-danger">Please Enter Delivery & Billing Address</span>
               </div>
             </div>
-            <span v-if="$v.formdata.billing_address.$error" class="text-danger">Please Enter Delivery & Billing Address</span>
+            
             <div class="col-md-2">
               <div class="form-group">
                 <label>Reference</label>
@@ -201,10 +203,12 @@
                 <label>Currency</label>
                 <select class="form-control form-control-user"  v-model="formdata.currency_id">
                     <option v-for="currency in currencies" :key="currency.id" :value="currency.id">{{currency.name}}</option>
+
                 </select>
+                <span v-if="$v.formdata.currency_id.$error" class="text-danger">Please Select Currency</span>
               </div>
             </div>
-            <span v-if="$v.formdata.currency_id.$error" class="text-danger">Please Select Currency</span>
+            
             <div class="col-md-2">
               <div class="form-group">
                 <label>Recurring Invoice</label>
@@ -239,31 +243,36 @@
                   <tbody>
                     <tr v-for="(invoice_item, k) in invoice_items" :key="k">
                         <td>
-                          <select class="form-control form-control-user" @change="fetchProducts(k)" v-model="invoice_item.invoice_type">
+                          <select class="form-control form-control-user select-cont" @change="fetchProducts(k)" v-model="invoice_item.invoice_type" required>
                             <option v-for="producttype in producttypes" :key="producttype.id" :value="producttype.id">{{producttype.name}}</option>
                           </select>
+                          <!-- <span v-if="$v.invoice_item.invoice_type.$error" class="text-danger">Please Select type</span> -->
                         </td>
                         <td>
-                          <select class="form-control form-control-user" @change="fetchProductDetails(k)" v-model="invoice_item.invoice_product">
+                          <select class="form-control form-control-user select-cont" @change="fetchProductDetails(k)" v-model="invoice_item.invoice_product">
                             <!-- <option value="Option 1" selected>Group</option>
                             <option value="Option 1" >Option 1</option> -->
                             <option v-for="product in invoice_items[k].products" :key="product.id" :value="product.id">{{product.name}}</option>
                           </select>
+                        <!-- <span v-if="$v.invoice_item.invoice_product.$error" class="text-danger">Please Select product</span> -->
                         </td>
                         <td>
                           <input type="text" class="form-control form-control-user" placeholder="" v-model="invoice_item.weight" readonly/>
+                          <!-- <span v-if="$v.invoice_item.weight.$error" class="text-danger">Please Enter weight</span> -->
                         </td>
                         <td>
                           <input type="number" class="form-control form-control-user" @blur="calculatePrice(k)" placeholder="" v-model="invoice_item.quantity"/>
+                          <span v-if="$v.invoice_item.quantity.$error" class="text-danger">Please Enter weight</span>
                         </td>
                         <td>
-                          <input type="number" class="form-control form-control-user" placeholder="" v-model="invoice_item.unitprice" readonly/>
+                          <input type="number" class="form-control form-control-user" placeholder="" v-model="invoice_item.unitprice" readonly size="4"/>
+                          <span v-if="$v.invoice_item.unitprice.$error" class="text-danger">Please Enter unit pice</span>                        
                         </td>
                         <td>
-                          <input type="number" class="form-control form-control-user" placeholder="" v-model="invoice_item.vat" readonly/>
+                          <input type="number" class="form-control form-control-user" placeholder="" v-model="invoice_item.vat" readonly size="4"/>
                         </td>
                         <td>
-                          <input type="number" class="form-control form-control-user" @blur="calculatePrice(k)" placeholder="" v-model="invoice_item.invoice_amount"/>
+                          <input type="number" class="form-control form-control-user" @blur="calculatePrice(k)" placeholder="" v-model="invoice_item.invoice_amount" size="4"/>
                         </td>
                         <td><span class="material-symbols-outlined" style="margin-right: 5px;color: red;cursor: pointer;" @click="removeLine(k)">delete</span></td>
                     </tr>
@@ -370,6 +379,9 @@ export default {
       customerType: 'business',
       theme: 'cust-type',
       formdata: {
+        issue_date:Date.now(),
+        due_date:Date.now(),
+        invoiceno:"INV-",
         registered_address:"",
         first_name: "",
         last_name: "",
@@ -397,11 +409,17 @@ export default {
       totalamount:'',
       customerdata:{},
       commentshow: '',
+      editflag:false,
     };
   },
   methods:
   {
+
+    editButton(){
+      this.editflag = !this.editflag;
+    },
     addLine(){
+     
       this.invoice_items.push({
           invoice_type: '',
           invoice_product: '',
@@ -454,10 +472,19 @@ export default {
       this.customerType = type;
     },
     async create_invoice() {
-        this.$v.formdata.$touch();
+    if(this.invoice_items.length < 1){
+          let toast = Vue.toasted.show('Please enter one addline item', {
+            theme: "toasted-error",
+            position: "top-center",
+            duration: 5000,
+          });
+          return;
+    }
+       this.$v.formdata.$touch();
       if (this.$v.formdata.$error) {
         return;
       }
+      
       try {
         this.formdata.customertype= this.customerType;
         this.postdata.formfields = this.formdata;
@@ -706,6 +733,9 @@ export default {
        customer_id: {
         required,
       },
+      invoiceno:{
+        required,
+      },
       billing_address: {
         required,
       },
@@ -718,7 +748,24 @@ export default {
       currency_id: {
         required,
       }
-    }
+    },
+    invoice_item: {
+      invoice_product:{
+        required,
+      },
+      invoice_type:{
+        required,
+      },
+      weight:{
+        required,
+      },
+      quantity:{
+        required,
+      },
+      unitprice:{
+        required,
+      },
+    },
    },
   mounted()
   {
@@ -729,6 +776,15 @@ export default {
 };
 </script>
 <style scoped>
+.edit-cont{
+  position: absolute;
+  top: 35px;
+   left: 350px;
+   border: none;
+}
+.select-cont{
+  width: 200px;
+}
 .required-field::after {
   content: "*";
   color: red;

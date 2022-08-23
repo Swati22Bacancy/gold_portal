@@ -164,6 +164,17 @@
                   />
                 </div>
                 <div class="form-group customer-input">
+                  <label>Credit Period</label>
+                  <input
+                    type="number"
+                    class="form-control form-control-user"
+                    id="crt-customer"
+                    aria-describedby="emailHelp"
+                    placeholder=""
+                    v-model="formdata.credit_period"
+                  />
+                </div>
+                <div class="form-group customer-input">
                   <label>Select Group</label><br>
                   <select class="form-control form-control-user" v-model="formdata.group_id">
                     <option v-for="group in groups" :key="group.id" :value="group.id">{{group.name}}</option>

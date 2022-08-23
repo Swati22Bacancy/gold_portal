@@ -374,6 +374,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 
@@ -395,6 +404,9 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       customerType: 'business',
       theme: 'cust-type',
       formdata: {
+        issue_date: Date.now(),
+        due_date: Date.now(),
+        invoiceno: "INV-",
         registered_address: "",
         first_name: "",
         last_name: "",
@@ -421,10 +433,14 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       vattotal: '',
       totalamount: '',
       customerdata: {},
-      commentshow: ''
+      commentshow: '',
+      editflag: false
     };
   },
   methods: {
+    editButton: function editButton() {
+      this.editflag = !this.editflag;
+    },
     addLine: function addLine() {
       this.invoice_items.push({
         invoice_type: '',
@@ -474,33 +490,46 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var response, message, toast, _message, _toast;
+        var toast, response, message, _toast, _message, _toast2;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                if (!(_this.invoice_items.length < 1)) {
+                  _context.next = 3;
+                  break;
+                }
+
+                toast = Vue.toasted.show('Please enter one addline item', {
+                  theme: "toasted-error",
+                  position: "top-center",
+                  duration: 5000
+                });
+                return _context.abrupt("return");
+
+              case 3:
                 _this.$v.formdata.$touch();
 
                 if (!_this.$v.formdata.$error) {
-                  _context.next = 3;
+                  _context.next = 6;
                   break;
                 }
 
                 return _context.abrupt("return");
 
-              case 3:
-                _context.prev = 3;
+              case 6:
+                _context.prev = 6;
                 _this.formdata.customertype = _this.customerType;
                 _this.postdata.formfields = _this.formdata;
                 _this.postdata.itemfields = _this.invoice_items;
-                _context.next = 9;
+                _context.next = 12;
                 return axios.post("create_invoice", _this.postdata);
 
-              case 9:
+              case 12:
                 response = _context.sent;
                 message = "Sales Invoice has been successfully created.";
-                toast = Vue.toasted.show(message, {
+                _toast = Vue.toasted.show(message, {
                   theme: "toasted-success",
                   position: "top-center",
                   duration: 5000
@@ -508,25 +537,25 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
 
                 _this.$router.push("/sales");
 
-                _context.next = 19;
+                _context.next = 22;
                 break;
 
-              case 15:
-                _context.prev = 15;
-                _context.t0 = _context["catch"](3);
+              case 18:
+                _context.prev = 18;
+                _context.t0 = _context["catch"](6);
                 _message = 'Something went wrong, Please try again';
-                _toast = Vue.toasted.show(_message, {
+                _toast2 = Vue.toasted.show(_message, {
                   theme: "toasted-error",
                   position: "top-center",
                   duration: 5000
                 });
 
-              case 19:
+              case 22:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[3, 15]]);
+        }, _callee, null, [[6, 18]]);
       }))();
     },
     getCustomers: function getCustomers() {
@@ -762,6 +791,9 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       customer_id: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
       },
+      invoiceno: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+      },
       billing_address: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
       },
@@ -772,6 +804,23 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
       },
       currency_id: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+      }
+    },
+    invoice_item: {
+      invoice_product: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+      },
+      invoice_type: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+      },
+      weight: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+      },
+      quantity: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+      },
+      unitprice: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
       }
     }
@@ -802,7 +851,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.required-field[data-v-2193c37c]::after {\r\n  content: \"*\";\r\n  color: red;\n}\n.text-danger[data-v-2193c37c]{\r\n  font-size: 12px;\n}\n.button-container[data-v-2193c37c]{\r\n    display: flex;\r\n    justify-content: space-between;\n}\n.btn-modal[data-v-2193c37c]{\r\n  color: black;\r\n  border: 0;\r\n  background:#7ADAAA ;\n}\n.modal-selection[data-v-2193c37c]{\r\n  flex: 1 !important;\n}\n#createinvoice-datatable thead[data-v-2193c37c] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-2193c37c] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-2193c37c]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createinvoice-div[data-v-2193c37c]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-2193c37c]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-2193c37c]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-2193c37c]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-2193c37c]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-2193c37c]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-2193c37c]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-2193c37c]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.check-position[data-v-2193c37c]\r\n{\r\n  margin-left: 15%;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-2193c37c]\r\n  {\r\n    border-right: 2px solid #eee;\r\n    padding-right: 8%;\n}\n.primary-div[data-v-2193c37c]\r\n  {\r\n    padding-left: 8%;\n}\n}\n#mydatepicker[data-v-2193c37c]{\r\n    display: block;\r\n    width: 100%;\r\n    height: calc(1.5em + 0.75rem + 2px);\r\n    padding: 0.375rem 0.75rem;\r\n    font-size: 1rem;\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    color: #6e707e;\r\n    background-color: #fff;\r\n    background-clip: padding-box;\r\n    border: 1px solid #d1d3e2;\r\n    border-radius: 0.35rem;\r\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.edit-cont[data-v-2193c37c]{\r\n  position: absolute;\r\n  top: 35px;\r\n   left: 350px;\r\n   border: none;\n}\n.select-cont[data-v-2193c37c]{\r\n  width: 200px;\n}\n.required-field[data-v-2193c37c]::after {\r\n  content: \"*\";\r\n  color: red;\n}\n.text-danger[data-v-2193c37c]{\r\n  font-size: 12px;\n}\n.button-container[data-v-2193c37c]{\r\n    display: flex;\r\n    justify-content: space-between;\n}\n.btn-modal[data-v-2193c37c]{\r\n  color: black;\r\n  border: 0;\r\n  background:#7ADAAA ;\n}\n.modal-selection[data-v-2193c37c]{\r\n  flex: 1 !important;\n}\n#createinvoice-datatable thead[data-v-2193c37c] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-2193c37c] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-2193c37c]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createinvoice-div[data-v-2193c37c]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-2193c37c]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-2193c37c]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-2193c37c]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-2193c37c]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-2193c37c]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-2193c37c]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-2193c37c]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.check-position[data-v-2193c37c]\r\n{\r\n  margin-left: 15%;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-2193c37c]\r\n  {\r\n    border-right: 2px solid #eee;\r\n    padding-right: 8%;\n}\n.primary-div[data-v-2193c37c]\r\n  {\r\n    padding-left: 8%;\n}\n}\n#mydatepicker[data-v-2193c37c]{\r\n    display: block;\r\n    width: 100%;\r\n    height: calc(1.5em + 0.75rem + 2px);\r\n    padding: 0.375rem 0.75rem;\r\n    font-size: 1rem;\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    color: #6e707e;\r\n    background-color: #fff;\r\n    background-clip: padding-box;\r\n    border: 1px solid #d1d3e2;\r\n    border-radius: 0.35rem;\r\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1879,7 +1928,13 @@ var render = function() {
                         _vm.$set(_vm.formdata, "invoiceno", $event.target.value)
                       }
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _vm.$v.formdata.invoiceno.$error
+                    ? _c("span", { staticClass: "text-danger" }, [
+                        _vm._v("Please Enter invoice no")
+                      ])
+                    : _vm._e()
                 ])
               ]),
               _vm._v(" "),
@@ -1900,17 +1955,17 @@ var render = function() {
                         },
                         expression: "formdata.issue_date"
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.$v.formdata.issue_date.$error
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v("Please Select Issue Date")
+                        ])
+                      : _vm._e()
                   ],
                   1
                 )
               ]),
-              _vm._v(" "),
-              _vm.$v.formdata.issue_date.$error
-                ? _c("span", { staticClass: "text-danger" }, [
-                    _vm._v("Please Select Issue Date")
-                  ])
-                : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }, [
                 _c(
@@ -1927,17 +1982,17 @@ var render = function() {
                         },
                         expression: "formdata.due_date"
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.$v.formdata.due_date.$error
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v("Please Select Due Date")
+                        ])
+                      : _vm._e()
                   ],
                   1
                 )
-              ]),
-              _vm._v(" "),
-              _vm.$v.formdata.due_date.$error
-                ? _c("span", { staticClass: "text-danger" }, [
-                    _vm._v("Please Select Due Date")
-                  ])
-                : _vm._e()
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row mb-4" }, [
@@ -1955,7 +2010,11 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control form-control-user",
-                    attrs: { type: "text", placeholder: "" },
+                    attrs: {
+                      type: "text",
+                      placeholder: "",
+                      readonly: !_vm.editflag
+                    },
                     domProps: { value: _vm.formdata.billing_address },
                     on: {
                       input: function($event) {
@@ -1969,15 +2028,21 @@ var render = function() {
                         )
                       }
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    { staticClass: "edit-cont", on: { click: _vm.editButton } },
+                    [_c("i", { staticClass: "fas fa-pencil-alt" })]
+                  ),
+                  _vm._v(" "),
+                  _vm.$v.formdata.billing_address.$error
+                    ? _c("span", { staticClass: "text-danger" }, [
+                        _vm._v("Please Enter Delivery & Billing Address")
+                      ])
+                    : _vm._e()
                 ])
               ]),
-              _vm._v(" "),
-              _vm.$v.formdata.billing_address.$error
-                ? _c("span", { staticClass: "text-danger" }, [
-                    _vm._v("Please Enter Delivery & Billing Address")
-                  ])
-                : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }, [
                 _c("div", { staticClass: "form-group" }, [
@@ -2051,15 +2116,15 @@ var render = function() {
                       )
                     }),
                     0
-                  )
+                  ),
+                  _vm._v(" "),
+                  _vm.$v.formdata.currency_id.$error
+                    ? _c("span", { staticClass: "text-danger" }, [
+                        _vm._v("Please Select Currency")
+                      ])
+                    : _vm._e()
                 ])
               ]),
-              _vm._v(" "),
-              _vm.$v.formdata.currency_id.$error
-                ? _c("span", { staticClass: "text-danger" }, [
-                    _vm._v("Please Select Currency")
-                  ])
-                : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }, [
                 _c("div", { staticClass: "form-group" }, [
@@ -2157,7 +2222,9 @@ var render = function() {
                                       expression: "invoice_item.invoice_type"
                                     }
                                   ],
-                                  staticClass: "form-control form-control-user",
+                                  staticClass:
+                                    "form-control form-control-user select-cont",
+                                  attrs: { required: "" },
                                   on: {
                                     change: [
                                       function($event) {
@@ -2212,7 +2279,8 @@ var render = function() {
                                       expression: "invoice_item.invoice_product"
                                     }
                                   ],
-                                  staticClass: "form-control form-control-user",
+                                  staticClass:
+                                    "form-control form-control-user select-cont",
                                   on: {
                                     change: [
                                       function($event) {
@@ -2317,7 +2385,13 @@ var render = function() {
                                     )
                                   }
                                 }
-                              })
+                              }),
+                              _vm._v(" "),
+                              _vm.$v.invoice_item.quantity.$error
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v("Please Enter weight")
+                                  ])
+                                : _vm._e()
                             ]),
                             _vm._v(" "),
                             _c("td", [
@@ -2334,7 +2408,8 @@ var render = function() {
                                 attrs: {
                                   type: "number",
                                   placeholder: "",
-                                  readonly: ""
+                                  readonly: "",
+                                  size: "4"
                                 },
                                 domProps: { value: invoice_item.unitprice },
                                 on: {
@@ -2349,7 +2424,13 @@ var render = function() {
                                     )
                                   }
                                 }
-                              })
+                              }),
+                              _vm._v(" "),
+                              _vm.$v.invoice_item.unitprice.$error
+                                ? _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v("Please Enter unit pice")
+                                  ])
+                                : _vm._e()
                             ]),
                             _vm._v(" "),
                             _c("td", [
@@ -2366,7 +2447,8 @@ var render = function() {
                                 attrs: {
                                   type: "number",
                                   placeholder: "",
-                                  readonly: ""
+                                  readonly: "",
+                                  size: "4"
                                 },
                                 domProps: { value: invoice_item.vat },
                                 on: {
@@ -2395,7 +2477,11 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control form-control-user",
-                                attrs: { type: "number", placeholder: "" },
+                                attrs: {
+                                  type: "number",
+                                  placeholder: "",
+                                  size: "4"
+                                },
                                 domProps: {
                                   value: invoice_item.invoice_amount
                                 },
