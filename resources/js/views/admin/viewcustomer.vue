@@ -178,6 +178,17 @@
                                 />
                               </div>
                               <div class="form-group customer-input">
+                                <label>Credit Period</label>
+                                <input
+                                  type="number"
+                                  class="form-control form-control-user"
+                                  id="crt-customer"
+                                  aria-describedby="emailHelp"
+                                  placeholder=""
+                                  v-model="formdata.credit_period"
+                                />
+                              </div>
+                              <div class="form-group customer-input">
                                 <label>Select Group</label><br>
                                 <select class="form-control form-control-user" v-model="formdata.group_id">
                                   <option v-for="group in groups" :key="group.id" :value="group.id">{{group.name}}</option>
@@ -388,6 +399,7 @@ export default {
           whatsapp: this.formdata.whatsapp,
           title: this.formdata.title,
           credit_limit: this.formdata.credit_limit,
+          credit_period: this.formdata.credit_period,
           company_code: this.formdata.company_code,
           customertype: this.formdata.customertype,
           group_id: this.formdata.group_id,

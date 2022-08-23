@@ -22,6 +22,7 @@ class CustomerController extends Controller
                 'whatsapp' => $request->input('whatsapp'),
                 'title' => $request->input('title'),
                 'credit_limit' => $request->input('credit_limit'),
+                'credit_period' => $request->input('credit_period'),
                 'company_code' => $request->input('company_code'),
                 'customer_type' => $request->input('customertype'),
                 'group_id' => $request->input('group_id'),
@@ -86,6 +87,7 @@ class CustomerController extends Controller
                 'whatsapp' => $request->input('whatsapp'),
                 'title' => $request->input('title'),
                 'credit_limit' => $request->input('credit_limit'),
+                'credit_period' => $request->input('credit_period'),
                 'company_code' => $request->input('company_code'),
                 'customer_type' => $request->input('customertype'),
                 'group_id' => $request->input('group_id')

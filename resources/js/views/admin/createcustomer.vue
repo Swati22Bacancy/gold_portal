@@ -330,6 +330,7 @@ export default {
           whatsapp: this.formdata.whatsapp,
           title: this.formdata.title,
           credit_limit: this.formdata.credit_limit,
+          credit_period: this.formdata.credit_period,
           company_code: this.formdata.company_code,
           customertype: this.formdata.customertype,
           group_id: this.formdata.group_id,

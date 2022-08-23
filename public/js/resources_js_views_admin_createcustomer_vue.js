@@ -365,6 +365,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex
                   whatsapp: _this.formdata.whatsapp,
                   title: _this.formdata.title,
                   credit_limit: _this.formdata.credit_limit,
+                  credit_period: _this.formdata.credit_period,
                   company_code: _this.formdata.company_code,
                   customertype: _this.formdata.customertype,
                   group_id: _this.formdata.group_id

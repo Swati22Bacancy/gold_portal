@@ -30,7 +30,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     // Customer Routes
     Route::post('create_customer', [Api\CustomerController::class, 'createcustomer']);
-    Route::get('customerlist', [Api\CustomerController::class, 'customerlist']);
+    //Route::get('customerlist', [Api\CustomerController::class, 'customerlist']);
     Route::get('customerlist/{type}', [Api\CustomerController::class, 'customerlist']);
     Route::get('deletecustomer/{id}', [Api\CustomerController::class, 'deletecustomer']);
     Route::get('customerdetails/{id}', [Api\CustomerController::class, 'customerdetails']);

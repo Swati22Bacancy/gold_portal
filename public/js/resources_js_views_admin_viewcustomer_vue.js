@@ -399,6 +399,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -477,6 +488,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   whatsapp: _this3.formdata.whatsapp,
                   title: _this3.formdata.title,
                   credit_limit: _this3.formdata.credit_limit,
+                  credit_period: _this3.formdata.credit_period,
                   company_code: _this3.formdata.company_code,
                   customertype: _this3.formdata.customertype,
                   group_id: _this3.formdata.group_id
@@ -17273,6 +17285,60 @@ var render = function() {
                                                     _vm.$set(
                                                       _vm.formdata,
                                                       "credit_limit",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Credit Period")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata
+                                                        .credit_period,
+                                                    expression:
+                                                      "formdata.credit_period"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "number",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value:
+                                                    _vm.formdata.credit_period
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "credit_period",
                                                       $event.target.value
                                                     )
                                                   }
