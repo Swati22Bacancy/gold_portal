@@ -29,7 +29,7 @@
       <div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-right:65px">
         <div class="d-sm-flex align-items-center justify-content-between">
           <button @click="sidebarToggle" class="btn-head"><i class="fas fa-arrow-left"></i></button>
-          <h1 class="h3 mb-0 text-gray-800"  style="margin-left:20px; margin-right: 20px;">INV-2001</h1>
+          <h1 class="h3 mb-0 text-gray-800"  style="margin-left:20px; margin-right: 20px;">{{formdata.invoiceno}}</h1>
           <button @click="sidebarToggle" class="btn-head"><i class="fas fa-arrow-right"></i></button>
         </div>
         <div class="d-sm-flex align-items-center justify-content-between">
@@ -50,7 +50,7 @@
           <div class="row" style="padding-bottom:40px">
             <div class="col-md-2" style="border-right:  0.5px solid #4682B4;">
               <p style="color:#4682B4; font-size: 15px;">Customer</p>
-              <span>Robert Malasawaliki, <br>215 The broadway, Southall,<br>Middlesex UB1 1NB,</span>
+              <span>{{formdata.firstname}} {{formdata.lastname}}, <br>{{formdata.billing_address}}</span>
             </div>
             <div class="col-md-2" style="border-right:  1px solid #4682B4;">
               <p style="color:#4682B4; font-size: 15px;">VAT No.</p>
@@ -58,11 +58,11 @@
             </div>
             <div class="col-md-2" style="border-right:  1px solid #4682B4;">
               <p style="color:#4682B4; font-size: 15px;">Issue Date</p>
-              <span>17/04/2021</span>
+              <span>{{formdata.issue_date}}</span>
             </div>
             <div class="col-md-2" style="border-right:  1px solid #4682B4;">
               <p style="color:#4682B4;font-size: 15px;">Due Date</p>
-              <span>17/04/2021</span>
+              <span>{{formdata.due_date}}</span>
             </div>
             <div class="col-md-2" style="border-right:  1px solid #4682B4;">
               <p style="color:#4682B4; font-size: 15px;">Amount Due</p>
@@ -85,8 +85,8 @@
               <table class="table" id="createinvoice-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
                   <thead>
                     <tr>
+                      <th>Product Type</th>
                       <th>Product</th>
-                      <th>Description</th>
                       <th>Weight(gms)</th>
                       <th>Quantity</th>
                       <th>Unit Price</th>
@@ -95,14 +95,14 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                        <td>FGB/BULLION 50g PAMP</td>
-                        <td>Investment Gold Bar</td>
-                        <td>50.00</td>
-                        <td>20</td>
-                        <td><i class="fa fa-pound-sign" style="font-size:10px;"></i>2020.50</td>
-                        <td>20</td>
-                        <td><i class="fa fa-pound-sign" style="font-size:10px;"></i>48490.00</td>
+                    <tr v-for="saleitem in formdata.salesitem" :key="saleitem.id">
+                        <td>{{saleitem.typename}}</td>
+                        <td>{{saleitem.productname}}</td>
+                        <td>{{saleitem.weight}}</td>
+                        <td>{{saleitem.quantity}}</td>
+                        <td><i class="fa fa-pound-sign" style="font-size:10px;"></i>{{saleitem.unitprice}}</td>
+                        <td>{{saleitem.vat}}</td>
+                        <td><i class="fa fa-pound-sign" style="font-size:10px;"></i>{{saleitem.invoice_amount}}</td>
                     </tr>
                   </tbody>
               </table>
@@ -122,9 +122,9 @@
             </div>
             <div class="col-md-2 sum-price">
               <ul>
-                <li style="font-size:13px;"><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>40,410.00</li>
-                <li style="font-size:13px;"><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>8,082.00</li>
-                <li style="font-size:13px;"><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i><b>48,492.00</b></li>
+                <li style="font-size:13px;"><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>{{formdata.subtotal}}</li>
+                <li style="font-size:13px;"><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>{{formdata.vattotal}}</li>
+                <li style="font-size:13px;"><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i><b>{{formdata.totalamount}}</b></li>
               </ul>
             </div>
           </div>
@@ -148,7 +148,7 @@
         <div>
         <div class="mt-4 btn-container">
           <div>
-            <button type="submit" class="cont" style="background-color: #EDF2F6;" @click="tabclick('payment')" :class="{'selectedclr':!tabflag}">Payment(1)</button>
+            <button type="submit" class="cont" style="background-color: #EDF2F6;" @click="tabclick('payment')" :class="{'selectedclr':!tabflag}">Payment({{paymentcount}})</button>
             <button type="submit" class="cont" style="background-color: #EDF2F6">Notes(0)</button>
             <button type="submit" class="cont" style="background-color: #EDF2F6" @click="tabclick('customer')" :class="{'selectedclr':tabflag}">Customer Kyc(4)</button>
             <button type="submit" class="cont" style="background-color: #EDF2F6 !important;">History</button>
@@ -162,41 +162,58 @@
       </div>
       </div>
         <div class="table-div mb-2" v-if="!tabflag" style="background-color:white; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 10%);">
-              <table class="table" id="createinvoice-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
-  
-                  <tbody>
-                    <tr v-for="(invoice_item, k) in invoice_items" :key="k">
-                        <td>
-                          <Datepicker class="datapicker" id="mydatepicker"></Datepicker>
-                        </td>
-                        <td>
-                          <input type="text" class="form-control form-control-user" placeholder="" v-model="invoice_item.weight">
-                       </td>
-                        <td>
-                          <select class="form-control form-control-user"  v-model="invoice_item.invoice_type">
-                            <option>ICIC Bank Accounts</option>
-                             <option>Baroda Bank</option>
-                           
-                          </select>
-                        </td>
-                        <td>
-                          <select class="form-control form-control-user"  v-model="invoice_item.invoice_product">
-                             <option>Cash</option>
-                             <option>Cheque</option>
-                          
-                          </select>
-                        </td>
-                        <td>
-                          <input type="text" class="form-control form-control-user" placeholder="" v-model="invoice_item.unitprice"/>
-                        </td>
-                        
-                  
-                        <td> <button type="submit" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #EDF2F6 !important;float: right;" @click="removeLine(k)">Cancle</button></td>
-                        <td> <button type="submit" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;float: right;">Save</button></td>
-                    </tr>
-                  </tbody>
-              </table>
-            </div>
+          <table class="table" v-if="!addpayment" id="createinvoice-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
+              <tbody>
+                <tr v-for="salepayment in formdata.salepayments" :key="salepayment.id">
+                    <td>{{salepayment.payment_date}}</td>
+                    <td style="color:#7adaaa;"><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i> {{salepayment.totalamount}} Received</td>
+                    <td>{{salepayment.method}}</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">mail</span>
+                      <span class="material-symbols-outlined" style="margin-right: 5px;color: #000;cursor: pointer;">print</span>
+                    </td>
+                    <td>
+                      <span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;" @click="editpayment(salepayment)">edit</span>
+                      <span class="material-symbols-outlined" style="margin-right: 5px;color: red;cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(salepayment.id)">delete</span>
+                    </td>
+                </tr>
+                
+              </tbody>
+          </table>
+          <table v-if="addpayment" class="table" id="createinvoice-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
+              <tbody>
+                <tr v-for="(invoice_item, k) in invoice_items" :key="k">
+                    <td>
+                      <Datepicker class="datapicker" id="mydatepicker" v-model="invoice_item.payment_date"></Datepicker>
+                    </td>
+                    <td>
+                      <input type="number" class="form-control form-control-user" placeholder="Amount" v-model="invoice_item.totalamount">
+                    </td>
+                    <td>
+                      <select class="form-control form-control-user"  v-model="invoice_item.bank">
+                        <option>ICIC Bank Accounts</option>
+                          <option>Baroda Bank</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select class="form-control form-control-user"  v-model="invoice_item.method">
+                          <option>Bank Transfer</option>
+                          <option>Cash</option>
+                          <option>Other</option>
+                      
+                      </select>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-user" placeholder="Note" v-model="invoice_item.comment"/>
+                    </td>
+                    <td> <button type="button" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #EDF2F6 !important;float: right;" @click="removeLine(k)">Cancel</button></td>
+                    <td> <button type="button" @click="save_payment(k)" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;float: right;">Save</button></td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
             <div v-else style="background-color:white; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 10%);">
              <div class="table-responsive">
             <table class="table" id="dash-datatable" width="100%" cellspacing="0">
@@ -224,8 +241,27 @@
                 </tbody>
             </table>
           </div>
-            </div>
-
+       </div>
+        <!-- Modal -->
+      <div class="modal fade" id="deleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h6 class="modal-title" id="deleteConfirmationLabel">Confirmation</h6>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true" style="color:#fff">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <p style="color:#000;font-size:14px;">Are you sure you want to delete this payment?</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn admin-btn mobile-mb" data-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteRecord(paymentid)">Delete</button>
+                  </div>
+              </div>
+          </div>
+      </div>
     
     </div>
     
@@ -242,6 +278,7 @@ export default {
   data() {
     return {
       customerType: 'business',
+      addpayment:'',
       theme: 'cust-type',
       formdata: {},
       rows: [],
@@ -256,6 +293,8 @@ export default {
       }],
       tabflag:false,
       sidebarflag:false,
+      paymentid:'',
+      paymentcount:0
     };
 
   },
@@ -269,19 +308,25 @@ export default {
       this.customerType = type;
     },
     addLine(){
-      this.invoice_items.push({
-          invoice_type: '',
-          invoice_product: '',
-          weight: '',
-          quantity: '',
-          unitprice: '',
-          vat: '',
-          invoice_amount:''
-      });
+      this.addpayment='show';
+      // this.invoice_items.push({
+      //     invoice_type: '',
+      //     invoice_product: '',
+      //     weight: '',
+      //     quantity: '',
+      //     unitprice: '',
+      //     vat: '',
+      //     invoice_amount:''
+      // });
     },
      removeLine(index)
     {
-      this.invoice_items.splice(index,1);
+      this.addpayment='';
+      //this.invoice_items.splice(index,1);
+    },
+    editpayment(paymentdata)
+    {
+      
     },
     tabclick(param){
      if(param == "customer"){
@@ -291,29 +336,53 @@ export default {
       this.tabflag = false;
      }
     },
-    async create_invoice() {
-      try {
-        this.formdata.customertype= this.customerType;
-        const response = await axios.post("create_invoice", {
-          firstname: this.formdata.firstname,
-          lastname: this.formdata.lastname,
-          email: this.formdata.email,
-          companyname: this.formdata.companyname,
-          registeredaddress: this.formdata.registeredaddress,
-          vat: this.formdata.vat,
-          telephone: this.formdata.telephone,
-          whatsapp: this.formdata.whatsapp,
-          title: this.formdata.title,
-          creditlimit: this.formdata.creditlimit,
-          companycode: this.formdata.companycode,
-          customertype: this.formdata.customertype,
-        });
-
-        
-      } catch (error) {
-        console.log(error);
+    async save_payment(index)
+    {
+      this.invoice_items[index].sales_id = this.$route.params.id;
+      const response = await axios.post("create_payment", this.invoice_items[index]);
+      if(response.data.id)
+      {
+        var arr={};
+        arr.payment_date = response.data.payment_date;
+        arr.method = this.invoice_items[index].method;
+        arr.totalamount = this.invoice_items[index].totalamount;
+        arr.id = response.data.id;
+        this.formdata.salepayments.push(arr);
+        this.addpayment='';
+        this.paymentcount =this.paymentcount+1;
+        //this.invoice_items.splice(index,1);
       }
     },
+    selectrecord(id)
+    {
+      this.paymentid=id;
+    },
+    deleteRecord(id) {
+      axios.get('/delete-payment/'+id)
+        .then(resp => {
+            this.$router.go();
+        })
+        .catch(error => {
+          let message = 'Something went wrong, Please try again';
+          let toast = Vue.toasted.show(message, {
+            theme: "toasted-error",
+            position: "top-center",
+            duration: 5000,
+          });
+            console.log(error);
+        })
+    },
+  },
+  mounted()
+  {
+    axios.get('/sales_details/'+this.$route.params.id)
+      .then((response) => {
+          this.formdata = response.data;
+          this.paymentcount = this.formdata.salepayments.length;
+      })
+      .catch(function(error) {
+          //app.$notify(error.response.data.error, "error");
+      });
   }
 };
 </script>
