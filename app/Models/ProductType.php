@@ -14,6 +14,8 @@ class ProductType extends Authenticatable
     protected $table = 'producttypes';
     protected $fillable = [
         'name',
-        'rate'
+        'rate',
+        'purchase_rate',
+        'metal_type'
     ];
 }

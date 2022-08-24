@@ -28,6 +28,19 @@
                   />
                 </div>
               </div>
+              <div class="col-md-6">
+                <div class="form-group customer-input">
+                   <label class="required-field">Metal type </label>
+                  <div class="form-group col-md-12">
+                    <input type="radio" id="product_gold" name="metal_type" v-model="formdata.metal_type" value="gold">
+                    <label class="radio-label" for="product_gold">Gold</label>
+                    <input type="radio" id="product_silver" name="metal_type" v-model="formdata.metal_type" value="silver">
+                    <label class="radio-label" for="product_silver">Silver</label>
+                    <input type="radio" id="product_other" name="metal_type" v-model="formdata.metal_type" value="other">
+                    <label class="radio-label" for="product_other">Others</label>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="row mb-4">
@@ -93,6 +106,7 @@ export default {
           rate: this.formdata.rate,
           name: this.formdata.name,
           purchase_rate: this.formdata.purchase_rate,
+          metal_type: this.formdata.metal_type,
         });
         let message =
             "Product type has been successfully added.";

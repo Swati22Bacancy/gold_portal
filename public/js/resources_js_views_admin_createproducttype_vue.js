@@ -90,6 +90,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
@@ -129,7 +142,8 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex
                 return axios.post("create_producttype", {
                   rate: _this.formdata.rate,
                   name: _this.formdata.name,
-                  purchase_rate: _this.formdata.purchase_rate
+                  purchase_rate: _this.formdata.purchase_rate,
+                  metal_type: _this.formdata.metal_type
                 });
 
               case 6:
@@ -443,10 +457,122 @@ var render = function() {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.formdata, "rate", $event.target.value)
+                        _vm.$set(_vm.formdata, "name", $event.target.value)
                       }
                     }
                   })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group customer-input" }, [
+                  _c("label", { staticClass: "required-field" }, [
+                    _vm._v("Metal type ")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-12" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.formdata.metal_type,
+                          expression: "formdata.metal_type"
+                        }
+                      ],
+                      attrs: {
+                        type: "radio",
+                        id: "product_gold",
+                        name: "metal_type",
+                        value: "gold"
+                      },
+                      domProps: {
+                        checked: _vm._q(_vm.formdata.metal_type, "gold")
+                      },
+                      on: {
+                        change: function($event) {
+                          return _vm.$set(_vm.formdata, "metal_type", "gold")
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "radio-label",
+                        attrs: { for: "product_gold" }
+                      },
+                      [_vm._v("Gold")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.formdata.metal_type,
+                          expression: "formdata.metal_type"
+                        }
+                      ],
+                      attrs: {
+                        type: "radio",
+                        id: "product_silver",
+                        name: "metal_type",
+                        value: "silver"
+                      },
+                      domProps: {
+                        checked: _vm._q(_vm.formdata.metal_type, "silver")
+                      },
+                      on: {
+                        change: function($event) {
+                          return _vm.$set(_vm.formdata, "metal_type", "silver")
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "radio-label",
+                        attrs: { for: "product_silver" }
+                      },
+                      [_vm._v("Silver")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.formdata.metal_type,
+                          expression: "formdata.metal_type"
+                        }
+                      ],
+                      attrs: {
+                        type: "radio",
+                        id: "product_other",
+                        name: "metal_type",
+                        value: "other"
+                      },
+                      domProps: {
+                        checked: _vm._q(_vm.formdata.metal_type, "other")
+                      },
+                      on: {
+                        change: function($event) {
+                          return _vm.$set(_vm.formdata, "metal_type", "other")
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "radio-label",
+                        attrs: { for: "product_other" }
+                      },
+                      [_vm._v("Others")]
+                    )
+                  ])
                 ])
               ])
             ]),

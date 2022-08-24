@@ -14,7 +14,8 @@ class ProductTypeController extends Controller
             $producttype = ProductType::create([
                 'name' => $request->input('name'),
                 'rate' => $request->input('rate'),
-                'purchase_rate' => $request->input('purchase_rate')
+                'purchase_rate' => $request->input('purchase_rate'),
+                'metal_type' => $request->input('metal_type')
             ]);
 
             return response()->json($producttype);
@@ -61,7 +62,8 @@ class ProductTypeController extends Controller
             $producttype = ProductType::where('id', $request->input('id'))->update([
                 'name' => $request->input('name'),
                 'rate' => $request->input('rate'),
-                'purchase_rate' => $request->input('purchase_rate')
+                'purchase_rate' => $request->input('purchase_rate'),
+                'metal_type' => $request->input('metal_type')
             ]);
 
             return response()->json($producttype);
