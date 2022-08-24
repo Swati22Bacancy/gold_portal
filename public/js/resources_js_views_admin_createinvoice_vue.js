@@ -385,6 +385,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 
@@ -412,7 +414,8 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         registered_address: "",
         first_name: "",
         last_name: "",
-        billing_address: ""
+        billing_address: "",
+        invoiceno: ""
       },
       postdata: {},
       errors: {},
@@ -421,6 +424,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       rows: [],
       invoice_items: [{
         invoice_type: '',
+        invoice_typeid: '',
         invoice_product: '',
         weight: '',
         quantity: '',
@@ -431,6 +435,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       }],
       currencies: [],
       producttypes: {},
+      products: {},
       subtotal: '',
       vattotal: '',
       totalamount: '',
@@ -446,6 +451,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
     addLine: function addLine() {
       this.invoice_items.push({
         invoice_type: '',
+        invoice_typeid: '',
         invoice_product: '',
         weight: '',
         quantity: '',
@@ -588,8 +594,22 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         _this4.producttypes = response.data;
       });
     },
-    fetchProducts: function fetchProducts(index) {
+    getProducts: function getProducts() {
       var _this5 = this;
+
+      return axios.get("productlist").then(function (response) {
+        _this5.products = response.data;
+      });
+    },
+    getInvoicekey: function getInvoicekey() {
+      var _this6 = this;
+
+      return axios.get("get_invoicekey").then(function (response) {
+        _this6.formdata.invoiceno = response.data;
+      });
+    },
+    fetchProducts: function fetchProducts(index) {
+      var _this7 = this;
 
       this.invoice_items[index].weight = '';
       this.invoice_items[index].vat = '';
@@ -624,11 +644,11 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       this.formdata.vattotal = Number(this.vattotal);
       this.formdata.totalamount = Number(this.totalamount);
       axios.get('/productdata/' + this.invoice_items[index].invoice_type).then(function (response) {
-        _this5.invoice_items[index].products = response.data;
+        _this7.invoice_items[index].products = response.data;
       })["catch"](function (error) {});
     },
     fetchProductDetails: function fetchProductDetails(index) {
-      var _this6 = this;
+      var _this8 = this;
 
       this.invoice_items[index].weight = '';
       this.invoice_items[index].vat = '';
@@ -664,18 +684,128 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       this.formdata.totalamount = Number(this.totalamount); //this.invoice_items[index].vat='';
 
       axios.get('/productdetails/' + this.invoice_items[index].invoice_product).then(function (response) {
-        _this6.invoice_items[index].weight = response.data.weight;
-        _this6.invoice_items[index].vat = response.data.rate;
+        _this8.invoice_items[index].weight = response.data.weight;
+        _this8.invoice_items[index].vat = response.data.productrate ? response.data.productrate : 0;
+        _this8.invoice_items[index].invoice_type = response.data.type;
+        _this8.invoice_items[index].invoice_typeid = response.data.type_id;
       })["catch"](function (error) {});
     },
     fetchAddress: function fetchAddress() {
-      var _this7 = this;
+      var _this9 = this;
 
       if (this.formdata.customer_id) {
         axios.get('/customerdetails/' + this.formdata.customer_id).then(function (response) {
-          _this7.formdata.billing_address = response.data.registered_address;
+          _this9.formdata.billing_address = response.data.registered_address;
         });
       }
+    },
+    calculateValue: function calculateValue(index) {
+      var invunitprice = parseFloat(this.invoice_items[index].unitprice);
+
+      if (invunitprice) {
+        var quantity = this.invoice_items[index].quantity;
+        var vat = this.invoice_items[index].vat;
+
+        if (vat) {
+          var vatdeduct = vat / 100;
+          var vatquantity = quantity * (1 + vatdeduct);
+          var v = invunitprice * vatquantity;
+          var rounded = Math.round(v * 10) / 10;
+          var lineamount = Math.floor(rounded + 0.1) === rounded + 0.1 ? rounded + 0.1 : rounded;
+        } else {
+          var lineamount = invunitprice * vatquantity;
+        }
+
+        this.invoice_items[index].invoice_amount = lineamount;
+      } else {
+        var invtotalamount = parseFloat(this.invoice_items[index].invoice_amount);
+        var quantity = this.invoice_items[index].quantity;
+        var vat = this.invoice_items[index].vat;
+
+        if (vat) {
+          var vatdeduct = vat / 100;
+          var vatquantity = quantity * (1 + vatdeduct);
+          var v = invtotalamount / vatquantity;
+          var rounded = Math.round(v * 10) / 10;
+          var unitprice = Math.floor(rounded + 0.1) === rounded + 0.1 ? rounded + 0.1 : rounded;
+        } else {
+          var unitprice = invtotalamount / quantity;
+        }
+
+        this.invoice_items[index].unitprice = unitprice;
+      }
+
+      var totalsub = 0;
+
+      for (var j = 0; j < this.invoice_items.length; j++) {
+        if (!isNaN(this.invoice_items[j].unitprice)) {
+          totalsub += this.invoice_items[j].unitprice * this.invoice_items[j].quantity;
+        }
+      }
+
+      var totalvat = 0;
+
+      for (var k = 0; k < this.invoice_items.length; k++) {
+        if (!isNaN(this.invoice_items[k].unitprice)) {
+          if (this.invoice_items[k].vat) {
+            totalvat += this.invoice_items[k].unitprice * this.invoice_items[k].quantity * (this.invoice_items[k].vat / 100);
+          } else {
+            totalvat += 0;
+          }
+        }
+      }
+
+      this.subtotal = totalsub.toFixed(2);
+      this.vattotal = totalvat.toFixed(2);
+      var invoicetotal = totalsub + totalvat;
+      this.totalamount = invoicetotal.toFixed(2);
+      this.formdata.subtotal = Number(this.subtotal);
+      this.formdata.vattotal = Number(this.vattotal);
+      this.formdata.totalamount = Number(this.totalamount);
+    },
+    calculateAmount: function calculateAmount(index) {
+      var invunitprice = parseFloat(this.invoice_items[index].unitprice);
+      var quantity = this.invoice_items[index].quantity;
+      var vat = this.invoice_items[index].vat;
+
+      if (vat) {
+        var vatdeduct = vat / 100;
+        var vatquantity = quantity * (1 + vatdeduct);
+        var v = invunitprice * vatquantity;
+        var rounded = Math.round(v * 10) / 10;
+        var lineamount = Math.floor(rounded + 0.1) === rounded + 0.1 ? rounded + 0.1 : rounded;
+      } else {
+        var lineamount = invunitprice * vatquantity;
+      }
+
+      this.invoice_items[index].invoice_amount = lineamount;
+      var totalsub = 0;
+
+      for (var j = 0; j < this.invoice_items.length; j++) {
+        if (!isNaN(this.invoice_items[j].unitprice)) {
+          totalsub += this.invoice_items[j].unitprice * this.invoice_items[j].quantity;
+        }
+      }
+
+      var totalvat = 0;
+
+      for (var k = 0; k < this.invoice_items.length; k++) {
+        if (!isNaN(this.invoice_items[k].unitprice)) {
+          if (this.invoice_items[k].vat) {
+            totalvat += this.invoice_items[k].unitprice * this.invoice_items[k].quantity * (this.invoice_items[k].vat / 100);
+          } else {
+            totalvat += 0;
+          }
+        }
+      }
+
+      this.subtotal = totalsub.toFixed(2);
+      this.vattotal = totalvat.toFixed(2);
+      var invoicetotal = totalsub + totalvat;
+      this.totalamount = invoicetotal.toFixed(2);
+      this.formdata.subtotal = Number(this.subtotal);
+      this.formdata.vattotal = Number(this.vattotal);
+      this.formdata.totalamount = Number(this.totalamount);
     },
     calculatePrice: function calculatePrice(index) {
       var invtotalamount = parseFloat(this.invoice_items[index].invoice_amount);
@@ -722,7 +852,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       this.formdata.totalamount = Number(this.totalamount);
     },
     add_customer: function add_customer() {
-      var _this8 = this;
+      var _this10 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var response, newdata;
@@ -730,9 +860,9 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _this8.$v.customerdata.$touch();
+                _this10.$v.customerdata.$touch();
 
-                if (!_this8.$v.customerdata.$error) {
+                if (!_this10.$v.customerdata.$error) {
                   _context2.next = 3;
                   break;
                 }
@@ -742,24 +872,24 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
               case 3:
                 _context2.next = 5;
                 return axios.post("create_customer", {
-                  first_name: _this8.customerdata.first_name,
-                  last_name: _this8.customerdata.last_name,
-                  email: _this8.customerdata.email,
-                  registered_address: _this8.customerdata.registered_address,
-                  customertype: _this8.customerType
+                  first_name: _this10.customerdata.first_name,
+                  last_name: _this10.customerdata.last_name,
+                  email: _this10.customerdata.email,
+                  registered_address: _this10.customerdata.registered_address,
+                  customertype: _this10.customerType
                 });
 
               case 5:
                 response = _context2.sent;
-                _this8.formdata.billing_address = _this8.customerdata.registered_address;
+                _this10.formdata.billing_address = _this10.customerdata.registered_address;
                 newdata = {
                   value: response.data.id,
                   text: "".concat(response.data.first_name || "", " ").concat(response.data.last_name || "", " ")
                 };
 
-                _this8.customers.push(newdata);
+                _this10.customers.push(newdata);
 
-                _this8.formdata.customer_id = response.data.id;
+                _this10.formdata.customer_id = response.data.id;
                 $('#addcreateinvoice').modal('hide');
 
               case 11:
@@ -832,6 +962,8 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
     this.getCustomers();
     this.getCurrencies();
     this.getProducttypes();
+    this.getProducts();
+    this.getInvoicekey();
   }
 });
 
@@ -854,7 +986,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.inputdata[data-v-2193c37c]{\r\n  background: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"30\"><text x=\"5\" y=\"19\" style=\"font:16px Arial;\">INV -</text></svg>') no-repeat;\r\n  font: 16px \"Arial\";\r\n  padding-left: 45px;\n}\n.edit-cont[data-v-2193c37c]{\r\n  position: absolute;\r\n  top: 35px;\r\n   left: 350px;\r\n   border: none;\n}\n.select-cont[data-v-2193c37c]{\r\n  width: 200px;\n}\n.required-field[data-v-2193c37c]::after {\r\n  content: \"*\";\r\n  color: red;\n}\n.text-danger[data-v-2193c37c]{\r\n  font-size: 12px;\n}\n.button-container[data-v-2193c37c]{\r\n    display: flex;\r\n    justify-content: space-between;\n}\n.btn-modal[data-v-2193c37c]{\r\n  color: black;\r\n  border: 0;\r\n  background:#7ADAAA ;\n}\n.modal-selection[data-v-2193c37c]{\r\n  flex: 1 !important;\n}\n#createinvoice-datatable thead[data-v-2193c37c] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-2193c37c] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-2193c37c]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createinvoice-div[data-v-2193c37c]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-2193c37c]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-2193c37c]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-2193c37c]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-2193c37c]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-2193c37c]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-2193c37c]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-2193c37c]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.check-position[data-v-2193c37c]\r\n{\r\n  margin-left: 15%;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-2193c37c]\r\n  {\r\n    border-right: 2px solid #eee;\r\n    padding-right: 8%;\n}\n.primary-div[data-v-2193c37c]\r\n  {\r\n    padding-left: 8%;\n}\n}\n#mydatepicker[data-v-2193c37c]{\r\n    display: block;\r\n    width: 100%;\r\n    height: calc(1.5em + 0.75rem + 2px);\r\n    padding: 0.375rem 0.75rem;\r\n    font-size: 1rem;\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    color: #6e707e;\r\n    background-color: #fff;\r\n    background-clip: padding-box;\r\n    border: 1px solid #d1d3e2;\r\n    border-radius: 0.35rem;\r\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.inputdata[data-v-2193c37c]{\r\n  background: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"30\"><text x=\"5\" y=\"19\" style=\"font:16px Arial;\">INV -</text></svg>') no-repeat;\r\n  font: 16px \"Arial\";\r\n  padding-left: 45px;\n}\n.edit-cont[data-v-2193c37c]{\r\n  position: absolute;\r\n  top: 35px;\r\n   left: 350px;\r\n   border: none;\n}\n.select-cont[data-v-2193c37c]{\r\n  width: 200px;\n}\n.required-field[data-v-2193c37c]::after {\r\n  content: \"*\";\r\n  color: red;\n}\n.text-danger[data-v-2193c37c]{\r\n  font-size: 12px;\n}\n.button-container[data-v-2193c37c]{\r\n    display: flex;\r\n    justify-content: space-between;\n}\n.btn-modal[data-v-2193c37c]{\r\n  color: black;\r\n  border: 0;\r\n  background:#7ADAAA ;\n}\n.modal-selection[data-v-2193c37c]{\r\n  flex: 1 !important;\n}\n#createinvoice-datatable thead[data-v-2193c37c] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-2193c37c] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-2193c37c]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createinvoice-div[data-v-2193c37c]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-2193c37c]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-2193c37c]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-2193c37c]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-2193c37c]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-2193c37c]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-2193c37c]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-2193c37c]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.check-position[data-v-2193c37c]\r\n{\r\n  margin-left: 15%;\n}\n.static-value[data-v-2193c37c]{\r\n  position:absolute;\r\n  left: 10px;\r\n  font-weight: bold;\r\n  color: #6e707e;\r\n  font-size: 13px !important;\r\n  top: 40px;\n}\n.setpadding[data-v-2193c37c]\r\n{\r\n  padding-left: 40px;\n}\n.form-text[data-v-2193c37c]{\r\n\tposition:relative;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-2193c37c]\r\n  {\r\n    border-right: 2px solid #eee;\r\n    padding-right: 8%;\n}\n.primary-div[data-v-2193c37c]\r\n  {\r\n    padding-left: 8%;\n}\n}\n#mydatepicker[data-v-2193c37c]{\r\n    display: block;\r\n    width: 100%;\r\n    height: calc(1.5em + 0.75rem + 2px);\r\n    padding: 0.375rem 0.75rem;\r\n    font-size: 1rem;\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    color: #6e707e;\r\n    background-color: #fff;\r\n    background-clip: padding-box;\r\n    border: 1px solid #d1d3e2;\r\n    border-radius: 0.35rem;\r\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1903,7 +2035,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }, [
-                _c("div", { staticClass: "form-group" }, [
+                _c("div", { staticClass: "form-group form-text" }, [
                   _c("label", [_vm._v("Invoice No.")]),
                   _vm._v(" "),
                   _c("input", {
@@ -1915,11 +2047,11 @@ var render = function() {
                         expression: "formdata.invoiceno"
                       }
                     ],
-                    staticClass: "form-control form-control-user inputdata",
+                    staticClass: "form-control form-control-user setpadding",
                     attrs: {
                       type: "number",
                       title: "yo",
-                      id: "crt-invoice",
+                      id: "invno",
                       "aria-describedby": "emailHelp",
                       placeholder: ""
                     },
@@ -1933,6 +2065,12 @@ var render = function() {
                       }
                     }
                   }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    { staticClass: "static-value", attrs: { for: "invno" } },
+                    [_vm._v("INV -")]
+                  ),
                   _vm._v(" "),
                   _vm.$v.formdata.invoiceno.$error
                     ? _c("span", { staticClass: "text-danger" }, [
@@ -2219,60 +2357,63 @@ var render = function() {
                         _vm._l(_vm.invoice_items, function(invoice_item, k) {
                           return _c("tr", { key: k }, [
                             _c("td", [
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: invoice_item.invoice_type,
-                                      expression: "invoice_item.invoice_type"
-                                    }
-                                  ],
-                                  staticClass:
-                                    "form-control form-control-user select-cont",
-                                  attrs: { required: "" },
-                                  on: {
-                                    change: [
-                                      function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.$set(
-                                          invoice_item,
-                                          "invoice_type",
-                                          $event.target.multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        )
-                                      },
-                                      function($event) {
-                                        return _vm.fetchProducts(k)
-                                      }
-                                    ]
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: invoice_item.invoice_type,
+                                    expression: "invoice_item.invoice_type"
                                   }
+                                ],
+                                staticClass: "form-control form-control-user",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "",
+                                  readonly: ""
                                 },
-                                _vm._l(_vm.producttypes, function(producttype) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: producttype.id,
-                                      domProps: { value: producttype.id }
-                                    },
-                                    [_vm._v(_vm._s(producttype.name))]
-                                  )
-                                }),
-                                0
-                              )
+                                domProps: { value: invoice_item.invoice_type },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      invoice_item,
+                                      "invoice_type",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: invoice_item.invoice_typeid,
+                                    expression: "invoice_item.invoice_typeid"
+                                  }
+                                ],
+                                staticClass: "form-control form-control-user",
+                                attrs: { type: "hidden", placeholder: "" },
+                                domProps: {
+                                  value: invoice_item.invoice_typeid
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      invoice_item,
+                                      "invoice_typeid",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
                             ]),
                             _vm._v(" "),
                             _c("td", [
@@ -2317,9 +2458,7 @@ var render = function() {
                                     ]
                                   }
                                 },
-                                _vm._l(_vm.invoice_items[k].products, function(
-                                  product
-                                ) {
+                                _vm._l(_vm.products, function(product) {
                                   return _c(
                                     "option",
                                     {
@@ -2380,7 +2519,7 @@ var render = function() {
                                 domProps: { value: invoice_item.quantity },
                                 on: {
                                   blur: function($event) {
-                                    return _vm.calculatePrice(k)
+                                    return _vm.calculateValue(k)
                                   },
                                   input: function($event) {
                                     if ($event.target.composing) {
@@ -2413,14 +2552,12 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control form-control-user",
-                                attrs: {
-                                  type: "number",
-                                  placeholder: "",
-                                  readonly: "",
-                                  size: "4"
-                                },
+                                attrs: { type: "number", placeholder: "" },
                                 domProps: { value: invoice_item.unitprice },
                                 on: {
+                                  blur: function($event) {
+                                    return _vm.calculateAmount(k)
+                                  },
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
@@ -2455,8 +2592,7 @@ var render = function() {
                                 attrs: {
                                   type: "number",
                                   placeholder: "",
-                                  readonly: "",
-                                  size: "4"
+                                  readonly: ""
                                 },
                                 domProps: { value: invoice_item.vat },
                                 on: {
@@ -2485,11 +2621,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control form-control-user",
-                                attrs: {
-                                  type: "number",
-                                  placeholder: "",
-                                  size: "4"
-                                },
+                                attrs: { type: "number", placeholder: "" },
                                 domProps: {
                                   value: invoice_item.invoice_amount
                                 },

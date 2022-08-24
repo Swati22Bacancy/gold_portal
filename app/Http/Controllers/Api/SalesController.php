@@ -15,22 +15,22 @@ class SalesController extends Controller
     public function createinvoice(Request $request)
     {
         try {
-            $invoiceoptions = InvoiceOptions::where('id',1)->first();
-            if(!empty($invoiceoptions))
-            {
-                $invprefix = ($invoiceoptions->invoice_name)?$invoiceoptions->invoice_name:'INV';
-            }
-            else
-            {
-                $invprefix = 'INV';
-            }
-            $lastinvoice = Sales::orderBy('id', 'DESC')->first();
-            $invoicekey= (!empty($lastinvoice))?($lastinvoice->invoicekey)+1:1;
-
+            // $invoiceoptions = InvoiceOptions::where('id',1)->first();
+            // if(!empty($invoiceoptions))
+            // {
+            //     $invprefix = ($invoiceoptions->invoice_name)?$invoiceoptions->invoice_name:'INV';
+            // }
+            // else
+            // {
+            //     $invprefix = 'INV';
+            // }
+            // $lastinvoice = Sales::orderBy('id', 'DESC')->first();
+            // $invoicekey= (!empty($lastinvoice))?($lastinvoice->invoicekey)+1:1;
+            $invprefix = 'INV';
             $sales = Sales::create([
                 'customer_id' => $request->input('formfields.customer_id'),
-                'invoicekey' => $invoicekey,
-                'invoiceno' => $invprefix.'-'.$invoicekey,
+                'invoicekey' => $request->input('formfields.invoiceno'),
+                'invoiceno' => $invprefix.'-'.$request->input('formfields.invoiceno'),
                 'billing_address' => $request->input('formfields.billing_address'),
                 'reference' => $request->input('formfields.reference'),
                 'currency_id' => $request->input('formfields.currency_id'),
@@ -49,7 +49,7 @@ class SalesController extends Controller
                 {
                     $salesitems = SalesItems::create([
                         'sales_id' => $sales->id,
-                        'producttype_id' => $itemfield['invoice_type'],
+                        'producttype_id' => $itemfield['invoice_typeid'],
                         'product_id' => $itemfield['invoice_product'],
                         'weight' => $itemfield['weight'],
                         'quantity' => $itemfield['quantity'],
@@ -168,5 +168,12 @@ class SalesController extends Controller
             }else{
                 return response()->json(['error' => 'Record does not exists'], 404);
             }
+    }
+
+    public function getinvoicekey()
+    {
+        $lastinvoice = Sales::orderBy('invoicekey', 'DESC')->first();
+        $invoicekey= (!empty($lastinvoice))?($lastinvoice->invoicekey)+1:1;
+        return response()->json($invoicekey);
     }
 }

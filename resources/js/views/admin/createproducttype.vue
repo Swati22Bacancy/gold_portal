@@ -17,16 +17,18 @@
             <div class="row mb-4">
               <div class="col-md-6">
                 <div class="form-group customer-input">
-                  <label>Tax Rate (in %)</label>
+                  <label class="required-field">Product Type Name</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
-                    id="crt-typerate"
+                    id="crt-typename"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.rate"
+                    v-model="formdata.name"
                   />
+                  <span v-if="$v.formdata.name.$error" class="text-danger">Please enter valid name</span>
                 </div>
+                
               </div>
             </div>
 

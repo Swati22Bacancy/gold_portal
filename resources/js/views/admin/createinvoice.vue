@@ -142,17 +142,18 @@
               
             </div>
             <div class="col-md-2">
-              <div class="form-group">
+              <div class="form-group form-text">
                 <label>Invoice No.</label>
                 <input
                   type="number"
                   title="yo"
-                  class="form-control form-control-user inputdata"
-                  id="crt-invoice"
+                  class="form-control form-control-user setpadding"
+                  id="invno"
                   aria-describedby="emailHelp"
                   placeholder=""
                   v-model="formdata.invoiceno"
                 />
+                <label for="invno" class="static-value">INV -</label>
                 <span v-if="$v.formdata.invoiceno.$error" class="text-danger">Please Enter invoice no</span>
               </div>
             </div>
@@ -245,16 +246,17 @@
                   <tbody>
                     <tr v-for="(invoice_item, k) in invoice_items" :key="k">
                         <td>
-                          <select class="form-control form-control-user select-cont" @change="fetchProducts(k)" v-model="invoice_item.invoice_type" required>
+                          <!-- <select class="form-control form-control-user select-cont" @change="fetchProducts(k)" v-model="invoice_item.invoice_type" required>
                             <option v-for="producttype in producttypes" :key="producttype.id" :value="producttype.id">{{producttype.name}}</option>
-                          </select>
+                          </select> -->
+                          <input type="text" class="form-control form-control-user" placeholder="" v-model="invoice_item.invoice_type" readonly/>
+                          <input type="hidden" class="form-control form-control-user" placeholder="" v-model="invoice_item.invoice_typeid"/>
                           <!-- <span v-if="$v.invoice_item.invoice_type.$error" class="text-danger">Please Select type</span> -->
                         </td>
                         <td>
                           <select class="form-control form-control-user select-cont" @change="fetchProductDetails(k)" v-model="invoice_item.invoice_product">
-                            <!-- <option value="Option 1" selected>Group</option>
-                            <option value="Option 1" >Option 1</option> -->
-                            <option v-for="product in invoice_items[k].products" :key="product.id" :value="product.id">{{product.name}}</option>
+                            <option v-for="product in products" :key="product.id" :value="product.id">{{product.name}}</option>
+                            <!-- <option v-for="product in invoice_items[k].products" :key="product.id" :value="product.id">{{product.name}}</option> -->
                           </select>
                         <!-- <span v-if="$v.invoice_item.invoice_product.$error" class="text-danger">Please Select product</span> -->
                         </td>
@@ -263,18 +265,18 @@
                           <!-- <span v-if="$v.invoice_item.weight.$error" class="text-danger">Please Enter weight</span> -->
                         </td>
                         <td>
-                          <input type="number" class="form-control form-control-user" @blur="calculatePrice(k)" placeholder="" v-model="invoice_item.quantity"/>
+                          <input type="number" class="form-control form-control-user" @blur="calculateValue(k)" placeholder="" v-model="invoice_item.quantity"/>
                           <span v-if="$v.invoice_item.quantity.$error" class="text-danger">Please Enter weight</span>
                         </td>
                         <td>
-                          <input type="number" class="form-control form-control-user" placeholder="" v-model="invoice_item.unitprice" readonly size="4"/>
+                          <input type="number" class="form-control form-control-user" @blur="calculateAmount(k)" placeholder="" v-model="invoice_item.unitprice"/>
                           <span v-if="$v.invoice_item.unitprice.$error" class="text-danger">Please Enter unit pice</span>                        
                         </td>
                         <td>
-                          <input type="number" class="form-control form-control-user" placeholder="" v-model="invoice_item.vat" readonly size="4"/>
+                          <input type="number" class="form-control form-control-user" placeholder="" v-model="invoice_item.vat" readonly/>
                         </td>
                         <td>
-                          <input type="number" class="form-control form-control-user" @blur="calculatePrice(k)" placeholder="" v-model="invoice_item.invoice_amount" size="4"/>
+                          <input type="number" class="form-control form-control-user" @blur="calculatePrice(k)" placeholder="" v-model="invoice_item.invoice_amount"/>
                         </td>
                         <td><span class="material-symbols-outlined" style="margin-right: 5px;color: red;cursor: pointer;" @click="removeLine(k)">delete</span></td>
                     </tr>
@@ -387,7 +389,8 @@ export default {
         registered_address:"",
         first_name: "",
         last_name: "",
-        billing_address:""
+        billing_address:"",
+        invoiceno:""
       },
       postdata:{},
       errors: {},
@@ -396,6 +399,7 @@ export default {
       rows: [],
       invoice_items: [{
           invoice_type: '',
+          invoice_typeid: '',
           invoice_product: '',
           weight: '',
           quantity: '',
@@ -406,6 +410,7 @@ export default {
       }],
       currencies:[],
       producttypes:{},
+      products:{},
       subtotal:'',
       vattotal:'',
       totalamount:'',
@@ -424,6 +429,7 @@ export default {
      
       this.invoice_items.push({
           invoice_type: '',
+          invoice_typeid: '',
           invoice_product: '',
           weight: '',
           quantity: '',
@@ -534,6 +540,16 @@ export default {
             this.producttypes = response.data;
         });
     },
+    getProducts() {
+        return axios.get("productlist").then(response => {
+            this.products = response.data;
+        });
+    },
+    getInvoicekey() {
+        return axios.get("get_invoicekey").then(response => {
+          this.formdata.invoiceno = response.data;
+        });
+    },
     fetchProducts(index)
     {
       this.invoice_items[index].weight='';
@@ -625,7 +641,9 @@ export default {
       axios.get('/productdetails/'+this.invoice_items[index].invoice_product)
         .then((response) => {
             this.invoice_items[index].weight=response.data.weight;
-            this.invoice_items[index].vat=response.data.rate;
+            this.invoice_items[index].vat=(response.data.productrate)?response.data.productrate:0;
+            this.invoice_items[index].invoice_type=response.data.type;
+            this.invoice_items[index].invoice_typeid=response.data.type_id;
         })
         .catch(function(error) {
         });
@@ -639,6 +657,134 @@ export default {
           this.formdata.billing_address = response.data.registered_address;
         })
       }
+    },
+    calculateValue(index)
+    {
+      var invunitprice = parseFloat(this.invoice_items[index].unitprice);
+      if(invunitprice)
+      {
+        var quantity = this.invoice_items[index].quantity;
+        var vat = this.invoice_items[index].vat;
+        if(vat)
+        {
+          var vatdeduct = vat/100;
+          var vatquantity = quantity*(1+vatdeduct);
+          var v = invunitprice*vatquantity;
+          var rounded = Math.round(v * 10) / 10
+          var lineamount= Math.floor(rounded + 0.1) === rounded + 0.1? rounded + 0.1: rounded;
+        }
+        else
+        {
+          var lineamount =invunitprice*vatquantity;
+        }
+        this.invoice_items[index].invoice_amount = lineamount;
+      }
+      else
+      {
+        var invtotalamount = parseFloat(this.invoice_items[index].invoice_amount);
+        var quantity = this.invoice_items[index].quantity;
+        var vat = this.invoice_items[index].vat;
+        if(vat)
+        {
+          var vatdeduct = vat/100;
+          var vatquantity = quantity*(1+vatdeduct);
+          var v = invtotalamount/vatquantity;
+          var rounded = Math.round(v * 10) / 10
+          var unitprice= Math.floor(rounded + 0.1) === rounded + 0.1? rounded + 0.1: rounded;
+        }
+        else
+        {
+          var unitprice = invtotalamount/quantity;
+        }
+        this.invoice_items[index].unitprice = unitprice;
+      }
+
+
+      var totalsub=0;
+      for(var j=0; j<this.invoice_items.length;j++)
+      {
+        if(!isNaN(this.invoice_items[j].unitprice))  
+        {
+          totalsub += this.invoice_items[j].unitprice*this.invoice_items[j].quantity;
+        }
+      }
+
+      var totalvat=0;
+      for(var k=0; k<this.invoice_items.length;k++)
+      {
+        if(!isNaN(this.invoice_items[k].unitprice))  
+        {
+          if(this.invoice_items[k].vat)
+          {
+            totalvat += (this.invoice_items[k].unitprice*this.invoice_items[k].quantity)*(this.invoice_items[k].vat/100);
+          }
+          else
+          {
+            totalvat += 0;
+          }
+        }
+      }
+      
+      this.subtotal = totalsub.toFixed(2);
+      this.vattotal = totalvat.toFixed(2);
+      var invoicetotal = totalsub + totalvat;
+      this.totalamount = invoicetotal.toFixed(2);
+      this.formdata.subtotal = Number(this.subtotal);
+      this.formdata.vattotal = Number(this.vattotal);
+      this.formdata.totalamount = Number(this.totalamount);
+    },
+    calculateAmount(index)
+    {
+      var invunitprice = parseFloat(this.invoice_items[index].unitprice);
+      var quantity = this.invoice_items[index].quantity;
+      var vat = this.invoice_items[index].vat;
+      if(vat)
+      {
+        var vatdeduct = vat/100;
+        var vatquantity = quantity*(1+vatdeduct);
+        var v = invunitprice*vatquantity;
+        var rounded = Math.round(v * 10) / 10
+        var lineamount= Math.floor(rounded + 0.1) === rounded + 0.1? rounded + 0.1: rounded;
+      }
+      else
+      {
+        var lineamount =invunitprice*vatquantity;
+      }
+      this.invoice_items[index].invoice_amount = lineamount;
+
+
+      var totalsub=0;
+      for(var j=0; j<this.invoice_items.length;j++)
+      {
+        if(!isNaN(this.invoice_items[j].unitprice))  
+        {
+          totalsub += this.invoice_items[j].unitprice*this.invoice_items[j].quantity;
+        }
+      }
+
+      var totalvat=0;
+      for(var k=0; k<this.invoice_items.length;k++)
+      {
+        if(!isNaN(this.invoice_items[k].unitprice))  
+        {
+          if(this.invoice_items[k].vat)
+          {
+            totalvat += (this.invoice_items[k].unitprice*this.invoice_items[k].quantity)*(this.invoice_items[k].vat/100);
+          }
+          else
+          {
+            totalvat += 0;
+          }
+        }
+      }
+      
+      this.subtotal = totalsub.toFixed(2);
+      this.vattotal = totalvat.toFixed(2);
+      var invoicetotal = totalsub + totalvat;
+      this.totalamount = invoicetotal.toFixed(2);
+      this.formdata.subtotal = Number(this.subtotal);
+      this.formdata.vattotal = Number(this.vattotal);
+      this.formdata.totalamount = Number(this.totalamount);
     },
     calculatePrice(index)
     {
@@ -775,6 +921,8 @@ export default {
     this.getCustomers();
     this.getCurrencies();
     this.getProducttypes();
+    this.getProducts();
+    this.getInvoicekey();
   }
 };
 </script>
@@ -906,6 +1054,21 @@ export default {
 .check-position
 {
   margin-left: 15%;
+}
+.static-value{
+  position:absolute;
+  left: 10px;
+  font-weight: bold;
+  color: #6e707e;
+  font-size: 13px !important;
+  top: 40px;
+}
+.setpadding
+{
+  padding-left: 40px;
+}
+.form-text{
+	position:relative;
 }
 @media (min-width: 768px) {
   .detail-div

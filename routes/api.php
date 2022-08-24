@@ -120,5 +120,5 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('sales_details/{id}', [Api\SalesController::class, 'salesdetails']);
     Route::post('create_payment',[Api\SalesController::class, 'createpayment']);
     Route::get('delete-payment/{id}', [Api\SalesController::class, 'deletepayment']);
-    
+    Route::get('get_invoicekey', [Api\SalesController::class, 'getinvoicekey']);
 });
