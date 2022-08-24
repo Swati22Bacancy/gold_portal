@@ -17,17 +17,31 @@
             <div class="row mb-4">
               <div class="col-md-6">
                 <div class="form-group customer-input">
-                  <label>Tax Rate (in %)</label>
+                  <label class="required-field">Product Type Name</label>
                   <input
                     type="text"
                     class="form-control form-control-user"
-                    id="crt-typerate"
+                    id="crt-typename"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.rate"
+                    v-model="formdata.name"
                   />
-                </div>
+                  <span v-if="$v.formdata.name.$error" class="text-danger">Please enter valid name</span>
+                </div> 
               </div>
+               <div class="col-md-6">
+                <div class="form-group customer-input">
+                   <label class="required-field">Metal type </label>
+                  <div class="form-group col-md-12">
+                  <input type="radio" id="product_gold" name="vat_status" v-model="formdata.option" value="vat_uk">
+                  <label class="radio-label" for="product_gold">Gold</label>
+                  <input type="radio" id="product_silver" name="vat_status" v-model="formdata.option" value="vat_eu">
+                  <label class="radio-label" for="product_silver">Silver</label>
+                  <input type="radio" id="product_other" name="vat_status" v-model="formdata.option" value="vat_not">
+                  <label class="radio-label" for="product_other">Others</label>
+                </div>
+                  </div>
+                  </div>
             </div>
 
             <div class="row mb-4">

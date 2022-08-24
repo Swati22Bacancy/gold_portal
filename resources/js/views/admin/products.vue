@@ -32,8 +32,7 @@
                                     <th><input type="checkbox" class="custom-check-input"></th>
                                     <th>Product Type</th>
                                     <th>Product Name</th>
-                                    <th>Weight (gm)</th>
-                                    <th>Tax Rate (%)</th>
+                                    <th>Weight (gm)</th> 
                                     <th>Output Tax</th>
                                     <th>Actions</th>
                                 </tr>
@@ -44,7 +43,6 @@
                                     <td>{{product.type}}</td>
                                     <td>{{product.name}}</td>
                                     <td>{{product.weight}}</td>
-                                    <td>{{product.rate}}</td>
                                     <td>{{(product.output_tax)?'Yes':'No'}}</td>
                                     <td><router-link :to="{name : 'editproduct', params: {id : product.id}}"><span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">edit</span></router-link>
                                     <span class="material-symbols-outlined" style="margin-right: 5px;color: red;    cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmation" @click="selectrecord(product.id)">delete</span>

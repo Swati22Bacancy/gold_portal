@@ -90,6 +90,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
@@ -417,34 +431,154 @@ var render = function() {
             _c("div", { staticClass: "row mb-4" }, [
               _c("div", { staticClass: "col-md-6" }, [
                 _c("div", { staticClass: "form-group customer-input" }, [
-                  _c("label", [_vm._v("Tax Rate (in %)")]),
+                  _c("label", { staticClass: "required-field" }, [
+                    _vm._v("Product Type Name")
+                  ]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.formdata.rate,
-                        expression: "formdata.rate"
+                        value: _vm.formdata.name,
+                        expression: "formdata.name"
                       }
                     ],
                     staticClass: "form-control form-control-user",
                     attrs: {
                       type: "text",
-                      id: "crt-typerate",
+                      id: "crt-typename",
                       "aria-describedby": "emailHelp",
                       placeholder: ""
                     },
-                    domProps: { value: _vm.formdata.rate },
+                    domProps: { value: _vm.formdata.name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.formdata, "rate", $event.target.value)
+                        _vm.$set(_vm.formdata, "name", $event.target.value)
                       }
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _vm.$v.formdata.name.$error
+                    ? _c("span", { staticClass: "text-danger" }, [
+                        _vm._v("Please enter valid name")
+                      ])
+                    : _vm._e()
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group customer-input" }, [
+                  _c("label", { staticClass: "required-field" }, [
+                    _vm._v("Metal type ")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-12" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.formdata.option,
+                          expression: "formdata.option"
+                        }
+                      ],
+                      attrs: {
+                        type: "radio",
+                        id: "product_gold",
+                        name: "vat_status",
+                        value: "vat_uk"
+                      },
+                      domProps: {
+                        checked: _vm._q(_vm.formdata.option, "vat_uk")
+                      },
+                      on: {
+                        change: function($event) {
+                          return _vm.$set(_vm.formdata, "option", "vat_uk")
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "radio-label",
+                        attrs: { for: "product_gold" }
+                      },
+                      [_vm._v("Gold")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.formdata.option,
+                          expression: "formdata.option"
+                        }
+                      ],
+                      attrs: {
+                        type: "radio",
+                        id: "product_silver",
+                        name: "vat_status",
+                        value: "vat_eu"
+                      },
+                      domProps: {
+                        checked: _vm._q(_vm.formdata.option, "vat_eu")
+                      },
+                      on: {
+                        change: function($event) {
+                          return _vm.$set(_vm.formdata, "option", "vat_eu")
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "radio-label",
+                        attrs: { for: "product_silver" }
+                      },
+                      [_vm._v("Silver")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.formdata.option,
+                          expression: "formdata.option"
+                        }
+                      ],
+                      attrs: {
+                        type: "radio",
+                        id: "product_other",
+                        name: "vat_status",
+                        value: "vat_not"
+                      },
+                      domProps: {
+                        checked: _vm._q(_vm.formdata.option, "vat_not")
+                      },
+                      on: {
+                        change: function($event) {
+                          return _vm.$set(_vm.formdata, "option", "vat_not")
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "radio-label",
+                        attrs: { for: "product_other" }
+                      },
+                      [_vm._v("Others")]
+                    )
+                  ])
                 ])
               ])
             ]),

@@ -94,8 +94,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -16002,8 +16000,6 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(product.weight))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(product.rate))]),
-                      _vm._v(" "),
                       _c("td", [
                         _vm._v(_vm._s(product.output_tax ? "Yes" : "No"))
                       ]),
@@ -16174,8 +16170,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Product Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Weight (gm)")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Tax Rate (%)")]),
         _vm._v(" "),
         _c("th", [_vm._v("Output Tax")]),
         _vm._v(" "),
