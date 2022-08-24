@@ -441,7 +441,8 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       totalamount: '',
       customerdata: {},
       commentshow: '',
-      editflag: false
+      editflag: false,
+      credit_period: 0
     };
   },
   methods: {
@@ -696,6 +697,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       if (this.formdata.customer_id) {
         axios.get('/customerdetails/' + this.formdata.customer_id).then(function (response) {
           _this9.formdata.billing_address = response.data.registered_address;
+          _this9.credit_period = response.data.credit_period ? response.data.credit_period : 0;
         });
       }
     },

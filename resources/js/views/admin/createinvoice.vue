@@ -417,6 +417,7 @@ export default {
       customerdata:{},
       commentshow: '',
       editflag:false,
+      credit_period:0
     };
   },
   methods:
@@ -655,6 +656,7 @@ export default {
         axios.get('/customerdetails/'+this.formdata.customer_id)
         .then((response) => {
           this.formdata.billing_address = response.data.registered_address;
+          this.credit_period = (response.data.credit_period)?response.data.credit_period:0;
         })
       }
     },
