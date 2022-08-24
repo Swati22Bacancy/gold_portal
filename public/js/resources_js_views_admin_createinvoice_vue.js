@@ -1917,7 +1917,7 @@ var render = function() {
                     ],
                     staticClass: "form-control form-control-user inputdata",
                     attrs: {
-                      type: "text",
+                      type: "number",
                       title: "yo",
                       id: "crt-invoice",
                       "aria-describedby": "emailHelp",

@@ -145,7 +145,7 @@
               <div class="form-group">
                 <label>Invoice No.</label>
                 <input
-                  type="text"
+                  type="number"
                   title="yo"
                   class="form-control form-control-user inputdata"
                   id="crt-invoice"
