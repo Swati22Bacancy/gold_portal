@@ -57,21 +57,7 @@
                 </div>
                 
               </div>
-              <div class="col-md-6">
-                <div class="form-group customer-input">
-                  <label class="required-field">Tax Rate</label>
-                  <input
-                    type="text"
-                    class="form-control form-control-user"
-                    id="crt-typerate"
-                    aria-describedby="emailHelp"
-                    placeholder=""
-                    v-model="formdata.rate"
-                  />
-                  <span v-if="$v.formdata.rate.$error" class="text-danger">Please enter rate</span>
-                </div>
-                
-              </div>
+            
             </div>
             <div class="row mb-4">
               <div class="col-md-6">

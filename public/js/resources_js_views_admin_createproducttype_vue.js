@@ -90,8 +90,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
@@ -445,16 +443,10 @@ var render = function() {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.formdata, "name", $event.target.value)
+                        _vm.$set(_vm.formdata, "rate", $event.target.value)
                       }
                     }
-                  }),
-                  _vm._v(" "),
-                  _vm.$v.formdata.name.$error
-                    ? _c("span", { staticClass: "text-danger" }, [
-                        _vm._v("Please enter valid name")
-                      ])
-                    : _vm._e()
+                  })
                 ])
               ])
             ]),
