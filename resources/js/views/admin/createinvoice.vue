@@ -146,7 +146,8 @@
                 <label>Invoice No.</label>
                 <input
                   type="text"
-                  class="form-control form-control-user"
+                  title="yo"
+                  class="form-control form-control-user inputdata"
                   id="crt-invoice"
                   aria-describedby="emailHelp"
                   placeholder=""
@@ -182,7 +183,7 @@
                   placeholder=""
                   v-model="formdata.billing_address"
                 :readonly="!editflag"/>
-                <button class="edit-cont" @click="editButton"><i class="fas fa-pencil-alt"></i></button>
+                <button type="button" class="edit-cont" @click="editButton"><i class="fas fa-pencil-alt"></i></button>
                 <span v-if="$v.formdata.billing_address.$error" class="text-danger">Please Enter Delivery & Billing Address</span>
               </div>
             </div>
@@ -202,7 +203,8 @@
               <div class="form-group">
                 <label>Currency</label>
                 <select class="form-control form-control-user"  v-model="formdata.currency_id">
-                    <option v-for="currency in currencies" :key="currency.id" :value="currency.id">{{currency.name}}</option>
+               
+                <option v-for="currency in currencies" :key="currency.id" :value="currency.id">{{currency.name}}</option>
 
                 </select>
                 <span v-if="$v.formdata.currency_id.$error" class="text-danger">Please Select Currency</span>
@@ -379,9 +381,9 @@ export default {
       customerType: 'business',
       theme: 'cust-type',
       formdata: {
+        currency_id:"",
         issue_date:Date.now(),
         due_date:Date.now(),
-        invoiceno:"INV-",
         registered_address:"",
         first_name: "",
         last_name: "",
@@ -402,7 +404,7 @@ export default {
           invoice_amount:'',
           products:[]
       }],
-      currencies:{},
+      currencies:[],
       producttypes:{},
       subtotal:'',
       vattotal:'',
@@ -524,6 +526,7 @@ export default {
     getCurrencies() {
         return axios.get("currencylist").then(response => {
             this.currencies = response.data;
+            this.formdata.currency_id = this.currencies[0].id;
         });
     },
     getProducttypes() {
@@ -776,6 +779,12 @@ export default {
 };
 </script>
 <style scoped>
+.inputdata{
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="30"><text x="5" y="19" style="font:16px Arial;">INV -</text></svg>') no-repeat;
+  font: 16px "Arial";
+  padding-left: 45px;
+  
+}
 .edit-cont{
   position: absolute;
   top: 35px;
