@@ -75,6 +75,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
@@ -114,7 +130,8 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex
                 return axios.post("update_producttype", {
                   id: _this.$route.params.id,
                   name: _this.formdata.name,
-                  rate: _this.formdata.rate
+                  rate: _this.formdata.rate,
+                  purchase_rate: _this.formdata.purchase_rate
                 });
 
               case 6:
@@ -154,8 +171,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex
   validations: {
     formdata: {
       name: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.required,
-        isName: isName
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.required
       }
     }
   },
@@ -448,11 +464,13 @@ var render = function() {
                       ])
                     : _vm._e()
                 ])
-              ]),
-              _vm._v(" "),
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row mb-4" }, [
               _c("div", { staticClass: "col-md-6" }, [
-                _c("div", { staticClass: "form-producttype customer-input" }, [
-                  _c("label", [_vm._v("Tax Rate (in %)")]),
+                _c("div", { staticClass: "form-group customer-input" }, [
+                  _c("label", [_vm._v("Sales Tax Rate (in %)")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -465,10 +483,11 @@ var render = function() {
                     ],
                     staticClass: "form-control form-control-user",
                     attrs: {
-                      type: "text",
-                      id: "crt-producttypename",
+                      type: "number",
+                      id: "crt-typerate",
                       "aria-describedby": "emailHelp",
-                      placeholder: ""
+                      placeholder: "",
+                      min: "0"
                     },
                     domProps: { value: _vm.formdata.rate },
                     on: {
@@ -477,6 +496,44 @@ var render = function() {
                           return
                         }
                         _vm.$set(_vm.formdata, "rate", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group customer-input" }, [
+                  _c("label", [_vm._v("Purchase Tax Rate (in %)")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formdata.purchase_rate,
+                        expression: "formdata.purchase_rate"
+                      }
+                    ],
+                    staticClass: "form-control form-control-user",
+                    attrs: {
+                      type: "number",
+                      id: "crt-typerate",
+                      "aria-describedby": "emailHelp",
+                      placeholder: "",
+                      min: "0"
+                    },
+                    domProps: { value: _vm.formdata.purchase_rate },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.formdata,
+                          "purchase_rate",
+                          $event.target.value
+                        )
                       }
                     }
                   })

@@ -28,23 +28,39 @@
                   />
                   <span v-if="$v.formdata.name.$error" class="text-danger">Please enter valid name</span>
                 </div>
-                
               </div>
+            </div>
+            
+            <div class="row mb-4">
               <div class="col-md-6">
-                <div class="form-producttype customer-input">
-                  <label>Tax Rate (in %)</label>
+                <div class="form-group customer-input">
+                  <label>Sales Tax Rate (in %)</label>
                   <input
-                    type="text"
+                    type="number"
                     class="form-control form-control-user"
-                    id="crt-producttypename"
+                    id="crt-typerate"
                     aria-describedby="emailHelp"
                     placeholder=""
+                    min="0"
                     v-model="formdata.rate"
                   />
                 </div>
               </div>
+              <div class="col-md-6">
+                <div class="form-group customer-input">
+                  <label>Purchase Tax Rate (in %)</label>
+                  <input
+                    type="number"
+                    class="form-control form-control-user"
+                    id="crt-typerate"
+                    aria-describedby="emailHelp"
+                    placeholder=""
+                    min="0"
+                    v-model="formdata.purchase_rate"
+                  />
+                </div>
+              </div>
             </div>
-            
           </div>
         </div>
     </form>
@@ -79,6 +95,7 @@ export default {
           id: this.$route.params.id,
           name: this.formdata.name,
           rate: this.formdata.rate,
+          purchase_rate: this.formdata.purchase_rate,
         });
         let message =
             "Product Type has been successfully updated.";
@@ -102,8 +119,7 @@ export default {
   validations: {
     formdata: {
       name: {
-        required,
-        isName,
+        required
       },
     }
   },

@@ -91,7 +91,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Product Type",
+  name: "ProductType",
   components: {},
   props: ['producttypes'],
   data: function data() {

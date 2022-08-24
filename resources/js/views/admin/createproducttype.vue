@@ -17,21 +17,6 @@
             <div class="row mb-4">
               <div class="col-md-6">
                 <div class="form-group customer-input">
-                  <label class="required-field">Product Type Name</label>
-                  <input
-                    type="text"
-                    class="form-control form-control-user"
-                    id="crt-typename"
-                    aria-describedby="emailHelp"
-                    placeholder=""
-                    v-model="formdata.name"
-                  />
-                  <span v-if="$v.formdata.name.$error" class="text-danger">Please enter valid name</span>
-                </div>
-                
-              </div>
-              <div class="col-md-6">
-                <div class="form-group customer-input">
                   <label>Tax Rate (in %)</label>
                   <input
                     type="text"
@@ -42,10 +27,39 @@
                     v-model="formdata.rate"
                   />
                 </div>
-                
               </div>
             </div>
-            
+
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <div class="form-group customer-input">
+                  <label>Sales Tax Rate (in %)</label>
+                  <input
+                    type="number"
+                    class="form-control form-control-user"
+                    id="crt-typerate"
+                    aria-describedby="emailHelp"
+                    placeholder=""
+                    min="0"
+                    v-model="formdata.rate"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group customer-input">
+                  <label>Purchase Tax Rate (in %)</label>
+                  <input
+                    type="number"
+                    class="form-control form-control-user"
+                    id="crt-typerate"
+                    aria-describedby="emailHelp"
+                    placeholder=""
+                    min="0"
+                    v-model="formdata.purchase_rate"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
     </form>
@@ -78,6 +92,7 @@ export default {
         const response = await axios.post("create_producttype", {
           rate: this.formdata.rate,
           name: this.formdata.name,
+          purchase_rate: this.formdata.purchase_rate,
         });
         let message =
             "Product type has been successfully added.";
@@ -101,8 +116,7 @@ export default {
   validations: {
     formdata: {
       name: {
-        required,
-        isName,
+        required
       },
     }
   }
