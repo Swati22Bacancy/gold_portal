@@ -171,6 +171,7 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
+                    max="90"
                     v-model="formdata.credit_period"
                   />
                 </div>

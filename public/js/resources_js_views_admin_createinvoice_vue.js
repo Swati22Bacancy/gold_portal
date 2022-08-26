@@ -379,14 +379,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 
@@ -435,7 +427,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       }],
       currencies: [],
       producttypes: {},
-      products: {},
+      products: [],
       subtotal: '',
       vattotal: '',
       totalamount: '',
@@ -600,6 +592,13 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
 
       return axios.get("productlist").then(function (response) {
         _this5.products = response.data;
+        _this5.products = _this5.products.map(function (product) {
+          return {
+            value: product.id,
+            text: product.name
+          };
+        });
+        console.log(_this5.products);
       });
     },
     getInvoicekey: function getInvoicekey() {
@@ -698,6 +697,9 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         axios.get('/customerdetails/' + this.formdata.customer_id).then(function (response) {
           _this9.formdata.billing_address = response.data.registered_address;
           _this9.credit_period = response.data.credit_period ? response.data.credit_period : 0;
+          var date = new Date();
+          date.setDate(date.getDate() + _this9.credit_period);
+          _this9.formdata.due_date = date.getTime();
         });
       }
     },
@@ -988,7 +990,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.inputdata[data-v-2193c37c]{\r\n  background: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"30\"><text x=\"5\" y=\"19\" style=\"font:16px Arial;\">INV -</text></svg>') no-repeat;\r\n  font: 16px \"Arial\";\r\n  padding-left: 45px;\n}\n.edit-cont[data-v-2193c37c]{\r\n  position: absolute;\r\n  top: 35px;\r\n   left: 350px;\r\n   border: none;\n}\n.select-cont[data-v-2193c37c]{\r\n  width: 200px;\n}\n.required-field[data-v-2193c37c]::after {\r\n  content: \"*\";\r\n  color: red;\n}\n.text-danger[data-v-2193c37c]{\r\n  font-size: 12px;\n}\n.button-container[data-v-2193c37c]{\r\n    display: flex;\r\n    justify-content: space-between;\n}\n.btn-modal[data-v-2193c37c]{\r\n  color: black;\r\n  border: 0;\r\n  background:#7ADAAA ;\n}\n.modal-selection[data-v-2193c37c]{\r\n  flex: 1 !important;\n}\n#createinvoice-datatable thead[data-v-2193c37c] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-2193c37c] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-2193c37c]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createinvoice-div[data-v-2193c37c]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-2193c37c]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-2193c37c]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-2193c37c]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-2193c37c]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-2193c37c]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-2193c37c]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-2193c37c]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.check-position[data-v-2193c37c]\r\n{\r\n  margin-left: 15%;\n}\n.static-value[data-v-2193c37c]{\r\n  position:absolute;\r\n  left: 10px;\r\n  font-weight: bold;\r\n  color: #6e707e;\r\n  font-size: 13px !important;\r\n  top: 40px;\n}\n.setpadding[data-v-2193c37c]\r\n{\r\n  padding-left: 40px;\n}\n.form-text[data-v-2193c37c]{\r\n\tposition:relative;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-2193c37c]\r\n  {\r\n    border-right: 2px solid #eee;\r\n    padding-right: 8%;\n}\n.primary-div[data-v-2193c37c]\r\n  {\r\n    padding-left: 8%;\n}\n}\n#mydatepicker[data-v-2193c37c]{\r\n    display: block;\r\n    width: 100%;\r\n    height: calc(1.5em + 0.75rem + 2px);\r\n    padding: 0.375rem 0.75rem;\r\n    font-size: 1rem;\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    color: #6e707e;\r\n    background-color: #fff;\r\n    background-clip: padding-box;\r\n    border: 1px solid #d1d3e2;\r\n    border-radius: 0.35rem;\r\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-createinvoice[data-v-2193c37c]{\r\n  width:280px;\n}\n.table-row[data-v-2193c37c]{\r\n  height: 100px;\n}\n.inputdata[data-v-2193c37c]{\r\n  background: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"30\"><text x=\"5\" y=\"19\" style=\"font:16px Arial;\">INV -</text></svg>') no-repeat;\r\n  font: 16px \"Arial\";\r\n  padding-left: 45px;\n}\n.edit-cont[data-v-2193c37c]{\r\n  position: absolute;\r\n  top: 35px;\r\n   left: 350px;\r\n   border: none;\n}\n.select-cont[data-v-2193c37c]{\r\n  width: 200px;\n}\n.required-field[data-v-2193c37c]::after {\r\n  content: \"*\";\r\n  color: red;\n}\n.text-danger[data-v-2193c37c]{\r\n  font-size: 12px;\n}\n.button-container[data-v-2193c37c]{\r\n    display: flex;\r\n    justify-content: space-between;\n}\n.btn-modal[data-v-2193c37c]{\r\n  color: black;\r\n  border: 0;\r\n  background:#7ADAAA ;\n}\n.modal-selection[data-v-2193c37c]{\r\n  flex: 1 !important;\n}\n#createinvoice-datatable thead[data-v-2193c37c] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-2193c37c] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-2193c37c]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createinvoice-div[data-v-2193c37c]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-2193c37c]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-2193c37c]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-2193c37c]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-2193c37c]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-2193c37c]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-2193c37c]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-2193c37c]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.check-position[data-v-2193c37c]\r\n{\r\n  margin-left: 15%;\n}\n.static-value[data-v-2193c37c]{\r\n  position:absolute;\r\n  left: 10px;\r\n  font-weight: bold;\r\n  color: #6e707e;\r\n  font-size: 13px !important;\r\n  top: 40px;\n}\n.setpadding[data-v-2193c37c]\r\n{\r\n  padding-left: 40px;\n}\n.form-text[data-v-2193c37c]{\r\n\tposition:relative;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-2193c37c]\r\n  {\r\n    border-right: 2px solid #eee;\r\n    padding-right: 8%;\n}\n.primary-div[data-v-2193c37c]\r\n  {\r\n    padding-left: 8%;\n}\n}\n#mydatepicker[data-v-2193c37c]{\r\n    display: block;\r\n    width: 100%;\r\n    height: calc(1.5em + 0.75rem + 2px);\r\n    padding: 0.375rem 0.75rem;\r\n    font-size: 1rem;\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    color: #6e707e;\r\n    background-color: #fff;\r\n    background-clip: padding-box;\r\n    border: 1px solid #d1d3e2;\r\n    border-radius: 0.35rem;\r\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\n.td-style[data-v-2193c37c]{\r\n  width:150px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2357,314 +2359,297 @@ var render = function() {
                       _c(
                         "tbody",
                         _vm._l(_vm.invoice_items, function(invoice_item, k) {
-                          return _c("tr", { key: k }, [
-                            _c("td", [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: invoice_item.invoice_type,
-                                    expression: "invoice_item.invoice_type"
-                                  }
-                                ],
-                                staticClass: "form-control form-control-user",
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "",
-                                  readonly: ""
-                                },
-                                domProps: { value: invoice_item.invoice_type },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      invoice_item,
-                                      "invoice_type",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: invoice_item.invoice_typeid,
-                                    expression: "invoice_item.invoice_typeid"
-                                  }
-                                ],
-                                staticClass: "form-control form-control-user",
-                                attrs: { type: "hidden", placeholder: "" },
-                                domProps: {
-                                  value: invoice_item.invoice_typeid
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      invoice_item,
-                                      "invoice_typeid",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "select",
-                                {
+                          return _c(
+                            "tr",
+                            { key: k, staticClass: "table-row" },
+                            [
+                              _c("td", { staticClass: "td-style" }, [
+                                _c("input", {
                                   directives: [
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: invoice_item.invoice_product,
-                                      expression: "invoice_item.invoice_product"
+                                      value: invoice_item.invoice_type,
+                                      expression: "invoice_item.invoice_type"
                                     }
                                   ],
-                                  staticClass:
-                                    "form-control form-control-user select-cont",
+                                  staticClass: "form-control form-control-user",
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "",
+                                    readonly: ""
+                                  },
+                                  domProps: {
+                                    value: invoice_item.invoice_type
+                                  },
                                   on: {
-                                    change: [
-                                      function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.$set(
-                                          invoice_item,
-                                          "invoice_product",
-                                          $event.target.multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        )
-                                      },
-                                      function($event) {
-                                        return _vm.fetchProductDetails(k)
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
                                       }
-                                    ]
+                                      _vm.$set(
+                                        invoice_item,
+                                        "invoice_type",
+                                        $event.target.value
+                                      )
+                                    }
                                   }
-                                },
-                                _vm._l(_vm.products, function(product) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: product.id,
-                                      domProps: { value: product.id }
-                                    },
-                                    [_vm._v(_vm._s(product.name))]
-                                  )
                                 }),
-                                0
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: invoice_item.weight,
-                                    expression: "invoice_item.weight"
-                                  }
-                                ],
-                                staticClass: "form-control form-control-user",
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "",
-                                  readonly: ""
-                                },
-                                domProps: { value: invoice_item.weight },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: invoice_item.invoice_typeid,
+                                      expression: "invoice_item.invoice_typeid"
                                     }
-                                    _vm.$set(
-                                      invoice_item,
-                                      "weight",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: invoice_item.quantity,
-                                    expression: "invoice_item.quantity"
-                                  }
-                                ],
-                                staticClass: "form-control form-control-user",
-                                attrs: { type: "number", placeholder: "" },
-                                domProps: { value: invoice_item.quantity },
-                                on: {
-                                  blur: function($event) {
-                                    return _vm.calculateValue(k)
-                                  },
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      invoice_item,
-                                      "quantity",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.$v.invoice_item.quantity.$error
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v("Please Enter weight")
-                                  ])
-                                : _vm._e()
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: invoice_item.unitprice,
-                                    expression: "invoice_item.unitprice"
-                                  }
-                                ],
-                                staticClass: "form-control form-control-user",
-                                attrs: { type: "number", placeholder: "" },
-                                domProps: { value: invoice_item.unitprice },
-                                on: {
-                                  blur: function($event) {
-                                    return _vm.calculateAmount(k)
-                                  },
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      invoice_item,
-                                      "unitprice",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.$v.invoice_item.unitprice.$error
-                                ? _c("span", { staticClass: "text-danger" }, [
-                                    _vm._v("Please Enter unit pice")
-                                  ])
-                                : _vm._e()
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: invoice_item.vat,
-                                    expression: "invoice_item.vat"
-                                  }
-                                ],
-                                staticClass: "form-control form-control-user",
-                                attrs: {
-                                  type: "number",
-                                  placeholder: "",
-                                  readonly: ""
-                                },
-                                domProps: { value: invoice_item.vat },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      invoice_item,
-                                      "vat",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: invoice_item.invoice_amount,
-                                    expression: "invoice_item.invoice_amount"
-                                  }
-                                ],
-                                staticClass: "form-control form-control-user",
-                                attrs: { type: "number", placeholder: "" },
-                                domProps: {
-                                  value: invoice_item.invoice_amount
-                                },
-                                on: {
-                                  blur: function($event) {
-                                    return _vm.calculatePrice(k)
-                                  },
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      invoice_item,
-                                      "invoice_amount",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "span",
-                                {
-                                  staticClass: "material-symbols-outlined",
-                                  staticStyle: {
-                                    "margin-right": "5px",
-                                    color: "red",
-                                    cursor: "pointer"
+                                  ],
+                                  staticClass: "form-control form-control-user",
+                                  attrs: { type: "hidden", placeholder: "" },
+                                  domProps: {
+                                    value: invoice_item.invoice_typeid
                                   },
                                   on: {
-                                    click: function($event) {
-                                      return _vm.removeLine(k)
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        invoice_item,
+                                        "invoice_typeid",
+                                        $event.target.value
+                                      )
                                     }
                                   }
-                                },
-                                [_vm._v("delete")]
-                              )
-                            ])
-                          ])
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  { staticClass: "modal-createinvoice" },
+                                  [
+                                    _c("model-select", {
+                                      attrs: {
+                                        options: _vm.products,
+                                        placeholder: "Select."
+                                      },
+                                      on: {
+                                        change: function($event) {
+                                          return _vm.fetchProductDetails(k)
+                                        }
+                                      },
+                                      model: {
+                                        value: invoice_item.invoice_product,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            invoice_item,
+                                            "invoice_product",
+                                            $$v
+                                          )
+                                        },
+                                        expression:
+                                          "invoice_item.invoice_product"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "td-style" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: invoice_item.weight,
+                                      expression: "invoice_item.weight"
+                                    }
+                                  ],
+                                  staticClass: "form-control form-control-user",
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "",
+                                    readonly: ""
+                                  },
+                                  domProps: { value: invoice_item.weight },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        invoice_item,
+                                        "weight",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "td-style" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: invoice_item.quantity,
+                                      expression: "invoice_item.quantity"
+                                    }
+                                  ],
+                                  staticClass: "form-control form-control-user",
+                                  attrs: { type: "number", placeholder: "" },
+                                  domProps: { value: invoice_item.quantity },
+                                  on: {
+                                    blur: function($event) {
+                                      return _vm.calculateValue(k)
+                                    },
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        invoice_item,
+                                        "quantity",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm.$v.invoice_item.quantity.$error
+                                  ? _c("span", { staticClass: "text-danger" }, [
+                                      _vm._v("Please Enter weight")
+                                    ])
+                                  : _vm._e()
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "td-style" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: invoice_item.unitprice,
+                                      expression: "invoice_item.unitprice"
+                                    }
+                                  ],
+                                  staticClass: "form-control form-control-user",
+                                  attrs: { type: "number", placeholder: "" },
+                                  domProps: { value: invoice_item.unitprice },
+                                  on: {
+                                    blur: function($event) {
+                                      return _vm.calculateAmount(k)
+                                    },
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        invoice_item,
+                                        "unitprice",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm.$v.invoice_item.unitprice.$error
+                                  ? _c("span", { staticClass: "text-danger" }, [
+                                      _vm._v("Please Enter unit pice")
+                                    ])
+                                  : _vm._e()
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "td-style" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: invoice_item.vat,
+                                      expression: "invoice_item.vat"
+                                    }
+                                  ],
+                                  staticClass: "form-control form-control-user",
+                                  attrs: {
+                                    type: "number",
+                                    placeholder: "",
+                                    readonly: ""
+                                  },
+                                  domProps: { value: invoice_item.vat },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        invoice_item,
+                                        "vat",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "td-style" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: invoice_item.invoice_amount,
+                                      expression: "invoice_item.invoice_amount"
+                                    }
+                                  ],
+                                  staticClass: "form-control form-control-user",
+                                  attrs: { type: "number", placeholder: "" },
+                                  domProps: {
+                                    value: invoice_item.invoice_amount
+                                  },
+                                  on: {
+                                    blur: function($event) {
+                                      return _vm.calculatePrice(k)
+                                    },
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        invoice_item,
+                                        "invoice_amount",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "material-symbols-outlined",
+                                    staticStyle: {
+                                      "margin-right": "5px",
+                                      color: "red",
+                                      cursor: "pointer"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.removeLine(k)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("delete")]
+                                )
+                              ])
+                            ]
+                          )
                         }),
                         0
                       )
