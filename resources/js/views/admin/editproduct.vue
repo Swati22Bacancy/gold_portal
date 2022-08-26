@@ -94,7 +94,6 @@ export default {
         name: "",
         type_id: "",
         weight: "",
-        rate: "",
       },
       producttypes:{}
     };
@@ -149,9 +148,6 @@ export default {
         required
       },
       weight: {
-        required
-      },
-      rate: {
         required
       }
     }

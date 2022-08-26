@@ -54,7 +54,7 @@
             </div>
             <div class="col-md-2" style="border-right:  1px solid #4682B4;">
               <p style="color:#4682B4; font-size: 15px;">VAT No.</p>
-              <span>140187339</span>
+              <span>{{formdata.vat}}</span>
             </div>
             <div class="col-md-2" style="border-right:  1px solid #4682B4;">
               <p style="color:#4682B4; font-size: 15px;">Issue Date</p>
@@ -66,11 +66,15 @@
             </div>
             <div class="col-md-2" style="border-right:  1px solid #4682B4;">
               <p style="color:#4682B4; font-size: 15px;">Amount Due</p>
-              <span><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i> 47,992</span>
+              <span><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>{{due_payment}}</span>
             </div>
             <div class="col-md-2">
               <p style="color:#4682B4; font-size: 15px;">Status</p>
-              <span><button type="button" class="btn table-btn" style="margin-left: auto;width: 100px;">Partially Paid</button></span>
+              <span>
+                <button type="button" v-if="invoice_status!='Paid'" class="btn table-btn" style="margin-left: auto;width: 100px;">{{invoice_status}}</button><br>
+                <span v-if="over_paid<0"> Over Amount: {{Math.abs(over_paid)}}</span>
+                <button type="button" v-if="invoice_status=='Paid'" class="btn table-btn" style="margin-left: auto;width: 100px;background-color: #00AA5B !important;">{{invoice_status}} </button>
+              </span>
             </div>
           </div>
 
@@ -148,31 +152,30 @@
         <div>
         <div class="mt-4 btn-container">
           <div>
-            <button type="submit" class="cont" style="background-color: #EDF2F6;" @click="tabclick('payment')" :class="{'selectedclr':!tabflag}">Payment({{paymentcount}})</button>
-            <button type="submit" class="cont" style="background-color: #EDF2F6">Notes(0)</button>
-            <button type="submit" class="cont" style="background-color: #EDF2F6" @click="tabclick('customer')" :class="{'selectedclr':tabflag}">Customer Kyc(4)</button>
-            <button type="submit" class="cont" style="background-color: #EDF2F6 !important;">History</button>
+            <button type="button" class="cont" style="background-color: #EDF2F6;" @click="tabclick('payment')" :class="{'selectedclr':selectedtab=='payment'}">Payment({{paymentcount}})</button>
+            <button type="button" class="cont" style="background-color: #EDF2F6" @click="tabclick('note')" :class="{'selectedclr':selectedtab=='note'}">Notes</button>
+            <button type="button" class="cont" style="background-color: #EDF2F6" @click="tabclick('customer')" :class="{'selectedclr':selectedtab=='customer'}">Customer Kyc(4)</button>
+            <button type="button" class="cont" style="background-color: #EDF2F6;" @click="tabclick('history')" :class="{'selectedclr':selectedtab=='history'}">History</button>
           </div>
           <div>  
-        <button type="submit" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;" @click="addLine"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Payment</button>
-        <button type="submit" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #EDF2F6 !important;">Apply Credit</button>
-        <button type="submit" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #EDF2F6 !important;">Refund</button>
+        <button type="button" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;" @click="addLine"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Payment</button>
+        <button type="button" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #EDF2F6 !important;">Apply Credit</button>
+        <button type="button" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #EDF2F6 !important;">Refund</button>
         </div>
         </div> 
       </div>
       </div>
-        <div class="table-div mb-2" v-if="!tabflag" style="background-color:white; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 10%);">
+        <div class="table-div mb-2" v-if="selectedtab=='payment'" style="background-color:white; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 10%);">
           <table class="table" v-if="!addpayment" id="createinvoice-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
               <tbody>
                 <tr v-for="salepayment in formdata.salepayments" :key="salepayment.id">
                     <td>{{salepayment.payment_date}}</td>
-                    <td style="color:#7adaaa;"><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i> {{salepayment.totalamount}} Received</td>
+                    <td></td>
                     <td>{{salepayment.method}}</td>
                     <td></td>
-                    <td></td>
+                    <td style="color:#7adaaa;"><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i> {{salepayment.totalamount}} Received</td>
                     <td>
-                      <span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;">mail</span>
-                      <span class="material-symbols-outlined" style="margin-right: 5px;color: #000;cursor: pointer;">print</span>
+                      
                     </td>
                     <td>
                       <span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;" @click="editpayment(salepayment)">edit</span>
@@ -182,7 +185,7 @@
                 
               </tbody>
           </table>
-          <table v-if="addpayment" class="table" id="createinvoice-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
+          <table v-if="addpayment" class="table" id="createpayment-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
               <tbody>
                 <tr v-for="(invoice_item, k) in invoice_items" :key="k">
                     <td>
@@ -193,15 +196,15 @@
                     </td>
                     <td>
                       <select class="form-control form-control-user"  v-model="invoice_item.bank">
-                        <option>ICIC Bank Accounts</option>
-                          <option>Baroda Bank</option>
+                        <option value="ICIC Bank Accounts">ICIC Bank Accounts</option>
+                          <option value="Baroda Bank">Baroda Bank</option>
                       </select>
                     </td>
                     <td>
                       <select class="form-control form-control-user"  v-model="invoice_item.method">
-                          <option>Bank Transfer</option>
-                          <option>Cash</option>
-                          <option>Other</option>
+                          <option value="Bank Transfer">Bank Transfer</option>
+                          <option value="Cash">Cash</option>
+                          <option value="Other">Other</option>
                       
                       </select>
                     </td>
@@ -214,7 +217,23 @@
               </tbody>
           </table>
         </div>
-            <div v-else style="background-color:white; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 10%);">
+
+        <div class="table-div mb-2" v-if="selectedtab=='note'" style="background-color:white; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 10%);">
+          <table class="table" id="addnote_table" width="100%" cellspacing="0" style="margin-bottom:0">
+              <tbody>
+                <tr>
+                    <td>
+                      <input type="text" class="form-control form-control-user" placeholder="Add note" v-model="note">
+                    </td>
+                    <td> 
+                      <button type="button" @click="save_note()" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;float: right;">Save</button>
+                    </td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+
+        <div v-if="selectedtab=='customer'" style="background-color:white; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 10%);">
              <div class="table-responsive">
             <table class="table" id="dash-datatable" width="100%" cellspacing="0">
                 <tbody>
@@ -242,6 +261,10 @@
             </table>
           </div>
        </div>
+
+       <div class="table-div mb-2" v-if="selectedtab=='history'" style="background-color:white; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 10%);">
+          11111
+        </div>
         <!-- Modal -->
       <div class="modal fade" id="deleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -283,18 +306,25 @@ export default {
       formdata: {},
       rows: [],
       invoice_items: [{
-          invoice_type: '',
-          invoice_product: '',
-          weight: '',
-          quantity: '',
-          unitprice: '',
-          vat: '',
-          invoice_amount:''
+          payment_date:Date.now(),
+          totalamount:'',
+          bank:'ICIC Bank Accounts',
+          method:'Bank Transfer',
+          comment:''
       }],
       tabflag:false,
       sidebarflag:false,
       paymentid:'',
-      paymentcount:0
+      paymentcount:0,
+      due_payment:'',
+      invoice_status:'',
+      payment_check:'',
+      paymenttab:false,
+      notestab:false,
+      kyctab:false,
+      selectedtab:'payment',
+      note:'',
+      over_paid:0,
     };
 
   },
@@ -329,6 +359,8 @@ export default {
       
     },
     tabclick(param){
+      this.selectedtab=param;
+      return false;
      if(param == "customer"){
       this.tabflag = true;
      }
@@ -339,6 +371,8 @@ export default {
     async save_payment(index)
     {
       this.invoice_items[index].sales_id = this.$route.params.id;
+      var date = new Date(this.invoice_items[index].payment_date);
+      this.invoice_items[index].payment_date=date;
       const response = await axios.post("create_payment", this.invoice_items[index]);
       if(response.data.id)
       {
@@ -351,6 +385,71 @@ export default {
         this.addpayment='';
         this.paymentcount =this.paymentcount+1;
         //this.invoice_items.splice(index,1);
+        this.due_payment = this.due_payment-this.invoice_items[index].totalamount;
+        if(this.due_payment<0)
+        {
+          this.over_paid = this.due_payment;
+        }
+        this.due_payment = (this.due_payment<0)?0:this.due_payment;
+        
+        this.invoice_items= [{
+          payment_date:Date.now(),
+          totalamount:'',
+          bank:'ICIC Bank Accounts',
+          method:'Bank Transfer',
+          comment:''
+        }];
+        
+        if(this.paymentcount==0)
+        {
+          this.invoice_status='UnPaid';
+          this.payment_check='Yes';
+        }
+        else if(this.over_paid< 0)
+        {
+          this.invoice_status='Over Paid';
+          this.payment_check='';
+        }
+        else if(this.due_payment==0)
+        {
+          this.invoice_status='Paid';
+          this.payment_check='';
+        }
+        else
+        {
+          this.invoice_status='Partially Paid';
+          this.payment_check='Yes';
+        }
+      }
+      else
+      {
+        let toast = Vue.toasted.show('Something went wrong, Please try again', {
+            theme: "toasted-error",
+            position: "top-center",
+            duration: 5000,
+          });
+      }
+    },
+    async save_note()
+    {
+      var notedata={sales_id:this.$route.params.id,note:this.note};
+      const response = await axios.post("create_note", notedata);
+      if(response.data.id)
+      {
+        this.note='';
+        let toast = Vue.toasted.show('Note successfully added', {
+            theme: "toasted-success",
+            position: "top-center",
+            duration: 5000,
+          });
+      }
+      else
+      {
+        let toast = Vue.toasted.show('Something went wrong, Please try again', {
+            theme: "toasted-error",
+            position: "top-center",
+            duration: 5000,
+          });
       }
     },
     selectrecord(id)
@@ -379,6 +478,31 @@ export default {
       .then((response) => {
           this.formdata = response.data;
           this.paymentcount = this.formdata.salepayments.length;
+          if(response.data.payment_due<0)
+          {
+            this.over_paid = response.data.payment_due;
+          }
+          this.due_payment = (response.data.payment_due<0)?0:response.data.payment_due;
+          if(this.paymentcount==0)
+          {
+            this.invoice_status='UnPaid';
+            this.payment_check='Yes';
+          }
+          else if(this.over_paid< 0)
+          {
+            this.invoice_status='Over Paid';
+            this.payment_check='';
+          }
+          else if(this.due_payment==0)
+          {
+            this.invoice_status='Paid';
+            this.payment_check='';
+          }
+          else
+          {
+            this.invoice_status='Partially Paid';
+            this.payment_check='Yes';
+          }
       })
       .catch(function(error) {
           //app.$notify(error.response.data.error, "error");
@@ -411,16 +535,17 @@ export default {
 }
 .selectedclr{
   background-color: #245388 !important;
+  color: #fff !important;
 }
 .cont{
    
   width: auto;
     font-size: 13px  !important;
     color: #000;
-   border:none;
+    border:none;
     height: 40px;
-    
-    margin-left: 10px;
+    padding: 5px 20px;
+    border-radius: 5px 5px 0px 0px;
 }
 .viewsales-div
 {

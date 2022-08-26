@@ -117,8 +117,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex
       formdata: {
         name: "",
         type_id: "",
-        weight: "",
-        rate: ""
+        weight: ""
       },
       producttypes: {}
     };
@@ -204,9 +203,6 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       weight: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.required
-      },
-      rate: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.required
       }
     }

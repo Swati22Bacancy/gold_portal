@@ -96,7 +96,6 @@ export default {
         name: "",
         type_id: "",
         weight: "",
-        rate: "",
       },
       producttypes:{}
     };
@@ -151,9 +150,6 @@ export default {
       weight: {
         required
       },
-      rate: {
-        required
-      }
     }
   },
   mounted()

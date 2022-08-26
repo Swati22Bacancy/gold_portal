@@ -6,6 +6,8 @@ use App\Models\Sales;
 use App\Models\SalesItems;
 use App\Models\SalesPayments;
 use App\Models\InvoiceOptions;
+use App\Models\SalesNotes;
+use App\Models\SalesHistory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
@@ -60,6 +62,14 @@ class SalesController extends Controller
                 }
             }
 
+            $saleshistory = SalesHistory::create([
+                'sales_id' => $sales->id,
+                'amount' => $request->input('formfields.totalamount'),
+                'date' => date("Y-m-d", strtotime($request->input('formfields.issue_date'))),
+                'comment' => $sales->invoiceno.' '.'created'
+                
+            ]);
+
             return response()->json($sales);
         } catch (\Exception $e) {
             return response([
@@ -82,7 +92,7 @@ class SalesController extends Controller
 
     public function salesdetails($id)
     {
-        $sales = Sales::leftjoin('customers', 'customers.id', '=', 'sales_invoice.customer_id')->select('sales_invoice.*','customers.first_name as firstname','customers.last_name as lastname')->where('sales_invoice.id',$id)->orderBy('sales_invoice.id', 'DESC')->first();
+        $sales = Sales::leftjoin('customers', 'customers.id', '=', 'sales_invoice.customer_id')->select('sales_invoice.*','customers.first_name as firstname','customers.last_name as lastname','customers.vat as vat')->where('sales_invoice.id',$id)->orderBy('sales_invoice.id', 'DESC')->first();
 
         $saleitems = SalesItems::leftjoin('producttypes', 'producttypes.id', '=', 'sales_items.producttype_id')->leftjoin('products', 'products.id', '=', 'sales_items.product_id')->select('sales_items.*','producttypes.name as typename','products.name as productname')->where('sales_id',$id)->get();
 
@@ -90,47 +100,19 @@ class SalesController extends Controller
 
         $sales->salesitem = $saleitems;
         $sales->salepayments = $salepayments;
+
+        $payment_received=0;
+        if(!empty($salepayments))
+        {
+            foreach($salepayments as $payment)
+            {
+                $payment_received += $payment->totalamount;
+            }
+        }
+        $sales->payment_received = $payment_received;
+        $sales->payment_due = $sales->totalamount - $payment_received;
         
         return response()->json($sales);
-    }
-
-    public function deleteindustrysector($id){
-        $industrysector = IndustrySector::find($id);
-            if($industrysector){
-                $industrysector->delete();
-                
-                return response()->json(
-                    [
-                        'status' => 'success',
-                        'msg' => 'Industry Sector deleted successfully'
-                    ],
-                    200
-                );
-            }else{
-                return response()->json(['error' => 'Record does not exists'], 404);
-            }
-    }
-
-    public function industrysectordetails($id)
-    {
-        $industrysector = IndustrySector::where('id', $id)->first();
-
-        return response()->json($industrysector);
-    }
-
-    public function updateindustrysector(Request $request)
-    {
-        try {
-            $industrysector = IndustrySector::where('id', $request->input('id'))->update([
-                'title' => $request->input('title'),
-            ]);
-
-            return response()->json($industrysector);
-        } catch (\Exception $e) {
-            return response([
-                'message' => 'Internal error, please try again later.' //$e->getMessage()
-            ], 400);
-        }
     }
 
     public function createpayment(Request $request)
@@ -143,6 +125,14 @@ class SalesController extends Controller
                 'method' => $request->input('method'),
                 'bank' => $request->input('bank'),
                 'comment' => $request->input('comment')
+            ]);
+
+            $saleshistory = SalesHistory::create([
+                'sales_id' => $request->input('sales_id'),
+                'amount' => $request->input('totalamount'),
+                'date' => date("Y-m-d", strtotime($request->input('payment_date'))),
+                'comment' => 'Payment Added'
+                
             ]);
 
             return response()->json($salespayments);
@@ -175,5 +165,29 @@ class SalesController extends Controller
         $lastinvoice = Sales::orderBy('invoicekey', 'DESC')->first();
         $invoicekey= (!empty($lastinvoice))?($lastinvoice->invoicekey)+1:1;
         return response()->json($invoicekey);
+    }
+
+    public function createnote(Request $request)
+    {
+        try {
+            $salesnotes = SalesNotes::create([
+                'sales_id' => $request->input('sales_id'),
+                'comment' => $request->input('note'),
+            ]);
+
+            $saleshistory = SalesHistory::create([
+                'sales_id' => $request->input('sales_id'),
+                'amount' => '',
+                'date' => date("Y-m-d"),
+                'comment' => 'Note Created'
+                
+            ]);
+
+            return response()->json($salesnotes);
+        } catch (\Exception $e) {
+            return response([
+                'message' => 'Internal error, please try again later.' //$e->getMessage()
+            ], 400);
+        }
     }
 }
