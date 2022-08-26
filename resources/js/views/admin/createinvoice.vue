@@ -5,7 +5,7 @@
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">New Sales Invoice</h1>
         <div>
-          <button type="button" @click="create_invoice(k)" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;">Save</button>
+          <button type="button" @click="create_invoice()" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;">Save</button>
           <router-link to="/sales"><button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button></router-link>
         </div>
         
@@ -19,7 +19,7 @@
               <div class="form-group">
                 <label>Customer</label>
                 <div class="input-group mb-3 d-flex">
-                  <model-select class="modal-selection" :options="customers" :on-change="fetchAddress()" v-model="formdata.customer_id" 
+                  <model-select class="modal-selection" :options="customers" @input="fetchAddress()" v-model="formdata.customer_id" 
                   placeholder="Select Customer"></model-select>
                   <div class="select-group-append">
                       <div class="input-icons">
@@ -244,7 +244,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(invoice_item, k) in invoice_items" :key="k" class="table-row">
+                    <tr v-for="(invoice_item, key) in invoice_items" :key="key" class="table-row">
                         <td class="td-style">
                           <!-- <select class="form-control form-control-user select-cont" @change="fetchProducts(k)" v-model="invoice_item.invoice_type" required>
                             <option v-for="producttype in producttypes" :key="producttype.id" :value="producttype.id">{{producttype.name}}</option>
@@ -254,9 +254,9 @@
                           <!-- <span v-if="$v.invoice_item.invoice_type.$error" class="text-danger">Please Select type</span> -->
                         </td>
                         <td><div class="modal-createinvoice">
-                      <model-select  :options="products" @change="fetchProductDetails(k)" v-model="invoice_item.invoice_product" 
-                       placeholder="Select."></model-select></div>
-                          <!-- <select class="form-control form-control-user select-cont" @change="fetchProductDetails(k)" v-model="invoice_item.invoice_product" > -->
+                      <model-select  :options="products" @input="fetchProductDetails(key)" v-model="invoice_item.invoice_product" 
+                       placeholder="Select Product"></model-select></div>
+                          <!-- <select class="form-control form-control-user select-cont" @change="fetchProductDetails(key)" v-model="invoice_item.invoice_product" > -->
                             <!-- <option v-for="product in products" :key="product.id" :value="product.id">{{product.name}}</option> -->
                       
                           <!-- </select> -->
@@ -265,20 +265,20 @@
                           <input type="text" class="form-control form-control-user" placeholder="" v-model="invoice_item.weight" readonly/>
                         </td>
                         <td class="td-style">
-                          <input type="number" class="form-control form-control-user" @blur="calculateValue(k)" placeholder="" v-model="invoice_item.quantity"/>
+                          <input type="number" class="form-control form-control-user" @blur="calculateValue(key)" placeholder="" v-model="invoice_item.quantity"/>
                           <span v-if="$v.invoice_item.quantity.$error" class="text-danger">Please Enter weight</span>
                         </td>
                         <td class="td-style">
-                          <input type="number" class="form-control form-control-user" @blur="calculateAmount(k)" placeholder="" v-model="invoice_item.unitprice"/>
+                          <input type="number" class="form-control form-control-user" @blur="calculateAmount(key)" placeholder="" v-model="invoice_item.unitprice"/>
                           <span v-if="$v.invoice_item.unitprice.$error" class="text-danger">Please Enter unit pice</span>                        
                         </td>
                         <td class="td-style">
                           <input type="number" class="form-control form-control-user" placeholder="" v-model="invoice_item.vat" readonly/>
                         </td>
                         <td class="td-style">
-                          <input type="number" class="form-control form-control-user" @blur="calculatePrice(k)" placeholder="" v-model="invoice_item.invoice_amount"/>
+                          <input type="number" class="form-control form-control-user" @blur="calculatePrice(key)" placeholder="" v-model="invoice_item.invoice_amount"/>
                         </td>
-                        <td><span class="material-symbols-outlined" style="margin-right: 5px;color: red;cursor: pointer;" @click="removeLine(k)">delete</span></td>
+                        <td><span class="material-symbols-outlined" style="margin-right: 5px;color: red;cursor: pointer;" @click="removeLine(key)">delete</span></td>
                     </tr>
                   </tbody>
               </table>
@@ -488,9 +488,13 @@ export default {
       
       try {
         this.formdata.customertype= this.customerType;
+        var date = new Date(this.formdata.issue_date);
+        this.formdata.issue_date=date;
+        var due_date = new Date(this.formdata.due_date);
+        this.formdata.due_date=due_date;
         this.postdata.formfields = this.formdata;
         this.postdata.itemfields = this.invoice_items;
-
+        
         const response = await axios.post("create_invoice", this.postdata);
         let message =
             "Sales Invoice has been successfully created.";
@@ -658,9 +662,9 @@ export default {
           this.formdata.billing_address = response.data.registered_address;
           this.credit_period = (response.data.credit_period)?response.data.credit_period:0;
          
-        const date = new Date();
-        date.setDate(date.getDate() + this.credit_period);
-        this.formdata.due_date = date.getTime() 
+          const date = new Date();
+          date.setDate(date.getDate() + this.credit_period);
+          this.formdata.due_date = date.getTime() 
         
         })
       }

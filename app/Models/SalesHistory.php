@@ -11,7 +11,7 @@ use Laravel\Passport\HasApiTokens;
 class SalesHistory extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
-
+    protected $table = 'sales_history';
     protected $fillable = [
         'sales_id',
         'comment',

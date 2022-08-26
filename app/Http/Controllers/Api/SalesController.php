@@ -65,13 +65,14 @@ class SalesController extends Controller
             $saleshistory = SalesHistory::create([
                 'sales_id' => $sales->id,
                 'amount' => $request->input('formfields.totalamount'),
-                'date' => date("Y-m-d", strtotime($request->input('formfields.issue_date'))),
+                'log_date' => date("Y-m-d", strtotime($request->input('formfields.issue_date'))),
                 'comment' => $sales->invoiceno.' '.'created'
                 
             ]);
 
             return response()->json($sales);
-        } catch (\Exception $e) {
+        } 
+        catch (\Exception $e) {
             return response([
                 'message' => 'Internal error, please try again later.' //$e->getMessage()
             ], 400);
@@ -130,7 +131,7 @@ class SalesController extends Controller
             $saleshistory = SalesHistory::create([
                 'sales_id' => $request->input('sales_id'),
                 'amount' => $request->input('totalamount'),
-                'date' => date("Y-m-d", strtotime($request->input('payment_date'))),
+                'log_date' => date("Y-m-d", strtotime($request->input('payment_date'))),
                 'comment' => 'Payment Added'
                 
             ]);
@@ -178,7 +179,7 @@ class SalesController extends Controller
             $saleshistory = SalesHistory::create([
                 'sales_id' => $request->input('sales_id'),
                 'amount' => '',
-                'date' => date("Y-m-d"),
+                'log_date' => date("Y-m-d"),
                 'comment' => 'Note Created'
                 
             ]);

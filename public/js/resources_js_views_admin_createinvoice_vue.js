@@ -491,7 +491,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var toast, response, message, _toast, _message, _toast2;
+        var toast, date, due_date, response, message, _toast, _message, _toast2;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
@@ -522,12 +522,16 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
               case 6:
                 _context.prev = 6;
                 _this.formdata.customertype = _this.customerType;
+                date = new Date(_this.formdata.issue_date);
+                _this.formdata.issue_date = date;
+                due_date = new Date(_this.formdata.due_date);
+                _this.formdata.due_date = due_date;
                 _this.postdata.formfields = _this.formdata;
                 _this.postdata.itemfields = _this.invoice_items;
-                _context.next = 12;
+                _context.next = 16;
                 return axios.post("create_invoice", _this.postdata);
 
-              case 12:
+              case 16:
                 response = _context.sent;
                 message = "Sales Invoice has been successfully created.";
                 _toast = Vue.toasted.show(message, {
@@ -538,11 +542,11 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
 
                 _this.$router.push("/sales");
 
-                _context.next = 22;
+                _context.next = 26;
                 break;
 
-              case 18:
-                _context.prev = 18;
+              case 22:
+                _context.prev = 22;
                 _context.t0 = _context["catch"](6);
                 _message = 'Something went wrong, Please try again';
                 _toast2 = Vue.toasted.show(_message, {
@@ -551,12 +555,12 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                   duration: 5000
                 });
 
-              case 22:
+              case 26:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[6, 18]]);
+        }, _callee, null, [[6, 22]]);
       }))();
     },
     getCustomers: function getCustomers() {
@@ -1165,7 +1169,7 @@ var render = function() {
                     attrs: { type: "button" },
                     on: {
                       click: function($event) {
-                        return _vm.create_invoice(_vm.k)
+                        return _vm.create_invoice()
                       }
                     }
                   },
@@ -1203,8 +1207,12 @@ var render = function() {
                         staticClass: "modal-selection",
                         attrs: {
                           options: _vm.customers,
-                          "on-change": _vm.fetchAddress(),
                           placeholder: "Select Customer"
+                        },
+                        on: {
+                          input: function($event) {
+                            return _vm.fetchAddress()
+                          }
                         },
                         model: {
                           value: _vm.formdata.customer_id,
@@ -2358,10 +2366,10 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "tbody",
-                        _vm._l(_vm.invoice_items, function(invoice_item, k) {
+                        _vm._l(_vm.invoice_items, function(invoice_item, key) {
                           return _c(
                             "tr",
-                            { key: k, staticClass: "table-row" },
+                            { key: key, staticClass: "table-row" },
                             [
                               _c("td", { staticClass: "td-style" }, [
                                 _c("input", {
@@ -2433,11 +2441,11 @@ var render = function() {
                                     _c("model-select", {
                                       attrs: {
                                         options: _vm.products,
-                                        placeholder: "Select."
+                                        placeholder: "Select Product"
                                       },
                                       on: {
-                                        change: function($event) {
-                                          return _vm.fetchProductDetails(k)
+                                        input: function($event) {
+                                          return _vm.fetchProductDetails(key)
                                         }
                                       },
                                       model: {
@@ -2505,7 +2513,7 @@ var render = function() {
                                   domProps: { value: invoice_item.quantity },
                                   on: {
                                     blur: function($event) {
-                                      return _vm.calculateValue(k)
+                                      return _vm.calculateValue(key)
                                     },
                                     input: function($event) {
                                       if ($event.target.composing) {
@@ -2542,7 +2550,7 @@ var render = function() {
                                   domProps: { value: invoice_item.unitprice },
                                   on: {
                                     blur: function($event) {
-                                      return _vm.calculateAmount(k)
+                                      return _vm.calculateAmount(key)
                                     },
                                     input: function($event) {
                                       if ($event.target.composing) {
@@ -2613,7 +2621,7 @@ var render = function() {
                                   },
                                   on: {
                                     blur: function($event) {
-                                      return _vm.calculatePrice(k)
+                                      return _vm.calculatePrice(key)
                                     },
                                     input: function($event) {
                                       if ($event.target.composing) {
@@ -2641,7 +2649,7 @@ var render = function() {
                                     },
                                     on: {
                                       click: function($event) {
-                                        return _vm.removeLine(k)
+                                        return _vm.removeLine(key)
                                       }
                                     }
                                   },
