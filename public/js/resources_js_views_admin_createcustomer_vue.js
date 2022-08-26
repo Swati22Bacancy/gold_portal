@@ -308,6 +308,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
@@ -1171,7 +1172,8 @@ var render = function() {
                           type: "number",
                           id: "crt-customer",
                           "aria-describedby": "emailHelp",
-                          placeholder: ""
+                          placeholder: "",
+                          max: "90"
                         },
                         domProps: { value: _vm.formdata.credit_period },
                         on: {

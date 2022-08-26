@@ -657,6 +657,11 @@ export default {
         .then((response) => {
           this.formdata.billing_address = response.data.registered_address;
           this.credit_period = (response.data.credit_period)?response.data.credit_period:0;
+         
+        const date = new Date();
+        date.setDate(date.getDate() + this.credit_period);
+        this.formdata.due_date = date.getTime() 
+        
         })
       }
     },
