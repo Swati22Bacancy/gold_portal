@@ -244,8 +244,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(invoice_item, k) in invoice_items" :key="k">
-                        <td>
+                    <tr v-for="(invoice_item, k) in invoice_items" :key="k" class="table-row">
+                        <td class="td-style">
                           <!-- <select class="form-control form-control-user select-cont" @change="fetchProducts(k)" v-model="invoice_item.invoice_type" required>
                             <option v-for="producttype in producttypes" :key="producttype.id" :value="producttype.id">{{producttype.name}}</option>
                           </select> -->
@@ -253,29 +253,29 @@
                           <input type="hidden" class="form-control form-control-user" placeholder="" v-model="invoice_item.invoice_typeid"/>
                           <!-- <span v-if="$v.invoice_item.invoice_type.$error" class="text-danger">Please Select type</span> -->
                         </td>
-                        <td>
-                          <select class="form-control form-control-user select-cont" @change="fetchProductDetails(k)" v-model="invoice_item.invoice_product">
-                            <option v-for="product in products" :key="product.id" :value="product.id">{{product.name}}</option>
-                            <!-- <option v-for="product in invoice_items[k].products" :key="product.id" :value="product.id">{{product.name}}</option> -->
-                          </select>
-                        <!-- <span v-if="$v.invoice_item.invoice_product.$error" class="text-danger">Please Select product</span> -->
+                        <td><div class="modal-createinvoice">
+                      <model-select  :options="products" @change="fetchProductDetails(k)" v-model="invoice_item.invoice_product" 
+                       placeholder="Select."></model-select></div>
+                          <!-- <select class="form-control form-control-user select-cont" @change="fetchProductDetails(k)" v-model="invoice_item.invoice_product" > -->
+                            <!-- <option v-for="product in products" :key="product.id" :value="product.id">{{product.name}}</option> -->
+                      
+                          <!-- </select> -->
                         </td>
-                        <td>
+                        <td class="td-style">
                           <input type="text" class="form-control form-control-user" placeholder="" v-model="invoice_item.weight" readonly/>
-                          <!-- <span v-if="$v.invoice_item.weight.$error" class="text-danger">Please Enter weight</span> -->
                         </td>
-                        <td>
+                        <td class="td-style">
                           <input type="number" class="form-control form-control-user" @blur="calculateValue(k)" placeholder="" v-model="invoice_item.quantity"/>
                           <span v-if="$v.invoice_item.quantity.$error" class="text-danger">Please Enter weight</span>
                         </td>
-                        <td>
+                        <td class="td-style">
                           <input type="number" class="form-control form-control-user" @blur="calculateAmount(k)" placeholder="" v-model="invoice_item.unitprice"/>
                           <span v-if="$v.invoice_item.unitprice.$error" class="text-danger">Please Enter unit pice</span>                        
                         </td>
-                        <td>
+                        <td class="td-style">
                           <input type="number" class="form-control form-control-user" placeholder="" v-model="invoice_item.vat" readonly/>
                         </td>
-                        <td>
+                        <td class="td-style">
                           <input type="number" class="form-control form-control-user" @blur="calculatePrice(k)" placeholder="" v-model="invoice_item.invoice_amount"/>
                         </td>
                         <td><span class="material-symbols-outlined" style="margin-right: 5px;color: red;cursor: pointer;" @click="removeLine(k)">delete</span></td>
@@ -303,14 +303,6 @@
               
               
             </div>
-            <!-- <div class="col-md-4">
-              <input
-                  type="text"
-                  class="form-control form-control-user"
-                  placeholder="Add comment here"
-                  v-model="formdata.comment"
-                />
-            </div> -->
             <div class="col-md-2 sum-price">
               <ul style="text-align: right;">
                 <li style="color:#3376C2">Sub Total (<i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>)</li>
@@ -410,7 +402,7 @@ export default {
       }],
       currencies:[],
       producttypes:{},
-      products:{},
+      products:[],
       subtotal:'',
       vattotal:'',
       totalamount:'',
@@ -544,7 +536,15 @@ export default {
     getProducts() {
         return axios.get("productlist").then(response => {
             this.products = response.data;
+              this.products = this.products.map(product => {
+              return {
+                value: product.id,
+                text: product.name
+              } 
+            })
+            console.log(this.products)
         });
+        
     },
     getInvoicekey() {
         return axios.get("get_invoicekey").then(response => {
@@ -934,6 +934,13 @@ export default {
 };
 </script>
 <style scoped>
+.modal-createinvoice{
+  width:280px;
+}
+.table-row{
+  height: 100px;
+}
+
 .inputdata{
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="30"><text x="5" y="19" style="font:16px Arial;">INV -</text></svg>') no-repeat;
   font: 16px "Arial";
@@ -1102,5 +1109,8 @@ export default {
     border: 1px solid #d1d3e2;
     border-radius: 0.35rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.td-style{
+  width:150px;
 }
 </style>
