@@ -52,7 +52,7 @@ class ProductController extends Controller
 
     public function productdetails($id)
     {
-        $product = Product::leftjoin('producttypes', 'producttypes.id', '=', 'products.type_id')->select('products.*','producttypes.name as type','producttypes.rate as productrate')->where('products.id', $id)->first();
+        $product = Product::leftjoin('producttypes', 'producttypes.id', '=', 'products.type_id')->select('products.*','producttypes.name as type','producttypes.rate as productrate','producttypes.purchase_rate as purchase_rate')->where('products.id', $id)->first();
 
         return response()->json($product);
     }

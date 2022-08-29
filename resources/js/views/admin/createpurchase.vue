@@ -137,7 +137,7 @@
                     </div>
                   </div>
                 </div>
-                <span v-if="$v.formdata.supplier_id.$error" class="text-danger">Please Select Customer</span>
+                <span v-if="$v.formdata.supplier_id.$error" class="text-danger">Please Select Supplier</span>
               </div>
               
             </div>
@@ -211,17 +211,7 @@
                 <span v-if="$v.formdata.currency_id.$error" class="text-danger">Please Select Currency</span>
               </div>
             </div>
-            
-            <div class="col-md-2">
-              <div class="form-group">
-                <label>Amount are</label>
-                <select class="form-control form-control-user" v-model="formdata.amount">
-                  <option value="Tax">Tax Inclusive</option>
-                </select>
-              </div>
-            </div>
           </div>
-          
         </div>
       </div>
       <div class="row mt-3">
@@ -644,7 +634,7 @@ export default {
       axios.get('/productdetails/'+this.invoice_items[index].invoice_product)
         .then((response) => {
             this.invoice_items[index].weight=response.data.weight;
-            this.invoice_items[index].vat=(response.data.productrate)?response.data.productrate:0;
+            this.invoice_items[index].vat=(response.data.purchase_rate)?response.data.purchase_rate:0;
             this.invoice_items[index].invoice_type=response.data.type;
             this.invoice_items[index].invoice_typeid=response.data.type_id;
         })

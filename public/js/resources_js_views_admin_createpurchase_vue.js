@@ -367,16 +367,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 
@@ -687,7 +677,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
 
       axios.get('/productdetails/' + this.invoice_items[index].invoice_product).then(function (response) {
         _this8.invoice_items[index].weight = response.data.weight;
-        _this8.invoice_items[index].vat = response.data.productrate ? response.data.productrate : 0;
+        _this8.invoice_items[index].vat = response.data.purchase_rate ? response.data.purchase_rate : 0;
         _this8.invoice_items[index].invoice_type = response.data.type;
         _this8.invoice_items[index].invoice_typeid = response.data.type_id;
       })["catch"](function (error) {});
@@ -2038,7 +2028,7 @@ var render = function() {
                   _vm._v(" "),
                   _vm.$v.formdata.supplier_id.$error
                     ? _c("span", { staticClass: "text-danger" }, [
-                        _vm._v("Please Select Customer")
+                        _vm._v("Please Select Supplier")
                       ])
                     : _vm._e()
                 ])
@@ -2283,51 +2273,6 @@ var render = function() {
                         _vm._v("Please Select Currency")
                       ])
                     : _vm._e()
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-2" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Amount are")]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formdata.amount,
-                          expression: "formdata.amount"
-                        }
-                      ],
-                      staticClass: "form-control form-control-user",
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.formdata,
-                            "amount",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c("option", { attrs: { value: "Tax" } }, [
-                        _vm._v("Tax Inclusive")
-                      ])
-                    ]
-                  )
                 ])
               ])
             ])
