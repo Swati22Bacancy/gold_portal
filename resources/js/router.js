@@ -99,6 +99,24 @@ let router = new Router({
             }
         },
         {
+            path: "/purchase",
+            name: "purchase",
+            component: () => import("./views/admin/purchase.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/createpurchase",
+            name: "createpurchase",
+            component: () => import("./views/admin/createpurchase.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/quotes",
             name: "quotes",
             component: () => import("./views/admin/quotes.vue"),
