@@ -37,7 +37,7 @@
       </li>
 
       <li class="nav-item" v-if="is_super_admin()">
-        <router-link class="nav-link" to="/admin">
+        <router-link class="nav-link" to="/purchase">
           <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">inventory_2</span>
           <span>Purchases</span></router-link
         >
