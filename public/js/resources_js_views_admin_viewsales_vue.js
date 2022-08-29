@@ -313,6 +313,101 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Dashboard",
@@ -323,6 +418,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       customerType: 'business',
       addpayment: '',
+      addrefund: '',
       theme: 'cust-type',
       formdata: {},
       rows: [],
@@ -333,9 +429,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         method: 'Bank Transfer',
         comment: ''
       }],
+      refund_items: [{
+        refund_date: Date.now(),
+        totalamount: '',
+        bank: 'ICIC Bank Accounts',
+        method: 'Bank Transfer',
+        comment: ''
+      }],
       tabflag: false,
       sidebarflag: false,
       paymentid: '',
+      refundid: '',
       paymentcount: 0,
       due_payment: '',
       invoice_status: '',
@@ -345,7 +449,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       kyctab: false,
       selectedtab: 'payment',
       note: '',
-      over_paid: 0
+      over_paid: 0,
+      refundcount: 0
     };
   },
   methods: {
@@ -369,6 +474,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     removeLine: function removeLine(index) {
       this.addpayment = ''; //this.invoice_items.splice(index,1);
     },
+    removeRefund: function removeRefund(index) {
+      this.addrefund = ''; //this.invoice_items.splice(index,1);
+    },
     editpayment: function editpayment(paymentdata) {},
     tabclick: function tabclick(param) {
       this.selectedtab = param;
@@ -379,6 +487,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else {
         this.tabflag = false;
       }
+    },
+    refundform: function refundform() {
+      this.addrefund = 'show';
+    },
+    refundhistory: function refundhistory() {
+      this.addrefund = '';
     },
     save_payment: function save_payment(index) {
       var _this = this;
@@ -411,6 +525,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.paymentcount = _this.paymentcount + 1; //this.invoice_items.splice(index,1);
 
                   _this.due_payment = _this.due_payment - _this.invoice_items[index].totalamount;
+                  _this.due_payment = _this.due_payment.toFixed(2);
 
                   if (_this.due_payment < 0) {
                     _this.over_paid = _this.due_payment;
@@ -497,14 +612,112 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
+    save_refund: function save_refund(index) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var date, response, arr, toast;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _this3.refund_items[index].sales_id = _this3.$route.params.id;
+                date = new Date(_this3.refund_items[index].refund_date);
+                _this3.refund_items[index].refund_date = date;
+                _context3.next = 5;
+                return axios.post("create_refund", _this3.refund_items[index]);
+
+              case 5:
+                response = _context3.sent;
+
+                if (response.data.id) {
+                  arr = {};
+                  arr.refund_date = response.data.refund_date;
+                  arr.method = _this3.refund_items[index].method;
+                  arr.totalamount = _this3.refund_items[index].totalamount;
+                  arr.id = response.data.id;
+
+                  _this3.formdata.salerefunds.push(arr);
+
+                  _this3.addrefund = '';
+                  _this3.refundcount = _this3.refundcount + 1; //this.refund_items.splice(index,1);
+
+                  _this3.due_payment = parseFloat(_this3.due_payment) + parseFloat(_this3.refund_items[index].totalamount);
+                  _this3.due_payment = _this3.due_payment.toFixed(2);
+
+                  if (_this3.due_payment < 0) {
+                    _this3.over_paid = _this3.due_payment;
+                  }
+
+                  _this3.due_payment = _this3.due_payment < 0 ? 0 : _this3.due_payment;
+                  _this3.refund_items = [{
+                    refund_date: Date.now(),
+                    totalamount: '',
+                    bank: 'ICIC Bank Accounts',
+                    method: 'Bank Transfer',
+                    comment: ''
+                  }]; // if(this.paymentcount==0)
+                  // {
+                  //   this.invoice_status='UnPaid';
+                  //   this.payment_check='Yes';
+                  // }
+                  // else if(this.over_paid< 0)
+                  // {
+                  //   this.invoice_status='Over Paid';
+                  //   this.payment_check='';
+                  // }
+                  // else if(this.due_payment==0)
+                  // {
+                  //   this.invoice_status='Paid';
+                  //   this.payment_check='';
+                  // }
+                  // else
+                  // {
+                  //   this.invoice_status='Partially Paid';
+                  //   this.payment_check='Yes';
+                  // }
+                } else {
+                  toast = Vue.toasted.show('Something went wrong, Please try again', {
+                    theme: "toasted-error",
+                    position: "top-center",
+                    duration: 5000
+                  });
+                }
+
+              case 7:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
     selectrecord: function selectrecord(id) {
       this.paymentid = id;
     },
+    selectrefund: function selectrefund(id) {
+      this.refundid = id;
+    },
+    deleteRefund: function deleteRefund(id) {
+      var _this4 = this;
+
+      axios.get('/delete-refund/' + id).then(function (resp) {
+        _this4.$router.go();
+      })["catch"](function (error) {
+        var message = 'Something went wrong, Please try again';
+        var toast = Vue.toasted.show(message, {
+          theme: "toasted-error",
+          position: "top-center",
+          duration: 5000
+        });
+        console.log(error);
+      });
+    },
     deleteRecord: function deleteRecord(id) {
-      var _this3 = this;
+      var _this5 = this;
 
       axios.get('/delete-payment/' + id).then(function (resp) {
-        _this3.$router.go();
+        _this5.$router.go();
       })["catch"](function (error) {
         var message = 'Something went wrong, Please try again';
         var toast = Vue.toasted.show(message, {
@@ -517,31 +730,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   mounted: function mounted() {
-    var _this4 = this;
+    var _this6 = this;
 
     axios.get('/sales_details/' + this.$route.params.id).then(function (response) {
-      _this4.formdata = response.data;
-      _this4.paymentcount = _this4.formdata.salepayments.length;
+      _this6.formdata = response.data;
+      _this6.paymentcount = _this6.formdata.salepayments.length;
 
       if (response.data.payment_due < 0) {
-        _this4.over_paid = response.data.payment_due;
+        _this6.over_paid = response.data.payment_due;
       }
 
-      _this4.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
+      _this6.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
+      _this6.due_payment = _this6.due_payment.toFixed(2);
 
-      if (_this4.paymentcount == 0) {
-        _this4.invoice_status = 'UnPaid';
-        _this4.payment_check = 'Yes';
-      } else if (_this4.over_paid < 0) {
-        _this4.invoice_status = 'Over Paid';
-        _this4.payment_check = '';
-      } else if (_this4.due_payment == 0) {
-        _this4.invoice_status = 'Paid';
-        _this4.payment_check = '';
+      if (_this6.paymentcount == 0) {
+        _this6.invoice_status = 'UnPaid';
+        _this6.payment_check = 'Yes';
+      } else if (_this6.over_paid < 0) {
+        _this6.invoice_status = 'Over Paid';
+        _this6.payment_check = '';
+      } else if (_this6.due_payment == 0) {
+        _this6.invoice_status = 'Paid';
+        _this6.payment_check = '';
       } else {
-        _this4.invoice_status = 'Partially Paid';
-        _this4.payment_check = 'Yes';
+        _this6.invoice_status = 'Partially Paid';
+        _this6.payment_check = 'Yes';
       }
+    })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
+    });
+    axios.get('/sales_history/' + this.$route.params.id).then(function (response) {
+      _this6.formdata.saleshistory = response.data;
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
   }
@@ -566,7 +784,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-483c8698] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-483c8698]{\r\n  border-radius: 50%;\n}\n.btn-container[data-v-483c8698]{\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width:100% !important;\n}\n.selectedclr[data-v-483c8698]{\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-483c8698]{\r\n   \r\n  width: auto;\r\n    font-size: 13px  !important;\r\n    color: #000;\r\n    border:none;\r\n    height: 40px;\r\n    padding: 5px 20px;\r\n    border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-483c8698]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-483c8698]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus, .btn.focus[data-v-483c8698]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-483c8698]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-483c8698]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-483c8698]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.viewsales-div > p[data-v-483c8698] {\r\n    color: #3376C2;\r\n    font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n    color: #000;\r\n    font-size: 13px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-483c8698] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.salesdata[data-v-483c8698]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-483c8698]{\r\n  border-radius: 50%;\n}\n.btn-container[data-v-483c8698]{\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width:100% !important;\n}\n.selectedclr[data-v-483c8698]{\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-483c8698]{\r\n   \r\n  width: auto;\r\n    font-size: 13px  !important;\r\n    color: #000;\r\n    border:none;\r\n    height: 40px;\r\n    padding: 5px 20px;\r\n    border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-483c8698]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-483c8698]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus, .btn.focus[data-v-483c8698]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-483c8698]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-483c8698]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-483c8698]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.viewsales-div > p[data-v-483c8698] {\r\n    color: #3376C2;\r\n    font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n    color: #000;\r\n    font-size: 13px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -802,7 +1020,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
+      _c("div", {}, [
         _c("div", { staticClass: "col-md-12 viewsales-div" }, [
           _c(
             "div",
@@ -971,57 +1189,64 @@ var render = function() {
           { staticClass: "viewsales-div pb-3", staticStyle: { padding: "0" } },
           [
             _c("div", {}, [
-              _c("div", { staticClass: "table-responsive table-div mb-2" }, [
-                _c(
-                  "table",
-                  {
-                    staticClass: "table",
-                    staticStyle: { "margin-bottom": "0" },
-                    attrs: {
-                      id: "createinvoice-datatable",
-                      width: "100%",
-                      cellspacing: "0"
-                    }
-                  },
-                  [
-                    _vm._m(3),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.formdata.salesitem, function(saleitem) {
-                        return _c("tr", { key: saleitem.id }, [
-                          _c("td", [_vm._v(_vm._s(saleitem.typename))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(saleitem.productname))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(saleitem.weight))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(saleitem.quantity))]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: { "font-size": "10px" }
-                            }),
-                            _vm._v(_vm._s(saleitem.unitprice))
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(saleitem.vat))]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: { "font-size": "10px" }
-                            }),
-                            _vm._v(_vm._s(saleitem.invoice_amount))
+              _c(
+                "div",
+                {
+                  staticClass: "table-responsive table-div mb-2",
+                  staticStyle: { "border-radius": "8px" }
+                },
+                [
+                  _c(
+                    "table",
+                    {
+                      staticClass: "table",
+                      staticStyle: { "margin-bottom": "0" },
+                      attrs: {
+                        id: "createinvoice-datatable",
+                        width: "100%",
+                        cellspacing: "0"
+                      }
+                    },
+                    [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.formdata.salesitem, function(saleitem) {
+                          return _c("tr", { key: saleitem.id }, [
+                            _c("td", [_vm._v(_vm._s(saleitem.typename))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(saleitem.productname))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(saleitem.weight))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(saleitem.quantity))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("i", {
+                                staticClass: "fa fa-pound-sign",
+                                staticStyle: { "font-size": "10px" }
+                              }),
+                              _vm._v(_vm._s(saleitem.unitprice))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(saleitem.vat))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("i", {
+                                staticClass: "fa fa-pound-sign",
+                                staticStyle: { "font-size": "10px" }
+                              }),
+                              _vm._v(_vm._s(saleitem.invoice_amount))
+                            ])
                           ])
-                        ])
-                      }),
-                      0
-                    )
-                  ]
-                )
-              ])
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                ]
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
@@ -1168,13 +1393,66 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "button",
+                "div",
                 {
-                  staticClass: "btn admin-btn mobile-mb btn-nwidth",
-                  staticStyle: { "background-color": "#EDF2F6 !important" },
-                  attrs: { type: "button" }
+                  staticClass: "dropdown show",
+                  staticStyle: { display: "inline" }
                 },
-                [_vm._v("Refund")]
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass:
+                        "btn admin-btn mobile-mb btn-nwidth dropdown-toggle",
+                      attrs: {
+                        href: "#",
+                        role: "button",
+                        id: "dropdownMenuLink",
+                        "data-toggle": "dropdown",
+                        "aria-haspopup": "true",
+                        "aria-expanded": "false"
+                      }
+                    },
+                    [_vm._v("\n          Refund\n        ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "dropdown-menu",
+                      attrs: { "aria-labelledby": "dropdownMenuLink" }
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "dropdown-item",
+                          staticStyle: { cursor: "pointer" },
+                          on: {
+                            click: function($event) {
+                              _vm.tabclick("refund"), _vm.refundform()
+                            }
+                          }
+                        },
+                        [_vm._v("Add Refund")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "dropdown-item",
+                          staticStyle: { cursor: "pointer" },
+                          on: {
+                            click: function($event) {
+                              _vm.tabclick("refund"), _vm.refundhistory()
+                            }
+                          }
+                        },
+                        [_vm._v("Refund History")]
+                      )
+                    ]
+                  )
+                ]
               )
             ])
           ])
@@ -1196,10 +1474,10 @@ var render = function() {
                 ? _c(
                     "table",
                     {
-                      staticClass: "table",
+                      staticClass: "table salesdata",
                       staticStyle: { "margin-bottom": "0" },
                       attrs: {
-                        id: "createinvoice-datatable",
+                        id: "showpayment-datatable",
                         width: "100%",
                         cellspacing: "0"
                       }
@@ -1403,6 +1681,12 @@ var render = function() {
                                     "option",
                                     { attrs: { value: "Baroda Bank" } },
                                     [_vm._v("Baroda Bank")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "Cash Account" } },
+                                    [_vm._v("Cash Account")]
                                   )
                                 ]
                               )
@@ -1641,9 +1925,470 @@ var render = function() {
                 "box-shadow": "0px 5px 5px 0px rgb(0 0 0 / 10%)"
               }
             },
-            [_vm._v("\n        11111\n      ")]
+            [
+              _c(
+                "table",
+                {
+                  staticClass: "table salesdata",
+                  staticStyle: { "margin-bottom": "0" },
+                  attrs: {
+                    id: "saleshistory-datatable",
+                    width: "100%",
+                    cellspacing: "0"
+                  }
+                },
+                [
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.formdata.saleshistory, function(salehistory) {
+                      return _c("tr", { key: salehistory.id }, [
+                        _c("td", [_vm._v(_vm._s(salehistory.comment))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          salehistory.note
+                            ? _c("span", [_vm._v("Note: ")])
+                            : _vm._e(),
+                          _vm._v(_vm._s(salehistory.note))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          salehistory.amount
+                            ? _c("i", {
+                                staticClass: "fa fa-pound-sign",
+                                staticStyle: {
+                                  "font-size": "10px",
+                                  "margin-right": "3px"
+                                }
+                              })
+                            : _vm._e(),
+                          _vm._v(" " + _vm._s(salehistory.amount))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(salehistory.log_date))])
+                      ])
+                    }),
+                    0
+                  )
+                ]
+              )
+            ]
           )
         : _vm._e(),
+      _vm._v(" "),
+      _vm.selectedtab == "refund"
+        ? _c(
+            "div",
+            {
+              staticClass: "table-div mb-2",
+              staticStyle: {
+                "background-color": "white",
+                "box-shadow": "0px 5px 5px 0px rgb(0 0 0 / 10%)"
+              }
+            },
+            [
+              !_vm.addrefund
+                ? _c(
+                    "table",
+                    {
+                      staticClass: "table salesdata",
+                      staticStyle: { "margin-bottom": "0" },
+                      attrs: {
+                        id: "showrefund-datatable",
+                        width: "100%",
+                        cellspacing: "0"
+                      }
+                    },
+                    [
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.formdata.salerefunds, function(salerefund) {
+                          return _c("tr", { key: salerefund.id }, [
+                            _c("td", [_vm._v(_vm._s(salerefund.refund_date))]),
+                            _vm._v(" "),
+                            _c("td"),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(salerefund.method))]),
+                            _vm._v(" "),
+                            _c("td"),
+                            _vm._v(" "),
+                            _c("td", { staticStyle: { color: "#7adaaa" } }, [
+                              _c("i", {
+                                staticClass: "fa fa-pound-sign",
+                                staticStyle: {
+                                  "font-size": "10px",
+                                  "margin-right": "3px"
+                                }
+                              }),
+                              _vm._v(
+                                " " +
+                                  _vm._s(salerefund.totalamount) +
+                                  " Refunded"
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td"),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "material-symbols-outlined",
+                                  staticStyle: {
+                                    "margin-right": "10px",
+                                    color: "#3376C2"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.editpayment(salerefund)
+                                    }
+                                  }
+                                },
+                                [_vm._v("edit")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "material-symbols-outlined",
+                                  staticStyle: {
+                                    "margin-right": "5px",
+                                    color: "red",
+                                    cursor: "pointer"
+                                  },
+                                  attrs: {
+                                    "data-toggle": "modal",
+                                    "data-target": "#deleteConfirmationRefund"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.selectrefund(salerefund.id)
+                                    }
+                                  }
+                                },
+                                [_vm._v("delete")]
+                              )
+                            ])
+                          ])
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.addrefund
+                ? _c(
+                    "table",
+                    {
+                      staticClass: "table",
+                      staticStyle: { "margin-bottom": "0" },
+                      attrs: {
+                        id: "createrefund-datatable",
+                        width: "100%",
+                        cellspacing: "0"
+                      }
+                    },
+                    [
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.refund_items, function(refund_item, k) {
+                          return _c("tr", { key: k }, [
+                            _c(
+                              "td",
+                              [
+                                _c("Datepicker", {
+                                  staticClass: "datapicker",
+                                  attrs: { id: "mydatepicker" },
+                                  model: {
+                                    value: refund_item.refund_date,
+                                    callback: function($$v) {
+                                      _vm.$set(refund_item, "refund_date", $$v)
+                                    },
+                                    expression: "refund_item.refund_date"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: refund_item.totalamount,
+                                    expression: "refund_item.totalamount"
+                                  }
+                                ],
+                                staticClass: "form-control form-control-user",
+                                attrs: {
+                                  type: "number",
+                                  placeholder: "Amount"
+                                },
+                                domProps: { value: refund_item.totalamount },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      refund_item,
+                                      "totalamount",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: refund_item.bank,
+                                      expression: "refund_item.bank"
+                                    }
+                                  ],
+                                  staticClass: "form-control form-control-user",
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        refund_item,
+                                        "bank",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "ICIC Bank Accounts" } },
+                                    [_vm._v("ICIC Bank Accounts")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "Baroda Bank" } },
+                                    [_vm._v("Baroda Bank")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "Cash Account" } },
+                                    [_vm._v("Cash Account")]
+                                  )
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: refund_item.method,
+                                      expression: "refund_item.method"
+                                    }
+                                  ],
+                                  staticClass: "form-control form-control-user",
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        refund_item,
+                                        "method",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "Bank Transfer" } },
+                                    [_vm._v("Bank Transfer")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "Cash" } }, [
+                                    _vm._v("Cash")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "Other" } }, [
+                                    _vm._v("Other")
+                                  ])
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: refund_item.comment,
+                                    expression: "refund_item.comment"
+                                  }
+                                ],
+                                staticClass: "form-control form-control-user",
+                                attrs: { type: "text", placeholder: "Note" },
+                                domProps: { value: refund_item.comment },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      refund_item,
+                                      "comment",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn admin-btn mobile-mb btn-nwidth",
+                                  staticStyle: {
+                                    "background-color": "#EDF2F6 !important",
+                                    float: "right"
+                                  },
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.removeRefund(k)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Cancel")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn admin-btn mobile-mb btn-nwidth",
+                                  staticStyle: {
+                                    "background-color": "#7ADAAA !important",
+                                    float: "right"
+                                  },
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.save_refund(k)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Save")]
+                              )
+                            ])
+                          ])
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                : _vm._e()
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "deleteConfirmationRefund",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "deleteConfirmationRefundLabel",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "modal-dialog", attrs: { role: "document" } },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(6),
+                _vm._v(" "),
+                _vm._m(7),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Cancel")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb",
+                      staticStyle: {
+                        "background-color": "#ff0000 !important",
+                        color: "#fff"
+                      },
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteRefund(_vm.refundid)
+                        }
+                      }
+                    },
+                    [_vm._v("Delete")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]
+      ),
       _vm._v(" "),
       _c(
         "div",
@@ -1663,9 +2408,9 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(6),
+                _vm._m(8),
                 _vm._v(" "),
-                _vm._m(7),
+                _vm._m(9),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(
@@ -1988,6 +2733,53 @@ var staticRenderFns = [
           ])
         ]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h6",
+        {
+          staticClass: "modal-title",
+          attrs: { id: "deleteConfirmationRefundLabel" }
+        },
+        [_vm._v("Confirmation")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [
+          _c(
+            "span",
+            {
+              staticStyle: { color: "#fff" },
+              attrs: { "aria-hidden": "true" }
+            },
+            [_vm._v("×")]
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("p", { staticStyle: { color: "#000", "font-size": "14px" } }, [
+        _vm._v("Are you sure you want to delete this refund?")
+      ])
     ])
   },
   function() {

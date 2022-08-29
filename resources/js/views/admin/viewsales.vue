@@ -44,7 +44,7 @@
           <i class="fas fa-trash-alt" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; "></i>
         </div>
      </div>
-      <div class="row">
+      <div class="">
         <div class="col-md-12 viewsales-div">
           
           <div class="row" style="padding-bottom:40px">
@@ -85,7 +85,7 @@
       <div class="mt-3">
         <div class="viewsales-div pb-3" style="padding:0">
           <div class="">
-            <div class="table-responsive table-div mb-2">
+            <div class="table-responsive table-div mb-2" style="border-radius: 8px;">
               <table class="table" id="createinvoice-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
                   <thead>
                     <tr>
@@ -160,13 +160,23 @@
           <div>  
         <button type="button" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;" @click="addLine"><i class="fas fa-plus" style="margin-right: 5px;"></i>Add Payment</button>
         <button type="button" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #EDF2F6 !important;">Apply Credit</button>
-        <button type="button" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #EDF2F6 !important;">Refund</button>
+        <!-- <button type="button" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #EDF2F6 !important;" @click="tabclick('refund')" >Refund</button> -->
+        <div class="dropdown show" style="display:inline;">
+          <a class="btn admin-btn mobile-mb btn-nwidth dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Refund
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" @click="tabclick('refund'),refundform()" style="cursor: pointer;">Add Refund</a>
+            <a class="dropdown-item" @click="tabclick('refund'),refundhistory()" style="cursor: pointer;">Refund History</a>
+          </div>
+        </div>
         </div>
         </div> 
       </div>
       </div>
         <div class="table-div mb-2" v-if="selectedtab=='payment'" style="background-color:white; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 10%);">
-          <table class="table" v-if="!addpayment" id="createinvoice-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
+          <table class="table salesdata" v-if="!addpayment" id="showpayment-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
               <tbody>
                 <tr v-for="salepayment in formdata.salepayments" :key="salepayment.id">
                     <td>{{salepayment.payment_date}}</td>
@@ -197,7 +207,8 @@
                     <td>
                       <select class="form-control form-control-user"  v-model="invoice_item.bank">
                         <option value="ICIC Bank Accounts">ICIC Bank Accounts</option>
-                          <option value="Baroda Bank">Baroda Bank</option>
+                        <option value="Baroda Bank">Baroda Bank</option>
+                        <option value="Cash Account">Cash Account</option>
                       </select>
                     </td>
                     <td>
@@ -263,9 +274,93 @@
        </div>
 
        <div class="table-div mb-2" v-if="selectedtab=='history'" style="background-color:white; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 10%);">
-          11111
+          <table class="table salesdata" id="saleshistory-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
+              <tbody>
+                <tr v-for="salehistory in formdata.saleshistory" :key="salehistory.id">
+                    <td>{{salehistory.comment}}</td>
+                    <td><span v-if="salehistory.note">Note: </span>{{salehistory.note}}</td>
+                    <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;" v-if="salehistory.amount"></i> {{salehistory.amount}}</td>
+                    <td>{{salehistory.log_date}}</td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+
+        <div class="table-div mb-2" v-if="selectedtab=='refund'" style="background-color:white; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 10%);">
+          <table class="table salesdata" v-if="!addrefund" id="showrefund-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
+              <tbody>
+                <tr v-for="salerefund in formdata.salerefunds" :key="salerefund.id">
+                    <td>{{salerefund.refund_date}}</td>
+                    <td></td>
+                    <td>{{salerefund.method}}</td>
+                    <td></td>
+                    <td style="color:#7adaaa;"><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i> {{salerefund.totalamount}} Refunded</td>
+                    <td>
+                      
+                    </td>
+                    <td>
+                      <span class="material-symbols-outlined" style="margin-right: 10px;color: #3376C2;" @click="editpayment(salerefund)">edit</span>
+                      <span class="material-symbols-outlined" style="margin-right: 5px;color: red;cursor: pointer;" data-toggle="modal" data-target="#deleteConfirmationRefund" @click="selectrefund(salerefund.id)">delete</span>
+                    </td>
+                </tr>
+                
+              </tbody>
+          </table>
+          <table v-if="addrefund" class="table" id="createrefund-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
+              <tbody>
+                <tr v-for="(refund_item, k) in refund_items" :key="k">
+                    <td>
+                      <Datepicker class="datapicker" id="mydatepicker" v-model="refund_item.refund_date"></Datepicker>
+                    </td>
+                    <td>
+                      <input type="number" class="form-control form-control-user" placeholder="Amount" v-model="refund_item.totalamount">
+                    </td>
+                    <td>
+                      <select class="form-control form-control-user"  v-model="refund_item.bank">
+                        <option value="ICIC Bank Accounts">ICIC Bank Accounts</option>
+                        <option value="Baroda Bank">Baroda Bank</option>
+                        <option value="Cash Account">Cash Account</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select class="form-control form-control-user"  v-model="refund_item.method">
+                          <option value="Bank Transfer">Bank Transfer</option>
+                          <option value="Cash">Cash</option>
+                          <option value="Other">Other</option>
+                      
+                      </select>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control form-control-user" placeholder="Note" v-model="refund_item.comment"/>
+                    </td>
+                    <td> <button type="button" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #EDF2F6 !important;float: right;" @click="removeRefund(k)">Cancel</button></td>
+                    <td> <button type="button" @click="save_refund(k)" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;float: right;">Save</button></td>
+                </tr>
+              </tbody>
+          </table>
         </div>
         <!-- Modal -->
+
+        <div class="modal fade" id="deleteConfirmationRefund" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationRefundLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h6 class="modal-title" id="deleteConfirmationRefundLabel">Confirmation</h6>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true" style="color:#fff">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <p style="color:#000;font-size:14px;">Are you sure you want to delete this refund?</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn admin-btn mobile-mb" data-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteRefund(refundid)">Delete</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
       <div class="modal fade" id="deleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -302,6 +397,7 @@ export default {
     return {
       customerType: 'business',
       addpayment:'',
+      addrefund:'',
       theme: 'cust-type',
       formdata: {},
       rows: [],
@@ -312,9 +408,17 @@ export default {
           method:'Bank Transfer',
           comment:''
       }],
+      refund_items: [{
+          refund_date:Date.now(),
+          totalamount:'',
+          bank:'ICIC Bank Accounts',
+          method:'Bank Transfer',
+          comment:''
+      }],
       tabflag:false,
       sidebarflag:false,
       paymentid:'',
+      refundid:'',
       paymentcount:0,
       due_payment:'',
       invoice_status:'',
@@ -325,6 +429,7 @@ export default {
       selectedtab:'payment',
       note:'',
       over_paid:0,
+      refundcount:0,
     };
 
   },
@@ -354,6 +459,11 @@ export default {
       this.addpayment='';
       //this.invoice_items.splice(index,1);
     },
+     removeRefund(index)
+    {
+      this.addrefund='';
+      //this.invoice_items.splice(index,1);
+    },
     editpayment(paymentdata)
     {
       
@@ -367,6 +477,14 @@ export default {
      else{
       this.tabflag = false;
      }
+    },
+    refundform()
+    {
+      this.addrefund='show';
+    },
+    refundhistory()
+    {
+      this.addrefund='';
     },
     async save_payment(index)
     {
@@ -386,6 +504,7 @@ export default {
         this.paymentcount =this.paymentcount+1;
         //this.invoice_items.splice(index,1);
         this.due_payment = this.due_payment-this.invoice_items[index].totalamount;
+        this.due_payment = this.due_payment.toFixed(2);
         if(this.due_payment<0)
         {
           this.over_paid = this.due_payment;
@@ -452,9 +571,91 @@ export default {
           });
       }
     },
+    async save_refund(index)
+    {
+      this.refund_items[index].sales_id = this.$route.params.id;
+      var date = new Date(this.refund_items[index].refund_date);
+      this.refund_items[index].refund_date=date;
+      const response = await axios.post("create_refund", this.refund_items[index]);
+      if(response.data.id)
+      {
+        var arr={};
+        arr.refund_date = response.data.refund_date;
+        arr.method = this.refund_items[index].method;
+        arr.totalamount = this.refund_items[index].totalamount;
+        arr.id = response.data.id;
+        this.formdata.salerefunds.push(arr);
+        this.addrefund='';
+        this.refundcount =this.refundcount+1;
+        //this.refund_items.splice(index,1);
+        this.due_payment = parseFloat(this.due_payment) + parseFloat(this.refund_items[index].totalamount);
+        this.due_payment = this.due_payment.toFixed(2);
+        if(this.due_payment<0)
+        {
+          this.over_paid = this.due_payment;
+        }
+        this.due_payment = (this.due_payment<0)?0:this.due_payment;
+        
+        this.refund_items= [{
+          refund_date:Date.now(),
+          totalamount:'',
+          bank:'ICIC Bank Accounts',
+          method:'Bank Transfer',
+          comment:''
+        }];
+        
+        // if(this.paymentcount==0)
+        // {
+        //   this.invoice_status='UnPaid';
+        //   this.payment_check='Yes';
+        // }
+        // else if(this.over_paid< 0)
+        // {
+        //   this.invoice_status='Over Paid';
+        //   this.payment_check='';
+        // }
+        // else if(this.due_payment==0)
+        // {
+        //   this.invoice_status='Paid';
+        //   this.payment_check='';
+        // }
+        // else
+        // {
+        //   this.invoice_status='Partially Paid';
+        //   this.payment_check='Yes';
+        // }
+      }
+      else
+      {
+        let toast = Vue.toasted.show('Something went wrong, Please try again', {
+            theme: "toasted-error",
+            position: "top-center",
+            duration: 5000,
+          });
+      }
+    },
     selectrecord(id)
     {
       this.paymentid=id;
+    },
+    selectrefund(id)
+    {
+      this.refundid=id;
+    },
+    deleteRefund(id) {
+      axios.get('/delete-refund/'+id)
+        .then(resp => {
+            this.$router.go();
+        })
+        .catch(error => {
+          let message = 'Something went wrong, Please try again';
+          let toast = Vue.toasted.show(message, {
+            theme: "toasted-error",
+            position: "top-center",
+            duration: 5000,
+          });
+            console.log(error);
+        })
     },
     deleteRecord(id) {
       axios.get('/delete-payment/'+id)
@@ -483,6 +684,7 @@ export default {
             this.over_paid = response.data.payment_due;
           }
           this.due_payment = (response.data.payment_due<0)?0:response.data.payment_due;
+          this.due_payment = this.due_payment.toFixed(2);
           if(this.paymentcount==0)
           {
             this.invoice_status='UnPaid';
@@ -507,6 +709,14 @@ export default {
       .catch(function(error) {
           //app.$notify(error.response.data.error, "error");
       });
+
+    axios.get('/sales_history/'+this.$route.params.id)
+      .then((response) => {
+          this.formdata.saleshistory = response.data;
+      })
+      .catch(function(error) {
+          //app.$notify(error.response.data.error, "error");
+      });
   }
 };
 </script>
@@ -520,6 +730,11 @@ export default {
     font-weight: 100 !important;
 }
 #createinvoice-datatable
+{
+  font-size: 13px;
+  color: #000;
+}
+.salesdata
 {
   font-size: 13px;
   color: #000;

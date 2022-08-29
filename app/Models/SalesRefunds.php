@@ -8,16 +8,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
-class SalesHistory extends Authenticatable
+class SalesRefunds extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
-    protected $table = 'sales_history';
+
+    protected $table = 'sales_refund';
+
     protected $fillable = [
         'sales_id',
-        'comment',
-        'amount',
-        'note',
-        'category',
-        'log_date'
+        'refund_date',
+        'totalamount',
+        'method',
+        'bank',
+        'comment'
     ];
 }

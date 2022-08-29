@@ -8,6 +8,7 @@ use App\Models\SalesPayments;
 use App\Models\InvoiceOptions;
 use App\Models\SalesNotes;
 use App\Models\SalesHistory;
+use App\Models\SalesRefunds;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
@@ -65,7 +66,8 @@ class SalesController extends Controller
             $saleshistory = SalesHistory::create([
                 'sales_id' => $sales->id,
                 'amount' => $request->input('formfields.totalamount'),
-                'log_date' => date("Y-m-d", strtotime($request->input('formfields.issue_date'))),
+                'log_date' => date("Y-m-d"),
+                'category' =>'invoice',
                 'comment' => $sales->invoiceno.' '.'created'
                 
             ]);
@@ -99,8 +101,11 @@ class SalesController extends Controller
 
         $salepayments = SalesPayments::where('sales_id',$id)->orderBy('id', 'DESC')->get();
 
+        $salerefunds = SalesRefunds::where('sales_id',$id)->orderBy('id', 'DESC')->get();
+
         $sales->salesitem = $saleitems;
         $sales->salepayments = $salepayments;
+        $sales->salerefunds = $salerefunds;
 
         $payment_received=0;
         if(!empty($salepayments))
@@ -110,8 +115,20 @@ class SalesController extends Controller
                 $payment_received += $payment->totalamount;
             }
         }
+
+        $payment_refunded=0;
+        if(!empty($salerefunds))
+        {
+            foreach($salerefunds as $salerefund)
+            {
+                $payment_refunded += $salerefund->totalamount;
+            }
+        }
+
         $sales->payment_received = $payment_received;
+        $sales->payment_refunded = $payment_refunded;
         $sales->payment_due = $sales->totalamount - $payment_received;
+        $sales->payment_due = $sales->payment_due + $payment_refunded;
         
         return response()->json($sales);
     }
@@ -131,7 +148,8 @@ class SalesController extends Controller
             $saleshistory = SalesHistory::create([
                 'sales_id' => $request->input('sales_id'),
                 'amount' => $request->input('totalamount'),
-                'log_date' => date("Y-m-d", strtotime($request->input('payment_date'))),
+                'log_date' => date("Y-m-d"),
+                'category' =>'payment',
                 'comment' => 'Payment Added'
                 
             ]);
@@ -146,8 +164,18 @@ class SalesController extends Controller
 
     public function deletepayment($id){
         $salepayment = SalesPayments::find($id);
+        $amount = $salepayment->totalamount;
+        $sales_id = $salepayment->sales_id;
             if($salepayment){
                 $salepayment->delete();
+
+                $saleshistory = SalesHistory::create([
+                    'sales_id' => $sales_id,
+                    'amount' => $amount,
+                    'log_date' => date("Y-m-d"),
+                    'category' =>'payment',
+                    'comment' => 'Payment Deleted'
+                ]);
                 
                 return response()->json(
                     [
@@ -160,6 +188,63 @@ class SalesController extends Controller
                 return response()->json(['error' => 'Record does not exists'], 404);
             }
     }
+
+    public function createrefund(Request $request)
+    {
+        try {
+            $salesrefunds = SalesRefunds::create([
+                'sales_id' => $request->input('sales_id'),
+                'refund_date' => date("Y-m-d", strtotime($request->input('refund_date'))),
+                'totalamount' => $request->input('totalamount'),
+                'method' => $request->input('method'),
+                'bank' => $request->input('bank'),
+                'comment' => $request->input('comment')
+            ]);
+
+            $saleshistory = SalesHistory::create([
+                'sales_id' => $request->input('sales_id'),
+                'amount' => $request->input('totalamount'),
+                'log_date' => date("Y-m-d"),
+                'category' =>'refund',
+                'comment' => 'Refund Issued'
+                
+            ]);
+
+            return response()->json($salesrefunds);
+        } catch (\Exception $e) {
+            return response([
+                'message' => 'Internal error, please try again later.' //$e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function deleterefund($id){
+        $salesrefund = SalesRefunds::find($id);
+        $amount = $salesrefund->totalamount;
+        $sales_id = $salesrefund->sales_id;
+            if($salesrefund){
+                $salesrefund->delete();
+
+                $saleshistory = SalesHistory::create([
+                    'sales_id' => $sales_id,
+                    'amount' => $amount,
+                    'log_date' => date("Y-m-d"),
+                    'category' =>'Refund',
+                    'comment' => 'Refund Deleted'
+                ]);
+                
+                return response()->json(
+                    [
+                        'status' => 'success',
+                        'msg' => 'Refund deleted successfully'
+                    ],
+                    200
+                );
+            }else{
+                return response()->json(['error' => 'Record does not exists'], 404);
+            }
+    }
+
 
     public function getinvoicekey()
     {
@@ -179,9 +264,10 @@ class SalesController extends Controller
             $saleshistory = SalesHistory::create([
                 'sales_id' => $request->input('sales_id'),
                 'amount' => '',
+                'note' => $request->input('note'),
                 'log_date' => date("Y-m-d"),
+                'category' =>'note',
                 'comment' => 'Note Created'
-                
             ]);
 
             return response()->json($salesnotes);
@@ -190,5 +276,12 @@ class SalesController extends Controller
                 'message' => 'Internal error, please try again later.' //$e->getMessage()
             ], 400);
         }
+    }
+
+    public function saleshistory($id)
+    {
+        $saleshistory = SalesHistory::where('sales_id',$id)->orderBy('id', 'DESC')->get();
+
+        return response()->json($saleshistory);
     }
 }
