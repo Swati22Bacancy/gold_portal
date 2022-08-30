@@ -19,7 +19,7 @@
               <div class="form-group">
                 <label>Supplier</label>
                 <div class="input-group mb-3 d-flex">
-                  <model-select class="modal-selection" :options="suppliers" @input="fetchAddress()" v-model="formdata.supplier_id" 
+                  <model-select class="modal-selection" :options="suppliers" @input="fetchAddress()" v-model="formdata.customer_id" 
                   placeholder="Select supplier"></model-select>
                   <div class="select-group-append">
                       <div class="input-icons">
@@ -137,7 +137,7 @@
                     </div>
                   </div>
                 </div>
-                <span v-if="$v.formdata.supplier_id.$error" class="text-danger">Please Select Supplier</span>
+                <span v-if="$v.formdata.customer_id.$error" class="text-danger">Please Select Supplier</span>
               </div>
               
             </div>
@@ -151,10 +151,10 @@
                   id="invno"
                   aria-describedby="emailHelp"
                   placeholder=""
-                  v-model="formdata.purchaseno"
+                  v-model="formdata.invoiceno"
                 />
                 <label for="invno" class="static-value">PO -</label>
-                <span v-if="$v.formdata.purchaseno.$error" class="text-danger">Please Enter invoice no</span>
+                <span v-if="$v.formdata.invoiceno.$error" class="text-danger">Please Enter invoice no</span>
               </div>
             </div>
             <div class="col-md-2">
@@ -315,40 +315,19 @@
               </ul>
             </div>
           </div>
-          <!-- <div class="row">
-            <div class="col-md-6">
-              
-            </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-2">Sub Total</div>
-            <div class="col-md-2">8000</div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              
-            </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-2">Sub Total</div>
-            <div class="col-md-2">8000</div>
-          </div> -->
         </div>
-        
       </div>
-      
     </form>
-    
   </div>
 </template>
 
 <script>
 import { required,email,helpers} from "vuelidate/lib/validators";
 
-const isName = helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
- import { ModelSelect } from 'vue-search-select'
+import { ModelSelect } from 'vue-search-select'
 import Datepicker from 'vuejs-datepicker';
-import { exit } from "process";
 export default {
-  name: "CreateInvoice",
+  name: "CreatePurchase",
   components: {
     Datepicker,
     ModelSelect
@@ -370,7 +349,7 @@ export default {
         first_name: "",
         last_name: "",
         billing_address:"",
-        purchaseno:""
+        invoiceno:""
       },
       postdata:{},
       errors: {},
@@ -485,13 +464,13 @@ export default {
         
         const response = await axios.post("create_purchase", this.postdata);
         let message =
-            "Sales Invoice has been successfully created.";
+            "Purchase Order has been successfully created.";
           let toast = Vue.toasted.show(message, {
             theme: "toasted-success",
             position: "top-center",
             duration: 5000,
           });
-        this.$router.push("/sales");
+        this.$router.push("/purchase");
         
       } catch (error) {
         let message = 'Something went wrong, Please try again';
@@ -534,13 +513,12 @@ export default {
                 text: product.name
               } 
             })
-            console.log(this.products)
         });
         
     },
     getInvoicekey() {
-        return axios.get("get_invoicekey").then(response => {
-          this.formdata.purchaseno = response.data;
+        return axios.get("get_purchasekey").then(response => {
+          this.formdata.invoiceno = response.data;
         });
     },
     fetchProducts(index)
@@ -643,9 +621,9 @@ export default {
     },
     fetchAddress()
     {
-      if(this.formdata.supplier_id)
+      if(this.formdata.customer_id)
       {
-        axios.get('/customerdetails/'+this.formdata.supplier_id)
+        axios.get('/customerdetails/'+this.formdata.customer_id)
         .then((response) => {
           this.formdata.billing_address = response.data.registered_address;
           this.credit_period = (response.data.credit_period)?response.data.credit_period:0;
@@ -853,7 +831,7 @@ export default {
       this.formdata.billing_address = this.customerdata.registered_address;
       var newdata = {value: response.data.id,text: `${response.data.first_name || ""} ${response.data.last_name || ""} `};
       this.suppliers.push(newdata);
-      this.formdata.supplier_id=response.data.id;
+      this.formdata.customer_id=response.data.id;
       $('#addcreatepurchase').modal('hide');
     },
     showcommentbox()
@@ -878,10 +856,10 @@ export default {
       }
     },
     formdata: {
-       supplier_id: {
+       customer_id: {
         required,
       },
-      purchaseno:{
+      invoiceno:{
         required,
       },
       billing_address: {

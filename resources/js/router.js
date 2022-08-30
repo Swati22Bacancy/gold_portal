@@ -117,6 +117,15 @@ let router = new Router({
             }
         },
         {
+            path: "/viewpurchase/:id",
+            name: "viewpurchase",
+            component: () => import("./views/admin/viewpurchase.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/quotes",
             name: "quotes",
             component: () => import("./views/admin/quotes.vue"),

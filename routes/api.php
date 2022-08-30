@@ -125,4 +125,16 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('sales_history/{id}', [Api\SalesController::class, 'saleshistory']);
     Route::post('create_refund',[Api\SalesController::class, 'createrefund']);
     Route::get('delete-refund/{id}', [Api\SalesController::class, 'deleterefund']);
+
+    // Purchase Invoice Routes
+    Route::post('create_purchase',[Api\PurchaseController::class, 'createinvoice']);
+    Route::get('purchase_list', [Api\PurchaseController::class, 'purchaselist']);
+    Route::get('purchase_details/{id}', [Api\PurchaseController::class, 'purchasedetails']);
+    Route::post('create_purchasepayment',[Api\PurchaseController::class, 'createpayment']);
+    Route::get('delete_purchasepayment/{id}', [Api\PurchaseController::class, 'deletepayment']);
+    Route::get('get_purchasekey', [Api\PurchaseController::class, 'getinvoicekey']);
+    Route::post('create_purchasenote',[Api\PurchaseController::class, 'createnote']);
+    Route::get('purchase_history/{id}', [Api\PurchaseController::class, 'purchasehistory']);
+    Route::post('update_orderstatus',[Api\PurchaseController::class, 'updateorderstatus']);
+    Route::get('purchase_list_by_status/{status}', [Api\PurchaseController::class, 'purchasebystatus']);
 });

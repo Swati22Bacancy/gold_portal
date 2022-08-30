@@ -13,12 +13,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
-/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-search-select */ "./node_modules/vue-search-select/dist/VueSearchSelect.common.js");
-/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_search_select__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
-/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! process */ "./node_modules/process/browser.js");
-/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(process__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-search-select */ "./node_modules/vue-search-select/dist/VueSearchSelect.common.js");
+/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_search_select__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -348,35 +346,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "CreateInvoice",
+  name: "CreatePurchase",
   components: {
-    Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_3__.default,
-    ModelSelect: vue_search_select__WEBPACK_IMPORTED_MODULE_2__.ModelSelect
+    Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_2__.default,
+    ModelSelect: vue_search_select__WEBPACK_IMPORTED_MODULE_1__.ModelSelect
   },
   data: function data() {
     return {
@@ -395,7 +372,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         first_name: "",
         last_name: "",
         billing_address: "",
-        purchaseno: ""
+        invoiceno: ""
       },
       postdata: {},
       errors: {},
@@ -521,14 +498,14 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
 
               case 16:
                 response = _context.sent;
-                message = "Sales Invoice has been successfully created.";
+                message = "Purchase Order has been successfully created.";
                 _toast = Vue.toasted.show(message, {
                   theme: "toasted-success",
                   position: "top-center",
                   duration: 5000
                 });
 
-                _this.$router.push("/sales");
+                _this.$router.push("/purchase");
 
                 _context.next = 26;
                 break;
@@ -590,14 +567,13 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
             text: product.name
           };
         });
-        console.log(_this5.products);
       });
     },
     getInvoicekey: function getInvoicekey() {
       var _this6 = this;
 
-      return axios.get("get_invoicekey").then(function (response) {
-        _this6.formdata.purchaseno = response.data;
+      return axios.get("get_purchasekey").then(function (response) {
+        _this6.formdata.invoiceno = response.data;
       });
     },
     fetchProducts: function fetchProducts(index) {
@@ -685,8 +661,8 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
     fetchAddress: function fetchAddress() {
       var _this9 = this;
 
-      if (this.formdata.supplier_id) {
-        axios.get('/customerdetails/' + this.formdata.supplier_id).then(function (response) {
+      if (this.formdata.customer_id) {
+        axios.get('/customerdetails/' + this.formdata.customer_id).then(function (response) {
           _this9.formdata.billing_address = response.data.registered_address;
           _this9.credit_period = response.data.credit_period ? response.data.credit_period : 0;
           var date = new Date();
@@ -885,7 +861,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
 
                 _this10.suppliers.push(newdata);
 
-                _this10.formdata.supplier_id = response.data.id;
+                _this10.formdata.customer_id = response.data.id;
                 $('#addcreatepurchase').modal('hide');
 
               case 11:
@@ -903,54 +879,54 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
   validations: {
     customerdata: {
       email: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required,
-        email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.email
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required,
+        email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.email
       },
       registered_address: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       first_name: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       last_name: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       }
     },
     formdata: {
-      supplier_id: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+      customer_id: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
-      purchaseno: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+      invoiceno: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       billing_address: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       issue_date: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       due_date: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       currency_id: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       }
     },
     invoice_item: {
       invoice_product: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       invoice_type: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       weight: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       quantity: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       unitprice: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       }
     }
   },
@@ -1203,11 +1179,11 @@ var render = function() {
                           }
                         },
                         model: {
-                          value: _vm.formdata.supplier_id,
+                          value: _vm.formdata.customer_id,
                           callback: function($$v) {
-                            _vm.$set(_vm.formdata, "supplier_id", $$v)
+                            _vm.$set(_vm.formdata, "customer_id", $$v)
                           },
-                          expression: "formdata.supplier_id"
+                          expression: "formdata.customer_id"
                         }
                       }),
                       _vm._v(" "),
@@ -2026,7 +2002,7 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _vm.$v.formdata.supplier_id.$error
+                  _vm.$v.formdata.customer_id.$error
                     ? _c("span", { staticClass: "text-danger" }, [
                         _vm._v("Please Select Supplier")
                       ])
@@ -2043,8 +2019,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.formdata.purchaseno,
-                        expression: "formdata.purchaseno"
+                        value: _vm.formdata.invoiceno,
+                        expression: "formdata.invoiceno"
                       }
                     ],
                     staticClass: "form-control form-control-user setpadding",
@@ -2055,17 +2031,13 @@ var render = function() {
                       "aria-describedby": "emailHelp",
                       placeholder: ""
                     },
-                    domProps: { value: _vm.formdata.purchaseno },
+                    domProps: { value: _vm.formdata.invoiceno },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(
-                          _vm.formdata,
-                          "purchaseno",
-                          $event.target.value
-                        )
+                        _vm.$set(_vm.formdata, "invoiceno", $event.target.value)
                       }
                     }
                   }),
@@ -2076,7 +2048,7 @@ var render = function() {
                     [_vm._v("PO -")]
                   ),
                   _vm._v(" "),
-                  _vm.$v.formdata.purchaseno.$error
+                  _vm.$v.formdata.invoiceno.$error
                     ? _c("span", { staticClass: "text-danger" }, [
                         _vm._v("Please Enter invoice no")
                       ])
