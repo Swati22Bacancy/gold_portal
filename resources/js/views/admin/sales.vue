@@ -51,8 +51,54 @@
             </div>
           </div>
         </template>
-        <template v-slot:tabPanel-2> <p>Content 2</p> </template>
-        <template v-slot:tabPanel-3> <p>Content 3</p> </template>
+        <template v-slot:tabPanel-2>
+          <div class="col-md-12">
+            <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search by invoice,Purchase Order" style="background-color:#FFFFFF !important;"/>
+            <input type="text" class="form-control bg-light border-0 small table-date" placeholder="Date Range" style="background-color:#FFFFFF !important;"/>
+            <select class="tab-selector">
+              <option value="Option 1" selected>Total Value</option>
+              <option value="Option 1" >Option 1</option>
+            </select> 
+            <select class="tab-selector">
+              <option value="Option 1" selected>Show Entries</option>
+              <option value="Option 1">Option 1</option>
+            </select> 
+            <select class="tab-selector">
+              <option value="Option 1" selected>Mass Operation</option>
+              <option value="Option 1">Option 1</option>
+            </select> 
+            <button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;margin-left: auto;">Advance Search</button>
+          </div>
+          <div class="">
+            <div>
+              <paidsales> </paidsales> 
+            </div>
+          </div>
+        </template>
+        <template v-slot:tabPanel-3>
+          <div class="col-md-12">
+            <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search by invoice,Purchase Order" style="background-color:#FFFFFF !important;"/>
+            <input type="text" class="form-control bg-light border-0 small table-date" placeholder="Date Range" style="background-color:#FFFFFF !important;"/>
+            <select class="tab-selector">
+              <option value="Option 1" selected>Total Value</option>
+              <option value="Option 1" >Option 1</option>
+            </select> 
+            <select class="tab-selector">
+              <option value="Option 1" selected>Show Entries</option>
+              <option value="Option 1">Option 1</option>
+            </select> 
+            <select class="tab-selector">
+              <option value="Option 1" selected>Mass Operation</option>
+              <option value="Option 1">Option 1</option>
+            </select> 
+            <button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;margin-left: auto;">Advance Search</button>
+          </div>
+          <div class="">
+            <div>
+              <partialsales> </partialsales> 
+            </div>
+          </div>
+        </template>
         <template v-slot:tabPanel-4> <p>Content 4</p> </template>
         <template v-slot:tabPanel-5> <p>Content 5</p> </template>
       </app-tabs>
@@ -67,11 +113,15 @@
 <script>
 import AppTabs from "./AppTabs";
 import allsales from "./allsales";
+import paidsales from "./paidsales";
+import partialsales from "./partialsales";
 export default {
   name: "Sales",
   components: {
     AppTabs,
-    allsales
+    allsales,
+    paidsales,
+    partialsales
   },
   data() {
     return {

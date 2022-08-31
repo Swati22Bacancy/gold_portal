@@ -125,6 +125,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('sales_history/{id}', [Api\SalesController::class, 'saleshistory']);
     Route::post('create_refund',[Api\SalesController::class, 'createrefund']);
     Route::get('delete-refund/{id}', [Api\SalesController::class, 'deleterefund']);
+    Route::post('update_invoicestatus',[Api\SalesController::class, 'updateinvoicestatus']);
+    Route::get('sales_list_by_status/{status}', [Api\SalesController::class, 'salesbystatus']);
 
     // Purchase Invoice Routes
     Route::post('create_purchase',[Api\PurchaseController::class, 'createinvoice']);

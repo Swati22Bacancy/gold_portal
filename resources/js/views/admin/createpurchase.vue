@@ -905,7 +905,7 @@ export default {
 </script>
 <style scoped>
 .modal-createpurchase{
-  width:280px;
+  width:450px;
 }
 .table-row{
   height: 100px;
