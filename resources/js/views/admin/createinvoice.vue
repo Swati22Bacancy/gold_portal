@@ -939,7 +939,7 @@ export default {
 </script>
 <style scoped>
 .modal-createinvoice{
-  width:450px;
+  width:280px;
 }
 .table-row{
   height: 100px;
