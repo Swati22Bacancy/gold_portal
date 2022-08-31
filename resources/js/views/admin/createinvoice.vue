@@ -246,20 +246,14 @@
                   <tbody>
                     <tr v-for="(invoice_item, key) in invoice_items" :key="key" class="table-row">
                         <td class="td-style">
-                          <!-- <select class="form-control form-control-user select-cont" @change="fetchProducts(k)" v-model="invoice_item.invoice_type" required>
-                            <option v-for="producttype in producttypes" :key="producttype.id" :value="producttype.id">{{producttype.name}}</option>
-                          </select> -->
+                          
                           <input type="text" class="form-control form-control-user" placeholder="" v-model="invoice_item.invoice_type" readonly/>
                           <input type="hidden" class="form-control form-control-user" placeholder="" v-model="invoice_item.invoice_typeid"/>
-                          <!-- <span v-if="$v.invoice_item.invoice_type.$error" class="text-danger">Please Select type</span> -->
+                          
                         </td>
                         <td><div class="modal-createinvoice">
                       <model-select  :options="products" @input="fetchProductDetails(key)" v-model="invoice_item.invoice_product" 
                        placeholder="Select Product"></model-select></div>
-                          <!-- <select class="form-control form-control-user select-cont" @change="fetchProductDetails(key)" v-model="invoice_item.invoice_product" > -->
-                            <!-- <option v-for="product in products" :key="product.id" :value="product.id">{{product.name}}</option> -->
-                      
-                          <!-- </select> -->
                         </td>
                         <td class="td-style">
                           <input type="text" class="form-control form-control-user" placeholder="" v-model="invoice_item.weight" readonly/>
@@ -409,7 +403,7 @@ export default {
       customerdata:{},
       commentshow: '',
       editflag:false,
-      credit_period:0
+      credit_period:0,
     };
   },
   methods:
@@ -939,7 +933,7 @@ export default {
 </script>
 <style scoped>
 .modal-createinvoice{
-  width:280px;
+  width:350px;
 }
 .table-row{
   height: 100px;
