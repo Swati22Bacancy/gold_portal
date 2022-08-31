@@ -142,7 +142,8 @@ class SalesController extends Controller
                 'totalamount' => $request->input('totalamount'),
                 'method' => $request->input('method'),
                 'bank' => $request->input('bank'),
-                'comment' => $request->input('comment')
+                'comment' => $request->input('comment'),
+                'action' => $request->input('action'),
             ]);
 
             $saleshistory = SalesHistory::create([

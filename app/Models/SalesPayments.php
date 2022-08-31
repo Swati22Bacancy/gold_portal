@@ -18,6 +18,7 @@ class SalesPayments extends Authenticatable
         'totalamount',
         'method',
         'bank',
-        'comment'
+        'comment',
+        'action'
     ];
 }

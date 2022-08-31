@@ -29,41 +29,22 @@
               class="d-sm-flex align-items-center justify-content-between mb-4"
               style="margin-right:65px"
           >
-              <div
-                  class="d-sm-flex align-items-center justify-content-between"
-              >
+              <div class="d-sm-flex align-items-center justify-content-between">
                   <button @click="sidebarToggle" class="btn-head">
                       <i class="fas fa-arrow-left"></i>
                   </button>
-                  <h1
-                      class="h3 mb-0 text-gray-800"
-                      style="margin-left:20px; margin-right: 20px;"
-                  >
+                  <h1 class="h3 mb-0 text-gray-800" style="margin-left:20px; margin-right: 20px;">
                       {{ formdata.invoiceno }}
                   </h1>
                   <button @click="sidebarToggle" class="btn-head">
                       <i class="fas fa-arrow-right"></i>
                   </button>
               </div>
-              <div
-                  class="d-sm-flex align-items-center justify-content-between"
-              >
-                  <i
-                      class="fa fa-download"
-                      style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"
-                  ></i>
-                  <i
-                      class="fab fa-whatsapp"
-                      style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"
-                  ></i>
-                  <i
-                      class="fas fa-envelope"
-                      style="background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;"
-                  ></i>
-                  <i
-                      class="fas fa-print"
-                      style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;"
-                  ></i>
+              <div class="d-sm-flex align-items-center justify-content-between">
+                  <i class="fa fa-download" style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"></i>
+                  <i class="fab fa-whatsapp" style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"></i>
+                  <i class="fas fa-envelope" style="background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;"></i>
+                  <i class="fas fa-print" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;"></i>
               </div>
               <div
                   class="d-sm-flex align-items-center justify-content-between"
@@ -146,23 +127,13 @@
                               Status
                           </p>
                           <span>
-                              <button
-                                  type="button"
-                                  v-if="invoice_status != 'Paid'"
-                                  class="btn table-btn"
-                                  style="margin-left: auto;width: 100px;"
-                              >
-                                  {{ invoice_status }}</button
-                              ><br />
-                              <span v-if="over_paid < 0">
-                                  Over Amount: {{ Math.abs(over_paid) }}</span
-                              >
-                              <button
-                                  type="button"
-                                  v-if="invoice_status == 'Paid'"
-                                  class="btn table-btn"
-                                  style="margin-left: auto;width: 100px;background-color: #00AA5B !important;"
-                              >
+                              <button type="button" v-if="invoice_status == 'Over Paid'" class="btn table-btn" style="margin-left: auto;width: 100px;background-color: #ffa500 !important;"> {{ invoice_status }}</button><br />
+                              <span v-if="over_paid < 0"> Over Amount: <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>{{ Math.abs(over_paid) }}</span>
+
+                              <button type="button" v-if="invoice_status != 'Paid' && invoice_status != 'Over Paid'" class="btn table-btn" style="margin-left: auto;width: 100px;"> {{ invoice_status }}</button><br />
+
+                              <button type="button" v-if="invoice_status == 'Paid'" class="btn table-btn"
+                                  style="margin-left: auto;width: 100px;background-color: #00AA5B !important;">
                                   {{ invoice_status }}
                               </button>
                           </span>
@@ -328,7 +299,7 @@
                               type="button"
                               class="btn admin-btn mobile-mb btn-nwidth"
                               style="background-color: #7ADAAA !important;"
-                              @click="addLine"
+                              @click="addLine('Receive')"
                           >
                               <i
                                   class="fas fa-plus"
@@ -343,42 +314,15 @@
                           >
                               Apply Credit
                           </button>
-                          <!-- <button type="button" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #EDF2F6 !important;" @click="tabclick('refund')" >Refund</button> -->
-                          <div class="dropdown show" style="display:inline;">
-                              <a
-                                  class="btn admin-btn mobile-mb btn-nwidth dropdown-toggle"
-                                  href="#"
-                                  role="button"
-                                  id="dropdownMenuLink"
-                                  data-toggle="dropdown"
-                                  aria-haspopup="true"
-                                  aria-expanded="false"
-                              >
-                                  Refund
-                              </a>
-
-                              <div
-                                  class="dropdown-menu"
-                                  aria-labelledby="dropdownMenuLink"
-                              >
-                                  <a
-                                      class="dropdown-item"
-                                      @click="
-                                          tabclick('refund'), refundform()
-                                      "
-                                      style="cursor: pointer;"
-                                      >Add Refund</a
-                                  >
-                                  <a
-                                      class="dropdown-item"
-                                      @click="
-                                          tabclick('refund'), refundhistory()
-                                      "
-                                      style="cursor: pointer;"
-                                      >Refund History</a
-                                  >
+                          <button type="button" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #EDF2F6 !important;" @click="addLine('Refund')" >Refund</button>
+                          <!-- <div class="dropdown show" style="display:inline;">
+                              <a class="btn admin-btn mobile-mb btn-nwidth dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Refund</a>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                  <a class="dropdown-item" @click="tabclick('refund'), refundform()" style="cursor: pointer;">Add Refund</a>
+                                  <a class="dropdown-item" @click="tabclick('refund'), refundhistory()" style="cursor: pointer;">Refund History</a>
                               </div>
-                          </div>
+                          </div> -->
                       </div>
                   </div>
               </div>
@@ -397,20 +341,15 @@
                   style="margin-bottom:0"
               >
                   <tbody>
-                      <tr
-                          v-for="salepayment in formdata.salepayments"
-                          :key="salepayment.id"
-                      >
+                      <tr v-for="salepayment in formdata.salepayments" :key="salepayment.id" >
                           <td>{{ salepayment.payment_date }}</td>
                           <td></td>
                           <td>{{ salepayment.method }}</td>
                           <td></td>
-                          <td style="color:#7adaaa;">
-                              <i
-                                  class="fa fa-pound-sign"
-                                  style="font-size:10px;margin-right:3px;"
-                              ></i>
-                              {{ salepayment.totalamount }} Received
+                          <td  v-bind:class = "(salepayment.action=='Receive')?'class_green':'class_red'">
+                              <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;" ></i>
+                              {{ salepayment.totalamount }} <span v-if="salepayment.action=='Receive'">Received</span>
+                              <span v-if="salepayment.action!='Receive'">Refunded</span>
                           </td>
                           <td></td>
                           <td>
@@ -857,21 +796,11 @@
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
                       <div class="modal-header">
-                          <h6
-                              class="modal-title"
-                              id="deleteConfirmationRefundLabel"
-                          >
+                          <h6 class="modal-title" id="deleteConfirmationRefundLabel">
                               Confirmation
                           </h6>
-                          <button
-                              type="button"
-                              class="close"
-                              data-dismiss="modal"
-                              aria-label="Close"
-                          >
-                              <span aria-hidden="true" style="color:#fff"
-                                  >&times;</span
-                              >
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                              <span aria-hidden="true" style="color:#fff" >&times;</span>
                           </button>
                       </div>
                       <div class="modal-body">
@@ -880,18 +809,10 @@
                           </p>
                       </div>
                       <div class="modal-footer">
-                          <button
-                              type="button"
-                              class="btn admin-btn mobile-mb"
-                              data-dismiss="modal"
-                          >
+                          <button type="button" class="btn admin-btn mobile-mb" data-dismiss="modal">
                               Cancel
                           </button>
-                          <button
-                              type="button"
-                              class="btn admin-btn mobile-mb"
-                              style="background-color: #ff0000 !important;color: #fff;"
-                              @click="deleteRefund(refundid)"
+                          <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteRefund(refundid)"
                           >
                               Delete
                           </button>
@@ -911,42 +832,21 @@
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
                       <div class="modal-header">
-                          <h6
-                              class="modal-title"
-                              id="deleteConfirmationLabel"
-                          >
-                              Confirmation
-                          </h6>
-                          <button
-                              type="button"
-                              class="close"
-                              data-dismiss="modal"
-                              aria-label="Close"
-                          >
-                              <span aria-hidden="true" style="color:#fff"
-                                  >&times;</span
-                              >
+                          <h6 class="modal-title" id="deleteConfirmationLabel">Confirmation</h6>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true" style="color:#fff">&times;</span>
                           </button>
                       </div>
                       <div class="modal-body">
                           <p style="color:#000;font-size:14px;">
-                              Are you sure you want to delete this payment?
+                              Are you sure you want to delete this record?
                           </p>
                       </div>
                       <div class="modal-footer">
-                          <button
-                              type="button"
-                              class="btn admin-btn mobile-mb"
-                              data-dismiss="modal"
-                          >
+                          <button type="button" class="btn admin-btn mobile-mb" data-dismiss="modal">
                               Cancel
                           </button>
-                          <button
-                              type="button"
-                              class="btn admin-btn mobile-mb"
-                              style="background-color: #ff0000 !important;color: #fff;"
-                              @click="deleteRecord(paymentid)"
-                          >
+                          <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteRecord(paymentid)" >
                               Delete
                           </button>
                       </div>
@@ -983,7 +883,8 @@ export default {
                   totalamount: "",
                   bank: "ICIC Bank Accounts",
                   method: "Bank Transfer",
-                  comment: ""
+                  comment: "",
+                  action:""
               }
           ],
           refund_items: [
@@ -992,7 +893,8 @@ export default {
                   totalamount: "",
                   bank: "ICIC Bank Accounts",
                   method: "Bank Transfer",
-                  comment: ""
+                  comment: "",
+                  action:"Refund"
               }
           ],
           tabflag: false,
@@ -1009,7 +911,9 @@ export default {
           selectedtab: "payment",
           note: "",
           over_paid: 0,
-          refundcount: 0
+          refundcount: 0,
+          payaction:"",
+          paymentclass:""
       };
   },
   methods: {
@@ -1019,8 +923,9 @@ export default {
       changetype(type) {
           this.customerType = type;
       },
-      addLine() {
+      addLine(action) {
           this.addpayment = "show";
+          this.payaction=action;
           // this.invoice_items.push({
           //     invoice_type: '',
           //     invoice_product: '',
@@ -1036,7 +941,7 @@ export default {
           //this.invoice_items.splice(index,1);
       },
       removeRefund(index) {
-          this.addrefund = "";
+          this.addpayment = "";
           //this.invoice_items.splice(index,1);
       },
       editpayment(paymentdata) {},
@@ -1059,6 +964,7 @@ export default {
           this.invoice_items[index].sales_id = this.$route.params.id;
           var date = new Date(this.invoice_items[index].payment_date);
           this.invoice_items[index].payment_date = date;
+          this.invoice_items[index].action = this.payaction;
           const response = await axios.post(
               "create_payment",
               this.invoice_items[index]
@@ -1073,8 +979,16 @@ export default {
               this.addpayment = "";
               this.paymentcount = this.paymentcount + 1;
               //this.invoice_items.splice(index,1);
-              this.due_payment =
-                  this.due_payment - this.invoice_items[index].totalamount;
+              if(this.payaction=='Receive')
+              {
+                this.due_payment = this.due_payment - this.invoice_items[index].totalamount;
+                this.paymentclass='receive_class';
+              }
+              else
+              {
+                this.due_payment = parseFloat(this.due_payment) + parseFloat(this.invoice_items[index].totalamount);
+                this.paymentclass='refund_class';
+              }
               this.due_payment = this.due_payment.toFixed(2);
               if (this.due_payment < 0) {
                   this.over_paid = this.due_payment;
@@ -1087,7 +1001,8 @@ export default {
                       totalamount: "",
                       bank: "ICIC Bank Accounts",
                       method: "Bank Transfer",
-                      comment: ""
+                      comment: "",
+                      action: ""
                   }
               ];
 
@@ -1178,19 +1093,20 @@ export default {
       async save_refund(index) {
           this.refund_items[index].sales_id = this.$route.params.id;
           var date = new Date(this.refund_items[index].refund_date);
-          this.refund_items[index].refund_date = date;
+          this.refund_items[index].payment_date = date;
+          this.refund_items[index].action = 'Refund';
           const response = await axios.post(
-              "create_refund",
+              "create_payment",
               this.refund_items[index]
           );
           if (response.data.id) {
               var arr = {};
-              arr.refund_date = response.data.refund_date;
+              arr.payment_date = response.data.payment_date;
               arr.method = this.refund_items[index].method;
               arr.totalamount = this.refund_items[index].totalamount;
               arr.id = response.data.id;
-              this.formdata.salerefunds.push(arr);
-              this.addrefund = "";
+              this.formdata.salepayments.push(arr);
+              this.addpayment = "";
               this.refundcount = this.refundcount + 1;
               //this.refund_items.splice(index,1);
               this.due_payment =
@@ -1208,7 +1124,8 @@ export default {
                       totalamount: "",
                       bank: "ICIC Bank Accounts",
                       method: "Bank Transfer",
-                      comment: ""
+                      comment: "",
+                      action: "Refund"
                   }
               ];
 
@@ -1289,7 +1206,7 @@ export default {
               this.formdata = response.data;
               this.paymentcount = this.formdata.salepayments.length;
               if (response.data.payment_due < 0) {
-                  this.over_paid = response.data.payment_due;
+                  this.over_paid = response.data.payment_due.toFixed(2);
               }
               this.due_payment =
                   response.data.payment_due < 0
@@ -1440,5 +1357,14 @@ justify-content: center;
 .viewsales-div span {
   color: #000;
   font-size: 13px;
+}
+
+.class_red
+{
+  color:rgb(255 0 0);
+}
+.class_green
+{
+  color:#7adaaa;
 }
 </style>

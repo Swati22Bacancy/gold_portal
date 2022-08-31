@@ -885,106 +885,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Dashboard",
@@ -1016,14 +916,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         totalamount: "",
         bank: "ICIC Bank Accounts",
         method: "Bank Transfer",
-        comment: ""
+        comment: "",
+        action: ""
       }],
       refund_items: [{
         refund_date: Date.now(),
         totalamount: "",
         bank: "ICIC Bank Accounts",
         method: "Bank Transfer",
-        comment: ""
+        comment: "",
+        action: "Refund"
       }],
       tabflag: false,
       sidebarflag: false,
@@ -1039,7 +941,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       selectedtab: "payment",
       note: "",
       over_paid: 0,
-      refundcount: 0
+      refundcount: 0,
+      payaction: "",
+      paymentclass: ""
     };
   },
   methods: {
@@ -1049,8 +953,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     changetype: function changetype(type) {
       this.customerType = type;
     },
-    addLine: function addLine() {
-      this.addpayment = "show"; // this.invoice_items.push({
+    addLine: function addLine(action) {
+      this.addpayment = "show";
+      this.payaction = action; // this.invoice_items.push({
       //     invoice_type: '',
       //     invoice_product: '',
       //     weight: '',
@@ -1064,7 +969,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.addpayment = ""; //this.invoice_items.splice(index,1);
     },
     removeRefund: function removeRefund(index) {
-      this.addrefund = ""; //this.invoice_items.splice(index,1);
+      this.addpayment = ""; //this.invoice_items.splice(index,1);
     },
     editpayment: function editpayment(paymentdata) {},
     tabclick: function tabclick(param) {
@@ -1095,10 +1000,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.invoice_items[index].sales_id = _this.$route.params.id;
                 date = new Date(_this.invoice_items[index].payment_date);
                 _this.invoice_items[index].payment_date = date;
-                _context.next = 5;
+                _this.invoice_items[index].action = _this.payaction;
+                _context.next = 6;
                 return axios.post("create_payment", _this.invoice_items[index]);
 
-              case 5:
+              case 6:
                 response = _context.sent;
 
                 if (response.data.id) {
@@ -1113,7 +1019,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.addpayment = "";
                   _this.paymentcount = _this.paymentcount + 1; //this.invoice_items.splice(index,1);
 
-                  _this.due_payment = _this.due_payment - _this.invoice_items[index].totalamount;
+                  if (_this.payaction == 'Receive') {
+                    _this.due_payment = _this.due_payment - _this.invoice_items[index].totalamount;
+                    _this.paymentclass = 'receive_class';
+                  } else {
+                    _this.due_payment = parseFloat(_this.due_payment) + parseFloat(_this.invoice_items[index].totalamount);
+                    _this.paymentclass = 'refund_class';
+                  }
+
                   _this.due_payment = _this.due_payment.toFixed(2);
 
                   if (_this.due_payment < 0) {
@@ -1126,7 +1039,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     totalamount: "",
                     bank: "ICIC Bank Accounts",
                     method: "Bank Transfer",
-                    comment: ""
+                    comment: "",
+                    action: ""
                   }];
 
                   if (_this.paymentcount == 0) {
@@ -1150,7 +1064,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                 }
 
-              case 7:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -1270,23 +1184,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _this3.refund_items[index].sales_id = _this3.$route.params.id;
                 date = new Date(_this3.refund_items[index].refund_date);
-                _this3.refund_items[index].refund_date = date;
-                _context3.next = 5;
-                return axios.post("create_refund", _this3.refund_items[index]);
+                _this3.refund_items[index].payment_date = date;
+                _this3.refund_items[index].action = 'Refund';
+                _context3.next = 6;
+                return axios.post("create_payment", _this3.refund_items[index]);
 
-              case 5:
+              case 6:
                 response = _context3.sent;
 
                 if (response.data.id) {
                   arr = {};
-                  arr.refund_date = response.data.refund_date;
+                  arr.payment_date = response.data.payment_date;
                   arr.method = _this3.refund_items[index].method;
                   arr.totalamount = _this3.refund_items[index].totalamount;
                   arr.id = response.data.id;
 
-                  _this3.formdata.salerefunds.push(arr);
+                  _this3.formdata.salepayments.push(arr);
 
-                  _this3.addrefund = "";
+                  _this3.addpayment = "";
                   _this3.refundcount = _this3.refundcount + 1; //this.refund_items.splice(index,1);
 
                   _this3.due_payment = parseFloat(_this3.due_payment) + parseFloat(_this3.refund_items[index].totalamount);
@@ -1302,7 +1217,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     totalamount: "",
                     bank: "ICIC Bank Accounts",
                     method: "Bank Transfer",
-                    comment: ""
+                    comment: "",
+                    action: "Refund"
                   }]; // if(this.paymentcount==0)
                   // {
                   //   this.invoice_status='UnPaid';
@@ -1331,7 +1247,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                 }
 
-              case 7:
+              case 8:
               case "end":
                 return _context3.stop();
             }
@@ -1384,7 +1300,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _this6.paymentcount = _this6.formdata.salepayments.length;
 
       if (response.data.payment_due < 0) {
-        _this6.over_paid = response.data.payment_due;
+        _this6.over_paid = response.data.payment_due.toFixed(2);
       }
 
       _this6.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
@@ -1431,7 +1347,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-483c8698] {\r\n  background: #3376c2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n  font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.choose-cont[data-v-483c8698]{\r\ndisplay: flex;\r\njustify-content: center;\n}\n.imagePreview[data-v-483c8698] {\r\n  width: 70px;\n}\n.previewContainer[data-v-483c8698] {\r\n  position: relative;\n}\n.closeIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 40px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.salesdata[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-483c8698] {\r\n  border-radius: 50%;\n}\n.btn-container[data-v-483c8698] {\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width: 100% !important;\n}\n.selectedclr[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-483c8698] {\r\n  width: auto;\r\n  font-size: 13px !important;\r\n  color: #000;\r\n  border: none;\r\n  height: 40px;\r\n  padding: 5px 20px;\r\n  border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698] {\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698] {\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-483c8698] {\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698] {\r\n  background-color: #edf2f6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus,\r\n.btn.focus[data-v-483c8698] {\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-483c8698] {\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698] {\r\n  border: 1px solid #d6e3f2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698] {\r\n  width: 130px;\n}\n.sum-price ul[data-v-483c8698] {\r\n  list-style-type: none;\n}\n.sum-price li[data-v-483c8698] {\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n}\n.viewsales-div > p[data-v-483c8698] {\r\n  color: #3376c2;\r\n  font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n  color: #000;\r\n  font-size: 13px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-483c8698] {\r\n  background: #3376c2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n  font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.choose-cont[data-v-483c8698]{\r\ndisplay: flex;\r\njustify-content: center;\n}\n.imagePreview[data-v-483c8698] {\r\n  width: 70px;\n}\n.previewContainer[data-v-483c8698] {\r\n  position: relative;\n}\n.closeIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 40px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.salesdata[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-483c8698] {\r\n  border-radius: 50%;\n}\n.btn-container[data-v-483c8698] {\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width: 100% !important;\n}\n.selectedclr[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-483c8698] {\r\n  width: auto;\r\n  font-size: 13px !important;\r\n  color: #000;\r\n  border: none;\r\n  height: 40px;\r\n  padding: 5px 20px;\r\n  border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698] {\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698] {\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-483c8698] {\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698] {\r\n  background-color: #edf2f6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus,\r\n.btn.focus[data-v-483c8698] {\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-483c8698] {\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698] {\r\n  border: 1px solid #d6e3f2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698] {\r\n  width: 130px;\n}\n.sum-price ul[data-v-483c8698] {\r\n  list-style-type: none;\n}\n.sum-price li[data-v-483c8698] {\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n}\n.viewsales-div > p[data-v-483c8698] {\r\n  color: #3376c2;\r\n  font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n  color: #000;\r\n  font-size: 13px;\n}\n.class_red[data-v-483c8698]\r\n{\r\n  color:rgb(255 0 0);\n}\n.class_green[data-v-483c8698]\r\n{\r\n  color:#7adaaa;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1814,7 +1730,39 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("span", [
-                  _vm.invoice_status != "Paid"
+                  _vm.invoice_status == "Over Paid"
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn table-btn",
+                          staticStyle: {
+                            "margin-left": "auto",
+                            width: "100px",
+                            "background-color": "#ffa500 !important"
+                          },
+                          attrs: { type: "button" }
+                        },
+                        [_vm._v(" " + _vm._s(_vm.invoice_status))]
+                      )
+                    : _vm._e(),
+                  _c("br"),
+                  _vm._v(" "),
+                  _vm.over_paid < 0
+                    ? _c("span", [
+                        _vm._v(" Over Amount: "),
+                        _c("i", {
+                          staticClass: "fa fa-pound-sign",
+                          staticStyle: {
+                            "font-size": "10px",
+                            "margin-right": "3px"
+                          }
+                        }),
+                        _vm._v(_vm._s(Math.abs(_vm.over_paid)))
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.invoice_status != "Paid" &&
+                  _vm.invoice_status != "Over Paid"
                     ? _c(
                         "button",
                         {
@@ -1825,24 +1773,10 @@ var render = function() {
                           },
                           attrs: { type: "button" }
                         },
-                        [
-                          _vm._v(
-                            "\n                                " +
-                              _vm._s(_vm.invoice_status)
-                          )
-                        ]
+                        [_vm._v(" " + _vm._s(_vm.invoice_status))]
                       )
                     : _vm._e(),
                   _c("br"),
-                  _vm._v(" "),
-                  _vm.over_paid < 0
-                    ? _c("span", [
-                        _vm._v(
-                          "\n                                Over Amount: " +
-                            _vm._s(Math.abs(_vm.over_paid))
-                        )
-                      ])
-                    : _vm._e(),
                   _vm._v(" "),
                   _vm.invoice_status == "Paid"
                     ? _c(
@@ -2096,7 +2030,11 @@ var render = function() {
                   staticClass: "btn admin-btn mobile-mb btn-nwidth",
                   staticStyle: { "background-color": "#7ADAAA !important" },
                   attrs: { type: "button" },
-                  on: { click: _vm.addLine }
+                  on: {
+                    click: function($event) {
+                      return _vm.addLine("Receive")
+                    }
+                  }
                 },
                 [
                   _c("i", {
@@ -2122,70 +2060,18 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "div",
+                "button",
                 {
-                  staticClass: "dropdown show",
-                  staticStyle: { display: "inline" }
+                  staticClass: "btn admin-btn mobile-mb btn-nwidth",
+                  staticStyle: { "background-color": "#EDF2F6 !important" },
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.addLine("Refund")
+                    }
+                  }
                 },
-                [
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "btn admin-btn mobile-mb btn-nwidth dropdown-toggle",
-                      attrs: {
-                        href: "#",
-                        role: "button",
-                        id: "dropdownMenuLink",
-                        "data-toggle": "dropdown",
-                        "aria-haspopup": "true",
-                        "aria-expanded": "false"
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                                Refund\n                            "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "dropdown-menu",
-                      attrs: { "aria-labelledby": "dropdownMenuLink" }
-                    },
-                    [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "dropdown-item",
-                          staticStyle: { cursor: "pointer" },
-                          on: {
-                            click: function($event) {
-                              _vm.tabclick("refund"), _vm.refundform()
-                            }
-                          }
-                        },
-                        [_vm._v("Add Refund")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "dropdown-item",
-                          staticStyle: { cursor: "pointer" },
-                          on: {
-                            click: function($event) {
-                              _vm.tabclick("refund"), _vm.refundhistory()
-                            }
-                          }
-                        },
-                        [_vm._v("Refund History")]
-                      )
-                    ]
-                  )
-                ]
+                [_vm._v("Refund")]
               )
             ])
           ])
@@ -2232,20 +2118,36 @@ var render = function() {
                             _vm._v(" "),
                             _c("td"),
                             _vm._v(" "),
-                            _c("td", { staticStyle: { color: "#7adaaa" } }, [
-                              _c("i", {
-                                staticClass: "fa fa-pound-sign",
-                                staticStyle: {
-                                  "font-size": "10px",
-                                  "margin-right": "3px"
-                                }
-                              }),
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(salepayment.totalamount) +
-                                  " Received\n                        "
-                              )
-                            ]),
+                            _c(
+                              "td",
+                              {
+                                class:
+                                  salepayment.action == "Receive"
+                                    ? "class_green"
+                                    : "class_red"
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "fa fa-pound-sign",
+                                  staticStyle: {
+                                    "font-size": "10px",
+                                    "margin-right": "3px"
+                                  }
+                                }),
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(salepayment.totalamount) +
+                                    " "
+                                ),
+                                salepayment.action == "Receive"
+                                  ? _c("span", [_vm._v("Received")])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                salepayment.action != "Receive"
+                                  ? _c("span", [_vm._v("Refunded")])
+                                  : _vm._e()
+                              ]
+                            ),
                             _vm._v(" "),
                             _c("td"),
                             _vm._v(" "),
@@ -3818,11 +3720,7 @@ var staticRenderFns = [
           staticClass: "modal-title",
           attrs: { id: "deleteConfirmationLabel" }
         },
-        [
-          _vm._v(
-            "\n                            Confirmation\n                        "
-          )
-        ]
+        [_vm._v("Confirmation")]
       ),
       _vm._v(" "),
       _c(
@@ -3855,7 +3753,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "modal-body" }, [
       _c("p", { staticStyle: { color: "#000", "font-size": "14px" } }, [
         _vm._v(
-          "\n                            Are you sure you want to delete this payment?\n                        "
+          "\n                            Are you sure you want to delete this record?\n                        "
         )
       ])
     ])
