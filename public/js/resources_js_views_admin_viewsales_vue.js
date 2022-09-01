@@ -850,41 +850,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Dashboard",
@@ -943,10 +908,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       over_paid: 0,
       refundcount: 0,
       payaction: "",
-      paymentclass: ""
+      paymentclass: "",
+      sales: []
     };
   },
   methods: {
+    gotosales: function gotosales(id) {
+      this.$router.push("/viewsales/" + id);
+    },
     sidebarToggle: function sidebarToggle() {
       this.sidebarflag = !this.sidebarflag;
     },
@@ -992,7 +961,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var date, response, arr, toast;
+        var date, response, arr, response1, toast;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -1012,6 +981,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   arr.payment_date = response.data.payment_date;
                   arr.method = _this.invoice_items[index].method;
                   arr.totalamount = _this.invoice_items[index].totalamount;
+                  arr.action = _this.payaction;
                   arr.id = response.data.id;
 
                   _this.formdata.salepayments.push(arr);
@@ -1023,7 +993,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     _this.due_payment = _this.due_payment - _this.invoice_items[index].totalamount;
                     _this.paymentclass = 'receive_class';
                   } else {
-                    _this.due_payment = parseFloat(_this.due_payment) + parseFloat(_this.invoice_items[index].totalamount);
+                    if (_this.over_paid < 0) {
+                      _this.due_payment = 0;
+                      _this.over_paid = parseFloat(_this.over_paid) + parseFloat(_this.invoice_items[index].totalamount);
+                    } //this.due_payment = parseFloat(this.due_payment) + parseFloat(this.invoice_items[index].totalamount);
+
+
                     _this.paymentclass = 'refund_class';
                   }
 
@@ -1056,6 +1031,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     _this.invoice_status = "Partially Paid";
                     _this.payment_check = "Yes";
                   }
+
+                  _this.statusdata = {};
+                  _this.statusdata.sales_id = _this.$route.params.id;
+                  _this.statusdata.status = _this.invoice_status;
+                  response1 = axios.post("update_invoicestatus", _this.statusdata);
                 } else {
                   toast = Vue.toasted.show("Something went wrong, Please try again", {
                     theme: "toasted-error",
@@ -1325,6 +1305,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _this6.formdata.saleshistory = response.data;
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
+    axios.get('/sales_list/').then(function (response) {
+      _this6.sales = response.data;
+    })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
+    });
   }
 });
 
@@ -1347,7 +1331,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-483c8698] {\r\n  background: #3376c2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n  font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.choose-cont[data-v-483c8698]{\r\ndisplay: flex;\r\njustify-content: center;\n}\n.imagePreview[data-v-483c8698] {\r\n  width: 70px;\n}\n.previewContainer[data-v-483c8698] {\r\n  position: relative;\n}\n.closeIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 40px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.salesdata[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-483c8698] {\r\n  border-radius: 50%;\n}\n.btn-container[data-v-483c8698] {\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width: 100% !important;\n}\n.selectedclr[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-483c8698] {\r\n  width: auto;\r\n  font-size: 13px !important;\r\n  color: #000;\r\n  border: none;\r\n  height: 40px;\r\n  padding: 5px 20px;\r\n  border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698] {\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698] {\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-483c8698] {\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698] {\r\n  background-color: #edf2f6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus,\r\n.btn.focus[data-v-483c8698] {\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-483c8698] {\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698] {\r\n  border: 1px solid #d6e3f2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698] {\r\n  width: 130px;\n}\n.sum-price ul[data-v-483c8698] {\r\n  list-style-type: none;\n}\n.sum-price li[data-v-483c8698] {\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n}\n.viewsales-div > p[data-v-483c8698] {\r\n  color: #3376c2;\r\n  font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n  color: #000;\r\n  font-size: 13px;\n}\n.class_red[data-v-483c8698]\r\n{\r\n  color:rgb(255 0 0);\n}\n.class_green[data-v-483c8698]\r\n{\r\n  color:#7adaaa;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-483c8698] {\r\n  background: #3376c2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n  font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.choose-cont[data-v-483c8698]{\r\ndisplay: flex;\r\njustify-content: center;\n}\n.imagePreview[data-v-483c8698] {\r\n  width: 70px;\n}\n.previewContainer[data-v-483c8698] {\r\n  position: relative;\n}\n.closeIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 40px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.salesdata[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-483c8698] {\r\n  border-radius: 50%;\n}\n.btn-container[data-v-483c8698] {\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width: 100% !important;\n}\n.selectedclr[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-483c8698] {\r\n  width: auto;\r\n  font-size: 13px !important;\r\n  color: #000;\r\n  border: none;\r\n  height: 40px;\r\n  padding: 5px 20px;\r\n  border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698] {\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698] {\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-483c8698] {\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698] {\r\n  background-color: #edf2f6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus,\r\n.btn.focus[data-v-483c8698] {\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-483c8698] {\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698] {\r\n  border: 1px solid #d6e3f2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698] {\r\n  width: 130px;\n}\n.sum-price ul[data-v-483c8698] {\r\n  list-style-type: none;\n}\n.sum-price li[data-v-483c8698] {\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n}\n.viewsales-div > p[data-v-483c8698] {\r\n  color: #3376c2;\r\n  font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n  color: #000;\r\n  font-size: 13px;\n}\n.class_red[data-v-483c8698]\r\n{\r\n  color:rgb(255 0 0);\n}\n.class_green[data-v-483c8698]\r\n{\r\n  color:#7adaaa;\n}\n.bold_font[data-v-483c8698]\r\n{\r\n    font-weight: 600;\n}\n.invoicelist a[data-v-483c8698] \r\n{\r\n    color: #000;\n}\n#saleshistory-datatable thead[data-v-483c8698]\r\n{\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#saleshistory-datatable thead th[data-v-483c8698]\r\n{\r\n    font-weight: 100;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1492,49 +1476,31 @@ var render = function() {
       ? _c(
           "div",
           { staticClass: "col-1", staticStyle: { "font-size": "12px" } },
-          [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-2000")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1999")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1998")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1997")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1996")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1995")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1994")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1993")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1992")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1991")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1990")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1989")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1988")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1987")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1986")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1985")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1984")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1983")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1982")]),
-            _vm._v(" "),
-            _c("p", [_vm._v("INV-1981")])
-          ]
+          _vm._l(_vm.sales, function(sale) {
+            return _c(
+              "p",
+              {
+                key: sale.id,
+                staticClass: "invoicelist",
+                class:
+                  sale.invoiceno == _vm.formdata.invoiceno ? "bold_font" : "",
+                staticStyle: { color: "#000" }
+              },
+              [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: { name: "viewsales", params: { id: sale.id } }
+                    }
+                  },
+                  [_c("b", [_vm._v(_vm._s(sale.invoiceno))])]
+                )
+              ],
+              1
+            )
+          }),
+          0
         )
       : _vm._e(),
     _vm._v(" "),
@@ -1583,9 +1549,9 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _vm._m(1),
+          _vm._m(0),
           _vm._v(" "),
-          _vm._m(2)
+          _vm._m(1)
         ]
       ),
       _vm._v(" "),
@@ -1831,7 +1797,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(3),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -1883,7 +1849,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
-              _vm._m(4),
+              _vm._m(3),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2 sum-price" }, [
                 _c("ul", [
@@ -2641,7 +2607,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(5)
+                        _vm._m(4)
                       ]),
                       _vm._v(" "),
                       _c("tr", [
@@ -2710,7 +2676,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(6)
+                        _vm._m(5)
                       ]),
                       _vm._v(" "),
                       _c("tr", [
@@ -2779,7 +2745,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(7)
+                        _vm._m(6)
                       ]),
                       _vm._v(" "),
                       _c("tr", [
@@ -2848,7 +2814,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(8)
+                        _vm._m(7)
                       ])
                     ])
                   ]
@@ -2881,40 +2847,25 @@ var render = function() {
                   }
                 },
                 [
+                  _vm._m(8),
+                  _vm._v(" "),
                   _c(
                     "tbody",
                     _vm._l(_vm.formdata.saleshistory, function(salehistory) {
                       return _c("tr", { key: salehistory.id }, [
-                        _c("td", [_vm._v(_vm._s(salehistory.comment))]),
+                        _c("td", [_vm._v(_vm._s(salehistory.changes))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(salehistory.log_date))]),
                         _vm._v(" "),
                         _c("td", [
-                          salehistory.note
-                            ? _c("span", [_vm._v("Note: ")])
-                            : _vm._e(),
                           _vm._v(
-                            _vm._s(salehistory.note) +
-                              "\n                        "
+                            _vm._s(salehistory.firstname) +
+                              " " +
+                              _vm._s(salehistory.lastname)
                           )
                         ]),
                         _vm._v(" "),
-                        _c("td", [
-                          salehistory.amount
-                            ? _c("i", {
-                                staticClass: "fa fa-pound-sign",
-                                staticStyle: {
-                                  "font-size": "10px",
-                                  "margin-right": "3px"
-                                }
-                              })
-                            : _vm._e(),
-                          _vm._v(
-                            "\n                            " +
-                              _vm._s(salehistory.amount) +
-                              "\n                        "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(salehistory.log_date))])
+                        _c("td", [_vm._v(_vm._s(salehistory.comment))])
                       ])
                     }),
                     0
@@ -3427,12 +3378,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", [_c("strong", [_vm._v("INV-2001")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c(
       "div",
       { staticClass: "d-sm-flex align-items-center justify-content-between" },
@@ -3654,6 +3599,22 @@ var staticRenderFns = [
         },
         attrs: { "aria-hidden": "true" }
       })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Changes")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("User")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Details")])
+      ])
     ])
   },
   function() {

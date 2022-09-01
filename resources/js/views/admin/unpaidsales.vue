@@ -112,7 +112,7 @@ export default {
       this.$router.push("/viewsales/"+id);
     },
     getSales() {
-      var status= 'Partially Paid';
+      var status= 'UnPaid';
         return axios.get("sales_list_by_status/"+status).then(response => {
             this.sales = response.data;
         });

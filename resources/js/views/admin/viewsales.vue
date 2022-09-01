@@ -1,27 +1,7 @@
 <template>
   <div class="row">
       <div class="col-1" v-if="sidebarflag" style="font-size: 12px;">
-          <p><strong>INV-2001</strong></p>
-          <p>INV-2000</p>
-          <p>INV-1999</p>
-          <p>INV-1998</p>
-          <p>INV-1997</p>
-          <p>INV-1996</p>
-          <p>INV-1995</p>
-          <p>INV-1994</p>
-          <p>INV-1993</p>
-          <p>INV-1992</p>
-          <p>INV-1991</p>
-          <p>INV-1990</p>
-          <p>INV-1989</p>
-          <p>INV-1988</p>
-          <p>INV-1987</p>
-          <p>INV-1986</p>
-          <p>INV-1985</p>
-          <p>INV-1984</p>
-          <p>INV-1983</p>
-          <p>INV-1982</p>
-          <p>INV-1981</p>
+        <p v-for="sale in sales" class="invoicelist" :key="sale.id" v-bind:class = "(sale.invoiceno==formdata.invoiceno)?'bold_font':''" style="color:#000"><router-link :to="{name : 'viewsales', params: {id : sale.id}}"><b>{{sale.invoiceno}}</b></router-link></p>
       </div>
       <!-- Page Heading -->
       <div class="col-11">
@@ -613,37 +593,22 @@
               </div>
           </div>
 
-          <div
-              class="table-div mb-2"
-              v-if="selectedtab == 'history'"
-              style="background-color:white; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 10%);"
-          >
-              <table
-                  class="table salesdata"
-                  id="saleshistory-datatable"
-                  width="100%"
-                  cellspacing="0"
-                  style="margin-bottom:0"
-              >
+          <div class="table-div mb-2" v-if="selectedtab == 'history'" style="background-color:white; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 10%);" >
+              <table class="table salesdata" id="saleshistory-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
+                <thead>
+                    <tr>
+                        <th>Changes</th>
+                        <th>Date</th>
+                        <th>User</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
                   <tbody>
-                      <tr
-                          v-for="salehistory in formdata.saleshistory"
-                          :key="salehistory.id"
-                      >
-                          <td>{{ salehistory.comment }}</td>
-                          <td>
-                              <span v-if="salehistory.note">Note: </span
-                              >{{ salehistory.note }}
-                          </td>
-                          <td>
-                              <i
-                                  class="fa fa-pound-sign"
-                                  style="font-size:10px;margin-right:3px;"
-                                  v-if="salehistory.amount"
-                              ></i>
-                              {{ salehistory.amount }}
-                          </td>
-                          <td>{{ salehistory.log_date }}</td>
+                      <tr v-for="salehistory in formdata.saleshistory" :key="salehistory.id">
+                        <td>{{ salehistory.changes }}</td>
+                        <td>{{ salehistory.log_date }}</td>
+                        <td>{{ salehistory.firstname }} {{ salehistory.lastname }}</td>
+                        <td>{{ salehistory.comment }}</td>
                       </tr>
                   </tbody>
               </table>
@@ -913,10 +878,15 @@ export default {
           over_paid: 0,
           refundcount: 0,
           payaction:"",
-          paymentclass:""
+          paymentclass:"",
+          sales:[]
       };
   },
   methods: {
+      gotosales(id)
+      {
+        this.$router.push("/viewsales/"+id);
+      },
       sidebarToggle() {
           this.sidebarflag = !this.sidebarflag;
       },
@@ -974,6 +944,7 @@ export default {
               arr.payment_date = response.data.payment_date;
               arr.method = this.invoice_items[index].method;
               arr.totalamount = this.invoice_items[index].totalamount;
+              arr.action = this.payaction;
               arr.id = response.data.id;
               this.formdata.salepayments.push(arr);
               this.addpayment = "";
@@ -986,7 +957,12 @@ export default {
               }
               else
               {
-                this.due_payment = parseFloat(this.due_payment) + parseFloat(this.invoice_items[index].totalamount);
+                if(this.over_paid<0)
+                {
+                    this.due_payment = 0;
+                    this.over_paid = parseFloat(this.over_paid) + parseFloat(this.invoice_items[index].totalamount);
+                }
+                //this.due_payment = parseFloat(this.due_payment) + parseFloat(this.invoice_items[index].totalamount);
                 this.paymentclass='refund_class';
               }
               this.due_payment = this.due_payment.toFixed(2);
@@ -1019,6 +995,10 @@ export default {
                   this.invoice_status = "Partially Paid";
                   this.payment_check = "Yes";
               }
+                this.statusdata={};
+                this.statusdata.sales_id = this.$route.params.id;
+                this.statusdata.status = this.invoice_status;
+                const response1 = axios.post("update_invoicestatus", this.statusdata);
           } else {
               let toast = Vue.toasted.show(
                   "Something went wrong, Please try again",
@@ -1239,6 +1219,13 @@ export default {
           .catch(function(error) {
               //app.$notify(error.response.data.error, "error");
           });
+        axios.get('/sales_list/')
+            .then((response) => {
+                this.sales = response.data;
+            })
+            .catch(function(error) {
+                //app.$notify(error.response.data.error, "error");
+            });
   }
 };
 </script>
@@ -1366,5 +1353,22 @@ justify-content: center;
 .class_green
 {
   color:#7adaaa;
+}
+.bold_font
+{
+    font-weight: 600;
+}
+.invoicelist a 
+{
+    color: #000;
+}
+#saleshistory-datatable thead
+{
+    background-color: #3376c2;
+    color: #fff;
+}
+#saleshistory-datatable thead th
+{
+    font-weight: 100;
 }
 </style>

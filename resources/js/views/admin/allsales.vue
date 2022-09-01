@@ -25,11 +25,15 @@
                           <td>{{sale.invoiceno}}</td>
                           <td style="color:#3376C2">{{sale.firstname}} {{sale.lastname}}</td>
                           <td>{{sale.typename}}</td>
-                          <td></td>
+                          <td>{{sale.methoddata}}</td>
                           <td>{{sale.subtotal}}</td>
                           <td>{{sale.vattotal}}</td>
                           <td>{{sale.totalamount}}</td>
-                          <td><button type="button" class="btn table-btn" style="margin-left: auto;width: 68px;">UnPaid</button></td>
+                          <td>
+                            <button type="button" class="btn table-btn" style="margin-left: auto;width: auto;background-color: #00AA5B !important;" v-if="sale.status=='Paid'">{{sale.status}}</button>
+                            <button type="button" class="btn table-btn" style="margin-left: auto;width: auto;background-color: #ffa500 !important;" v-if="sale.status=='Over Paid'">{{sale.status}}</button>
+                            <button type="button" class="btn table-btn" style="margin-left: auto;width: auto;" v-if="sale.status=='UnPaid' || sale.status=='Partially Paid'">{{sale.status}}</button>
+                          </td>
                       </tr>
                   </tbody>
               </table>
@@ -84,7 +88,7 @@ export default {
             // pageLength: 5,
             // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
             "columnDefs": [
-              { "targets": [0,8], "searchable": false, "orderable": false }
+              { "targets": [0,9], "searchable": false, "orderable": false }
             ]
           });
           $(".searchbox").keyup(function() {

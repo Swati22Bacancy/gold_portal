@@ -11,6 +11,7 @@ use App\Models\SalesHistory;
 use App\Models\SalesRefunds;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 class SalesController extends Controller
@@ -68,8 +69,9 @@ class SalesController extends Controller
                 'amount' => $request->input('formfields.totalamount'),
                 'log_date' => date("Y-m-d"),
                 'category' =>'invoice',
-                'comment' => $sales->invoiceno.' '.'created'
-                
+                'user_id' => Auth::user()->id,
+                'changes' => $sales->invoiceno.' '.'created',
+                'comment' => 'Invoice '.$sales->invoiceno.' of £'.$request->input("formfields.totalamount"). 'has been created by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
             ]);
 
             return response()->json($sales);
@@ -89,6 +91,16 @@ class SalesController extends Controller
         {
             $saleitems = SalesItems::leftjoin('producttypes', 'producttypes.id', '=', 'sales_items.producttype_id')->select(DB::raw('group_concat(producttypes.name) as typename'))->where('sales_id',$sale->id)->groupby('sales_id')->first();
             $sales[$key]->typename = $saleitems->typename;
+
+            $salemethods = SalesPayments::where('sales_id',$sale->id)->groupby('method')->get('method');
+            $methods='';
+            foreach($salemethods as $method)
+            {
+                $methods .=$method->method.',';
+            }
+            
+            $sales[$key]->methoddata = (!empty($salemethods))?rtrim($methods, ','):'';
+            $sales[$key]->typename = $saleitems->typename;
         }
         return response()->json($sales);
     }
@@ -101,12 +113,12 @@ class SalesController extends Controller
 
         $salepayments = SalesPayments::where('sales_id',$id)->orderBy('id', 'DESC')->get();
 
-        $salerefunds = SalesRefunds::where('sales_id',$id)->orderBy('id', 'DESC')->get();
+        $refund = SalesPayments::select(DB::raw("SUM(totalamount) as refundamount"))->where('action', 'Refund')->where('sales_id',$id)->first();
+        $paid = SalesPayments::select(DB::raw("SUM(totalamount) as paidamount"))->where('action', 'Receive')->where('sales_id',$id)->first();
 
         $sales->salesitem = $saleitems;
         $sales->salepayments = $salepayments;
-        $sales->salerefunds = $salerefunds;
-
+        
         $payment_received=0;
         if(!empty($salepayments))
         {
@@ -115,20 +127,10 @@ class SalesController extends Controller
                 $payment_received += $payment->totalamount;
             }
         }
-
-        $payment_refunded=0;
-        if(!empty($salerefunds))
-        {
-            foreach($salerefunds as $salerefund)
-            {
-                $payment_refunded += $salerefund->totalamount;
-            }
-        }
-
+        
         $sales->payment_received = $payment_received;
-        $sales->payment_refunded = $payment_refunded;
-        $sales->payment_due = $sales->totalamount - $payment_received;
-        $sales->payment_due = $sales->payment_due + $payment_refunded;
+        $sales->payment_due = $sales->totalamount - $paid->paidamount;
+        $sales->payment_due = $sales->payment_due + $refund->refundamount;
         
         return response()->json($sales);
     }
@@ -151,7 +153,10 @@ class SalesController extends Controller
                 'amount' => $request->input('totalamount'),
                 'log_date' => date("Y-m-d"),
                 'category' =>'payment',
-                'comment' => 'Payment Added'
+                'user_id' => Auth::user()->id,
+                'changes' => 'Payment Added',
+                
+                'comment' => 'Payment of £'.$request->input('totalamount').' '.'has been made by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
                 
             ]);
 
@@ -175,7 +180,9 @@ class SalesController extends Controller
                     'amount' => $amount,
                     'log_date' => date("Y-m-d"),
                     'category' =>'payment',
-                    'comment' => 'Payment Deleted'
+                    'user_id' => Auth::user()->id,
+                    'changes' => 'Payment Deleted',
+                    'comment' => 'Payment of £'.$amount.' '.'has been deleted by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
                 ]);
                 
                 return response()->json(
@@ -207,8 +214,9 @@ class SalesController extends Controller
                 'amount' => $request->input('totalamount'),
                 'log_date' => date("Y-m-d"),
                 'category' =>'refund',
-                'comment' => 'Refund Issued'
-                
+                'user_id' => Auth::user()->id,
+                'changes' => 'Refund Issued',
+                'comment' => 'Refund of £'.$request->input('totalamount').' '.'has been issued by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
             ]);
 
             return response()->json($salesrefunds);
@@ -231,7 +239,9 @@ class SalesController extends Controller
                     'amount' => $amount,
                     'log_date' => date("Y-m-d"),
                     'category' =>'refund',
-                    'comment' => 'Refund Deleted'
+                    'user_id' => Auth::user()->id,
+                    'changes' => 'Refund Deleted',
+                    'comment' => 'Refund of £'.$amount.' '.'has been deleted by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
                 ]);
                 
                 return response()->json(
@@ -268,7 +278,9 @@ class SalesController extends Controller
                 'note' => $request->input('note'),
                 'log_date' => date("Y-m-d"),
                 'category' =>'note',
-                'comment' => 'Note Created'
+                'user_id' => Auth::user()->id,
+                'changes' => 'Note Created',
+                'comment' => 'Note : '.$request->input('note').' '.'has been created by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
             ]);
 
             return response()->json($salesnotes);
@@ -281,8 +293,8 @@ class SalesController extends Controller
 
     public function saleshistory($id)
     {
-        $saleshistory = SalesHistory::where('sales_id',$id)->orderBy('id', 'DESC')->get();
-
+        $saleshistory = SalesHistory::leftjoin('users', 'users.id', '=', 'sales_history.user_id')->select('sales_history.*','users.first_name as firstname','users.last_name as lastname')->where('sales_history.sales_id',$id)->orderBy('sales_history.id', 'DESC')->get();
+        
         return response()->json($saleshistory);
     }
 
@@ -309,6 +321,15 @@ class SalesController extends Controller
         {
             $saleitems = SalesItems::leftjoin('producttypes', 'producttypes.id', '=', 'sales_items.producttype_id')->select(DB::raw('group_concat(producttypes.name) as typename'))->where('sales_id',$sale->id)->groupby('sales_id')->first();
             $sales[$key]->typename = $saleitems->typename;
+
+            $salemethods = SalesPayments::where('sales_id',$sale->id)->groupby('method')->get('method');
+            $methods='';
+            foreach($salemethods as $method)
+            {
+                $methods .=$method->method.',';
+            }
+            
+            $sales[$key]->methoddata = (!empty($salemethods))?rtrim($methods, ','):'';
         }
         return response()->json($sales);
     }

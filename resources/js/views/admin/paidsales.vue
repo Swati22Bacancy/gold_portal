@@ -25,7 +25,7 @@
                           <td>{{sale.invoiceno}}</td>
                           <td style="color:#3376C2">{{sale.firstname}} {{sale.lastname}}</td>
                           <td>{{sale.typename}}</td>
-                          <td></td>
+                          <td>{{sale.methoddata}}</td>
                           <td>{{sale.subtotal}}</td>
                           <td>{{sale.vattotal}}</td>
                           <td>{{sale.totalamount}}</td>
@@ -84,7 +84,7 @@ export default {
             // pageLength: 5,
             // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
             "columnDefs": [
-              { "targets": [0,8], "searchable": false, "orderable": false }
+              { "targets": [0,9], "searchable": false, "orderable": false }
             ]
           });
           $(".searchbox").keyup(function() {
