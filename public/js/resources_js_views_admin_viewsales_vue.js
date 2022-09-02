@@ -13,8 +13,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
-/* harmony import */ var _object_to_formdata__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../object-to-formdata */ "./resources/js/object-to-formdata.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
+/* harmony import */ var _object_to_formdata__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../object-to-formdata */ "./resources/js/object-to-formdata.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -822,36 +824,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ViewSales",
   components: {
-    Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_1__.default
+    Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_2__.default,
+    moment: (moment__WEBPACK_IMPORTED_MODULE_1___default())
   },
   data: function data() {
     return {
@@ -907,10 +887,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       payaction: "",
       paymentclass: "",
       sales: [],
-      postFormData: new FormData()
+      postFormData: []
     };
   },
   methods: {
+    dateFormateChanger: function dateFormateChanger(d) {
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(d, 'YYYY-MM-DD').format('DD MMM YYYY');
+    },
     gotosales: function gotosales(id) {
       this.$router.push("/viewsales/" + id);
     },
@@ -1062,8 +1045,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var key = _step.value;
-          console.log(key);
-          this.postFormData.append('images[]', key);
+          this.postFormData.push(key);
 
           if (key.type.includes("image")) {
             this.urlArr[id].push({
@@ -1116,7 +1098,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     uploadfile: function uploadfile(index) {
       console.log(this.postFormData);
       var filedata = this.filesArr[index];
-      var response = axios.post("upload_kyc", this.postFormData);
+      var response = axios.post("upload_kyc", (0,_object_to_formdata__WEBPACK_IMPORTED_MODULE_3__.objectToFormData)(this.postFormData));
     },
     save_note: function save_note() {
       var _this2 = this;
@@ -1686,7 +1668,7 @@ var render = function() {
                   _c("span", [
                     _vm._v(
                       _vm._s(_vm.formdata.firstname) +
-                        "\n                            " +
+                        " " +
                         _vm._s(_vm.formdata.lastname) +
                         ", "
                     ),
@@ -1734,7 +1716,11 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(_vm.formdata.issue_date))])
+                  _c("span", [
+                    _vm._v(
+                      _vm._s(_vm.dateFormateChanger(_vm.formdata.issue_date))
+                    )
+                  ])
                 ]
               ),
               _vm._v(" "),
@@ -1755,7 +1741,11 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(_vm.formdata.due_date))])
+                  _c("span", [
+                    _vm._v(
+                      _vm._s(_vm.dateFormateChanger(_vm.formdata.due_date))
+                    )
+                  ])
                 ]
               ),
               _vm._v(" "),

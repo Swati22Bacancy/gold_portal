@@ -46,61 +46,37 @@
           <div class="">
               <div class="col-md-12 viewsales-div">
                   <div class="row" style="padding-bottom:40px">
-                      <div
-                          class="col-md-2"
-                          style="border-right:  0.5px solid #4682B4;"
-                      >
+                      <div class="col-md-2" style="border-right:  0.5px solid #4682B4;">
                           <p style="color:#4682B4; font-size: 15px;">
                               Customer
                           </p>
-                          <span
-                              >{{ formdata.firstname }}
-                              {{ formdata.lastname }}, <br />{{
+                          <span>{{ formdata.firstname }} {{ formdata.lastname }}, <br />{{
                                   formdata.billing_address
-                              }}</span
-                          >
+                              }}</span>
                       </div>
-                      <div
-                          class="col-md-2"
-                          style="border-right:  1px solid #4682B4;"
-                      >
+                      <div class="col-md-2" style="border-right:  1px solid #4682B4;">
                           <p style="color:#4682B4; font-size: 15px;">
                               VAT No.
                           </p>
                           <span>{{ formdata.vat }}</span>
                       </div>
-                      <div
-                          class="col-md-2"
-                          style="border-right:  1px solid #4682B4;"
-                      >
+                      <div class="col-md-2" style="border-right:  1px solid #4682B4;">
                           <p style="color:#4682B4; font-size: 15px;">
                               Issue Date
                           </p>
-                          <span>{{ formdata.issue_date }}</span>
+                          <span>{{ dateFormateChanger(formdata.issue_date) }}</span>
                       </div>
-                      <div
-                          class="col-md-2"
-                          style="border-right:  1px solid #4682B4;"
-                      >
+                      <div class="col-md-2" style="border-right:  1px solid #4682B4;">
                           <p style="color:#4682B4;font-size: 15px;">
                               Due Date
                           </p>
-                          <span>{{ formdata.due_date }}</span>
+                          <span>{{ dateFormateChanger(formdata.due_date) }}</span>
                       </div>
-                      <div
-                          class="col-md-2"
-                          style="border-right:  1px solid #4682B4;"
-                      >
+                      <div class="col-md-2" style="border-right:  1px solid #4682B4;">
                           <p style="color:#4682B4; font-size: 15px;">
                               Amount Due
                           </p>
-                          <span
-                              ><i
-                                  class="fa fa-pound-sign"
-                                  style="font-size:10px;margin-right:3px;"
-                              ></i
-                              >{{ due_payment }}</span
-                          >
+                          <span><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>{{ due_payment }}</span>
                       </div>
                       <div class="col-md-2">
                           <p style="color:#4682B4; font-size: 15px;">
@@ -818,12 +794,14 @@
 </template>
 
 <script>
+import moment from 'moment';
 import Datepicker from "vuejs-datepicker";
 import {objectToFormData} from '../../object-to-formdata';
 export default {
   name: "ViewSales",
   components: {
-      Datepicker
+      Datepicker,
+      moment
   },
   data() {
       return {
@@ -876,10 +854,13 @@ export default {
           payaction:"",
           paymentclass:"",
           sales:[],
-          postFormData: new FormData(),
+          postFormData: [],
       };
   },
   methods: {
+      dateFormateChanger(d){
+         return moment(d,'YYYY-MM-DD').format('DD MMM YYYY')
+      },
       gotosales(id)
       {
         this.$router.push("/viewsales/"+id);
@@ -1018,8 +999,8 @@ export default {
       this.filesArr[id] = e.target.files;
       //console.log(e.target.files);
       for(let key of e.target.files){
-        console.log(key);
-        this.postFormData.append('images[]', key);
+        
+        this.postFormData.push(key);
         if(key.type.includes("image")){
           this.urlArr[id].push(
             {
@@ -1057,7 +1038,7 @@ export default {
     {
         console.log(this.postFormData);
         var filedata = this.filesArr[index];
-        const response = axios.post("upload_kyc", this.postFormData);
+        const response = axios.post("upload_kyc", objectToFormData(this.postFormData));
     },
       async save_note() {
           var notedata = { sales_id: this.$route.params.id, note: this.note };
