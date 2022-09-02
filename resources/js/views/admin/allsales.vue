@@ -21,10 +21,11 @@
                   <tbody>
                       <tr v-on:click="gotosales(sale.id)" style="cursor:pointer;" v-for="sale in sales" :key="sale.id">
                           <td><input type="checkbox" class="custom-check-input"></td>
-                          <td>{{sale.issue_date}}</td>
+                          <td>{{dateFormateChanger(sale.issue_date)}}</td>
+                          <!-- <td>{{sale.issue_date}}</td> -->
                           <td>{{sale.invoiceno}}</td>
                           <td style="color:#3376C2">{{sale.firstname}} {{sale.lastname}}</td>
-                          <td>{{sale.typename}}</td>
+                          <td></td>
                           <td>{{sale.methoddata}}</td>
                           <td>{{sale.subtotal}}</td>
                           <td>{{sale.vattotal}}</td>
@@ -45,12 +46,13 @@
 </template>
 
 <script>
+import moment from 'moment';
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 export default {
   name: "AllSales",
   components: {
-    
+    moment,
   },
   props: ['sales'],
   mounted(){
@@ -111,6 +113,9 @@ export default {
     
   },
   methods:{
+    dateFormateChanger(d){
+      return moment(d,'YYYY-MM-DD').format('DD MMM YYYY')
+     },
     gotosales(id)
     {
       this.$router.push("/viewsales/"+id);
@@ -120,8 +125,8 @@ export default {
             this.sales = response.data;
         });
     },
-  }
-  
+  },
+ 
 };
 </script>
 <style scoped>

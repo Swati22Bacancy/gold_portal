@@ -28,22 +28,25 @@
     <div class="tabs-cstm">
       <app-tabs :tabList="tabList">
         <template v-slot:tabPanel-1> 
-          <div class="col-md-12">
-            <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search by invoice,Purchase Order" style="background-color:#FFFFFF !important;"/>
-            <input type="text" class="form-control bg-light border-0 small table-date" placeholder="Date Range" style="background-color:#FFFFFF !important;"/>
-            <select class="tab-selector">
+          <div class="col-md-12 Container-date">
+            <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search by invoice,Purchase Order" style="background-color:#FFFFFF !important;margin-right:5px;"/>
+            <!-- <input type="text" class="form-control bg-light border-0 small table-date" placeholder="Date Range" style="background-color:#FFFFFF !important;"/> -->
+            <div class="Container-date">
+           <p>Date Range</p> <Datepicker v-model="issue_date" class="date-cont"></Datepicker>
+            <Datepicker v-model="due_date" class="date-cont"></Datepicker></div>
+            <select class="tab-selector" style="width:100px; margin-right:5px; margin-left:5px">
               <option value="Option 1" selected>Total Value</option>
               <option value="Option 1" >Option 1</option>
             </select> 
-            <select class="tab-selector">
+            <select class="tab-selector" style="width:100px; margin-right:5px; margin-left:5px">
               <option value="Option 1" selected>Show Entries</option>
               <option value="Option 1">Option 1</option>
             </select> 
-            <select class="tab-selector">
+            <select class="tab-selector" style="width:110px; margin-right:5px; margin-left:5px">
               <option value="Option 1" selected>Mass Operation</option>
               <option value="Option 1">Option 1</option>
             </select> 
-            <button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;margin-left: auto;">Advance Search</button>
+            <button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;margin-left: auto;" @click="advanceSearch">Advance Search</button>
           </div>
           <div class="">
             <div>
@@ -52,22 +55,24 @@
           </div>
         </template>
         <template v-slot:tabPanel-2>
-          <div class="col-md-12">
-            <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search by invoice,Purchase Order" style="background-color:#FFFFFF !important;"/>
-            <input type="text" class="form-control bg-light border-0 small table-date" placeholder="Date Range" style="background-color:#FFFFFF !important;"/>
-            <select class="tab-selector">
+          <div class="col-md-12 Container-date">
+            <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search by invoice,Purchase Order" style="background-color:#FFFFFF !important;margin-right:5px;"/>
+            <div class="Container-date">
+           <p>Date Range</p> <Datepicker v-model="issue_date" class="date-cont"></Datepicker>
+            <Datepicker v-model="due_date" class="date-cont"></Datepicker></div>
+            <select class="tab-selector" style="width:95px; margin-right:5px; margin-left:5px">
               <option value="Option 1" selected>Total Value</option>
               <option value="Option 1" >Option 1</option>
             </select> 
-            <select class="tab-selector">
+            <select class="tab-selector" style="width:100px; margin-right:5px; margin-left:5px">
               <option value="Option 1" selected>Show Entries</option>
               <option value="Option 1">Option 1</option>
             </select> 
-            <select class="tab-selector">
+            <select class="tab-selector" style="width:110px; margin-right:5px; margin-left:5px">
               <option value="Option 1" selected>Mass Operation</option>
               <option value="Option 1">Option 1</option>
             </select> 
-            <button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;margin-left: auto;">Advance Search</button>
+            <button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;margin-left: auto;" @click="advanceSearch">Advance Search</button>
           </div>
           <div class="">
             <div>
@@ -76,22 +81,24 @@
           </div>
         </template>
         <template v-slot:tabPanel-3>
-          <div class="col-md-12">
-            <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search by invoice,Purchase Order" style="background-color:#FFFFFF !important;"/>
-            <input type="text" class="form-control bg-light border-0 small table-date" placeholder="Date Range" style="background-color:#FFFFFF !important;"/>
-            <select class="tab-selector">
+          <div class="col-md-12 Container-date">
+            <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search by invoice,Purchase Order" style="background-color:#FFFFFF !important;margin-right:5px;"/>
+            <div class="Container-date">
+           <p>Date Range</p> <Datepicker v-model="issue_date" class="date-cont"></Datepicker>
+            <Datepicker v-model="due_date" class="date-cont"></Datepicker></div>
+            <select class="tab-selector" style="width:95px; margin-right:5px; margin-left:5px">
               <option value="Option 1" selected>Total Value</option>
               <option value="Option 1" >Option 1</option>
             </select> 
-            <select class="tab-selector">
+            <select class="tab-selector" style="width:100px; margin-right:5px; margin-left:5px">
               <option value="Option 1" selected>Show Entries</option>
               <option value="Option 1">Option 1</option>
             </select> 
-            <select class="tab-selector">
+            <select class="tab-selector" style="width:110px; margin-right:5px; margin-left:5px">
               <option value="Option 1" selected>Mass Operation</option>
               <option value="Option 1">Option 1</option>
             </select> 
-            <button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;margin-left: auto;">Advance Search</button>
+            <button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;margin-left: auto;" @click="advanceSearch">Advance Search</button>
           </div>
           <div class="">
             <div>
@@ -100,22 +107,24 @@
           </div>
         </template>
         <template v-slot:tabPanel-4>
-          <div class="col-md-12">
+          <div class="col-md-12 Container-date">
             <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search by invoice,Purchase Order" style="background-color:#FFFFFF !important;"/>
-            <input type="text" class="form-control bg-light border-0 small table-date" placeholder="Date Range" style="background-color:#FFFFFF !important;"/>
-            <select class="tab-selector">
+            <div class="Container-date">
+           <p>Date Range</p> <Datepicker v-model="issue_date" class="date-cont"></Datepicker>
+            <Datepicker v-model="due_date" class="date-cont"></Datepicker></div>
+            <select class="tab-selector" style="width:95px; margin-right:5px; margin-left:5px">
               <option value="Option 1" selected>Total Value</option>
               <option value="Option 1" >Option 1</option>
             </select> 
-            <select class="tab-selector">
+            <select class="tab-selector" style="width:100px; margin-right:5px; margin-left:5px">
               <option value="Option 1" selected>Show Entries</option>
               <option value="Option 1">Option 1</option>
             </select> 
-            <select class="tab-selector">
+            <select class="tab-selector" style="width:110px; margin-right:5px; margin-left:5px">
               <option value="Option 1" selected>Mass Operation</option>
               <option value="Option 1">Option 1</option>
             </select> 
-            <button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;margin-left: auto;">Advance Search</button>
+            <button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;margin-left: auto;" @click="advanceSearch">Advance Search</button>
           </div>
           <div class="">
             <div>
@@ -138,6 +147,7 @@ import allsales from "./allsales";
 import paidsales from "./paidsales";
 import partialsales from "./partialsales";
 import unpaidsales  from "./unpaidsales";
+import Datepicker from 'vuejs-datepicker';
 export default {
   name: "Sales",
   components: {
@@ -145,10 +155,13 @@ export default {
     allsales,
     paidsales,
     partialsales,
-    unpaidsales
+    unpaidsales,
+    Datepicker,
   },
   data() {
     return {
+      issue_date:Date.now(),
+      due_date:Date.now(),
       tabList: ["All", "Paid", "Partial Payments", "Awaiting Payment"],
     };
   },
@@ -156,12 +169,22 @@ export default {
     
   },
   methods:{
-    
+    advanceSearch(){
+      console.log(this.issue_date);
+      console.log(this.due_date);
+    }
   }
   
 };
 </script>
 <style scoped>
+  .Container-date{
+    display: flex;
+  
+  }
+  .date-cont{
+    margin: 0px;
+  }
 .table-search
 {
   width: 25%;
