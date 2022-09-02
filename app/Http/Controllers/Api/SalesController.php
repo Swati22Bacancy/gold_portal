@@ -147,16 +147,16 @@ class SalesController extends Controller
                 'comment' => $request->input('comment'),
                 'action' => $request->input('action'),
             ]);
-
+            $historyaction= ($request->input('action')=='Receive')?'Payment':'Refund';
             $saleshistory = SalesHistory::create([
                 'sales_id' => $request->input('sales_id'),
                 'amount' => $request->input('totalamount'),
                 'log_date' => date("Y-m-d"),
                 'category' =>'payment',
                 'user_id' => Auth::user()->id,
-                'changes' => 'Payment Added',
+                'changes' => $historyaction.' Added',
                 
-                'comment' => 'Payment of £'.$request->input('totalamount').' '.'has been made by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
+                'comment' => $historyaction.' of £'.$request->input('totalamount').' '.'has been made by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
                 
             ]);
 
@@ -171,9 +171,41 @@ class SalesController extends Controller
     public function deletepayment($id){
         $salepayment = SalesPayments::find($id);
         $amount = $salepayment->totalamount;
+        $action = $salepayment->action;
         $sales_id = $salepayment->sales_id;
             if($salepayment){
                 $salepayment->delete();
+                $historyaction= ($action=='Receive')?'Payment':'Refund';
+
+                $refund = SalesPayments::select(DB::raw("SUM(totalamount) as refundamount"))->where('action', 'Refund')->where('sales_id',$sales_id)->first();
+        
+                $paid = SalesPayments::select(DB::raw("SUM(totalamount) as paidamount"))->where('action', 'Receive')->where('sales_id',$sales_id)->first();
+
+                $sales = Sales::where('id',$sales_id)->first();
+
+                $payment_due = $sales->totalamount - $paid->paidamount;
+                $payment_due = $payment_due + $refund->refundamount;
+
+                if($payment_due==0)
+                {
+                    $status='Paid';
+                }
+                else if($payment_due<0)
+                {
+                    $status='Over Paid';
+                }
+                else if($payment_due == $sales->totalamount)
+                {
+                    $status='UnPaid';
+                }
+                else
+                {
+                    $status='Partially Paid';
+                }
+
+                $saledata = Sales::where('id', $sales_id)->update([
+                    'status' => $status,
+                ]);
 
                 $saleshistory = SalesHistory::create([
                     'sales_id' => $sales_id,
@@ -181,14 +213,14 @@ class SalesController extends Controller
                     'log_date' => date("Y-m-d"),
                     'category' =>'payment',
                     'user_id' => Auth::user()->id,
-                    'changes' => 'Payment Deleted',
-                    'comment' => 'Payment of £'.$amount.' '.'has been deleted by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
+                    'changes' => $historyaction.' Deleted',
+                    'comment' => $historyaction.' of £'.$amount.' '.'has been deleted by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
                 ]);
                 
                 return response()->json(
                     [
                         'status' => 'success',
-                        'msg' => 'Payment deleted successfully'
+                        'msg' => 'Record deleted successfully'
                     ],
                     200
                 );
@@ -332,5 +364,11 @@ class SalesController extends Controller
             $sales[$key]->methoddata = (!empty($salemethods))?rtrim($methods, ','):'';
         }
         return response()->json($sales);
+    }
+
+    public function uploadkyc(Request $request)
+    {
+        echo '<pre>';
+        print_r($request->file());
     }
 }

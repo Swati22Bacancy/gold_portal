@@ -127,6 +127,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('delete-refund/{id}', [Api\SalesController::class, 'deleterefund']);
     Route::post('update_invoicestatus',[Api\SalesController::class, 'updateinvoicestatus']);
     Route::get('sales_list_by_status/{status}', [Api\SalesController::class, 'salesbystatus']);
+    Route::post('upload_kyc',[Api\SalesController::class, 'uploadkyc']);
 
     // Purchase Invoice Routes
     Route::post('create_purchase',[Api\PurchaseController::class, 'createinvoice']);

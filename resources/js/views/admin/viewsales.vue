@@ -479,12 +479,7 @@
               style="background-color:white; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 10%);"
           >
               <div class="table-responsive">
-                  <table
-                      class="table"
-                      id="dash-datatable"
-                      width="100%"
-                      cellspacing="0"
-                  >
+                  <table class="table" id="dash-datatable" width="100%" cellspacing="0">
                       <tbody>
                           <tr>
                               <td style="color:black">
@@ -509,7 +504,7 @@
                                   </div>
                               </td>
                               <td>
-                                  <i class="fas fa-upload" style="font-size:20px;margin-right:20px;color:green;"></i>
+                                  <i class="fas fa-upload" @click="uploadfile(1)" style="font-size:20px;margin-right:20px;color:green;"></i>
                                   <i class="fa fa-trash" aria-hidden="true" style="font-size:20px;margin-right:5px;color:red;"></i>
                               </td>
                           </tr>
@@ -534,7 +529,7 @@
                                   </div>
                               </td>
                               <td>
-                                  <i class="fas fa-upload" style="font-size:20px;margin-right:20px;color:green;"></i>
+                                  <i class="fas fa-upload" @click="uploadfile(2)" style="font-size:20px;margin-right:20px;color:green;"></i>
                                   <i class="fa fa-trash" aria-hidden="true" style="font-size:20px;margin-right:5px;color:red;"></i>
                               </td>
                           </tr>
@@ -559,7 +554,7 @@
                                   </div>
                               </td>
                               <td>
-                                  <i class="fas fa-upload" style="font-size:20px;margin-right:20px;color:green;"></i>
+                                  <i class="fas fa-upload" @click="uploadfile(3)" style="font-size:20px;margin-right:20px;color:green;"></i>
                                   <i class="fa fa-trash" aria-hidden="true" style="font-size:20px;margin-right:5px;color:red;"></i>
                               </td>
                           </tr>
@@ -584,7 +579,7 @@
                                   </div>
                               </td>
                               <td>
-                                  <i class="fas fa-upload" style="font-size:20px;margin-right:20px;color:green;"></i>
+                                  <i class="fas fa-upload" @click="uploadfile(4)" style="font-size:20px;margin-right:20px;color:green;"></i>
                                  <i class="fa fa-trash" aria-hidden="true" style="font-size:20px;margin-right:5px;color:red;"></i>
                               </td>
                           </tr>
@@ -824,8 +819,9 @@
 
 <script>
 import Datepicker from "vuejs-datepicker";
+import {objectToFormData} from '../../object-to-formdata';
 export default {
-  name: "Dashboard",
+  name: "ViewSales",
   components: {
       Datepicker
   },
@@ -879,7 +875,8 @@ export default {
           refundcount: 0,
           payaction:"",
           paymentclass:"",
-          sales:[]
+          sales:[],
+          postFormData: new FormData(),
       };
   },
   methods: {
@@ -959,12 +956,17 @@ export default {
               {
                 if(this.over_paid<0)
                 {
-                    this.due_payment = 0;
-                    this.over_paid = parseFloat(this.over_paid) + parseFloat(this.invoice_items[index].totalamount);
+                    this.due_payment = parseFloat(this.over_paid) + parseFloat(this.invoice_items[index].totalamount);
+                    this.over_paid = (this.due_payment>0)?0:parseFloat(Math.abs(this.over_paid))-parseFloat(this.invoice_items[index].totalamount);
+                }
+                else
+                {
+                    this.due_payment = parseFloat(this.due_payment) + parseFloat(this.invoice_items[index].totalamount);
                 }
                 //this.due_payment = parseFloat(this.due_payment) + parseFloat(this.invoice_items[index].totalamount);
                 this.paymentclass='refund_class';
               }
+              
               this.due_payment = this.due_payment.toFixed(2);
               if (this.due_payment < 0) {
                   this.over_paid = this.due_payment;
@@ -1014,12 +1016,15 @@ export default {
       onFileChange(e, id){
       // console.log(e.target.files);
       this.filesArr[id] = e.target.files;
-      for(let file of e.target.files){
-        if(file.type.includes("image")){
+      //console.log(e.target.files);
+      for(let key of e.target.files){
+        console.log(key);
+        this.postFormData.append('images[]', key);
+        if(key.type.includes("image")){
           this.urlArr[id].push(
             {
               fileType: 'image',
-              url: URL.createObjectURL(file)
+              url: URL.createObjectURL(key)
             }
           );
         }
@@ -1031,7 +1036,7 @@ export default {
             }
           );
         }
-        // console.log(this.urlArr);
+        console.log(this.postFormData);
       }
     },
     rmFile(index, id){
@@ -1048,7 +1053,12 @@ export default {
       // console.log(this.filesArr[id]);
       this.urlArr[id].splice(index, 1);
     },
-
+    uploadfile(index)
+    {
+        console.log(this.postFormData);
+        var filedata = this.filesArr[index];
+        const response = axios.post("upload_kyc", this.postFormData);
+    },
       async save_note() {
           var notedata = { sales_id: this.$route.params.id, note: this.note };
           const response = await axios.post("create_note", notedata);
@@ -1258,9 +1268,17 @@ justify-content: center;
 .closeIcon {
   position: absolute;
   top: -15px;
-  left: 40px;
+  left: 51px;
   font-size: 20px;
   cursor: pointer;
+}
+.closeIcon i
+{
+    font-size: 11px;
+    background: #cccccc52;
+    padding: 4px;
+    border-radius: 50%;
+    color: #000;
 }
 .salesdata {
   font-size: 13px;

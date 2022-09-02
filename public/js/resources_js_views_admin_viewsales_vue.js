@@ -14,6 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
+/* harmony import */ var _object_to_formdata__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../object-to-formdata */ "./resources/js/object-to-formdata.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -845,14 +846,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Dashboard",
+  name: "ViewSales",
   components: {
     Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_1__.default
   },
@@ -909,7 +906,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       refundcount: 0,
       payaction: "",
       paymentclass: "",
-      sales: []
+      sales: [],
+      postFormData: new FormData()
     };
   },
   methods: {
@@ -994,8 +992,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     _this.paymentclass = 'receive_class';
                   } else {
                     if (_this.over_paid < 0) {
-                      _this.due_payment = 0;
-                      _this.over_paid = parseFloat(_this.over_paid) + parseFloat(_this.invoice_items[index].totalamount);
+                      _this.due_payment = parseFloat(_this.over_paid) + parseFloat(_this.invoice_items[index].totalamount);
+                      _this.over_paid = _this.due_payment > 0 ? 0 : parseFloat(Math.abs(_this.over_paid)) - parseFloat(_this.invoice_items[index].totalamount);
+                    } else {
+                      _this.due_payment = parseFloat(_this.due_payment) + parseFloat(_this.invoice_items[index].totalamount);
                     } //this.due_payment = parseFloat(this.due_payment) + parseFloat(this.invoice_items[index].totalamount);
 
 
@@ -1054,27 +1054,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     onFileChange: function onFileChange(e, id) {
       // console.log(e.target.files);
-      this.filesArr[id] = e.target.files;
+      this.filesArr[id] = e.target.files; //console.log(e.target.files);
 
       var _iterator = _createForOfIteratorHelper(e.target.files),
           _step;
 
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var file = _step.value;
+          var key = _step.value;
+          console.log(key);
+          this.postFormData.append('images[]', key);
 
-          if (file.type.includes("image")) {
+          if (key.type.includes("image")) {
             this.urlArr[id].push({
               fileType: 'image',
-              url: URL.createObjectURL(file)
+              url: URL.createObjectURL(key)
             });
           } else {
             this.urlArr[id].push({
               fileType: 'nonImage',
               url: ""
             });
-          } // console.log(this.urlArr);
+          }
 
+          console.log(this.postFormData);
         }
       } catch (err) {
         _iterator.e(err);
@@ -1109,6 +1112,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.filesArr[id] = dt.files; // console.log(this.filesArr[id]);
 
       this.urlArr[id].splice(index, 1);
+    },
+    uploadfile: function uploadfile(index) {
+      console.log(this.postFormData);
+      var filedata = this.filesArr[index];
+      var response = axios.post("upload_kyc", this.postFormData);
     },
     save_note: function save_note() {
       var _this2 = this;
@@ -1314,6 +1322,103 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./resources/js/object-to-formdata.js":
+/*!********************************************!*\
+  !*** ./resources/js/object-to-formdata.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "objectToFormData": () => (/* binding */ objectToFormData)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function isUndefined(value) {
+  return value === undefined;
+}
+
+function isNull(value) {
+  return value === null;
+}
+
+function isObject(value) {
+  return value === Object(value);
+}
+
+function isArray(value) {
+  return Array.isArray(value);
+}
+
+function isDate(value) {
+  return value instanceof Date;
+}
+
+function isBlob(value) {
+  return value && typeof value.size === 'number' && typeof value.type === 'string' && typeof value.slice === 'function';
+}
+
+function isFile(value) {
+  return isBlob(value) && (_typeof(value.lastModifiedDate) === 'object' || typeof value.lastModified === 'number') && typeof value.name === 'string';
+}
+
+function isFormData(value) {
+  return value instanceof FormData;
+}
+
+var objectToFormData = function objectToFormData(obj, cfg, fd, pre) {
+  if (isFormData(cfg)) {
+    pre = fd;
+    fd = cfg;
+    cfg = null;
+  }
+
+  cfg = cfg || {};
+  cfg.indices = isUndefined(cfg.indices) ? false : cfg.indices;
+  cfg.nulls = isUndefined(cfg.nulls) ? true : cfg.nulls;
+  fd = fd || new FormData();
+
+  if (isUndefined(obj)) {
+    return fd;
+  } else if (isNull(obj)) {
+    if (cfg.nulls) {
+      fd.append(pre, '');
+    }
+  } else if (isArray(obj)) {
+    if (!obj.length) {
+      var key = pre + '[]';
+      fd.append(key, '');
+    } else {
+      obj.forEach(function (value, index) {
+        var key = pre + '[' + (cfg.indices ? index : '') + ']';
+        objectToFormData(value, cfg, fd, key);
+      });
+    }
+  } else if (isDate(obj)) {
+    fd.append(pre, obj.toISOString());
+  } else if (isObject(obj) && !isFile(obj) && !isBlob(obj)) {
+    Object.keys(obj).forEach(function (prop) {
+      var value = obj[prop];
+
+      if (isArray(value)) {
+        while (prop.length > 2 && prop.lastIndexOf('[]') === prop.length - 2) {
+          prop = prop.substring(0, prop.length - 2);
+        }
+      }
+
+      var key = pre ? pre + '[' + prop + ']' : prop;
+      objectToFormData(value, cfg, fd, key);
+    });
+  } else {
+    fd.append(pre, obj);
+  }
+
+  return fd;
+};
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewsales.vue?vue&type=style&index=0&id=483c8698&scoped=true&lang=css&":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewsales.vue?vue&type=style&index=0&id=483c8698&scoped=true&lang=css& ***!
@@ -1331,7 +1436,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-483c8698] {\r\n  background: #3376c2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n  font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.choose-cont[data-v-483c8698]{\r\ndisplay: flex;\r\njustify-content: center;\n}\n.imagePreview[data-v-483c8698] {\r\n  width: 70px;\n}\n.previewContainer[data-v-483c8698] {\r\n  position: relative;\n}\n.closeIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 40px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.salesdata[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-483c8698] {\r\n  border-radius: 50%;\n}\n.btn-container[data-v-483c8698] {\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width: 100% !important;\n}\n.selectedclr[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-483c8698] {\r\n  width: auto;\r\n  font-size: 13px !important;\r\n  color: #000;\r\n  border: none;\r\n  height: 40px;\r\n  padding: 5px 20px;\r\n  border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698] {\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698] {\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-483c8698] {\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698] {\r\n  background-color: #edf2f6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus,\r\n.btn.focus[data-v-483c8698] {\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-483c8698] {\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698] {\r\n  border: 1px solid #d6e3f2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698] {\r\n  width: 130px;\n}\n.sum-price ul[data-v-483c8698] {\r\n  list-style-type: none;\n}\n.sum-price li[data-v-483c8698] {\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n}\n.viewsales-div > p[data-v-483c8698] {\r\n  color: #3376c2;\r\n  font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n  color: #000;\r\n  font-size: 13px;\n}\n.class_red[data-v-483c8698]\r\n{\r\n  color:rgb(255 0 0);\n}\n.class_green[data-v-483c8698]\r\n{\r\n  color:#7adaaa;\n}\n.bold_font[data-v-483c8698]\r\n{\r\n    font-weight: 600;\n}\n.invoicelist a[data-v-483c8698] \r\n{\r\n    color: #000;\n}\n#saleshistory-datatable thead[data-v-483c8698]\r\n{\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#saleshistory-datatable thead th[data-v-483c8698]\r\n{\r\n    font-weight: 100;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-483c8698] {\r\n  background: #3376c2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n  font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.choose-cont[data-v-483c8698]{\r\ndisplay: flex;\r\njustify-content: center;\n}\n.imagePreview[data-v-483c8698] {\r\n  width: 70px;\n}\n.previewContainer[data-v-483c8698] {\r\n  position: relative;\n}\n.closeIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 51px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.closeIcon i[data-v-483c8698]\r\n{\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.salesdata[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-483c8698] {\r\n  border-radius: 50%;\n}\n.btn-container[data-v-483c8698] {\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width: 100% !important;\n}\n.selectedclr[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-483c8698] {\r\n  width: auto;\r\n  font-size: 13px !important;\r\n  color: #000;\r\n  border: none;\r\n  height: 40px;\r\n  padding: 5px 20px;\r\n  border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698] {\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698] {\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-483c8698] {\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698] {\r\n  background-color: #edf2f6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus,\r\n.btn.focus[data-v-483c8698] {\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-483c8698] {\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698] {\r\n  border: 1px solid #d6e3f2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698] {\r\n  width: 130px;\n}\n.sum-price ul[data-v-483c8698] {\r\n  list-style-type: none;\n}\n.sum-price li[data-v-483c8698] {\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n}\n.viewsales-div > p[data-v-483c8698] {\r\n  color: #3376c2;\r\n  font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n  color: #000;\r\n  font-size: 13px;\n}\n.class_red[data-v-483c8698]\r\n{\r\n  color:rgb(255 0 0);\n}\n.class_green[data-v-483c8698]\r\n{\r\n  color:#7adaaa;\n}\n.bold_font[data-v-483c8698]\r\n{\r\n    font-weight: 600;\n}\n.invoicelist a[data-v-483c8698] \r\n{\r\n    color: #000;\n}\n#saleshistory-datatable thead[data-v-483c8698]\r\n{\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#saleshistory-datatable thead th[data-v-483c8698]\r\n{\r\n    font-weight: 100;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2607,7 +2712,31 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(4)
+                        _c("td", [
+                          _c("i", {
+                            staticClass: "fas fa-upload",
+                            staticStyle: {
+                              "font-size": "20px",
+                              "margin-right": "20px",
+                              color: "green"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.uploadfile(1)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("i", {
+                            staticClass: "fa fa-trash",
+                            staticStyle: {
+                              "font-size": "20px",
+                              "margin-right": "5px",
+                              color: "red"
+                            },
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("tr", [
@@ -2676,7 +2805,31 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(5)
+                        _c("td", [
+                          _c("i", {
+                            staticClass: "fas fa-upload",
+                            staticStyle: {
+                              "font-size": "20px",
+                              "margin-right": "20px",
+                              color: "green"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.uploadfile(2)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("i", {
+                            staticClass: "fa fa-trash",
+                            staticStyle: {
+                              "font-size": "20px",
+                              "margin-right": "5px",
+                              color: "red"
+                            },
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("tr", [
@@ -2745,7 +2898,31 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(6)
+                        _c("td", [
+                          _c("i", {
+                            staticClass: "fas fa-upload",
+                            staticStyle: {
+                              "font-size": "20px",
+                              "margin-right": "20px",
+                              color: "green"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.uploadfile(3)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("i", {
+                            staticClass: "fa fa-trash",
+                            staticStyle: {
+                              "font-size": "20px",
+                              "margin-right": "5px",
+                              color: "red"
+                            },
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("tr", [
@@ -2814,7 +2991,31 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(7)
+                        _c("td", [
+                          _c("i", {
+                            staticClass: "fas fa-upload",
+                            staticStyle: {
+                              "font-size": "20px",
+                              "margin-right": "20px",
+                              color: "green"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.uploadfile(4)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("i", {
+                            staticClass: "fa fa-trash",
+                            staticStyle: {
+                              "font-size": "20px",
+                              "margin-right": "5px",
+                              color: "red"
+                            },
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ])
                       ])
                     ])
                   ]
@@ -2847,7 +3048,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._m(8),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -3261,9 +3462,9 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(9),
+                _vm._m(5),
                 _vm._v(" "),
-                _vm._m(10),
+                _vm._m(6),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(
@@ -3325,9 +3526,9 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(11),
+                _vm._m(7),
                 _vm._v(" "),
-                _vm._m(12),
+                _vm._m(8),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(
@@ -3499,106 +3700,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("li", { staticStyle: { color: "#3376C2" } }, [_vm._v("Total")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("i", {
-        staticClass: "fas fa-upload",
-        staticStyle: {
-          "font-size": "20px",
-          "margin-right": "20px",
-          color: "green"
-        }
-      }),
-      _vm._v(" "),
-      _c("i", {
-        staticClass: "fa fa-trash",
-        staticStyle: {
-          "font-size": "20px",
-          "margin-right": "5px",
-          color: "red"
-        },
-        attrs: { "aria-hidden": "true" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("i", {
-        staticClass: "fas fa-upload",
-        staticStyle: {
-          "font-size": "20px",
-          "margin-right": "20px",
-          color: "green"
-        }
-      }),
-      _vm._v(" "),
-      _c("i", {
-        staticClass: "fa fa-trash",
-        staticStyle: {
-          "font-size": "20px",
-          "margin-right": "5px",
-          color: "red"
-        },
-        attrs: { "aria-hidden": "true" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("i", {
-        staticClass: "fas fa-upload",
-        staticStyle: {
-          "font-size": "20px",
-          "margin-right": "20px",
-          color: "green"
-        }
-      }),
-      _vm._v(" "),
-      _c("i", {
-        staticClass: "fa fa-trash",
-        staticStyle: {
-          "font-size": "20px",
-          "margin-right": "5px",
-          color: "red"
-        },
-        attrs: { "aria-hidden": "true" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("i", {
-        staticClass: "fas fa-upload",
-        staticStyle: {
-          "font-size": "20px",
-          "margin-right": "20px",
-          color: "green"
-        }
-      }),
-      _vm._v(" "),
-      _c("i", {
-        staticClass: "fa fa-trash",
-        staticStyle: {
-          "font-size": "20px",
-          "margin-right": "5px",
-          color: "red"
-        },
-        attrs: { "aria-hidden": "true" }
-      })
     ])
   },
   function() {
