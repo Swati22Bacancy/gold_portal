@@ -455,7 +455,7 @@
               style="background-color:white; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 10%);"
           >
               <div class="table-responsive">
-                  <table class="table" id="dash-datatable" width="100%" cellspacing="0">
+                  <table class="table" id="kyc-datatable" width="100%" cellspacing="0">
                       <tbody>
                           <tr>
                               <td style="color:black">
@@ -471,8 +471,7 @@
                                           <img v-if="url.fileType == 'image'" :src="url.url" class="imagePreview"/>
                                           <img
                                               v-else
-                                              src="https://iconape.com/wp-content/png_logo_vector/document.png"
-                                              class="imagePreview"/>
+                                              :src="'/images/fileimage.png'" class="imagePreview"/>
                                           <div class="closeIcon" @click="rmFile(index,1)">
                                           <i class="fa fa-times" aria-hidden="true"></i>
                                           </div>
@@ -488,21 +487,27 @@
                               <td style="color:black">VAT Certificate</td>
                               <td style="color:#3376C2">
                                 <div class="choose-cont">
-                                      <input type="file"  @change="onFileChange($event,2)" multiple/>
+                                      <input type="file"  @change="onFileChange($event,2)" multiple/><br />
                                       <br />
-                                      <br />
-                                      <div
-                                          v-for="(url, index) in urlArr[2]" :key="url" class="previewContainer">
+                                      <div v-for="(url, index) in urlArr[2]" :key="url" class="previewContainer">
                                           <img v-if="url.fileType == 'image'" :src="url.url" class="imagePreview"/>
-                                          <img
-                                              v-else
-                                              src="https://iconape.com/wp-content/png_logo_vector/document.png"
-                                              class="imagePreview"/>
+                                          <img v-else :src="'/images/fileimage.png'" class="imagePreview"/>
                                           <div class="closeIcon" @click="rmFile(index,2)">
                                           <i class="fa fa-times" aria-hidden="true"></i>
                                           </div>
                                       </div>
-                                  </div>
+                                </div>
+                                <div class="upload_vat">
+                                    <div v-for="vatdoc in kycdocs.vatdocs" :key="vatdoc" class="previewContainer">
+                                          <img :src="'../storage/app/Customeruploads/' + vatdoc.identification_file" class="imagePreview"/>
+                                          <div class="closeIcon" data-toggle="modal" data-target="#deleteConfirmationFile" @click="selectfile(vatdoc.id)">
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                          </div>
+                                          <div class="downloadIcon" @click="download(vatdoc.identification_file)">
+                                            <i class="fa fa-download" aria-hidden="true"></i>
+                                          </div>
+                                      </div>
+                                </div>
                               </td>
                               <td>
                                   <i class="fas fa-upload" @click="uploadfile(2)" style="font-size:20px;margin-right:20px;color:green;"></i>
@@ -519,10 +524,7 @@
                                       <div
                                           v-for="(url, index) in urlArr[3]" :key="url" class="previewContainer">
                                           <img v-if="url.fileType == 'image'" :src="url.url" class="imagePreview"/>
-                                          <img
-                                              v-else
-                                              src="https://iconape.com/wp-content/png_logo_vector/document.png"
-                                              class="imagePreview"/>
+                                          <img v-else :src="'/images/fileimage.png'" class="imagePreview"/>
                                           <div class="closeIcon" @click="rmFile(index,3)">
                                           <i class="fa fa-times" aria-hidden="true"></i>
                                           </div>
@@ -544,9 +546,7 @@
                                       <div
                                           v-for="(url, index) in urlArr[4]" :key="url" class="previewContainer">
                                           <img v-if="url.fileType == 'image'" :src="url.url" class="imagePreview"/>
-                                          <img
-                                              v-else
-                                              src="https://iconape.com/wp-content/png_logo_vector/document.png"
+                                          <img v-else :src="'/images/fileimage.png'"
                                               class="imagePreview"/>
                                           <div class="closeIcon" @click="rmFile(index,4)">
                                           <i class="fa fa-times" aria-hidden="true"></i>
@@ -721,18 +721,11 @@
           </div>
           <!-- Modal -->
 
-          <div
-              class="modal fade"
-              id="deleteConfirmationRefund"
-              tabindex="-1"
-              role="dialog"
-              aria-labelledby="deleteConfirmationRefundLabel"
-              aria-hidden="true"
-          >
+          <div class="modal fade" id="deleteConfirmationFile" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationFileLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
                       <div class="modal-header">
-                          <h6 class="modal-title" id="deleteConfirmationRefundLabel">
+                          <h6 class="modal-title" id="deleteConfirmationFileLabel">
                               Confirmation
                           </h6>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
@@ -741,15 +734,14 @@
                       </div>
                       <div class="modal-body">
                           <p style="color:#000;font-size:14px;">
-                              Are you sure you want to delete this refund?
+                              Are you sure you want to delete this file?
                           </p>
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn admin-btn mobile-mb" data-dismiss="modal">
                               Cancel
                           </button>
-                          <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteRefund(refundid)"
-                          >
+                          <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteFile(fileid)">
                               Delete
                           </button>
                       </div>
@@ -757,14 +749,7 @@
               </div>
           </div>
 
-          <div
-              class="modal fade"
-              id="deleteConfirmation"
-              tabindex="-1"
-              role="dialog"
-              aria-labelledby="deleteConfirmationLabel"
-              aria-hidden="true"
-          >
+          <div class="modal fade" id="deleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
                       <div class="modal-header">
@@ -789,6 +774,7 @@
                   </div>
               </div>
           </div>
+
       </div>
   </div>
 </template>
@@ -840,6 +826,7 @@ export default {
           sidebarflag: false,
           paymentid: "",
           refundid: "",
+          fileid: "",
           paymentcount: 0,
           due_payment: "",
           invoice_status: "",
@@ -854,7 +841,14 @@ export default {
           payaction:"",
           paymentclass:"",
           sales:[],
-          postFormData: [],
+          postFormData: {},
+          uploaddata:{
+            registration:[],
+            vat:[],
+            iddoc:[],
+            credit:[]
+          },
+          kycdocs:[]
       };
   },
   methods: {
@@ -995,12 +989,25 @@ export default {
       },
       
       onFileChange(e, id){
-      // console.log(e.target.files);
-      this.filesArr[id] = e.target.files;
-      //console.log(e.target.files);
-      for(let key of e.target.files){
+       this.filesArr[id] = e.target.files;
+       for(let key of e.target.files){
+        if(id==1)
+        {
+            this.uploaddata.registration.push(key);
+        }
+        if(id==2)
+        {
+            this.uploaddata.vat.push(key);
+        }
+        if(id==3)
+        {
+            this.uploaddata.iddoc.push(key);
+        }
+        if(id==4)
+        {
+            this.uploaddata.credit.push(key);
+        }
         
-        this.postFormData.push(key);
         if(key.type.includes("image")){
           this.urlArr[id].push(
             {
@@ -1017,28 +1024,79 @@ export default {
             }
           );
         }
-        console.log(this.postFormData);
       }
     },
     rmFile(index, id){
-      console.log(this.filesArr);
-      const dt = new DataTransfer();
-      let i = 0;
-      for (let file of this.filesArr[id]) {
-        if (index !== i){
-          dt.items.add(file);
-        }
-        i++;
-      } 
-      this.filesArr[id] = dt.files;
-      // console.log(this.filesArr[id]);
-      this.urlArr[id].splice(index, 1);
+        const dt = new DataTransfer();
+        let i = 0;
+        for (let file of this.filesArr[id]) {
+            if(id==1)
+            {
+                this.uploaddata.registration.splice(index, 1);
+            }
+            if(id==2)
+            {
+                this.uploaddata.vat.splice(index, 1);
+            }
+            if(id==3)
+            {
+                this.uploaddata.iddoc.splice(index, 1);
+            }
+            if(id==4)
+            {
+                this.uploaddata.credit.splice(index, 1);
+            }
+            if (index !== i){
+            dt.items.add(file);
+            }
+            i++;
+        } 
+        this.filesArr[id] = dt.files;
+        this.urlArr[id].splice(index, 1);
     },
-    uploadfile(index)
+    async uploadfile(index)
     {
-        console.log(this.postFormData);
-        var filedata = this.filesArr[index];
-        const response = axios.post("upload_kyc", objectToFormData(this.postFormData));
+        this.postFormData.sales_id= this.$route.params.id;
+        if(index==1)
+        {
+            this.postFormData.kyc=this.uploaddata.registration;
+            this.postFormData.category= 'registration';
+        }
+        if(index==2)
+        {
+            this.postFormData.kyc=this.uploaddata.vat;
+            this.postFormData.category= 'vat';
+        }
+        if(index==3)
+        {
+            this.postFormData.kyc=this.uploaddata.iddoc;
+            this.postFormData.category= 'iddoc';
+        }
+        if(index==4)
+        {
+            this.postFormData.kyc=this.uploaddata.credit;
+            this.postFormData.category= 'credit';
+            
+        }
+        const response = await axios.post("upload_kyc", objectToFormData(this.postFormData));
+        
+        if (response.data.id) {
+              this.note = "";
+              let toast = Vue.toasted.show("Document successfully uploaded", {
+                  theme: "toasted-success",
+                  position: "top-center",
+                  duration: 5000
+              });
+          } else {
+              let toast = Vue.toasted.show(
+                  "Please choose file",
+                  {
+                      theme: "toasted-error",
+                      position: "top-center",
+                      duration: 5000
+                  }
+              );
+          }
     },
       async save_note() {
           var notedata = { sales_id: this.$route.params.id, note: this.note };
@@ -1137,6 +1195,25 @@ export default {
       selectrefund(id) {
           this.refundid = id;
       },
+      selectfile(id) {
+          this.fileid = id;
+      },
+      deleteFile(id) {
+          axios
+              .get("/delete-file/" + id)
+              .then(resp => {
+                  this.$router.go();
+              })
+              .catch(error => {
+                  let message = "Something went wrong, Please try again";
+                  let toast = Vue.toasted.show(message, {
+                      theme: "toasted-error",
+                      position: "top-center",
+                      duration: 5000
+                  });
+                  console.log(error);
+              });
+      },
       deleteRefund(id) {
           axios
               .get("/delete-refund/" + id)
@@ -1168,7 +1245,21 @@ export default {
                   });
                   console.log(error);
               });
-      }
+      },
+      download(image){
+        axios.get("/download-kyc?image=" + image, {responseType: 'blob'})
+            .then(response => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', image);
+            document.body.appendChild(link);
+            link.click();
+            })
+            .catch(e => {
+            console.log(e);
+        });
+        },
   },
   mounted() {
       axios
@@ -1208,15 +1299,22 @@ export default {
               this.formdata.saleshistory = response.data;
           })
           .catch(function(error) {
-              //app.$notify(error.response.data.error, "error");
-          });
-        axios.get('/sales_list/')
-            .then((response) => {
-                this.sales = response.data;
-            })
-            .catch(function(error) {
-                //app.$notify(error.response.data.error, "error");
-            });
+           });
+
+     axios.get('/sales_list/')
+        .then((response) => {
+            this.sales = response.data;
+        })
+        .catch(function(error) {
+        });
+
+     axios.get('/fetch_kyc/' + this.$route.params.id)
+        .then((response) => {
+            this.kycdocs = response.data;
+            console.log(this.kycdocs);
+        })
+        .catch(function(error) {
+        });
   }
 };
 </script>
@@ -1234,8 +1332,8 @@ export default {
   color: #000;
 }
 .choose-cont{
-display: flex;
-justify-content: center;
+    display: flex;
+    /* justify-content: center; */
 }
 
 .imagePreview {
@@ -1254,6 +1352,21 @@ justify-content: center;
   cursor: pointer;
 }
 .closeIcon i
+{
+    font-size: 11px;
+    background: #cccccc52;
+    padding: 4px;
+    border-radius: 50%;
+    color: #000;
+}
+.downloadIcon {
+  position: absolute;
+  top: -15px;
+  left: 30px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.downloadIcon i
 {
     font-size: 11px;
     background: #cccccc52;
@@ -1369,5 +1482,9 @@ justify-content: center;
 #saleshistory-datatable thead th
 {
     font-weight: 100;
+}
+#kyc-datatable
+{
+    font-size: 13px;
 }
 </style>

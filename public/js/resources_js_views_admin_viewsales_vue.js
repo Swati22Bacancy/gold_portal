@@ -810,20 +810,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -873,6 +859,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       sidebarflag: false,
       paymentid: "",
       refundid: "",
+      fileid: "",
       paymentcount: 0,
       due_payment: "",
       invoice_status: "",
@@ -887,7 +874,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       payaction: "",
       paymentclass: "",
       sales: [],
-      postFormData: []
+      postFormData: {},
+      uploaddata: {
+        registration: [],
+        vat: [],
+        iddoc: [],
+        credit: []
+      },
+      kycdocs: []
     };
   },
   methods: {
@@ -1036,8 +1030,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     onFileChange: function onFileChange(e, id) {
-      // console.log(e.target.files);
-      this.filesArr[id] = e.target.files; //console.log(e.target.files);
+      this.filesArr[id] = e.target.files;
 
       var _iterator = _createForOfIteratorHelper(e.target.files),
           _step;
@@ -1045,7 +1038,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var key = _step.value;
-          this.postFormData.push(key);
+
+          if (id == 1) {
+            this.uploaddata.registration.push(key);
+          }
+
+          if (id == 2) {
+            this.uploaddata.vat.push(key);
+          }
+
+          if (id == 3) {
+            this.uploaddata.iddoc.push(key);
+          }
+
+          if (id == 4) {
+            this.uploaddata.credit.push(key);
+          }
 
           if (key.type.includes("image")) {
             this.urlArr[id].push({
@@ -1058,8 +1066,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               url: ""
             });
           }
-
-          console.log(this.postFormData);
         }
       } catch (err) {
         _iterator.e(err);
@@ -1068,7 +1074,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     rmFile: function rmFile(index, id) {
-      console.log(this.filesArr);
       var dt = new DataTransfer();
       var i = 0;
 
@@ -1078,6 +1083,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       try {
         for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
           var file = _step2.value;
+
+          if (id == 1) {
+            this.uploaddata.registration.splice(index, 1);
+          }
+
+          if (id == 2) {
+            this.uploaddata.vat.splice(index, 1);
+          }
+
+          if (id == 3) {
+            this.uploaddata.iddoc.splice(index, 1);
+          }
+
+          if (id == 4) {
+            this.uploaddata.credit.splice(index, 1);
+          }
 
           if (index !== i) {
             dt.items.add(file);
@@ -1091,44 +1112,99 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _iterator2.f();
       }
 
-      this.filesArr[id] = dt.files; // console.log(this.filesArr[id]);
-
+      this.filesArr[id] = dt.files;
       this.urlArr[id].splice(index, 1);
     },
     uploadfile: function uploadfile(index) {
-      console.log(this.postFormData);
-      var filedata = this.filesArr[index];
-      var response = axios.post("upload_kyc", (0,_object_to_formdata__WEBPACK_IMPORTED_MODULE_3__.objectToFormData)(this.postFormData));
-    },
-    save_note: function save_note() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var notedata, response, toast, _toast;
+        var response, toast, _toast;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                notedata = {
-                  sales_id: _this2.$route.params.id,
-                  note: _this2.note
-                };
-                _context2.next = 3;
-                return axios.post("create_note", notedata);
+                _this2.postFormData.sales_id = _this2.$route.params.id;
 
-              case 3:
+                if (index == 1) {
+                  _this2.postFormData.kyc = _this2.uploaddata.registration;
+                  _this2.postFormData.category = 'registration';
+                }
+
+                if (index == 2) {
+                  _this2.postFormData.kyc = _this2.uploaddata.vat;
+                  _this2.postFormData.category = 'vat';
+                }
+
+                if (index == 3) {
+                  _this2.postFormData.kyc = _this2.uploaddata.iddoc;
+                  _this2.postFormData.category = 'iddoc';
+                }
+
+                if (index == 4) {
+                  _this2.postFormData.kyc = _this2.uploaddata.credit;
+                  _this2.postFormData.category = 'credit';
+                }
+
+                _context2.next = 7;
+                return axios.post("upload_kyc", (0,_object_to_formdata__WEBPACK_IMPORTED_MODULE_3__.objectToFormData)(_this2.postFormData));
+
+              case 7:
                 response = _context2.sent;
 
                 if (response.data.id) {
                   _this2.note = "";
+                  toast = Vue.toasted.show("Document successfully uploaded", {
+                    theme: "toasted-success",
+                    position: "top-center",
+                    duration: 5000
+                  });
+                } else {
+                  _toast = Vue.toasted.show("Please choose file", {
+                    theme: "toasted-error",
+                    position: "top-center",
+                    duration: 5000
+                  });
+                }
+
+              case 9:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    save_note: function save_note() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var notedata, response, toast, _toast2;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                notedata = {
+                  sales_id: _this3.$route.params.id,
+                  note: _this3.note
+                };
+                _context3.next = 3;
+                return axios.post("create_note", notedata);
+
+              case 3:
+                response = _context3.sent;
+
+                if (response.data.id) {
+                  _this3.note = "";
                   toast = Vue.toasted.show("Note successfully added", {
                     theme: "toasted-success",
                     position: "top-center",
                     duration: 5000
                   });
                 } else {
-                  _toast = Vue.toasted.show("Something went wrong, Please try again", {
+                  _toast2 = Vue.toasted.show("Something went wrong, Please try again", {
                     theme: "toasted-error",
                     position: "top-center",
                     duration: 5000
@@ -1137,52 +1213,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     },
     save_refund: function save_refund(index) {
-      var _this3 = this;
+      var _this4 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
         var date, response, arr, toast;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
-                _this3.refund_items[index].sales_id = _this3.$route.params.id;
-                date = new Date(_this3.refund_items[index].refund_date);
-                _this3.refund_items[index].payment_date = date;
-                _this3.refund_items[index].action = 'Refund';
-                _context3.next = 6;
-                return axios.post("create_payment", _this3.refund_items[index]);
+                _this4.refund_items[index].sales_id = _this4.$route.params.id;
+                date = new Date(_this4.refund_items[index].refund_date);
+                _this4.refund_items[index].payment_date = date;
+                _this4.refund_items[index].action = 'Refund';
+                _context4.next = 6;
+                return axios.post("create_payment", _this4.refund_items[index]);
 
               case 6:
-                response = _context3.sent;
+                response = _context4.sent;
 
                 if (response.data.id) {
                   arr = {};
                   arr.payment_date = response.data.payment_date;
-                  arr.method = _this3.refund_items[index].method;
-                  arr.totalamount = _this3.refund_items[index].totalamount;
+                  arr.method = _this4.refund_items[index].method;
+                  arr.totalamount = _this4.refund_items[index].totalamount;
                   arr.id = response.data.id;
 
-                  _this3.formdata.salepayments.push(arr);
+                  _this4.formdata.salepayments.push(arr);
 
-                  _this3.addpayment = "";
-                  _this3.refundcount = _this3.refundcount + 1; //this.refund_items.splice(index,1);
+                  _this4.addpayment = "";
+                  _this4.refundcount = _this4.refundcount + 1; //this.refund_items.splice(index,1);
 
-                  _this3.due_payment = parseFloat(_this3.due_payment) + parseFloat(_this3.refund_items[index].totalamount);
-                  _this3.due_payment = _this3.due_payment.toFixed(2);
+                  _this4.due_payment = parseFloat(_this4.due_payment) + parseFloat(_this4.refund_items[index].totalamount);
+                  _this4.due_payment = _this4.due_payment.toFixed(2);
 
-                  if (_this3.due_payment < 0) {
-                    _this3.over_paid = _this3.due_payment;
+                  if (_this4.due_payment < 0) {
+                    _this4.over_paid = _this4.due_payment;
                   }
 
-                  _this3.due_payment = _this3.due_payment < 0 ? 0 : _this3.due_payment;
-                  _this3.refund_items = [{
+                  _this4.due_payment = _this4.due_payment < 0 ? 0 : _this4.due_payment;
+                  _this4.refund_items = [{
                     refund_date: Date.now(),
                     totalamount: "",
                     bank: "ICIC Bank Accounts",
@@ -1219,10 +1295,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 8:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3);
+        }, _callee4);
       }))();
     },
     selectrecord: function selectrecord(id) {
@@ -1231,11 +1307,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     selectrefund: function selectrefund(id) {
       this.refundid = id;
     },
+    selectfile: function selectfile(id) {
+      this.fileid = id;
+    },
+    deleteFile: function deleteFile(id) {
+      var _this5 = this;
+
+      axios.get("/delete-file/" + id).then(function (resp) {
+        _this5.$router.go();
+      })["catch"](function (error) {
+        var message = "Something went wrong, Please try again";
+        var toast = Vue.toasted.show(message, {
+          theme: "toasted-error",
+          position: "top-center",
+          duration: 5000
+        });
+        console.log(error);
+      });
+    },
     deleteRefund: function deleteRefund(id) {
-      var _this4 = this;
+      var _this6 = this;
 
       axios.get("/delete-refund/" + id).then(function (resp) {
-        _this4.$router.go();
+        _this6.$router.go();
       })["catch"](function (error) {
         var message = "Something went wrong, Please try again";
         var toast = Vue.toasted.show(message, {
@@ -1247,10 +1341,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     deleteRecord: function deleteRecord(id) {
-      var _this5 = this;
+      var _this7 = this;
 
       axios.get("/delete-payment/" + id).then(function (resp) {
-        _this5.$router.go();
+        _this7.$router.go();
       })["catch"](function (error) {
         var message = "Something went wrong, Please try again";
         var toast = Vue.toasted.show(message, {
@@ -1260,45 +1354,61 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         });
         console.log(error);
       });
+    },
+    download: function download(image) {
+      axios.get("/download-kyc?image=" + image, {
+        responseType: 'blob'
+      }).then(function (response) {
+        var url = window.URL.createObjectURL(new Blob([response.data]));
+        var link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', image);
+        document.body.appendChild(link);
+        link.click();
+      })["catch"](function (e) {
+        console.log(e);
+      });
     }
   },
   mounted: function mounted() {
-    var _this6 = this;
+    var _this8 = this;
 
     axios.get("/sales_details/" + this.$route.params.id).then(function (response) {
-      _this6.formdata = response.data;
-      _this6.paymentcount = _this6.formdata.salepayments.length;
+      _this8.formdata = response.data;
+      _this8.paymentcount = _this8.formdata.salepayments.length;
 
       if (response.data.payment_due < 0) {
-        _this6.over_paid = response.data.payment_due.toFixed(2);
+        _this8.over_paid = response.data.payment_due.toFixed(2);
       }
 
-      _this6.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
-      _this6.due_payment = _this6.due_payment.toFixed(2);
+      _this8.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
+      _this8.due_payment = _this8.due_payment.toFixed(2);
 
-      if (_this6.paymentcount == 0) {
-        _this6.invoice_status = "UnPaid";
-        _this6.payment_check = "Yes";
-      } else if (_this6.over_paid < 0) {
-        _this6.invoice_status = "Over Paid";
-        _this6.payment_check = "";
-      } else if (_this6.due_payment == 0) {
-        _this6.invoice_status = "Paid";
-        _this6.payment_check = "";
+      if (_this8.paymentcount == 0) {
+        _this8.invoice_status = "UnPaid";
+        _this8.payment_check = "Yes";
+      } else if (_this8.over_paid < 0) {
+        _this8.invoice_status = "Over Paid";
+        _this8.payment_check = "";
+      } else if (_this8.due_payment == 0) {
+        _this8.invoice_status = "Paid";
+        _this8.payment_check = "";
       } else {
-        _this6.invoice_status = "Partially Paid";
-        _this6.payment_check = "Yes";
+        _this8.invoice_status = "Partially Paid";
+        _this8.payment_check = "Yes";
       }
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
     axios.get("/sales_history/" + this.$route.params.id).then(function (response) {
-      _this6.formdata.saleshistory = response.data;
-    })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
-    });
+      _this8.formdata.saleshistory = response.data;
+    })["catch"](function (error) {});
     axios.get('/sales_list/').then(function (response) {
-      _this6.sales = response.data;
-    })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
-    });
+      _this8.sales = response.data;
+    })["catch"](function (error) {});
+    axios.get('/fetch_kyc/' + this.$route.params.id).then(function (response) {
+      _this8.kycdocs = response.data;
+      console.log(_this8.kycdocs);
+    })["catch"](function (error) {});
   }
 });
 
@@ -1418,7 +1528,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-483c8698] {\r\n  background: #3376c2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n  font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.choose-cont[data-v-483c8698]{\r\ndisplay: flex;\r\njustify-content: center;\n}\n.imagePreview[data-v-483c8698] {\r\n  width: 70px;\n}\n.previewContainer[data-v-483c8698] {\r\n  position: relative;\n}\n.closeIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 51px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.closeIcon i[data-v-483c8698]\r\n{\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.salesdata[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-483c8698] {\r\n  border-radius: 50%;\n}\n.btn-container[data-v-483c8698] {\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width: 100% !important;\n}\n.selectedclr[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-483c8698] {\r\n  width: auto;\r\n  font-size: 13px !important;\r\n  color: #000;\r\n  border: none;\r\n  height: 40px;\r\n  padding: 5px 20px;\r\n  border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698] {\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698] {\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-483c8698] {\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698] {\r\n  background-color: #edf2f6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus,\r\n.btn.focus[data-v-483c8698] {\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-483c8698] {\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698] {\r\n  border: 1px solid #d6e3f2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698] {\r\n  width: 130px;\n}\n.sum-price ul[data-v-483c8698] {\r\n  list-style-type: none;\n}\n.sum-price li[data-v-483c8698] {\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n}\n.viewsales-div > p[data-v-483c8698] {\r\n  color: #3376c2;\r\n  font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n  color: #000;\r\n  font-size: 13px;\n}\n.class_red[data-v-483c8698]\r\n{\r\n  color:rgb(255 0 0);\n}\n.class_green[data-v-483c8698]\r\n{\r\n  color:#7adaaa;\n}\n.bold_font[data-v-483c8698]\r\n{\r\n    font-weight: 600;\n}\n.invoicelist a[data-v-483c8698] \r\n{\r\n    color: #000;\n}\n#saleshistory-datatable thead[data-v-483c8698]\r\n{\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#saleshistory-datatable thead th[data-v-483c8698]\r\n{\r\n    font-weight: 100;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-483c8698] {\r\n  background: #3376c2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n  font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.choose-cont[data-v-483c8698]{\r\n    display: flex;\r\n    /* justify-content: center; */\n}\n.imagePreview[data-v-483c8698] {\r\n  width: 70px;\n}\n.previewContainer[data-v-483c8698] {\r\n  position: relative;\n}\n.closeIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 51px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.closeIcon i[data-v-483c8698]\r\n{\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.downloadIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 30px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.downloadIcon i[data-v-483c8698]\r\n{\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.salesdata[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-483c8698] {\r\n  border-radius: 50%;\n}\n.btn-container[data-v-483c8698] {\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width: 100% !important;\n}\n.selectedclr[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-483c8698] {\r\n  width: auto;\r\n  font-size: 13px !important;\r\n  color: #000;\r\n  border: none;\r\n  height: 40px;\r\n  padding: 5px 20px;\r\n  border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698] {\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698] {\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-483c8698] {\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698] {\r\n  background-color: #edf2f6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus,\r\n.btn.focus[data-v-483c8698] {\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-483c8698] {\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698] {\r\n  border: 1px solid #d6e3f2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698] {\r\n  width: 130px;\n}\n.sum-price ul[data-v-483c8698] {\r\n  list-style-type: none;\n}\n.sum-price li[data-v-483c8698] {\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n}\n.viewsales-div > p[data-v-483c8698] {\r\n  color: #3376c2;\r\n  font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n  color: #000;\r\n  font-size: 13px;\n}\n.class_red[data-v-483c8698]\r\n{\r\n  color:rgb(255 0 0);\n}\n.class_green[data-v-483c8698]\r\n{\r\n  color:#7adaaa;\n}\n.bold_font[data-v-483c8698]\r\n{\r\n    font-weight: 600;\n}\n.invoicelist a[data-v-483c8698] \r\n{\r\n    color: #000;\n}\n#saleshistory-datatable thead[data-v-483c8698]\r\n{\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#saleshistory-datatable thead th[data-v-483c8698]\r\n{\r\n    font-weight: 100;\n}\n#kyc-datatable[data-v-483c8698]\r\n{\r\n    font-size: 13px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2626,7 +2736,7 @@ var render = function() {
                   {
                     staticClass: "table",
                     attrs: {
-                      id: "dash-datatable",
+                      id: "kyc-datatable",
                       width: "100%",
                       cellspacing: "0"
                     }
@@ -2672,8 +2782,7 @@ var render = function() {
                                       : _c("img", {
                                           staticClass: "imagePreview",
                                           attrs: {
-                                            src:
-                                              "https://iconape.com/wp-content/png_logo_vector/document.png"
+                                            src: "/images/fileimage.png"
                                           }
                                         }),
                                     _vm._v(" "),
@@ -2747,7 +2856,6 @@ var render = function() {
                                   }
                                 }
                               }),
-                              _vm._v(" "),
                               _c("br"),
                               _vm._v(" "),
                               _c("br"),
@@ -2765,8 +2873,7 @@ var render = function() {
                                       : _c("img", {
                                           staticClass: "imagePreview",
                                           attrs: {
-                                            src:
-                                              "https://iconape.com/wp-content/png_logo_vector/document.png"
+                                            src: "/images/fileimage.png"
                                           }
                                         }),
                                     _vm._v(" "),
@@ -2792,6 +2899,73 @@ var render = function() {
                               })
                             ],
                             2
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "upload_vat" },
+                            _vm._l(_vm.kycdocs.vatdocs, function(vatdoc) {
+                              return _c(
+                                "div",
+                                {
+                                  key: vatdoc,
+                                  staticClass: "previewContainer"
+                                },
+                                [
+                                  _c("img", {
+                                    staticClass: "imagePreview",
+                                    attrs: {
+                                      src:
+                                        "../storage/app/Customeruploads/" +
+                                        vatdoc.identification_file
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "closeIcon",
+                                      attrs: {
+                                        "data-toggle": "modal",
+                                        "data-target": "#deleteConfirmationFile"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.selectfile(vatdoc.id)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fa fa-times",
+                                        attrs: { "aria-hidden": "true" }
+                                      })
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "downloadIcon",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.download(
+                                            vatdoc.identification_file
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fa fa-download",
+                                        attrs: { "aria-hidden": "true" }
+                                      })
+                                    ]
+                                  )
+                                ]
+                              )
+                            }),
+                            0
                           )
                         ]),
                         _vm._v(" "),
@@ -2858,8 +3032,7 @@ var render = function() {
                                       : _c("img", {
                                           staticClass: "imagePreview",
                                           attrs: {
-                                            src:
-                                              "https://iconape.com/wp-content/png_logo_vector/document.png"
+                                            src: "/images/fileimage.png"
                                           }
                                         }),
                                     _vm._v(" "),
@@ -2951,8 +3124,7 @@ var render = function() {
                                       : _c("img", {
                                           staticClass: "imagePreview",
                                           attrs: {
-                                            src:
-                                              "https://iconape.com/wp-content/png_logo_vector/document.png"
+                                            src: "/images/fileimage.png"
                                           }
                                         }),
                                     _vm._v(" "),
@@ -3439,10 +3611,10 @@ var render = function() {
         {
           staticClass: "modal fade",
           attrs: {
-            id: "deleteConfirmationRefund",
+            id: "deleteConfirmationFile",
             tabindex: "-1",
             role: "dialog",
-            "aria-labelledby": "deleteConfirmationRefundLabel",
+            "aria-labelledby": "deleteConfirmationFileLabel",
             "aria-hidden": "true"
           }
         },
@@ -3481,7 +3653,7 @@ var render = function() {
                       attrs: { type: "button" },
                       on: {
                         click: function($event) {
-                          return _vm.deleteRefund(_vm.refundid)
+                          return _vm.deleteFile(_vm.fileid)
                         }
                       }
                     },
@@ -3717,7 +3889,7 @@ var staticRenderFns = [
         "h6",
         {
           staticClass: "modal-title",
-          attrs: { id: "deleteConfirmationRefundLabel" }
+          attrs: { id: "deleteConfirmationFileLabel" }
         },
         [
           _vm._v(
@@ -3756,7 +3928,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "modal-body" }, [
       _c("p", { staticStyle: { color: "#000", "font-size": "14px" } }, [
         _vm._v(
-          "\n                            Are you sure you want to delete this refund?\n                        "
+          "\n                            Are you sure you want to delete this file?\n                        "
         )
       ])
     ])

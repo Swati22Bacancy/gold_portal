@@ -9,6 +9,7 @@ use App\Models\InvoiceOptions;
 use App\Models\SalesNotes;
 use App\Models\SalesHistory;
 use App\Models\SalesRefunds;
+use App\Models\InvoiceKyc;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -288,7 +289,6 @@ class SalesController extends Controller
             }
     }
 
-
     public function getinvoicekey()
     {
         $lastinvoice = Sales::orderBy('invoicekey', 'DESC')->first();
@@ -368,7 +368,61 @@ class SalesController extends Controller
 
     public function uploadkyc(Request $request)
     {
-        echo '<pre>';
-        print_r($request->file());
+        try {
+            if ($request->hasFile('kyc')) {
+                $files = $request->file('kyc');
+                foreach($files as $file)
+                {
+                    $newName = 'customer_kyc_'.time() . '_' . $file->getClientOriginalName();
+                    $file->storeAs('Customeruploads', $newName);
+                    $originalName = $file->getClientOriginalName();
+
+                    $invoicekyc = InvoiceKyc::create([
+                        'sales_id' => $request->input('sales_id'),
+                        'identification_file' => $newName,
+                        'identification_file_original_name' => $originalName,
+                        'category' => $request->input('category'),
+                        'file_type' => $file->extension()
+                    ]);
+                }
+                return response()->json($invoicekyc);
+            }
+        } catch (\Exception $e) {
+            return response([
+                'message' => 'Internal error, please try again later.' //$e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function fetchkyc($id)
+    {
+        $uploadeddocs = array();
+        $uploadeddocs['regdocs'] = InvoiceKyc::where('sales_id',$id)->where('category','=','registration')->get();
+        $uploadeddocs['vatdocs'] = InvoiceKyc::where('sales_id',$id)->where('category','=','vat')->get();
+        $uploadeddocs['iddocs'] = InvoiceKyc::where('sales_id',$id)->where('category','=','iddoc')->get();
+        $uploadeddocs['creditdocs'] = InvoiceKyc::where('sales_id',$id)->where('category','=','credit')->get();
+        return response()->json($uploadeddocs);
+    }
+
+    public function deletefile($id){
+        $kycfile = InvoiceKyc::find($id);
+        
+        if($kycfile){
+                $kycfile->delete();
+                return response()->json(
+                    [
+                        'status' => 'success',
+                        'msg' => 'File deleted successfully'
+                    ],
+                    200
+                );
+            }else{
+                return response()->json(['error' => 'Record does not exists'], 404);
+            }
+    }
+
+    public function downloadkyc(Request $request)
+    {
+        return response()->download(storage_path('app/Customeruploads/'.$request->image), $request->image)->setStatusCode(200);
     }
 }
