@@ -1161,7 +1161,9 @@ var render = function() {
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-4" }, [
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Supplier")]),
+                  _c("label", { staticClass: "required-field" }, [
+                    _vm._v("Supplier")
+                  ]),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -2012,7 +2014,9 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }, [
                 _c("div", { staticClass: "form-group form-text" }, [
-                  _c("label", [_vm._v("Purchase Order No.")]),
+                  _c("label", { staticClass: "required-field" }, [
+                    _vm._v("Purchase Order No.")
+                  ]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [

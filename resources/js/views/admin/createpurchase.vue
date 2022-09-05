@@ -17,7 +17,7 @@
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label>Supplier</label>
+                <label class="required-field">Supplier</label>
                 <div class="input-group mb-3 d-flex">
                   <model-select class="modal-selection" :options="suppliers" @input="fetchAddress()" v-model="formdata.customer_id" 
                   placeholder="Select supplier"></model-select>
@@ -143,7 +143,7 @@
             </div>
             <div class="col-md-2">
               <div class="form-group form-text">
-                <label>Purchase Order No.</label>
+                <label class="required-field">Purchase Order No.</label>
                 <input
                   type="number"
                   title="yo"

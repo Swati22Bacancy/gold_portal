@@ -1,7 +1,9 @@
 <template>
   <div class="row">
     <div class="col-1" v-if="sidebarflag" style="font-size: 12px;">
-      <p v-for="purchase in purchases" :key="purchase.id"><b>{{purchase.invoiceno}}</b></p>
+      <div v-for="purchase in purchases" :key="purchase.id"  v-bind:class = "(purchase.invoiceno==formdata.invoiceno)?'bold_font':''" style="color:#000">
+      
+      <div @click="sideClick(purchase.id)"><b>{{purchase.invoiceno}}</b></div></div>
     </div>
     <!-- Page Heading -->
     <div class="col-11">
@@ -34,11 +36,11 @@
             </div>
             <div class="col-md-2" style="border-right:  1px solid #4682B4;">
               <p style="color:#4682B4; font-size: 15px;">Issue Date</p>
-              <span>{{formdata.issue_date}}</span>
+              <span>{{dateFormateChanger(formdata.issue_date)}}</span>
             </div>
             <div class="col-md-2" style="border-right:  1px solid #4682B4;">
               <p style="color:#4682B4;font-size: 15px;">Due Date</p>
-              <span>{{formdata.due_date}}</span>
+              <span>{{dateFormateChanger(formdata.due_date)}}</span>
             </div>
             <div class="col-md-2" style="border-right:  1px solid #4682B4;">
               <p style="color:#4682B4; font-size: 15px;">Amount Due</p>
@@ -168,17 +170,17 @@
                       <input type="number" class="form-control form-control-user" placeholder="Amount" v-model="invoice_item.totalamount">
                     </td>
                     <td>
-                      <select class="form-control form-control-user"  v-model="invoice_item.bank">
+                      <select class="form-control form-control-user"  v-model="invoice_item.bank" @change="dropdownCash(k)">
                         <option value="ICIC Bank Accounts">ICIC Bank Accounts</option>
                         <option value="Baroda Bank">Baroda Bank</option>
-                        <option value="Cash Account">Cash Account</option>
+                        <option value="Cash Account">Cash in hand account</option>
                       </select>
                     </td>
                     <td>
                       <select class="form-control form-control-user"  v-model="invoice_item.method">
-                          <option value="Bank Transfer">Bank Transfer</option>
-                          <option value="Cash">Cash</option>
-                          <option value="Other">Other</option>
+                          <option value="Bank Transfer" v-if="!cashSelected">Bank Transfer</option>
+                          <option value="Cash" :disabled="!cashSelected">Cash</option>
+                          <option value="Other" v-if="!cashSelected">Other</option>
                       
                       </select>
                     </td>
@@ -247,6 +249,8 @@
 </template>
 
 <script>
+  import { thisTypeAnnotation } from '@babel/types';
+import moment from 'moment';
 import Datepicker from 'vuejs-datepicker';
 export default {
   name: "Dashboard",
@@ -260,6 +264,7 @@ export default {
       theme: 'cust-type',
       formdata: {},
       rows: [],
+      cashSelected: false,
       invoice_items: [{
           payment_date:Date.now(),
           totalamount:'',
@@ -285,6 +290,22 @@ export default {
   },
   methods:
   {
+    dateFormateChanger(d){
+      return moment(d,'YYYY-MM-DD').format('DD MMM YYYY')
+     },
+     sideClick(id){
+      this.$router.push("/viewpurchase/"+id);
+      location.reload()
+     },
+     dropdownCash(index){
+      console.log(this.invoice_items )
+      if(this.invoice_items[index].bank == 'Cash Account'){
+        this.cashSelected = true;
+      }
+      else{
+        this.cashSelected = false;
+      }
+     },
     sidebarToggle(){
       this.sidebarflag = !this.sidebarflag;
     },
@@ -464,6 +485,7 @@ export default {
     axios.get('/purchase_list/')
     .then((response) => {
         this.purchases = response.data;
+        console.log(this.purchases)
     })
     .catch(function(error) {
         //app.$notify(error.response.data.error, "error");
