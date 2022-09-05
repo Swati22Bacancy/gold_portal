@@ -12,9 +12,9 @@
                           <th>Customer</th>
                           <th>Item Type</th>
                           <th>Payment Method</th>
-                          <th>Sub Total</th>
-                          <th>Vat</th>
-                          <th>Total</th>
+                          <th>Sub Total ( <i class="fa fa-pound-sign" style="font-size: 9px;"></i> )</th>
+                          <th>Vat ( <i class="fa fa-pound-sign" style="font-size: 9px;"></i> )</th>
+                          <th>Total ( <i class="fa fa-pound-sign" style="font-size: 9px;"></i> )</th>
                           <th>Status</th>
                       </tr>
                   </thead>

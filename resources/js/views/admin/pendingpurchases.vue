@@ -21,7 +21,7 @@
                   <tbody>
                       <tr v-on:click="gotopurchase(purchase.id)" style="cursor:pointer;" v-for="purchase in purchases" :key="purchase.id">
                           <td><input type="checkbox" class="custom-check-input"></td>
-                          <td>{{purchase.issue_date}}</td>
+                          <td>{{dateFormateChanger(purchase.issue_date)}}</td>
                           <td>{{purchase.invoiceno}}</td>
                           <td style="color:#3376C2">{{purchase.firstname}} {{purchase.lastname}}</td>
                           <td>{{purchase.typename}}</td>
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 export default {
@@ -110,6 +111,9 @@ export default {
     
   },
   methods:{
+    dateFormateChanger(d){
+      return moment(d,'YYYY-MM-DD').format('DD MMM YYYY')
+     },
     gotopurchase(id)
     {
       this.$router.push("/viewpurchase/"+id);

@@ -32,8 +32,9 @@
             <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search by invoice,Purchase Order" style="background-color:#FFFFFF !important;margin-right:5px;"/>
             <!-- <input type="text" class="form-control bg-light border-0 small table-date" placeholder="Date Range" style="background-color:#FFFFFF !important;"/> -->
             <div class="Container-date">
-           <p>Date Range</p> <Datepicker v-model="issue_date" class="date-cont"></Datepicker>
-            <Datepicker v-model="due_date" class="date-cont"></Datepicker></div>
+           <p>Date Range</p>
+           <input type="date" name="selectdate" id="selectdate" class="form-control bg-light border-0 small table-date date-cont" v-model="issue_date">
+           <input type="date" name="selectduedate" id="selectduedate" class="form-control bg-light border-0 small table-date date-cont " v-model="due_date"></div>
             <select class="tab-selector" style="width:100px; margin-right:5px; margin-left:5px">
               <option value="Option 1" selected>Total Value</option>
               <option value="Option 1" >Option 1</option>
@@ -182,9 +183,38 @@ export default {
     display: flex;
   
   }
-  .date-cont{
+  [type="date"] {
+  background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+}
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+/* custom styles */
+body {
+  padding: 4em;
+  background: #e5e5e5;
+  font: 13px/1.4 Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+}
+label {
+  display: block;
+}
+input .date-cont{
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 3px 5px;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+   width: 200px;
+}
+  /* .date-cont{
     margin: 0px;
-  }
+    width:200;
+    
+  } */
 .table-search
 {
   width: 25%;
@@ -194,7 +224,7 @@ export default {
 }
 .table-date
 {
-  width: 27%;
+  width:40%;
   border: 1px solid #D6E3F2 !important;
   display: inline-block;
   height: 40px;

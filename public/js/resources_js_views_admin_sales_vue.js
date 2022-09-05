@@ -667,6 +667,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -1002,7 +1003,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.Container-date[data-v-b85307c6]{\n    display: flex;\n}\n.date-cont[data-v-b85307c6]{\n    margin: 0px;\n}\n.table-search[data-v-b85307c6]\n{\n  width: 25%;\n  border: 1px solid #D6E3F2 !important;\n  display: inline-block;\n  height: 40px;\n}\n.table-date[data-v-b85307c6]\n{\n  width: 27%;\n  border: 1px solid #D6E3F2 !important;\n  display: inline-block;\n  height: 40px;\n}\n.tab-selector[data-v-b85307c6]\n{\n  border: 1px solid #D6E3F2 !important;\n  height: 40px;\n  border-radius: 5px;\n  width: 11%;\n  color: #3377c2;\n  font-size: 13px;\n}\n.table-search[data-v-b85307c6]::-moz-placeholder {\n  color: #3377c2;\n  opacity: 0.4;\n  font-size: 11px;\n}\n.table-search[data-v-b85307c6]:-ms-input-placeholder {\n  color: #3377c2;\n  opacity: 0.4;\n  font-size: 11px;\n}\n.table-search[data-v-b85307c6]::placeholder {\n  color: #3377c2;\n  opacity: 0.4;\n  font-size: 11px;\n}\n#sales-datatable thead[data-v-b85307c6]\n{\n  background: #3376C2;\n  color: #fff;\n  font-size: 13px;\n}\n.table-date[data-v-b85307c6]::-moz-placeholder {\n  color: #3377c2;\n  font-size: 13px;\n}\n.table-date[data-v-b85307c6]:-ms-input-placeholder {\n  color: #3377c2;\n  font-size: 13px;\n}\n.table-date[data-v-b85307c6]::placeholder {\n  color: #3377c2;\n  font-size: 13px;\n}\n#sales-datatable[data-v-b85307c6]\n{\n  color: #000;\n  font-size: 13px;\n}\ntable.dataTable.no-footer[data-v-b85307c6]\n{\n  border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-b85307c6]\n{\n    color: #fff !important;\n    border: 1px solid #3376c2 !important;\n    background-color: #3376c2 !important;\n}\ntable.dataTable thead .sorting[data-v-b85307c6], table.dataTable thead .sorting_asc[data-v-b85307c6], table.dataTable thead .sorting_desc[data-v-b85307c6], table.dataTable thead .sorting_asc_disabled[data-v-b85307c6], table.dataTable thead .sorting_desc_disabled[data-v-b85307c6]\n{\n  background-size: 13px 13px;\n  background-position: 0px 19px;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-b85307c6]\n{\n  padding: 0.3em 0.8em;\n}\ntable.dataTable thead th[data-v-b85307c6]\n{\n  padding: 10px 10px !important;\n}\n#sales-datatable thead tr th[data-v-b85307c6] \n{\n  font-weight: 100 !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.Container-date[data-v-b85307c6]{\n    display: flex;\n}\n[type=\"date\"][data-v-b85307c6] {\n  background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;\n}\n[type=\"date\"][data-v-b85307c6]::-webkit-inner-spin-button {\n  display: none;\n}\n[type=\"date\"][data-v-b85307c6]::-webkit-calendar-picker-indicator {\n  opacity: 0;\n}\n\n/* custom styles */\nbody[data-v-b85307c6] {\n  padding: 4em;\n  background: #e5e5e5;\n  font: 13px/1.4 Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;\n}\nlabel[data-v-b85307c6] {\n  display: block;\n}\ninput .date-cont[data-v-b85307c6]{\n  border: 1px solid #c4c4c4;\n  border-radius: 5px;\n  background-color: #fff;\n  padding: 3px 5px;\n  box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);\n   width: 200px;\n}\n  /* .date-cont{\n    margin: 0px;\n    width:200;\n    \n  } */\n.table-search[data-v-b85307c6]\n{\n  width: 25%;\n  border: 1px solid #D6E3F2 !important;\n  display: inline-block;\n  height: 40px;\n}\n.table-date[data-v-b85307c6]\n{\n  width:40%;\n  border: 1px solid #D6E3F2 !important;\n  display: inline-block;\n  height: 40px;\n}\n.tab-selector[data-v-b85307c6]\n{\n  border: 1px solid #D6E3F2 !important;\n  height: 40px;\n  border-radius: 5px;\n  width: 11%;\n  color: #3377c2;\n  font-size: 13px;\n}\n.table-search[data-v-b85307c6]::-moz-placeholder {\n  color: #3377c2;\n  opacity: 0.4;\n  font-size: 11px;\n}\n.table-search[data-v-b85307c6]:-ms-input-placeholder {\n  color: #3377c2;\n  opacity: 0.4;\n  font-size: 11px;\n}\n.table-search[data-v-b85307c6]::placeholder {\n  color: #3377c2;\n  opacity: 0.4;\n  font-size: 11px;\n}\n#sales-datatable thead[data-v-b85307c6]\n{\n  background: #3376C2;\n  color: #fff;\n  font-size: 13px;\n}\n.table-date[data-v-b85307c6]::-moz-placeholder {\n  color: #3377c2;\n  font-size: 13px;\n}\n.table-date[data-v-b85307c6]:-ms-input-placeholder {\n  color: #3377c2;\n  font-size: 13px;\n}\n.table-date[data-v-b85307c6]::placeholder {\n  color: #3377c2;\n  font-size: 13px;\n}\n#sales-datatable[data-v-b85307c6]\n{\n  color: #000;\n  font-size: 13px;\n}\ntable.dataTable.no-footer[data-v-b85307c6]\n{\n  border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-b85307c6]\n{\n    color: #fff !important;\n    border: 1px solid #3376c2 !important;\n    background-color: #3376c2 !important;\n}\ntable.dataTable thead .sorting[data-v-b85307c6], table.dataTable thead .sorting_asc[data-v-b85307c6], table.dataTable thead .sorting_desc[data-v-b85307c6], table.dataTable thead .sorting_asc_disabled[data-v-b85307c6], table.dataTable thead .sorting_desc_disabled[data-v-b85307c6]\n{\n  background-size: 13px 13px;\n  background-position: 0px 19px;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-b85307c6]\n{\n  padding: 0.3em 0.8em;\n}\ntable.dataTable thead th[data-v-b85307c6]\n{\n  padding: 10px 10px !important;\n}\n#sales-datatable thead tr th[data-v-b85307c6] \n{\n  font-weight: 100 !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -17517,11 +17518,32 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Payment Method")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Sub Total")]),
+        _c("th", [
+          _vm._v("Sub Total ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
         _vm._v(" "),
-        _c("th", [_vm._v("Vat")]),
+        _c("th", [
+          _vm._v("Vat ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
         _vm._v(" "),
-        _c("th", [_vm._v("Total")]),
+        _c("th", [
+          _vm._v("Total ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
         _vm._v(" "),
         _c("th", [_vm._v("Status")])
       ])
@@ -17654,11 +17676,32 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Payment Method")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Sub Total")]),
+        _c("th", [
+          _vm._v("Sub Total ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
         _vm._v(" "),
-        _c("th", [_vm._v("Vat")]),
+        _c("th", [
+          _vm._v("Vat ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
         _vm._v(" "),
-        _c("th", [_vm._v("Total")]),
+        _c("th", [
+          _vm._v("Total ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
         _vm._v(" "),
         _c("th", [_vm._v("Status")])
       ])
@@ -17807,11 +17850,32 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Payment Method")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Sub Total")]),
+        _c("th", [
+          _vm._v("Sub Total ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
         _vm._v(" "),
-        _c("th", [_vm._v("Vat")]),
+        _c("th", [
+          _vm._v("Vat ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
         _vm._v(" "),
-        _c("th", [_vm._v("Total")]),
+        _c("th", [
+          _vm._v("Total ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
         _vm._v(" "),
         _c("th", [_vm._v("Status")])
       ])
@@ -17955,36 +18019,63 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "Container-date" },
-                      [
-                        _c("p", [_vm._v("Date Range")]),
-                        _vm._v(" "),
-                        _c("Datepicker", {
-                          staticClass: "date-cont",
-                          model: {
+                    _c("div", { staticClass: "Container-date" }, [
+                      _c("p", [_vm._v("Date Range")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
                             value: _vm.issue_date,
-                            callback: function($$v) {
-                              _vm.issue_date = $$v
-                            },
                             expression: "issue_date"
                           }
-                        }),
-                        _vm._v(" "),
-                        _c("Datepicker", {
-                          staticClass: "date-cont",
-                          model: {
+                        ],
+                        staticClass:
+                          "form-control bg-light border-0 small table-date date-cont",
+                        attrs: {
+                          type: "date",
+                          name: "selectdate",
+                          id: "selectdate"
+                        },
+                        domProps: { value: _vm.issue_date },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.issue_date = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
                             value: _vm.due_date,
-                            callback: function($$v) {
-                              _vm.due_date = $$v
-                            },
                             expression: "due_date"
                           }
-                        })
-                      ],
-                      1
-                    ),
+                        ],
+                        staticClass:
+                          "form-control bg-light border-0 small table-date date-cont ",
+                        attrs: {
+                          type: "date",
+                          name: "selectduedate",
+                          id: "selectduedate"
+                        },
+                        domProps: { value: _vm.due_date },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.due_date = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -18640,11 +18731,32 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Payment Method")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Sub Total")]),
+        _c("th", [
+          _vm._v("Sub Total ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
         _vm._v(" "),
-        _c("th", [_vm._v("Vat")]),
+        _c("th", [
+          _vm._v("Vat ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
         _vm._v(" "),
-        _c("th", [_vm._v("Total")]),
+        _c("th", [
+          _vm._v("Total ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
         _vm._v(" "),
         _c("th", [_vm._v("Status")])
       ])
