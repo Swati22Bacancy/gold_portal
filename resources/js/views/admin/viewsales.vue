@@ -344,7 +344,7 @@
                                   v-model="invoice_item.payment_date"
                               ></Datepicker>
                           </td>
-                          <td>
+                          <td style="width:130px;" >
                               <input
                                   type="number"
                                   class="form-control form-control-user"
@@ -355,7 +355,7 @@
                           <td>
                               <select
                                   class="form-control form-control-user"
-                                  v-model="invoice_item.bank"
+                                  v-model="invoice_item.bank" @change="dropdownCash(k)"
                               >
                                   <option value="ICIC Bank Accounts"
                                       >ICIC Bank Accounts</option
@@ -369,15 +369,10 @@
                               </select>
                           </td>
                           <td>
-                              <select
-                                  class="form-control form-control-user"
-                                  v-model="invoice_item.method"
-                              >
-                                  <option value="Bank Transfer"
-                                      >Bank Transfer</option
-                                  >
-                                  <option value="Cash">Cash</option>
-                                  <option value="Other">Other</option>
+                              <select class="form-control form-control-user" v-model="invoice_item.method">
+                                <option value="Bank Transfer" v-if="!cashSelected">Bank Transfer</option>
+                                <option value="Cash" :disabled="!cashSelected">Cash</option>
+                                <option value="Other" v-if="!cashSelected">Other</option>
                               </select>
                           </td>
                           <td>
@@ -848,7 +843,8 @@ export default {
             iddoc:[],
             credit:[]
           },
-          kycdocs:[]
+          kycdocs:[],
+          cashSelected: false,
       };
   },
   methods: {
@@ -859,6 +855,15 @@ export default {
       {
         this.$router.push("/viewsales/"+id);
       },
+      dropdownCash(index){
+        if(this.invoice_items[index].bank == 'Cash Account'){
+            this.invoice_items[index].method = 'Cash';
+            this.cashSelected = true;
+        }
+        else{
+            this.cashSelected = false;
+        }
+        },
       sidebarToggle() {
           this.sidebarflag = !this.sidebarflag;
       },

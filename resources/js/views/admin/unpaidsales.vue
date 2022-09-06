@@ -24,7 +24,7 @@
                           <td>{{dateFormateChanger(sale.issue_date)}}</td>
                           <td>{{sale.invoiceno}}</td>
                           <td style="color:#3376C2">{{sale.firstname}} {{sale.lastname}}</td>
-                          <td></td>
+                          <td>{{sale.typename}}</td>
                           <td>{{sale.methoddata}}</td>
                           <td>{{sale.subtotal}}</td>
                           <td>{{sale.vattotal}}</td>

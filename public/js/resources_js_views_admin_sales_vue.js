@@ -17423,7 +17423,7 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("td"),
+                      _c("td", [_vm._v(_vm._s(sale.typename))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(sale.methoddata))]),
                       _vm._v(" "),
@@ -17629,7 +17629,7 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("td"),
+                      _c("td", [_vm._v(_vm._s(sale.typename))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(sale.methoddata))]),
                       _vm._v(" "),
@@ -17803,7 +17803,7 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("td"),
+                      _c("td", [_vm._v(_vm._s(sale.typename))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(sale.methoddata))]),
                       _vm._v(" "),
@@ -18684,7 +18684,7 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("td"),
+                      _c("td", [_vm._v(_vm._s(sale.typename))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(sale.methoddata))]),
                       _vm._v(" "),

@@ -759,7 +759,7 @@ export default {
       }
       else
       {
-        var lineamount =invunitprice*vatquantity;
+        var lineamount =invunitprice*quantity;
       }
       this.invoice_items[index].invoice_amount = lineamount;
 

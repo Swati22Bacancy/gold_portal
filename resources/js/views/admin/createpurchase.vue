@@ -725,8 +725,9 @@ export default {
       }
       else
       {
-        var lineamount =invunitprice*vatquantity;
+        var lineamount =invunitprice*quantity;
       }
+      console.log(lineamount);
       this.invoice_items[index].invoice_amount = lineamount;
 
 

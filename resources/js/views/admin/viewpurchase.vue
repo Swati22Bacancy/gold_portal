@@ -166,7 +166,7 @@
                     <td>
                       <Datepicker class="datapicker" id="mydatepicker" v-model="invoice_item.payment_date"></Datepicker>
                     </td>
-                    <td>
+                    <td style="width:130px;" >
                       <input type="number" class="form-control form-control-user" placeholder="Amount" v-model="invoice_item.totalamount">
                     </td>
                     <td>
@@ -298,8 +298,8 @@ export default {
       location.reload()
      },
      dropdownCash(index){
-      console.log(this.invoice_items )
       if(this.invoice_items[index].bank == 'Cash Account'){
+        this.invoice_items[index].method = 'Cash';
         this.cashSelected = true;
       }
       else{

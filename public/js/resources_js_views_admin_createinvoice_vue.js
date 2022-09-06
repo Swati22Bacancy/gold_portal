@@ -783,7 +783,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         var rounded = Math.round(v * 10) / 10;
         var lineamount = Math.floor(rounded + 0.1) === rounded + 0.1 ? rounded + 0.1 : rounded;
       } else {
-        var lineamount = invunitprice * vatquantity;
+        var lineamount = invunitprice * quantity;
       }
 
       this.invoice_items[index].invoice_amount = lineamount;

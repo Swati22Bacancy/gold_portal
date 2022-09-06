@@ -16276,9 +16276,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       location.reload();
     },
     dropdownCash: function dropdownCash(index) {
-      console.log(this.invoice_items);
-
       if (this.invoice_items[index].bank == 'Cash Account') {
+        this.invoice_items[index].method = 'Cash';
         this.cashSelected = true;
       } else {
         this.cashSelected = false;
@@ -17254,7 +17253,7 @@ var render = function() {
                               1
                             ),
                             _vm._v(" "),
-                            _c("td", [
+                            _c("td", { staticStyle: { width: "130px" } }, [
                               _c("input", {
                                 directives: [
                                   {

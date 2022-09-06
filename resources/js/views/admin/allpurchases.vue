@@ -25,7 +25,7 @@
                           <td>{{purchase.invoiceno}}</td>
                           <td style="color:#3376C2">{{purchase.firstname}} {{purchase.lastname}}</td>
                           <td>{{purchase.typename}}</td>
-                          <td></td>
+                          <td>{{purchase.methoddata}}</td>
                           <td>{{purchase.subtotal}}</td>
                           <td>{{purchase.vattotal}}</td>
                           <td>{{purchase.totalamount}}</td>

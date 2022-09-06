@@ -747,9 +747,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var rounded = Math.round(v * 10) / 10;
         var lineamount = Math.floor(rounded + 0.1) === rounded + 0.1 ? rounded + 0.1 : rounded;
       } else {
-        var lineamount = invunitprice * vatquantity;
+        var lineamount = invunitprice * quantity;
       }
 
+      console.log(lineamount);
       this.invoice_items[index].invoice_amount = lineamount;
       var totalsub = 0;
 

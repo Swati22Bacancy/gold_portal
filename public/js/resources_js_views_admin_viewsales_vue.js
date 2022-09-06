@@ -805,11 +805,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -881,7 +876,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         iddoc: [],
         credit: []
       },
-      kycdocs: []
+      kycdocs: [],
+      cashSelected: false
     };
   },
   methods: {
@@ -890,6 +886,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     gotosales: function gotosales(id) {
       this.$router.push("/viewsales/" + id);
+    },
+    dropdownCash: function dropdownCash(index) {
+      if (this.invoice_items[index].bank == 'Cash Account') {
+        this.invoice_items[index].method = 'Cash';
+        this.cashSelected = true;
+      } else {
+        this.cashSelected = false;
+      }
     },
     sidebarToggle: function sidebarToggle() {
       this.sidebarflag = !this.sidebarflag;
@@ -2409,7 +2413,7 @@ var render = function() {
                               1
                             ),
                             _vm._v(" "),
-                            _c("td", [
+                            _c("td", { staticStyle: { width: "130px" } }, [
                               _c("input", {
                                 directives: [
                                   {
@@ -2454,26 +2458,31 @@ var render = function() {
                                   ],
                                   staticClass: "form-control form-control-user",
                                   on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        invoice_item,
-                                        "bank",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
+                                    change: [
+                                      function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          invoice_item,
+                                          "bank",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      },
+                                      function($event) {
+                                        return _vm.dropdownCash(k)
+                                      }
+                                    ]
                                   }
                                 },
                                 [
@@ -2535,19 +2544,32 @@ var render = function() {
                                   }
                                 },
                                 [
+                                  !_vm.cashSelected
+                                    ? _c(
+                                        "option",
+                                        { attrs: { value: "Bank Transfer" } },
+                                        [_vm._v("Bank Transfer")]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
                                   _c(
                                     "option",
-                                    { attrs: { value: "Bank Transfer" } },
-                                    [_vm._v("Bank Transfer")]
+                                    {
+                                      attrs: {
+                                        value: "Cash",
+                                        disabled: !_vm.cashSelected
+                                      }
+                                    },
+                                    [_vm._v("Cash")]
                                   ),
                                   _vm._v(" "),
-                                  _c("option", { attrs: { value: "Cash" } }, [
-                                    _vm._v("Cash")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "Other" } }, [
-                                    _vm._v("Other")
-                                  ])
+                                  !_vm.cashSelected
+                                    ? _c(
+                                        "option",
+                                        { attrs: { value: "Other" } },
+                                        [_vm._v("Other")]
+                                      )
+                                    : _vm._e()
                                 ]
                               )
                             ]),

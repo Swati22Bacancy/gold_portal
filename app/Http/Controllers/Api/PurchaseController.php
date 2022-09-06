@@ -75,6 +75,16 @@ class PurchaseController extends Controller
         foreach($purchases as $key => $purchase)
         {
             $purchaseitems = PurchaseItems::leftjoin('producttypes', 'producttypes.id', '=', 'purchase_items.producttype_id')->select(DB::raw('group_concat(producttypes.name) as typename'))->where('purchase_id',$purchase->id)->groupby('purchase_id')->first();
+
+            $purchasemethods = PurchasePayments::where('purchase_id',$purchase->id)->groupby('method')->get('method');
+            $methods='';
+            foreach($purchasemethods as $method)
+            {
+                $methods .=$method->method.',';
+            }
+            
+            $purchases[$key]->methoddata = (!empty($purchasemethods))?rtrim($methods, ','):'';
+
             $purchases[$key]->typename = $purchaseitems->typename;
         }
         return response()->json($purchases);
@@ -223,6 +233,15 @@ class PurchaseController extends Controller
         foreach($purchases as $key => $purchase)
         {
             $purchaseitems = PurchaseItems::leftjoin('producttypes', 'producttypes.id', '=', 'purchase_items.producttype_id')->select(DB::raw('group_concat(producttypes.name) as typename'))->where('purchase_id',$purchase->id)->groupby('purchase_id')->first();
+
+            $purchasemethods = PurchasePayments::where('purchase_id',$purchase->id)->groupby('method')->get('method');
+            $methods='';
+            foreach($purchasemethods as $method)
+            {
+                $methods .=$method->method.',';
+            }
+            
+            $purchases[$key]->methoddata = (!empty($purchasemethods))?rtrim($methods, ','):'';
             $purchases[$key]->typename = $purchaseitems->typename;
         }
         return response()->json($purchases);
