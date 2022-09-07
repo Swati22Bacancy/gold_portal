@@ -13,6 +13,7 @@ use App\Models\InvoiceKyc;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Purchases;
 use DB;
 
 class SalesController extends Controller
@@ -115,7 +116,7 @@ class SalesController extends Controller
         $salepayments = SalesPayments::where('sales_id',$id)->orderBy('id', 'DESC')->get();
 
         $refund = SalesPayments::select(DB::raw("SUM(totalamount) as refundamount"))->where('action', 'Refund')->where('sales_id',$id)->first();
-        $paid = SalesPayments::select(DB::raw("SUM(totalamount) as paidamount"))->where('action', 'Receive')->where('sales_id',$id)->first();
+        $paid = SalesPayments::select(DB::raw("SUM(totalamount) as paidamount"))->whereIn('action', array('Receive', 'Exchange'))->where('sales_id',$id)->first();
 
         $sales->salesitem = $saleitems;
         $sales->salepayments = $salepayments;
@@ -176,11 +177,11 @@ class SalesController extends Controller
         $sales_id = $salepayment->sales_id;
             if($salepayment){
                 $salepayment->delete();
-                $historyaction= ($action=='Receive')?'Payment':'Refund';
+                $historyaction= ($action=='Receive')?'Payment':(($action=='Refund')? 'Refund': 'Exchange');
 
                 $refund = SalesPayments::select(DB::raw("SUM(totalamount) as refundamount"))->where('action', 'Refund')->where('sales_id',$sales_id)->first();
         
-                $paid = SalesPayments::select(DB::raw("SUM(totalamount) as paidamount"))->where('action', 'Receive')->where('sales_id',$sales_id)->first();
+                $paid = SalesPayments::select(DB::raw("SUM(totalamount) as paidamount"))->whereIn('action', array('Receive', 'Exchange'))->where('sales_id',$sales_id)->first();
 
                 $sales = Sales::where('id',$sales_id)->first();
 
@@ -424,5 +425,41 @@ class SalesController extends Controller
     public function downloadkyc(Request $request)
     {
         return response()->download(storage_path('app/Customeruploads/'.$request->image), $request->image)->setStatusCode(200);
+    }
+
+    public function applycontra(Request $request)
+    {
+        $purchase = Purchases::where('id',$request->input('purchase_id'))->first();
+        try {
+            $salespayments = SalesPayments::create([
+                'sales_id' => $request->input('sales_id'),
+                'payment_date' => date("Y-m-d"),
+                'totalamount' => $purchase->totalamount,
+                'method' => 'Exchanged with '.$purchase->invoiceno,
+                'bank' => '',
+                'comment' => $request->input('comment'),
+                'action' => $request->input('action'),
+                'purchase_id' => $request->input('purchase_id')
+            ]);
+            
+            $historyaction= 'Exchange';
+            $saleshistory = SalesHistory::create([
+                'sales_id' => $request->input('sales_id'),
+                'amount' => $purchase->totalamount,
+                'log_date' => date("Y-m-d"),
+                'category' =>'exchange',
+                'user_id' => Auth::user()->id,
+                'changes' => $historyaction.' Created',
+                
+                'comment' => 'Exchange of £'.$purchase->totalamount.' '.'has been made by '.Auth::user()->first_name.' '.Auth::user()->last_name.' against Purchase Order '.$purchase->invoiceno.'.'
+                
+            ]);
+
+            return response()->json($salespayments);
+        } catch (\Exception $e) {
+            return response([
+                'message' => 'Internal error, please try again later.' //$e->getMessage()
+            ], 400);
+        }
     }
 }

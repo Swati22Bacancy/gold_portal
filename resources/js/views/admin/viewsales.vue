@@ -262,28 +262,28 @@
                             <div class="modal fade" id="applycontra" tabindex="-1" role="dialog" aria-labelledby="applycontra" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h6 class="modal-title" id="applycontra">Apply Contra</h6>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true" style="color: #fff">&times;</span>
-                                        </button>
-                                    </div>
+                                        <div class="modal-header">
+                                            <h6 class="modal-title" id="applycontra">Apply Contra</h6>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true" style="color: #fff">&times;</span>
+                                            </button>
+                                        </div>
 
-                                    <div class="modal-body">
-                                        <div class="row mb-4">
-                                        
-                                        
+                                        <div class="modal-body">
+                                            <div class="mb-4">
+                                                <p>Select Purchase Order</p>
+                                                
+                                                <model-select class="modal-selection" v-model="purchase_id" :options="purchases" placeholder="Select Purchase Order"></model-select>    
+                                                
+                                            </div>
                                             
                                             
                                         </div>
-                                        
-                                        
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" @click="add_customer()" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Save</button>
-                                        <button type="button" data-dismiss="modal"
-                                        aria-label="Close" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button>
-                                    </div>
+                                        <div class="modal-footer">
+                                            <button type="button" @click="apply_contra()" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Save</button>
+                                            <button type="button" data-dismiss="modal"
+                                            aria-label="Close" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -319,10 +319,11 @@
                           <td></td>
                           <td>{{ salepayment.method }}</td>
                           <td></td>
-                          <td  v-bind:class = "(salepayment.action=='Receive')?'class_green':'class_red'">
+                          <td  v-bind:class = "(salepayment.action=='Receive' || salepayment.action=='Exchange') ?'class_green':'class_red'">
                               <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;" ></i>
                               {{ salepayment.totalamount }} <span v-if="salepayment.action=='Receive'">Received</span>
-                              <span v-if="salepayment.action!='Receive'">Refunded</span>
+                              <span v-if="salepayment.action=='Refund'">Refunded</span>
+                              <span v-if="salepayment.action=='Exchange'">Exchanged</span>
                           </td>
                           <td></td>
                           <td>
@@ -791,13 +792,15 @@
 
 <script>
 import moment from 'moment';
+import { ModelSelect } from 'vue-search-select'
 import Datepicker from "vuejs-datepicker";
 import {objectToFormData} from '../../object-to-formdata';
 export default {
   name: "ViewSales",
   components: {
       Datepicker,
-      moment
+      moment,
+      ModelSelect
   },
   data() {
       return {
@@ -860,6 +863,8 @@ export default {
           },
           kycdocs:[],
           cashSelected: false,
+          purchases:[],
+          purchase_id:""
       };
   },
   methods: {
@@ -1279,7 +1284,23 @@ export default {
             .catch(e => {
             console.log(e);
         });
-        },
+      },
+      async apply_contra() {
+          var exchangedata = { sales_id: this.$route.params.id, purchase_id: this.purchase_id, due_payment: this.due_payment, action: 'Exchange' };
+          const response = await axios.post("apply_contra", exchangedata);
+          if (response.data.id) {
+              this.$router.go();
+          } else {
+              let toast = Vue.toasted.show(
+                  "Something went wrong, Please try again",
+                  {
+                      theme: "toasted-error",
+                      position: "top-center",
+                      duration: 5000
+                  }
+              );
+          }
+      },
   },
   mounted() {
       axios
@@ -1326,6 +1347,20 @@ export default {
             this.sales = response.data;
         })
         .catch(function(error) {
+        });
+
+        axios.get('/purchase_list/')
+        .then((response) => {
+            this.purchases = response.data;
+            this.purchases = this.purchases.map(purchase => {
+              return {
+                value: purchase.id,
+                text: `${purchase.invoiceno || ''}  - ${purchase.totalamount || ""}  `,
+              } 
+            })
+        })
+        .catch(function(error) {
+            //app.$notify(error.response.data.error, "error");
         });
 
      axios.get('/fetch_kyc/' + this.$route.params.id)
