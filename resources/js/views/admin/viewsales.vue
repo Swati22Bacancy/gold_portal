@@ -251,25 +251,42 @@
                           </button>
                       </div>
                       <div>
-                          <button
-                              type="button"
-                              class="btn admin-btn mobile-mb btn-nwidth"
-                              style="background-color: #7ADAAA !important;"
-                              @click="addLine('Receive')"
-                          >
-                              <i
-                                  class="fas fa-plus"
-                                  style="margin-right: 5px;"
-                              ></i
-                              >Add Payment
+                          <button type="button" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;" @click="addLine('Receive')">
+                              <i class="fas fa-plus" style="margin-right: 5px;"></i>
+                              Add Payment
                           </button>
-                          <button
-                              type="button"
-                              class="btn admin-btn mobile-mb btn-nwidth"
-                              style="background-color: #EDF2F6 !important;"
-                          >
-                              Apply Credit
+                          <button type="button" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #EDF2F6 !important;" data-toggle="modal" data-target="#applycontra">
+                            Apply Contra
                           </button>
+                          <!-- Modal -->
+                            <div class="modal fade" id="applycontra" tabindex="-1" role="dialog" aria-labelledby="applycontra" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h6 class="modal-title" id="applycontra">Apply Contra</h6>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" style="color: #fff">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <div class="row mb-4">
+                                        
+                                        
+                                            
+                                            
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" @click="add_customer()" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Save</button>
+                                        <button type="button" data-dismiss="modal"
+                                        aria-label="Close" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
                           <button type="button" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #EDF2F6 !important;" @click="addLine('Refund')" >Refund</button>
                           <!-- <div class="dropdown show" style="display:inline;">
                               <a class="btn admin-btn mobile-mb btn-nwidth dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -354,9 +371,7 @@
                           </td>
                           <td>
                               <select
-                                  class="form-control form-control-user"
-                                  v-model="invoice_item.bank" @change="dropdownCash(k)"
-                              >
+                                  class="form-control form-control-user" v-model="invoice_item.bank" @change="dropdownCash(k)">
                                   <option value="ICIC Bank Accounts"
                                       >ICIC Bank Accounts</option
                                   >
@@ -364,15 +379,15 @@
                                       >Baroda Bank</option
                                   >
                                   <option value="Cash Account"
-                                      >Cash Account</option
+                                      >Cash in hand account</option
                                   >
                               </select>
                           </td>
                           <td>
                               <select class="form-control form-control-user" v-model="invoice_item.method">
                                 <option value="Bank Transfer" v-if="!cashSelected">Bank Transfer</option>
-                                <option value="Cash" :disabled="!cashSelected">Cash</option>
-                                <option value="Other" v-if="!cashSelected">Other</option>
+                                <option value="Cash" >Cash</option>
+                                <option value="Cheque" v-if="!cashSelected">Cheque</option>
                               </select>
                           </td>
                           <td>
@@ -563,9 +578,9 @@
               <table class="table salesdata" id="saleshistory-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
                 <thead>
                     <tr>
-                        <th>Changes</th>
-                        <th>Date</th>
-                        <th>User</th>
+                        <th style="width: 140px;">Changes</th>
+                        <th style="width: 140px;">Date</th>
+                        <th style="width: 140px;">User</th>
                         <th>Details</th>
                     </tr>
                 </thead>

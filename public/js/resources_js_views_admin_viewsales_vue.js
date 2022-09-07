@@ -805,6 +805,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2216,7 +2231,9 @@ var render = function() {
                     staticClass: "fas fa-plus",
                     staticStyle: { "margin-right": "5px" }
                   }),
-                  _vm._v("Add Payment\n                        ")
+                  _vm._v(
+                    "\n                            Add Payment\n                        "
+                  )
                 ]
               ),
               _vm._v(" "),
@@ -2225,11 +2242,77 @@ var render = function() {
                 {
                   staticClass: "btn admin-btn mobile-mb btn-nwidth",
                   staticStyle: { "background-color": "#EDF2F6 !important" },
-                  attrs: { type: "button" }
+                  attrs: {
+                    type: "button",
+                    "data-toggle": "modal",
+                    "data-target": "#applycontra"
+                  }
                 },
                 [
                   _vm._v(
-                    "\n                            Apply Credit\n                        "
+                    "\n                          Apply Contra\n                        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "modal fade",
+                  attrs: {
+                    id: "applycontra",
+                    tabindex: "-1",
+                    role: "dialog",
+                    "aria-labelledby": "applycontra",
+                    "aria-hidden": "true"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal-dialog",
+                      attrs: { role: "document" }
+                    },
+                    [
+                      _c("div", { staticClass: "modal-content" }, [
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _vm._m(5),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-footer" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn admin-btn mobile-mb btn-nwidth",
+                              staticStyle: {
+                                "background-color": "#7adaaa !important"
+                              },
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.add_customer()
+                                }
+                              }
+                            },
+                            [_vm._v("Save")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn admin-btn mobile-mb btn-nwidth",
+                              attrs: {
+                                type: "button",
+                                "data-dismiss": "modal",
+                                "aria-label": "Close"
+                              }
+                            },
+                            [_vm._v("Cancel")]
+                          )
+                        ])
+                      ])
+                    ]
                   )
                 ]
               ),
@@ -2501,7 +2584,7 @@ var render = function() {
                                   _c(
                                     "option",
                                     { attrs: { value: "Cash Account" } },
-                                    [_vm._v("Cash Account")]
+                                    [_vm._v("Cash in hand account")]
                                   )
                                 ]
                               )
@@ -2552,22 +2635,15 @@ var render = function() {
                                       )
                                     : _vm._e(),
                                   _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    {
-                                      attrs: {
-                                        value: "Cash",
-                                        disabled: !_vm.cashSelected
-                                      }
-                                    },
-                                    [_vm._v("Cash")]
-                                  ),
+                                  _c("option", { attrs: { value: "Cash" } }, [
+                                    _vm._v("Cash")
+                                  ]),
                                   _vm._v(" "),
                                   !_vm.cashSelected
                                     ? _c(
                                         "option",
-                                        { attrs: { value: "Other" } },
-                                        [_vm._v("Other")]
+                                        { attrs: { value: "Cheque" } },
+                                        [_vm._v("Cheque")]
                                       )
                                     : _vm._e()
                                 ]
@@ -3232,7 +3308,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._m(4),
+                  _vm._m(6),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -3646,9 +3722,9 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(5),
+                _vm._m(7),
                 _vm._v(" "),
-                _vm._m(6),
+                _vm._m(8),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(
@@ -3710,9 +3786,9 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(7),
+                _vm._m(9),
                 _vm._v(" "),
-                _vm._m(8),
+                _vm._m(10),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(
@@ -3890,13 +3966,53 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h6", { staticClass: "modal-title", attrs: { id: "applycontra" } }, [
+        _vm._v("Apply Contra")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [
+          _c(
+            "span",
+            {
+              staticStyle: { color: "#fff" },
+              attrs: { "aria-hidden": "true" }
+            },
+            [_vm._v("×")]
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("div", { staticClass: "row mb-4" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Changes")]),
+        _c("th", { staticStyle: { width: "140px" } }, [_vm._v("Changes")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Date")]),
+        _c("th", { staticStyle: { width: "140px" } }, [_vm._v("Date")]),
         _vm._v(" "),
-        _c("th", [_vm._v("User")]),
+        _c("th", { staticStyle: { width: "140px" } }, [_vm._v("User")]),
         _vm._v(" "),
         _c("th", [_vm._v("Details")])
       ])

@@ -179,8 +179,8 @@
                     <td>
                       <select class="form-control form-control-user"  v-model="invoice_item.method">
                           <option value="Bank Transfer" v-if="!cashSelected">Bank Transfer</option>
-                          <option value="Cash" :disabled="!cashSelected">Cash</option>
-                          <option value="Other" v-if="!cashSelected">Other</option>
+                          <option value="Cash">Cash</option>
+                          <option value="Cheque" v-if="!cashSelected">Cheque</option>
                       
                       </select>
                     </td>

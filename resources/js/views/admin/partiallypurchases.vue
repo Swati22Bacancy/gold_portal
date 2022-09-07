@@ -9,6 +9,7 @@
                           <th><input type="checkbox" class="custom-check-input"></th>
                           <th>Date</th>
                           <th>No</th>
+                          <th>Reference</th>
                           <th>Supplier</th>
                           <th>Item Type</th>
                           <th>Payment Method</th>
@@ -23,6 +24,7 @@
                           <td><input type="checkbox" class="custom-check-input"></td>
                           <td>{{dateFormateChanger(purchase.issue_date)}}</td>
                           <td>{{purchase.invoiceno}}</td>
+                          <td>{{purchase.reference}}</td>
                           <td style="color:#3376C2">{{purchase.firstname}} {{purchase.lastname}}</td>
                           <td>{{purchase.typename}}</td>
                           <td>{{purchase.methoddata}}</td>
@@ -88,7 +90,7 @@ export default {
             // pageLength: 5,
             // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
             "columnDefs": [
-              { "targets": [0,9], "searchable": false, "orderable": false }
+              { "targets": [0,10], "searchable": false, "orderable": false }
             ]
           });
           $(".searchbox").keyup(function() {

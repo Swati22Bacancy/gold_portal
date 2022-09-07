@@ -124,6 +124,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -168,7 +170,7 @@ __webpack_require__.r(__webpack_exports__);
           // pageLength: 5,
           // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
           "columnDefs": [{
-            "targets": [0, 9],
+            "targets": [0, 10],
             "searchable": false,
             "orderable": false
           }]
@@ -272,6 +274,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -316,7 +320,7 @@ __webpack_require__.r(__webpack_exports__);
           // pageLength: 5,
           // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
           "columnDefs": [{
-            "targets": [0, 9],
+            "targets": [0, 10],
             "searchable": false,
             "orderable": false
           }]
@@ -421,6 +425,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -465,7 +471,7 @@ __webpack_require__.r(__webpack_exports__);
           // pageLength: 5,
           // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
           "columnDefs": [{
-            "targets": [0, 9],
+            "targets": [0, 10],
             "searchable": false,
             "orderable": false
           }]
@@ -570,6 +576,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -614,7 +622,7 @@ __webpack_require__.r(__webpack_exports__);
           // pageLength: 5,
           // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
           "columnDefs": [{
-            "targets": [0, 9],
+            "targets": [0, 10],
             "searchable": false,
             "orderable": false
           }]
@@ -17408,6 +17416,8 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(purchase.invoiceno))]),
                       _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(purchase.reference))]),
+                      _vm._v(" "),
                       _c("td", { staticStyle: { color: "#3376C2" } }, [
                         _vm._v(
                           _vm._s(purchase.firstname) +
@@ -17483,6 +17493,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Date")]),
         _vm._v(" "),
         _c("th", [_vm._v("No")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Reference")]),
         _vm._v(" "),
         _c("th", [_vm._v("Supplier")]),
         _vm._v(" "),
@@ -17597,6 +17609,8 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(purchase.invoiceno))]),
                       _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(purchase.reference))]),
+                      _vm._v(" "),
                       _c("td", { staticStyle: { color: "#3376C2" } }, [
                         _vm._v(
                           _vm._s(purchase.firstname) +
@@ -17672,6 +17686,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Date")]),
         _vm._v(" "),
         _c("th", [_vm._v("No")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Reference")]),
         _vm._v(" "),
         _c("th", [_vm._v("Supplier")]),
         _vm._v(" "),
@@ -17786,6 +17802,8 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(purchase.invoiceno))]),
                       _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(purchase.reference))]),
+                      _vm._v(" "),
                       _c("td", { staticStyle: { color: "#3376C2" } }, [
                         _vm._v(
                           _vm._s(purchase.firstname) +
@@ -17861,6 +17879,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Date")]),
         _vm._v(" "),
         _c("th", [_vm._v("No")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Reference")]),
         _vm._v(" "),
         _c("th", [_vm._v("Supplier")]),
         _vm._v(" "),
@@ -17975,6 +17995,8 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(purchase.invoiceno))]),
                       _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(purchase.reference))]),
+                      _vm._v(" "),
                       _c("td", { staticStyle: { color: "#3376C2" } }, [
                         _vm._v(
                           _vm._s(purchase.firstname) +
@@ -18050,6 +18072,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Date")]),
         _vm._v(" "),
         _c("th", [_vm._v("No")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Reference")]),
         _vm._v(" "),
         _c("th", [_vm._v("Supplier")]),
         _vm._v(" "),

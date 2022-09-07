@@ -17392,22 +17392,15 @@ var render = function() {
                                       )
                                     : _vm._e(),
                                   _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    {
-                                      attrs: {
-                                        value: "Cash",
-                                        disabled: !_vm.cashSelected
-                                      }
-                                    },
-                                    [_vm._v("Cash")]
-                                  ),
+                                  _c("option", { attrs: { value: "Cash" } }, [
+                                    _vm._v("Cash")
+                                  ]),
                                   _vm._v(" "),
                                   !_vm.cashSelected
                                     ? _c(
                                         "option",
-                                        { attrs: { value: "Other" } },
-                                        [_vm._v("Other")]
+                                        { attrs: { value: "Cheque" } },
+                                        [_vm._v("Cheque")]
                                       )
                                     : _vm._e()
                                 ]
