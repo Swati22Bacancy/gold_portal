@@ -211,12 +211,20 @@
         
         <div class="table-div mb-2" v-if="selectedtab=='history'" style="background-color:white; box-shadow: 0px 5px 5px 0px rgb(0 0 0 / 10%);">
           <table class="table purchasedata" id="purchasehistory-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
+               <thead>
+                    <tr>
+                        <th style="width: 140px;">Changes</th>
+                        <th style="width: 140px;">Date</th>
+                        <th style="width: 140px;">User</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
               <tbody>
                 <tr v-for="purchasehistory in formdata.purchasehistory" :key="purchasehistory.id">
-                    <td>{{purchasehistory.comment}}</td>
-                    <td><span v-if="purchasehistory.note">Note: </span>{{purchasehistory.note}}</td>
-                    <td><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;" v-if="purchasehistory.amount"></i> {{purchasehistory.amount}}</td>
-                    <td>{{purchasehistory.log_date}}</td>
+                    <td>{{purchasehistory.changes}}</td>
+                    <td>{{ purchasehistory.log_date }}</td>
+                    <td>{{ purchasehistory.firstname }} {{ purchasehistory.lastname }}</td>
+                    <td>{{ purchasehistory.comment }}</td>
                 </tr>
               </tbody>
           </table>
@@ -601,5 +609,14 @@ export default {
 .viewpurchase-div span {
     color: #000;
     font-size: 13px;
+}
+#purchasehistory-datatable thead
+{
+    background-color: #3376c2;
+    color: #fff;
+}
+#purchasehistory-datatable thead th
+{
+    font-weight: 100;
 }
 </style>

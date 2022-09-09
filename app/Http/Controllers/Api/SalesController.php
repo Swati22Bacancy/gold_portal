@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Purchases;
 use DB;
+use Illuminate\Support\Facades\Storage;
 
 class SalesController extends Controller
 {
@@ -94,7 +95,7 @@ class SalesController extends Controller
             $saleitems = SalesItems::leftjoin('producttypes', 'producttypes.id', '=', 'sales_items.producttype_id')->select(DB::raw('group_concat(producttypes.name) as typename'))->where('sales_id',$sale->id)->groupby('sales_id')->first();
             $sales[$key]->typename = $saleitems->typename;
 
-            $salemethods = SalesPayments::where('sales_id',$sale->id)->groupby('method')->get('method');
+            $salemethods = SalesPayments::where('sales_id',$sale->id)->where('action','!=','Exchange')->groupby('method')->get('method');
             $methods='';
             foreach($salemethods as $method)
             {
@@ -400,6 +401,12 @@ class SalesController extends Controller
         $uploadeddocs = array();
         $uploadeddocs['regdocs'] = InvoiceKyc::where('sales_id',$id)->where('category','=','registration')->get();
         $uploadeddocs['vatdocs'] = InvoiceKyc::where('sales_id',$id)->where('category','=','vat')->get();
+        foreach($uploadeddocs['vatdocs'] as $key => $vatdoc)
+        {
+            $uploadeddocs['vatdocs'][$key]['imageurl'] = Storage::url(
+                'app/Customeruploads/' . $vatdoc['identification_file']
+            );
+        }
         $uploadeddocs['iddocs'] = InvoiceKyc::where('sales_id',$id)->where('category','=','iddoc')->get();
         $uploadeddocs['creditdocs'] = InvoiceKyc::where('sales_id',$id)->where('category','=','credit')->get();
         return response()->json($uploadeddocs);

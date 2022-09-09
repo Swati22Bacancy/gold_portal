@@ -273,7 +273,7 @@
                                             <div class="mb-4">
                                                 <p>Select Purchase Order</p>
                                                 
-                                                <model-select class="modal-selection" v-model="purchase_id" :options="purchases" placeholder="Select Purchase Order"></model-select>    
+                                                <model-select class="modal-selection" @input="fetchPo()" v-model="purchase_id" :options="purchases" placeholder="Select Purchase Order"></model-select>    
                                                 
                                             </div>
                                             
@@ -510,7 +510,7 @@
                                 </div>
                                 <div class="upload_vat">
                                     <div v-for="vatdoc in kycdocs.vatdocs" :key="vatdoc" class="previewContainer">
-                                          <img :src="'../storage/app/Customeruploads/' + vatdoc.identification_file" class="imagePreview"/>
+                                          <img :src="vatdoc.imageurl" class=""/>
                                           <div class="closeIcon" data-toggle="modal" data-target="#deleteConfirmationFile" @click="selectfile(vatdoc.id)">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                           </div>
@@ -864,10 +864,18 @@ export default {
           kycdocs:[],
           cashSelected: false,
           purchases:[],
-          purchase_id:""
+          purchase_id:"",
+          purchase_amount:""
       };
   },
   methods: {
+      fetchPo()
+      {
+        axios.get('/purchase_details/'+this.purchase_id)
+        .then((response) => {
+            this.purchase_amount = response.data.totalamount;
+        });
+      },
       dateFormateChanger(d){
          return moment(d,'YYYY-MM-DD').format('DD MMM YYYY')
       },
@@ -1289,7 +1297,29 @@ export default {
           var exchangedata = { sales_id: this.$route.params.id, purchase_id: this.purchase_id, due_payment: this.due_payment, action: 'Exchange' };
           const response = await axios.post("apply_contra", exchangedata);
           if (response.data.id) {
-              this.$router.go();
+                this.due_payment = this.due_payment - this.purchase_amount;
+                
+                this.due_payment = this.due_payment.toFixed(2);
+                if (this.due_payment < 0) {
+                    this.over_paid = this.due_payment;
+                }
+                this.due_payment = this.due_payment < 0 ? 0 : this.due_payment;
+
+                if (this.over_paid < 0) {
+                    this.invoice_status = "Over Paid";
+                    this.payment_check = "";
+                } else if (this.due_payment == 0) {
+                    this.invoice_status = "Paid";
+                    this.payment_check = "";
+                } else {
+                    this.invoice_status = "Partially Paid";
+                    this.payment_check = "Yes";
+                }
+                this.statusdata={};
+                this.statusdata.sales_id = this.$route.params.id;
+                this.statusdata.status = this.invoice_status;
+                const response1 = axios.post("update_invoicestatus", this.statusdata);
+                this.$router.go();
           } else {
               let toast = Vue.toasted.show(
                   "Something went wrong, Please try again",

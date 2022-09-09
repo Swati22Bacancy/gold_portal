@@ -18,6 +18,8 @@ class PurchaseHistory extends Authenticatable
         'amount',
         'note',
         'category',
-        'log_date'
+        'log_date',
+        'changes',
+        'user_id'
     ];
 }

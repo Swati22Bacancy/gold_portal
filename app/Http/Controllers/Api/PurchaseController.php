@@ -10,6 +10,7 @@ use App\Models\PurchaseNotes;
 use App\Models\PurchaseHistory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 class PurchaseController extends Controller
@@ -55,9 +56,10 @@ class PurchaseController extends Controller
                 'amount' => $request->input('formfields.totalamount'),
                 'log_date' => date("Y-m-d"),
                 'category' =>'invoice',
-                'comment' => $purchase->invoiceno.' '.'created'
-                
-            ]);
+                'user_id' => Auth::user()->id,
+                'changes' => $purchase->invoiceno.' '.'created',
+                'comment' => 'Invoice '.$purchase->invoiceno.' of £'.$request->input("formfields.totalamount"). 'has been created by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
+           ]);
 
             return response()->json($purchase);
         } 
@@ -133,8 +135,9 @@ class PurchaseController extends Controller
                 'amount' => $request->input('totalamount'),
                 'log_date' => date("Y-m-d"),
                 'category' =>'payment',
-                'comment' => 'Payment Added'
-                
+                'comment' => 'Payment of £'.$request->input('totalamount').' '.'has been made by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.',
+                'user_id' => Auth::user()->id,
+                'changes' => 'Payment Added',
             ]);
 
             return response()->json($purchasepayments);
@@ -157,7 +160,9 @@ class PurchaseController extends Controller
                     'amount' => $amount,
                     'log_date' => date("Y-m-d"),
                     'category' =>'payment',
-                    'comment' => 'Payment Deleted'
+                    'user_id' => Auth::user()->id,
+                    'changes' => 'Payment Deleted',
+                    'comment' => 'Payment of £'.$amount.' '.'has been deleted by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
                 ]);
                 
                 return response()->json(
@@ -193,7 +198,9 @@ class PurchaseController extends Controller
                 'note' => $request->input('note'),
                 'log_date' => date("Y-m-d"),
                 'category' =>'note',
-                'comment' => 'Note Created'
+                'user_id' => Auth::user()->id,
+                'changes' => 'Note Created',
+                'comment' => 'Note : '.$request->input('note').' '.'has been created by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
             ]);
 
             return response()->json($purchasenotes);
@@ -206,7 +213,7 @@ class PurchaseController extends Controller
 
     public function purchasehistory($id)
     {
-        $purchasehistory = PurchaseHistory::where('purchase_id',$id)->orderBy('id', 'DESC')->get();
+        $purchasehistory = PurchaseHistory::leftjoin('users', 'users.id', '=', 'purchase_history.user_id')->select('purchase_history.*','users.first_name as firstname','users.last_name as lastname')->where('purchase_history.purchase_id',$id)->orderBy('purchase_history.id', 'DESC')->get();
 
         return response()->json($purchasehistory);
     }
