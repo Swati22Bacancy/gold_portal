@@ -253,4 +253,26 @@ class PurchaseController extends Controller
         }
         return response()->json($purchases);
     }
+
+    public function purchaselistCustomer($id)
+    {
+        $purchases = Purchases::leftjoin('customers', 'customers.id', '=', 'purchase_invoice.customer_id')->select('purchase_invoice.*','customers.first_name as firstname','customers.last_name as lastname')->where('purchase_invoice.customer_id',$id)->orderBy('purchase_invoice.id', 'DESC')->get();
+
+        foreach($purchases as $key => $purchase)
+        {
+            $purchaseitems = PurchaseItems::leftjoin('producttypes', 'producttypes.id', '=', 'purchase_items.producttype_id')->select(DB::raw('group_concat(producttypes.name) as typename'))->where('purchase_id',$purchase->id)->groupby('purchase_id')->first();
+
+            $purchasemethods = PurchasePayments::where('purchase_id',$purchase->id)->groupby('method')->get('method');
+            $methods='';
+            foreach($purchasemethods as $method)
+            {
+                $methods .=$method->method.',';
+            }
+            
+            $purchases[$key]->methoddata = (!empty($purchasemethods))?rtrim($methods, ','):'';
+
+            $purchases[$key]->typename = $purchaseitems->typename;
+        }
+        return response()->json($purchases);
+    }
 }

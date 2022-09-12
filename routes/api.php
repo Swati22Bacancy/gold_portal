@@ -133,6 +133,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('download-kyc',[Api\SalesController::class, 'downloadkyc']);
     Route::post('apply_contra',[Api\SalesController::class, 'applycontra']);
     Route::get('download_pdf',[Api\SalesController::class, 'create']);
+    Route::get('sales_list_byCustomer/{id}', [Api\SalesController::class, 'saleslistCustomer']);
     
 
     // Purchase Invoice Routes
@@ -146,4 +147,5 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('purchase_history/{id}', [Api\PurchaseController::class, 'purchasehistory']);
     Route::post('update_orderstatus',[Api\PurchaseController::class, 'updateorderstatus']);
     Route::get('purchase_list_by_status/{status}', [Api\PurchaseController::class, 'purchasebystatus']);
+    Route::get('purchase_list_byCustomer/{id}', [Api\PurchaseController::class, 'purchaselistCustomer']);
 });

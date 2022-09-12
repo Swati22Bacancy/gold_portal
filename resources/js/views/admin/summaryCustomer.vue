@@ -15,7 +15,7 @@
       <div class="mt-2 mb-4">
         <div class="">
             <div class="table-responsive">
-                <table class="table" id="paidsales-datatable" width="100%" cellspacing="0">
+                <table class="table" id="sales-datatable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th><input type="checkbox" class="custom-check-input"></th>
@@ -31,43 +31,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style="cursor:pointer;">
-                            <td><input type="checkbox" class="custom-check-input"></td>
-                            <td>16/5/2021</td>
-                            <td>INV- 2001</td>
-                            <td>Robert Malasakalwi</td>
-                            <td>Jewellery(2),<br>Delivery(1)</td>
-                            <td>Credit Card</td>
-                            <td>8000</td>
-                            <td>640</td>
-                            <td>8640</td>
-                            <td><button type="button" class="btn table-btn" style="margin-left: auto;width: 68px;">UnPaid</button></td>
-                        </tr>
-                        <tr style="cursor:pointer;">
-                            <td><input type="checkbox" class="custom-check-input"></td>
-                            <td>16/5/2021</td>
-                            <td>INV- 1999</td>
-                            <td>Robert Malasakalwi</td>
-                            <td>Jewellery(2),<br> Delivery(1)</td>
-                            <td>Credit Card</td>
-                            <td>8000</td>
-                            <td>640</td>
-                            <td>8640</td>
-                            <td><button type="button" class="btn table-btn" style="margin-left: auto;width: 68px;">UnPaid</button></td>
-                        </tr>
-                        <tr style="cursor:pointer;">
-                            <td><input type="checkbox" class="custom-check-input"></td>
-                            <td>16/5/2021</td>
-                            <td>INV- 1998</td>
-                            <td>Robert Malasakalwi</td>
-                            <td>FB / Bullion(2)</td>
-                            <td>Credit Card</td>
-                            <td>8000</td>
-                            <td>640</td>
-                            <td>8640</td>
-                            <td><button type="button" class="btn table-btn-green" style="margin-left: auto;width: 68px; background-color: green;">Paid</button></td>
-                        </tr>
-                    </tbody>
+                      <tr style="cursor:pointer;" v-for="sale in sales" :key="sale.id">
+                          <td><input type="checkbox" class="custom-check-input"></td>
+                          <td>{{dateFormateChanger(sale.issue_date)}}</td>
+                          <!-- <td>{{sale.issue_date}}</td> -->
+                          <td>{{sale.invoiceno}}</td>
+                          <td style="color:#3376C2">{{sale.firstname}} {{sale.lastname}}</td>
+                          <td>{{sale.typename}}</td>
+                          <td>{{sale.methoddata}}</td>
+                          <td>{{sale.subtotal}}</td>
+                          <td>{{sale.vattotal}}</td>
+                          <td>{{sale.totalamount}}</td>
+                          <td>
+                            <button type="button" class="btn table-btn" style="margin-left: auto;width: auto;background-color: #00AA5B !important;" v-if="sale.status=='Paid'">{{sale.status}}</button>
+                            <button type="button" class="btn table-btn" style="margin-left: auto;width: auto;background-color: #ffa500 !important;" v-if="sale.status=='Over Paid'">{{sale.status}}</button>
+                            <button type="button" class="btn table-btn" style="margin-left: auto;width: auto;" v-if="sale.status=='UnPaid' || sale.status=='Partially Paid'">{{sale.status}}</button>
+                          </td>
+                      </tr>
+                  </tbody>
                 </table>
             </div>
         </div>
@@ -87,59 +68,40 @@
     <div class="mt-2 mb-4">
         <div class="">
             <div class="table-responsive">
-                <table class="table" id="paidsales-datatable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox" class="custom-check-input"></th>
-                            <th>Date</th>
-                            <th>No</th>
-                            <th>Supplier Name</th>
-                            <th>Item Type</th>
-                            <th>Payment Method</th>
-                            <th>Sub Total ( <i class="fa fa-pound-sign" style="font-size: 9px;"></i> )</th>
-                            <th>Vat ( <i class="fa fa-pound-sign" style="font-size: 9px;"></i> )</th>
-                            <th>Total ( <i class="fa fa-pound-sign" style="font-size: 9px;"></i> )</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="cursor:pointer;">
-                            <td><input type="checkbox" class="custom-check-input"></td>
-                            <td>16/5/2021</td>
-                            <td>2001</td>
-                            <td>Robert Malasakalwi</td>
-                            <td>Jewellery(2),<br>Delivery(1)</td>
-                            <td>Bank Transfer</td>
-                            <td>8000</td>
-                            <td>640</td>
-                            <td>8640</td>
-                            <td><button type="button" class="btn table-btn-green" style="margin-left: auto;width: 68px;">Paid</button></td>
-                        </tr>
-                        <tr style="cursor:pointer;">
-                            <td><input type="checkbox" class="custom-check-input"></td>
-                            <td>16/5/2021</td>
-                            <td>1999</td>
-                            <td>ABC Jewellery</td>
-                            <td>Jewellery(2),<br> Delivery(1)</td>
-                            <td>Bank Transfer</td>
-                            <td>8000</td>
-                            <td>640</td>
-                            <td>8640</td>
-                            <td><button type="button" class="btn table-btn-green" style="margin-left: auto;width: 68px;">Paid</button></td>
-                        </tr>
-                        <tr style="cursor:pointer;">
-                            <td><input type="checkbox" class="custom-check-input"></td>
-                            <td>16/5/2021</td>
-                            <td>1998</td>
-                            <td>Robert Malasakalwi</td>
-                            <td>Jewellery(2),<br>Delivery(1)</td>
-                            <td>Bank Transfer</td>
-                            <td>8000</td>
-                            <td>640</td>
-                            <td>8640</td>
-                            <td><button type="button" class="btn table-btn-green" style="margin-left: auto;width: 68px; background-color: green;">Paid</button></td>
-                        </tr>
-                    </tbody>
+                <table class="table" id="sales-datatable" width="100%" cellspacing="0">
+                  <thead>
+                      <tr>
+                          <th><input type="checkbox" class="custom-check-input"></th>
+                          <th>Date</th>
+                          <th>No</th>
+                          <th>Reference</th>
+                          <th>Supplier</th>
+                          <th>Item Type</th>
+                          <th>Payment Method</th>
+                          <th>Sub Total ( <i class="fa fa-pound-sign" style="font-size: 9px;"></i> )</th>
+                          <th>Vat ( <i class="fa fa-pound-sign" style="font-size: 9px;"></i> )</th>
+                          <th>Total ( <i class="fa fa-pound-sign" style="font-size: 9px;"></i> )</th>
+                          <th>Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr v-on:click="gotopurchase(purchase.id)" style="cursor:pointer;" v-for="purchase in purchases" :key="purchase.id">
+                          <td><input type="checkbox" class="custom-check-input"></td>
+                          <td>{{dateFormateChanger(purchase.issue_date)}}</td>
+                          <td>{{purchase.invoiceno}}</td>
+                          <td>{{purchase.reference}}</td>
+                          <td style="color:#3376C2">{{purchase.firstname}} {{purchase.lastname}}</td>
+                          <td>{{purchase.typename}}</td>
+                          <td>{{purchase.methoddata}}</td>
+                          <td>{{purchase.subtotal}}</td>
+                          <td>{{purchase.vattotal}}</td>
+                          <td>{{purchase.totalamount}}</td>
+                          <td>
+                            <button type="button" class="btn table-btn" style="margin-left: auto;" v-if="purchase.status!='Paid'">{{purchase.status}}</button>
+                            <button type="button" class="btn table-btn" style="margin-left: auto;background-color: #00AA5B !important;" v-if="purchase.status=='Paid'">{{purchase.status}}</button>
+                          </td>
+                      </tr>
+                  </tbody>
                 </table>
             </div>
         </div>
@@ -147,7 +109,134 @@
     </div>
   </template>
 <script>
+import moment from 'moment';
+import "datatables.net-dt/js/dataTables.dataTables"
+import "datatables.net-dt/css/jquery.dataTables.min.css"
+export default {
+  name: "CustomerSummary",
+  components: {
+    moment,
+  },
+  props: ['sales','purchases'],
+  mounted(){
+    this.getSales();
+    this.getPurchases();
+    $.fn.textWidth = function(){
+      var html_org = $(this).html();
+      var html_calc = '<span>' + html_org + '</span>';
+      $(this).html(html_calc);
+      var width = $(this).find('span:first').width();
+      $(this).html(html_org);
+      return width;
+    };
+    
+    const unwatch = this.$watch('sales', (sales) => {
+      // wait sales prop to be filled
+      if (!Array.isArray(sales) || sales.length === 0) {
+          return;
+      }
 
+      // stop watching for sales change
+      unwatch();
+
+      // wait for vue to populate DOM
+      this.$nextTick(() => {
+
+          // initialize DataTable on rendered table
+          const table = $('#sales-datatable').DataTable({
+            //"bFilter": false,
+            "bLengthChange": false,
+            // pageLength: 5,
+            // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
+            "columnDefs": [
+              { "targets": [0,9], "searchable": false, "orderable": false }
+            ]
+          });
+          $(".searchbox").keyup(function() {
+            table.search(this.value).draw();
+          }); 
+          // register hook so when this component is
+          // unmounted/removed, DataTable is removed properly
+          this.$once('hook:beforeDestroy', function () {
+              table.destroy();
+          });
+          
+      }, {immediate: true});
+  });
+    $('#sales-datatable').on( 'draw.dt', function (e) {
+      $('#sales-datatable thead tr th').each(function(idx, ele) {
+        var xPos = parseInt((($(ele).textWidth()))+12);
+        $(ele).css('background-position-x',  xPos + 'px')
+      })
+    });
+
+    // Purchase data
+    
+    const unwatchpurchase = this.$watch('purchases', (purchases) => {
+      // wait purchases prop to be filled
+      if (!Array.isArray(purchases) || purchases.length === 0) {
+          return;
+      }
+
+      // stop watching for purchases change
+      unwatchpurchase();
+
+      // wait for vue to populate DOM
+      this.$nextTick(() => {
+
+          // initialize DataTable on rendered table
+          const tablepurchase = $('#purchase-datatable').DataTable({
+            //"bFilter": false,
+            "bLengthChange": false,
+            // pageLength: 5,
+            // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
+            "columnDefs": [
+              { "targets": [0,10], "searchable": false, "orderable": false }
+            ]
+          });
+          $(".searchbox").keyup(function() {
+            tablepurchase.search(this.value).draw();
+          }); 
+          // register hook so when this component is
+          // unmounted/removed, DataTable is removed properly
+          this.$once('hook:beforeDestroy', function () {
+            tablepurchase.destroy();
+          });
+          
+      }, {immediate: true});
+  });
+    $('#purchase-datatable').on( 'draw.dt', function (e) {
+      $('#purchase-datatable thead tr th').each(function(idx, ele) {
+        var xPos = parseInt((($(ele).textWidth()))+12);
+        $(ele).css('background-position-x',  xPos + 'px')
+      })
+    });
+    
+  },
+  methods:{
+    getSales() {
+        return axios.get("sales_list_byCustomer/"+this.$route.params.id).then(response => {
+            this.sales = response.data;
+        });
+    },
+    dateFormateChanger(d){
+      return moment(d,'YYYY-MM-DD').format('DD MMM YYYY')
+     },
+    gotosales(id)
+    {
+      this.$router.push("/viewsales/"+id);
+    },
+    gotopurchase(id)
+    {
+      this.$router.push("/viewpurchase/"+id);
+    },
+    getPurchases() {
+        return axios.get("purchase_list_byCustomer/"+this.$route.params.id).then(response => {
+            this.purchases = response.data;
+        });
+    },
+  }
+}
 </script>
 <style scoped>
     .head-style{
@@ -185,7 +274,7 @@
       opacity: 0.4;
       font-size: 11px;
     }
-    #paidsales-datatable thead
+    #sales-datatable thead
     {
       background: #3376C2;
       color: #fff;
@@ -195,7 +284,7 @@
       color: #3377c2;
       font-size: 13px;
     }
-    #paidsales-datatable
+    #sales-datatable
     {
       color: #000;
       font-size: 13px;
@@ -224,8 +313,19 @@
     {
       padding: 10px 10px !important;
     }
-    #paidsales-datatable thead tr th 
+    #sales-datatable thead tr th 
     {
       font-weight: 100 !important;
     }
-    </style>
+    #purchase-datatable thead
+    {
+      background: #3376C2;
+      color: #fff;
+      font-size: 13px;
+    }
+    #purchase-datatable
+    {
+      color: #000;
+      font-size: 13px;
+    }
+</style>

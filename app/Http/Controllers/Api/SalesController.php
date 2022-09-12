@@ -475,4 +475,26 @@ class SalesController extends Controller
         $pdf = storage_path('pdf/test.pdf');
         return response()->download($pdf);
     }
+
+    public function saleslistCustomer($id)
+    {
+        $sales = Sales::leftjoin('customers', 'customers.id', '=', 'sales_invoice.customer_id')->select('sales_invoice.*','customers.first_name as firstname','customers.last_name as lastname')->where('sales_invoice.customer_id',$id)->orderBy('sales_invoice.id', 'DESC')->get();
+
+        foreach($sales as $key => $sale)
+        {
+            $saleitems = SalesItems::leftjoin('producttypes', 'producttypes.id', '=', 'sales_items.producttype_id')->select(DB::raw('group_concat(producttypes.name) as typename'))->where('sales_id',$sale->id)->groupby('sales_id')->first();
+            $sales[$key]->typename = $saleitems->typename;
+
+            $salemethods = SalesPayments::where('sales_id',$sale->id)->where('action','!=','Exchange')->groupby('method')->get('method');
+            $methods='';
+            foreach($salemethods as $method)
+            {
+                $methods .=$method->method.',';
+            }
+            
+            $sales[$key]->methoddata = (!empty($salemethods))?rtrim($methods, ','):'';
+            $sales[$key]->typename = $saleitems->typename;
+        }
+        return response()->json($sales);
+    }
 }
