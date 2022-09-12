@@ -24,7 +24,7 @@
                   <i class="fa fa-download" style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"></i>
                   <i class="fab fa-whatsapp" style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"></i>
                   <i class="fas fa-envelope" style="background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;"></i>
-                  <i class="fas fa-print" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;"></i>
+                  <i class="fas fa-print" @click="ondownload()" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;"></i>
               </div>
               <div
                   class="d-sm-flex align-items-center justify-content-between"
@@ -869,6 +869,21 @@ export default {
       };
   },
   methods: {
+    ondownload() {
+        axios({
+                url: 'downloadPdf',
+                method: 'GET',
+                responseType: 'arraybuffer',
+            }).then((response) => {
+                let blob = new Blob([response.data], {
+                        type: 'application/pdf'
+                    })
+                    let link = document.createElement('a')
+                    link.href = window.URL.createObjectURL(blob)
+                    link.download = 'test.pdf'
+                    link.click()
+            });
+        },
       fetchPo()
       {
         axios.get('/purchase_details/'+this.purchase_id)

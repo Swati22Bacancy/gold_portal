@@ -469,4 +469,10 @@ class SalesController extends Controller
             ], 400);
         }
     }
+
+    public function create()
+    {
+        $pdf = storage_path('pdf/test.pdf');
+        return response()->download($pdf);
+    }
 }

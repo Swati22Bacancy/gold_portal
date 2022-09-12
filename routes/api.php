@@ -132,6 +132,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('delete-file/{id}', [Api\SalesController::class, 'deletefile']);
     Route::get('download-kyc',[Api\SalesController::class, 'downloadkyc']);
     Route::post('apply_contra',[Api\SalesController::class, 'applycontra']);
+    Route::get('download_pdf',[Api\SalesController::class, 'create']);
     
 
     // Purchase Invoice Routes

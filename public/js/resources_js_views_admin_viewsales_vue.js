@@ -904,6 +904,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    ondownload: function ondownload() {
+      axios({
+        url: 'downloadPdf',
+        method: 'GET',
+        responseType: 'arraybuffer'
+      }).then(function (response) {
+        var blob = new Blob([response.data], {
+          type: 'application/pdf'
+        });
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = 'test.pdf';
+        link.click();
+      });
+    },
     fetchPo: function fetchPo() {
       var _this = this;
 
@@ -1854,9 +1869,63 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _vm._m(0),
+          _c(
+            "div",
+            {
+              staticClass:
+                "d-sm-flex align-items-center justify-content-between"
+            },
+            [
+              _c("i", {
+                staticClass: "fa fa-download",
+                staticStyle: {
+                  "background-color": "#EDF2F6",
+                  margin: "3%",
+                  "border-radius": "50%",
+                  padding: "15%",
+                  "margin-left": "30%"
+                }
+              }),
+              _vm._v(" "),
+              _c("i", {
+                staticClass: "fab fa-whatsapp",
+                staticStyle: {
+                  "background-color": "#EDF2F6",
+                  margin: "3%",
+                  "border-radius": "50%",
+                  padding: "15%",
+                  "margin-left": "30%"
+                }
+              }),
+              _vm._v(" "),
+              _c("i", {
+                staticClass: "fas fa-envelope",
+                staticStyle: {
+                  "background-color": "#EDF2F6",
+                  "border-radius": "50%",
+                  padding: "15%",
+                  "margin-left": "30%"
+                }
+              }),
+              _vm._v(" "),
+              _c("i", {
+                staticClass: "fas fa-print",
+                staticStyle: {
+                  "background-color": "#EDF2F6",
+                  "border-radius": "50%",
+                  padding: "15%",
+                  "margin-left": "30%"
+                },
+                on: {
+                  click: function($event) {
+                    return _vm.ondownload()
+                  }
+                }
+              })
+            ]
+          ),
           _vm._v(" "),
-          _vm._m(1)
+          _vm._m(0)
         ]
       ),
       _vm._v(" "),
@@ -2110,7 +2179,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(2),
+                      _vm._m(1),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -2162,7 +2231,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2 sum-price" }, [
                 _c("ul", [
@@ -2365,7 +2434,7 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "modal-content" }, [
-                        _vm._m(4),
+                        _vm._m(3),
                         _vm._v(" "),
                         _c("div", { staticClass: "modal-body" }, [
                           _c(
@@ -3426,7 +3495,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._m(5),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -3840,9 +3909,9 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(6),
+                _vm._m(5),
                 _vm._v(" "),
-                _vm._m(7),
+                _vm._m(6),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(
@@ -3904,9 +3973,9 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(8),
+                _vm._m(7),
                 _vm._v(" "),
-                _vm._m(9),
+                _vm._m(8),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(
@@ -3953,58 +4022,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "d-sm-flex align-items-center justify-content-between" },
-      [
-        _c("i", {
-          staticClass: "fa fa-download",
-          staticStyle: {
-            "background-color": "#EDF2F6",
-            margin: "3%",
-            "border-radius": "50%",
-            padding: "15%",
-            "margin-left": "30%"
-          }
-        }),
-        _vm._v(" "),
-        _c("i", {
-          staticClass: "fab fa-whatsapp",
-          staticStyle: {
-            "background-color": "#EDF2F6",
-            margin: "3%",
-            "border-radius": "50%",
-            padding: "15%",
-            "margin-left": "30%"
-          }
-        }),
-        _vm._v(" "),
-        _c("i", {
-          staticClass: "fas fa-envelope",
-          staticStyle: {
-            "background-color": "#EDF2F6",
-            "border-radius": "50%",
-            padding: "15%",
-            "margin-left": "30%"
-          }
-        }),
-        _vm._v(" "),
-        _c("i", {
-          staticClass: "fas fa-print",
-          staticStyle: {
-            "background-color": "#EDF2F6",
-            "border-radius": "50%",
-            padding: "15%",
-            "margin-left": "30%"
-          }
-        })
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
