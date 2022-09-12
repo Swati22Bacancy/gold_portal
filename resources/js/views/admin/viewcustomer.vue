@@ -293,8 +293,18 @@
               </div>
           </div>
         </template>
-        <template v-slot:tabPanel-2> <p>Content 2</p> </template>
-        <template v-slot:tabPanel-3> <p>Content 3</p> </template>
+        <template v-slot:tabPanel-2> 
+          <div class="">
+            <div>
+              <transactionCustomer> </transactionCustomer> 
+            </div>
+          </div> </template>
+        <template v-slot:tabPanel-3> 
+          <div class="">
+            <div>
+              <summaryCustomer></summaryCustomer>
+            </div>
+          </div> </template>
       </view-customer-tabs>
     </div>
   <!-- Modal -->
@@ -325,12 +335,16 @@
 
 <script>
 import ViewCustomerTabs from "./ViewCustomerTabs";
+import transactionCustomer from "./transactionCustomer.vue";
+import summaryCustomer from "./summaryCustomer.vue";
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 export default {
   name: "ViewCustomer",
   components: {
     ViewCustomerTabs,
+    transactionCustomer,
+    summaryCustomer,
   },
   props: ['products'],
   data() {
