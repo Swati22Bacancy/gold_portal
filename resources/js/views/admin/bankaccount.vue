@@ -4,7 +4,7 @@
             <h1 class="h3 mb-0 text-gray-800">Bank Accounts</h1>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4" @click="clickAccount">
                 <div style="border-radius: 5px 5px 0px 0px; border: 1px solid #B0E0E6; background-color: white;">
                   <div class="col-md-12">
                     <div class="col-md-8 dash-divs">
@@ -17,6 +17,11 @@
                     <div class=""></div>
                     <div class="col-md-4"></div>
                 </div>
+                <div class="">
+            <div>
+              
+            </div>
+          </div>
                 <div class="dash-table">
                     <div class="table-responsive">
                         <table
@@ -61,7 +66,7 @@
                 
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4" @click="clickAccount">
                 <div style="border-radius: 5px 5px 0px 0px; border: 1px solid #B0E0E6; background-color: white;">
                   <div class="col-md-12">
                     <div class="col-md-8 dash-divs">
@@ -118,7 +123,7 @@
                 
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4" @click="clickAccount">
                 <div style="border-radius: 5px 5px 0px 0px; border: 1px solid #B0E0E6; background-color: white;">
                   <div class="col-md-12">
                     <div class="col-md-8 dash-divs">
@@ -177,7 +182,7 @@
 
         </div>
         <div class="row" style="margin-top:20px">
-  <div class="col-md-4">
+  <div class="col-md-4" @click="clickAccount">
                 <div style="border-radius: 5px 5px 0px 0px; border: 1px solid #B0E0E6; background-color: white;">
                   <div class="col-md-12">
                     <div class="col-md-8 dash-divs">
@@ -236,7 +241,21 @@
 </div>
     </div>
 </template>
+<script>
+export default {
+    data(){
+        return{
 
+        }
+
+    },
+    methods:{
+        clickAccount(){
+            this.$router.push('/clickbankaccount')
+        }
+    }
+}
+</script>
 <style scoped>
 .dash-divs {
     padding: 19px 0;
