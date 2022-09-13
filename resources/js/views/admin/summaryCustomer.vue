@@ -2,7 +2,7 @@
     <div class="head-style">
         <div>
         <div>
-          <p style="color:#3377c2">300 Invoieses(<i class="fa fa-pound-sign" style="font-size: 15px;"></i> 1,232,500.00)</p>
+          <p style="color:#3377c2">300 Invoices(<i class="fa fa-pound-sign" style="font-size: 15px;"></i> 1,232,500.00)</p>
         </div>
         <div  class="heading-title">
           <P style="color:#C94C4C">30 Invoices Awaiting Payments</P>

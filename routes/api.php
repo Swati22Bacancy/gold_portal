@@ -134,6 +134,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('apply_contra',[Api\SalesController::class, 'applycontra']);
     Route::get('download_pdf',[Api\SalesController::class, 'create']);
     Route::get('sales_list_byCustomer/{id}', [Api\SalesController::class, 'saleslistCustomer']);
+    Route::get('get_customer_transactions/{id}', [Api\SalesController::class, 'getCustomerTransactions']);
     
 
     // Purchase Invoice Routes

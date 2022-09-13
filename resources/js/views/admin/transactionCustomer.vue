@@ -7,7 +7,7 @@
     <div class="mt-2 mb-4">
       <div class="">
           <div class="table-responsive">
-              <table class="table" id="paidsales-datatable" width="100%" cellspacing="0">
+              <table class="table" id="transaction-datatable" width="100%" cellspacing="0">
                   <thead>
                       <tr>
                           <th><input type="checkbox" class="custom-check-input"></th>
@@ -65,7 +65,74 @@
 </template>
 
 <script>
+import moment from 'moment';
+import "datatables.net-dt/js/dataTables.dataTables"
+import "datatables.net-dt/css/jquery.dataTables.min.css"
+export default {
+  name: "CustomerTransactions",
+  components: {
+    moment,
+  },
+  props: ['transactions'],
+  mounted(){
+    this.getTransactions();
+    $.fn.textWidth = function(){
+      var html_org = $(this).html();
+      var html_calc = '<span>' + html_org + '</span>';
+      $(this).html(html_calc);
+      var width = $(this).find('span:first').width();
+      $(this).html(html_org);
+      return width;
+    };
+    
+    const unwatch = this.$watch('transactions', (transactions) => {
+      // wait transactions prop to be filled
+      if (!Array.isArray(transactions) || transactions.length === 0) {
+          return;
+      }
 
+      // stop watching for transactions change
+      unwatch();
+
+      // wait for vue to populate DOM
+      this.$nextTick(() => {
+
+          // initialize DataTable on rendered table
+          const table = $('#transaction-datatable').DataTable({
+            //"bFilter": false,
+            "bLengthChange": false,
+            // pageLength: 5,
+            // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
+            "columnDefs": [
+              { "targets": [0,9], "searchable": false, "orderable": false }
+            ]
+          });
+          $(".searchbox").keyup(function() {
+            table.search(this.value).draw();
+          }); 
+          // register hook so when this component is
+          // unmounted/removed, DataTable is removed properly
+          this.$once('hook:beforeDestroy', function () {
+              table.destroy();
+          });
+          
+      }, {immediate: true});
+  });
+    $('#transaction-datatable').on( 'draw.dt', function (e) {
+      $('#transaction-datatable thead tr th').each(function(idx, ele) {
+        var xPos = parseInt((($(ele).textWidth()))+12);
+        $(ele).css('background-position-x',  xPos + 'px')
+      })
+    });
+  },
+  methods:{
+    getTransactions() {
+        return axios.get("get_customer_transactions/"+this.$route.params.id).then(response => {
+            this.transactions = response.data;
+        });
+    },
+  }
+}
 </script>
 
 
@@ -102,7 +169,7 @@
       opacity: 0.4;
       font-size: 11px;
     }
-    #paidsales-datatable thead
+    #transaction-datatable thead
     {
       background: #3376C2;
       color: #fff;
@@ -112,7 +179,7 @@
       color: #3377c2;
       font-size: 13px;
     }
-    #paidsales-datatable
+    #transaction-datatable
     {
       color: #000;
       font-size: 13px;
@@ -141,7 +208,7 @@
     {
       padding: 10px 10px !important;
     }
-    #paidsales-datatable thead tr th 
+    #transaction-datatable thead tr th 
     {
       font-weight: 100 !important;
     }

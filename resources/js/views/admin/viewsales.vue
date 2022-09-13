@@ -263,7 +263,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h6 class="modal-title" id="applycontra">Apply Contra</h6>
+                                            <h6 class="modal-title" id="applycontrah1">Apply Contra</h6>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true" style="color: #fff">&times;</span>
                                             </button>
@@ -315,7 +315,7 @@
               >
                   <tbody>
                       <tr v-for="salepayment in formdata.salepayments" :key="salepayment.id" >
-                          <td>{{ salepayment.payment_date }}</td>
+                          <td>{{ dateFormateChanger(salepayment.payment_date) }}</td>
                           <td></td>
                           <td>{{ salepayment.method }}</td>
                           <td></td>
@@ -323,7 +323,7 @@
                               <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;" ></i>
                               {{ salepayment.totalamount }} <span v-if="salepayment.action=='Receive'">Received</span>
                               <span v-if="salepayment.action=='Refund'">Refunded</span>
-                              <span v-if="salepayment.action=='Exchange'">Exchanged</span>
+                              <span v-if="salepayment.action=='Exchange'"></span>
                           </td>
                           <td></td>
                           <td>
@@ -588,7 +588,7 @@
                   <tbody>
                       <tr v-for="salehistory in formdata.saleshistory" :key="salehistory.id">
                         <td>{{ salehistory.changes }}</td>
-                        <td>{{ salehistory.log_date }}</td>
+                        <td>{{ dateFormateChanger(salehistory.log_date) }}</td>
                         <td>{{ salehistory.firstname }} {{ salehistory.lastname }}</td>
                         <td>{{ salehistory.comment }}</td>
                       </tr>
@@ -1400,7 +1400,7 @@ export default {
             this.purchases = this.purchases.map(purchase => {
               return {
                 value: purchase.id,
-                text: `${purchase.invoiceno || ''}  - ${purchase.totalamount || ""}  `,
+                text: `${moment(purchase.issue_date,'YYYY-MM-DD').format('DD MMM YYYY') || ''} |   ${purchase.invoiceno || ''}  | £${purchase.totalamount || ""} | ${purchase.firstname || ""}  ${purchase.lastname || ""} `,
               } 
             })
         })
@@ -1586,5 +1586,9 @@ export default {
 #kyc-datatable
 {
     font-size: 13px;
+}
+#applycontra .modal-dialog
+{
+    max-width: 700px;
 }
 </style>

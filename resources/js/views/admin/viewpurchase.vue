@@ -144,7 +144,7 @@
           <table class="table purchasedata" v-if="!addpayment" id="showpayment-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
               <tbody>
                 <tr v-for="purchasepayment in formdata.purchasepayments" :key="purchasepayment.id">
-                    <td>{{purchasepayment.payment_date}}</td>
+                    <td>{{dateFormateChanger(purchasepayment.payment_date)}}</td>
                     <td></td>
                     <td>{{purchasepayment.method}}</td>
                     <td></td>
@@ -222,7 +222,7 @@
               <tbody>
                 <tr v-for="purchasehistory in formdata.purchasehistory" :key="purchasehistory.id">
                     <td>{{purchasehistory.changes}}</td>
-                    <td>{{ purchasehistory.log_date }}</td>
+                    <td>{{ dateFormateChanger(purchasehistory.log_date) }}</td>
                     <td>{{ purchasehistory.firstname }} {{ purchasehistory.lastname }}</td>
                     <td>{{ purchasehistory.comment }}</td>
                 </tr>

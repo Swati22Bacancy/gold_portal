@@ -17146,7 +17146,13 @@ var render = function() {
                         ) {
                           return _c("tr", { key: purchasepayment.id }, [
                             _c("td", [
-                              _vm._v(_vm._s(purchasepayment.payment_date))
+                              _vm._v(
+                                _vm._s(
+                                  _vm.dateFormateChanger(
+                                    purchasepayment.payment_date
+                                  )
+                                )
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td"),
@@ -17604,7 +17610,13 @@ var render = function() {
                       return _c("tr", { key: purchasehistory.id }, [
                         _c("td", [_vm._v(_vm._s(purchasehistory.changes))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(purchasehistory.log_date))]),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              _vm.dateFormateChanger(purchasehistory.log_date)
+                            )
+                          )
+                        ]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(

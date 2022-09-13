@@ -16,7 +16,9 @@ class ProductController extends Controller
                 'type_id' => $request->input('type_id'),
                 'weight' => $request->input('weight'),
                 'rate' => $request->input('rate'),
-                'output_tax' => ($request->input('output_tax'))?1:0
+                'output_tax' => ($request->input('output_tax'))?1:0,
+                'sales_commission' => ($request->input('sales_commission'))?$request->input('sales_commission'):0,
+                'purchase_commission' => ($request->input('purchase_commission'))?$request->input('purchase_commission'):0
             ]);
 
             return response()->json($product);
@@ -65,7 +67,9 @@ class ProductController extends Controller
                 'type_id' => $request->input('type_id'),
                 'weight' => $request->input('weight'),
                 'rate' => $request->input('rate'),
-                'output_tax' => ($request->input('output_tax'))?1:0
+                'output_tax' => ($request->input('output_tax'))?1:0,
+                'sales_commission' => ($request->input('sales_commission'))?$request->input('sales_commission'):0,
+                'purchase_commission' => ($request->input('purchase_commission'))?$request->input('purchase_commission'):0
             ]);
 
             return response()->json($product);

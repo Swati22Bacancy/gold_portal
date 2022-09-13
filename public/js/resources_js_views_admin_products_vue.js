@@ -165,7 +165,7 @@ __webpack_require__.r(__webpack_exports__);
           //"bFilter": false,
           "bLengthChange": false,
           "columnDefs": [{
-            "targets": [0, 6],
+            "targets": [0, 5],
             "searchable": false,
             "orderable": false
           }]

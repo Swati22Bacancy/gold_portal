@@ -57,7 +57,36 @@
                 </div>
                 
               </div>
-              
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group customer-input">
+                      <label>Sales Commission (%)</label>
+                      <input
+                        type="text"
+                        class="form-control form-control-user"
+                        id="crt-typename"
+                        aria-describedby="emailHelp"
+                        placeholder=""
+                        v-model="formdata.sales_commission"
+                      />
+                   </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group customer-input">
+                      <label>Purchase Commission (%)</label>
+                      <input
+                        type="text"
+                        class="form-control form-control-user"
+                        id="crt-typename"
+                        aria-describedby="emailHelp"
+                        placeholder=""
+                        v-model="formdata.purchase_commission"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="row mb-4">
               <div class="col-md-6">
@@ -114,6 +143,8 @@ export default {
           type_id: this.formdata.type_id,
           weight: this.formdata.weight,
           output_tax: this.formdata.output_tax,
+          sales_commission: this.formdata.sales_commission,
+          purchase_commission: this.formdata.purchase_commission,
         });
         let message =
             "Product type has been successfully added.";

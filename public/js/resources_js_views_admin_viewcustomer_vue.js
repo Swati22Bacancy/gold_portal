@@ -328,8 +328,18 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/transactionCustomer.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! datatables.net-dt/js/dataTables.dataTables */ "./node_modules/datatables.net-dt/js/dataTables.dataTables.js");
+/* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var datatables_net_dt_css_jquery_dataTables_min_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! datatables.net-dt/css/jquery.dataTables.min.css */ "./node_modules/datatables.net-dt/css/jquery.dataTables.min.css");
 //
 //
 //
@@ -396,6 +406,80 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "CustomerTransactions",
+  components: {
+    moment: (moment__WEBPACK_IMPORTED_MODULE_0___default())
+  },
+  props: ['transactions'],
+  mounted: function mounted() {
+    var _this = this;
+
+    this.getTransactions();
+
+    $.fn.textWidth = function () {
+      var html_org = $(this).html();
+      var html_calc = '<span>' + html_org + '</span>';
+      $(this).html(html_calc);
+      var width = $(this).find('span:first').width();
+      $(this).html(html_org);
+      return width;
+    };
+
+    var unwatch = this.$watch('transactions', function (transactions) {
+      // wait transactions prop to be filled
+      if (!Array.isArray(transactions) || transactions.length === 0) {
+        return;
+      } // stop watching for transactions change
+
+
+      unwatch(); // wait for vue to populate DOM
+
+      _this.$nextTick(function () {
+        // initialize DataTable on rendered table
+        var table = $('#transaction-datatable').DataTable({
+          //"bFilter": false,
+          "bLengthChange": false,
+          // pageLength: 5,
+          // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
+          "columnDefs": [{
+            "targets": [0, 9],
+            "searchable": false,
+            "orderable": false
+          }]
+        });
+        $(".searchbox").keyup(function () {
+          table.search(this.value).draw();
+        }); // register hook so when this component is
+        // unmounted/removed, DataTable is removed properly
+
+        _this.$once('hook:beforeDestroy', function () {
+          table.destroy();
+        });
+      }, {
+        immediate: true
+      });
+    });
+    $('#transaction-datatable').on('draw.dt', function (e) {
+      $('#transaction-datatable thead tr th').each(function (idx, ele) {
+        var xPos = parseInt($(ele).textWidth() + 12);
+        $(ele).css('background-position-x', xPos + 'px');
+      });
+    });
+  },
+  methods: {
+    getTransactions: function getTransactions() {
+      var _this2 = this;
+
+      return axios.get("get_customer_transactions/" + this.$route.params.id).then(function (response) {
+        _this2.transactions = response.data;
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -424,6 +508,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -1068,7 +1154,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.head-title[data-v-49f507a6]{\n   margin-top: 20px;\n   display: flex;\n}\n.table-search[data-v-49f507a6]\n   {\n     width: 25%;\n     border: 1px solid #D6E3F2 !important;\n     display: inline-block;\n     height: 40px;\n}\n.table-date[data-v-49f507a6]\n   {\n     width: 27%;\n     border: 1px solid #D6E3F2 !important;\n     display: inline-block;\n     height: 40px;\n}\n.tab-selector[data-v-49f507a6]\n   {\n     border: 1px solid #D6E3F2 !important;\n     height: 40px;\n     border-radius: 5px;\n     width: 11%;\n     color: #3377c2;\n     font-size: 13px;\n}\n.table-search[data-v-49f507a6]::-moz-placeholder {\n     color: #3377c2;\n     opacity: 0.4;\n     font-size: 11px;\n}\n.table-search[data-v-49f507a6]:-ms-input-placeholder {\n     color: #3377c2;\n     opacity: 0.4;\n     font-size: 11px;\n}\n.table-search[data-v-49f507a6]::placeholder {\n     color: #3377c2;\n     opacity: 0.4;\n     font-size: 11px;\n}\n#paidsales-datatable thead[data-v-49f507a6]\n   {\n     background: #3376C2;\n     color: #fff;\n     font-size: 13px;\n}\n.table-date[data-v-49f507a6]::-moz-placeholder {\n     color: #3377c2;\n     font-size: 13px;\n}\n.table-date[data-v-49f507a6]:-ms-input-placeholder {\n     color: #3377c2;\n     font-size: 13px;\n}\n.table-date[data-v-49f507a6]::placeholder {\n     color: #3377c2;\n     font-size: 13px;\n}\n#paidsales-datatable[data-v-49f507a6]\n   {\n     color: #000;\n     font-size: 13px;\n}\ntable.dataTable.no-footer[data-v-49f507a6]\n   {\n     border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-49f507a6]\n   {\n       color: #fff !important;\n       border: 1px solid #3376c2 !important;\n       background-color: #3376c2 !important;\n}\ntable.dataTable thead .sorting[data-v-49f507a6], table.dataTable thead .sorting_asc[data-v-49f507a6], table.dataTable thead .sorting_desc[data-v-49f507a6], table.dataTable thead .sorting_asc_disabled[data-v-49f507a6], table.dataTable thead .sorting_desc_disabled[data-v-49f507a6]\n   {\n     background-size: 13px 13px;\n     background-position: 0px 19px;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-49f507a6]\n   {\n     padding: 0.3em 0.8em;\n}\ntable.dataTable thead th[data-v-49f507a6]\n   {\n     padding: 10px 10px !important;\n}\n#paidsales-datatable thead tr th[data-v-49f507a6] \n   {\n     font-weight: 100 !important;\n}\n   ", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.head-title[data-v-49f507a6]{\n   margin-top: 20px;\n   display: flex;\n}\n.table-search[data-v-49f507a6]\n   {\n     width: 25%;\n     border: 1px solid #D6E3F2 !important;\n     display: inline-block;\n     height: 40px;\n}\n.table-date[data-v-49f507a6]\n   {\n     width: 27%;\n     border: 1px solid #D6E3F2 !important;\n     display: inline-block;\n     height: 40px;\n}\n.tab-selector[data-v-49f507a6]\n   {\n     border: 1px solid #D6E3F2 !important;\n     height: 40px;\n     border-radius: 5px;\n     width: 11%;\n     color: #3377c2;\n     font-size: 13px;\n}\n.table-search[data-v-49f507a6]::-moz-placeholder {\n     color: #3377c2;\n     opacity: 0.4;\n     font-size: 11px;\n}\n.table-search[data-v-49f507a6]:-ms-input-placeholder {\n     color: #3377c2;\n     opacity: 0.4;\n     font-size: 11px;\n}\n.table-search[data-v-49f507a6]::placeholder {\n     color: #3377c2;\n     opacity: 0.4;\n     font-size: 11px;\n}\n#transaction-datatable thead[data-v-49f507a6]\n   {\n     background: #3376C2;\n     color: #fff;\n     font-size: 13px;\n}\n.table-date[data-v-49f507a6]::-moz-placeholder {\n     color: #3377c2;\n     font-size: 13px;\n}\n.table-date[data-v-49f507a6]:-ms-input-placeholder {\n     color: #3377c2;\n     font-size: 13px;\n}\n.table-date[data-v-49f507a6]::placeholder {\n     color: #3377c2;\n     font-size: 13px;\n}\n#transaction-datatable[data-v-49f507a6]\n   {\n     color: #000;\n     font-size: 13px;\n}\ntable.dataTable.no-footer[data-v-49f507a6]\n   {\n     border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-49f507a6]\n   {\n       color: #fff !important;\n       border: 1px solid #3376c2 !important;\n       background-color: #3376c2 !important;\n}\ntable.dataTable thead .sorting[data-v-49f507a6], table.dataTable thead .sorting_asc[data-v-49f507a6], table.dataTable thead .sorting_desc[data-v-49f507a6], table.dataTable thead .sorting_asc_disabled[data-v-49f507a6], table.dataTable thead .sorting_desc_disabled[data-v-49f507a6]\n   {\n     background-size: 13px 13px;\n     background-position: 0px 19px;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-49f507a6]\n   {\n     padding: 0.3em 0.8em;\n}\ntable.dataTable thead th[data-v-49f507a6]\n   {\n     padding: 10px 10px !important;\n}\n#transaction-datatable thead tr th[data-v-49f507a6] \n   {\n     font-weight: 100 !important;\n}\n   ", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -16862,9 +16948,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _transactionCustomer_vue_vue_type_template_id_49f507a6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./transactionCustomer.vue?vue&type=template&id=49f507a6&scoped=true& */ "./resources/js/views/admin/transactionCustomer.vue?vue&type=template&id=49f507a6&scoped=true&");
 /* harmony import */ var _transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./transactionCustomer.vue?vue&type=script&lang=js& */ "./resources/js/views/admin/transactionCustomer.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 /* harmony import */ var _transactionCustomer_vue_vue_type_style_index_0_id_49f507a6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./transactionCustomer.vue?vue&type=style&index=0&id=49f507a6&scoped=true&lang=css& */ "./resources/js/views/admin/transactionCustomer.vue?vue&type=style&index=0&id=49f507a6&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -16978,11 +17061,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./transactionCustomer.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/transactionCustomer.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default())); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -17463,7 +17542,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("p", { staticStyle: { color: "#3377c2" } }, [
-        _vm._v("300 Invoieses("),
+        _vm._v("300 Invoices("),
         _c("i", {
           staticClass: "fa fa-pound-sign",
           staticStyle: { "font-size": "15px" }
@@ -17753,7 +17832,7 @@ var staticRenderFns = [
               {
                 staticClass: "table",
                 attrs: {
-                  id: "paidsales-datatable",
+                  id: "transaction-datatable",
                   width: "100%",
                   cellspacing: "0"
                 }
@@ -17972,10 +18051,51 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", {
-          staticClass: "col-md-6",
-          staticStyle: { "text-align": "right" }
-        })
+        _c(
+          "div",
+          { staticClass: "col-md-6", staticStyle: { "text-align": "right" } },
+          [
+            _c("router-link", { attrs: { to: "/createinvoice" } }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn admin-btn mobile-mb",
+                  staticStyle: { "background-color": "#7ADAAA !important" },
+                  attrs: { type: "button" }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fas fa-plus",
+                    staticStyle: { "margin-right": "5px" }
+                  }),
+                  _vm._v("Create Invoice")
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("router-link", { attrs: { to: "/createpurchase" } }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn admin-btn mobile-mb",
+                  staticStyle: {
+                    "background-color": "#9E00A1 !important",
+                    color: "#fff"
+                  },
+                  attrs: { type: "button" }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fas fa-plus",
+                    staticStyle: { "margin-right": "5px" }
+                  }),
+                  _vm._v("Create Purchase")
+                ]
+              )
+            ])
+          ],
+          1
+        )
       ]
     ),
     _vm._v(" "),

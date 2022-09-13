@@ -147,7 +147,7 @@ export default {
               //"bFilter": false,
               "bLengthChange": false,
               "columnDefs": [
-                { "targets": [0,6], "searchable": false, "orderable": false }
+                { "targets": [0,5], "searchable": false, "orderable": false }
               ]
             });
             $(".searchbox").keyup(function() {

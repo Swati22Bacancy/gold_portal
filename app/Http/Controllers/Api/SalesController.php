@@ -178,7 +178,7 @@ class SalesController extends Controller
         $sales_id = $salepayment->sales_id;
             if($salepayment){
                 $salepayment->delete();
-                $historyaction= ($action=='Receive')?'Payment':(($action=='Refund')? 'Refund': 'Exchange');
+                $historyaction= ($action=='Receive')?'Payment':(($action=='Refund')? 'Refund': 'Payment');
 
                 $refund = SalesPayments::select(DB::raw("SUM(totalamount) as refundamount"))->where('action', 'Refund')->where('sales_id',$sales_id)->first();
         
@@ -442,7 +442,7 @@ class SalesController extends Controller
                 'sales_id' => $request->input('sales_id'),
                 'payment_date' => date("Y-m-d"),
                 'totalamount' => $purchase->totalamount,
-                'method' => 'Exchanged with '.$purchase->invoiceno,
+                'method' => 'Contra with '.$purchase->invoiceno,
                 'bank' => '',
                 'comment' => $request->input('comment'),
                 'action' => $request->input('action'),
@@ -456,9 +456,9 @@ class SalesController extends Controller
                 'log_date' => date("Y-m-d"),
                 'category' =>'exchange',
                 'user_id' => Auth::user()->id,
-                'changes' => $historyaction.' Created',
+                'changes' => 'Payment Added',
                 
-                'comment' => 'Exchange of £'.$purchase->totalamount.' '.'has been made by '.Auth::user()->first_name.' '.Auth::user()->last_name.' against Purchase Order '.$purchase->invoiceno.'.'
+                'comment' => 'Contra credit of of £'.$purchase->totalamount.' '.'has been made by '.Auth::user()->first_name.' '.Auth::user()->last_name.' against Purchase Order '.$purchase->invoiceno.'.'
                 
             ]);
 
@@ -496,5 +496,10 @@ class SalesController extends Controller
             $sales[$key]->typename = $saleitems->typename;
         }
         return response()->json($sales);
+    }
+
+    public function getCustomerTransactions($id)
+    {
+        
     }
 }

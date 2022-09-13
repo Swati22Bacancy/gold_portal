@@ -11,9 +11,11 @@
         </div>
         
       </div>
-      <div class="col-md-6" style="text-align:right">
-      </div>
       
+      <div class="col-md-6" style="text-align:right">
+        <router-link to="/createinvoice"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Create Invoice</button></router-link>
+        <router-link to="/createpurchase"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #9E00A1 !important;color: #fff;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Create Purchase</button></router-link>
+      </div>
       
     </div>
 
