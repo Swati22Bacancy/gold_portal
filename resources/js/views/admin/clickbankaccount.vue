@@ -22,12 +22,14 @@
       </div>
   
       <div class="search-cstm">
-        <div class="col-md-12">
-              <input type="text" class="form-control bg-light border-0 small table-search" placeholder="Search" style="background-color:#FFFFFF !important;"/>
+        <div class="col-md-12 Container-date">
+              <input type="text" class="form-control bg-light border-0 small table-search" placeholder="Search" style="background-color:#FFFFFF !important;margin-right:5px;"/>
               
-              <input type="text" class="form-control bg-light border-0 small table-date" placeholder="Date Range" style="background-color:#FFFFFF !important;"/>
-              <button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;margin-left: auto;width: 100px;">Search</button>
-              <button type="button" class="btn admin-btn mobile-mb" style="margin-left: auto;">Advance Search</button>
+              <div class="Container-date">
+           <p>Date Range</p> <Datepicker v-model="issue_date" class="date-cont"></Datepicker>
+            <Datepicker v-model="due_date" class="date-cont"></Datepicker></div>
+              <button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;margin-left: 60;width: 100px;">Search</button>
+              <button type="button" class="btn admin-btn mobile-mb" style="margin-left:60;">Advance Search</button>
             </div>
             <div class="">
               <div>
@@ -95,10 +97,32 @@
 </div>
  </div>
   </template>
-  
+  <<script>
+    import Datepicker from 'vuejs-datepicker';
+  export default {
+    components: {
+      Datepicker,
+    },
+    data() {
+    return {
+      issue_date:Date.now(),
+      due_date:Date.now(),
+    };
+  },
+  }
+  </script>
  
     
   <style scoped>
+     .Container-date{
+    display: flex;
+  
+  }
+  .date-cont{
+    margin: 0px;
+    width:200;
+    
+  }
     .btn-container{
      background-color: #EDF2F6 !important;
     width: auto;
