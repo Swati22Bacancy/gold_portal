@@ -24,7 +24,7 @@
                   <i class="fa fa-download" style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"></i>
                   <i class="fab fa-whatsapp" style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"></i>
                   <i class="fas fa-envelope" style="background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;"></i>
-                  <i class="fas fa-print" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;"></i>
+                  <i class="fas fa-print" @click="ondownload()" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;"></i>
               </div>
               <div
                   class="d-sm-flex align-items-center justify-content-between"
@@ -262,28 +262,28 @@
                             <div class="modal fade" id="applycontra" tabindex="-1" role="dialog" aria-labelledby="applycontra" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h6 class="modal-title" id="applycontra">Apply Contra</h6>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true" style="color: #fff">&times;</span>
-                                        </button>
-                                    </div>
+                                        <div class="modal-header">
+                                            <h6 class="modal-title" id="applycontrah1">Apply Contra</h6>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true" style="color: #fff">&times;</span>
+                                            </button>
+                                        </div>
 
-                                    <div class="modal-body">
-                                        <div class="row mb-4">
-                                        
-                                        
+                                        <div class="modal-body">
+                                            <div class="mb-4">
+                                                <p>Select Purchase Order</p>
+                                                
+                                                <model-select class="modal-selection" @input="fetchPo()" v-model="purchase_id" :options="purchases" placeholder="Select Purchase Order"></model-select>    
+                                                
+                                            </div>
                                             
                                             
                                         </div>
-                                        
-                                        
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" @click="add_customer()" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Save</button>
-                                        <button type="button" data-dismiss="modal"
-                                        aria-label="Close" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button>
-                                    </div>
+                                        <div class="modal-footer">
+                                            <button type="button" @click="apply_contra()" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Save</button>
+                                            <button type="button" data-dismiss="modal"
+                                            aria-label="Close" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -315,14 +315,15 @@
               >
                   <tbody>
                       <tr v-for="salepayment in formdata.salepayments" :key="salepayment.id" >
-                          <td>{{ salepayment.payment_date }}</td>
+                          <td>{{ dateFormateChanger(salepayment.payment_date) }}</td>
                           <td></td>
                           <td>{{ salepayment.method }}</td>
                           <td></td>
-                          <td  v-bind:class = "(salepayment.action=='Receive')?'class_green':'class_red'">
+                          <td  v-bind:class = "(salepayment.action=='Receive' || salepayment.action=='Exchange') ?'class_green':'class_red'">
                               <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;" ></i>
                               {{ salepayment.totalamount }} <span v-if="salepayment.action=='Receive'">Received</span>
-                              <span v-if="salepayment.action!='Receive'">Refunded</span>
+                              <span v-if="salepayment.action=='Refund'">Refunded</span>
+                              <span v-if="salepayment.action=='Exchange'"></span>
                           </td>
                           <td></td>
                           <td>
@@ -509,7 +510,7 @@
                                 </div>
                                 <div class="upload_vat">
                                     <div v-for="vatdoc in kycdocs.vatdocs" :key="vatdoc" class="previewContainer">
-                                          <img :src="'../storage/app/Customeruploads/' + vatdoc.identification_file" class="imagePreview"/>
+                                          <img :src="vatdoc.imageurl" class=""/>
                                           <div class="closeIcon" data-toggle="modal" data-target="#deleteConfirmationFile" @click="selectfile(vatdoc.id)">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                           </div>
@@ -587,7 +588,7 @@
                   <tbody>
                       <tr v-for="salehistory in formdata.saleshistory" :key="salehistory.id">
                         <td>{{ salehistory.changes }}</td>
-                        <td>{{ salehistory.log_date }}</td>
+                        <td>{{ dateFormateChanger(salehistory.log_date) }}</td>
                         <td>{{ salehistory.firstname }} {{ salehistory.lastname }}</td>
                         <td>{{ salehistory.comment }}</td>
                       </tr>
@@ -791,13 +792,15 @@
 
 <script>
 import moment from 'moment';
+import { ModelSelect } from 'vue-search-select'
 import Datepicker from "vuejs-datepicker";
 import {objectToFormData} from '../../object-to-formdata';
 export default {
   name: "ViewSales",
   components: {
       Datepicker,
-      moment
+      moment,
+      ModelSelect
   },
   data() {
       return {
@@ -860,9 +863,34 @@ export default {
           },
           kycdocs:[],
           cashSelected: false,
+          purchases:[],
+          purchase_id:"",
+          purchase_amount:""
       };
   },
   methods: {
+    ondownload() {
+        axios({
+                url: 'downloadPdf',
+                method: 'GET',
+                responseType: 'arraybuffer',
+            }).then((response) => {
+                let blob = new Blob([response.data], {
+                        type: 'application/pdf'
+                    })
+                    let link = document.createElement('a')
+                    link.href = window.URL.createObjectURL(blob)
+                    link.download = 'test.pdf'
+                    link.click()
+            });
+        },
+      fetchPo()
+      {
+        axios.get('/purchase_details/'+this.purchase_id)
+        .then((response) => {
+            this.purchase_amount = response.data.totalamount;
+        });
+      },
       dateFormateChanger(d){
          return moment(d,'YYYY-MM-DD').format('DD MMM YYYY')
       },
@@ -1279,7 +1307,45 @@ export default {
             .catch(e => {
             console.log(e);
         });
-        },
+      },
+      async apply_contra() {
+          var exchangedata = { sales_id: this.$route.params.id, purchase_id: this.purchase_id, due_payment: this.due_payment, action: 'Exchange' };
+          const response = await axios.post("apply_contra", exchangedata);
+          if (response.data.id) {
+                this.due_payment = this.due_payment - this.purchase_amount;
+                
+                this.due_payment = this.due_payment.toFixed(2);
+                if (this.due_payment < 0) {
+                    this.over_paid = this.due_payment;
+                }
+                this.due_payment = this.due_payment < 0 ? 0 : this.due_payment;
+
+                if (this.over_paid < 0) {
+                    this.invoice_status = "Over Paid";
+                    this.payment_check = "";
+                } else if (this.due_payment == 0) {
+                    this.invoice_status = "Paid";
+                    this.payment_check = "";
+                } else {
+                    this.invoice_status = "Partially Paid";
+                    this.payment_check = "Yes";
+                }
+                this.statusdata={};
+                this.statusdata.sales_id = this.$route.params.id;
+                this.statusdata.status = this.invoice_status;
+                const response1 = axios.post("update_invoicestatus", this.statusdata);
+                this.$router.go();
+          } else {
+              let toast = Vue.toasted.show(
+                  "Something went wrong, Please try again",
+                  {
+                      theme: "toasted-error",
+                      position: "top-center",
+                      duration: 5000
+                  }
+              );
+          }
+      },
   },
   mounted() {
       axios
@@ -1326,6 +1392,20 @@ export default {
             this.sales = response.data;
         })
         .catch(function(error) {
+        });
+
+        axios.get('/purchase_list/')
+        .then((response) => {
+            this.purchases = response.data;
+            this.purchases = this.purchases.map(purchase => {
+              return {
+                value: purchase.id,
+                text: `${moment(purchase.issue_date,'YYYY-MM-DD').format('DD MMM YYYY') || ''} |   ${purchase.invoiceno || ''}  | £${purchase.totalamount || ""} | ${purchase.firstname || ""}  ${purchase.lastname || ""} `,
+              } 
+            })
+        })
+        .catch(function(error) {
+            //app.$notify(error.response.data.error, "error");
         });
 
      axios.get('/fetch_kyc/' + this.$route.params.id)
@@ -1506,5 +1586,9 @@ export default {
 #kyc-datatable
 {
     font-size: 13px;
+}
+#applycontra .modal-dialog
+{
+    max-width: 700px;
 }
 </style>

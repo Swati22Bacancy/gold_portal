@@ -17,6 +17,8 @@ class Product extends Authenticatable
         'type_id',
         'weight',
         'rate',
-        'output_tax'
+        'output_tax',
+        'sales_commission',
+        'purchase_commission'
     ];
 }

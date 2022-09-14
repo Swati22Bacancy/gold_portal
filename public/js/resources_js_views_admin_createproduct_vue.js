@@ -106,6 +106,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
@@ -150,7 +179,9 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex
                   name: _this.formdata.name,
                   type_id: _this.formdata.type_id,
                   weight: _this.formdata.weight,
-                  output_tax: _this.formdata.output_tax
+                  output_tax: _this.formdata.output_tax,
+                  sales_commission: _this.formdata.sales_commission,
+                  purchase_commission: _this.formdata.purchase_commission
                 });
 
               case 6:
@@ -592,6 +623,84 @@ var render = function() {
                         _vm._v("Please enter weight ")
                       ])
                     : _vm._e()
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "form-group customer-input" }, [
+                      _c("label", [_vm._v("Sales Commission (%)")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.sales_commission,
+                            expression: "formdata.sales_commission"
+                          }
+                        ],
+                        staticClass: "form-control form-control-user",
+                        attrs: {
+                          type: "text",
+                          id: "crt-typename",
+                          "aria-describedby": "emailHelp",
+                          placeholder: ""
+                        },
+                        domProps: { value: _vm.formdata.sales_commission },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.formdata,
+                              "sales_commission",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "form-group customer-input" }, [
+                      _c("label", [_vm._v("Purchase Commission (%)")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.purchase_commission,
+                            expression: "formdata.purchase_commission"
+                          }
+                        ],
+                        staticClass: "form-control form-control-user",
+                        attrs: {
+                          type: "text",
+                          id: "crt-typename",
+                          "aria-describedby": "emailHelp",
+                          placeholder: ""
+                        },
+                        domProps: { value: _vm.formdata.purchase_commission },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.formdata,
+                              "purchase_commission",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ])
                 ])
               ])
             ]),

@@ -67,8 +67,18 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/summaryCustomer.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! datatables.net-dt/js/dataTables.dataTables */ "./node_modules/datatables.net-dt/js/dataTables.dataTables.js");
+/* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var datatables_net_dt_css_jquery_dataTables_min_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! datatables.net-dt/css/jquery.dataTables.min.css */ "./node_modules/datatables.net-dt/css/jquery.dataTables.min.css");
 //
 //
 //
@@ -179,44 +189,138 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "CustomerSummary",
+  components: {
+    moment: (moment__WEBPACK_IMPORTED_MODULE_0___default())
+  },
+  props: ['sales', 'purchases'],
+  mounted: function mounted() {
+    var _this = this;
+
+    this.getSales();
+    this.getPurchases();
+
+    $.fn.textWidth = function () {
+      var html_org = $(this).html();
+      var html_calc = '<span>' + html_org + '</span>';
+      $(this).html(html_calc);
+      var width = $(this).find('span:first').width();
+      $(this).html(html_org);
+      return width;
+    };
+
+    var unwatch = this.$watch('sales', function (sales) {
+      // wait sales prop to be filled
+      if (!Array.isArray(sales) || sales.length === 0) {
+        return;
+      } // stop watching for sales change
+
+
+      unwatch(); // wait for vue to populate DOM
+
+      _this.$nextTick(function () {
+        // initialize DataTable on rendered table
+        var table = $('#sales-datatable').DataTable({
+          //"bFilter": false,
+          "bLengthChange": false,
+          // pageLength: 5,
+          // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
+          "columnDefs": [{
+            "targets": [0, 9],
+            "searchable": false,
+            "orderable": false
+          }]
+        });
+        $(".searchbox").keyup(function () {
+          table.search(this.value).draw();
+        }); // register hook so when this component is
+        // unmounted/removed, DataTable is removed properly
+
+        _this.$once('hook:beforeDestroy', function () {
+          table.destroy();
+        });
+      }, {
+        immediate: true
+      });
+    });
+    $('#sales-datatable').on('draw.dt', function (e) {
+      $('#sales-datatable thead tr th').each(function (idx, ele) {
+        var xPos = parseInt($(ele).textWidth() + 12);
+        $(ele).css('background-position-x', xPos + 'px');
+      });
+    }); // Purchase data
+
+    var unwatchpurchase = this.$watch('purchases', function (purchases) {
+      // wait purchases prop to be filled
+      if (!Array.isArray(purchases) || purchases.length === 0) {
+        return;
+      } // stop watching for purchases change
+
+
+      unwatchpurchase(); // wait for vue to populate DOM
+
+      _this.$nextTick(function () {
+        // initialize DataTable on rendered table
+        var tablepurchase = $('#purchase-datatable').DataTable({
+          //"bFilter": false,
+          "bLengthChange": false,
+          // pageLength: 5,
+          // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
+          "columnDefs": [{
+            "targets": [0, 10],
+            "searchable": false,
+            "orderable": false
+          }]
+        });
+        $(".searchbox").keyup(function () {
+          tablepurchase.search(this.value).draw();
+        }); // register hook so when this component is
+        // unmounted/removed, DataTable is removed properly
+
+        _this.$once('hook:beforeDestroy', function () {
+          tablepurchase.destroy();
+        });
+      }, {
+        immediate: true
+      });
+    });
+    $('#purchase-datatable').on('draw.dt', function (e) {
+      $('#purchase-datatable thead tr th').each(function (idx, ele) {
+        var xPos = parseInt($(ele).textWidth() + 12);
+        $(ele).css('background-position-x', xPos + 'px');
+      });
+    });
+  },
+  methods: {
+    getSales: function getSales() {
+      var _this2 = this;
+
+      return axios.get("sales_list_byCustomer/" + this.$route.params.id).then(function (response) {
+        _this2.sales = response.data;
+      });
+    },
+    dateFormateChanger: function dateFormateChanger(d) {
+      return moment__WEBPACK_IMPORTED_MODULE_0___default()(d, 'YYYY-MM-DD').format('DD MMM YYYY');
+    },
+    gotosales: function gotosales(id) {
+      this.$router.push("/viewsales/" + id);
+    },
+    gotopurchase: function gotopurchase(id) {
+      this.$router.push("/viewpurchase/" + id);
+    },
+    getPurchases: function getPurchases() {
+      var _this3 = this;
+
+      return axios.get("purchase_list_byCustomer/" + this.$route.params.id).then(function (response) {
+        _this3.purchases = response.data;
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -224,8 +328,18 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/transactionCustomer.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! datatables.net-dt/js/dataTables.dataTables */ "./node_modules/datatables.net-dt/js/dataTables.dataTables.js");
+/* harmony import */ var datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(datatables_net_dt_js_dataTables_dataTables__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var datatables_net_dt_css_jquery_dataTables_min_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! datatables.net-dt/css/jquery.dataTables.min.css */ "./node_modules/datatables.net-dt/css/jquery.dataTables.min.css");
 //
 //
 //
@@ -292,6 +406,80 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "CustomerTransactions",
+  components: {
+    moment: (moment__WEBPACK_IMPORTED_MODULE_0___default())
+  },
+  props: ['transactions'],
+  mounted: function mounted() {
+    var _this = this;
+
+    this.getTransactions();
+
+    $.fn.textWidth = function () {
+      var html_org = $(this).html();
+      var html_calc = '<span>' + html_org + '</span>';
+      $(this).html(html_calc);
+      var width = $(this).find('span:first').width();
+      $(this).html(html_org);
+      return width;
+    };
+
+    var unwatch = this.$watch('transactions', function (transactions) {
+      // wait transactions prop to be filled
+      if (!Array.isArray(transactions) || transactions.length === 0) {
+        return;
+      } // stop watching for transactions change
+
+
+      unwatch(); // wait for vue to populate DOM
+
+      _this.$nextTick(function () {
+        // initialize DataTable on rendered table
+        var table = $('#transaction-datatable').DataTable({
+          //"bFilter": false,
+          "bLengthChange": false,
+          // pageLength: 5,
+          // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
+          "columnDefs": [{
+            "targets": [0, 9],
+            "searchable": false,
+            "orderable": false
+          }]
+        });
+        $(".searchbox").keyup(function () {
+          table.search(this.value).draw();
+        }); // register hook so when this component is
+        // unmounted/removed, DataTable is removed properly
+
+        _this.$once('hook:beforeDestroy', function () {
+          table.destroy();
+        });
+      }, {
+        immediate: true
+      });
+    });
+    $('#transaction-datatable').on('draw.dt', function (e) {
+      $('#transaction-datatable thead tr th').each(function (idx, ele) {
+        var xPos = parseInt($(ele).textWidth() + 12);
+        $(ele).css('background-position-x', xPos + 'px');
+      });
+    });
+  },
+  methods: {
+    getTransactions: function getTransactions() {
+      var _this2 = this;
+
+      return axios.get("get_customer_transactions/" + this.$route.params.id).then(function (response) {
+        _this2.transactions = response.data;
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -320,6 +508,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -940,7 +1130,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.head-style[data-v-2370a975]{\n    margin-left: 30px;\n}\n.heading-title[data-v-2370a975]{\n   \n    display: flex;\n}\n.table-search[data-v-2370a975]\n{\n  width: 25%;\n  border: 1px solid #D6E3F2 !important;\n  display: inline-block;\n  height: 40px;\n}\n.table-date[data-v-2370a975]\n{\n  width: 27%;\n  border: 1px solid #D6E3F2 !important;\n  display: inline-block;\n  height: 40px;\n}\n.tab-selector[data-v-2370a975]\n{\n  border: 1px solid #D6E3F2 !important;\n  height: 40px;\n  border-radius: 5px;\n  width: 11%;\n  color: #3377c2;\n  font-size: 13px;\n}\n.table-search[data-v-2370a975]::-moz-placeholder {\n  color: #3377c2;\n  opacity: 0.4;\n  font-size: 11px;\n}\n.table-search[data-v-2370a975]:-ms-input-placeholder {\n  color: #3377c2;\n  opacity: 0.4;\n  font-size: 11px;\n}\n.table-search[data-v-2370a975]::placeholder {\n  color: #3377c2;\n  opacity: 0.4;\n  font-size: 11px;\n}\n#paidsales-datatable thead[data-v-2370a975]\n{\n  background: #3376C2;\n  color: #fff;\n  font-size: 13px;\n}\n.table-date[data-v-2370a975]::-moz-placeholder {\n  color: #3377c2;\n  font-size: 13px;\n}\n.table-date[data-v-2370a975]:-ms-input-placeholder {\n  color: #3377c2;\n  font-size: 13px;\n}\n.table-date[data-v-2370a975]::placeholder {\n  color: #3377c2;\n  font-size: 13px;\n}\n#paidsales-datatable[data-v-2370a975]\n{\n  color: #000;\n  font-size: 13px;\n}\ntable.dataTable.no-footer[data-v-2370a975]\n{\n  border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-2370a975]\n{\n    color: #fff !important;\n    border: 1px solid #3376c2 !important;\n    background-color: #3376c2 !important;\n}\ntable.dataTable thead .sorting[data-v-2370a975], table.dataTable thead .sorting_asc[data-v-2370a975], table.dataTable thead .sorting_desc[data-v-2370a975], table.dataTable thead .sorting_asc_disabled[data-v-2370a975], table.dataTable thead .sorting_desc_disabled[data-v-2370a975]\n{\n  background-size: 13px 13px;\n  background-position: 0px 19px;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-2370a975]\n{\n  padding: 0.3em 0.8em;\n}\ntable.dataTable thead th[data-v-2370a975]\n{\n  padding: 10px 10px !important;\n}\n#paidsales-datatable thead tr th[data-v-2370a975] \n{\n  font-weight: 100 !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.head-style[data-v-2370a975]{\n    margin-left: 30px;\n}\n.heading-title[data-v-2370a975]{\n   \n    display: flex;\n}\n.table-search[data-v-2370a975]\n{\n  width: 25%;\n  border: 1px solid #D6E3F2 !important;\n  display: inline-block;\n  height: 40px;\n}\n.table-date[data-v-2370a975]\n{\n  width: 27%;\n  border: 1px solid #D6E3F2 !important;\n  display: inline-block;\n  height: 40px;\n}\n.tab-selector[data-v-2370a975]\n{\n  border: 1px solid #D6E3F2 !important;\n  height: 40px;\n  border-radius: 5px;\n  width: 11%;\n  color: #3377c2;\n  font-size: 13px;\n}\n.table-search[data-v-2370a975]::-moz-placeholder {\n  color: #3377c2;\n  opacity: 0.4;\n  font-size: 11px;\n}\n.table-search[data-v-2370a975]:-ms-input-placeholder {\n  color: #3377c2;\n  opacity: 0.4;\n  font-size: 11px;\n}\n.table-search[data-v-2370a975]::placeholder {\n  color: #3377c2;\n  opacity: 0.4;\n  font-size: 11px;\n}\n#sales-datatable thead[data-v-2370a975]\n{\n  background: #3376C2;\n  color: #fff;\n  font-size: 13px;\n}\n.table-date[data-v-2370a975]::-moz-placeholder {\n  color: #3377c2;\n  font-size: 13px;\n}\n.table-date[data-v-2370a975]:-ms-input-placeholder {\n  color: #3377c2;\n  font-size: 13px;\n}\n.table-date[data-v-2370a975]::placeholder {\n  color: #3377c2;\n  font-size: 13px;\n}\n#sales-datatable[data-v-2370a975]\n{\n  color: #000;\n  font-size: 13px;\n}\ntable.dataTable.no-footer[data-v-2370a975]\n{\n  border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-2370a975]\n{\n    color: #fff !important;\n    border: 1px solid #3376c2 !important;\n    background-color: #3376c2 !important;\n}\ntable.dataTable thead .sorting[data-v-2370a975], table.dataTable thead .sorting_asc[data-v-2370a975], table.dataTable thead .sorting_desc[data-v-2370a975], table.dataTable thead .sorting_asc_disabled[data-v-2370a975], table.dataTable thead .sorting_desc_disabled[data-v-2370a975]\n{\n  background-size: 13px 13px;\n  background-position: 0px 19px;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-2370a975]\n{\n  padding: 0.3em 0.8em;\n}\ntable.dataTable thead th[data-v-2370a975]\n{\n  padding: 10px 10px !important;\n}\n#sales-datatable thead tr th[data-v-2370a975] \n{\n  font-weight: 100 !important;\n}\n#purchase-datatable thead[data-v-2370a975]\n{\n  background: #3376C2;\n  color: #fff;\n  font-size: 13px;\n}\n#purchase-datatable[data-v-2370a975]\n{\n  color: #000;\n  font-size: 13px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -964,7 +1154,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.head-title[data-v-49f507a6]{\n   margin-top: 20px;\n   display: flex;\n}\n.table-search[data-v-49f507a6]\n   {\n     width: 25%;\n     border: 1px solid #D6E3F2 !important;\n     display: inline-block;\n     height: 40px;\n}\n.table-date[data-v-49f507a6]\n   {\n     width: 27%;\n     border: 1px solid #D6E3F2 !important;\n     display: inline-block;\n     height: 40px;\n}\n.tab-selector[data-v-49f507a6]\n   {\n     border: 1px solid #D6E3F2 !important;\n     height: 40px;\n     border-radius: 5px;\n     width: 11%;\n     color: #3377c2;\n     font-size: 13px;\n}\n.table-search[data-v-49f507a6]::-moz-placeholder {\n     color: #3377c2;\n     opacity: 0.4;\n     font-size: 11px;\n}\n.table-search[data-v-49f507a6]:-ms-input-placeholder {\n     color: #3377c2;\n     opacity: 0.4;\n     font-size: 11px;\n}\n.table-search[data-v-49f507a6]::placeholder {\n     color: #3377c2;\n     opacity: 0.4;\n     font-size: 11px;\n}\n#paidsales-datatable thead[data-v-49f507a6]\n   {\n     background: #3376C2;\n     color: #fff;\n     font-size: 13px;\n}\n.table-date[data-v-49f507a6]::-moz-placeholder {\n     color: #3377c2;\n     font-size: 13px;\n}\n.table-date[data-v-49f507a6]:-ms-input-placeholder {\n     color: #3377c2;\n     font-size: 13px;\n}\n.table-date[data-v-49f507a6]::placeholder {\n     color: #3377c2;\n     font-size: 13px;\n}\n#paidsales-datatable[data-v-49f507a6]\n   {\n     color: #000;\n     font-size: 13px;\n}\ntable.dataTable.no-footer[data-v-49f507a6]\n   {\n     border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-49f507a6]\n   {\n       color: #fff !important;\n       border: 1px solid #3376c2 !important;\n       background-color: #3376c2 !important;\n}\ntable.dataTable thead .sorting[data-v-49f507a6], table.dataTable thead .sorting_asc[data-v-49f507a6], table.dataTable thead .sorting_desc[data-v-49f507a6], table.dataTable thead .sorting_asc_disabled[data-v-49f507a6], table.dataTable thead .sorting_desc_disabled[data-v-49f507a6]\n   {\n     background-size: 13px 13px;\n     background-position: 0px 19px;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-49f507a6]\n   {\n     padding: 0.3em 0.8em;\n}\ntable.dataTable thead th[data-v-49f507a6]\n   {\n     padding: 10px 10px !important;\n}\n#paidsales-datatable thead tr th[data-v-49f507a6] \n   {\n     font-weight: 100 !important;\n}\n   ", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.head-title[data-v-49f507a6]{\n   margin-top: 20px;\n   display: flex;\n}\n.table-search[data-v-49f507a6]\n   {\n     width: 25%;\n     border: 1px solid #D6E3F2 !important;\n     display: inline-block;\n     height: 40px;\n}\n.table-date[data-v-49f507a6]\n   {\n     width: 27%;\n     border: 1px solid #D6E3F2 !important;\n     display: inline-block;\n     height: 40px;\n}\n.tab-selector[data-v-49f507a6]\n   {\n     border: 1px solid #D6E3F2 !important;\n     height: 40px;\n     border-radius: 5px;\n     width: 11%;\n     color: #3377c2;\n     font-size: 13px;\n}\n.table-search[data-v-49f507a6]::-moz-placeholder {\n     color: #3377c2;\n     opacity: 0.4;\n     font-size: 11px;\n}\n.table-search[data-v-49f507a6]:-ms-input-placeholder {\n     color: #3377c2;\n     opacity: 0.4;\n     font-size: 11px;\n}\n.table-search[data-v-49f507a6]::placeholder {\n     color: #3377c2;\n     opacity: 0.4;\n     font-size: 11px;\n}\n#transaction-datatable thead[data-v-49f507a6]\n   {\n     background: #3376C2;\n     color: #fff;\n     font-size: 13px;\n}\n.table-date[data-v-49f507a6]::-moz-placeholder {\n     color: #3377c2;\n     font-size: 13px;\n}\n.table-date[data-v-49f507a6]:-ms-input-placeholder {\n     color: #3377c2;\n     font-size: 13px;\n}\n.table-date[data-v-49f507a6]::placeholder {\n     color: #3377c2;\n     font-size: 13px;\n}\n#transaction-datatable[data-v-49f507a6]\n   {\n     color: #000;\n     font-size: 13px;\n}\ntable.dataTable.no-footer[data-v-49f507a6]\n   {\n     border-bottom: 1px solid #e3e6f0;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button.current[data-v-49f507a6]\n   {\n       color: #fff !important;\n       border: 1px solid #3376c2 !important;\n       background-color: #3376c2 !important;\n}\ntable.dataTable thead .sorting[data-v-49f507a6], table.dataTable thead .sorting_asc[data-v-49f507a6], table.dataTable thead .sorting_desc[data-v-49f507a6], table.dataTable thead .sorting_asc_disabled[data-v-49f507a6], table.dataTable thead .sorting_desc_disabled[data-v-49f507a6]\n   {\n     background-size: 13px 13px;\n     background-position: 0px 19px;\n}\n.dataTables_wrapper .dataTables_paginate .paginate_button[data-v-49f507a6]\n   {\n     padding: 0.3em 0.8em;\n}\ntable.dataTable thead th[data-v-49f507a6]\n   {\n     padding: 10px 10px !important;\n}\n#transaction-datatable thead tr th[data-v-49f507a6] \n   {\n     font-weight: 100 !important;\n}\n   ", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -16717,9 +16907,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _summaryCustomer_vue_vue_type_template_id_2370a975_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./summaryCustomer.vue?vue&type=template&id=2370a975&scoped=true& */ "./resources/js/views/admin/summaryCustomer.vue?vue&type=template&id=2370a975&scoped=true&");
 /* harmony import */ var _summaryCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./summaryCustomer.vue?vue&type=script&lang=js& */ "./resources/js/views/admin/summaryCustomer.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _summaryCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _summaryCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 /* harmony import */ var _summaryCustomer_vue_vue_type_style_index_0_id_2370a975_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./summaryCustomer.vue?vue&type=style&index=0&id=2370a975&scoped=true&lang=css& */ "./resources/js/views/admin/summaryCustomer.vue?vue&type=style&index=0&id=2370a975&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -16761,9 +16948,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _transactionCustomer_vue_vue_type_template_id_49f507a6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./transactionCustomer.vue?vue&type=template&id=49f507a6&scoped=true& */ "./resources/js/views/admin/transactionCustomer.vue?vue&type=template&id=49f507a6&scoped=true&");
 /* harmony import */ var _transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./transactionCustomer.vue?vue&type=script&lang=js& */ "./resources/js/views/admin/transactionCustomer.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 /* harmony import */ var _transactionCustomer_vue_vue_type_style_index_0_id_49f507a6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./transactionCustomer.vue?vue&type=style&index=0&id=49f507a6&scoped=true&lang=css& */ "./resources/js/views/admin/transactionCustomer.vue?vue&type=style&index=0&id=49f507a6&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -16861,11 +17045,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_summaryCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./summaryCustomer.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/summaryCustomer.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_summaryCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_summaryCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_summaryCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_summaryCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_summaryCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default())); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_summaryCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -16881,11 +17061,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./transactionCustomer.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/transactionCustomer.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default())); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transactionCustomer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -17142,10 +17318,111 @@ var render = function() {
       _vm._m(2)
     ]),
     _vm._v(" "),
-    _vm._m(3),
+    _c("div", { staticClass: "mt-2 mb-4" }, [
+      _c("div", {}, [
+        _c("div", { staticClass: "table-responsive" }, [
+          _c(
+            "table",
+            {
+              staticClass: "table",
+              attrs: { id: "sales-datatable", width: "100%", cellspacing: "0" }
+            },
+            [
+              _vm._m(3),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.sales, function(sale) {
+                  return _c(
+                    "tr",
+                    { key: sale.id, staticStyle: { cursor: "pointer" } },
+                    [
+                      _vm._m(4, true),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.dateFormateChanger(sale.issue_date)))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(sale.invoiceno))]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v(
+                          _vm._s(sale.firstname) + " " + _vm._s(sale.lastname)
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(sale.typename))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(sale.methoddata))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(sale.subtotal))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(sale.vattotal))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(sale.totalamount))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        sale.status == "Paid"
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn table-btn",
+                                staticStyle: {
+                                  "margin-left": "auto",
+                                  width: "auto",
+                                  "background-color": "#00AA5B !important"
+                                },
+                                attrs: { type: "button" }
+                              },
+                              [_vm._v(_vm._s(sale.status))]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        sale.status == "Over Paid"
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn table-btn",
+                                staticStyle: {
+                                  "margin-left": "auto",
+                                  width: "auto",
+                                  "background-color": "#ffa500 !important"
+                                },
+                                attrs: { type: "button" }
+                              },
+                              [_vm._v(_vm._s(sale.status))]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        sale.status == "UnPaid" ||
+                        sale.status == "Partially Paid"
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn table-btn",
+                                staticStyle: {
+                                  "margin-left": "auto",
+                                  width: "auto"
+                                },
+                                attrs: { type: "button" }
+                              },
+                              [_vm._v(_vm._s(sale.status))]
+                            )
+                          : _vm._e()
+                      ])
+                    ]
+                  )
+                }),
+                0
+              )
+            ]
+          )
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c("div", [
-      _vm._m(4),
+      _vm._m(5),
       _vm._v(" "),
       _c(
         "div",
@@ -17155,13 +17432,107 @@ var render = function() {
             _vm._v("0 Awaiting Payments")
           ]),
           _vm._v(" "),
-          _vm._m(5)
+          _vm._m(6)
         ],
         1
       )
     ]),
     _vm._v(" "),
-    _vm._m(6)
+    _c("div", { staticClass: "mt-2 mb-4" }, [
+      _c("div", {}, [
+        _c("div", { staticClass: "table-responsive" }, [
+          _c(
+            "table",
+            {
+              staticClass: "table",
+              attrs: { id: "sales-datatable", width: "100%", cellspacing: "0" }
+            },
+            [
+              _vm._m(7),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.purchases, function(purchase) {
+                  return _c(
+                    "tr",
+                    {
+                      key: purchase.id,
+                      staticStyle: { cursor: "pointer" },
+                      on: {
+                        click: function($event) {
+                          return _vm.gotopurchase(purchase.id)
+                        }
+                      }
+                    },
+                    [
+                      _vm._m(8, true),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(_vm.dateFormateChanger(purchase.issue_date))
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(purchase.invoiceno))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(purchase.reference))]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { color: "#3376C2" } }, [
+                        _vm._v(
+                          _vm._s(purchase.firstname) +
+                            " " +
+                            _vm._s(purchase.lastname)
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(purchase.typename))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(purchase.methoddata))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(purchase.subtotal))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(purchase.vattotal))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(purchase.totalamount))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        purchase.status != "Paid"
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn table-btn",
+                                staticStyle: { "margin-left": "auto" },
+                                attrs: { type: "button" }
+                              },
+                              [_vm._v(_vm._s(purchase.status))]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        purchase.status == "Paid"
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn table-btn",
+                                staticStyle: {
+                                  "margin-left": "auto",
+                                  "background-color": "#00AA5B !important"
+                                },
+                                attrs: { type: "button" }
+                              },
+                              [_vm._v(_vm._s(purchase.status))]
+                            )
+                          : _vm._e()
+                      ])
+                    ]
+                  )
+                }),
+                0
+              )
+            ]
+          )
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -17171,7 +17542,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("p", { staticStyle: { color: "#3377c2" } }, [
-        _vm._v("300 Invoieses("),
+        _vm._v("300 Invoices("),
         _c("i", {
           staticClass: "fa fa-pound-sign",
           staticStyle: { "font-size": "15px" }
@@ -17222,198 +17593,65 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-2 mb-4" }, [
-      _c("div", {}, [
-        _c("div", { staticClass: "table-responsive" }, [
-          _c(
-            "table",
-            {
-              staticClass: "table",
-              attrs: {
-                id: "paidsales-datatable",
-                width: "100%",
-                cellspacing: "0"
-              }
-            },
-            [
-              _c("thead", [
-                _c("tr", [
-                  _c("th", [
-                    _c("input", {
-                      staticClass: "custom-check-input",
-                      attrs: { type: "checkbox" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Date")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("No")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Customer")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Item Type")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Payment Method")]),
-                  _vm._v(" "),
-                  _c("th", [
-                    _vm._v("Sub Total ( "),
-                    _c("i", {
-                      staticClass: "fa fa-pound-sign",
-                      staticStyle: { "font-size": "9px" }
-                    }),
-                    _vm._v(" )")
-                  ]),
-                  _vm._v(" "),
-                  _c("th", [
-                    _vm._v("Vat ( "),
-                    _c("i", {
-                      staticClass: "fa fa-pound-sign",
-                      staticStyle: { "font-size": "9px" }
-                    }),
-                    _vm._v(" )")
-                  ]),
-                  _vm._v(" "),
-                  _c("th", [
-                    _vm._v("Total ( "),
-                    _c("i", {
-                      staticClass: "fa fa-pound-sign",
-                      staticStyle: { "font-size": "9px" }
-                    }),
-                    _vm._v(" )")
-                  ]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Status")])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tbody", [
-                _c("tr", { staticStyle: { cursor: "pointer" } }, [
-                  _c("td", [
-                    _c("input", {
-                      staticClass: "custom-check-input",
-                      attrs: { type: "checkbox" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("16/5/2021")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("INV- 2001")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Robert Malasakalwi")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v("Jewellery(2),"),
-                    _c("br"),
-                    _vm._v("Delivery(1)")
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Credit Card")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("8000")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("640")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("8640")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn table-btn",
-                        staticStyle: { "margin-left": "auto", width: "68px" },
-                        attrs: { type: "button" }
-                      },
-                      [_vm._v("UnPaid")]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("tr", { staticStyle: { cursor: "pointer" } }, [
-                  _c("td", [
-                    _c("input", {
-                      staticClass: "custom-check-input",
-                      attrs: { type: "checkbox" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("16/5/2021")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("INV- 1999")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Robert Malasakalwi")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v("Jewellery(2),"),
-                    _c("br"),
-                    _vm._v(" Delivery(1)")
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Credit Card")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("8000")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("640")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("8640")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn table-btn",
-                        staticStyle: { "margin-left": "auto", width: "68px" },
-                        attrs: { type: "button" }
-                      },
-                      [_vm._v("UnPaid")]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("tr", { staticStyle: { cursor: "pointer" } }, [
-                  _c("td", [
-                    _c("input", {
-                      staticClass: "custom-check-input",
-                      attrs: { type: "checkbox" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("16/5/2021")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("INV- 1998")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Robert Malasakalwi")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("FB / Bullion(2)")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Credit Card")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("8000")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("640")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("8640")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn table-btn-green",
-                        staticStyle: {
-                          "margin-left": "auto",
-                          width: "68px",
-                          "background-color": "green"
-                        },
-                        attrs: { type: "button" }
-                      },
-                      [_vm._v("Paid")]
-                    )
-                  ])
-                ])
-              ])
-            ]
-          )
-        ])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [
+          _c("input", {
+            staticClass: "custom-check-input",
+            attrs: { type: "checkbox" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("No")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Customer")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Item Type")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Payment Method")]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v("Sub Total ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v("Vat ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v("Total ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("input", {
+        staticClass: "custom-check-input",
+        attrs: { type: "checkbox" }
+      })
     ])
   },
   function() {
@@ -17458,202 +17696,67 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-2 mb-4" }, [
-      _c("div", {}, [
-        _c("div", { staticClass: "table-responsive" }, [
-          _c(
-            "table",
-            {
-              staticClass: "table",
-              attrs: {
-                id: "paidsales-datatable",
-                width: "100%",
-                cellspacing: "0"
-              }
-            },
-            [
-              _c("thead", [
-                _c("tr", [
-                  _c("th", [
-                    _c("input", {
-                      staticClass: "custom-check-input",
-                      attrs: { type: "checkbox" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Date")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("No")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Supplier Name")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Item Type")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Payment Method")]),
-                  _vm._v(" "),
-                  _c("th", [
-                    _vm._v("Sub Total ( "),
-                    _c("i", {
-                      staticClass: "fa fa-pound-sign",
-                      staticStyle: { "font-size": "9px" }
-                    }),
-                    _vm._v(" )")
-                  ]),
-                  _vm._v(" "),
-                  _c("th", [
-                    _vm._v("Vat ( "),
-                    _c("i", {
-                      staticClass: "fa fa-pound-sign",
-                      staticStyle: { "font-size": "9px" }
-                    }),
-                    _vm._v(" )")
-                  ]),
-                  _vm._v(" "),
-                  _c("th", [
-                    _vm._v("Total ( "),
-                    _c("i", {
-                      staticClass: "fa fa-pound-sign",
-                      staticStyle: { "font-size": "9px" }
-                    }),
-                    _vm._v(" )")
-                  ]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Status")])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tbody", [
-                _c("tr", { staticStyle: { cursor: "pointer" } }, [
-                  _c("td", [
-                    _c("input", {
-                      staticClass: "custom-check-input",
-                      attrs: { type: "checkbox" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("16/5/2021")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("2001")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Robert Malasakalwi")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v("Jewellery(2),"),
-                    _c("br"),
-                    _vm._v("Delivery(1)")
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Bank Transfer")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("8000")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("640")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("8640")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn table-btn-green",
-                        staticStyle: { "margin-left": "auto", width: "68px" },
-                        attrs: { type: "button" }
-                      },
-                      [_vm._v("Paid")]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("tr", { staticStyle: { cursor: "pointer" } }, [
-                  _c("td", [
-                    _c("input", {
-                      staticClass: "custom-check-input",
-                      attrs: { type: "checkbox" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("16/5/2021")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("1999")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("ABC Jewellery")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v("Jewellery(2),"),
-                    _c("br"),
-                    _vm._v(" Delivery(1)")
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Bank Transfer")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("8000")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("640")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("8640")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn table-btn-green",
-                        staticStyle: { "margin-left": "auto", width: "68px" },
-                        attrs: { type: "button" }
-                      },
-                      [_vm._v("Paid")]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("tr", { staticStyle: { cursor: "pointer" } }, [
-                  _c("td", [
-                    _c("input", {
-                      staticClass: "custom-check-input",
-                      attrs: { type: "checkbox" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("16/5/2021")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("1998")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Robert Malasakalwi")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v("Jewellery(2),"),
-                    _c("br"),
-                    _vm._v("Delivery(1)")
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Bank Transfer")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("8000")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("640")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("8640")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn table-btn-green",
-                        staticStyle: {
-                          "margin-left": "auto",
-                          width: "68px",
-                          "background-color": "green"
-                        },
-                        attrs: { type: "button" }
-                      },
-                      [_vm._v("Paid")]
-                    )
-                  ])
-                ])
-              ])
-            ]
-          )
-        ])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [
+          _c("input", {
+            staticClass: "custom-check-input",
+            attrs: { type: "checkbox" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("No")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Reference")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Supplier")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Item Type")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Payment Method")]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v("Sub Total ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v("Vat ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v("Total ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("input", {
+        staticClass: "custom-check-input",
+        attrs: { type: "checkbox" }
+      })
     ])
   }
 ]
@@ -17729,7 +17832,7 @@ var staticRenderFns = [
               {
                 staticClass: "table",
                 attrs: {
-                  id: "paidsales-datatable",
+                  id: "transaction-datatable",
                   width: "100%",
                   cellspacing: "0"
                 }
@@ -17948,10 +18051,51 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", {
-          staticClass: "col-md-6",
-          staticStyle: { "text-align": "right" }
-        })
+        _c(
+          "div",
+          { staticClass: "col-md-6", staticStyle: { "text-align": "right" } },
+          [
+            _c("router-link", { attrs: { to: "/createinvoice" } }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn admin-btn mobile-mb",
+                  staticStyle: { "background-color": "#7ADAAA !important" },
+                  attrs: { type: "button" }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fas fa-plus",
+                    staticStyle: { "margin-right": "5px" }
+                  }),
+                  _vm._v("Create Invoice")
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("router-link", { attrs: { to: "/createpurchase" } }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn admin-btn mobile-mb",
+                  staticStyle: {
+                    "background-color": "#9E00A1 !important",
+                    color: "#fff"
+                  },
+                  attrs: { type: "button" }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fas fa-plus",
+                    staticStyle: { "margin-right": "5px" }
+                  }),
+                  _vm._v("Create Purchase")
+                ]
+              )
+            ])
+          ],
+          1
+        )
       ]
     ),
     _vm._v(" "),

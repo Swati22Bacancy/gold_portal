@@ -19,6 +19,7 @@ class SalesPayments extends Authenticatable
         'method',
         'bank',
         'comment',
-        'action'
+        'action',
+        'purchase_id'
     ];
 }
