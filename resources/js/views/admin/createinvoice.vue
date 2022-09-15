@@ -261,10 +261,10 @@
                       
                           <!-- </select> -->
                         </td>
-                        <td class="td-style">
+                        <td class="td-style tdwidth">
                           <input type="text" class="form-control form-control-user" placeholder="" v-model="invoice_item.weight" readonly/>
                         </td>
-                        <td class="td-style">
+                        <td class="td-style tdwidth">
                           <input type="number" class="form-control form-control-user" @blur="calculateValue(key)" placeholder="" v-model="invoice_item.quantity"/>
                           <span v-if="$v.invoice_item.quantity.$error" class="text-danger">Please Enter weight</span>
                         </td>
@@ -272,7 +272,7 @@
                           <input type="number" class="form-control form-control-user" @blur="calculateAmount(key)" placeholder="" v-model="invoice_item.unitprice"/>
                           <span v-if="$v.invoice_item.unitprice.$error" class="text-danger">Please Enter unit pice</span>                        
                         </td>
-                        <td class="td-style">
+                        <td class="td-style tdwidth">
                           <input type="number" class="form-control form-control-user" placeholder="" v-model="invoice_item.vat" readonly/>
                         </td>
                         <td class="td-style">
@@ -606,9 +606,47 @@ export default {
     {
       this.invoice_items[index].weight='';
       this.invoice_items[index].vat='';
-      this.invoice_items[index].quantity='';
+      this.invoice_items[index].quantity=1;
       this.invoice_items[index].unitprice='';
       this.invoice_items[index].invoice_amount='';
+      axios.get('/productdetails_thirdParty/'+this.invoice_items[index].invoice_product)
+        .then((response) => {
+            this.invoice_items[index].weight=response.data.weight;
+            this.invoice_items[index].vat=(response.data.productrate)?response.data.productrate:0;
+            this.invoice_items[index].invoice_type=response.data.type;
+            this.invoice_items[index].invoice_typeid=response.data.type_id;
+            var unitPrice = ((response.data.askprice * response.data.weight) * this.invoice_items[index].quantity) + parseFloat(response.data.sales_commission);
+            
+            var pricecommission = (unitPrice*parseFloat(response.data.sales_commission)/100) + unitPrice;
+            
+            this.invoice_items[index].unitprice = pricecommission.toFixed(2);
+            var invunitprice = parseFloat(this.invoice_items[index].unitprice);
+
+            var quantity = this.invoice_items[index].quantity;
+            var vat = this.invoice_items[index].vat;
+            console.log(this.invoice_items[index].unitprice);
+            console.log(quantity);
+            console.log(vat);
+            if(vat)
+            {
+              var vatdeduct = vat/100;
+              var vatquantity = quantity*(1+vatdeduct);
+              var v = invunitprice*vatquantity;
+              var rounded = Math.round(v * 10) / 10
+              var lineamount= Math.floor(rounded + 0.1) === rounded + 0.1? rounded + 0.1: rounded;
+            }
+            else
+            {
+              var lineamount =invunitprice*vatquantity;
+            }
+            
+            this.invoice_items[index].invoice_amount = lineamount;
+        })
+        .catch(function(error) {
+        });
+
+        
+
       var totalsub=0;
       for(var j=0; j<this.invoice_items.length;j++)
       {
@@ -633,25 +671,21 @@ export default {
           }
         }
       }
+
+      
+      
       
       this.subtotal = totalsub.toFixed(2);
       this.vattotal = totalvat.toFixed(2);
       var invoicetotal = totalsub + totalvat;
       this.totalamount = invoicetotal.toFixed(2);
+      
       this.formdata.subtotal = Number(this.subtotal);
       this.formdata.vattotal = Number(this.vattotal);
       this.formdata.totalamount = Number(this.totalamount);
 
       //this.invoice_items[index].vat='';
-      axios.get('/productdetails/'+this.invoice_items[index].invoice_product)
-        .then((response) => {
-            this.invoice_items[index].weight=response.data.weight;
-            this.invoice_items[index].vat=(response.data.productrate)?response.data.productrate:0;
-            this.invoice_items[index].invoice_type=response.data.type;
-            this.invoice_items[index].invoice_typeid=response.data.type_id;
-        })
-        .catch(function(error) {
-        });
+      
     },
     fetchAddress()
     {
@@ -1116,5 +1150,9 @@ export default {
 }
 .td-style{
   width:150px;
+}
+.tdwidth
+{
+  width: 90px;
 }
 </style>

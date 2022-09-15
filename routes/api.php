@@ -57,6 +57,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('productdetails/{id}', [Api\ProductController::class, 'productdetails']);
     Route::post('update_product', [Api\ProductController::class, 'updateproduct']);
     Route::get('productdata/{id}', [Api\ProductController::class, 'productdata']);
+    Route::get('productdetails_thirdParty/{id}', [Api\ProductController::class, 'productdetailsthirdParty']);
 
     // Currency Routes
     Route::post('create_currency', [Api\CurrencyController::class, 'createcurrency']);
