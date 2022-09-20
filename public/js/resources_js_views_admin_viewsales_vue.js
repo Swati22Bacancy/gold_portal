@@ -823,6 +823,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -1523,7 +1524,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _this10.purchases = _this10.purchases.map(function (purchase) {
         return {
           value: purchase.id,
-          text: "".concat(moment__WEBPACK_IMPORTED_MODULE_1___default()(purchase.issue_date, 'YYYY-MM-DD').format('DD MMM YYYY') || '', " |   ").concat(purchase.invoiceno || '', "  | \xA3").concat(purchase.totalamount || "", " | ").concat(purchase.firstname || "", "  ").concat(purchase.lastname || "", " ")
+          text: "".concat(moment__WEBPACK_IMPORTED_MODULE_1___default()(purchase.issue_date, 'YYYY-MM-DD').format('DD MMM YYYY') || '', " |   ").concat(purchase.invoiceno || '', "  | ").concat(purchase.firstname || "", "  ").concat(purchase.lastname || "", " | \xA3").concat(purchase.totalamount || "", " ")
         };
       });
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
@@ -2563,7 +2564,7 @@ var render = function() {
                               )
                             ]),
                             _vm._v(" "),
-                            _c("td"),
+                            _c("td", [_vm._v(_vm._s(salepayment.bank))]),
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(salepayment.method))]),
                             _vm._v(" "),
@@ -2576,9 +2577,14 @@ var render = function() {
                                   salepayment.action == "Receive" ||
                                   salepayment.action == "Exchange"
                                     ? "class_green"
-                                    : "class_red"
+                                    : "class_red",
+                                staticStyle: { color: "#3376c2" }
                               },
                               [
+                                salepayment.action == "Refund"
+                                  ? _c("span", [_vm._v("- ")])
+                                  : _vm._e(),
+                                _vm._v(" "),
                                 _c("i", {
                                   staticClass: "fa fa-pound-sign",
                                   staticStyle: {
@@ -2587,21 +2593,9 @@ var render = function() {
                                   }
                                 }),
                                 _vm._v(
-                                  "\n                            " +
-                                    _vm._s(salepayment.totalamount) +
-                                    " "
-                                ),
-                                salepayment.action == "Receive"
-                                  ? _c("span", [_vm._v("Received")])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                salepayment.action == "Refund"
-                                  ? _c("span", [_vm._v("Refunded")])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                salepayment.action == "Exchange"
-                                  ? _c("span")
-                                  : _vm._e()
+                                  _vm._s(salepayment.totalamount) +
+                                    " \n                            "
+                                )
                               ]
                             ),
                             _vm._v(" "),

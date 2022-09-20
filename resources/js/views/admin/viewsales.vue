@@ -316,14 +316,15 @@
                   <tbody>
                       <tr v-for="salepayment in formdata.salepayments" :key="salepayment.id" >
                           <td>{{ dateFormateChanger(salepayment.payment_date) }}</td>
-                          <td></td>
+                          <td>{{ salepayment.bank }}</td>
                           <td>{{ salepayment.method }}</td>
                           <td></td>
-                          <td  v-bind:class = "(salepayment.action=='Receive' || salepayment.action=='Exchange') ?'class_green':'class_red'">
-                              <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;" ></i>
-                              {{ salepayment.totalamount }} <span v-if="salepayment.action=='Receive'">Received</span>
+                          <td style="color: #3376c2;" v-bind:class = "(salepayment.action=='Receive' || salepayment.action=='Exchange') ?'class_green':'class_red'">
+                            <span v-if="salepayment.action=='Refund'">- </span>
+                            <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;" ></i>{{ salepayment.totalamount }} 
+                              <!-- <span v-if="salepayment.action=='Receive'">Received</span>
                               <span v-if="salepayment.action=='Refund'">Refunded</span>
-                              <span v-if="salepayment.action=='Exchange'"></span>
+                              <span v-if="salepayment.action=='Exchange'"></span> -->
                           </td>
                           <td></td>
                           <td>
@@ -1400,7 +1401,7 @@ export default {
             this.purchases = this.purchases.map(purchase => {
               return {
                 value: purchase.id,
-                text: `${moment(purchase.issue_date,'YYYY-MM-DD').format('DD MMM YYYY') || ''} |   ${purchase.invoiceno || ''}  | £${purchase.totalamount || ""} | ${purchase.firstname || ""}  ${purchase.lastname || ""} `,
+                text: `${moment(purchase.issue_date,'YYYY-MM-DD').format('DD MMM YYYY') || ''} |   ${purchase.invoiceno || ''}  | ${purchase.firstname || ""}  ${purchase.lastname || ""} | £${purchase.totalamount || ""} `,
               } 
             })
         })

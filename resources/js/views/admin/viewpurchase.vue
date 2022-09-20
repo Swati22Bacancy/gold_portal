@@ -145,10 +145,10 @@
               <tbody>
                 <tr v-for="purchasepayment in formdata.purchasepayments" :key="purchasepayment.id">
                     <td>{{dateFormateChanger(purchasepayment.payment_date)}}</td>
-                    <td></td>
+                    <td>{{purchasepayment.bank}}</td>
                     <td>{{purchasepayment.method}}</td>
                     <td></td>
-                    <td style="color:#7adaaa;"><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i> {{purchasepayment.totalamount}} Paid</td>
+                    <td style="color:#3376c2;"><i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i> {{purchasepayment.totalamount}} </td>
                     <td>
                       
                     </td>

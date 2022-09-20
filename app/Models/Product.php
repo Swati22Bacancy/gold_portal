@@ -19,6 +19,8 @@ class Product extends Authenticatable
         'rate',
         'output_tax',
         'sales_commission',
-        'purchase_commission'
+        'purchase_commission',
+        'retail_sales_commission',
+        'retail_purchase_commission'
     ];
 }

@@ -57,11 +57,14 @@
                 </div>
                 
               </div>
+            </div>
+
+            <div class="row mb-4">
               <div class="col-md-6">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group customer-input">
-                      <label>Sales Commission (%)</label>
+                      <label>Wholesale Commission (%)</label>
                       <input
                         type="text"
                         class="form-control form-control-user"
@@ -74,6 +77,23 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group customer-input">
+                      <label>Retail Sales Commission (%)</label>
+                      <input
+                        type="text"
+                        class="form-control form-control-user"
+                        id="crt-typename"
+                        aria-describedby="emailHelp"
+                        placeholder=""
+                        v-model="formdata.retail_sales_commission"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group customer-input">
                       <label>Purchase Commission (%)</label>
                       <input
                         type="text"
@@ -83,11 +103,25 @@
                         placeholder=""
                         v-model="formdata.purchase_commission"
                       />
+                   </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group customer-input">
+                      <label>Retail Purchase Commission (%)</label>
+                      <input
+                        type="text"
+                        class="form-control form-control-user"
+                        id="crt-typename"
+                        aria-describedby="emailHelp"
+                        placeholder=""
+                        v-model="formdata.retail_purchase_commission"
+                      />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="row mb-4">
               <div class="col-md-6">
                 <div class="form-group">
@@ -144,7 +178,9 @@ export default {
           weight: this.formdata.weight,
           output_tax: this.formdata.output_tax,
           sales_commission: this.formdata.sales_commission,
+          retail_sales_commission: this.formdata.retail_sales_commission,
           purchase_commission: this.formdata.purchase_commission,
+          retail_purchase_commission: this.formdata.retail_purchase_commission,
         });
         let message =
             "Product type has been successfully added.";

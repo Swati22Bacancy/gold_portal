@@ -17155,13 +17155,13 @@ var render = function() {
                               )
                             ]),
                             _vm._v(" "),
-                            _c("td"),
+                            _c("td", [_vm._v(_vm._s(purchasepayment.bank))]),
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(purchasepayment.method))]),
                             _vm._v(" "),
                             _c("td"),
                             _vm._v(" "),
-                            _c("td", { staticStyle: { color: "#7adaaa" } }, [
+                            _c("td", { staticStyle: { color: "#3376c2" } }, [
                               _c("i", {
                                 staticClass: "fa fa-pound-sign",
                                 staticStyle: {
@@ -17170,9 +17170,7 @@ var render = function() {
                                 }
                               }),
                               _vm._v(
-                                " " +
-                                  _vm._s(purchasepayment.totalamount) +
-                                  " Paid"
+                                " " + _vm._s(purchasepayment.totalamount) + " "
                               )
                             ]),
                             _vm._v(" "),

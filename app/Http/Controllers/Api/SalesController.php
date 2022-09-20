@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Purchases;
 use DB;
 use Illuminate\Support\Facades\Storage;
+use App\Models\PurchasePayments;
 
 class SalesController extends Controller
 {
@@ -501,5 +502,43 @@ class SalesController extends Controller
     public function getCustomerTransactions($id)
     {
         
+    }
+
+    public function getCustomerSummary($id)
+    {
+        $customersummary=[];
+        
+        //Sales Summary
+
+        $invoiceall = Sales::where('customer_id',$id)->selectRaw("count(id) as counter")->first();
+        $invoiceunpaid = Sales::where('customer_id',$id)->where('status','UnPaid')->selectRaw("count(id) as unpaid")->first();
+        $invoicetotal = Sales::select(DB::raw("SUM(totalamount) as invoicetotal"))->where('customer_id',$id)->first();
+        
+        $customersummary['invoiceall']=$invoiceall->counter;
+        $customersummary['invoiceunpaid']=$invoiceunpaid->unpaid;
+        $customersummary['invoicetotal']=$invoicetotal->invoicetotal;
+        
+        $paid = SalesPayments::leftjoin('sales_invoice', 'sales_invoice.id', '=', 'sales_payments.sales_id')->select(DB::raw("SUM(sales_payments.totalamount) as paidamount"))->whereIn('sales_payments.action', array('Receive', 'Exchange'))->where('sales_invoice.customer_id',$id)->first();
+
+        $refund = SalesPayments::leftjoin('sales_invoice', 'sales_invoice.id', '=', 'sales_payments.sales_id')->select(DB::raw("SUM(sales_payments.totalamount) as refundamount"))->where('sales_payments.action', 'Refund')->where('sales_invoice.customer_id',$id)->first();
+
+        $payment_due = $invoicetotal->invoicetotal - $paid->paidamount;
+        $customersummary['payment_due'] = $payment_due + $refund->refundamount;
+
+        //Purchase Summary
+
+        $purchaseall = Purchases::where('customer_id',$id)->selectRaw("count(id) as counter")->first();
+        $purchaseunpaid = Purchases::where('customer_id',$id)->where('status','UnPaid')->selectRaw("count(id) as unpaid")->first();
+        $purchasetotal = Purchases::select(DB::raw("SUM(totalamount) as purchasetotal"))->where('customer_id',$id)->first();
+
+        $customersummary['purchaseall']=$purchaseall->counter;
+        $customersummary['purchaseunpaid']=$purchaseunpaid->unpaid;
+        $customersummary['purchasetotal']=$purchasetotal->purchasetotal;
+
+        $paidpurchase = PurchasePayments::leftjoin('purchase_invoice', 'purchase_invoice.id', '=', 'purchase_payments.purchase_id')->select(DB::raw("SUM(purchase_payments.totalamount) as paidamount"))->where('purchase_invoice.customer_id',$id)->first();
+
+        $customersummary['payment_duepurchase'] = $purchasetotal->purchasetotal - $paidpurchase->paidamount;
+        
+        return response()->json($customersummary);
     }
 }

@@ -546,7 +546,7 @@ export default {
                 text: product.name
               } 
             })
-            console.log(this.products)
+           
         });
         
     },
@@ -624,9 +624,7 @@ export default {
 
             var quantity = this.invoice_items[index].quantity;
             var vat = this.invoice_items[index].vat;
-            console.log(this.invoice_items[index].unitprice);
-            console.log(quantity);
-            console.log(vat);
+            
             if(vat)
             {
               var vatdeduct = vat/100;
@@ -641,48 +639,49 @@ export default {
             }
             
             this.invoice_items[index].invoice_amount = lineamount;
+            var totalsub=0;
+            for(var j=0; j<this.invoice_items.length;j++)
+            {
+              if(!isNaN(this.invoice_items[j].unitprice))  
+              {
+                totalsub += this.invoice_items[j].unitprice*this.invoice_items[j].quantity;
+              }
+            }
+
+            var totalvat=0;
+            for(var k=0; k<this.invoice_items.length;k++)
+            {
+              if(!isNaN(this.invoice_items[k].unitprice))  
+              {
+                if(this.invoice_items[k].vat)
+                {
+                  totalvat += (this.invoice_items[k].unitprice*this.invoice_items[k].quantity)*(this.invoice_items[k].vat/100);
+                }
+                else
+                {
+                  totalvat += 0;
+                }
+              }
+            }
+
+            
+            
+            
+            this.subtotal = totalsub.toFixed(2);
+            this.vattotal = totalvat.toFixed(2);
+            var invoicetotal = totalsub + totalvat;
+            this.totalamount = invoicetotal.toFixed(2);
+            
+            this.formdata.subtotal = Number(this.subtotal);
+            this.formdata.vattotal = Number(this.vattotal);
+            this.formdata.totalamount = Number(this.totalamount);
         })
         .catch(function(error) {
         });
 
         
 
-      var totalsub=0;
-      for(var j=0; j<this.invoice_items.length;j++)
-      {
-        if(!isNaN(this.invoice_items[j].unitprice))  
-        {
-          totalsub += this.invoice_items[j].unitprice*this.invoice_items[j].quantity;
-        }
-      }
-
-      var totalvat=0;
-      for(var k=0; k<this.invoice_items.length;k++)
-      {
-        if(!isNaN(this.invoice_items[k].unitprice))  
-        {
-          if(this.invoice_items[k].vat)
-          {
-            totalvat += (this.invoice_items[k].unitprice*this.invoice_items[k].quantity)*(this.invoice_items[k].vat/100);
-          }
-          else
-          {
-            totalvat += 0;
-          }
-        }
-      }
-
       
-      
-      
-      this.subtotal = totalsub.toFixed(2);
-      this.vattotal = totalvat.toFixed(2);
-      var invoicetotal = totalsub + totalvat;
-      this.totalamount = invoicetotal.toFixed(2);
-      
-      this.formdata.subtotal = Number(this.subtotal);
-      this.formdata.vattotal = Number(this.vattotal);
-      this.formdata.totalamount = Number(this.totalamount);
 
       //this.invoice_items[index].vat='';
       

@@ -2,12 +2,15 @@
     <div class="head-style">
         <div>
         <div>
-          <p style="color:#3377c2">300 Invoices(<i class="fa fa-pound-sign" style="font-size: 15px;"></i> 1,232,500.00)</p>
+          <p style="color:#3377c2">{{customersummary.invoiceall}} Invoices (<i class="fa fa-pound-sign" style="font-size: 15px;"></i> {{customersummary.invoicetotal}})</p>
         </div>
         <div  class="heading-title">
-          <P style="color:#C94C4C">30 Invoices Awaiting Payments</P>
-          <h4 style="color:#C94C4C; margin-left: 800px; font-weight: bold;">- <i class="fa fa-pound-sign" style="font-size: 23px;"></i> 24,552.00</h4>
+          <P style="color:#C94C4C">{{customersummary.invoiceunpaid}} Invoices Awaiting Payments</P>
+          <h4 v-if="amountstatus=='over'" style="color:rgb(255 165 0) !important; margin-left: 800px; font-weight: bold;">Over Paid : + <i class="fa fa-pound-sign" style="font-size: 23px;"></i> {{Math.abs(customersummary.payment_due)}}</h4>
+          <h4 v-if="amountstatus=='done'" style="color:#C94C4C; margin-left: 800px; font-weight: bold;"> <i class="fa fa-pound-sign" style="font-size: 23px;"></i> {{customersummary.payment_due}}</h4>
+          <h4 v-if="amountstatus!='over' && amountstatus!='done'" style="color:#C94C4C; margin-left: 800px; font-weight: bold;">- <i class="fa fa-pound-sign" style="font-size: 23px;"></i> {{customersummary.payment_due}}</h4>
         </div>
+        
         <div>
             <p style="font-size:12px;">They usually pay in 23 Days  <span style="color:#3377c2; margin-left: 15px;">(view Recent invoice)</span> </p>
         </div>
@@ -31,7 +34,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                      <tr style="cursor:pointer;" v-for="sale in sales" :key="sale.id">
+                      <tr v-on:click="gotosales(sale.id)" style="cursor:pointer;" v-for="sale in sales" :key="sale.id">
                           <td><input type="checkbox" class="custom-check-input"></td>
                           <td>{{dateFormateChanger(sale.issue_date)}}</td>
                           <!-- <td>{{sale.issue_date}}</td> -->
@@ -56,11 +59,13 @@
       
 <div>
     <div>
-          <p style="color:#3377c2">30 Purchases(<i class="fa fa-pound-sign" style="font-size: 15px;"></i> 1,232,500.00)</p>
+          <p style="color:#3377c2">{{customersummary.purchaseall}} Purchases (<i class="fa fa-pound-sign" style="font-size: 15px;"></i> {{customersummary.purchasetotal}})</p>
         </div>
         <div  class="heading-title">
-          <P style="color:#C94C4C">0 Awaiting Payments</P>
-          <h4 style="color:#C94C4C; margin-left: 900px; font-weight: bold;">- <i class="fa fa-pound-sign" style="font-size: 23px;"></i> 0.00</h4>
+          <P style="color:#C94C4C">{{customersummary.purchaseunpaid}} Awaiting Payments</P>
+          <h4 v-if="amountstatuspurchase=='over'" style="color:rgb(255 165 0) !important; margin-left: 800px; font-weight: bold;">Over Paid : + <i class="fa fa-pound-sign" style="font-size: 23px;"></i> {{Math.abs(customersummary.payment_duepurchase)}}</h4>
+          <h4 v-if="amountstatuspurchase=='done'" style="color:#C94C4C; margin-left: 800px; font-weight: bold;"> <i class="fa fa-pound-sign" style="font-size: 23px;"></i> {{customersummary.payment_duepurchase}}</h4>
+          <h4 v-if="amountstatuspurchase!='over' && amountstatuspurchase!='done'" style="color:#C94C4C; margin-left: 800px; font-weight: bold;">- <i class="fa fa-pound-sign" style="font-size: 23px;"></i> {{customersummary.payment_duepurchase}}</h4>
         </div>
 </div>
 
@@ -117,10 +122,25 @@ export default {
   components: {
     moment,
   },
+  data() {
+    return {
+      customersummary: {
+        invoiceall:'',
+        invoiceunpaid:'',
+        purchaseall:'',
+        purchaseunpaid:'',
+        invoicetotal:'',
+        purchasetotal:''
+      },
+      amountstatus:'',
+      amountstatuspurchase:''
+    }
+  },
   props: ['sales','purchases'],
   mounted(){
     this.getSales();
     this.getPurchases();
+    this.getCustomerSummary();
     $.fn.textWidth = function(){
       var html_org = $(this).html();
       var html_calc = '<span>' + html_org + '</span>';
@@ -233,6 +253,45 @@ export default {
     getPurchases() {
         return axios.get("purchase_list_byCustomer/"+this.$route.params.id).then(response => {
             this.purchases = response.data;
+        });
+    },
+    getCustomerSummary() {
+        return axios.get("get_customer_summary/"+this.$route.params.id).then(response => {
+            this.customersummary.invoiceall = response.data.invoiceall;
+            this.customersummary.invoiceunpaid = response.data.invoiceunpaid;
+            this.customersummary.invoicetotal = (response.data.invoicetotal)?response.data.invoicetotal.toFixed(2):0;
+
+            this.customersummary.purchaseall = response.data.purchaseall;
+            this.customersummary.purchaseunpaid = response.data.purchaseunpaid;
+            this.customersummary.purchasetotal = (response.data.purchasetotal)?response.data.purchasetotal.toFixed(2):0;
+
+            this.customersummary.payment_due = (response.data.payment_due)?response.data.payment_due.toFixed(2):0;
+            if(response.data.payment_due<0)
+            {
+              this.amountstatus='over';
+            }
+            else if(response.data.payment_due==0)
+            {
+              this.amountstatus='done';
+            }
+            else
+            {
+              this.amountstatus='';
+            }
+
+            this.customersummary.payment_duepurchase = (response.data.payment_duepurchase)?response.data.payment_duepurchase.toFixed(2):0;
+            if(response.data.payment_duepurchase<0)
+            {
+              this.amountstatuspurchase='over';
+            }
+            else if(response.data.payment_duepurchase==0)
+            {
+              this.amountstatuspurchase='done';
+            }
+            else
+            {
+              this.amountstatuspurchase='';
+            }
         });
     },
   }

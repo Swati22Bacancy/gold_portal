@@ -136,6 +136,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('download_pdf',[Api\SalesController::class, 'create']);
     Route::get('sales_list_byCustomer/{id}', [Api\SalesController::class, 'saleslistCustomer']);
     Route::get('get_customer_transactions/{id}', [Api\SalesController::class, 'getCustomerTransactions']);
+    Route::get('get_customer_summary/{id}', [Api\SalesController::class, 'getCustomerSummary']);
     
 
     // Purchase Invoice Routes

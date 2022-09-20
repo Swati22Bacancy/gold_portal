@@ -135,6 +135,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
@@ -181,7 +215,9 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex
                   weight: _this.formdata.weight,
                   output_tax: _this.formdata.output_tax,
                   sales_commission: _this.formdata.sales_commission,
-                  purchase_commission: _this.formdata.purchase_commission
+                  retail_sales_commission: _this.formdata.retail_sales_commission,
+                  purchase_commission: _this.formdata.purchase_commission,
+                  retail_purchase_commission: _this.formdata.retail_purchase_commission
                 });
 
               case 6:
@@ -624,13 +660,15 @@ var render = function() {
                       ])
                     : _vm._e()
                 ])
-              ]),
-              _vm._v(" "),
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row mb-4" }, [
               _c("div", { staticClass: "col-md-6" }, [
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col-md-6" }, [
                     _c("div", { staticClass: "form-group customer-input" }, [
-                      _c("label", [_vm._v("Sales Commission (%)")]),
+                      _c("label", [_vm._v("Wholesale Commission (%)")]),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -667,6 +705,49 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6" }, [
                     _c("div", { staticClass: "form-group customer-input" }, [
+                      _c("label", [_vm._v("Retail Sales Commission (%)")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.retail_sales_commission,
+                            expression: "formdata.retail_sales_commission"
+                          }
+                        ],
+                        staticClass: "form-control form-control-user",
+                        attrs: {
+                          type: "text",
+                          id: "crt-typename",
+                          "aria-describedby": "emailHelp",
+                          placeholder: ""
+                        },
+                        domProps: {
+                          value: _vm.formdata.retail_sales_commission
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.formdata,
+                              "retail_sales_commission",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "form-group customer-input" }, [
                       _c("label", [_vm._v("Purchase Commission (%)")]),
                       _vm._v(" "),
                       _c("input", {
@@ -694,6 +775,45 @@ var render = function() {
                             _vm.$set(
                               _vm.formdata,
                               "purchase_commission",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "form-group customer-input" }, [
+                      _c("label", [_vm._v("Retail Purchase Commission (%)")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.formdata.retail_purchase_commission,
+                            expression: "formdata.retail_purchase_commission"
+                          }
+                        ],
+                        staticClass: "form-control form-control-user",
+                        attrs: {
+                          type: "text",
+                          id: "crt-typename",
+                          "aria-describedby": "emailHelp",
+                          placeholder: ""
+                        },
+                        domProps: {
+                          value: _vm.formdata.retail_purchase_commission
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.formdata,
+                              "retail_purchase_commission",
                               $event.target.value
                             )
                           }

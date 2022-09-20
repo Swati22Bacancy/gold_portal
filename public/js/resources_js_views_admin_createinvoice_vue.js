@@ -602,7 +602,6 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
             text: product.name
           };
         });
-        console.log(_this5.products);
       });
     },
     getInvoicekey: function getInvoicekey() {
@@ -670,9 +669,6 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         var invunitprice = parseFloat(_this8.invoice_items[index].unitprice);
         var quantity = _this8.invoice_items[index].quantity;
         var vat = _this8.invoice_items[index].vat;
-        console.log(_this8.invoice_items[index].unitprice);
-        console.log(quantity);
-        console.log(vat);
 
         if (vat) {
           var vatdeduct = vat / 100;
@@ -685,34 +681,34 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         }
 
         _this8.invoice_items[index].invoice_amount = lineamount;
-      })["catch"](function (error) {});
-      var totalsub = 0;
+        var totalsub = 0;
 
-      for (var j = 0; j < this.invoice_items.length; j++) {
-        if (!isNaN(this.invoice_items[j].unitprice)) {
-          totalsub += this.invoice_items[j].unitprice * this.invoice_items[j].quantity;
-        }
-      }
-
-      var totalvat = 0;
-
-      for (var k = 0; k < this.invoice_items.length; k++) {
-        if (!isNaN(this.invoice_items[k].unitprice)) {
-          if (this.invoice_items[k].vat) {
-            totalvat += this.invoice_items[k].unitprice * this.invoice_items[k].quantity * (this.invoice_items[k].vat / 100);
-          } else {
-            totalvat += 0;
+        for (var j = 0; j < _this8.invoice_items.length; j++) {
+          if (!isNaN(_this8.invoice_items[j].unitprice)) {
+            totalsub += _this8.invoice_items[j].unitprice * _this8.invoice_items[j].quantity;
           }
         }
-      }
 
-      this.subtotal = totalsub.toFixed(2);
-      this.vattotal = totalvat.toFixed(2);
-      var invoicetotal = totalsub + totalvat;
-      this.totalamount = invoicetotal.toFixed(2);
-      this.formdata.subtotal = Number(this.subtotal);
-      this.formdata.vattotal = Number(this.vattotal);
-      this.formdata.totalamount = Number(this.totalamount); //this.invoice_items[index].vat='';
+        var totalvat = 0;
+
+        for (var k = 0; k < _this8.invoice_items.length; k++) {
+          if (!isNaN(_this8.invoice_items[k].unitprice)) {
+            if (_this8.invoice_items[k].vat) {
+              totalvat += _this8.invoice_items[k].unitprice * _this8.invoice_items[k].quantity * (_this8.invoice_items[k].vat / 100);
+            } else {
+              totalvat += 0;
+            }
+          }
+        }
+
+        _this8.subtotal = totalsub.toFixed(2);
+        _this8.vattotal = totalvat.toFixed(2);
+        var invoicetotal = totalsub + totalvat;
+        _this8.totalamount = invoicetotal.toFixed(2);
+        _this8.formdata.subtotal = Number(_this8.subtotal);
+        _this8.formdata.vattotal = Number(_this8.vattotal);
+        _this8.formdata.totalamount = Number(_this8.totalamount);
+      })["catch"](function (error) {}); //this.invoice_items[index].vat='';
     },
     fetchAddress: function fetchAddress() {
       var _this9 = this;

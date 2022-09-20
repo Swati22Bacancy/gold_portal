@@ -19,7 +19,9 @@ class ProductController extends Controller
                 'rate' => $request->input('rate'),
                 'output_tax' => ($request->input('output_tax'))?1:0,
                 'sales_commission' => ($request->input('sales_commission'))?$request->input('sales_commission'):0,
-                'purchase_commission' => ($request->input('purchase_commission'))?$request->input('purchase_commission'):0
+                'purchase_commission' => ($request->input('purchase_commission'))?$request->input('purchase_commission'):0,
+                'retail_sales_commission' => ($request->input('retail_sales_commission'))?$request->input('retail_sales_commission'):0,
+                'retail_purchase_commission' => ($request->input('retail_purchase_commission'))?$request->input('retail_purchase_commission'):0
             ]);
 
             return response()->json($product);
@@ -70,7 +72,9 @@ class ProductController extends Controller
                 'rate' => $request->input('rate'),
                 'output_tax' => ($request->input('output_tax'))?1:0,
                 'sales_commission' => ($request->input('sales_commission'))?$request->input('sales_commission'):0,
-                'purchase_commission' => ($request->input('purchase_commission'))?$request->input('purchase_commission'):0
+                'purchase_commission' => ($request->input('purchase_commission'))?$request->input('purchase_commission'):0,
+                'retail_sales_commission' => ($request->input('retail_sales_commission'))?$request->input('retail_sales_commission'):0,
+                'retail_purchase_commission' => ($request->input('retail_purchase_commission'))?$request->input('retail_purchase_commission'):0
             ]);
 
             return response()->json($product);

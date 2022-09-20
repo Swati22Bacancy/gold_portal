@@ -189,6 +189,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -197,12 +202,27 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     moment: (moment__WEBPACK_IMPORTED_MODULE_0___default())
   },
+  data: function data() {
+    return {
+      customersummary: {
+        invoiceall: '',
+        invoiceunpaid: '',
+        purchaseall: '',
+        purchaseunpaid: '',
+        invoicetotal: '',
+        purchasetotal: ''
+      },
+      amountstatus: '',
+      amountstatuspurchase: ''
+    };
+  },
   props: ['sales', 'purchases'],
   mounted: function mounted() {
     var _this = this;
 
     this.getSales();
     this.getPurchases();
+    this.getCustomerSummary();
 
     $.fn.textWidth = function () {
       var html_org = $(this).html();
@@ -317,6 +337,37 @@ __webpack_require__.r(__webpack_exports__);
 
       return axios.get("purchase_list_byCustomer/" + this.$route.params.id).then(function (response) {
         _this3.purchases = response.data;
+      });
+    },
+    getCustomerSummary: function getCustomerSummary() {
+      var _this4 = this;
+
+      return axios.get("get_customer_summary/" + this.$route.params.id).then(function (response) {
+        _this4.customersummary.invoiceall = response.data.invoiceall;
+        _this4.customersummary.invoiceunpaid = response.data.invoiceunpaid;
+        _this4.customersummary.invoicetotal = response.data.invoicetotal ? response.data.invoicetotal.toFixed(2) : 0;
+        _this4.customersummary.purchaseall = response.data.purchaseall;
+        _this4.customersummary.purchaseunpaid = response.data.purchaseunpaid;
+        _this4.customersummary.purchasetotal = response.data.purchasetotal ? response.data.purchasetotal.toFixed(2) : 0;
+        _this4.customersummary.payment_due = response.data.payment_due ? response.data.payment_due.toFixed(2) : 0;
+
+        if (response.data.payment_due < 0) {
+          _this4.amountstatus = 'over';
+        } else if (response.data.payment_due == 0) {
+          _this4.amountstatus = 'done';
+        } else {
+          _this4.amountstatus = '';
+        }
+
+        _this4.customersummary.payment_duepurchase = response.data.payment_duepurchase ? response.data.payment_duepurchase.toFixed(2) : 0;
+
+        if (response.data.payment_duepurchase < 0) {
+          _this4.amountstatuspurchase = 'over';
+        } else if (response.data.payment_duepurchase == 0) {
+          _this4.amountstatuspurchase = 'done';
+        } else {
+          _this4.amountstatuspurchase = '';
+        }
       });
     }
   }
@@ -17300,22 +17351,96 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "head-style" }, [
     _c("div", [
-      _vm._m(0),
+      _c("div", [
+        _c("p", { staticStyle: { color: "#3377c2" } }, [
+          _vm._v(_vm._s(_vm.customersummary.invoiceall) + " Invoices ("),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "15px" }
+          }),
+          _vm._v(" " + _vm._s(_vm.customersummary.invoicetotal) + ")")
+        ])
+      ]),
       _vm._v(" "),
       _c(
         "div",
         { staticClass: "heading-title" },
         [
           _c("P", { staticStyle: { color: "#C94C4C" } }, [
-            _vm._v("30 Invoices Awaiting Payments")
+            _vm._v(
+              _vm._s(_vm.customersummary.invoiceunpaid) +
+                " Invoices Awaiting Payments"
+            )
           ]),
           _vm._v(" "),
-          _vm._m(1)
+          _vm.amountstatus == "over"
+            ? _c(
+                "h4",
+                {
+                  staticStyle: {
+                    color: "rgb(255 165 0) !important",
+                    "margin-left": "800px",
+                    "font-weight": "bold"
+                  }
+                },
+                [
+                  _vm._v("Over Paid : + "),
+                  _c("i", {
+                    staticClass: "fa fa-pound-sign",
+                    staticStyle: { "font-size": "23px" }
+                  }),
+                  _vm._v(
+                    " " + _vm._s(Math.abs(_vm.customersummary.payment_due))
+                  )
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.amountstatus == "done"
+            ? _c(
+                "h4",
+                {
+                  staticStyle: {
+                    color: "#C94C4C",
+                    "margin-left": "800px",
+                    "font-weight": "bold"
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-pound-sign",
+                    staticStyle: { "font-size": "23px" }
+                  }),
+                  _vm._v(" " + _vm._s(_vm.customersummary.payment_due))
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.amountstatus != "over" && _vm.amountstatus != "done"
+            ? _c(
+                "h4",
+                {
+                  staticStyle: {
+                    color: "#C94C4C",
+                    "margin-left": "800px",
+                    "font-weight": "bold"
+                  }
+                },
+                [
+                  _vm._v("- "),
+                  _c("i", {
+                    staticClass: "fa fa-pound-sign",
+                    staticStyle: { "font-size": "23px" }
+                  }),
+                  _vm._v(" " + _vm._s(_vm.customersummary.payment_due))
+                ]
+              )
+            : _vm._e()
         ],
         1
       ),
       _vm._v(" "),
-      _vm._m(2)
+      _vm._m(0)
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "mt-2 mb-4" }, [
@@ -17328,16 +17453,24 @@ var render = function() {
               attrs: { id: "sales-datatable", width: "100%", cellspacing: "0" }
             },
             [
-              _vm._m(3),
+              _vm._m(1),
               _vm._v(" "),
               _c(
                 "tbody",
                 _vm._l(_vm.sales, function(sale) {
                   return _c(
                     "tr",
-                    { key: sale.id, staticStyle: { cursor: "pointer" } },
+                    {
+                      key: sale.id,
+                      staticStyle: { cursor: "pointer" },
+                      on: {
+                        click: function($event) {
+                          return _vm.gotosales(sale.id)
+                        }
+                      }
+                    },
                     [
-                      _vm._m(4, true),
+                      _vm._m(2, true),
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(_vm._s(_vm.dateFormateChanger(sale.issue_date)))
@@ -17422,17 +17555,92 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", [
-      _vm._m(5),
+      _c("div", [
+        _c("p", { staticStyle: { color: "#3377c2" } }, [
+          _vm._v(_vm._s(_vm.customersummary.purchaseall) + " Purchases ("),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "15px" }
+          }),
+          _vm._v(" " + _vm._s(_vm.customersummary.purchasetotal) + ")")
+        ])
+      ]),
       _vm._v(" "),
       _c(
         "div",
         { staticClass: "heading-title" },
         [
           _c("P", { staticStyle: { color: "#C94C4C" } }, [
-            _vm._v("0 Awaiting Payments")
+            _vm._v(
+              _vm._s(_vm.customersummary.purchaseunpaid) + " Awaiting Payments"
+            )
           ]),
           _vm._v(" "),
-          _vm._m(6)
+          _vm.amountstatuspurchase == "over"
+            ? _c(
+                "h4",
+                {
+                  staticStyle: {
+                    color: "rgb(255 165 0) !important",
+                    "margin-left": "800px",
+                    "font-weight": "bold"
+                  }
+                },
+                [
+                  _vm._v("Over Paid : + "),
+                  _c("i", {
+                    staticClass: "fa fa-pound-sign",
+                    staticStyle: { "font-size": "23px" }
+                  }),
+                  _vm._v(
+                    " " +
+                      _vm._s(Math.abs(_vm.customersummary.payment_duepurchase))
+                  )
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.amountstatuspurchase == "done"
+            ? _c(
+                "h4",
+                {
+                  staticStyle: {
+                    color: "#C94C4C",
+                    "margin-left": "800px",
+                    "font-weight": "bold"
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-pound-sign",
+                    staticStyle: { "font-size": "23px" }
+                  }),
+                  _vm._v(" " + _vm._s(_vm.customersummary.payment_duepurchase))
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.amountstatuspurchase != "over" &&
+          _vm.amountstatuspurchase != "done"
+            ? _c(
+                "h4",
+                {
+                  staticStyle: {
+                    color: "#C94C4C",
+                    "margin-left": "800px",
+                    "font-weight": "bold"
+                  }
+                },
+                [
+                  _vm._v("- "),
+                  _c("i", {
+                    staticClass: "fa fa-pound-sign",
+                    staticStyle: { "font-size": "23px" }
+                  }),
+                  _vm._v(" " + _vm._s(_vm.customersummary.payment_duepurchase))
+                ]
+              )
+            : _vm._e()
         ],
         1
       )
@@ -17448,7 +17656,7 @@ var render = function() {
               attrs: { id: "sales-datatable", width: "100%", cellspacing: "0" }
             },
             [
-              _vm._m(7),
+              _vm._m(3),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -17465,7 +17673,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(8, true),
+                      _vm._m(4, true),
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
@@ -17536,44 +17744,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("p", { staticStyle: { color: "#3377c2" } }, [
-        _vm._v("300 Invoices("),
-        _c("i", {
-          staticClass: "fa fa-pound-sign",
-          staticStyle: { "font-size": "15px" }
-        }),
-        _vm._v(" 1,232,500.00)")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "h4",
-      {
-        staticStyle: {
-          color: "#C94C4C",
-          "margin-left": "800px",
-          "font-weight": "bold"
-        }
-      },
-      [
-        _vm._v("- "),
-        _c("i", {
-          staticClass: "fa fa-pound-sign",
-          staticStyle: { "font-size": "23px" }
-        }),
-        _vm._v(" 24,552.00")
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -17653,44 +17823,6 @@ var staticRenderFns = [
         attrs: { type: "checkbox" }
       })
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("p", { staticStyle: { color: "#3377c2" } }, [
-        _vm._v("30 Purchases("),
-        _c("i", {
-          staticClass: "fa fa-pound-sign",
-          staticStyle: { "font-size": "15px" }
-        }),
-        _vm._v(" 1,232,500.00)")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "h4",
-      {
-        staticStyle: {
-          color: "#C94C4C",
-          "margin-left": "900px",
-          "font-weight": "bold"
-        }
-      },
-      [
-        _vm._v("- "),
-        _c("i", {
-          staticClass: "fa fa-pound-sign",
-          staticStyle: { "font-size": "23px" }
-        }),
-        _vm._v(" 0.00")
-      ]
-    )
   },
   function() {
     var _vm = this
