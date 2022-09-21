@@ -824,6 +824,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -1831,7 +1834,7 @@ var render = function() {
         {
           staticClass:
             "d-sm-flex align-items-center justify-content-between mb-4",
-          staticStyle: { "margin-right": "65px" }
+          staticStyle: { "margin-right": "120px" }
         },
         [
           _c(
@@ -1870,63 +1873,9 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "d-sm-flex align-items-center justify-content-between"
-            },
-            [
-              _c("i", {
-                staticClass: "fa fa-download",
-                staticStyle: {
-                  "background-color": "#EDF2F6",
-                  margin: "3%",
-                  "border-radius": "50%",
-                  padding: "15%",
-                  "margin-left": "30%"
-                }
-              }),
-              _vm._v(" "),
-              _c("i", {
-                staticClass: "fab fa-whatsapp",
-                staticStyle: {
-                  "background-color": "#EDF2F6",
-                  margin: "3%",
-                  "border-radius": "50%",
-                  padding: "15%",
-                  "margin-left": "30%"
-                }
-              }),
-              _vm._v(" "),
-              _c("i", {
-                staticClass: "fas fa-envelope",
-                staticStyle: {
-                  "background-color": "#EDF2F6",
-                  "border-radius": "50%",
-                  padding: "15%",
-                  "margin-left": "30%"
-                }
-              }),
-              _vm._v(" "),
-              _c("i", {
-                staticClass: "fas fa-print",
-                staticStyle: {
-                  "background-color": "#EDF2F6",
-                  "border-radius": "50%",
-                  padding: "15%",
-                  "margin-left": "30%"
-                },
-                on: {
-                  click: function($event) {
-                    return _vm.ondownload()
-                  }
-                }
-              })
-            ]
-          ),
+          _vm._m(0),
           _vm._v(" "),
-          _vm._m(0)
+          _vm._m(1)
         ]
       ),
       _vm._v(" "),
@@ -2180,7 +2129,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(1),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -2232,7 +2181,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
-              _vm._m(2),
+              _vm._m(3),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2 sum-price" }, [
                 _c("ul", [
@@ -2435,7 +2384,7 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "modal-content" }, [
-                        _vm._m(3),
+                        _vm._m(4),
                         _vm._v(" "),
                         _c("div", { staticClass: "modal-body" }, [
                           _c(
@@ -3495,7 +3444,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._m(4),
+                  _vm._m(5),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -3913,9 +3862,9 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(5),
-                _vm._v(" "),
                 _vm._m(6),
+                _vm._v(" "),
+                _vm._m(7),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(
@@ -3977,9 +3926,9 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(7),
-                _vm._v(" "),
                 _vm._m(8),
+                _vm._v(" "),
+                _vm._m(9),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(
@@ -4034,34 +3983,118 @@ var staticRenderFns = [
       "div",
       { staticClass: "d-sm-flex align-items-center justify-content-between" },
       [
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: {
+              color: "#48c6f6",
+              "background-color": "#EDF2F6",
+              margin: "3%",
+              "border-radius": "50%",
+              padding: "10%",
+              "font-size": "25px",
+              "margin-left": "30%"
+            }
+          },
+          [_vm._v("download")]
+        ),
+        _vm._v(" "),
+        _c("i", {
+          staticClass: "fab fa-whatsapp",
+          staticStyle: {
+            color: "#00AA5B",
+            "background-color": "#EDF2F6",
+            margin: "3%",
+            "border-radius": "50%",
+            padding: "15%",
+            "margin-left": "30%",
+            "font-size": "18px"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: {
+              color: "blue",
+              "background-color": "#EDF2F6",
+              "border-radius": "50%",
+              padding: "15%",
+              "margin-left": "30%",
+              "font-size": "19px"
+            }
+          },
+          [_vm._v("mail")]
+        ),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: {
+              "background-color": "#EDF2F6",
+              "border-radius": "50%",
+              padding: "15%",
+              "margin-left": "30%"
+            }
+          },
+          [_vm._v("print")]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "d-sm-flex align-items-center justify-content-between",
+        staticStyle: { "margin-left": "-20%" }
+      },
+      [
         _c("i", {
           staticClass: "fas fa-link",
           staticStyle: {
+            color: "#48c6f6",
             "background-color": "#EDF2F6",
             "border-radius": "50%",
-            padding: "15%",
-            "margin-right": "35%"
+            padding: "22%",
+            "margin-right": "35%",
+            "font-size": "15px"
           }
         }),
         _vm._v(" "),
-        _c("i", {
-          staticClass: "fas fa-pencil-alt",
-          staticStyle: {
-            "background-color": "#EDF2F6",
-            "border-radius": "50%",
-            padding: "15%",
-            "margin-right": "35%"
-          }
-        }),
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: {
+              "background-color": "#EDF2F6",
+              "border-radius": "50%",
+              padding: "18%",
+              "margin-right": "35%"
+            }
+          },
+          [_vm._v("edit")]
+        ),
         _vm._v(" "),
-        _c("i", {
-          staticClass: "fas fa-trash-alt",
-          staticStyle: {
-            "background-color": "#EDF2F6",
-            "border-radius": "50%",
-            padding: "15%"
-          }
-        })
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: {
+              "background-color": "#EDF2F6",
+              "border-radius": "50%",
+              padding: "18%",
+              color: "red"
+            }
+          },
+          [_vm._v("delete")]
+        )
       ]
     )
   },

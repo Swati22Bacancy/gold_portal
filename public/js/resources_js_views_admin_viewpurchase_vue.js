@@ -16236,6 +16236,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -16728,7 +16744,7 @@ var render = function() {
         {
           staticClass:
             "d-sm-flex align-items-center justify-content-between mb-4",
-          staticStyle: { "margin-right": "65px" }
+          staticStyle: { "margin-right": "120px" }
         },
         [
           _c(
@@ -17702,47 +17718,65 @@ var staticRenderFns = [
       "div",
       { staticClass: "d-sm-flex align-items-center justify-content-between" },
       [
-        _c("i", {
-          staticClass: "fa fa-download",
-          staticStyle: {
-            "background-color": "#EDF2F6",
-            margin: "3%",
-            "border-radius": "50%",
-            padding: "15%",
-            "margin-left": "30%"
-          }
-        }),
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: {
+              color: "#48c6f6",
+              "background-color": "#EDF2F6",
+              margin: "3%",
+              "border-radius": "50%",
+              padding: "10%",
+              "font-size": "25px",
+              "margin-left": "30%"
+            }
+          },
+          [_vm._v("download")]
+        ),
         _vm._v(" "),
         _c("i", {
           staticClass: "fab fa-whatsapp",
           staticStyle: {
+            color: "#00AA5B",
             "background-color": "#EDF2F6",
             margin: "3%",
             "border-radius": "50%",
             padding: "15%",
-            "margin-left": "30%"
+            "margin-left": "30%",
+            "font-size": "18px"
           }
         }),
         _vm._v(" "),
-        _c("i", {
-          staticClass: "fas fa-envelope",
-          staticStyle: {
-            "background-color": "#EDF2F6",
-            "border-radius": "50%",
-            padding: "15%",
-            "margin-left": "30%"
-          }
-        }),
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: {
+              color: "blue",
+              "background-color": "#EDF2F6",
+              "border-radius": "50%",
+              padding: "15%",
+              "margin-left": "30%",
+              "font-size": "19px"
+            }
+          },
+          [_vm._v("mail")]
+        ),
         _vm._v(" "),
-        _c("i", {
-          staticClass: "fas fa-print",
-          staticStyle: {
-            "background-color": "#EDF2F6",
-            "border-radius": "50%",
-            padding: "15%",
-            "margin-left": "30%"
-          }
-        })
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: {
+              "background-color": "#EDF2F6",
+              "border-radius": "50%",
+              padding: "15%",
+              "margin-left": "30%"
+            }
+          },
+          [_vm._v("print")]
+        )
       ]
     )
   },
@@ -17752,36 +17786,50 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "d-sm-flex align-items-center justify-content-between" },
+      {
+        staticClass: "d-sm-flex align-items-center justify-content-between",
+        staticStyle: { "margin-left": "-20%" }
+      },
       [
         _c("i", {
           staticClass: "fas fa-link",
           staticStyle: {
+            color: "#48c6f6",
             "background-color": "#EDF2F6",
             "border-radius": "50%",
-            padding: "15%",
-            "margin-right": "35%"
+            padding: "22%",
+            "margin-right": "35%",
+            "font-size": "15px"
           }
         }),
         _vm._v(" "),
-        _c("i", {
-          staticClass: "fas fa-pencil-alt",
-          staticStyle: {
-            "background-color": "#EDF2F6",
-            "border-radius": "50%",
-            padding: "15%",
-            "margin-right": "35%"
-          }
-        }),
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: {
+              "background-color": "#EDF2F6",
+              "border-radius": "50%",
+              padding: "18%",
+              "margin-right": "35%"
+            }
+          },
+          [_vm._v("edit")]
+        ),
         _vm._v(" "),
-        _c("i", {
-          staticClass: "fas fa-trash-alt",
-          staticStyle: {
-            "background-color": "#EDF2F6",
-            "border-radius": "50%",
-            padding: "15%"
-          }
-        })
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: {
+              "background-color": "#EDF2F6",
+              "border-radius": "50%",
+              padding: "18%",
+              color: "red"
+            }
+          },
+          [_vm._v("delete")]
+        )
       ]
     )
   },

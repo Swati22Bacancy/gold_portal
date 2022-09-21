@@ -8,23 +8,39 @@
     <!-- Page Heading -->
     <div class="col-11">
 
-      <div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-right:65px">
+      <div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-right:120px">
         <div class="d-sm-flex align-items-center justify-content-between">
           <button @click="sidebarToggle" class="btn-head"><i class="fas fa-arrow-left"></i></button>
           <h1 class="h3 mb-0 text-gray-800"  style="margin-left:20px; margin-right: 20px;">{{formdata.invoiceno}}</h1>
           <button @click="sidebarToggle" class="btn-head"><i class="fas fa-arrow-right"></i></button>
         </div>
         <div class="d-sm-flex align-items-center justify-content-between">
-       <i class="fa fa-download" style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"></i>
-       <i class="fab fa-whatsapp" style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"></i>
-       <i class="fas fa-envelope" style="background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;"></i>
-       <i class="fas fa-print" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;"></i>
-        </div>
-        <div class="d-sm-flex align-items-center justify-content-between">
-          <i class="fas fa-link" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-right:35%"></i>
-          <i class="fas fa-pencil-alt" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-right:35%"></i>
-          <i class="fas fa-trash-alt" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; "></i>
-        </div>
+                  <!-- <i class="fa fa-download" style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"></i> -->
+                  <span style="color:#48c6f6;background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 10%;font-size: 25px; margin-left: 30%;" class="material-symbols-outlined">download</span>
+                  <i class="fab fa-whatsapp" style="color:#00AA5B; background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%; font-size: 18px;"></i>
+                  <!-- <i class="fas fa-envelope" style="background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;"></i> -->
+                  <span style="color:blue;background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;font-size: 19px;" class="material-symbols-outlined">mail</span>
+                  <!-- <i class="fas fa-print" @click="ondownload()" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;"></i> -->
+                  <span class="material-symbols-outlined" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;">print</span>
+              </div>
+              <div
+                  class="d-sm-flex align-items-center justify-content-between" style="margin-left: -20%;"
+              >
+                  <i
+                      class="fas fa-link"
+                      style="color:#48c6f6; background-color: #EDF2F6; border-radius:50%;padding: 22%;margin-right: 35%;font-size: 15px;"
+                  ></i>
+                  <!-- <i
+                      class="fas fa-pencil-alt"
+                      style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-right:35%"
+                  ></i> -->
+                  <span style="background-color: #EDF2F6; border-radius:50%; padding: 18%; margin-right:35%" class="material-symbols-outlined">edit</span>
+                  <!-- <i
+                      class="fas fa-trash-alt"
+                      style="background-color: #EDF2F6; border-radius:50%; padding: 15%; "
+                  ></i> -->
+                  <span style="background-color: #EDF2F6; border-radius:50%; padding: 18%;color:red" class="material-symbols-outlined">delete</span>
+              </div>
      </div>
       <div class="">
         <div class="col-md-12 viewpurchase-div">
