@@ -269,7 +269,7 @@
                           <span v-if="$v.invoice_item.quantity.$error" class="text-danger">Please Enter weight</span>
                         </td>
                         <td class="td-style">
-                          <input type="number" class="form-control form-control-user" @blur="calculateAmount(key)" placeholder="" v-model="invoice_item.unitprice"/>
+                          <input type="number" class="form-control form-control-user" @blur="calculateAmount(key)" placeholder="" v-model="invoice_item.unitprice" :class="invoice_item.price_status==0 ? 'grey-color' : 'red-color'"/>
                           <span v-if="$v.invoice_item.unitprice.$error" class="text-danger">Please Enter unit pice</span>                        
                         </td>
                         <td class="td-style tdwidth">
@@ -346,7 +346,25 @@
         </div>
         
       </div>
-      
+      <div class="modal fade" v-if="isVisible">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h6 class="modal-title" id="deleteConfirmationLabel">Confirmation</h6>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true" style="color:#fff">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <p style="color:#000;font-size:14px;">Are you sure you want to delete this customer?</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn admin-btn mobile-mb" data-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteRecord()">Delete</button>
+                  </div>
+              </div>
+          </div>
+      </div>
     </form>
     
   </div>
@@ -398,7 +416,8 @@ export default {
           unitprice: '',
           vat: '',
           invoice_amount:'',
-          products:[]
+          products:[],
+          price_status:'',
       }],
       currencies:[],
       producttypes:{},
@@ -409,7 +428,10 @@ export default {
       customerdata:{},
       commentshow: '',
       editflag:false,
-      credit_period:0
+      credit_period:0,
+      customer_type:'',
+      live_unitprice:[],
+      isVisible: false,
     };
   },
   methods:
@@ -429,7 +451,8 @@ export default {
           unitprice: '',
           vat: '',
           invoice_amount:'',
-          products:[]
+          products:[],
+          price_status:'',
       });
     },
     removeLine(index)
@@ -473,46 +496,74 @@ export default {
       this.customerType = type;
     },
     async create_invoice() {
-    if(this.invoice_items.length < 1){
-          let toast = Vue.toasted.show('Please enter one addline item', {
-            theme: "toasted-error",
-            position: "top-center",
-            duration: 5000,
-          });
-          return;
-    }
-       this.$v.formdata.$touch();
-      if (this.$v.formdata.$error) {
-        return;
-      }
       
-      try {
-        this.formdata.customertype= this.customerType;
-        var date = new Date(this.formdata.issue_date);
-        this.formdata.issue_date=date;
-        var due_date = new Date(this.formdata.due_date);
-        this.formdata.due_date=due_date;
-        this.postdata.formfields = this.formdata;
-        this.postdata.itemfields = this.invoice_items;
+      var price_difference_count=0;
+      for(var j=0; j<this.invoice_items.length;j++)
+      {
+        var lessprice=  this.live_unitprice[j]*0.5/100;
+        lessprice=  this.live_unitprice[j]-lessprice;
+
+        var greaterprice=  this.live_unitprice[j]*4/100;
+        greaterprice=  parseFloat(this.live_unitprice[j])+parseFloat(greaterprice);
         
-        const response = await axios.post("create_invoice", this.postdata);
-        let message =
-            "Sales Invoice has been successfully created.";
-          let toast = Vue.toasted.show(message, {
-            theme: "toasted-success",
-            position: "top-center",
-            duration: 5000,
-          });
-        this.$router.push("/sales");
-        
-      } catch (error) {
-        let message = 'Something went wrong, Please try again';
-          let toast = Vue.toasted.show(message, {
-            theme: "toasted-error",
-            position: "top-center",
-            duration: 5000,
-          });
+        if(this.invoice_items[j].unitprice<lessprice || this.invoice_items[j].unitprice>greaterprice)
+        {
+          this.invoice_items[j].price_status =1;
+          price_difference_count= price_difference_count+this.invoice_items[j].price_status;
+        }
+        else
+        {
+          this.invoice_items[j].price_status =0;
+          price_difference_count= price_difference_count+this.invoice_items[j].price_status;
+        }
       }
+      if(price_difference_count>0)
+      {
+        if(confirm("Some of the product prices are incorrect, Do you really want to continue?")){
+
+          if(this.invoice_items.length < 1){
+            let toast = Vue.toasted.show('Please enter one addline item', {
+              theme: "toasted-error",
+              position: "top-center",
+              duration: 5000,
+            });
+            return;
+      }
+        this.$v.formdata.$touch();
+        if (this.$v.formdata.$error) {
+          return;
+        }
+        
+        try {
+          this.formdata.customertype= this.customerType;
+          var date = new Date(this.formdata.issue_date);
+          this.formdata.issue_date=date;
+          var due_date = new Date(this.formdata.due_date);
+          this.formdata.due_date=due_date;
+          this.formdata.price_difference_count=price_difference_count;
+          this.postdata.formfields = this.formdata;
+          this.postdata.itemfields = this.invoice_items;
+          
+          const response = await axios.post("create_invoice", this.postdata);
+          let message =
+              "Sales Invoice has been successfully created.";
+            let toast = Vue.toasted.show(message, {
+              theme: "toasted-success",
+              position: "top-center",
+              duration: 5000,
+            });
+          this.$router.push("/sales");
+          
+        } catch (error) {
+          let message = 'Something went wrong, Please try again';
+            let toast = Vue.toasted.show(message, {
+              theme: "toasted-error",
+              position: "top-center",
+              duration: 5000,
+            });
+        }
+      }
+     }
     },
     getCustomers() {
         return axios.get("customerlist/all").then(response => {
@@ -615,12 +666,14 @@ export default {
             this.invoice_items[index].vat=(response.data.productrate)?response.data.productrate:0;
             this.invoice_items[index].invoice_type=response.data.type;
             this.invoice_items[index].invoice_typeid=response.data.type_id;
-            var unitPrice = ((response.data.askprice * response.data.weight) * this.invoice_items[index].quantity) + parseFloat(response.data.sales_commission);
+            var sales_commission = (this.customer_type=='Business')?response.data.sales_commission:response.data.retail_sales_commission;
+            var unitPrice = ((response.data.askprice * response.data.weight) * this.invoice_items[index].quantity) + parseFloat(sales_commission);
             
-            var pricecommission = (unitPrice*parseFloat(response.data.sales_commission)/100) + unitPrice;
+            var pricecommission = (unitPrice*parseFloat(sales_commission)/100) + unitPrice;
             
             this.invoice_items[index].unitprice = pricecommission.toFixed(2);
             var invunitprice = parseFloat(this.invoice_items[index].unitprice);
+            this.live_unitprice[index] = invunitprice;
 
             var quantity = this.invoice_items[index].quantity;
             var vat = this.invoice_items[index].vat;
@@ -697,8 +750,8 @@ export default {
          
           const date = new Date();
           date.setDate(date.getDate() + this.credit_period);
-          this.formdata.due_date = date.getTime() 
-        
+          this.formdata.due_date = date.getTime();
+          this.customer_type = response.data.customer_type;
         })
       }
     },
@@ -1153,5 +1206,10 @@ export default {
 .tdwidth
 {
   width: 90px;
+}
+
+.red-color
+{
+  color:red;
 }
 </style>

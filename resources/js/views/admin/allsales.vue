@@ -29,7 +29,7 @@
                           <td>{{sale.methoddata}}</td>
                           <td>{{sale.subtotal}}</td>
                           <td>{{sale.vattotal}}</td>
-                          <td>{{sale.totalamount}}</td>
+                          <td><span :class="sale.price_status=='mismatch' ? 'red-color' : 'grey-color'">{{sale.totalamount}}</span></td>
                           <td>
                             <button type="button" class="btn table-btn" style="margin-left: auto;width: auto;background-color: #00AA5B !important;" v-if="sale.status=='Paid'">{{sale.status}}</button>
                             <button type="button" class="btn table-btn" style="margin-left: auto;width: auto;background-color: #ffa500 !important;" v-if="sale.status=='Over Paid'">{{sale.status}}</button>
@@ -200,5 +200,9 @@ table.dataTable thead th
 #sales-datatable thead tr th 
 {
   font-weight: 100 !important;
+}
+.red-color
+{
+ color:red !important  
 }
 </style>

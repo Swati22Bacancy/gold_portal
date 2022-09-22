@@ -20,6 +20,7 @@ class SalesItems extends Authenticatable
         'quantity',
         'unitprice',
         'vat',
-        'invoice_amount'
+        'invoice_amount',
+        'price_status'
     ];
 }

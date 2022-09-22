@@ -820,13 +820,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1655,7 +1648,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-483c8698] {\r\n  background: #3376c2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n  font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.choose-cont[data-v-483c8698]{\r\n    display: flex;\r\n    /* justify-content: center; */\n}\n.imagePreview[data-v-483c8698] {\r\n  width: 70px;\n}\n.previewContainer[data-v-483c8698] {\r\n  position: relative;\n}\n.closeIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 51px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.closeIcon i[data-v-483c8698]\r\n{\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.downloadIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 30px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.downloadIcon i[data-v-483c8698]\r\n{\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.salesdata[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-483c8698] {\r\n  border-radius: 50%;\n}\n.btn-container[data-v-483c8698] {\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width: 100% !important;\n}\n.selectedclr[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-483c8698] {\r\n  width: auto;\r\n  font-size: 13px !important;\r\n  color: #000;\r\n  border: none;\r\n  height: 40px;\r\n  padding: 5px 20px;\r\n  border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698] {\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698] {\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-483c8698] {\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698] {\r\n  background-color: #edf2f6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus,\r\n.btn.focus[data-v-483c8698] {\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-483c8698] {\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698] {\r\n  border: 1px solid #d6e3f2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698] {\r\n  width: 130px;\n}\n.sum-price ul[data-v-483c8698] {\r\n  list-style-type: none;\n}\n.sum-price li[data-v-483c8698] {\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n}\n.viewsales-div > p[data-v-483c8698] {\r\n  color: #3376c2;\r\n  font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n  color: #000;\r\n  font-size: 13px;\n}\n.class_red[data-v-483c8698]\r\n{\r\n  color:rgb(255 0 0);\n}\n.class_green[data-v-483c8698]\r\n{\r\n  color:#7adaaa;\n}\n.bold_font[data-v-483c8698]\r\n{\r\n    font-weight: 600;\n}\n.invoicelist a[data-v-483c8698] \r\n{\r\n    color: #000;\n}\n#saleshistory-datatable thead[data-v-483c8698]\r\n{\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#saleshistory-datatable thead th[data-v-483c8698]\r\n{\r\n    font-weight: 100;\n}\n#kyc-datatable[data-v-483c8698]\r\n{\r\n    font-size: 13px;\n}\n#applycontra .modal-dialog[data-v-483c8698]\r\n{\r\n    max-width: 700px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-483c8698] {\r\n  background: #3376c2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n  font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.choose-cont[data-v-483c8698]{\r\n    display: flex;\r\n    /* justify-content: center; */\n}\n.imagePreview[data-v-483c8698] {\r\n  width: 70px;\n}\n.previewContainer[data-v-483c8698] {\r\n  position: relative;\n}\n.closeIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 51px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.closeIcon i[data-v-483c8698]\r\n{\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.downloadIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 30px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.downloadIcon i[data-v-483c8698]\r\n{\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.salesdata[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-483c8698] {\r\n  border-radius: 50%;\n}\n.btn-container[data-v-483c8698] {\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width: 100% !important;\n}\n.selectedclr[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-483c8698] {\r\n  width: auto;\r\n  font-size: 13px !important;\r\n  color: #000;\r\n  border: none;\r\n  height: 40px;\r\n  padding: 5px 20px;\r\n  border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698] {\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698] {\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-483c8698] {\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698] {\r\n  background-color: #edf2f6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus,\r\n.btn.focus[data-v-483c8698] {\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-483c8698] {\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698] {\r\n  border: 1px solid #d6e3f2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698] {\r\n  width: 130px;\n}\n.sum-price ul[data-v-483c8698] {\r\n  list-style-type: none;\n}\n.sum-price li[data-v-483c8698] {\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n}\n.viewsales-div > p[data-v-483c8698] {\r\n  color: #3376c2;\r\n  font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n  color: #000;\r\n  font-size: 13px;\n}\n.class_red[data-v-483c8698]\r\n{\r\n  color:rgb(255 0 0);\n}\n.class_green[data-v-483c8698]\r\n{\r\n  color:#7adaaa;\n}\n.bold_font[data-v-483c8698]\r\n{\r\n    font-weight: 600;\n}\n.invoicelist a[data-v-483c8698] \r\n{\r\n    color: #000;\n}\n#saleshistory-datatable thead[data-v-483c8698]\r\n{\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#saleshistory-datatable thead th[data-v-483c8698]\r\n{\r\n    font-weight: 100;\n}\n#kyc-datatable[data-v-483c8698]\r\n{\r\n    font-size: 13px;\n}\n#applycontra .modal-dialog[data-v-483c8698]\r\n{\r\n    max-width: 700px;\n}\n.red-color[data-v-483c8698]\r\n{\r\n    color:red !important;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2144,13 +2137,21 @@ var render = function() {
                             _c("td", [_vm._v(_vm._s(saleitem.quantity))]),
                             _vm._v(" "),
                             _c("td", [
-                              _c("i", {
-                                staticClass: "fa fa-pound-sign",
-                                staticStyle: { "font-size": "10px" }
-                              }),
-                              _vm._v(
-                                _vm._s(saleitem.unitprice) +
-                                  "\n                                    "
+                              _c(
+                                "span",
+                                {
+                                  class:
+                                    saleitem.price_status == "mismatch"
+                                      ? "red-color"
+                                      : "grey-color"
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-pound-sign",
+                                    staticStyle: { "font-size": "10px" }
+                                  }),
+                                  _vm._v(_vm._s(saleitem.unitprice))
+                                ]
                               )
                             ]),
                             _vm._v(" "),

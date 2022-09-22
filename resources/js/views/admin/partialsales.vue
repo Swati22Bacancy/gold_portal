@@ -28,7 +28,7 @@
                           <td>{{sale.methoddata}}</td>
                           <td>{{sale.subtotal}}</td>
                           <td>{{sale.vattotal}}</td>
-                          <td>{{sale.totalamount}}</td>
+                          <td><span :class="sale.price_status=='mismatch' ? 'red-color' : 'grey-color'">{{sale.totalamount}}</span></td>
                           <td><button type="button" class="btn table-btn" style="margin-left: auto;width: 68px;">UnPaid</button></td>
                       </tr>
                   </tbody>
@@ -196,5 +196,9 @@ table.dataTable thead th
 #partialsales-datatable thead tr th 
 {
   font-weight: 100 !important;
+}
+.red-color
+{
+ color:red !important  
 }
 </style>

@@ -135,18 +135,11 @@
                                       <td>{{ saleitem.weight }}</td>
                                       <td>{{ saleitem.quantity }}</td>
                                       <td>
-                                          <i
-                                              class="fa fa-pound-sign"
-                                              style="font-size:10px;"
-                                          ></i
-                                          >{{ saleitem.unitprice }}
+                                          <span :class="saleitem.price_status=='mismatch' ? 'red-color' : 'grey-color'"><i class="fa fa-pound-sign" style="font-size:10px;"></i>{{ saleitem.unitprice }}</span>
                                       </td>
                                       <td>{{ saleitem.vat }}</td>
                                       <td>
-                                          <i
-                                              class="fa fa-pound-sign"
-                                              style="font-size:10px;"
-                                          ></i
+                                          <i class="fa fa-pound-sign" style="font-size:10px;"></i
                                           >{{ saleitem.invoice_amount }}
                                       </td>
                                   </tr>
@@ -1594,5 +1587,9 @@ export default {
 #applycontra .modal-dialog
 {
     max-width: 700px;
+}
+.red-color
+{
+    color:red !important;
 }
 </style>

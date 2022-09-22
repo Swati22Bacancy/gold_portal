@@ -25,6 +25,7 @@ class Sales extends Authenticatable
         'billing_address',
         'reference',
         'recurring_invoice',
-        'comment'
+        'comment',
+        'price_status'
     ];
 }

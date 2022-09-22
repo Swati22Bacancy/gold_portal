@@ -399,7 +399,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       customerdata: {},
       commentshow: '',
       editflag: false,
-      credit_period: 0
+      credit_period: 0,
+      customer_type: ''
     };
   },
   methods: {
@@ -659,8 +660,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this8.invoice_items[index].vat = response.data.productrate ? response.data.productrate : 0;
         _this8.invoice_items[index].invoice_type = response.data.type;
         _this8.invoice_items[index].invoice_typeid = response.data.type_id;
-        var unitPrice = response.data.askprice * response.data.weight * _this8.invoice_items[index].quantity + parseFloat(response.data.purchase_commission);
-        var pricecommission = unitPrice * parseFloat(response.data.purchase_commission) / 100 + unitPrice;
+        var purchase_commission = _this8.customer_type == 'Business' ? response.data.purchase_commission : response.data.retail_purchase_commission;
+        var unitPrice = response.data.askprice * response.data.weight * _this8.invoice_items[index].quantity + parseFloat(purchase_commission);
+        var pricecommission = unitPrice * parseFloat(purchase_commission) / 100 + unitPrice;
         _this8.invoice_items[index].unitprice = pricecommission.toFixed(2);
         var invunitprice = parseFloat(_this8.invoice_items[index].unitprice);
         var quantity = _this8.invoice_items[index].quantity;
@@ -716,6 +718,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           var date = new Date();
           date.setDate(date.getDate() + _this9.credit_period);
           _this9.formdata.due_date = date.getTime();
+          _this9.customer_type = response.data.customer_type;
         });
       }
     },

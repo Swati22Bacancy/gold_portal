@@ -376,7 +376,8 @@ export default {
       customerdata:{},
       commentshow: '',
       editflag:false,
-      credit_period:0
+      credit_period:0,
+      customer_type:''
     };
   },
   methods:
@@ -615,9 +616,11 @@ export default {
           this.invoice_items[index].vat=(response.data.productrate)?response.data.productrate:0;
           this.invoice_items[index].invoice_type=response.data.type;
           this.invoice_items[index].invoice_typeid=response.data.type_id;
-          var unitPrice = ((response.data.askprice * response.data.weight) * this.invoice_items[index].quantity) + parseFloat(response.data.purchase_commission);
+          var purchase_commission = (this.customer_type=='Business')?response.data.purchase_commission:response.data.retail_purchase_commission;
+
+          var unitPrice = ((response.data.askprice * response.data.weight) * this.invoice_items[index].quantity) + parseFloat(purchase_commission);
           
-          var pricecommission = (unitPrice*parseFloat(response.data.purchase_commission)/100) + unitPrice;
+          var pricecommission = (unitPrice*parseFloat(purchase_commission)/100) + unitPrice;
           
           this.invoice_items[index].unitprice = pricecommission.toFixed(2);
           var invunitprice = parseFloat(this.invoice_items[index].unitprice);
@@ -691,7 +694,7 @@ export default {
           const date = new Date();
           date.setDate(date.getDate() + this.credit_period);
           this.formdata.due_date = date.getTime() 
-        
+          this.customer_type = response.data.customer_type;
         })
       }
     },

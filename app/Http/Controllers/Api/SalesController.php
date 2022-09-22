@@ -48,7 +48,8 @@ class SalesController extends Controller
                 'totalamount' => $request->input('formfields.totalamount'),
                 'issue_date' => date("Y-m-d", strtotime($request->input('formfields.issue_date'))),
                 'due_date' => date("Y-m-d", strtotime($request->input('formfields.due_date'))),
-                'comment' => $request->input('formfields.comment')
+                'comment' => $request->input('formfields.comment'),
+                'price_status' => ($request->input('formfields.price_difference_count')==0)?'match':'mismatch'
              ]);
 
             if(!empty($request->input('itemfields')))
@@ -63,7 +64,8 @@ class SalesController extends Controller
                         'quantity' => $itemfield['quantity'],
                         'unitprice' => $itemfield['unitprice'],
                         'vat' => $itemfield['vat'],
-                        'invoice_amount' => $itemfield['invoice_amount']
+                        'invoice_amount' => $itemfield['invoice_amount'],
+                        'price_status' => ($itemfield['price_status']==0)?'match':'mismatch'
                     ]);
                 }
             }
