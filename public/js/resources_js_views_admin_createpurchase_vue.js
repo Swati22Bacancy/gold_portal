@@ -388,7 +388,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         unitprice: '',
         vat: '',
         invoice_amount: '',
-        products: []
+        products: [],
+        price_status: ''
       }],
       currencies: [],
       producttypes: {},
@@ -400,7 +401,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       commentshow: '',
       editflag: false,
       credit_period: 0,
-      customer_type: ''
+      customer_type: '',
+      live_unitprice: []
     };
   },
   methods: {
@@ -417,7 +419,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         unitprice: '',
         vat: '',
         invoice_amount: '',
-        products: []
+        products: [],
+        price_status: ''
       });
     },
     removeLine: function removeLine(index) {
@@ -457,14 +460,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var toast, date, due_date, response, message, _toast, _message, _toast2;
+        var price_difference_count, j, lessprice, greaterprice, toast, date, due_date, response, message, _toast, _message, _toast2, _response, _message2, _toast3, _message3, _toast4;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                price_difference_count = 0;
+
+                for (j = 0; j < _this.invoice_items.length; j++) {
+                  lessprice = _this.live_unitprice[j] * 0.5 / 100;
+                  lessprice = _this.live_unitprice[j] - lessprice;
+                  greaterprice = _this.live_unitprice[j] * 4 / 100;
+                  greaterprice = parseFloat(_this.live_unitprice[j]) + parseFloat(greaterprice);
+
+                  if (_this.invoice_items[j].unitprice < lessprice || _this.invoice_items[j].unitprice > greaterprice) {
+                    _this.invoice_items[j].price_status = 1;
+                    price_difference_count = price_difference_count + _this.invoice_items[j].price_status;
+                  } else {
+                    _this.invoice_items[j].price_status = 0;
+                    price_difference_count = price_difference_count + _this.invoice_items[j].price_status;
+                  }
+                }
+
+                if (!(price_difference_count > 0)) {
+                  _context.next = 33;
+                  break;
+                }
+
+                if (!confirm("Some of the product prices are incorrect, Do you really want to continue?")) {
+                  _context.next = 31;
+                  break;
+                }
+
                 if (!(_this.invoice_items.length < 1)) {
-                  _context.next = 3;
+                  _context.next = 7;
                   break;
                 }
 
@@ -475,29 +505,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
                 return _context.abrupt("return");
 
-              case 3:
+              case 7:
                 _this.$v.formdata.$touch();
 
                 if (!_this.$v.formdata.$error) {
-                  _context.next = 6;
+                  _context.next = 10;
                   break;
                 }
 
                 return _context.abrupt("return");
 
-              case 6:
-                _context.prev = 6;
+              case 10:
+                _context.prev = 10;
                 _this.formdata.customertype = _this.customerType;
                 date = new Date(_this.formdata.issue_date);
                 _this.formdata.issue_date = date;
                 due_date = new Date(_this.formdata.due_date);
                 _this.formdata.due_date = due_date;
+                _this.formdata.price_difference_count = price_difference_count;
                 _this.postdata.formfields = _this.formdata;
                 _this.postdata.itemfields = _this.invoice_items;
-                _context.next = 16;
+                _context.next = 21;
                 return axios.post("create_purchase", _this.postdata);
 
-              case 16:
+              case 21:
                 response = _context.sent;
                 message = "Purchase Order has been successfully created.";
                 _toast = Vue.toasted.show(message, {
@@ -508,12 +539,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.$router.push("/purchase");
 
-                _context.next = 26;
+                _context.next = 31;
                 break;
 
-              case 22:
-                _context.prev = 22;
-                _context.t0 = _context["catch"](6);
+              case 27:
+                _context.prev = 27;
+                _context.t0 = _context["catch"](10);
                 _message = 'Something went wrong, Please try again';
                 _toast2 = Vue.toasted.show(_message, {
                   theme: "toasted-error",
@@ -521,12 +552,63 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   duration: 5000
                 });
 
-              case 26:
+              case 31:
+                _context.next = 57;
+                break;
+
+              case 33:
+                _this.$v.formdata.$touch();
+
+                if (!_this.$v.formdata.$error) {
+                  _context.next = 36;
+                  break;
+                }
+
+                return _context.abrupt("return");
+
+              case 36:
+                _context.prev = 36;
+                _this.formdata.customertype = _this.customerType;
+                date = new Date(_this.formdata.issue_date);
+                _this.formdata.issue_date = date;
+                due_date = new Date(_this.formdata.due_date);
+                _this.formdata.due_date = due_date;
+                _this.formdata.price_difference_count = price_difference_count;
+                _this.postdata.formfields = _this.formdata;
+                _this.postdata.itemfields = _this.invoice_items;
+                _context.next = 47;
+                return axios.post("create_purchase", _this.postdata);
+
+              case 47:
+                _response = _context.sent;
+                _message2 = "Purchase Order has been successfully created.";
+                _toast3 = Vue.toasted.show(_message2, {
+                  theme: "toasted-success",
+                  position: "top-center",
+                  duration: 5000
+                });
+
+                _this.$router.push("/purchase");
+
+                _context.next = 57;
+                break;
+
+              case 53:
+                _context.prev = 53;
+                _context.t1 = _context["catch"](36);
+                _message3 = 'Something went wrong, Please try again';
+                _toast4 = Vue.toasted.show(_message3, {
+                  theme: "toasted-error",
+                  position: "top-center",
+                  duration: 5000
+                });
+
+              case 57:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[6, 22]]);
+        }, _callee, null, [[10, 27], [36, 53]]);
       }))();
     },
     getCustomers: function getCustomers() {
@@ -665,6 +747,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var pricecommission = unitPrice * parseFloat(purchase_commission) / 100 + unitPrice;
         _this8.invoice_items[index].unitprice = pricecommission.toFixed(2);
         var invunitprice = parseFloat(_this8.invoice_items[index].unitprice);
+        _this8.live_unitprice[index] = invunitprice;
         var quantity = _this8.invoice_items[index].quantity;
         var vat = _this8.invoice_items[index].vat;
 
@@ -1009,7 +1092,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-createpurchase[data-v-7728b088]{\r\n  width:450px;\n}\n.table-row[data-v-7728b088]{\r\n  height: 100px;\n}\n.inputdata[data-v-7728b088]{\r\n  background: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"30\"><text x=\"5\" y=\"19\" style=\"font:16px Arial;\">INV -</text></svg>') no-repeat;\r\n  font: 16px \"Arial\";\r\n  padding-left: 45px;\n}\n.edit-cont[data-v-7728b088]{\r\n  position: absolute;\r\n  top: 35px;\r\n   left: 350px;\r\n   border: none;\n}\n.select-cont[data-v-7728b088]{\r\n  width: 200px;\n}\n.required-field[data-v-7728b088]::after {\r\n  content: \"*\";\r\n  color: red;\n}\n.text-danger[data-v-7728b088]{\r\n  font-size: 12px;\n}\n.button-container[data-v-7728b088]{\r\n    display: flex;\r\n    justify-content: space-between;\n}\n.btn-modal[data-v-7728b088]{\r\n  color: black;\r\n  border: 0;\r\n  background:#7ADAAA ;\n}\n.modal-selection[data-v-7728b088]{\r\n  flex: 1 !important;\n}\n#createpurchase-datatable thead[data-v-7728b088] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createpurchase-datatable thead tr th[data-v-7728b088] {\r\n    font-weight: 100 !important;\n}\n#createpurchase-datatable[data-v-7728b088]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createpurchase-div[data-v-7728b088]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-purchase label[data-v-7728b088]\r\n{\r\n  font-size: 12px;\n}\n.crt-purchase[data-v-7728b088]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-7728b088]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-7728b088]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-7728b088]:focus, .btn.focus[data-v-7728b088]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-7728b088]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-7728b088]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-7728b088]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-7728b088]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-7728b088]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.dark-theme-btn[data-v-7728b088]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-7728b088]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-7728b088]:focus, .btn.focus[data-v-7728b088]\r\n{\r\n  box-shadow: 0 0;\n}\n.check-position[data-v-7728b088]\r\n{\r\n  margin-left: 15%;\n}\n.static-value[data-v-7728b088]{\r\n  position:absolute;\r\n  left: 10px;\r\n  font-weight: bold;\r\n  color: #6e707e;\r\n  font-size: 13px !important;\r\n  top: 40px;\n}\n.setpadding[data-v-7728b088]\r\n{\r\n  padding-left: 40px;\n}\n.form-text[data-v-7728b088]{\r\n\tposition:relative;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-7728b088]\r\n  {\r\n    border-right: 2px solid #eee;\r\n    padding-right: 8%;\n}\n.primary-div[data-v-7728b088]\r\n  {\r\n    padding-left: 8%;\n}\n}\n#mydatepicker[data-v-7728b088]{\r\n    display: block;\r\n    width: 100%;\r\n    height: calc(1.5em + 0.75rem + 2px);\r\n    padding: 0.375rem 0.75rem;\r\n    font-size: 1rem;\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    color: #6e707e;\r\n    background-color: #fff;\r\n    background-clip: padding-box;\r\n    border: 1px solid #d1d3e2;\r\n    border-radius: 0.35rem;\r\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\n.td-style[data-v-7728b088]{\r\n  width:150px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-createpurchase[data-v-7728b088]{\r\n  width:450px;\n}\n.table-row[data-v-7728b088]{\r\n  height: 100px;\n}\n.inputdata[data-v-7728b088]{\r\n  background: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"30\"><text x=\"5\" y=\"19\" style=\"font:16px Arial;\">INV -</text></svg>') no-repeat;\r\n  font: 16px \"Arial\";\r\n  padding-left: 45px;\n}\n.edit-cont[data-v-7728b088]{\r\n  position: absolute;\r\n  top: 35px;\r\n   left: 350px;\r\n   border: none;\n}\n.select-cont[data-v-7728b088]{\r\n  width: 200px;\n}\n.required-field[data-v-7728b088]::after {\r\n  content: \"*\";\r\n  color: red;\n}\n.text-danger[data-v-7728b088]{\r\n  font-size: 12px;\n}\n.button-container[data-v-7728b088]{\r\n    display: flex;\r\n    justify-content: space-between;\n}\n.btn-modal[data-v-7728b088]{\r\n  color: black;\r\n  border: 0;\r\n  background:#7ADAAA ;\n}\n.modal-selection[data-v-7728b088]{\r\n  flex: 1 !important;\n}\n#createpurchase-datatable thead[data-v-7728b088] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createpurchase-datatable thead tr th[data-v-7728b088] {\r\n    font-weight: 100 !important;\n}\n#createpurchase-datatable[data-v-7728b088]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createpurchase-div[data-v-7728b088]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-purchase label[data-v-7728b088]\r\n{\r\n  font-size: 12px;\n}\n.crt-purchase[data-v-7728b088]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-7728b088]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-7728b088]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-7728b088]:focus, .btn.focus[data-v-7728b088]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-7728b088]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-7728b088]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-7728b088]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-7728b088]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-7728b088]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.dark-theme-btn[data-v-7728b088]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-7728b088]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-7728b088]:focus, .btn.focus[data-v-7728b088]\r\n{\r\n  box-shadow: 0 0;\n}\n.check-position[data-v-7728b088]\r\n{\r\n  margin-left: 15%;\n}\n.static-value[data-v-7728b088]{\r\n  position:absolute;\r\n  left: 10px;\r\n  font-weight: bold;\r\n  color: #6e707e;\r\n  font-size: 13px !important;\r\n  top: 40px;\n}\n.setpadding[data-v-7728b088]\r\n{\r\n  padding-left: 40px;\n}\n.form-text[data-v-7728b088]{\r\n\tposition:relative;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-7728b088]\r\n  {\r\n    border-right: 2px solid #eee;\r\n    padding-right: 8%;\n}\n.primary-div[data-v-7728b088]\r\n  {\r\n    padding-left: 8%;\n}\n}\n#mydatepicker[data-v-7728b088]{\r\n    display: block;\r\n    width: 100%;\r\n    height: calc(1.5em + 0.75rem + 2px);\r\n    padding: 0.375rem 0.75rem;\r\n    font-size: 1rem;\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    color: #6e707e;\r\n    background-color: #fff;\r\n    background-clip: padding-box;\r\n    border: 1px solid #d1d3e2;\r\n    border-radius: 0.35rem;\r\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\n.td-style[data-v-7728b088]{\r\n  width:150px;\n}\n.red-color[data-v-7728b088]\r\n{\r\n  color:red;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2512,6 +2595,10 @@ var render = function() {
                                     }
                                   ],
                                   staticClass: "form-control form-control-user",
+                                  class:
+                                    invoice_item.price_status == 0
+                                      ? "grey-color"
+                                      : "red-color",
                                   attrs: { type: "number", placeholder: "" },
                                   domProps: { value: invoice_item.unitprice },
                                   on: {

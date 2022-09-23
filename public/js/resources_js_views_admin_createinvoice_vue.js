@@ -514,7 +514,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var price_difference_count, j, lessprice, greaterprice, toast, date, due_date, response, message, _toast, _message, _toast2;
+        var price_difference_count, j, lessprice, greaterprice, toast, date, due_date, response, message, _toast, _message, _toast2, _response, _message2, _toast3, _message3, _toast4;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
@@ -538,7 +538,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                 }
 
                 if (!(price_difference_count > 0)) {
-                  _context.next = 31;
+                  _context.next = 33;
                   break;
                 }
 
@@ -607,11 +607,62 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                 });
 
               case 31:
+                _context.next = 57;
+                break;
+
+              case 33:
+                _this.$v.formdata.$touch();
+
+                if (!_this.$v.formdata.$error) {
+                  _context.next = 36;
+                  break;
+                }
+
+                return _context.abrupt("return");
+
+              case 36:
+                _context.prev = 36;
+                _this.formdata.customertype = _this.customerType;
+                date = new Date(_this.formdata.issue_date);
+                _this.formdata.issue_date = date;
+                due_date = new Date(_this.formdata.due_date);
+                _this.formdata.due_date = due_date;
+                _this.formdata.price_difference_count = price_difference_count;
+                _this.postdata.formfields = _this.formdata;
+                _this.postdata.itemfields = _this.invoice_items;
+                _context.next = 47;
+                return axios.post("create_invoice", _this.postdata);
+
+              case 47:
+                _response = _context.sent;
+                _message2 = "Sales Invoice has been successfully created.";
+                _toast3 = Vue.toasted.show(_message2, {
+                  theme: "toasted-success",
+                  position: "top-center",
+                  duration: 5000
+                });
+
+                _this.$router.push("/sales");
+
+                _context.next = 57;
+                break;
+
+              case 53:
+                _context.prev = 53;
+                _context.t1 = _context["catch"](36);
+                _message3 = 'Something went wrong, Please try again';
+                _toast4 = Vue.toasted.show(_message3, {
+                  theme: "toasted-error",
+                  position: "top-center",
+                  duration: 5000
+                });
+
+              case 57:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[10, 27]]);
+        }, _callee, null, [[10, 27], [36, 53]]);
       }))();
     },
     getCustomers: function getCustomers() {

@@ -564,6 +564,42 @@ export default {
         }
       }
      }
+     else
+     {
+      this.$v.formdata.$touch();
+        if (this.$v.formdata.$error) {
+          return;
+        }
+        
+        try {
+          this.formdata.customertype= this.customerType;
+          var date = new Date(this.formdata.issue_date);
+          this.formdata.issue_date=date;
+          var due_date = new Date(this.formdata.due_date);
+          this.formdata.due_date=due_date;
+          this.formdata.price_difference_count=price_difference_count;
+          this.postdata.formfields = this.formdata;
+          this.postdata.itemfields = this.invoice_items;
+          
+          const response = await axios.post("create_invoice", this.postdata);
+          let message =
+              "Sales Invoice has been successfully created.";
+            let toast = Vue.toasted.show(message, {
+              theme: "toasted-success",
+              position: "top-center",
+              duration: 5000,
+            });
+          this.$router.push("/sales");
+          
+        } catch (error) {
+          let message = 'Something went wrong, Please try again';
+            let toast = Vue.toasted.show(message, {
+              theme: "toasted-error",
+              position: "top-center",
+              duration: 5000,
+            });
+        }
+     }
     },
     getCustomers() {
         return axios.get("customerlist/all").then(response => {

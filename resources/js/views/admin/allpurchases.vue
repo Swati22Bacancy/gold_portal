@@ -30,7 +30,7 @@
                           <td>{{purchase.methoddata}}</td>
                           <td>{{purchase.subtotal}}</td>
                           <td>{{purchase.vattotal}}</td>
-                          <td>{{purchase.totalamount}}</td>
+                          <td><span :class="purchase.price_status=='mismatch' ? 'red-color' : 'grey-color'">{{purchase.totalamount}}</span></td>
                           <td>
                             <button type="button" class="btn table-btn" style="margin-left: auto;" v-if="purchase.status!='Paid'">{{purchase.status}}</button>
                             <button type="button" class="btn table-btn" style="margin-left: auto;background-color: #00AA5B !important;" v-if="purchase.status=='Paid'">{{purchase.status}}</button>
@@ -200,5 +200,9 @@ table.dataTable thead th
 #purchase-datatable thead tr th 
 {
   font-weight: 100 !important;
+}
+.red-color
+{
+    color:red !important;
 }
 </style>

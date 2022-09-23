@@ -98,7 +98,8 @@
                         <td>{{purchaseitem.productname}}</td>
                         <td>{{purchaseitem.weight}}</td>
                         <td>{{purchaseitem.quantity}}</td>
-                        <td><i class="fa fa-pound-sign" style="font-size:10px;"></i>{{purchaseitem.unitprice}}</td>
+                        <td>
+                          <span :class="purchaseitem.price_status=='mismatch' ? 'red-color' : 'grey-color'"><i class="fa fa-pound-sign" style="font-size:10px;"></i>{{ purchaseitem.unitprice }}</span></td>
                         <td>{{purchaseitem.vat}}</td>
                         <td><i class="fa fa-pound-sign" style="font-size:10px;"></i>{{purchaseitem.invoice_amount}}</td>
                     </tr>
@@ -634,5 +635,9 @@ export default {
 #purchasehistory-datatable thead th
 {
     font-weight: 100;
+}
+.red-color
+{
+    color:red !important;
 }
 </style>

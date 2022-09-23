@@ -16252,6 +16252,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -16525,7 +16526,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-648549a5] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-648549a5] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-648549a5]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.purchasedata[data-v-648549a5]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-648549a5]{\r\n  border-radius: 50%;\n}\n.btn-container[data-v-648549a5]{\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width:100% !important;\n}\n.selectedclr[data-v-648549a5]{\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-648549a5]{\r\n   \r\n  width: auto;\r\n    font-size: 13px  !important;\r\n    color: #000;\r\n    border:none;\r\n    height: 40px;\r\n    padding: 5px 20px;\r\n    border-radius: 5px 5px 0px 0px;\n}\n.viewpurchase-div[data-v-648549a5]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-648549a5]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-648549a5]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-648549a5]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-648549a5]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-648549a5]:focus, .btn.focus[data-v-648549a5]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-648549a5]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-648549a5]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-648549a5]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-648549a5]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-648549a5]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.viewpurchase-div > p[data-v-648549a5] {\r\n    color: #3376C2;\r\n    font-size: 12px;\n}\n.viewpurchase-div span[data-v-648549a5] {\r\n    color: #000;\r\n    font-size: 13px;\n}\n#purchasehistory-datatable thead[data-v-648549a5]\r\n{\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#purchasehistory-datatable thead th[data-v-648549a5]\r\n{\r\n    font-weight: 100;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-648549a5] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-648549a5] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-648549a5]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.purchasedata[data-v-648549a5]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-648549a5]{\r\n  border-radius: 50%;\n}\n.btn-container[data-v-648549a5]{\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width:100% !important;\n}\n.selectedclr[data-v-648549a5]{\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-648549a5]{\r\n   \r\n  width: auto;\r\n    font-size: 13px  !important;\r\n    color: #000;\r\n    border:none;\r\n    height: 40px;\r\n    padding: 5px 20px;\r\n    border-radius: 5px 5px 0px 0px;\n}\n.viewpurchase-div[data-v-648549a5]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-648549a5]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-648549a5]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-648549a5]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-648549a5]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-648549a5]:focus, .btn.focus[data-v-648549a5]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-648549a5]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-648549a5]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-648549a5]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-648549a5]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-648549a5]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.viewpurchase-div > p[data-v-648549a5] {\r\n    color: #3376C2;\r\n    font-size: 12px;\n}\n.viewpurchase-div span[data-v-648549a5] {\r\n    color: #000;\r\n    font-size: 13px;\n}\n#purchasehistory-datatable thead[data-v-648549a5]\r\n{\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#purchasehistory-datatable thead th[data-v-648549a5]\r\n{\r\n    font-weight: 100;\n}\n.red-color[data-v-648549a5]\r\n{\r\n    color:red !important;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -16984,11 +16985,22 @@ var render = function() {
                             _c("td", [_vm._v(_vm._s(purchaseitem.quantity))]),
                             _vm._v(" "),
                             _c("td", [
-                              _c("i", {
-                                staticClass: "fa fa-pound-sign",
-                                staticStyle: { "font-size": "10px" }
-                              }),
-                              _vm._v(_vm._s(purchaseitem.unitprice))
+                              _c(
+                                "span",
+                                {
+                                  class:
+                                    purchaseitem.price_status == "mismatch"
+                                      ? "red-color"
+                                      : "grey-color"
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-pound-sign",
+                                    staticStyle: { "font-size": "10px" }
+                                  }),
+                                  _vm._v(_vm._s(purchaseitem.unitprice))
+                                ]
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(purchaseitem.vat))]),

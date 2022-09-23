@@ -24,6 +24,7 @@ class Purchases extends Authenticatable
         'due_date',
         'billing_address',
         'reference',
-        'comment'
+        'comment',
+        'price_status'
     ];
 }
