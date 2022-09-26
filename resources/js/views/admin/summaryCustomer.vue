@@ -40,7 +40,7 @@
                           <!-- <td>{{sale.issue_date}}</td> -->
                           <td>{{sale.invoiceno}}</td>
                           <td style="color:#3376C2">{{sale.firstname}} {{sale.lastname}}</td>
-                          <td>{{sale.typename}}</td>
+                          <td></td>
                           <td>{{sale.methoddata}}</td>
                           <td>{{sale.subtotal}}</td>
                           <td>{{sale.vattotal}}</td>
@@ -73,7 +73,7 @@
     <div class="mt-2 mb-4">
         <div class="">
             <div class="table-responsive">
-                <table class="table" id="sales-datatable" width="100%" cellspacing="0">
+                <table class="table" id="purchase-datatable" width="100%" cellspacing="0">
                   <thead>
                       <tr>
                           <th><input type="checkbox" class="custom-check-input"></th>
