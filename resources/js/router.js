@@ -415,6 +415,15 @@ let router = new Router({
             }
         },
         {
+            path: "/clickreports",
+            name: "clickreports",
+            component: () => import("./views/admin/clickreports.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/edit-industrysector/:id",
             name: "editindustrysector",
             component: () => import("./views/admin/editindustrysector.vue"),

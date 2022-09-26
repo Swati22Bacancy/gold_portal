@@ -17484,7 +17484,7 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(sale.typename))]),
+                      _c("td"),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(sale.methoddata))]),
                       _vm._v(" "),
@@ -17653,7 +17653,11 @@ var render = function() {
             "table",
             {
               staticClass: "table",
-              attrs: { id: "sales-datatable", width: "100%", cellspacing: "0" }
+              attrs: {
+                id: "purchase-datatable",
+                width: "100%",
+                cellspacing: "0"
+              }
             },
             [
               _vm._m(3),
