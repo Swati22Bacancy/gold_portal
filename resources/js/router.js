@@ -406,6 +406,15 @@ let router = new Router({
             }
         },
         {
+            path: "/reports",
+            name: "reports",
+            component: () => import("./views/admin/reports.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/edit-industrysector/:id",
             name: "editindustrysector",
             component: () => import("./views/admin/editindustrysector.vue"),

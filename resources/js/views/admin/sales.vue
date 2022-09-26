@@ -210,11 +210,11 @@ input .date-cont{
   box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
    width: 200px;
 }
-  /* .date-cont{
+  .date-cont{
     margin: 0px;
     width:200;
     
-  } */
+  }
 .table-search
 {
   width: 25%;
