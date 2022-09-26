@@ -374,8 +374,8 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   methods: {
-    clickAccount: function clickAccount() {
-      this.$router.push('/clickbankaccount');
+    clickReport: function clickReport() {
+      this.$router.push('/clickreports');
     }
   }
 });
@@ -539,917 +539,924 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-4", on: { click: _vm.clickReport } }, [
+        _vm._m(1)
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-4", on: { click: _vm.clickReport } }, [
+        _vm._m(2)
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-4", on: { click: _vm.clickReport } }, [
+        _vm._m(3)
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row", staticStyle: { "margin-top": "20px" } }, [
+      _c("div", { staticClass: "col-md-4", on: { click: _vm.clickReport } }, [
+        _vm._m(4)
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-4", on: { click: _vm.clickReport } }, [
+        _vm._m(5)
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-4", on: { click: _vm.clickReport } }, [
+        _vm._m(6)
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "div",
-        {
-          staticClass:
-            "d-sm-flex align-items-center justify-content-between mb-4"
-        },
-        [
-          _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
-            _vm._v("Reports")
+    return _c(
+      "div",
+      {
+        staticClass: "d-sm-flex align-items-center justify-content-between mb-4"
+      },
+      [_c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [_vm._v("Reports")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticStyle: {
+          "border-radius": "5px 5px 0px 0px",
+          border: "1px solid #B0E0E6",
+          "background-color": "white"
+        }
+      },
+      [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "col-md-8 dash-divs" }, [
+            _c(
+              "h4",
+              {
+                staticClass: "h3",
+                staticStyle: {
+                  "margin-bottom": "0",
+                  color: "#3376C2",
+                  "font-weight": "700",
+                  "font-family": "Titillium-Web-Bold",
+                  "font-size": "23px"
+                }
+              },
+              [
+                _vm._v(
+                  "\n                           VAT Reports\n                        "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "dash-label",
+                staticStyle: { color: "black", "margin-top": "15px" }
+              },
+              [_vm._v("Recent Transactions")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", {}),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4" })
+        ]),
+        _vm._v(" "),
+        _c("div", {}, [_c("div")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "dash-table" }, [
+          _c("div", { staticClass: "table-responsive" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table",
+                attrs: { id: "dash-datatable", width: "100%", cellspacing: "0" }
+              },
+              [
+                _c("tbody", [
+                  _c("tr", [
+                    _c("td", [_vm._v("VAT Dec 21 - Feb 21")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("VAT Dec 21 - Nov 21")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("VAT Dec 21 - Aug 21")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
+                  ])
+                ])
+              ]
+            )
           ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-4" }, [
-          _c(
-            "div",
-            {
-              staticStyle: {
-                "border-radius": "5px 5px 0px 0px",
-                border: "1px solid #B0E0E6",
-                "background-color": "white"
-              }
-            },
-            [
-              _c("div", { staticClass: "col-md-12" }, [
-                _c("div", { staticClass: "col-md-8 dash-divs" }, [
-                  _c(
-                    "h4",
-                    {
-                      staticClass: "h3",
-                      staticStyle: {
-                        "margin-bottom": "0",
-                        color: "#3376C2",
-                        "font-weight": "700",
-                        "font-family": "Titillium-Web-Bold",
-                        "font-size": "23px"
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                           VAT Reports\n                        "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "dash-label",
-                      staticStyle: { color: "black", "margin-top": "15px" }
-                    },
-                    [_vm._v("Recent Transactions")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", {}),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" })
-              ]),
-              _vm._v(" "),
-              _c("div", {}, [_c("div")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "dash-table" }, [
-                _c("div", { staticClass: "table-responsive" }, [
-                  _c(
-                    "table",
-                    {
-                      staticClass: "table",
-                      attrs: {
-                        id: "dash-datatable",
-                        width: "100%",
-                        cellspacing: "0"
-                      }
-                    },
-                    [
-                      _c("tbody", [
-                        _c("tr", [
-                          _c("td", [_vm._v("VAT Dec 21 - Feb 21")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _c("td", [_vm._v("VAT Dec 21 - Nov 21")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _c("td", [_vm._v("VAT Dec 21 - Aug 21")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ])
-                      ])
-                    ]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "col-md-12",
-                  staticStyle: { "border-radius": "0px 0px 5px 5px" }
-                },
-                [
-                  _c("div", { staticClass: "col-md-8 dash-divs" }, [
-                    _c(
-                      "h4",
-                      { staticStyle: { "margin-bottom": "0", color: "black" } },
-                      [
-                        _c("b", [
-                          _c("i", {
-                            staticClass: "fa fa-pound-sign",
-                            staticStyle: {
-                              "font-size": "20px",
-                              "margin-right": "6px",
-                              color: "black"
-                            }
-                          }),
-                          _vm._v("168,343.66")
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", {}),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" })
-                ]
-              )
-            ]
-          )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-4" }, [
-          _c(
-            "div",
-            {
-              staticStyle: {
-                "border-radius": "5px 5px 0px 0px",
-                border: "1px solid #B0E0E6",
-                "background-color": "white"
-              }
-            },
-            [
-              _c("div", { staticClass: "col-md-12" }, [
-                _c("div", { staticClass: "col-md-8 dash-divs" }, [
-                  _c(
-                    "h4",
-                    {
-                      staticClass: "h3",
-                      staticStyle: {
-                        "margin-bottom": "0",
-                        color: "#3376C2",
-                        "font-weight": "700",
-                        "font-family": "Titillium-Web-Bold",
-                        "font-size": "23px"
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                            Deborts Report\n                        "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "dash-label",
-                      staticStyle: { color: "black", "margin-top": "15px" }
-                    },
-                    [_vm._v("Recent Transactions")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", {}),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "dash-table" }, [
-                _c("div", { staticClass: "table-responsive" }, [
-                  _c(
-                    "table",
-                    {
-                      staticClass: "table",
-                      attrs: {
-                        id: "dash-datatable",
-                        width: "100%",
-                        cellspacing: "0"
-                      }
-                    },
-                    [
-                      _c("tbody", [
-                        _c("tr", [
-                          _c("td", [_vm._v("ABC Jewellers")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _c("td", [_vm._v("ABC Jewellers")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _c("td", [_vm._v("ABC Jewellers")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ])
-                      ])
-                    ]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "col-md-12",
+            staticStyle: { "border-radius": "0px 0px 5px 5px" }
+          },
+          [
+            _c("div", { staticClass: "col-md-8 dash-divs" }, [
               _c(
-                "div",
-                {
-                  staticClass: "col-md-12",
-                  staticStyle: { "border-radius": "0px 0px 5px 5px" }
-                },
+                "h4",
+                { staticStyle: { "margin-bottom": "0", color: "black" } },
                 [
-                  _c("div", { staticClass: "col-md-8 dash-divs" }, [
-                    _c(
-                      "h4",
-                      { staticStyle: { "margin-bottom": "0", color: "black" } },
-                      [
-                        _c("b", [
-                          _c("i", {
-                            staticClass: "fa fa-pound-sign",
-                            staticStyle: {
-                              "font-size": "20px",
-                              "margin-right": "6px",
-                              color: "black"
-                            }
-                          }),
-                          _vm._v("168,343.66")
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", {}),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" })
+                  _c("b", [
+                    _c("i", {
+                      staticClass: "fa fa-pound-sign",
+                      staticStyle: {
+                        "font-size": "20px",
+                        "margin-right": "6px",
+                        color: "black"
+                      }
+                    }),
+                    _vm._v("168,343.66")
+                  ])
                 ]
               )
-            ]
-          )
+            ]),
+            _vm._v(" "),
+            _c("div", {}),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4" })
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticStyle: {
+          "border-radius": "5px 5px 0px 0px",
+          border: "1px solid #B0E0E6",
+          "background-color": "white"
+        }
+      },
+      [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "col-md-8 dash-divs" }, [
+            _c(
+              "h4",
+              {
+                staticClass: "h3",
+                staticStyle: {
+                  "margin-bottom": "0",
+                  color: "#3376C2",
+                  "font-weight": "700",
+                  "font-family": "Titillium-Web-Bold",
+                  "font-size": "23px"
+                }
+              },
+              [
+                _vm._v(
+                  "\n                            Deborts Report\n                        "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "dash-label",
+                staticStyle: { color: "black", "margin-top": "15px" }
+              },
+              [_vm._v("Recent Transactions")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", {}),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4" })
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-4" }, [
-          _c(
-            "div",
-            {
-              staticStyle: {
-                "border-radius": "5px 5px 0px 0px",
-                border: "1px solid #B0E0E6",
-                "background-color": "white"
-              }
-            },
-            [
-              _c("div", { staticClass: "col-md-12" }, [
-                _c("div", { staticClass: "col-md-8 dash-divs" }, [
-                  _c(
-                    "h4",
-                    {
-                      staticClass: "h3",
-                      staticStyle: {
-                        "margin-bottom": "0",
-                        color: "#3376C2",
-                        "font-weight": "700",
-                        "font-family": "Titillium-Web-Bold",
-                        "font-size": "23px"
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                            Customers Breakdown\n                        "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "dash-label",
-                      staticStyle: { color: "black", "margin-top": "15px" }
-                    },
-                    [_vm._v("Recent Transactions")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", {}),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "dash-table" }, [
-                _c("div", { staticClass: "table-responsive" }, [
-                  _c(
-                    "table",
-                    {
-                      staticClass: "table",
-                      attrs: {
-                        id: "dash-datatable",
-                        width: "100%",
-                        cellspacing: "0"
-                      }
-                    },
-                    [
-                      _c("tbody", [
-                        _c("tr", [
-                          _c("td", [_vm._v("ABC Jewellers")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _c("td", [_vm._v("ABC Jewellers")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _c("td", [_vm._v("ABC Jewellers")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ])
-                      ])
-                    ]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "col-md-12",
-                  staticStyle: { "border-radius": "0px 0px 5px 5px" }
-                },
-                [
-                  _c("div", { staticClass: "col-md-8 dash-divs" }, [
-                    _c(
-                      "h4",
-                      { staticStyle: { "margin-bottom": "0", color: "black" } },
-                      [
-                        _c("b", [
-                          _c("i", {
-                            staticClass: "fa fa-pound-sign",
-                            staticStyle: {
-                              "font-size": "20px",
-                              "margin-right": "6px",
-                              color: "black"
-                            }
-                          }),
-                          _vm._v("168,343.66")
-                        ])
-                      ]
-                    )
+        _c("div", { staticClass: "dash-table" }, [
+          _c("div", { staticClass: "table-responsive" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table",
+                attrs: { id: "dash-datatable", width: "100%", cellspacing: "0" }
+              },
+              [
+                _c("tbody", [
+                  _c("tr", [
+                    _c("td", [_vm._v("ABC Jewellers")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
                   ]),
                   _vm._v(" "),
-                  _c("div", {}),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" })
-                ]
-              )
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row", staticStyle: { "margin-top": "20px" } }, [
-        _c("div", { staticClass: "col-md-4" }, [
-          _c(
-            "div",
-            {
-              staticStyle: {
-                "border-radius": "5px 5px 0px 0px",
-                border: "1px solid #B0E0E6",
-                "background-color": "white"
-              }
-            },
-            [
-              _c("div", { staticClass: "col-md-12" }, [
-                _c("div", { staticClass: "col-md-8 dash-divs" }, [
-                  _c(
-                    "h4",
-                    {
-                      staticClass: "h3",
-                      staticStyle: {
-                        "margin-bottom": "0",
-                        color: "#3376C2",
-                        "font-weight": "700",
-                        "font-family": "Titillium-Web-Bold",
-                        "font-size": "23px"
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                           Cash in Hand Reports\n                        "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "dash-label",
-                      staticStyle: { color: "black", "margin-top": "15px" }
-                    },
-                    [_vm._v("Recent Transactions")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", {}),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" })
-              ]),
-              _vm._v(" "),
-              _c("div", {}, [_c("div")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "dash-table" }, [
-                _c("div", { staticClass: "table-responsive" }, [
-                  _c(
-                    "table",
-                    {
-                      staticClass: "table",
-                      attrs: {
-                        id: "dash-datatable",
-                        width: "100%",
-                        cellspacing: "0"
-                      }
-                    },
-                    [
-                      _c("tbody", [
-                        _c("tr", [
-                          _c("td", [_vm._v("Feb 21")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _c("td", [_vm._v("Jan 21")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _c("td", [_vm._v("Dec 20")]),
-                          _vm._v(" "),
-                          _c("td", { staticStyle: { left: "30px" } }, [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ])
-                      ])
-                    ]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "col-md-12",
-                  staticStyle: { "border-radius": "0px 0px 5px 5px" }
-                },
-                [
-                  _c("div", { staticClass: "col-md-8 dash-divs" }, [
-                    _c(
-                      "h4",
-                      { staticStyle: { "margin-bottom": "0", color: "black" } },
-                      [
-                        _c("b", [
-                          _c("i", {
-                            staticClass: "fa fa-pound-sign",
-                            staticStyle: {
-                              "font-size": "20px",
-                              "margin-right": "6px",
-                              color: "black"
-                            }
-                          }),
-                          _vm._v("168,343.66")
-                        ])
-                      ]
-                    )
+                  _c("tr", [
+                    _c("td", [_vm._v("ABC Jewellers")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
                   ]),
                   _vm._v(" "),
-                  _c("div", {}),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" })
-                ]
-              )
-            ]
-          )
+                  _c("tr", [
+                    _c("td", [_vm._v("ABC Jewellers")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-4" }, [
-          _c(
-            "div",
-            {
-              staticStyle: {
-                "border-radius": "5px 5px 0px 0px",
-                border: "1px solid #B0E0E6",
-                "background-color": "white"
-              }
-            },
-            [
-              _c("div", { staticClass: "col-md-12" }, [
-                _c("div", { staticClass: "col-md-8 dash-divs" }, [
-                  _c(
-                    "h4",
-                    {
-                      staticClass: "h3",
-                      staticStyle: {
-                        "margin-bottom": "0",
-                        color: "#3376C2",
-                        "font-weight": "700",
-                        "font-family": "Titillium-Web-Bold",
-                        "font-size": "23px"
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                            Jewellery Report\n                        "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "dash-label",
-                      staticStyle: { color: "black", "margin-top": "15px" }
-                    },
-                    [_vm._v("Recent Transactions")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", {}),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "dash-table" }, [
-                _c("div", { staticClass: "table-responsive" }, [
-                  _c(
-                    "table",
-                    {
-                      staticClass: "table",
-                      attrs: {
-                        id: "dash-datatable",
-                        width: "100%",
-                        cellspacing: "0"
-                      }
-                    },
-                    [
-                      _c("tbody", [
-                        _c("tr", [
-                          _c("td", [_vm._v("ABC Jewellers")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _c("td", [_vm._v("ABC Jewellers")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _c("td", [_vm._v("ABC Jewellers")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ])
-                      ])
-                    ]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "col-md-12",
+            staticStyle: { "border-radius": "0px 0px 5px 5px" }
+          },
+          [
+            _c("div", { staticClass: "col-md-8 dash-divs" }, [
               _c(
-                "div",
-                {
-                  staticClass: "col-md-12",
-                  staticStyle: { "border-radius": "0px 0px 5px 5px" }
-                },
+                "h4",
+                { staticStyle: { "margin-bottom": "0", color: "black" } },
                 [
-                  _c("div", { staticClass: "col-md-8 dash-divs" }, [
-                    _c(
-                      "h4",
-                      { staticStyle: { "margin-bottom": "0", color: "black" } },
-                      [
-                        _c("b", [
-                          _c("i", {
-                            staticClass: "fa fa-pound-sign",
-                            staticStyle: {
-                              "font-size": "20px",
-                              "margin-right": "6px",
-                              color: "black"
-                            }
-                          }),
-                          _vm._v("168,343.66")
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", {}),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" })
+                  _c("b", [
+                    _c("i", {
+                      staticClass: "fa fa-pound-sign",
+                      staticStyle: {
+                        "font-size": "20px",
+                        "margin-right": "6px",
+                        color: "black"
+                      }
+                    }),
+                    _vm._v("168,343.66")
+                  ])
                 ]
               )
-            ]
-          )
+            ]),
+            _vm._v(" "),
+            _c("div", {}),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4" })
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticStyle: {
+          "border-radius": "5px 5px 0px 0px",
+          border: "1px solid #B0E0E6",
+          "background-color": "white"
+        }
+      },
+      [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "col-md-8 dash-divs" }, [
+            _c(
+              "h4",
+              {
+                staticClass: "h3",
+                staticStyle: {
+                  "margin-bottom": "0",
+                  color: "#3376C2",
+                  "font-weight": "700",
+                  "font-family": "Titillium-Web-Bold",
+                  "font-size": "23px"
+                }
+              },
+              [
+                _vm._v(
+                  "\n                            Customers Breakdown\n                        "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "dash-label",
+                staticStyle: { color: "black", "margin-top": "15px" }
+              },
+              [_vm._v("Recent Transactions")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", {}),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4" })
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-4" }, [
-          _c(
-            "div",
-            {
-              staticStyle: {
-                "border-radius": "5px 5px 0px 0px",
-                border: "1px solid #B0E0E6",
-                "background-color": "white"
-              }
-            },
-            [
-              _c("div", { staticClass: "col-md-12" }, [
-                _c("div", { staticClass: "col-md-8 dash-divs" }, [
-                  _c(
-                    "h4",
-                    {
-                      staticClass: "h3",
-                      staticStyle: {
-                        "margin-bottom": "0",
-                        color: "#3376C2",
-                        "font-weight": "700",
-                        "font-family": "Titillium-Web-Bold",
-                        "font-size": "23px"
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                            Gold sales Report\n                        "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "dash-label",
-                      staticStyle: { color: "black", "margin-top": "15px" }
-                    },
-                    [_vm._v("Recent Transactions")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", {}),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "dash-table" }, [
-                _c("div", { staticClass: "table-responsive" }, [
-                  _c(
-                    "table",
-                    {
-                      staticClass: "table",
-                      attrs: {
-                        id: "dash-datatable",
-                        width: "100%",
-                        cellspacing: "0"
-                      }
-                    },
-                    [
-                      _c("tbody", [
-                        _c("tr", [
-                          _c("td", [_vm._v("ABC Jewellers")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _c("td", [_vm._v("ABC Jewellers")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _c("td", [_vm._v("ABC Jewellers")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("i", {
-                              staticClass: "fa fa-pound-sign",
-                              staticStyle: {
-                                "font-size": "10px",
-                                "margin-right": "3px"
-                              }
-                            }),
-                            _vm._v("2000\n                                    ")
-                          ])
-                        ])
-                      ])
-                    ]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "col-md-12",
-                  staticStyle: { "border-radius": "0px 0px 5px 5px" }
-                },
-                [
-                  _c("div", { staticClass: "col-md-8 dash-divs" }, [
-                    _c(
-                      "h4",
-                      { staticStyle: { "margin-bottom": "0", color: "black" } },
-                      [
-                        _c("b", [
-                          _c("i", {
-                            staticClass: "fa fa-pound-sign",
-                            staticStyle: {
-                              "font-size": "20px",
-                              "margin-right": "6px",
-                              color: "black"
-                            }
-                          }),
-                          _vm._v("168,343.66")
-                        ])
-                      ]
-                    )
+        _c("div", { staticClass: "dash-table" }, [
+          _c("div", { staticClass: "table-responsive" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table",
+                attrs: { id: "dash-datatable", width: "100%", cellspacing: "0" }
+              },
+              [
+                _c("tbody", [
+                  _c("tr", [
+                    _c("td", [_vm._v("ABC Jewellers")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
                   ]),
                   _vm._v(" "),
-                  _c("div", {}),
+                  _c("tr", [
+                    _c("td", [_vm._v("ABC Jewellers")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
+                  ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" })
+                  _c("tr", [
+                    _c("td", [_vm._v("ABC Jewellers")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "col-md-12",
+            staticStyle: { "border-radius": "0px 0px 5px 5px" }
+          },
+          [
+            _c("div", { staticClass: "col-md-8 dash-divs" }, [
+              _c(
+                "h4",
+                { staticStyle: { "margin-bottom": "0", color: "black" } },
+                [
+                  _c("b", [
+                    _c("i", {
+                      staticClass: "fa fa-pound-sign",
+                      staticStyle: {
+                        "font-size": "20px",
+                        "margin-right": "6px",
+                        color: "black"
+                      }
+                    }),
+                    _vm._v("168,343.66")
+                  ])
                 ]
               )
-            ]
-          )
-        ])
-      ])
-    ])
+            ]),
+            _vm._v(" "),
+            _c("div", {}),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4" })
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticStyle: {
+          "border-radius": "5px 5px 0px 0px",
+          border: "1px solid #B0E0E6",
+          "background-color": "white"
+        }
+      },
+      [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "col-md-8 dash-divs" }, [
+            _c(
+              "h4",
+              {
+                staticClass: "h3",
+                staticStyle: {
+                  "margin-bottom": "0",
+                  color: "#3376C2",
+                  "font-weight": "700",
+                  "font-family": "Titillium-Web-Bold",
+                  "font-size": "23px"
+                }
+              },
+              [
+                _vm._v(
+                  "\n                           Cash in Hand Reports\n                        "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "dash-label",
+                staticStyle: { color: "black", "margin-top": "15px" }
+              },
+              [_vm._v("Recent Transactions")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", {}),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4" })
+        ]),
+        _vm._v(" "),
+        _c("div", {}, [_c("div")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "dash-table" }, [
+          _c("div", { staticClass: "table-responsive" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table",
+                attrs: { id: "dash-datatable", width: "100%", cellspacing: "0" }
+              },
+              [
+                _c("tbody", [
+                  _c("tr", [
+                    _c("td", [_vm._v("Feb 21")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("Jan 21")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("Dec 20")]),
+                    _vm._v(" "),
+                    _c("td", { staticStyle: { left: "30px" } }, [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "col-md-12",
+            staticStyle: { "border-radius": "0px 0px 5px 5px" }
+          },
+          [
+            _c("div", { staticClass: "col-md-8 dash-divs" }, [
+              _c(
+                "h4",
+                { staticStyle: { "margin-bottom": "0", color: "black" } },
+                [
+                  _c("b", [
+                    _c("i", {
+                      staticClass: "fa fa-pound-sign",
+                      staticStyle: {
+                        "font-size": "20px",
+                        "margin-right": "6px",
+                        color: "black"
+                      }
+                    }),
+                    _vm._v("168,343.66")
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", {}),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4" })
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticStyle: {
+          "border-radius": "5px 5px 0px 0px",
+          border: "1px solid #B0E0E6",
+          "background-color": "white"
+        }
+      },
+      [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "col-md-8 dash-divs" }, [
+            _c(
+              "h4",
+              {
+                staticClass: "h3",
+                staticStyle: {
+                  "margin-bottom": "0",
+                  color: "#3376C2",
+                  "font-weight": "700",
+                  "font-family": "Titillium-Web-Bold",
+                  "font-size": "23px"
+                }
+              },
+              [
+                _vm._v(
+                  "\n                            Jewellery Report\n                        "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "dash-label",
+                staticStyle: { color: "black", "margin-top": "15px" }
+              },
+              [_vm._v("Recent Transactions")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", {}),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4" })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "dash-table" }, [
+          _c("div", { staticClass: "table-responsive" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table",
+                attrs: { id: "dash-datatable", width: "100%", cellspacing: "0" }
+              },
+              [
+                _c("tbody", [
+                  _c("tr", [
+                    _c("td", [_vm._v("ABC Jewellers")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("ABC Jewellers")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("ABC Jewellers")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "col-md-12",
+            staticStyle: { "border-radius": "0px 0px 5px 5px" }
+          },
+          [
+            _c("div", { staticClass: "col-md-8 dash-divs" }, [
+              _c(
+                "h4",
+                { staticStyle: { "margin-bottom": "0", color: "black" } },
+                [
+                  _c("b", [
+                    _c("i", {
+                      staticClass: "fa fa-pound-sign",
+                      staticStyle: {
+                        "font-size": "20px",
+                        "margin-right": "6px",
+                        color: "black"
+                      }
+                    }),
+                    _vm._v("168,343.66")
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", {}),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4" })
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticStyle: {
+          "border-radius": "5px 5px 0px 0px",
+          border: "1px solid #B0E0E6",
+          "background-color": "white"
+        }
+      },
+      [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "col-md-8 dash-divs" }, [
+            _c(
+              "h4",
+              {
+                staticClass: "h3",
+                staticStyle: {
+                  "margin-bottom": "0",
+                  color: "#3376C2",
+                  "font-weight": "700",
+                  "font-family": "Titillium-Web-Bold",
+                  "font-size": "23px"
+                }
+              },
+              [
+                _vm._v(
+                  "\n                            Gold sales Report\n                        "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "dash-label",
+                staticStyle: { color: "black", "margin-top": "15px" }
+              },
+              [_vm._v("Recent Transactions")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", {}),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4" })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "dash-table" }, [
+          _c("div", { staticClass: "table-responsive" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table",
+                attrs: { id: "dash-datatable", width: "100%", cellspacing: "0" }
+              },
+              [
+                _c("tbody", [
+                  _c("tr", [
+                    _c("td", [_vm._v("ABC Jewellers")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("ABC Jewellers")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("ABC Jewellers")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("i", {
+                        staticClass: "fa fa-pound-sign",
+                        staticStyle: {
+                          "font-size": "10px",
+                          "margin-right": "3px"
+                        }
+                      }),
+                      _vm._v("2000\n                                    ")
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "col-md-12",
+            staticStyle: { "border-radius": "0px 0px 5px 5px" }
+          },
+          [
+            _c("div", { staticClass: "col-md-8 dash-divs" }, [
+              _c(
+                "h4",
+                { staticStyle: { "margin-bottom": "0", color: "black" } },
+                [
+                  _c("b", [
+                    _c("i", {
+                      staticClass: "fa fa-pound-sign",
+                      staticStyle: {
+                        "font-size": "20px",
+                        "margin-right": "6px",
+                        color: "black"
+                      }
+                    }),
+                    _vm._v("168,343.66")
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", {}),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4" })
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
