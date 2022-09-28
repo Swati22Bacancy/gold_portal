@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use App\Models\CustomerTransaction;
 
 class PurchaseController extends Controller
 {
@@ -62,6 +63,15 @@ class PurchaseController extends Controller
                 'changes' => $purchase->invoiceno.' '.'created',
                 'comment' => 'Invoice '.$purchase->invoiceno.' of £'.$request->input("formfields.totalamount"). 'has been created by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
            ]);
+
+            $customertransaction = CustomerTransaction::create([
+                'purchase_id' => $purchase->id,
+                'customer_id' => $request->input('formfields.customer_id'),
+                'amount' => $request->input('formfields.totalamount'),
+                'amount_due' => $request->input('formfields.totalamount'),
+                'activity' => 'Purchase Order '.$purchase->invoiceno,
+                'purchase_history_id' => $purchasehistory->id,
+            ]);
 
             return response()->json($purchase);
         } 
@@ -142,6 +152,30 @@ class PurchaseController extends Controller
                 'changes' => 'Payment Added',
             ]);
 
+            $purchase = Purchases::where('id',$request->input('purchase_id'))->first();
+
+            $purchasepayments1 = PurchasePayments::where('purchase_id',$request->input('purchase_id'))->orderBy('id', 'DESC')->get();
+
+            $payment_received=0;
+            if(!empty($purchasepayments1))
+            {
+                foreach($purchasepayments1 as $payment)
+                {
+                    $payment_received += $payment->totalamount;
+                }
+            }
+
+            $payment_due = $purchase->totalamount - $payment_received;
+
+            $customertransaction = CustomerTransaction::create([
+                'purchase_id' => $request->input('purchase_id'),
+                'customer_id' => $purchase->customer_id,
+                'payment' => $request->input('totalamount'),
+                'amount_due' => $payment_due,
+                'activity' => 'Payment Received by '.$request->input('method').' Ref '.$purchase->invoiceno,
+                'purchase_history_id' => $purchasehistory->id,
+            ]);
+
             return response()->json($purchasepayments);
         } catch (\Exception $e) {
             return response([
@@ -156,7 +190,7 @@ class PurchaseController extends Controller
         $purchase_id = $purchasepayment->purchase_id;
             if($purchasepayment){
                 $purchasepayment->delete();
-
+                $delettransaction = CustomerTransaction::where('purchase_payment_id', $id)->delete();
                 $purchasehistory = PurchaseHistory::create([
                     'purchase_id' => $purchase_id,
                     'amount' => $amount,
@@ -165,6 +199,30 @@ class PurchaseController extends Controller
                     'user_id' => Auth::user()->id,
                     'changes' => 'Payment Deleted',
                     'comment' => 'Payment of £'.$amount.' '.'has been deleted by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
+                ]);
+
+                $purchase = Purchases::where('id',$purchase_id)->first();
+
+                $purchasepayments = PurchasePayments::where('purchase_id',$purchase_id)->orderBy('id', 'DESC')->get();
+
+                $payment_received=0;
+                if(!empty($purchasepayments))
+                {
+                    foreach($purchasepayments as $payment)
+                    {
+                        $payment_received += $payment->totalamount;
+                    }
+                }
+
+                $payment_due = $purchase->totalamount - $payment_received;
+
+                $customertransaction = CustomerTransaction::create([
+                    'purchase_id' =>  $purchase_id,
+                    'customer_id' => $purchase->customer_id,
+                    'payment' => $amount,
+                    'amount_due' => $payment_due,
+                    'activity' => 'Payment Deleted by for Ref '.$purchase->invoiceno,
+                    'purchase_history_id' => $purchasehistory->id,
                 ]);
                 
                 return response()->json(

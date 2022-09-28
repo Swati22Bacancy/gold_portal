@@ -429,34 +429,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -497,7 +469,7 @@ __webpack_require__.r(__webpack_exports__);
           // pageLength: 5,
           // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
           "columnDefs": [{
-            "targets": [0, 9],
+            "targets": [0],
             "searchable": false,
             "orderable": false
           }]
@@ -527,7 +499,11 @@ __webpack_require__.r(__webpack_exports__);
 
       return axios.get("get_customer_transactions/" + this.$route.params.id).then(function (response) {
         _this2.transactions = response.data;
+        console.log(_this2.transactions);
       });
+    },
+    dateFormateChanger: function dateFormateChanger(d) {
+      return moment__WEBPACK_IMPORTED_MODULE_0___default()(d, 'YYYY-MM-DD').format('DD MMM YYYY');
     }
   }
 });
@@ -17918,229 +17894,115 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("div", { staticClass: "mt-2 mb-4" }, [
+      _c("div", {}, [
+        _c("div", { staticClass: "table-responsive" }, [
+          _c(
+            "table",
+            {
+              staticClass: "table",
+              attrs: {
+                id: "transaction-datatable",
+                width: "100%",
+                cellspacing: "0"
+              }
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.transactions, function(transaction) {
+                  return _c(
+                    "tr",
+                    { key: transaction.id, staticStyle: { cursor: "pointer" } },
+                    [
+                      _vm._m(1, true),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(_vm.dateFormateChanger(transaction.created_at))
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(transaction.activity))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(transaction.amount))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(transaction.payment))]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { color: "red" } }, [
+                        _vm._v(_vm._s(transaction.amount_due))
+                      ])
+                    ]
+                  )
+                }),
+                0
+              )
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "head-title" }, [
-        _c(
-          "p",
-          {
-            staticStyle: {
-              "margin-left": "30px",
-              color: "#444400",
-              "font-size": "20px",
-              "font-weight": "bold"
-            }
-          },
-          [_vm._v("Balance Due:")]
-        ),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [
+          _c("input", {
+            staticClass: "custom-check-input",
+            attrs: { type: "checkbox" }
+          })
+        ]),
         _vm._v(" "),
-        _c(
-          "h3",
-          {
-            staticStyle: {
-              color: "#C94C4C",
-              "margin-left": "15px",
-              "font-weight": "bold"
-            }
-          },
-          [
-            _vm._v(" -"),
-            _c("i", {
-              staticClass: "fa fa-pound-sign",
-              staticStyle: { "font-size": "23px" }
-            }),
-            _vm._v(" 7,000.00")
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "mt-2 mb-4" }, [
-        _c("div", {}, [
-          _c("div", { staticClass: "table-responsive" }, [
-            _c(
-              "table",
-              {
-                staticClass: "table",
-                attrs: {
-                  id: "transaction-datatable",
-                  width: "100%",
-                  cellspacing: "0"
-                }
-              },
-              [
-                _c("thead", [
-                  _c("tr", [
-                    _c("th", [
-                      _c("input", {
-                        staticClass: "custom-check-input",
-                        attrs: { type: "checkbox" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Date")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Activity")]),
-                    _vm._v(" "),
-                    _c("th", [
-                      _vm._v("Invoice / purchase Amount( "),
-                      _c("i", {
-                        staticClass: "fa fa-pound-sign",
-                        staticStyle: { "font-size": "9px" }
-                      }),
-                      _vm._v(" )")
-                    ]),
-                    _vm._v(" "),
-                    _c("th", [
-                      _vm._v("Payment( "),
-                      _c("i", {
-                        staticClass: "fa fa-pound-sign",
-                        staticStyle: { "font-size": "9px" }
-                      }),
-                      _vm._v(" )")
-                    ]),
-                    _vm._v(" "),
-                    _c("th", [
-                      _vm._v("Balance ( "),
-                      _c("i", {
-                        staticClass: "fa fa-pound-sign",
-                        staticStyle: { "font-size": "9px" }
-                      }),
-                      _vm._v(" )")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("tbody", [
-                  _c("tr", { staticStyle: { cursor: "pointer" } }, [
-                    _c("td", [
-                      _c("input", {
-                        staticClass: "custom-check-input",
-                        attrs: { type: "checkbox" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("16/5/2021")]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v("Invoice INV-2001(2)  "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn table-btn",
-                          staticStyle: { "margin-left": "auto", width: "68px" },
-                          attrs: { type: "button" }
-                        },
-                        [_vm._v("UnPaid")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("8,023.5")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("1023")]),
-                    _vm._v(" "),
-                    _c("td", { staticStyle: { color: "red" } }, [
-                      _vm._v("7000")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", { staticStyle: { cursor: "pointer" } }, [
-                    _c("td", [
-                      _c("input", {
-                        staticClass: "custom-check-input",
-                        attrs: { type: "checkbox" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("16/5/2021")]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v("Invoice INV-200(2)  "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn table-btn",
-                          staticStyle: { "margin-left": "auto", width: "68px" },
-                          attrs: { type: "button" }
-                        },
-                        [_vm._v("UnPaid")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("8,023.5")]),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td", { staticStyle: { color: "red" } }, [
-                      _vm._v("8000")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", { staticStyle: { cursor: "pointer" } }, [
-                    _c("td", [
-                      _c("input", {
-                        staticClass: "custom-check-input",
-                        attrs: { type: "checkbox" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("16/5/2021")]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v("Payment Received by Bank Transfer Ref inv- 1999")
-                    ]),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("1023")]),
-                    _vm._v(" "),
-                    _c("td", { staticStyle: { color: "red" } }, [
-                      _vm._v("7000")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", { staticStyle: { cursor: "pointer" } }, [
-                    _c("td", [
-                      _c("input", {
-                        staticClass: "custom-check-input",
-                        attrs: { type: "checkbox" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("16/5/2021")]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v("Purchase Order PO- 2323(2)  "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn table-btn",
-                          staticStyle: { "margin-left": "auto", width: "68px" },
-                          attrs: { type: "button" }
-                        },
-                        [_vm._v("UnPaid")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("8,023.5")]),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td", { staticStyle: { color: "brown" } }, [
-                      _vm._v("8023")
-                    ])
-                  ])
-                ])
-              ]
-            )
-          ])
+        _c("th", [_vm._v("Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Activity")]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v("Invoice / purchase Amount( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v("Payment( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
+        ]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v("Balance ( "),
+          _c("i", {
+            staticClass: "fa fa-pound-sign",
+            staticStyle: { "font-size": "9px" }
+          }),
+          _vm._v(" )")
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("input", {
+        staticClass: "custom-check-input",
+        attrs: { type: "checkbox" }
+      })
     ])
   }
 ]

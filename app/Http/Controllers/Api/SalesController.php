@@ -17,6 +17,7 @@ use App\Models\Purchases;
 use DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\PurchasePayments;
+use App\Models\CustomerTransaction;
 
 class SalesController extends Controller
 {
@@ -78,6 +79,15 @@ class SalesController extends Controller
                 'user_id' => Auth::user()->id,
                 'changes' => $sales->invoiceno.' '.'created',
                 'comment' => 'Invoice '.$sales->invoiceno.' of £'.$request->input("formfields.totalamount"). 'has been created by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
+            ]);
+
+            $customertransaction = CustomerTransaction::create([
+                'sales_id' => $sales->id,
+                'customer_id' => $request->input('formfields.customer_id'),
+                'amount' => $request->input('formfields.totalamount'),
+                'amount_due' => $request->input('formfields.totalamount'),
+                'activity' => 'Invoice '.$sales->invoiceno,
+                'sales_history_id' => $saleshistory->id,
             ]);
 
             return response()->json($sales);
@@ -166,6 +176,26 @@ class SalesController extends Controller
                 
             ]);
 
+            $sales = Sales::where('id',$request->input('sales_id'))->first();
+
+            $refund = SalesPayments::select(DB::raw("SUM(totalamount) as refundamount"))->where('action', 'Refund')->where('sales_id',$request->input('sales_id'))->first();
+        
+            $paid = SalesPayments::select(DB::raw("SUM(totalamount) as paidamount"))->whereIn('action', array('Receive', 'Exchange'))->where('sales_id',$request->input('sales_id'))->first();
+
+            $payment_due = $sales->totalamount - $paid->paidamount;
+            $payment_due = $payment_due + $refund->refundamount;
+
+            $activity= ($request->input('action')=='Receive')?'Payment Received by':'Refunded by';
+
+            $customertransaction = CustomerTransaction::create([
+                'sales_id' => $request->input('sales_id'),
+                'customer_id' => $sales->customer_id,
+                'payment' => $request->input('totalamount'),
+                'amount_due' => $payment_due,
+                'activity' => $activity.' '.$request->input('method').' Ref '.$sales->invoiceno,
+                'sales_history_id' => $saleshistory->id,
+            ]);
+
             return response()->json($salespayments);
         } catch (\Exception $e) {
             return response([
@@ -180,7 +210,9 @@ class SalesController extends Controller
         $action = $salepayment->action;
         $sales_id = $salepayment->sales_id;
             if($salepayment){
+                
                 $salepayment->delete();
+                
                 $historyaction= ($action=='Receive')?'Payment':(($action=='Refund')? 'Refund': 'Payment');
 
                 $refund = SalesPayments::select(DB::raw("SUM(totalamount) as refundamount"))->where('action', 'Refund')->where('sales_id',$sales_id)->first();
@@ -221,6 +253,24 @@ class SalesController extends Controller
                     'user_id' => Auth::user()->id,
                     'changes' => $historyaction.' Deleted',
                     'comment' => $historyaction.' of £'.$amount.' '.'has been deleted by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
+                ]);
+
+                $sales = Sales::where('id', $sales_id)->first();
+
+                $refund = SalesPayments::select(DB::raw("SUM(totalamount) as refundamount"))->where('action', 'Refund')->where('sales_id', $sales_id)->first();
+            
+                $paid = SalesPayments::select(DB::raw("SUM(totalamount) as paidamount"))->whereIn('action', array('Receive', 'Exchange'))->where('sales_id', $sales_id)->first();
+
+                $payment_due = $sales->totalamount - $paid->paidamount;
+                $payment_due = $payment_due + $refund->refundamount;
+
+                $customertransaction = CustomerTransaction::create([
+                    'sales_id' =>  $sales_id,
+                    'customer_id' => $sales->customer_id,
+                    'payment' => $amount,
+                    'amount_due' => $payment_due,
+                    'activity' => 'Payment Deleted by for Ref '.$sales->invoiceno,
+                    'sales_history_id' => $saleshistory->id,
                 ]);
                 
                 return response()->json(
@@ -465,6 +515,26 @@ class SalesController extends Controller
                 
             ]);
 
+            $sales = Sales::where('id',$request->input('sales_id'))->first();
+
+            $refund = SalesPayments::select(DB::raw("SUM(totalamount) as refundamount"))->where('action', 'Refund')->where('sales_id',$request->input('sales_id'))->first();
+        
+            $paid = SalesPayments::select(DB::raw("SUM(totalamount) as paidamount"))->whereIn('action', array('Receive', 'Exchange'))->where('sales_id',$request->input('sales_id'))->first();
+
+            $payment_due = $sales->totalamount - $paid->paidamount;
+            $payment_due = $payment_due + $refund->refundamount;
+
+            $activity= ($request->input('action')=='Receive')?'Payment Received by':'Refunded by';
+
+            $customertransaction = CustomerTransaction::create([
+                'sales_id' => $request->input('sales_id'),
+                'customer_id' => $sales->customer_id,
+                'payment' =>  $purchase->totalamount,
+                'amount_due' => $payment_due,
+                'activity' => 'Contra with Purchase Order '.$purchase->invoiceno.' Ref Sale Invoice'.$sales->invoiceno,
+                'sales_payment_id' => $salespayments->id,
+            ]);
+
             return response()->json($salespayments);
         } catch (\Exception $e) {
             return response([
@@ -503,7 +573,9 @@ class SalesController extends Controller
 
     public function getCustomerTransactions($id)
     {
-        
+        $customertransactions = CustomerTransaction::where('customer_id',$id)->orderBy('id', 'DESC')->get();
+
+        return response()->json($customertransactions);
     }
 
     public function getCustomerSummary($id)

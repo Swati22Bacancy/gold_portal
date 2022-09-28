@@ -4077,10 +4077,11 @@ var staticRenderFns = [
               "background-color": "#EDF2F6",
               "border-radius": "50%",
               padding: "18%",
-              "margin-right": "35%"
+              "margin-right": "35%",
+              color: "red"
             }
           },
-          [_vm._v("edit")]
+          [_vm._v("delete")]
         ),
         _vm._v(" "),
         _c(
@@ -4090,11 +4091,10 @@ var staticRenderFns = [
             staticStyle: {
               "background-color": "#EDF2F6",
               "border-radius": "50%",
-              padding: "18%",
-              color: "red"
+              padding: "18%"
             }
           },
-          [_vm._v("delete")]
+          [_vm._v("edit")]
         )
       ]
     )

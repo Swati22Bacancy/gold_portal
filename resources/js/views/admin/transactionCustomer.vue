@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div class="head-title">
+        <!-- <div class="head-title">
             <p style="margin-left:30px; color:#444400; font-size: 20px; font-weight: bold;">Balance Due:</p>
             <h3 style="color:#C94C4C; margin-left: 15px; font-weight: bold;"> -<i class="fa fa-pound-sign" style="font-size: 23px;"></i> 7,000.00</h3>
-        </div>
+        </div> -->
     <div class="mt-2 mb-4">
       <div class="">
           <div class="table-responsive">
@@ -19,41 +19,13 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr style="cursor:pointer;">
+                      <tr style="cursor:pointer;" v-for="transaction in transactions" :key="transaction.id">
                           <td><input type="checkbox" class="custom-check-input"></td>
-                          <td>16/5/2021</td>
-                          <td>Invoice INV-2001(2)  <button type="button" class="btn table-btn" style="margin-left: auto;width: 68px;">UnPaid</button></td>
-                          <td>8,023.5</td>
-                          <td>1023</td>
-                          <td style="color:red;">7000</td>
-                        
-                      </tr>
-                      <tr style="cursor:pointer;">
-                          <td><input type="checkbox" class="custom-check-input"></td>
-                          <td>16/5/2021</td>
-                          <td>Invoice INV-200(2)  <button type="button" class="btn table-btn" style="margin-left: auto;width: 68px;">UnPaid</button></td>
-                          <td>8,023.5</td>
-                        <td></td>
-                          <td style="color:red;">8000</td>
-                        
-                      </tr>
-                      <tr style="cursor:pointer;">
-                          <td><input type="checkbox" class="custom-check-input"></td>
-                          <td>16/5/2021</td>
-                          <td>Payment Received by Bank Transfer Ref inv- 1999</td>
-                          <td></td>
-                          <td>1023</td>
-                          <td style="color:red;">7000</td>
-                        
-                      </tr>
-                      <tr style="cursor:pointer;">
-                          <td><input type="checkbox" class="custom-check-input"></td>
-                          <td>16/5/2021</td>
-                          <td>Purchase Order PO- 2323(2)  <button type="button" class="btn table-btn" style="margin-left: auto;width: 68px;">UnPaid</button></td>
-                          <td>8,023.5</td>
-                         <td></td>
-                          <td style="color:brown;">8023</td>
-                        
+                          <td>{{dateFormateChanger(transaction.created_at)}}</td>
+                          <td>{{transaction.activity}}</td>
+                          <td>{{transaction.amount}}</td>
+                          <td>{{transaction.payment}}</td>
+                          <td style="color:red;">{{transaction.amount_due}}</td>
                       </tr>
                   </tbody>
               </table>
@@ -104,7 +76,7 @@ export default {
             // pageLength: 5,
             // lengthMenu: [ 5, 10, 20, 50, 100, 200, 500],
             "columnDefs": [
-              { "targets": [0,9], "searchable": false, "orderable": false }
+              { "targets": [0], "searchable": false, "orderable": false }
             ]
           });
           $(".searchbox").keyup(function() {
@@ -129,8 +101,12 @@ export default {
     getTransactions() {
         return axios.get("get_customer_transactions/"+this.$route.params.id).then(response => {
             this.transactions = response.data;
+            console.log(this.transactions);
         });
     },
+    dateFormateChanger(d){
+      return moment(d,'YYYY-MM-DD').format('DD MMM YYYY')
+     },
   }
 }
 </script>

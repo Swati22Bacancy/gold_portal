@@ -38,12 +38,12 @@
                       class="fas fa-pencil-alt"
                       style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-right:35%"
                   ></i> -->
-                  <span style="background-color: #EDF2F6; border-radius:50%; padding: 18%; margin-right:35%" class="material-symbols-outlined">edit</span>
+                  <span style="background-color: #EDF2F6; border-radius:50%; padding: 18%; margin-right:35%;color:red" class="material-symbols-outlined">delete</span>
                   <!-- <i
                       class="fas fa-trash-alt"
                       style="background-color: #EDF2F6; border-radius:50%; padding: 15%; "
                   ></i> -->
-                  <span style="background-color: #EDF2F6; border-radius:50%; padding: 18%;color:red" class="material-symbols-outlined">delete</span>
+                  <span style="background-color: #EDF2F6; border-radius:50%; padding: 18%;" class="material-symbols-outlined">edit</span>
               </div>
           </div>
           <div class="">
