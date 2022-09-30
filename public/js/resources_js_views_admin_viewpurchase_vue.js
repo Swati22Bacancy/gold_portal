@@ -16253,6 +16253,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -16465,43 +16486,65 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         });
         console.log(error);
       });
+    },
+    deletePurchaseOrder: function deletePurchaseOrder() {
+      var _this4 = this;
+
+      axios.get('/delete_purchaseorder/' + this.$route.params.id).then(function (resp) {
+        _this4.$router.push("/purchase");
+      })["catch"](function (error) {
+        var message = 'Something went wrong, Please try again';
+        var toast = Vue.toasted.show(message, {
+          theme: "toasted-error",
+          position: "top-center",
+          duration: 5000
+        });
+        console.log(error);
+      });
+    },
+    edit_invoice: function edit_invoice() {
+      if (this.paymentcount > 0) {
+        alert('Please delete all the payments first!');
+      } else {
+        this.$router.push("/edit_purchase/" + this.$route.params.id);
+      }
     }
   },
   mounted: function mounted() {
-    var _this4 = this;
+    var _this5 = this;
 
     axios.get('/purchase_details/' + this.$route.params.id).then(function (response) {
-      _this4.formdata = response.data;
-      _this4.paymentcount = _this4.formdata.purchasepayments.length;
+      _this5.formdata = response.data;
+      _this5.paymentcount = _this5.formdata.purchasepayments.length;
 
       if (response.data.payment_due < 0) {
-        _this4.over_paid = response.data.payment_due;
+        _this5.over_paid = response.data.payment_due;
       }
 
-      _this4.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
+      _this5.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
 
-      if (_this4.paymentcount == 0) {
-        _this4.invoice_status = 'UnPaid';
-        _this4.payment_check = 'Yes';
-      } else if (_this4.over_paid < 0) {
-        _this4.invoice_status = 'Over Paid';
-        _this4.payment_check = '';
-      } else if (_this4.due_payment == 0) {
-        _this4.invoice_status = 'Paid';
-        _this4.payment_check = '';
+      if (_this5.paymentcount == 0) {
+        _this5.invoice_status = 'UnPaid';
+        _this5.payment_check = 'Yes';
+      } else if (_this5.over_paid < 0) {
+        _this5.invoice_status = 'Over Paid';
+        _this5.payment_check = '';
+      } else if (_this5.due_payment == 0) {
+        _this5.invoice_status = 'Paid';
+        _this5.payment_check = '';
       } else {
-        _this4.invoice_status = 'Partially Paid';
-        _this4.payment_check = 'Yes';
+        _this5.invoice_status = 'Partially Paid';
+        _this5.payment_check = 'Yes';
       }
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
     axios.get('/purchase_history/' + this.$route.params.id).then(function (response) {
-      _this4.formdata.purchasehistory = response.data;
+      _this5.formdata.purchasehistory = response.data;
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
     axios.get('/purchase_list/').then(function (response) {
-      _this4.purchases = response.data;
-      console.log(_this4.purchases);
+      _this5.purchases = response.data;
+      console.log(_this5.purchases);
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
   }
@@ -16780,7 +16823,66 @@ var render = function() {
           _vm._v(" "),
           _vm._m(0),
           _vm._v(" "),
-          _vm._m(1)
+          _c(
+            "div",
+            {
+              staticClass:
+                "d-sm-flex align-items-center justify-content-between",
+              staticStyle: { "margin-left": "-20%" }
+            },
+            [
+              _c("i", {
+                staticClass: "fas fa-link",
+                staticStyle: {
+                  color: "#48c6f6",
+                  "background-color": "#EDF2F6",
+                  "border-radius": "50%",
+                  padding: "22%",
+                  "margin-right": "35%",
+                  "font-size": "15px"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: {
+                    "background-color": "#EDF2F6",
+                    "border-radius": "50%",
+                    padding: "18%",
+                    "margin-right": "35%",
+                    color: "red",
+                    cursor: "pointer"
+                  },
+                  attrs: {
+                    "data-toggle": "modal",
+                    "data-target": "#deletePurchaseConfirmation"
+                  }
+                },
+                [_vm._v("delete")]
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: {
+                    "background-color": "#EDF2F6",
+                    "border-radius": "50%",
+                    padding: "18%",
+                    cursor: "pointer"
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.edit_invoice()
+                    }
+                  }
+                },
+                [_vm._v("edit")]
+              )
+            ]
+          )
         ]
       ),
       _vm._v(" "),
@@ -16966,7 +17068,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(2),
+                      _vm._m(1),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -17027,7 +17129,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2 sum-price" }, [
                 _c("ul", [
@@ -17626,7 +17728,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._m(4),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -17681,9 +17783,9 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(5),
+                _vm._m(4),
                 _vm._v(" "),
-                _vm._m(6),
+                _vm._m(5),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(
@@ -17707,6 +17809,62 @@ var render = function() {
                       on: {
                         click: function($event) {
                           return _vm.deleteRecord(_vm.paymentid)
+                        }
+                      }
+                    },
+                    [_vm._v("Delete")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "deletePurchaseConfirmation",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "deletePurchaseConfirmationLabel",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "modal-dialog", attrs: { role: "document" } },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(6),
+                _vm._v(" "),
+                _vm._m(7),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Cancel")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb",
+                      staticStyle: {
+                        "background-color": "#ff0000 !important",
+                        color: "#fff"
+                      },
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.deletePurchaseOrder()
                         }
                       }
                     },
@@ -17788,59 +17946,6 @@ var staticRenderFns = [
             }
           },
           [_vm._v("print")]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "d-sm-flex align-items-center justify-content-between",
-        staticStyle: { "margin-left": "-20%" }
-      },
-      [
-        _c("i", {
-          staticClass: "fas fa-link",
-          staticStyle: {
-            color: "#48c6f6",
-            "background-color": "#EDF2F6",
-            "border-radius": "50%",
-            padding: "22%",
-            "margin-right": "35%",
-            "font-size": "15px"
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "material-symbols-outlined",
-            staticStyle: {
-              "background-color": "#EDF2F6",
-              "border-radius": "50%",
-              padding: "18%",
-              "margin-right": "35%"
-            }
-          },
-          [_vm._v("edit")]
-        ),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "material-symbols-outlined",
-            staticStyle: {
-              "background-color": "#EDF2F6",
-              "border-radius": "50%",
-              padding: "18%",
-              color: "red"
-            }
-          },
-          [_vm._v("delete")]
         )
       ]
     )
@@ -17941,6 +18046,53 @@ var staticRenderFns = [
     return _c("div", { staticClass: "modal-body" }, [
       _c("p", { staticStyle: { color: "#000", "font-size": "14px" } }, [
         _vm._v("Are you sure you want to delete this payment?")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h6",
+        {
+          staticClass: "modal-title",
+          attrs: { id: "deletePurchaseConfirmationLabel" }
+        },
+        [_vm._v("Confirmation")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [
+          _c(
+            "span",
+            {
+              staticStyle: { color: "#fff" },
+              attrs: { "aria-hidden": "true" }
+            },
+            [_vm._v("×")]
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("p", { staticStyle: { color: "#000", "font-size": "14px" } }, [
+        _vm._v("Are you sure you want to delete this Purchase Order?")
       ])
     ])
   }

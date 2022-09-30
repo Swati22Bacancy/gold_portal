@@ -34,12 +34,12 @@
                       class="fas fa-pencil-alt"
                       style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-right:35%"
                   ></i> -->
-                  <span style="background-color: #EDF2F6; border-radius:50%; padding: 18%; margin-right:35%" class="material-symbols-outlined">edit</span>
+                  <span style="background-color: #EDF2F6; border-radius:50%; padding: 18%; margin-right:35%;color:red;cursor: pointer;" class="material-symbols-outlined" data-toggle="modal" data-target="#deletePurchaseConfirmation">delete</span>
                   <!-- <i
                       class="fas fa-trash-alt"
                       style="background-color: #EDF2F6; border-radius:50%; padding: 15%; "
                   ></i> -->
-                  <span style="background-color: #EDF2F6; border-radius:50%; padding: 18%;color:red" class="material-symbols-outlined">delete</span>
+                  <span style="background-color: #EDF2F6; border-radius:50%; padding: 18%;cursor: pointer;" @click="edit_invoice()" class="material-symbols-outlined">edit</span>
               </div>
      </div>
       <div class="">
@@ -267,6 +267,27 @@
               </div>
           </div>
       </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="deletePurchaseConfirmation" tabindex="-1" role="dialog" aria-labelledby="deletePurchaseConfirmationLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h6 class="modal-title" id="deletePurchaseConfirmationLabel">Confirmation</h6>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true" style="color:#fff">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <p style="color:#000;font-size:14px;">Are you sure you want to delete this Purchase Order?</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn admin-btn mobile-mb" data-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deletePurchaseOrder()">Delete</button>
+                  </div>
+              </div>
+          </div>
+      </div>
     
     </div>
     
@@ -462,6 +483,32 @@ export default {
             console.log(error);
         })
     },
+    deletePurchaseOrder() {
+      axios.get('/delete_purchaseorder/'+this.$route.params.id)
+        .then(resp => {
+          this.$router.push("/purchase");
+        })
+        .catch(error => {
+          let message = 'Something went wrong, Please try again';
+          let toast = Vue.toasted.show(message, {
+            theme: "toasted-error",
+            position: "top-center",
+            duration: 5000,
+          });
+            console.log(error);
+        })
+    },
+    edit_invoice()
+    {
+      if(this.paymentcount>0)
+      {
+        alert('Please delete all the payments first!');
+      }
+      else
+      {
+        this.$router.push("/edit_purchase/"+this.$route.params.id);
+      }
+    }
   },
   mounted()
   {

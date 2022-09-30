@@ -137,6 +137,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('sales_list_byCustomer/{id}', [Api\SalesController::class, 'saleslistCustomer']);
     Route::get('get_customer_transactions/{id}', [Api\SalesController::class, 'getCustomerTransactions']);
     Route::get('get_customer_summary/{id}', [Api\SalesController::class, 'getCustomerSummary']);
+    Route::post('edit_invoice',[Api\SalesController::class, 'editinvoice']);
+    Route::get('delete_salesinvoice/{id}', [Api\SalesController::class, 'deletesalesinvoice']);
     
 
     // Purchase Invoice Routes
@@ -151,4 +153,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('update_orderstatus',[Api\PurchaseController::class, 'updateorderstatus']);
     Route::get('purchase_list_by_status/{status}', [Api\PurchaseController::class, 'purchasebystatus']);
     Route::get('purchase_list_byCustomer/{id}', [Api\PurchaseController::class, 'purchaselistCustomer']);
+    Route::post('edit_purchase',[Api\PurchaseController::class, 'editpurchase']);
+    Route::get('delete_purchaseorder/{id}', [Api\PurchaseController::class, 'deletepurchaseorder']);
 });

@@ -1,9 +1,9 @@
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_views_admin_createinvoice_vue"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_views_admin_editpurchase_vue"],{
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/createinvoice.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/createinvoice.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/editpurchase.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/editpurchase.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13,12 +13,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
-/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-search-select */ "./node_modules/vue-search-select/dist/VueSearchSelect.common.js");
-/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_search_select__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
-/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! process */ "./node_modules/process/browser.js");
-/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(process__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-search-select */ "./node_modules/vue-search-select/dist/VueSearchSelect.common.js");
+/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_search_select__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -332,81 +330,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "CreateInvoice",
+  name: "CreatePurchase",
   components: {
-    Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_3__.default,
-    ModelSelect: vue_search_select__WEBPACK_IMPORTED_MODULE_2__.ModelSelect
+    Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_2__.default,
+    ModelSelect: vue_search_select__WEBPACK_IMPORTED_MODULE_1__.ModelSelect
   },
   data: function data() {
     return {
@@ -427,10 +358,11 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         billing_address: "",
         invoiceno: ""
       },
+      order_no: '',
       postdata: {},
       errors: {},
       groups: {},
-      customers: [],
+      suppliers: [],
       rows: [],
       invoice_items: [{
         invoice_type: '',
@@ -455,8 +387,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       editflag: false,
       credit_period: 0,
       customer_type: '',
-      live_unitprice: [],
-      isVisible: false
+      live_unitprice: []
     };
   },
   methods: {
@@ -510,7 +441,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
     changetype: function changetype(type) {
       this.customerType = type;
     },
-    create_invoice: function create_invoice() {
+    edit_purchase: function edit_purchase() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -538,12 +469,12 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                 }
 
                 if (!(price_difference_count > 0)) {
-                  _context.next = 33;
+                  _context.next = 34;
                   break;
                 }
 
                 if (!confirm("Some of the product prices are incorrect, Do you really want to continue?")) {
-                  _context.next = 31;
+                  _context.next = 32;
                   break;
                 }
 
@@ -579,25 +510,26 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                 _this.formdata.price_difference_count = price_difference_count;
                 _this.postdata.formfields = _this.formdata;
                 _this.postdata.itemfields = _this.invoice_items;
-                _context.next = 21;
-                return axios.post("create_invoice", _this.postdata);
+                _this.postdata.po_id = _this.$route.params.id;
+                _context.next = 22;
+                return axios.post("edit_purchase", _this.postdata);
 
-              case 21:
+              case 22:
                 response = _context.sent;
-                message = "Sales Invoice has been successfully created.";
+                message = "Purchase Order has been successfully created.";
                 _toast = Vue.toasted.show(message, {
                   theme: "toasted-success",
                   position: "top-center",
                   duration: 5000
                 });
 
-                _this.$router.push("/sales");
+                _this.$router.push("/purchase");
 
-                _context.next = 31;
+                _context.next = 32;
                 break;
 
-              case 27:
-                _context.prev = 27;
+              case 28:
+                _context.prev = 28;
                 _context.t0 = _context["catch"](10);
                 _message = 'Something went wrong, Please try again';
                 _toast2 = Vue.toasted.show(_message, {
@@ -606,22 +538,22 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                   duration: 5000
                 });
 
-              case 31:
-                _context.next = 57;
+              case 32:
+                _context.next = 59;
                 break;
 
-              case 33:
+              case 34:
                 _this.$v.formdata.$touch();
 
                 if (!_this.$v.formdata.$error) {
-                  _context.next = 36;
+                  _context.next = 37;
                   break;
                 }
 
                 return _context.abrupt("return");
 
-              case 36:
-                _context.prev = 36;
+              case 37:
+                _context.prev = 37;
                 _this.formdata.customertype = _this.customerType;
                 date = new Date(_this.formdata.issue_date);
                 _this.formdata.issue_date = date;
@@ -630,26 +562,27 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                 _this.formdata.price_difference_count = price_difference_count;
                 _this.postdata.formfields = _this.formdata;
                 _this.postdata.itemfields = _this.invoice_items;
-                _context.next = 47;
-                return axios.post("create_invoice", _this.postdata);
+                _this.postdata.po_id = _this.$route.params.id;
+                _context.next = 49;
+                return axios.post("edit_purchase", _this.postdata);
 
-              case 47:
+              case 49:
                 _response = _context.sent;
-                _message2 = "Sales Invoice has been successfully created.";
+                _message2 = "Purchase Order has been successfully created.";
                 _toast3 = Vue.toasted.show(_message2, {
                   theme: "toasted-success",
                   position: "top-center",
                   duration: 5000
                 });
 
-                _this.$router.push("/sales");
+                _this.$router.push("/purchase");
 
-                _context.next = 57;
+                _context.next = 59;
                 break;
 
-              case 53:
-                _context.prev = 53;
-                _context.t1 = _context["catch"](36);
+              case 55:
+                _context.prev = 55;
+                _context.t1 = _context["catch"](37);
                 _message3 = 'Something went wrong, Please try again';
                 _toast4 = Vue.toasted.show(_message3, {
                   theme: "toasted-error",
@@ -657,20 +590,20 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                   duration: 5000
                 });
 
-              case 57:
+              case 59:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[10, 27], [36, 53]]);
+        }, _callee, null, [[10, 28], [37, 55]]);
       }))();
     },
     getCustomers: function getCustomers() {
       var _this2 = this;
 
       return axios.get("customerlist/all").then(function (response) {
-        _this2.customers = response.data;
-        _this2.customers = _this2.customers.map(function (customer) {
+        _this2.suppliers = response.data;
+        _this2.suppliers = _this2.suppliers.map(function (customer) {
           return {
             value: customer.id,
             text: "".concat(customer.first_name || "", " ").concat(customer.last_name || "", " ( ").concat(customer.typeicon || "", " )")
@@ -709,7 +642,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
     getInvoicekey: function getInvoicekey() {
       var _this6 = this;
 
-      return axios.get("get_invoicekey").then(function (response) {
+      return axios.get("get_purchasekey").then(function (response) {
         _this6.formdata.invoiceno = response.data;
       });
     },
@@ -759,15 +692,46 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       this.invoice_items[index].vat = '';
       this.invoice_items[index].quantity = 1;
       this.invoice_items[index].unitprice = '';
-      this.invoice_items[index].invoice_amount = '';
+      this.invoice_items[index].invoice_amount = ''; // var totalsub=0;
+      // for(var j=0; j<this.invoice_items.length;j++)
+      // {
+      //   if(!isNaN(this.invoice_items[j].unitprice))  
+      //   {
+      //     totalsub += this.invoice_items[j].unitprice*this.invoice_items[j].quantity;
+      //   }
+      // }
+      // var totalvat=0;
+      // for(var k=0; k<this.invoice_items.length;k++)
+      // {
+      //   if(!isNaN(this.invoice_items[k].unitprice))  
+      //   {
+      //     if(this.invoice_items[k].vat)
+      //     {
+      //       totalvat += (this.invoice_items[k].unitprice*this.invoice_items[k].quantity)*(this.invoice_items[k].vat/100);
+      //     }
+      //     else
+      //     {
+      //       totalvat += 0;
+      //     }
+      //   }
+      // }
+      // this.subtotal = totalsub.toFixed(2);
+      // this.vattotal = totalvat.toFixed(2);
+      // var invoicetotal = totalsub + totalvat;
+      // this.totalamount = invoicetotal.toFixed(2);
+      // this.formdata.subtotal = Number(this.subtotal);
+      // this.formdata.vattotal = Number(this.vattotal);
+      // this.formdata.totalamount = Number(this.totalamount);
+      //this.invoice_items[index].vat='';
+
       axios.get('/productdetails_thirdParty/' + this.invoice_items[index].invoice_product).then(function (response) {
         _this8.invoice_items[index].weight = response.data.weight;
         _this8.invoice_items[index].vat = response.data.productrate ? response.data.productrate : 0;
         _this8.invoice_items[index].invoice_type = response.data.type;
         _this8.invoice_items[index].invoice_typeid = response.data.type_id;
-        var sales_commission = _this8.customer_type == 'Business' ? response.data.sales_commission : response.data.retail_sales_commission;
-        var unitPrice = response.data.askprice * response.data.weight * _this8.invoice_items[index].quantity + parseFloat(sales_commission);
-        var pricecommission = unitPrice * parseFloat(sales_commission) / 100 + unitPrice;
+        var purchase_commission = _this8.customer_type == 'Business' ? response.data.purchase_commission : response.data.retail_purchase_commission;
+        var unitPrice = response.data.askprice * response.data.weight * _this8.invoice_items[index].quantity + parseFloat(purchase_commission);
+        var pricecommission = unitPrice * parseFloat(purchase_commission) / 100 + unitPrice;
         _this8.invoice_items[index].unitprice = pricecommission.toFixed(2);
         var invunitprice = parseFloat(_this8.invoice_items[index].unitprice);
         _this8.live_unitprice[index] = invunitprice;
@@ -812,7 +776,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
         _this8.formdata.subtotal = Number(_this8.subtotal);
         _this8.formdata.vattotal = Number(_this8.vattotal);
         _this8.formdata.totalamount = Number(_this8.totalamount);
-      })["catch"](function (error) {}); //this.invoice_items[index].vat='';
+      })["catch"](function (error) {});
     },
     fetchAddress: function fetchAddress() {
       var _this9 = this;
@@ -1016,10 +980,10 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                   text: "".concat(response.data.first_name || "", " ").concat(response.data.last_name || "", " ")
                 };
 
-                _this10.customers.push(newdata);
+                _this10.suppliers.push(newdata);
 
                 _this10.formdata.customer_id = response.data.id;
-                $('#addcreateinvoice').modal('hide');
+                $('#addcreatepurchase').modal('hide');
 
               case 11:
               case "end":
@@ -1036,72 +1000,103 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
   validations: {
     customerdata: {
       email: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required,
-        email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.email
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required,
+        email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.email
       },
       registered_address: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       first_name: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       last_name: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       }
     },
     formdata: {
       customer_id: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       invoiceno: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       billing_address: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       issue_date: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       due_date: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       currency_id: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       }
     },
     invoice_item: {
       invoice_product: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       invoice_type: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       weight: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       quantity: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       },
       unitprice: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
       }
     }
   },
   mounted: function mounted() {
+    var _this11 = this;
+
     this.getCustomers();
     this.getCurrencies();
     this.getProducttypes();
     this.getProducts();
-    this.getInvoicekey();
+    axios.get('/purchase_details/' + this.$route.params.id).then(function (response) {
+      _this11.formdata = response.data;
+      _this11.order_no = _this11.formdata.invoiceno;
+      _this11.subtotal = _this11.formdata.subtotal;
+      _this11.vattotal = _this11.formdata.vattotal;
+      _this11.totalamount = _this11.formdata.totalamount;
+      _this11.invoice_items = _this11.formdata.purchaseitem;
+      _this11.paymentcount = _this11.formdata.purchasepayments.length;
+
+      if (response.data.payment_due < 0) {
+        _this11.over_paid = response.data.payment_due;
+      }
+
+      _this11.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
+
+      if (_this11.paymentcount == 0) {
+        _this11.invoice_status = 'UnPaid';
+        _this11.payment_check = 'Yes';
+      } else if (_this11.over_paid < 0) {
+        _this11.invoice_status = 'Over Paid';
+        _this11.payment_check = '';
+      } else if (_this11.due_payment == 0) {
+        _this11.invoice_status = 'Paid';
+        _this11.payment_check = '';
+      } else {
+        _this11.invoice_status = 'Partially Paid';
+        _this11.payment_check = 'Yes';
+      }
+    })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
+    });
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/createinvoice.vue?vue&type=style&index=0&id=2193c37c&scoped=true&lang=css&":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/createinvoice.vue?vue&type=style&index=0&id=2193c37c&scoped=true&lang=css& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/editpurchase.vue?vue&type=style&index=0&id=647a8d8a&scoped=true&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/editpurchase.vue?vue&type=style&index=0&id=647a8d8a&scoped=true&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1115,17 +1110,17 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-createinvoice[data-v-2193c37c]{\r\n  width:450px;\n}\n.table-row[data-v-2193c37c]{\r\n  height: 100px;\n}\n.inputdata[data-v-2193c37c]{\r\n  background: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"30\"><text x=\"5\" y=\"19\" style=\"font:16px Arial;\">INV -</text></svg>') no-repeat;\r\n  font: 16px \"Arial\";\r\n  padding-left: 45px;\n}\n.edit-cont[data-v-2193c37c]{\r\n  position: absolute;\r\n  top: 35px;\r\n   left: 350px;\r\n   border: none;\n}\n.select-cont[data-v-2193c37c]{\r\n  width: 200px;\n}\n.required-field[data-v-2193c37c]::after {\r\n  content: \"*\";\r\n  color: red;\n}\n.text-danger[data-v-2193c37c]{\r\n  font-size: 12px;\n}\n.button-container[data-v-2193c37c]{\r\n    display: flex;\r\n    justify-content: space-between;\n}\n.btn-modal[data-v-2193c37c]{\r\n  color: black;\r\n  border: 0;\r\n  background:#7ADAAA ;\n}\n.modal-selection[data-v-2193c37c]{\r\n  flex: 1 !important;\n}\n#createinvoice-datatable thead[data-v-2193c37c] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-2193c37c] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-2193c37c]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createinvoice-div[data-v-2193c37c]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-2193c37c]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-2193c37c]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-2193c37c]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-2193c37c]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-2193c37c]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-2193c37c]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-2193c37c]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.dark-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-2193c37c]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-2193c37c]:focus, .btn.focus[data-v-2193c37c]\r\n{\r\n  box-shadow: 0 0;\n}\n.check-position[data-v-2193c37c]\r\n{\r\n  margin-left: 15%;\n}\n.static-value[data-v-2193c37c]{\r\n  position:absolute;\r\n  left: 10px;\r\n  font-weight: bold;\r\n  color: #6e707e;\r\n  font-size: 13px !important;\r\n  top: 40px;\n}\n.setpadding[data-v-2193c37c]\r\n{\r\n  padding-left: 40px;\n}\n.form-text[data-v-2193c37c]{\r\n\tposition:relative;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-2193c37c]\r\n  {\r\n    border-right: 2px solid #eee;\r\n    padding-right: 8%;\n}\n.primary-div[data-v-2193c37c]\r\n  {\r\n    padding-left: 8%;\n}\n}\n#mydatepicker[data-v-2193c37c]{\r\n    display: block;\r\n    width: 100%;\r\n    height: calc(1.5em + 0.75rem + 2px);\r\n    padding: 0.375rem 0.75rem;\r\n    font-size: 1rem;\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    color: #6e707e;\r\n    background-color: #fff;\r\n    background-clip: padding-box;\r\n    border: 1px solid #d1d3e2;\r\n    border-radius: 0.35rem;\r\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\n.td-style[data-v-2193c37c]{\r\n  width:150px;\n}\n.tdwidth[data-v-2193c37c]\r\n{\r\n  width: 90px;\n}\n.red-color[data-v-2193c37c]\r\n{\r\n  color:red;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-createpurchase[data-v-647a8d8a]{\r\n  width:450px;\n}\n.table-row[data-v-647a8d8a]{\r\n  height: 100px;\n}\n.inputdata[data-v-647a8d8a]{\r\n  background: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"30\"><text x=\"5\" y=\"19\" style=\"font:16px Arial;\">INV -</text></svg>') no-repeat;\r\n  font: 16px \"Arial\";\r\n  padding-left: 45px;\n}\n.edit-cont[data-v-647a8d8a]{\r\n  position: absolute;\r\n  top: 35px;\r\n   left: 350px;\r\n   border: none;\n}\n.select-cont[data-v-647a8d8a]{\r\n  width: 200px;\n}\n.required-field[data-v-647a8d8a]::after {\r\n  content: \"*\";\r\n  color: red;\n}\n.text-danger[data-v-647a8d8a]{\r\n  font-size: 12px;\n}\n.button-container[data-v-647a8d8a]{\r\n    display: flex;\r\n    justify-content: space-between;\n}\n.btn-modal[data-v-647a8d8a]{\r\n  color: black;\r\n  border: 0;\r\n  background:#7ADAAA ;\n}\n.modal-selection[data-v-647a8d8a]{\r\n  flex: 1 !important;\n}\n#createpurchase-datatable thead[data-v-647a8d8a] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createpurchase-datatable thead tr th[data-v-647a8d8a] {\r\n    font-weight: 100 !important;\n}\n#createpurchase-datatable[data-v-647a8d8a]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createpurchase-div[data-v-647a8d8a]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-purchase label[data-v-647a8d8a]\r\n{\r\n  font-size: 12px;\n}\n.crt-purchase[data-v-647a8d8a]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-647a8d8a]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-647a8d8a]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-647a8d8a]:focus, .btn.focus[data-v-647a8d8a]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-647a8d8a]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-647a8d8a]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-647a8d8a]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-647a8d8a]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-647a8d8a]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.dark-theme-btn[data-v-647a8d8a]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-647a8d8a]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-647a8d8a]:focus, .btn.focus[data-v-647a8d8a]\r\n{\r\n  box-shadow: 0 0;\n}\n.check-position[data-v-647a8d8a]\r\n{\r\n  margin-left: 15%;\n}\n.static-value[data-v-647a8d8a]{\r\n  position:absolute;\r\n  left: 10px;\r\n  font-weight: bold;\r\n  color: #6e707e;\r\n  font-size: 13px !important;\r\n  top: 40px;\n}\n.setpadding[data-v-647a8d8a]\r\n{\r\n  padding-left: 40px;\n}\n.form-text[data-v-647a8d8a]{\r\n\tposition:relative;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-647a8d8a]\r\n  {\r\n    border-right: 2px solid #eee;\r\n    padding-right: 8%;\n}\n.primary-div[data-v-647a8d8a]\r\n  {\r\n    padding-left: 8%;\n}\n}\n#mydatepicker[data-v-647a8d8a]{\r\n    display: block;\r\n    width: 100%;\r\n    height: calc(1.5em + 0.75rem + 2px);\r\n    padding: 0.375rem 0.75rem;\r\n    font-size: 1rem;\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    color: #6e707e;\r\n    background-color: #fff;\r\n    background-clip: padding-box;\r\n    border: 1px solid #d1d3e2;\r\n    border-radius: 0.35rem;\r\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\n.td-style[data-v-647a8d8a]{\r\n  width:150px;\n}\n.red-color[data-v-647a8d8a]\r\n{\r\n  color:red;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/createinvoice.vue?vue&type=style&index=0&id=2193c37c&scoped=true&lang=css&":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/createinvoice.vue?vue&type=style&index=0&id=2193c37c&scoped=true&lang=css& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/editpurchase.vue?vue&type=style&index=0&id=647a8d8a&scoped=true&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/editpurchase.vue?vue&type=style&index=0&id=647a8d8a&scoped=true&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1135,7 +1130,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_createinvoice_vue_vue_type_style_index_0_id_2193c37c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./createinvoice.vue?vue&type=style&index=0&id=2193c37c&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/createinvoice.vue?vue&type=style&index=0&id=2193c37c&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_editpurchase_vue_vue_type_style_index_0_id_647a8d8a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./editpurchase.vue?vue&type=style&index=0&id=647a8d8a&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/editpurchase.vue?vue&type=style&index=0&id=647a8d8a&scoped=true&lang=css&");
 
             
 
@@ -1144,18 +1139,18 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_createinvoice_vue_vue_type_style_index_0_id_2193c37c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_editpurchase_vue_vue_type_style_index_0_id_647a8d8a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_createinvoice_vue_vue_type_style_index_0_id_2193c37c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_editpurchase_vue_vue_type_style_index_0_id_647a8d8a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
-/***/ "./resources/js/views/admin/createinvoice.vue":
-/*!****************************************************!*\
-  !*** ./resources/js/views/admin/createinvoice.vue ***!
-  \****************************************************/
+/***/ "./resources/js/views/admin/editpurchase.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/views/admin/editpurchase.vue ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1163,9 +1158,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _createinvoice_vue_vue_type_template_id_2193c37c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createinvoice.vue?vue&type=template&id=2193c37c&scoped=true& */ "./resources/js/views/admin/createinvoice.vue?vue&type=template&id=2193c37c&scoped=true&");
-/* harmony import */ var _createinvoice_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createinvoice.vue?vue&type=script&lang=js& */ "./resources/js/views/admin/createinvoice.vue?vue&type=script&lang=js&");
-/* harmony import */ var _createinvoice_vue_vue_type_style_index_0_id_2193c37c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createinvoice.vue?vue&type=style&index=0&id=2193c37c&scoped=true&lang=css& */ "./resources/js/views/admin/createinvoice.vue?vue&type=style&index=0&id=2193c37c&scoped=true&lang=css&");
+/* harmony import */ var _editpurchase_vue_vue_type_template_id_647a8d8a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./editpurchase.vue?vue&type=template&id=647a8d8a&scoped=true& */ "./resources/js/views/admin/editpurchase.vue?vue&type=template&id=647a8d8a&scoped=true&");
+/* harmony import */ var _editpurchase_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./editpurchase.vue?vue&type=script&lang=js& */ "./resources/js/views/admin/editpurchase.vue?vue&type=script&lang=js&");
+/* harmony import */ var _editpurchase_vue_vue_type_style_index_0_id_647a8d8a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editpurchase.vue?vue&type=style&index=0&id=647a8d8a&scoped=true&lang=css& */ "./resources/js/views/admin/editpurchase.vue?vue&type=style&index=0&id=647a8d8a&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -1176,27 +1171,27 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
-  _createinvoice_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _createinvoice_vue_vue_type_template_id_2193c37c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
-  _createinvoice_vue_vue_type_template_id_2193c37c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _editpurchase_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _editpurchase_vue_vue_type_template_id_647a8d8a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _editpurchase_vue_vue_type_template_id_647a8d8a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  "2193c37c",
+  "647a8d8a",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/admin/createinvoice.vue"
+component.options.__file = "resources/js/views/admin/editpurchase.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/views/admin/createinvoice.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/views/admin/createinvoice.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************/
+/***/ "./resources/js/views/admin/editpurchase.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/views/admin/editpurchase.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1204,45 +1199,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_createinvoice_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./createinvoice.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/createinvoice.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_createinvoice_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_editpurchase_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./editpurchase.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/editpurchase.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_editpurchase_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
-/***/ "./resources/js/views/admin/createinvoice.vue?vue&type=style&index=0&id=2193c37c&scoped=true&lang=css&":
-/*!*************************************************************************************************************!*\
-  !*** ./resources/js/views/admin/createinvoice.vue?vue&type=style&index=0&id=2193c37c&scoped=true&lang=css& ***!
-  \*************************************************************************************************************/
+/***/ "./resources/js/views/admin/editpurchase.vue?vue&type=style&index=0&id=647a8d8a&scoped=true&lang=css&":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/views/admin/editpurchase.vue?vue&type=style&index=0&id=647a8d8a&scoped=true&lang=css& ***!
+  \************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_createinvoice_vue_vue_type_style_index_0_id_2193c37c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./createinvoice.vue?vue&type=style&index=0&id=2193c37c&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/createinvoice.vue?vue&type=style&index=0&id=2193c37c&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_editpurchase_vue_vue_type_style_index_0_id_647a8d8a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./editpurchase.vue?vue&type=style&index=0&id=647a8d8a&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/editpurchase.vue?vue&type=style&index=0&id=647a8d8a&scoped=true&lang=css&");
 
 
 /***/ }),
 
-/***/ "./resources/js/views/admin/createinvoice.vue?vue&type=template&id=2193c37c&scoped=true&":
-/*!***********************************************************************************************!*\
-  !*** ./resources/js/views/admin/createinvoice.vue?vue&type=template&id=2193c37c&scoped=true& ***!
-  \***********************************************************************************************/
+/***/ "./resources/js/views/admin/editpurchase.vue?vue&type=template&id=647a8d8a&scoped=true&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/views/admin/editpurchase.vue?vue&type=template&id=647a8d8a&scoped=true& ***!
+  \**********************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_createinvoice_vue_vue_type_template_id_2193c37c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_createinvoice_vue_vue_type_template_id_2193c37c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editpurchase_vue_vue_type_template_id_647a8d8a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editpurchase_vue_vue_type_template_id_647a8d8a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_createinvoice_vue_vue_type_template_id_2193c37c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./createinvoice.vue?vue&type=template&id=2193c37c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/createinvoice.vue?vue&type=template&id=2193c37c&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editpurchase_vue_vue_type_template_id_647a8d8a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./editpurchase.vue?vue&type=template&id=647a8d8a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/editpurchase.vue?vue&type=template&id=647a8d8a&scoped=true&");
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/createinvoice.vue?vue&type=template&id=2193c37c&scoped=true&":
-/*!**************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/createinvoice.vue?vue&type=template&id=2193c37c&scoped=true& ***!
-  \**************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/editpurchase.vue?vue&type=template&id=647a8d8a&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/editpurchase.vue?vue&type=template&id=647a8d8a&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1259,11 +1254,11 @@ var render = function() {
     _c(
       "form",
       {
-        staticClass: "crt-invoice",
+        staticClass: "crt-purchase",
         on: {
           submit: function($event) {
             $event.preventDefault()
-            return _vm.create_invoice.apply(null, arguments)
+            return _vm.edit_purchase.apply(null, arguments)
           }
         }
       },
@@ -1276,7 +1271,7 @@ var render = function() {
           },
           [
             _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
-              _vm._v("New Sales Invoice")
+              _vm._v("Edit Purchase Order : " + _vm._s(_vm.order_no))
             ]),
             _vm._v(" "),
             _c(
@@ -1290,14 +1285,14 @@ var render = function() {
                     attrs: { type: "button" },
                     on: {
                       click: function($event) {
-                        return _vm.create_invoice()
+                        return _vm.edit_purchase()
                       }
                     }
                   },
                   [_vm._v("Save")]
                 ),
                 _vm._v(" "),
-                _c("router-link", { attrs: { to: "/sales" } }, [
+                _c("router-link", { attrs: { to: "/purchase" } }, [
                   _c(
                     "button",
                     {
@@ -1314,11 +1309,13 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-12 createinvoice-div" }, [
+          _c("div", { staticClass: "col-md-12 createpurchase-div" }, [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-4" }, [
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Customer")]),
+                  _c("label", { staticClass: "required-field" }, [
+                    _vm._v("Supplier")
+                  ]),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -1327,8 +1324,8 @@ var render = function() {
                       _c("model-select", {
                         staticClass: "modal-selection",
                         attrs: {
-                          options: _vm.customers,
-                          placeholder: "Select Customer"
+                          options: _vm.suppliers,
+                          placeholder: "Select supplier"
                         },
                         on: {
                           input: function($event) {
@@ -1353,10 +1350,10 @@ var render = function() {
                             {
                               staticClass: "modal fade",
                               attrs: {
-                                id: "addcreateinvoice",
+                                id: "addcreatepurchase",
                                 tabindex: "-1",
                                 role: "dialog",
-                                "aria-labelledby": "addcreateinvoice",
+                                "aria-labelledby": "addcreatepurchase",
                                 "aria-hidden": "true"
                               }
                             },
@@ -2161,53 +2158,7 @@ var render = function() {
                   _vm._v(" "),
                   _vm.$v.formdata.customer_id.$error
                     ? _c("span", { staticClass: "text-danger" }, [
-                        _vm._v("Please Select Customer")
-                      ])
-                    : _vm._e()
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-2" }, [
-                _c("div", { staticClass: "form-group form-text" }, [
-                  _c("label", [_vm._v("Invoice No.")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.formdata.invoiceno,
-                        expression: "formdata.invoiceno"
-                      }
-                    ],
-                    staticClass: "form-control form-control-user setpadding",
-                    attrs: {
-                      type: "number",
-                      title: "yo",
-                      id: "invno",
-                      "aria-describedby": "emailHelp",
-                      placeholder: ""
-                    },
-                    domProps: { value: _vm.formdata.invoiceno },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.formdata, "invoiceno", $event.target.value)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    { staticClass: "static-value", attrs: { for: "invno" } },
-                    [_vm._v("INV -")]
-                  ),
-                  _vm._v(" "),
-                  _vm.$v.formdata.invoiceno.$error
-                    ? _c("span", { staticClass: "text-danger" }, [
-                        _vm._v("Please Enter invoice no")
+                        _vm._v("Please Select Supplier")
                       ])
                     : _vm._e()
                 ])
@@ -2325,7 +2276,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }, [
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Reference")]),
+                  _c("label", [_vm._v("Supplier Reference")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -2403,59 +2354,6 @@ var render = function() {
                       ])
                     : _vm._e()
                 ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-2" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Recurring Invoice")]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.formdata.recurring_invoice,
-                          expression: "formdata.recurring_invoice"
-                        }
-                      ],
-                      staticClass: "form-control form-control-user",
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.formdata,
-                            "recurring_invoice",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c("option", { attrs: { value: "weekly" } }, [
-                        _vm._v("Weekly")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "monthly" } }, [
-                        _vm._v("Monthly")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "yearly" } }, [
-                        _vm._v("Yearly")
-                      ])
-                    ]
-                  )
-                ])
               ])
             ])
           ])
@@ -2465,7 +2363,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "col-md-12 createinvoice-div pb-3",
+              staticClass: "col-md-12 createpurchase-div pb-3",
               staticStyle: { padding: "0" }
             },
             [
@@ -2477,7 +2375,7 @@ var render = function() {
                       staticClass: "table",
                       staticStyle: { "margin-bottom": "0" },
                       attrs: {
-                        id: "createinvoice-datatable",
+                        id: "createpurchase-datatable",
                         width: "100%",
                         cellspacing: "0"
                       }
@@ -2557,7 +2455,7 @@ var render = function() {
                               _c("td", [
                                 _c(
                                   "div",
-                                  { staticClass: "modal-createinvoice" },
+                                  { staticClass: "modal-createpurchase" },
                                   [
                                     _c("model-select", {
                                       attrs: {
@@ -2587,7 +2485,7 @@ var render = function() {
                                 )
                               ]),
                               _vm._v(" "),
-                              _c("td", { staticClass: "td-style tdwidth" }, [
+                              _c("td", { staticClass: "td-style" }, [
                                 _c("input", {
                                   directives: [
                                     {
@@ -2619,7 +2517,7 @@ var render = function() {
                                 })
                               ]),
                               _vm._v(" "),
-                              _c("td", { staticClass: "td-style tdwidth" }, [
+                              _c("td", { staticClass: "td-style" }, [
                                 _c("input", {
                                   directives: [
                                     {
@@ -2697,7 +2595,7 @@ var render = function() {
                                   : _vm._e()
                               ]),
                               _vm._v(" "),
-                              _c("td", { staticClass: "td-style tdwidth" }, [
+                              _c("td", { staticClass: "td-style" }, [
                                 _c("input", {
                                   directives: [
                                     {
@@ -2974,52 +2872,7 @@ var render = function() {
               ])
             ]
           )
-        ]),
-        _vm._v(" "),
-        _vm.isVisible
-          ? _c("div", { staticClass: "modal fade" }, [
-              _c(
-                "div",
-                { staticClass: "modal-dialog", attrs: { role: "document" } },
-                [
-                  _c("div", { staticClass: "modal-content" }, [
-                    _vm._m(4),
-                    _vm._v(" "),
-                    _vm._m(5),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "modal-footer" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn admin-btn mobile-mb",
-                          attrs: { type: "button", "data-dismiss": "modal" }
-                        },
-                        [_vm._v("Cancel")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn admin-btn mobile-mb",
-                          staticStyle: {
-                            "background-color": "#ff0000 !important",
-                            color: "#fff"
-                          },
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              return _vm.deleteRecord()
-                            }
-                          }
-                        },
-                        [_vm._v("Delete")]
-                      )
-                    ])
-                  ])
-                ]
-              )
-            ])
-          : _vm._e()
+        ])
       ]
     )
   ])
@@ -3036,7 +2889,7 @@ var staticRenderFns = [
         attrs: {
           type: "button",
           "data-toggle": "modal",
-          "data-target": "#addcreateinvoice"
+          "data-target": "#addcreatepurchase"
         }
       },
       [_c("span", { staticClass: "fas fa-plus" })]
@@ -3049,8 +2902,8 @@ var staticRenderFns = [
     return _c("div", { staticClass: "modal-header" }, [
       _c(
         "h6",
-        { staticClass: "modal-title", attrs: { id: "addcreateinvoice" } },
-        [_vm._v("Add Customer")]
+        { staticClass: "modal-title", attrs: { id: "addcreatepurchase" } },
+        [_vm._v("Add Supplier")]
       ),
       _vm._v(" "),
       _c(
@@ -3112,7 +2965,7 @@ var staticRenderFns = [
             staticClass: "fa fa-pound-sign",
             staticStyle: { "font-size": "10px", "margin-right": "3px" }
           }),
-          _vm._v(")")
+          _vm._v(") ")
         ]),
         _vm._v(" "),
         _c("li", { staticStyle: { color: "#3376C2" } }, [
@@ -3121,7 +2974,7 @@ var staticRenderFns = [
             staticClass: "fa fa-pound-sign",
             staticStyle: { "font-size": "10px", "margin-right": "3px" }
           }),
-          _vm._v(")")
+          _vm._v(") ")
         ]),
         _vm._v(" "),
         _c("li", { staticStyle: { color: "#3376C2" } }, [
@@ -3130,55 +2983,8 @@ var staticRenderFns = [
             staticClass: "fa fa-pound-sign",
             staticStyle: { "font-size": "10px", "margin-right": "3px" }
           }),
-          _vm._v(")")
+          _vm._v(") ")
         ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h6",
-        {
-          staticClass: "modal-title",
-          attrs: { id: "deleteConfirmationLabel" }
-        },
-        [_vm._v("Confirmation")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [
-          _c(
-            "span",
-            {
-              staticStyle: { color: "#fff" },
-              attrs: { "aria-hidden": "true" }
-            },
-            [_vm._v("×")]
-          )
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body" }, [
-      _c("p", { staticStyle: { color: "#000", "font-size": "14px" } }, [
-        _vm._v("Are you sure you want to delete this customer?")
       ])
     ])
   }

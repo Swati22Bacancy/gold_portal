@@ -99,6 +99,15 @@ let router = new Router({
             }
         },
         {
+            path: "/editinvoice/:id",
+            name: "editinvoice",
+            component: () => import("./views/admin/editinvoice.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/purchase",
             name: "purchase",
             component: () => import("./views/admin/purchase.vue"),
@@ -111,6 +120,15 @@ let router = new Router({
             path: "/createpurchase",
             name: "createpurchase",
             component: () => import("./views/admin/createpurchase.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/edit_purchase/:id",
+            name: "editpurchase",
+            component: () => import("./views/admin/editpurchase.vue"),
             meta: {
                 requiresAuth: true,
                 layout: AdminLayout

@@ -607,7 +607,7 @@ export default {
             this.customers = this.customers.map(customer => {
               return {
                 value: customer.id,
-                text: `${customer.first_name || ""} ${customer.last_name || ""} `,
+                text: `${customer.first_name || ""} ${customer.last_name || ""} ( ${customer.typeicon || ""} )`,
                 
               } 
             })

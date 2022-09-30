@@ -46,6 +46,18 @@ class CustomerController extends Controller
         {
             $customers = Customer::leftjoin('groups', 'groups.id', '=', 'customers.group_id')->select('customers.*','groups.name')->orderBy('customers.id', 'DESC')->get();
         }
+
+        foreach($customers as $key => $customer)
+        {
+            if($customer->customer_type=='Business')
+            {
+                $customers[$key]->typeicon = 'B';
+            }
+            else
+            {
+                $customers[$key]->typeicon = 'I';
+            }
+        }
         return response()->json($customers);
     }
 

@@ -619,7 +619,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this2.suppliers = _this2.suppliers.map(function (customer) {
           return {
             value: customer.id,
-            text: "".concat(customer.first_name || "", " ").concat(customer.last_name || "", " ")
+            text: "".concat(customer.first_name || "", " ").concat(customer.last_name || "", " ( ").concat(customer.typeicon || "", " )")
           };
         });
       });

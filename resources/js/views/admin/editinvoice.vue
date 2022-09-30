@@ -1,43 +1,43 @@
 <template>
   <div>
-    <form class="crt-purchase" @submit.prevent="create_purchase">
+    <form class="crt-invoice" @submit.prevent="create_invoice">
     <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">New Purchase Order</h1>
+        <h1 class="h3 mb-0 text-gray-800">Edit Sales Invoice</h1>
         <div>
-          <button type="button" @click="create_purchase()" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;">Save</button>
-          <router-link to="/purchase"><button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button></router-link>
+          <button type="button" @click="create_invoice()" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;">Save</button>
+          <router-link to="/sales"><button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button></router-link>
         </div>
         
       </div>
 
       <div class="row">
-        <div class="col-md-12 createpurchase-div">
+        <div class="col-md-12 createinvoice-div">
           
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label class="required-field">Supplier</label>
+                <label>Customer</label>
                 <div class="input-group mb-3 d-flex">
-                  <model-select class="modal-selection" :options="suppliers" @input="fetchAddress()" v-model="formdata.customer_id" 
-                  placeholder="Select supplier"></model-select>
+                  <model-select class="modal-selection" :options="customers" @input="fetchAddress()" v-model="formdata.customer_id" 
+                  placeholder="Select Customer"></model-select>
                   <div class="select-group-append">
                       <div class="input-icons">
-                        <button type="button" class="btn-modal" data-toggle="modal" data-target="#addcreatepurchase">
+                        <button type="button" class="btn-modal" data-toggle="modal" data-target="#addcreateinvoice">
                       <span class="fas fa-plus"></span></button>
                       <!-- Modal -->
                         <div
                         class="modal fade"
-                        id="addcreatepurchase"
+                        id="addcreateinvoice"
                         tabindex="-1"
                         role="dialog"
-                        aria-labelledby="addcreatepurchase"
+                        aria-labelledby="addcreateinvoice"
                         aria-hidden="true"
                         >
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h6 class="modal-title" id="addcreatepurchase">Add Supplier</h6>
+                                <h6 class="modal-title" id="addcreateinvoice">Add Customer</h6>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true" style="color: #fff">&times;</span>
                                 </button>
@@ -137,13 +137,13 @@
                     </div>
                   </div>
                 </div>
-                <span v-if="$v.formdata.customer_id.$error" class="text-danger">Please Select Supplier</span>
+                <span v-if="$v.formdata.customer_id.$error" class="text-danger">Please Select Customer</span>
               </div>
               
             </div>
             <div class="col-md-2">
               <div class="form-group form-text">
-                <label class="required-field">Purchase Order No.</label>
+                <label>Invoice No.</label>
                 <input
                   type="number"
                   title="yo"
@@ -153,7 +153,7 @@
                   placeholder=""
                   v-model="formdata.invoiceno"
                 />
-                <label for="invno" class="static-value">PO -</label>
+                <label for="invno" class="static-value">INV -</label>
                 <span v-if="$v.formdata.invoiceno.$error" class="text-danger">Please Enter invoice no</span>
               </div>
             </div>
@@ -191,7 +191,7 @@
             
             <div class="col-md-2">
               <div class="form-group">
-                <label>Supplier Reference</label>
+                <label>Reference</label>
                 <input
                   type="text"
                   class="form-control form-control-user"
@@ -211,14 +211,26 @@
                 <span v-if="$v.formdata.currency_id.$error" class="text-danger">Please Select Currency</span>
               </div>
             </div>
+            
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>Recurring Invoice</label>
+                <select class="form-control form-control-user" v-model="formdata.recurring_invoice">
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+                  <option value="yearly">Yearly</option>
+                </select>
+              </div>
+            </div>
           </div>
+          
         </div>
       </div>
       <div class="row mt-3">
-        <div class="col-md-12 createpurchase-div pb-3" style="padding:0">
+        <div class="col-md-12 createinvoice-div pb-3" style="padding:0">
           <div class="">
             <div class="table-responsive table-div mb-2">
-              <table class="table" id="createpurchase-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
+              <table class="table" id="createinvoice-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
                   <thead>
                     <tr>
                       <th>Type</th>
@@ -241,7 +253,7 @@
                           <input type="hidden" class="form-control form-control-user" placeholder="" v-model="invoice_item.invoice_typeid"/>
                           <!-- <span v-if="$v.invoice_item.invoice_type.$error" class="text-danger">Please Select type</span> -->
                         </td>
-                        <td><div class="modal-createpurchase">
+                        <td><div class="modal-createinvoice">
                       <model-select  :options="products" @input="fetchProductDetails(key)" v-model="invoice_item.invoice_product" 
                        placeholder="Select Product"></model-select></div>
                           <!-- <select class="form-control form-control-user select-cont" @change="fetchProductDetails(key)" v-model="invoice_item.invoice_product" > -->
@@ -249,10 +261,10 @@
                       
                           <!-- </select> -->
                         </td>
-                        <td class="td-style">
+                        <td class="td-style tdwidth">
                           <input type="text" class="form-control form-control-user" placeholder="" v-model="invoice_item.weight" readonly/>
                         </td>
-                        <td class="td-style">
+                        <td class="td-style tdwidth">
                           <input type="number" class="form-control form-control-user" @blur="calculateValue(key)" placeholder="" v-model="invoice_item.quantity"/>
                           <span v-if="$v.invoice_item.quantity.$error" class="text-danger">Please Enter weight</span>
                         </td>
@@ -260,7 +272,7 @@
                           <input type="number" class="form-control form-control-user" @blur="calculateAmount(key)" placeholder="" v-model="invoice_item.unitprice" :class="invoice_item.price_status==0 ? 'grey-color' : 'red-color'"/>
                           <span v-if="$v.invoice_item.unitprice.$error" class="text-danger">Please Enter unit pice</span>                        
                         </td>
-                        <td class="td-style">
+                        <td class="td-style tdwidth">
                           <input type="number" class="form-control form-control-user" placeholder="" v-model="invoice_item.vat" readonly/>
                         </td>
                         <td class="td-style">
@@ -315,19 +327,58 @@
               </ul>
             </div>
           </div>
+          <!-- <div class="row">
+            <div class="col-md-6">
+              
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2">Sub Total</div>
+            <div class="col-md-2">8000</div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2">Sub Total</div>
+            <div class="col-md-2">8000</div>
+          </div> -->
         </div>
+        
+      </div>
+      <div class="modal fade" v-if="isVisible">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h6 class="modal-title" id="deleteConfirmationLabel">Confirmation</h6>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true" style="color:#fff">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <p style="color:#000;font-size:14px;">Are you sure you want to delete this customer?</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn admin-btn mobile-mb" data-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteRecord()">Delete</button>
+                  </div>
+              </div>
+          </div>
       </div>
     </form>
+    
   </div>
 </template>
 
 <script>
 import { required,email,helpers} from "vuelidate/lib/validators";
 
-import { ModelSelect } from 'vue-search-select'
+const isName = helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
+ import { ModelSelect } from 'vue-search-select'
 import Datepicker from 'vuejs-datepicker';
+import { exit } from "process";
 export default {
-  name: "CreatePurchase",
+  name: "CreateInvoice",
   components: {
     Datepicker,
     ModelSelect
@@ -354,7 +405,7 @@ export default {
       postdata:{},
       errors: {},
       groups:{},
-      suppliers: [],
+      customers: [],
       rows: [],
       invoice_items: [{
           invoice_type: '',
@@ -380,6 +431,7 @@ export default {
       credit_period:0,
       customer_type:'',
       live_unitprice:[],
+      isVisible: false,
     };
   },
   methods:
@@ -443,7 +495,8 @@ export default {
     {
       this.customerType = type;
     },
-    async create_purchase() {
+    async create_invoice() {
+      
       var price_difference_count=0;
       for(var j=0; j<this.invoice_items.length;j++)
       {
@@ -467,90 +520,91 @@ export default {
       if(price_difference_count>0)
       {
         if(confirm("Some of the product prices are incorrect, Do you really want to continue?")){
+
           if(this.invoice_items.length < 1){
-          let toast = Vue.toasted.show('Please enter one addline item', {
-            theme: "toasted-error",
-            position: "top-center",
-            duration: 5000,
-          });
+            let toast = Vue.toasted.show('Please enter one addline item', {
+              theme: "toasted-error",
+              position: "top-center",
+              duration: 5000,
+            });
+            return;
+      }
+        this.$v.formdata.$touch();
+        if (this.$v.formdata.$error) {
           return;
         }
-          this.$v.formdata.$touch();
-          if (this.$v.formdata.$error) {
-            return;
-          }
+        
+        try {
+          this.formdata.customertype= this.customerType;
+          var date = new Date(this.formdata.issue_date);
+          this.formdata.issue_date=date;
+          var due_date = new Date(this.formdata.due_date);
+          this.formdata.due_date=due_date;
+          this.formdata.price_difference_count=price_difference_count;
+          this.postdata.formfields = this.formdata;
+          this.postdata.itemfields = this.invoice_items;
           
-          try {
-            this.formdata.customertype= this.customerType;
-            var date = new Date(this.formdata.issue_date);
-            this.formdata.issue_date=date;
-            var due_date = new Date(this.formdata.due_date);
-            this.formdata.due_date=due_date;
-            this.formdata.price_difference_count=price_difference_count;
-            this.postdata.formfields = this.formdata;
-            this.postdata.itemfields = this.invoice_items;
-            
-            const response = await axios.post("create_purchase", this.postdata);
-            let message =
-                "Purchase Order has been successfully created.";
-              let toast = Vue.toasted.show(message, {
-                theme: "toasted-success",
-                position: "top-center",
-                duration: 5000,
-              });
-            this.$router.push("/purchase");
-            
-          } catch (error) {
-            let message = 'Something went wrong, Please try again';
-              let toast = Vue.toasted.show(message, {
-                theme: "toasted-error",
-                position: "top-center",
-                duration: 5000,
-              });
-          }
+          const response = await axios.post("create_invoice", this.postdata);
+          let message =
+              "Sales Invoice has been successfully created.";
+            let toast = Vue.toasted.show(message, {
+              theme: "toasted-success",
+              position: "top-center",
+              duration: 5000,
+            });
+          this.$router.push("/sales");
+          
+        } catch (error) {
+          let message = 'Something went wrong, Please try again';
+            let toast = Vue.toasted.show(message, {
+              theme: "toasted-error",
+              position: "top-center",
+              duration: 5000,
+            });
         }
       }
-      else
-      {
-        this.$v.formdata.$touch();
-          if (this.$v.formdata.$error) {
-            return;
-          }
+     }
+     else
+     {
+      this.$v.formdata.$touch();
+        if (this.$v.formdata.$error) {
+          return;
+        }
+        
+        try {
+          this.formdata.customertype= this.customerType;
+          var date = new Date(this.formdata.issue_date);
+          this.formdata.issue_date=date;
+          var due_date = new Date(this.formdata.due_date);
+          this.formdata.due_date=due_date;
+          this.formdata.price_difference_count=price_difference_count;
+          this.postdata.formfields = this.formdata;
+          this.postdata.itemfields = this.invoice_items;
           
-          try {
-            this.formdata.customertype= this.customerType;
-            var date = new Date(this.formdata.issue_date);
-            this.formdata.issue_date=date;
-            var due_date = new Date(this.formdata.due_date);
-            this.formdata.due_date=due_date;
-            this.formdata.price_difference_count=price_difference_count;
-            this.postdata.formfields = this.formdata;
-            this.postdata.itemfields = this.invoice_items;
-            
-            const response = await axios.post("create_purchase", this.postdata);
-            let message =
-                "Purchase Order has been successfully created.";
-              let toast = Vue.toasted.show(message, {
-                theme: "toasted-success",
-                position: "top-center",
-                duration: 5000,
-              });
-            this.$router.push("/purchase");
-            
-          } catch (error) {
-            let message = 'Something went wrong, Please try again';
-              let toast = Vue.toasted.show(message, {
-                theme: "toasted-error",
-                position: "top-center",
-                duration: 5000,
-              });
-          }
-      }
+          const response = await axios.post("create_invoice", this.postdata);
+          let message =
+              "Sales Invoice has been successfully created.";
+            let toast = Vue.toasted.show(message, {
+              theme: "toasted-success",
+              position: "top-center",
+              duration: 5000,
+            });
+          this.$router.push("/sales");
+          
+        } catch (error) {
+          let message = 'Something went wrong, Please try again';
+            let toast = Vue.toasted.show(message, {
+              theme: "toasted-error",
+              position: "top-center",
+              duration: 5000,
+            });
+        }
+     }
     },
     getCustomers() {
         return axios.get("customerlist/all").then(response => {
-            this.suppliers = response.data;
-            this.suppliers = this.suppliers.map(customer => {
+            this.customers = response.data;
+            this.customers = this.customers.map(customer => {
               return {
                 value: customer.id,
                 text: `${customer.first_name || ""} ${customer.last_name || ""} ( ${customer.typeicon || ""} )`,
@@ -579,11 +633,12 @@ export default {
                 text: product.name
               } 
             })
+           
         });
         
     },
     getInvoicekey() {
-        return axios.get("get_purchasekey").then(response => {
+        return axios.get("get_invoicekey").then(response => {
           this.formdata.invoiceno = response.data;
         });
     },
@@ -641,112 +696,84 @@ export default {
       this.invoice_items[index].quantity=1;
       this.invoice_items[index].unitprice='';
       this.invoice_items[index].invoice_amount='';
-      // var totalsub=0;
-      // for(var j=0; j<this.invoice_items.length;j++)
-      // {
-      //   if(!isNaN(this.invoice_items[j].unitprice))  
-      //   {
-      //     totalsub += this.invoice_items[j].unitprice*this.invoice_items[j].quantity;
-      //   }
-      // }
-
-      // var totalvat=0;
-      // for(var k=0; k<this.invoice_items.length;k++)
-      // {
-      //   if(!isNaN(this.invoice_items[k].unitprice))  
-      //   {
-      //     if(this.invoice_items[k].vat)
-      //     {
-      //       totalvat += (this.invoice_items[k].unitprice*this.invoice_items[k].quantity)*(this.invoice_items[k].vat/100);
-      //     }
-      //     else
-      //     {
-      //       totalvat += 0;
-      //     }
-      //   }
-      // }
-      
-      // this.subtotal = totalsub.toFixed(2);
-      // this.vattotal = totalvat.toFixed(2);
-      // var invoicetotal = totalsub + totalvat;
-      // this.totalamount = invoicetotal.toFixed(2);
-      // this.formdata.subtotal = Number(this.subtotal);
-      // this.formdata.vattotal = Number(this.vattotal);
-      // this.formdata.totalamount = Number(this.totalamount);
-
-      //this.invoice_items[index].vat='';
       axios.get('/productdetails_thirdParty/'+this.invoice_items[index].invoice_product)
         .then((response) => {
-          this.invoice_items[index].weight=response.data.weight;
-          this.invoice_items[index].vat=(response.data.productrate)?response.data.productrate:0;
-          this.invoice_items[index].invoice_type=response.data.type;
-          this.invoice_items[index].invoice_typeid=response.data.type_id;
-          var purchase_commission = (this.customer_type=='Business')?response.data.purchase_commission:response.data.retail_purchase_commission;
+            this.invoice_items[index].weight=response.data.weight;
+            this.invoice_items[index].vat=(response.data.productrate)?response.data.productrate:0;
+            this.invoice_items[index].invoice_type=response.data.type;
+            this.invoice_items[index].invoice_typeid=response.data.type_id;
+            var sales_commission = (this.customer_type=='Business')?response.data.sales_commission:response.data.retail_sales_commission;
+            var unitPrice = ((response.data.askprice * response.data.weight) * this.invoice_items[index].quantity) + parseFloat(sales_commission);
+            
+            var pricecommission = (unitPrice*parseFloat(sales_commission)/100) + unitPrice;
+            
+            this.invoice_items[index].unitprice = pricecommission.toFixed(2);
+            var invunitprice = parseFloat(this.invoice_items[index].unitprice);
+            this.live_unitprice[index] = invunitprice;
 
-          var unitPrice = ((response.data.askprice * response.data.weight) * this.invoice_items[index].quantity) + parseFloat(purchase_commission);
-          
-          var pricecommission = (unitPrice*parseFloat(purchase_commission)/100) + unitPrice;
-          
-          this.invoice_items[index].unitprice = pricecommission.toFixed(2);
-          var invunitprice = parseFloat(this.invoice_items[index].unitprice);
-          this.live_unitprice[index] = invunitprice;
-
-          var quantity = this.invoice_items[index].quantity;
-          var vat = this.invoice_items[index].vat;
-          
-          if(vat)
-          {
-            var vatdeduct = vat/100;
-            var vatquantity = quantity*(1+vatdeduct);
-            var v = invunitprice*vatquantity;
-            var rounded = Math.round(v * 10) / 10
-            var lineamount= Math.floor(rounded + 0.1) === rounded + 0.1? rounded + 0.1: rounded;
-          }
-          else
-          {
-            var lineamount =invunitprice*vatquantity;
-          }
-          
-          this.invoice_items[index].invoice_amount = lineamount;
-          var totalsub=0;
-          for(var j=0; j<this.invoice_items.length;j++)
-          {
-            if(!isNaN(this.invoice_items[j].unitprice))  
+            var quantity = this.invoice_items[index].quantity;
+            var vat = this.invoice_items[index].vat;
+            
+            if(vat)
             {
-              totalsub += this.invoice_items[j].unitprice*this.invoice_items[j].quantity;
+              var vatdeduct = vat/100;
+              var vatquantity = quantity*(1+vatdeduct);
+              var v = invunitprice*vatquantity;
+              var rounded = Math.round(v * 10) / 10
+              var lineamount= Math.floor(rounded + 0.1) === rounded + 0.1? rounded + 0.1: rounded;
             }
-          }
-
-          var totalvat=0;
-          for(var k=0; k<this.invoice_items.length;k++)
-          {
-            if(!isNaN(this.invoice_items[k].unitprice))  
+            else
             {
-              if(this.invoice_items[k].vat)
+              var lineamount =invunitprice*vatquantity;
+            }
+            
+            this.invoice_items[index].invoice_amount = lineamount;
+            var totalsub=0;
+            for(var j=0; j<this.invoice_items.length;j++)
+            {
+              if(!isNaN(this.invoice_items[j].unitprice))  
               {
-                totalvat += (this.invoice_items[k].unitprice*this.invoice_items[k].quantity)*(this.invoice_items[k].vat/100);
-              }
-              else
-              {
-                totalvat += 0;
+                totalsub += this.invoice_items[j].unitprice*this.invoice_items[j].quantity;
               }
             }
-          }
 
-          
-          
-          
-          this.subtotal = totalsub.toFixed(2);
-          this.vattotal = totalvat.toFixed(2);
-          var invoicetotal = totalsub + totalvat;
-          this.totalamount = invoicetotal.toFixed(2);
-          
-          this.formdata.subtotal = Number(this.subtotal);
-          this.formdata.vattotal = Number(this.vattotal);
-          this.formdata.totalamount = Number(this.totalamount);
+            var totalvat=0;
+            for(var k=0; k<this.invoice_items.length;k++)
+            {
+              if(!isNaN(this.invoice_items[k].unitprice))  
+              {
+                if(this.invoice_items[k].vat)
+                {
+                  totalvat += (this.invoice_items[k].unitprice*this.invoice_items[k].quantity)*(this.invoice_items[k].vat/100);
+                }
+                else
+                {
+                  totalvat += 0;
+                }
+              }
+            }
+
+            
+            
+            
+            this.subtotal = totalsub.toFixed(2);
+            this.vattotal = totalvat.toFixed(2);
+            var invoicetotal = totalsub + totalvat;
+            this.totalamount = invoicetotal.toFixed(2);
+            
+            this.formdata.subtotal = Number(this.subtotal);
+            this.formdata.vattotal = Number(this.vattotal);
+            this.formdata.totalamount = Number(this.totalamount);
         })
         .catch(function(error) {
         });
+
+        
+
+      
+
+      //this.invoice_items[index].vat='';
+      
     },
     fetchAddress()
     {
@@ -759,7 +786,7 @@ export default {
          
           const date = new Date();
           date.setDate(date.getDate() + this.credit_period);
-          this.formdata.due_date = date.getTime() 
+          this.formdata.due_date = date.getTime();
           this.customer_type = response.data.customer_type;
         })
       }
@@ -856,7 +883,6 @@ export default {
       {
         var lineamount =invunitprice*quantity;
       }
-      
       this.invoice_items[index].invoice_amount = lineamount;
 
 
@@ -960,9 +986,9 @@ export default {
       
       this.formdata.billing_address = this.customerdata.registered_address;
       var newdata = {value: response.data.id,text: `${response.data.first_name || ""} ${response.data.last_name || ""} `};
-      this.suppliers.push(newdata);
+      this.customers.push(newdata);
       this.formdata.customer_id=response.data.id;
-      $('#addcreatepurchase').modal('hide');
+      $('#addcreateinvoice').modal('hide');
     },
     showcommentbox()
     {
@@ -1034,7 +1060,7 @@ export default {
 };
 </script>
 <style scoped>
-.modal-createpurchase{
+.modal-createinvoice{
   width:450px;
 }
 .table-row{
@@ -1075,31 +1101,31 @@ export default {
 .modal-selection{
   flex: 1 !important;
 }
-#createpurchase-datatable thead {
+#createinvoice-datatable thead {
     background: #3376C2;
     color: #fff;
     font-size: 13px;
 }
-#createpurchase-datatable thead tr th {
+#createinvoice-datatable thead tr th {
     font-weight: 100 !important;
 }
-#createpurchase-datatable
+#createinvoice-datatable
 {
   font-size: 13px;
   color: #000;
 }
-.createpurchase-div
+.createinvoice-div
 {
   background: #fff;
   padding: 34px 23px 0px 23px;
   border-radius: 8px;
   box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);
 }
-.crt-purchase label
+.crt-invoice label
 {
   font-size: 12px;
 }
-.crt-purchase
+.crt-invoice
 {
   padding: 0px 2%;
   color: #000;
@@ -1213,6 +1239,11 @@ export default {
 .td-style{
   width:150px;
 }
+.tdwidth
+{
+  width: 90px;
+}
+
 .red-color
 {
   color:red;

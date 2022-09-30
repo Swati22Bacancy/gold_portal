@@ -106,7 +106,7 @@ class SalesController extends Controller
         foreach($sales as $key => $sale)
         {
             $saleitems = SalesItems::leftjoin('producttypes', 'producttypes.id', '=', 'sales_items.producttype_id')->select(DB::raw('group_concat(producttypes.name) as typename'))->where('sales_id',$sale->id)->groupby('sales_id')->first();
-            $sales[$key]->typename = $saleitems->typename;
+            $sales[$key]->typename = ($saleitems)?$saleitems->typename:'';
 
             $salemethods = SalesPayments::where('sales_id',$sale->id)->where('action','!=','Exchange')->groupby('method')->get('method');
             $methods='';
@@ -116,7 +116,7 @@ class SalesController extends Controller
             }
             
             $sales[$key]->methoddata = (!empty($salemethods))?rtrim($methods, ','):'';
-            $sales[$key]->typename = $saleitems->typename;
+            $sales[$key]->typename = ($saleitems)?$saleitems->typename:'';
         }
         return response()->json($sales);
     }
@@ -407,7 +407,7 @@ class SalesController extends Controller
         foreach($sales as $key => $sale)
         {
             $saleitems = SalesItems::leftjoin('producttypes', 'producttypes.id', '=', 'sales_items.producttype_id')->select(DB::raw('group_concat(producttypes.name) as typename'))->where('sales_id',$sale->id)->groupby('sales_id')->first();
-            $sales[$key]->typename = $saleitems->typename;
+            $sales[$key]->typename = ($saleitems)?$saleitems->typename:'';
 
             $salemethods = SalesPayments::where('sales_id',$sale->id)->groupby('method')->get('method');
             $methods='';
@@ -556,7 +556,7 @@ class SalesController extends Controller
         foreach($sales as $key => $sale)
         {
             $saleitems = SalesItems::leftjoin('producttypes', 'producttypes.id', '=', 'sales_items.producttype_id')->select(DB::raw('group_concat(producttypes.name) as typename'))->where('sales_id',$sale->id)->groupby('sales_id')->first();
-            $sales[$key]->typename = $saleitems->typename;
+            $sales[$key]->typename = ($saleitems)?$saleitems->typename:'';
 
             $salemethods = SalesPayments::where('sales_id',$sale->id)->where('action','!=','Exchange')->groupby('method')->get('method');
             $methods='';
@@ -566,7 +566,7 @@ class SalesController extends Controller
             }
             
             $sales[$key]->methoddata = (!empty($salemethods))?rtrim($methods, ','):'';
-            $sales[$key]->typename = $saleitems->typename;
+            $sales[$key]->typename = ($saleitems)?$saleitems->typename:'';
         }
         return response()->json($sales);
     }
@@ -614,5 +614,96 @@ class SalesController extends Controller
         $customersummary['payment_duepurchase'] = $purchasetotal->purchasetotal - $paidpurchase->paidamount;
         
         return response()->json($customersummary);
+    }
+
+    public function editinvoice(Request $request)
+    {
+        try {
+            
+            $salesdata = Sales::where('id', $request->input('s_id'))->update([
+                'customer_id' => $request->input('formfields.customer_id'),
+                'billing_address' => $request->input('formfields.billing_address'),
+                'reference' => $request->input('formfields.reference'),
+                'currency_id' => $request->input('formfields.currency_id'),
+                'recurring_invoice' => $request->input('formfields.recurring_invoice'),
+                'subtotal' => $request->input('formfields.subtotal'),
+                'vattotal' => $request->input('formfields.vattotal'),
+                'totalamount' => $request->input('formfields.totalamount'),
+                'issue_date' => date("Y-m-d", strtotime($request->input('formfields.issue_date'))),
+                'due_date' => date("Y-m-d", strtotime($request->input('formfields.due_date'))),
+                'comment' => $request->input('formfields.comment'),
+                'price_status' => ($request->input('formfields.price_difference_count')==0)?'match':'mismatch',
+                'status' => 'UnPaid'
+             ]);
+
+            $sales = Sales::where('id',$request->input('s_id'))->first();
+
+            if(!empty($request->input('itemfields')))
+            {
+                foreach($request->input('itemfields') as $itemfield)
+                {
+                    $salesitems = SalesItems::create([
+                        'sales_id' => $sales->id,
+                        'producttype_id' => $itemfield['invoice_typeid'],
+                        'product_id' => $itemfield['invoice_product'],
+                        'weight' => $itemfield['weight'],
+                        'quantity' => $itemfield['quantity'],
+                        'unitprice' => $itemfield['unitprice'],
+                        'vat' => $itemfield['vat'],
+                        'invoice_amount' => $itemfield['invoice_amount'],
+                        'price_status' => ($itemfield['price_status']==0)?'match':'mismatch'
+                    ]);
+                }
+            }
+
+            $saleshistory = SalesHistory::create([
+                'sales_id' => $sales->id,
+                'amount' => $request->input('formfields.totalamount'),
+                'log_date' => date("Y-m-d"),
+                'category' =>'invoice',
+                'user_id' => Auth::user()->id,
+                'changes' => $sales->invoiceno.' '.'created',
+                'comment' => 'Invoice '.$sales->invoiceno.' of £'.$request->input("formfields.totalamount"). 'has been edited by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
+            ]);
+
+            $customertransaction = CustomerTransaction::create([
+                'sales_id' => $sales->id,
+                'customer_id' => $request->input('formfields.customer_id'),
+                'amount' => $request->input('formfields.totalamount'),
+                'amount_due' => $request->input('formfields.totalamount'),
+                'activity' => 'Invoice '.$sales->invoiceno,
+                'sales_history_id' => $saleshistory->id,
+            ]);
+
+            return response()->json($sales);
+        } 
+        catch (\Exception $e) {
+            return response([
+                'message' => 'Internal error, please try again later.' //$e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function deletesalesinvoice($id){
+        $delete_transaction = CustomerTransaction::where('sales_id', $id)->delete();
+        $delete_history = SalesHistory::where('sales_id', $id)->delete();
+        $delete_payments = SalesPayments::where('sales_id', $id)->delete();
+        $delete_items = SalesItems::where('sales_id', $id)->delete();
+        $delete_notes = SalesNotes::where('sales_id', $id)->delete();
+        $invoice_kyc = InvoiceKyc::where('sales_id', $id)->delete();
+        
+        $delete_sales = Sales::find($id);
+            if($delete_sales){
+                $delete_sales->delete();
+                return response()->json(
+                    [
+                        'status' => 'success',
+                        'msg' => 'Sales Invoice deleted successfully'
+                    ],
+                    200
+                );
+            }else{
+                return response()->json(['error' => 'Record does not exists'], 404);
+            }
     }
 }

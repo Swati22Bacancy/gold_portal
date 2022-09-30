@@ -1,11 +1,11 @@
 <template>
   <div>
-    <form class="crt-purchase" @submit.prevent="create_purchase">
+    <form class="crt-purchase" @submit.prevent="edit_purchase">
     <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">New Purchase Order</h1>
+        <h1 class="h3 mb-0 text-gray-800">Edit Purchase Order : {{order_no}}</h1>
         <div>
-          <button type="button" @click="create_purchase()" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;">Save</button>
+          <button type="button" @click="edit_purchase()" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;">Save</button>
           <router-link to="/purchase"><button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button></router-link>
         </div>
         
@@ -140,22 +140,6 @@
                 <span v-if="$v.formdata.customer_id.$error" class="text-danger">Please Select Supplier</span>
               </div>
               
-            </div>
-            <div class="col-md-2">
-              <div class="form-group form-text">
-                <label class="required-field">Purchase Order No.</label>
-                <input
-                  type="number"
-                  title="yo"
-                  class="form-control form-control-user setpadding"
-                  id="invno"
-                  aria-describedby="emailHelp"
-                  placeholder=""
-                  v-model="formdata.invoiceno"
-                />
-                <label for="invno" class="static-value">PO -</label>
-                <span v-if="$v.formdata.invoiceno.$error" class="text-danger">Please Enter invoice no</span>
-              </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
@@ -293,9 +277,9 @@
             </div>
             <div class="col-md-2 sum-price">
               <ul style="text-align: right;">
-                <li style="color:#3376C2">Sub Total (<i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>)</li>
-                <li style="color:#3376C2">VAT Total (<i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>)</li>
-                <li style="color:#3376C2">Total (<i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>)</li>
+                <li style="color:#3376C2">Sub Total (<i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>) </li>
+                <li style="color:#3376C2">VAT Total (<i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>) </li>
+                <li style="color:#3376C2">Total (<i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>) </li>
               </ul>
             </div>
             <div class="col-md-2 sum-price">
@@ -351,6 +335,7 @@ export default {
         billing_address:"",
         invoiceno:""
       },
+      order_no:'',
       postdata:{},
       errors: {},
       groups:{},
@@ -443,7 +428,7 @@ export default {
     {
       this.customerType = type;
     },
-    async create_purchase() {
+    async edit_purchase() {
       var price_difference_count=0;
       for(var j=0; j<this.invoice_items.length;j++)
       {
@@ -489,8 +474,9 @@ export default {
             this.formdata.price_difference_count=price_difference_count;
             this.postdata.formfields = this.formdata;
             this.postdata.itemfields = this.invoice_items;
+            this.postdata.po_id = this.$route.params.id;
             
-            const response = await axios.post("create_purchase", this.postdata);
+            const response = await axios.post("edit_purchase", this.postdata);
             let message =
                 "Purchase Order has been successfully created.";
               let toast = Vue.toasted.show(message, {
@@ -526,8 +512,9 @@ export default {
             this.formdata.price_difference_count=price_difference_count;
             this.postdata.formfields = this.formdata;
             this.postdata.itemfields = this.invoice_items;
+            this.postdata.po_id = this.$route.params.id;
             
-            const response = await axios.post("create_purchase", this.postdata);
+            const response = await axios.post("edit_purchase", this.postdata);
             let message =
                 "Purchase Order has been successfully created.";
               let toast = Vue.toasted.show(message, {
@@ -1029,7 +1016,45 @@ export default {
     this.getCurrencies();
     this.getProducttypes();
     this.getProducts();
-    this.getInvoicekey();
+    
+    axios.get('/purchase_details/'+this.$route.params.id)
+      .then((response) => {
+          this.formdata = response.data;
+          this.order_no = this.formdata.invoiceno;
+          this.subtotal = this.formdata.subtotal;
+          this.vattotal = this.formdata.vattotal;
+          this.totalamount = this.formdata.totalamount;
+          this.invoice_items = this.formdata.purchaseitem;
+          this.paymentcount = this.formdata.purchasepayments.length;
+          if(response.data.payment_due<0)
+          {
+            this.over_paid = response.data.payment_due;
+          }
+          this.due_payment = (response.data.payment_due<0)?0:response.data.payment_due;
+          if(this.paymentcount==0)
+          {
+            this.invoice_status='UnPaid';
+            this.payment_check='Yes';
+          }
+          else if(this.over_paid< 0)
+          {
+            this.invoice_status='Over Paid';
+            this.payment_check='';
+          }
+          else if(this.due_payment==0)
+          {
+            this.invoice_status='Paid';
+            this.payment_check='';
+          }
+          else
+          {
+            this.invoice_status='Partially Paid';
+            this.payment_check='Yes';
+          }
+      })
+      .catch(function(error) {
+          //app.$notify(error.response.data.error, "error");
+      });
   }
 };
 </script>

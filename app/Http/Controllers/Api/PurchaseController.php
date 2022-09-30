@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use DB;
 use App\Models\CustomerTransaction;
+use App\Models\SalesPayments;
 
 class PurchaseController extends Controller
 {
@@ -61,7 +62,7 @@ class PurchaseController extends Controller
                 'category' =>'invoice',
                 'user_id' => Auth::user()->id,
                 'changes' => $purchase->invoiceno.' '.'created',
-                'comment' => 'Invoice '.$purchase->invoiceno.' of £'.$request->input("formfields.totalamount"). 'has been created by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
+                'comment' => 'Invoice '.$purchase->invoiceno.' of £'.$request->input("formfields.totalamount"). ' has been created by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
            ]);
 
             $customertransaction = CustomerTransaction::create([
@@ -99,8 +100,9 @@ class PurchaseController extends Controller
             
             $purchases[$key]->methoddata = (!empty($purchasemethods))?rtrim($methods, ','):'';
 
-            $purchases[$key]->typename = $purchaseitems->typename;
+            $purchases[$key]->typename = ($purchaseitems)?$purchaseitems->typename:'';
         }
+        
         return response()->json($purchases);
     }
 
@@ -109,6 +111,13 @@ class PurchaseController extends Controller
         $purchase = Purchases::leftjoin('customers', 'customers.id', '=', 'purchase_invoice.customer_id')->select('purchase_invoice.*','customers.first_name as firstname','customers.last_name as lastname')->where('purchase_invoice.id',$id)->orderBy('purchase_invoice.id', 'DESC')->first();
 
         $purchaseitems = PurchaseItems::leftjoin('producttypes', 'producttypes.id', '=', 'purchase_items.producttype_id')->leftjoin('products', 'products.id', '=', 'purchase_items.product_id')->select('purchase_items.*','producttypes.name as typename','products.name as productname')->where('purchase_id',$id)->get();
+
+        foreach($purchaseitems as $index => $purchaseitem)
+        {
+            $purchaseitems[$index]->invoice_type = $purchaseitem->typename;
+            $purchaseitems[$index]->invoice_typeid = $purchaseitem->producttype_id;
+            $purchaseitems[$index]->invoice_product = $purchaseitem->product_id;
+        }
 
         $purchasepayments = PurchasePayments::where('purchase_id',$id)->orderBy('id', 'DESC')->get();
 
@@ -190,7 +199,7 @@ class PurchaseController extends Controller
         $purchase_id = $purchasepayment->purchase_id;
             if($purchasepayment){
                 $purchasepayment->delete();
-                $delettransaction = CustomerTransaction::where('purchase_payment_id', $id)->delete();
+                //$delettransaction = CustomerTransaction::where('purchase_payment_id', $id)->delete();
                 $purchasehistory = PurchaseHistory::create([
                     'purchase_id' => $purchase_id,
                     'amount' => $amount,
@@ -309,7 +318,7 @@ class PurchaseController extends Controller
             }
             
             $purchases[$key]->methoddata = (!empty($purchasemethods))?rtrim($methods, ','):'';
-            $purchases[$key]->typename = $purchaseitems->typename;
+            $purchases[$key]->typename = ($purchaseitems)?$purchaseitems->typename:'';
         }
         return response()->json($purchases);
     }
@@ -334,5 +343,96 @@ class PurchaseController extends Controller
             $purchases[$key]->typename = $purchaseitems->typename;
         }
         return response()->json($purchases);
+    }
+
+    public function editpurchase(Request $request)
+    {
+        // try {
+            
+            $purchasedata = Purchases::where('id', $request->input('po_id'))->update([
+                'customer_id' => $request->input('formfields.customer_id'),
+                'billing_address' => $request->input('formfields.billing_address'),
+                'reference' => $request->input('formfields.reference'),
+                'currency_id' => $request->input('formfields.currency_id'),
+                'subtotal' => $request->input('formfields.subtotal'),
+                'vattotal' => $request->input('formfields.vattotal'),
+                'totalamount' => $request->input('formfields.totalamount'),
+                'issue_date' => date("Y-m-d", strtotime($request->input('formfields.issue_date'))),
+                'due_date' => date("Y-m-d", strtotime($request->input('formfields.due_date'))),
+                'comment' => $request->input('formfields.comment'),
+                'price_status' => ($request->input('formfields.price_difference_count')==0)?'match':'mismatch',
+                'status' => 'UnPaid',
+             ]);
+
+            $purchase = Purchases::where('id',$request->input('po_id'))->first();
+
+            $items_purchased = PurchaseItems::where('purchase_id', $request->input('po_id'))->delete();
+
+            if(!empty($request->input('itemfields')))
+            {
+                foreach($request->input('itemfields') as $itemfield)
+                {
+                    $purchaseitems = PurchaseItems::create([
+                        'purchase_id' => $request->input('po_id'),
+                        'producttype_id' => $itemfield['invoice_typeid'],
+                        'product_id' => $itemfield['invoice_product'],
+                        'weight' => $itemfield['weight'],
+                        'quantity' => $itemfield['quantity'],
+                        'unitprice' => $itemfield['unitprice'],
+                        'vat' => $itemfield['vat'],
+                        'invoice_amount' => $itemfield['invoice_amount'],
+                        'price_status' => ($itemfield['price_status']==0)?'match':'mismatch'
+                    ]);
+                }
+            }
+
+            $purchasehistory = PurchaseHistory::create([
+                'purchase_id' => $request->input('po_id'),
+                'amount' => $request->input('formfields.totalamount'),
+                'log_date' => date("Y-m-d"),
+                'category' =>'invoice',
+                'user_id' => Auth::user()->id,
+                'changes' => $purchase->invoiceno.' '.'created',
+                'comment' => 'Invoice '.$purchase->invoiceno.' of £'.$request->input("formfields.totalamount"). ' has been edited by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
+           ]);
+
+            $customertransaction = CustomerTransaction::create([
+                'purchase_id' => $request->input('po_id'),
+                'customer_id' => $request->input('formfields.customer_id'),
+                'amount' => $request->input('formfields.totalamount'),
+                'amount_due' => $request->input('formfields.totalamount'),
+                'activity' => 'Purchase Order '.$purchase->invoiceno,
+                'purchase_history_id' => $purchasehistory->id,
+            ]);
+
+            return response()->json($purchase);
+        // } 
+        // catch (\Exception $e) {
+        //     return response([
+        //         'message' => 'Internal error, please try again later.' //$e->getMessage()
+        //     ], 400);
+        // }
+    }
+
+    public function deletepurchaseorder($id){
+        $delete_transaction = CustomerTransaction::where('purchase_id', $id)->delete();
+        $delete_history = PurchaseHistory::where('purchase_id', $id)->delete();
+        $delete_payments = PurchasePayments::where('purchase_id', $id)->delete();
+        $delete_items = PurchaseItems::where('purchase_id', $id)->delete();
+        $delete_notes = PurchaseNotes::where('purchase_id', $id)->delete();
+        $delete_sales_payments = SalesPayments::where('purchase_id', $id)->delete();
+        $delete_purchase = Purchases::find($id);
+            if($delete_purchase){
+                $delete_purchase->delete();
+                return response()->json(
+                    [
+                        'status' => 'success',
+                        'msg' => 'Purchase Order deleted successfully'
+                    ],
+                    200
+                );
+            }else{
+                return response()->json(['error' => 'Record does not exists'], 404);
+            }
     }
 }
