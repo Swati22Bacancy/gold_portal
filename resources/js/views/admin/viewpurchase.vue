@@ -15,13 +15,16 @@
           <button @click="sidebarToggle" class="btn-head"><i class="fas fa-arrow-right"></i></button>
         </div>
         <div class="d-sm-flex align-items-center justify-content-between">
+
+                  <i class="fab fa-whatsapp" title="Add Signature" style="color:#00AA5B; background-color: #EDF2F6; margin:3% 0% 3% 0%; border-radius:50%; padding: 15%; margin-left: 30%; font-size: 18px;" data-toggle="modal" data-target="#dosign"></i>
                   <!-- <i class="fa fa-download" style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"></i> -->
                   <span style="color:#48c6f6;background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 10%;font-size: 25px; margin-left: 30%;" class="material-symbols-outlined">download</span>
                   <i class="fab fa-whatsapp" style="color:#00AA5B; background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%; font-size: 18px;"></i>
                   <!-- <i class="fas fa-envelope" style="background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;"></i> -->
-                  <span style="color:blue;background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;font-size: 19px;" class="material-symbols-outlined">mail</span>
+                  <span style="color:blue;background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 16%;font-size: 19px;margin-right: 20%;" class="material-symbols-outlined">mail</span>
                   <!-- <i class="fas fa-print" @click="ondownload()" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;"></i> -->
-                  <span class="material-symbols-outlined" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;">print</span>
+                  <span class="material-symbols-outlined" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 0%;">print</span>
+                  
               </div>
               <div
                   class="d-sm-flex align-items-center justify-content-between" style="margin-left: -20%;"
@@ -44,7 +47,6 @@
      </div>
       <div class="">
         <div class="col-md-12 viewpurchase-div">
-          
           <div class="row" style="padding-bottom:40px">
             <div class="col-md-3" style="border-right:  0.5px solid #4682B4;">
               <p style="color:#4682B4; font-size: 15px;">Supplier</p>
@@ -289,6 +291,33 @@
           </div>
       </div>
     
+      <!-- Modal -->
+      <div class="modal fade" id="dosign" tabindex="-1" role="dialog" aria-labelledby="dosign" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="dosignh1">Add Signature</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color: #fff">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                  <VueSignaturePad width="500px" height="500px" ref="signaturePad" />
+                  <div>
+                    <button @click="save">Save</button>
+                    <button @click="undo">Undo</button>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" @click="save" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Save</button>
+                    <button type="button" @click="undo" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Undo</button>
+                    <button type="button" data-dismiss="modal"
+                    aria-label="Close" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button> -->
+                </div>
+            </div>
+        </div>
+      </div>
     </div>
     
   </div>
@@ -297,11 +326,13 @@
 <script>
   import { thisTypeAnnotation } from '@babel/types';
 import moment from 'moment';
+import VueSignaturePad from "vue-signature-pad";
 import Datepicker from 'vuejs-datepicker';
 export default {
   name: "Dashboard",
   components: {
     Datepicker,
+    VueSignaturePad
   },
   data() {
     return {
@@ -508,6 +539,14 @@ export default {
       {
         this.$router.push("/edit_purchase/"+this.$route.params.id);
       }
+    },
+    undo() {
+      this.$refs.signaturePad.undoSignature();
+    },
+    save() {
+      const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
+      console.log(isEmpty);
+      console.log(data);
     }
   },
   mounted()
@@ -562,7 +601,7 @@ export default {
     .catch(function(error) {
         //app.$notify(error.response.data.error, "error");
     });
-  }
+  },
 };
 </script>
 <style scoped>
