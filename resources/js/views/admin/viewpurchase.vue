@@ -17,7 +17,7 @@
         <div class="d-sm-flex align-items-center justify-content-between">
 
                   <!-- <i class="fab fa-whatsapp" title="Add Signature" style="color:#00AA5B; background-color: #EDF2F6; margin:3% 0% 3% 0%; border-radius:50%; padding: 15%; margin-left: 30%; font-size: 18px;" data-toggle="modal" data-target="#dosign"></i> -->
-                  <span class="material-symbols-outlined" title="Add Signature" style="color:#00AA5B; background-color: #EDF2F6; margin:3% 0% 3% 0%; border-radius:50%; padding: 11%; font-size: 23px;cursor:pointer;" data-toggle="modal" data-target="#dosign">draw</span>
+                  <span class="material-symbols-outlined" v-if="!signaturedata.signature_filename" title="Add Signature" style="color:#00AA5B; background-color: #EDF2F6; margin:3% 0% 3% 0%; border-radius:50%; padding: 11%; font-size: 23px;cursor:pointer;" data-toggle="modal" data-target="#dosign">draw</span>
                   <!-- <i class="fa fa-download" style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"></i> -->
                   <span style="color:#48c6f6;background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 10%;font-size: 25px; margin-left: 30%;" class="material-symbols-outlined">download</span>
                   <i class="fab fa-whatsapp" style="color:#00AA5B; background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%; font-size: 18px;"></i>
@@ -113,7 +113,10 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-              
+              <div v-if="signaturedata.signature_filename">
+                <img :src="signaturedata.signature_filename" style="height:100px;"/><br>
+                <span class="ml-3">Signed By: <span style="font-weight:600;">{{signaturedata.signed_by}}</span></span>
+              </div>
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-2 sum-price">
@@ -311,6 +314,7 @@
                     <button @click="save">Save</button>
                     <button @click="undo">Undo</button>
                   </div> -->
+                  <span v-if="no_sign" class="text-danger">Please add signature</span>
                   <br>
                   <label class="required-field">Signed By</label>
                   <input type="text" class="form-control form-control-user" placeholder="" v-model="signed_by" />
@@ -369,7 +373,12 @@ export default {
       note:'',
       over_paid:0,
       purchases:[],
-      signed_by:''
+      signed_by:'',
+      no_sign:false,
+      signaturedata: {
+        signature_filename:'',
+        signed_by:'',
+      },
     };
   },
   methods:
@@ -550,11 +559,30 @@ export default {
     undo() {
       this.$refs.signaturePad.undoSignature();
     },
-    save() {
+    async save() {
       const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
       console.log(isEmpty);
       console.log(data);
-      const response = axios.post("add_signature", {'signatue':data,'signedby':this.signed_by,'purchase_id':this.$route.params.id});
+      if(isEmpty)
+      {
+        this.no_sign=true;
+      }
+      else
+      { 
+        const response = await axios.post("add_signature", {'signature':data,'signedby':this.signed_by,'purchase_id':this.$route.params.id});
+        if(response.data.id)
+        {
+          this.$router.go();
+        }
+        else
+        {
+          let toast = Vue.toasted.show('Something went wrong, Please try again', {
+              theme: "toasted-error",
+              position: "top-center",
+              duration: 5000,
+            });
+        }
+      }
     }
   },
   mounted()
@@ -609,6 +637,16 @@ export default {
     .catch(function(error) {
         //app.$notify(error.response.data.error, "error");
     });
+
+    axios.get('/invoice_signature/'+this.$route.params.id)
+      .then((response) => {
+          this.signaturedata = response.data;
+          this.signaturedata.signature_filename = '/uploads/'+response.data.signature_filename;
+          console.log(this.signaturedata.signature_filename);
+      })
+      .catch(function(error) {
+          //app.$notify(error.response.data.error, "error");
+      });
   },
 };
 </script>

@@ -16311,6 +16311,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -16350,7 +16354,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       note: '',
       over_paid: 0,
       purchases: [],
-      signed_by: ''
+      signed_by: '',
+      no_sign: false,
+      signaturedata: {
+        signature_filename: '',
+        signed_by: ''
+      }
     };
   },
   methods: {
@@ -16553,54 +16562,99 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$refs.signaturePad.undoSignature();
     },
     save: function save() {
-      var _this$$refs$signature = this.$refs.signaturePad.saveSignature(),
-          isEmpty = _this$$refs$signature.isEmpty,
-          data = _this$$refs$signature.data;
+      var _this5 = this;
 
-      console.log(isEmpty);
-      console.log(data);
-      var response = axios.post("add_signature", {
-        'signatue': data,
-        'signedby': this.signed_by,
-        'purchase_id': this.$route.params.id
-      });
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var _this5$$refs$signatur, isEmpty, data, response, toast;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _this5$$refs$signatur = _this5.$refs.signaturePad.saveSignature(), isEmpty = _this5$$refs$signatur.isEmpty, data = _this5$$refs$signatur.data;
+                console.log(isEmpty);
+                console.log(data);
+
+                if (!isEmpty) {
+                  _context3.next = 7;
+                  break;
+                }
+
+                _this5.no_sign = true;
+                _context3.next = 11;
+                break;
+
+              case 7:
+                _context3.next = 9;
+                return axios.post("add_signature", {
+                  'signature': data,
+                  'signedby': _this5.signed_by,
+                  'purchase_id': _this5.$route.params.id
+                });
+
+              case 9:
+                response = _context3.sent;
+
+                if (response.data.id) {
+                  _this5.$router.go();
+                } else {
+                  toast = Vue.toasted.show('Something went wrong, Please try again', {
+                    theme: "toasted-error",
+                    position: "top-center",
+                    duration: 5000
+                  });
+                }
+
+              case 11:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
     }
   },
   mounted: function mounted() {
-    var _this5 = this;
+    var _this6 = this;
 
     axios.get('/purchase_details/' + this.$route.params.id).then(function (response) {
-      _this5.formdata = response.data;
-      _this5.paymentcount = _this5.formdata.purchasepayments.length;
+      _this6.formdata = response.data;
+      _this6.paymentcount = _this6.formdata.purchasepayments.length;
 
       if (response.data.payment_due < 0) {
-        _this5.over_paid = response.data.payment_due;
+        _this6.over_paid = response.data.payment_due;
       }
 
-      _this5.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
+      _this6.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
 
-      if (_this5.paymentcount == 0) {
-        _this5.invoice_status = 'UnPaid';
-        _this5.payment_check = 'Yes';
-      } else if (_this5.over_paid < 0) {
-        _this5.invoice_status = 'Over Paid';
-        _this5.payment_check = '';
-      } else if (_this5.due_payment == 0) {
-        _this5.invoice_status = 'Paid';
-        _this5.payment_check = '';
+      if (_this6.paymentcount == 0) {
+        _this6.invoice_status = 'UnPaid';
+        _this6.payment_check = 'Yes';
+      } else if (_this6.over_paid < 0) {
+        _this6.invoice_status = 'Over Paid';
+        _this6.payment_check = '';
+      } else if (_this6.due_payment == 0) {
+        _this6.invoice_status = 'Paid';
+        _this6.payment_check = '';
       } else {
-        _this5.invoice_status = 'Partially Paid';
-        _this5.payment_check = 'Yes';
+        _this6.invoice_status = 'Partially Paid';
+        _this6.payment_check = 'Yes';
       }
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
     axios.get('/purchase_history/' + this.$route.params.id).then(function (response) {
-      _this5.formdata.purchasehistory = response.data;
+      _this6.formdata.purchasehistory = response.data;
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
     axios.get('/purchase_list/').then(function (response) {
-      _this5.purchases = response.data;
-      console.log(_this5.purchases);
+      _this6.purchases = response.data;
+      console.log(_this6.purchases);
+    })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
+    });
+    axios.get('/invoice_signature/' + this.$route.params.id).then(function (response) {
+      _this6.signaturedata = response.data;
+      _this6.signaturedata.signature_filename = '/uploads/' + response.data.signature_filename;
+      console.log(_this6.signaturedata.signature_filename);
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
   }
@@ -17483,7 +17537,99 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _vm._m(0),
+          _c(
+            "div",
+            {
+              staticClass:
+                "d-sm-flex align-items-center justify-content-between"
+            },
+            [
+              !_vm.signaturedata.signature_filename
+                ? _c(
+                    "span",
+                    {
+                      staticClass: "material-symbols-outlined",
+                      staticStyle: {
+                        color: "#00AA5B",
+                        "background-color": "#EDF2F6",
+                        margin: "3% 0% 3% 0%",
+                        "border-radius": "50%",
+                        padding: "11%",
+                        "font-size": "23px",
+                        cursor: "pointer"
+                      },
+                      attrs: {
+                        title: "Add Signature",
+                        "data-toggle": "modal",
+                        "data-target": "#dosign"
+                      }
+                    },
+                    [_vm._v("draw")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: {
+                    color: "#48c6f6",
+                    "background-color": "#EDF2F6",
+                    margin: "3%",
+                    "border-radius": "50%",
+                    padding: "10%",
+                    "font-size": "25px",
+                    "margin-left": "30%"
+                  }
+                },
+                [_vm._v("download")]
+              ),
+              _vm._v(" "),
+              _c("i", {
+                staticClass: "fab fa-whatsapp",
+                staticStyle: {
+                  color: "#00AA5B",
+                  "background-color": "#EDF2F6",
+                  margin: "3%",
+                  "border-radius": "50%",
+                  padding: "15%",
+                  "margin-left": "30%",
+                  "font-size": "18px"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: {
+                    color: "blue",
+                    "background-color": "#EDF2F6",
+                    "border-radius": "50%",
+                    padding: "15%",
+                    "margin-left": "16%",
+                    "font-size": "19px",
+                    "margin-right": "20%"
+                  }
+                },
+                [_vm._v("mail")]
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: {
+                    "background-color": "#EDF2F6",
+                    "border-radius": "50%",
+                    padding: "15%",
+                    "margin-left": "0%"
+                  }
+                },
+                [_vm._v("print")]
+              )
+            ]
+          ),
           _vm._v(" "),
           _c(
             "div",
@@ -17730,7 +17876,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(1),
+                      _vm._m(0),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -17787,11 +17933,28 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6" }),
+              _c("div", { staticClass: "col-md-6" }, [
+                _vm.signaturedata.signature_filename
+                  ? _c("div", [
+                      _c("img", {
+                        staticStyle: { height: "100px" },
+                        attrs: { src: _vm.signaturedata.signature_filename }
+                      }),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "ml-3" }, [
+                        _vm._v("Signed By: "),
+                        _c("span", { staticStyle: { "font-weight": "600" } }, [
+                          _vm._v(_vm._s(_vm.signaturedata.signed_by))
+                        ])
+                      ])
+                    ])
+                  : _vm._e()
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
-              _vm._m(2),
+              _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2 sum-price" }, [
                 _c("ul", [
@@ -18390,7 +18553,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._m(3),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -18445,9 +18608,9 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(4),
+                _vm._m(3),
                 _vm._v(" "),
-                _vm._m(5),
+                _vm._m(4),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(
@@ -18501,9 +18664,9 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(6),
+                _vm._m(5),
                 _vm._v(" "),
-                _vm._m(7),
+                _vm._m(6),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(
@@ -18557,7 +18720,7 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(8),
+                _vm._m(7),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -18579,6 +18742,12 @@ var render = function() {
                         }
                       }
                     }),
+                    _vm._v(" "),
+                    _vm.no_sign
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v("Please add signature")
+                        ])
+                      : _vm._e(),
                     _vm._v(" "),
                     _c("br"),
                     _vm._v(" "),
@@ -18656,99 +18825,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "d-sm-flex align-items-center justify-content-between" },
-      [
-        _c(
-          "span",
-          {
-            staticClass: "material-symbols-outlined",
-            staticStyle: {
-              color: "#00AA5B",
-              "background-color": "#EDF2F6",
-              margin: "3% 0% 3% 0%",
-              "border-radius": "50%",
-              padding: "11%",
-              "font-size": "23px",
-              cursor: "pointer"
-            },
-            attrs: {
-              title: "Add Signature",
-              "data-toggle": "modal",
-              "data-target": "#dosign"
-            }
-          },
-          [_vm._v("draw")]
-        ),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "material-symbols-outlined",
-            staticStyle: {
-              color: "#48c6f6",
-              "background-color": "#EDF2F6",
-              margin: "3%",
-              "border-radius": "50%",
-              padding: "10%",
-              "font-size": "25px",
-              "margin-left": "30%"
-            }
-          },
-          [_vm._v("download")]
-        ),
-        _vm._v(" "),
-        _c("i", {
-          staticClass: "fab fa-whatsapp",
-          staticStyle: {
-            color: "#00AA5B",
-            "background-color": "#EDF2F6",
-            margin: "3%",
-            "border-radius": "50%",
-            padding: "15%",
-            "margin-left": "30%",
-            "font-size": "18px"
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "material-symbols-outlined",
-            staticStyle: {
-              color: "blue",
-              "background-color": "#EDF2F6",
-              "border-radius": "50%",
-              padding: "15%",
-              "margin-left": "16%",
-              "font-size": "19px",
-              "margin-right": "20%"
-            }
-          },
-          [_vm._v("mail")]
-        ),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "material-symbols-outlined",
-            staticStyle: {
-              "background-color": "#EDF2F6",
-              "border-radius": "50%",
-              padding: "15%",
-              "margin-left": "0%"
-            }
-          },
-          [_vm._v("print")]
-        )
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

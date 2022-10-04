@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use DB;
 use App\Models\CustomerTransaction;
 use App\Models\SalesPayments;
+use App\Models\InvoiceSignature;
 
 class PurchaseController extends Controller
 {
@@ -438,19 +439,25 @@ class PurchaseController extends Controller
 
     public function addsignature(Request $request)
     {
-        // echo $request->input('signatue');
-        // $file = base64_decode($request->input('signatue'));
-        // echo $file;
-        //  $safeName = time().'.'.'png';
-        //  $success = file_put_contents(public_path().'/uploads/'.$safeName, $file);
-        //  print $success;
-
-        $image = $request->input('signatue');
+        $image = $request->input('signature');
         $image = str_replace('data:image/png;base64,', '', $image);
         $image = str_replace(' ', '+', $image);
         $imageName = 'Signature_'.time().'.'.'png';
         $imagepath = \File::put(public_path(). '/uploads/' . $imageName, base64_decode($image));
-        echo $imageName;
-       
+        
+        $invoicesignature = InvoiceSignature::create([
+            'purchase_id' => $request->input('purchase_id'),
+            'signature_filename' => $imageName,
+            'signed_by' => $request->input('signedby')
+        ]);
+
+        return response()->json($invoicesignature);
+    }
+
+    public function fetchinvoicesignature($id)
+    {
+        $signature = InvoiceSignature::where('purchase_id',$id)->first();
+
+        return response()->json($signature);
     }
 }
