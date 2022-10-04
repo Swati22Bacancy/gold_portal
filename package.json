@@ -30,6 +30,7 @@
         "datatables.net-dt": "^1.1.0",
         "moment": "^2.29.4",
         "startbootstrap-sb-admin-2": "^4.1.4",
+        "vue-html2pdf": "^1.8.0",
         "vue-router": "^3.5.2",
         "vue-search-select": "^2.9.5",
         "vue-signature-pad": "^2.0.0",

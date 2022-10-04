@@ -64711,6 +64711,7 @@ __webpack_require__.r(__webpack_exports__);
                 // Nominativ
                 if (key === 'y' && withoutSuffix) return 'једна година';
                 return isFuture || withoutSuffix ? wordKey[0] : wordKey[1];
+<<<<<<< HEAD
             }
 
             word = translator.correctGrammaticalCase(number, wordKey);
@@ -64719,6 +64720,16 @@ __webpack_require__.r(__webpack_exports__);
                 return number + ' година';
             }
 
+=======
+            }
+
+            word = translator.correctGrammaticalCase(number, wordKey);
+            // Nominativ
+            if (key === 'yy' && withoutSuffix && word === 'годину') {
+                return number + ' година';
+            }
+
+>>>>>>> c6d449cb299b16e7b9a5044735ad63f545e49f19
             return number + ' ' + word;
         },
     };
@@ -64857,6 +64868,7 @@ __webpack_require__.r(__webpack_exports__);
                 // Nominativ
                 if (key === 'y' && withoutSuffix) return 'jedna godina';
                 return isFuture || withoutSuffix ? wordKey[0] : wordKey[1];
+<<<<<<< HEAD
             }
 
             word = translator.correctGrammaticalCase(number, wordKey);
@@ -64865,6 +64877,16 @@ __webpack_require__.r(__webpack_exports__);
                 return number + ' godina';
             }
 
+=======
+            }
+
+            word = translator.correctGrammaticalCase(number, wordKey);
+            // Nominativ
+            if (key === 'yy' && withoutSuffix && word === 'godinu') {
+                return number + ' godina';
+            }
+
+>>>>>>> c6d449cb299b16e7b9a5044735ad63f545e49f19
             return number + ' ' + word;
         },
     };
@@ -96703,6 +96725,18 @@ var index = {
 /******/ 	__webpack_require__.m = __webpack_modules__;
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/amd define */
+/******/ 	(() => {
+/******/ 		__webpack_require__.amdD = function () {
+/******/ 			throw new Error('define cannot be used indirect');
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/amd options */
+/******/ 	(() => {
+/******/ 		__webpack_require__.amdO = {};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/chunk loaded */
 /******/ 	(() => {
 /******/ 		var deferred = [];
