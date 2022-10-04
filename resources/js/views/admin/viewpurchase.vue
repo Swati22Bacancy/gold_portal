@@ -16,7 +16,8 @@
         </div>
         <div class="d-sm-flex align-items-center justify-content-between">
 
-                  <i class="fab fa-whatsapp" title="Add Signature" style="color:#00AA5B; background-color: #EDF2F6; margin:3% 0% 3% 0%; border-radius:50%; padding: 15%; margin-left: 30%; font-size: 18px;" data-toggle="modal" data-target="#dosign"></i>
+                  <!-- <i class="fab fa-whatsapp" title="Add Signature" style="color:#00AA5B; background-color: #EDF2F6; margin:3% 0% 3% 0%; border-radius:50%; padding: 15%; margin-left: 30%; font-size: 18px;" data-toggle="modal" data-target="#dosign"></i> -->
+                  <span class="material-symbols-outlined" title="Add Signature" style="color:#00AA5B; background-color: #EDF2F6; margin:3% 0% 3% 0%; border-radius:50%; padding: 11%; font-size: 23px;cursor:pointer;" data-toggle="modal" data-target="#dosign">draw</span>
                   <!-- <i class="fa fa-download" style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"></i> -->
                   <span style="color:#48c6f6;background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 10%;font-size: 25px; margin-left: 30%;" class="material-symbols-outlined">download</span>
                   <i class="fab fa-whatsapp" style="color:#00AA5B; background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%; font-size: 18px;"></i>
@@ -48,6 +49,7 @@
       <div class="">
         <div class="col-md-12 viewpurchase-div">
           <div class="row" style="padding-bottom:40px">
+            
             <div class="col-md-3" style="border-right:  0.5px solid #4682B4;">
               <p style="color:#4682B4; font-size: 15px;">Supplier</p>
               <span>{{formdata.firstname}} {{formdata.lastname}}, <br>{{formdata.billing_address}}</span>
@@ -303,17 +305,21 @@
                 </div>
 
                 <div class="modal-body">
-                  <VueSignaturePad width="500px" height="500px" ref="signaturePad" />
-                  <div>
+                  <label>Signature</label><br />
+                  <VueSignaturePad width="560px" height="250px" ref="signaturePad" style="border:1px solid #ccc" :options="{onBegin: () => {$refs.signaturePad.resizeCanvas()}}"/>
+                  <!-- <div>
                     <button @click="save">Save</button>
                     <button @click="undo">Undo</button>
-                  </div>
+                  </div> -->
+                  <br>
+                  <label class="required-field">Signed By</label>
+                  <input type="text" class="form-control form-control-user" placeholder="" v-model="signed_by" />
                 </div>
                 <div class="modal-footer">
-                    <!-- <button type="button" @click="save" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Save</button>
+                    <button type="button" @click="save" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Save</button>
                     <button type="button" @click="undo" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Undo</button>
                     <button type="button" data-dismiss="modal"
-                    aria-label="Close" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button> -->
+                    aria-label="Close" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button>
                 </div>
             </div>
         </div>
@@ -362,7 +368,8 @@ export default {
       selectedtab:'payment',
       note:'',
       over_paid:0,
-      purchases:[]
+      purchases:[],
+      signed_by:''
     };
   },
   methods:
@@ -547,6 +554,7 @@ export default {
       const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
       console.log(isEmpty);
       console.log(data);
+      const response = axios.post("add_signature", {'signatue':data,'signedby':this.signed_by,'purchase_id':this.$route.params.id});
     }
   },
   mounted()
@@ -725,5 +733,9 @@ export default {
 .red-color
 {
     color:red !important;
+}
+#dosign .modal-dialog
+{
+    max-width: 600px;
 }
 </style>

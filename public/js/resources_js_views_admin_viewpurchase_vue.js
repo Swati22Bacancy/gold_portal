@@ -16305,6 +16305,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -16343,7 +16349,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       selectedtab: 'payment',
       note: '',
       over_paid: 0,
-      purchases: []
+      purchases: [],
+      signed_by: ''
     };
   },
   methods: {
@@ -16552,6 +16559,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       console.log(isEmpty);
       console.log(data);
+      var response = axios.post("add_signature", {
+        'signatue': data,
+        'signedby': this.signed_by,
+        'purchase_id': this.$route.params.id
+      });
     }
   },
   mounted: function mounted() {
@@ -16613,7 +16625,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-648549a5] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-648549a5] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-648549a5]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.purchasedata[data-v-648549a5]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-648549a5]{\r\n  border-radius: 50%;\n}\n.btn-container[data-v-648549a5]{\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width:100% !important;\n}\n.selectedclr[data-v-648549a5]{\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-648549a5]{\r\n   \r\n  width: auto;\r\n    font-size: 13px  !important;\r\n    color: #000;\r\n    border:none;\r\n    height: 40px;\r\n    padding: 5px 20px;\r\n    border-radius: 5px 5px 0px 0px;\n}\n.viewpurchase-div[data-v-648549a5]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-648549a5]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-648549a5]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-648549a5]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-648549a5]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-648549a5]:focus, .btn.focus[data-v-648549a5]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-648549a5]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-648549a5]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-648549a5]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-648549a5]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-648549a5]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.viewpurchase-div > p[data-v-648549a5] {\r\n    color: #3376C2;\r\n    font-size: 12px;\n}\n.viewpurchase-div span[data-v-648549a5] {\r\n    color: #000;\r\n    font-size: 13px;\n}\n#purchasehistory-datatable thead[data-v-648549a5]\r\n{\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#purchasehistory-datatable thead th[data-v-648549a5]\r\n{\r\n    font-weight: 100;\n}\n.red-color[data-v-648549a5]\r\n{\r\n    color:red !important;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-648549a5] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-648549a5] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-648549a5]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.purchasedata[data-v-648549a5]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-648549a5]{\r\n  border-radius: 50%;\n}\n.btn-container[data-v-648549a5]{\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width:100% !important;\n}\n.selectedclr[data-v-648549a5]{\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-648549a5]{\r\n   \r\n  width: auto;\r\n    font-size: 13px  !important;\r\n    color: #000;\r\n    border:none;\r\n    height: 40px;\r\n    padding: 5px 20px;\r\n    border-radius: 5px 5px 0px 0px;\n}\n.viewpurchase-div[data-v-648549a5]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-648549a5]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-648549a5]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-648549a5]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-648549a5]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-648549a5]:focus, .btn.focus[data-v-648549a5]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-648549a5]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-648549a5]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-648549a5]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-648549a5]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-648549a5]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.viewpurchase-div > p[data-v-648549a5] {\r\n    color: #3376C2;\r\n    font-size: 12px;\n}\n.viewpurchase-div span[data-v-648549a5] {\r\n    color: #000;\r\n    font-size: 13px;\n}\n#purchasehistory-datatable thead[data-v-648549a5]\r\n{\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#purchasehistory-datatable thead th[data-v-648549a5]\r\n{\r\n    font-weight: 100;\n}\n.red-color[data-v-648549a5]\r\n{\r\n    color:red !important;\n}\n#dosign .modal-dialog[data-v-648549a5]\r\n{\r\n    max-width: 600px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -18551,25 +18563,90 @@ var render = function() {
                   "div",
                   { staticClass: "modal-body" },
                   [
+                    _c("label", [_vm._v("Signature")]),
+                    _c("br"),
+                    _vm._v(" "),
                     _c("VueSignaturePad", {
                       ref: "signaturePad",
-                      attrs: { width: "500px", height: "500px" }
+                      staticStyle: { border: "1px solid #ccc" },
+                      attrs: {
+                        width: "560px",
+                        height: "250px",
+                        options: {
+                          onBegin: function() {
+                            _vm.$refs.signaturePad.resizeCanvas()
+                          }
+                        }
+                      }
                     }),
                     _vm._v(" "),
-                    _c("div", [
-                      _c("button", { on: { click: _vm.save } }, [
-                        _vm._v("Save")
-                      ]),
-                      _vm._v(" "),
-                      _c("button", { on: { click: _vm.undo } }, [
-                        _vm._v("Undo")
-                      ])
-                    ])
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "required-field" }, [
+                      _vm._v("Signed By")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.signed_by,
+                          expression: "signed_by"
+                        }
+                      ],
+                      staticClass: "form-control form-control-user",
+                      attrs: { type: "text", placeholder: "" },
+                      domProps: { value: _vm.signed_by },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.signed_by = $event.target.value
+                        }
+                      }
+                    })
                   ],
                   1
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "modal-footer" })
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb btn-nwidth",
+                      staticStyle: { "background-color": "#7adaaa !important" },
+                      attrs: { type: "button" },
+                      on: { click: _vm.save }
+                    },
+                    [_vm._v("Save")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb btn-nwidth",
+                      staticStyle: { "background-color": "#7adaaa !important" },
+                      attrs: { type: "button" },
+                      on: { click: _vm.undo }
+                    },
+                    [_vm._v("Undo")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb btn-nwidth",
+                      attrs: {
+                        type: "button",
+                        "data-dismiss": "modal",
+                        "aria-label": "Close"
+                      }
+                    },
+                    [_vm._v("Cancel")]
+                  )
+                ])
               ])
             ]
           )
@@ -18587,23 +18664,27 @@ var staticRenderFns = [
       "div",
       { staticClass: "d-sm-flex align-items-center justify-content-between" },
       [
-        _c("i", {
-          staticClass: "fab fa-whatsapp",
-          staticStyle: {
-            color: "#00AA5B",
-            "background-color": "#EDF2F6",
-            margin: "3% 0% 3% 0%",
-            "border-radius": "50%",
-            padding: "15%",
-            "margin-left": "30%",
-            "font-size": "18px"
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: {
+              color: "#00AA5B",
+              "background-color": "#EDF2F6",
+              margin: "3% 0% 3% 0%",
+              "border-radius": "50%",
+              padding: "11%",
+              "font-size": "23px",
+              cursor: "pointer"
+            },
+            attrs: {
+              title: "Add Signature",
+              "data-toggle": "modal",
+              "data-target": "#dosign"
+            }
           },
-          attrs: {
-            title: "Add Signature",
-            "data-toggle": "modal",
-            "data-target": "#dosign"
-          }
-        }),
+          [_vm._v("draw")]
+        ),
         _vm._v(" "),
         _c(
           "span",

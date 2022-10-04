@@ -347,7 +347,7 @@ class PurchaseController extends Controller
 
     public function editpurchase(Request $request)
     {
-        // try {
+        try {
             
             $purchasedata = Purchases::where('id', $request->input('po_id'))->update([
                 'customer_id' => $request->input('formfields.customer_id'),
@@ -406,12 +406,12 @@ class PurchaseController extends Controller
             ]);
 
             return response()->json($purchase);
-        // } 
-        // catch (\Exception $e) {
-        //     return response([
-        //         'message' => 'Internal error, please try again later.' //$e->getMessage()
-        //     ], 400);
-        // }
+        } 
+        catch (\Exception $e) {
+            return response([
+                'message' => 'Internal error, please try again later.' //$e->getMessage()
+            ], 400);
+        }
     }
 
     public function deletepurchaseorder($id){
@@ -434,5 +434,23 @@ class PurchaseController extends Controller
             }else{
                 return response()->json(['error' => 'Record does not exists'], 404);
             }
+    }
+
+    public function addsignature(Request $request)
+    {
+        // echo $request->input('signatue');
+        // $file = base64_decode($request->input('signatue'));
+        // echo $file;
+        //  $safeName = time().'.'.'png';
+        //  $success = file_put_contents(public_path().'/uploads/'.$safeName, $file);
+        //  print $success;
+
+        $image = $request->input('signatue');
+        $image = str_replace('data:image/png;base64,', '', $image);
+        $image = str_replace(' ', '+', $image);
+        $imageName = 'Signature_'.time().'.'.'png';
+        $imagepath = \File::put(public_path(). '/uploads/' . $imageName, base64_decode($image));
+        echo $imageName;
+       
     }
 }
