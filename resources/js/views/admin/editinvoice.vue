@@ -1,18 +1,18 @@
 <template>
   <div>
-    <form class="crt-invoice" @submit.prevent="create_invoice">
+    <form class="crt-invoice" @submit.prevent="edit_invoice">
     <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Edit Sales Invoice</h1>
+        <h1 class="h3 mb-0 text-gray-800">Edit Sales Invoice: {{invoice_no}}</h1>
         <div>
-          <button type="button" @click="create_invoice()" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;">Save</button>
+          <button type="button" @click="edit_invoice()" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;">Save</button>
           <router-link to="/sales"><button type="button" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button></router-link>
         </div>
         
       </div>
 
       <div class="row">
-        <div class="col-md-12 createinvoice-div">
+        <div class="col-md-12 editinvoice-div">
           
           <div class="row">
             <div class="col-md-4">
@@ -142,22 +142,6 @@
               
             </div>
             <div class="col-md-2">
-              <div class="form-group form-text">
-                <label>Invoice No.</label>
-                <input
-                  type="number"
-                  title="yo"
-                  class="form-control form-control-user setpadding"
-                  id="invno"
-                  aria-describedby="emailHelp"
-                  placeholder=""
-                  v-model="formdata.invoiceno"
-                />
-                <label for="invno" class="static-value">INV -</label>
-                <span v-if="$v.formdata.invoiceno.$error" class="text-danger">Please Enter invoice no</span>
-              </div>
-            </div>
-            <div class="col-md-2">
               <div class="form-group">
                 <label>Issue Date</label>
                 <Datepicker v-model="formdata.issue_date" class="datapicker" id="mydatepicker"></Datepicker>
@@ -227,7 +211,7 @@
         </div>
       </div>
       <div class="row mt-3">
-        <div class="col-md-12 createinvoice-div pb-3" style="padding:0">
+        <div class="col-md-12 editinvoice-div pb-3" style="padding:0">
           <div class="">
             <div class="table-responsive table-div mb-2">
               <table class="table" id="createinvoice-datatable" width="100%" cellspacing="0" style="margin-bottom:0">
@@ -432,6 +416,7 @@ export default {
       customer_type:'',
       live_unitprice:[],
       isVisible: false,
+      invoice_no:'',
     };
   },
   methods:
@@ -495,7 +480,7 @@ export default {
     {
       this.customerType = type;
     },
-    async create_invoice() {
+    async edit_invoice() {
       
       var price_difference_count=0;
       for(var j=0; j<this.invoice_items.length;j++)
@@ -543,8 +528,9 @@ export default {
           this.formdata.price_difference_count=price_difference_count;
           this.postdata.formfields = this.formdata;
           this.postdata.itemfields = this.invoice_items;
+          this.postdata.s_id = this.$route.params.id;
           
-          const response = await axios.post("create_invoice", this.postdata);
+          const response = await axios.post("edit_invoice", this.postdata);
           let message =
               "Sales Invoice has been successfully created.";
             let toast = Vue.toasted.show(message, {
@@ -580,8 +566,9 @@ export default {
           this.formdata.price_difference_count=price_difference_count;
           this.postdata.formfields = this.formdata;
           this.postdata.itemfields = this.invoice_items;
+          this.postdata.s_id = this.$route.params.id;
           
-          const response = await axios.post("create_invoice", this.postdata);
+          const response = await axios.post("edit_invoice", this.postdata);
           let message =
               "Sales Invoice has been successfully created.";
             let toast = Vue.toasted.show(message, {
@@ -1055,7 +1042,46 @@ export default {
     this.getCurrencies();
     this.getProducttypes();
     this.getProducts();
-    this.getInvoicekey();
+    
+    axios.get('/sales_details/'+this.$route.params.id)
+      .then((response) => {
+        console.log(response.data);
+          this.formdata = response.data;
+          this.invoice_no = this.formdata.invoiceno;
+          this.subtotal = this.formdata.subtotal;
+          this.vattotal = this.formdata.vattotal;
+          this.totalamount = this.formdata.totalamount;
+          this.invoice_items = this.formdata.salesitem;
+          this.paymentcount = this.formdata.salepayments.length;
+          if(response.data.payment_due<0)
+          {
+            this.over_paid = response.data.payment_due;
+          }
+          this.due_payment = (response.data.payment_due<0)?0:response.data.payment_due;
+          if(this.paymentcount==0)
+          {
+            this.invoice_status='UnPaid';
+            this.payment_check='Yes';
+          }
+          else if(this.over_paid< 0)
+          {
+            this.invoice_status='Over Paid';
+            this.payment_check='';
+          }
+          else if(this.due_payment==0)
+          {
+            this.invoice_status='Paid';
+            this.payment_check='';
+          }
+          else
+          {
+            this.invoice_status='Partially Paid';
+            this.payment_check='Yes';
+          }
+      })
+      .catch(function(error) {
+          //app.$notify(error.response.data.error, "error");
+      });
   }
 };
 </script>
@@ -1114,7 +1140,7 @@ export default {
   font-size: 13px;
   color: #000;
 }
-.createinvoice-div
+.editinvoice-div
 {
   background: #fff;
   padding: 34px 23px 0px 23px;

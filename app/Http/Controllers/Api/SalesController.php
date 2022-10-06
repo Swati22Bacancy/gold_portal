@@ -127,6 +127,13 @@ class SalesController extends Controller
 
         $saleitems = SalesItems::leftjoin('producttypes', 'producttypes.id', '=', 'sales_items.producttype_id')->leftjoin('products', 'products.id', '=', 'sales_items.product_id')->select('sales_items.*','producttypes.name as typename','products.name as productname')->where('sales_id',$id)->get();
 
+        foreach($saleitems as $index => $saleitem)
+        {
+            $saleitems[$index]->invoice_type = $saleitem->typename;
+            $saleitems[$index]->invoice_typeid = $saleitem->producttype_id;
+            $saleitems[$index]->invoice_product = $saleitem->product_id;
+        }
+
         $salepayments = SalesPayments::where('sales_id',$id)->orderBy('id', 'DESC')->get();
 
         $refund = SalesPayments::select(DB::raw("SUM(totalamount) as refundamount"))->where('action', 'Refund')->where('sales_id',$id)->first();
@@ -638,6 +645,9 @@ class SalesController extends Controller
 
             $sales = Sales::where('id',$request->input('s_id'))->first();
 
+
+            $items_sales = SalesItems::where('sales_id', $request->input('s_id'))->delete();
+
             if(!empty($request->input('itemfields')))
             {
                 foreach($request->input('itemfields') as $itemfield)
@@ -705,5 +715,29 @@ class SalesController extends Controller
             }else{
                 return response()->json(['error' => 'Record does not exists'], 404);
             }
+    }
+
+    public function addsignature(Request $request)
+    {
+        $image = $request->input('signature');
+        $image = str_replace('data:image/png;base64,', '', $image);
+        $image = str_replace(' ', '+', $image);
+        $imageName = 'Signature_'.time().'.'.'png';
+        $imagepath = \File::put(public_path(). '/uploads/' . $imageName, base64_decode($image));
+        
+        $invoicesignature = InvoiceSignature::create([
+            'sales_id' => $request->input('sales_id'),
+            'signature_filename' => $imageName,
+            'signed_by' => $request->input('signedby')
+        ]);
+
+        return response()->json($invoicesignature);
+    }
+
+    public function fetchinvoicesignature($id)
+    {
+        $signature = InvoiceSignature::where('sales_id',$id)->first();
+
+        return response()->json($signature);
     }
 }

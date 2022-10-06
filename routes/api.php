@@ -139,6 +139,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('get_customer_summary/{id}', [Api\SalesController::class, 'getCustomerSummary']);
     Route::post('edit_invoice',[Api\SalesController::class, 'editinvoice']);
     Route::get('delete_salesinvoice/{id}', [Api\SalesController::class, 'deletesalesinvoice']);
+    Route::post('add_salessignature',[Api\SalesController::class, 'addsignature']);
+    Route::get('invoicesales_signature/{id}', [Api\SalesController::class, 'fetchinvoicesignature']);
     
 
     // Purchase Invoice Routes

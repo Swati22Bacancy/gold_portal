@@ -381,22 +381,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
 
@@ -456,7 +440,8 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
       credit_period: 0,
       customer_type: '',
       live_unitprice: [],
-      isVisible: false
+      isVisible: false,
+      invoice_no: ''
     };
   },
   methods: {
@@ -510,7 +495,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
     changetype: function changetype(type) {
       this.customerType = type;
     },
-    create_invoice: function create_invoice() {
+    edit_invoice: function edit_invoice() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -538,12 +523,12 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                 }
 
                 if (!(price_difference_count > 0)) {
-                  _context.next = 33;
+                  _context.next = 34;
                   break;
                 }
 
                 if (!confirm("Some of the product prices are incorrect, Do you really want to continue?")) {
-                  _context.next = 31;
+                  _context.next = 32;
                   break;
                 }
 
@@ -579,10 +564,11 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                 _this.formdata.price_difference_count = price_difference_count;
                 _this.postdata.formfields = _this.formdata;
                 _this.postdata.itemfields = _this.invoice_items;
-                _context.next = 21;
-                return axios.post("create_invoice", _this.postdata);
+                _this.postdata.s_id = _this.$route.params.id;
+                _context.next = 22;
+                return axios.post("edit_invoice", _this.postdata);
 
-              case 21:
+              case 22:
                 response = _context.sent;
                 message = "Sales Invoice has been successfully created.";
                 _toast = Vue.toasted.show(message, {
@@ -593,11 +579,11 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
 
                 _this.$router.push("/sales");
 
-                _context.next = 31;
+                _context.next = 32;
                 break;
 
-              case 27:
-                _context.prev = 27;
+              case 28:
+                _context.prev = 28;
                 _context.t0 = _context["catch"](10);
                 _message = 'Something went wrong, Please try again';
                 _toast2 = Vue.toasted.show(_message, {
@@ -606,22 +592,22 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                   duration: 5000
                 });
 
-              case 31:
-                _context.next = 57;
+              case 32:
+                _context.next = 59;
                 break;
 
-              case 33:
+              case 34:
                 _this.$v.formdata.$touch();
 
                 if (!_this.$v.formdata.$error) {
-                  _context.next = 36;
+                  _context.next = 37;
                   break;
                 }
 
                 return _context.abrupt("return");
 
-              case 36:
-                _context.prev = 36;
+              case 37:
+                _context.prev = 37;
                 _this.formdata.customertype = _this.customerType;
                 date = new Date(_this.formdata.issue_date);
                 _this.formdata.issue_date = date;
@@ -630,10 +616,11 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                 _this.formdata.price_difference_count = price_difference_count;
                 _this.postdata.formfields = _this.formdata;
                 _this.postdata.itemfields = _this.invoice_items;
-                _context.next = 47;
-                return axios.post("create_invoice", _this.postdata);
+                _this.postdata.s_id = _this.$route.params.id;
+                _context.next = 49;
+                return axios.post("edit_invoice", _this.postdata);
 
-              case 47:
+              case 49:
                 _response = _context.sent;
                 _message2 = "Sales Invoice has been successfully created.";
                 _toast3 = Vue.toasted.show(_message2, {
@@ -644,12 +631,12 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
 
                 _this.$router.push("/sales");
 
-                _context.next = 57;
+                _context.next = 59;
                 break;
 
-              case 53:
-                _context.prev = 53;
-                _context.t1 = _context["catch"](36);
+              case 55:
+                _context.prev = 55;
+                _context.t1 = _context["catch"](37);
                 _message3 = 'Something went wrong, Please try again';
                 _toast4 = Vue.toasted.show(_message3, {
                   theme: "toasted-error",
@@ -657,12 +644,12 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
                   duration: 5000
                 });
 
-              case 57:
+              case 59:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[10, 27], [36, 53]]);
+        }, _callee, null, [[10, 28], [37, 55]]);
       }))();
     },
     getCustomers: function getCustomers() {
@@ -1088,11 +1075,43 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
     }
   },
   mounted: function mounted() {
+    var _this11 = this;
+
     this.getCustomers();
     this.getCurrencies();
     this.getProducttypes();
     this.getProducts();
-    this.getInvoicekey();
+    axios.get('/sales_details/' + this.$route.params.id).then(function (response) {
+      console.log(response.data);
+      _this11.formdata = response.data;
+      _this11.invoice_no = _this11.formdata.invoiceno;
+      _this11.subtotal = _this11.formdata.subtotal;
+      _this11.vattotal = _this11.formdata.vattotal;
+      _this11.totalamount = _this11.formdata.totalamount;
+      _this11.invoice_items = _this11.formdata.salesitem;
+      _this11.paymentcount = _this11.formdata.salepayments.length;
+
+      if (response.data.payment_due < 0) {
+        _this11.over_paid = response.data.payment_due;
+      }
+
+      _this11.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
+
+      if (_this11.paymentcount == 0) {
+        _this11.invoice_status = 'UnPaid';
+        _this11.payment_check = 'Yes';
+      } else if (_this11.over_paid < 0) {
+        _this11.invoice_status = 'Over Paid';
+        _this11.payment_check = '';
+      } else if (_this11.due_payment == 0) {
+        _this11.invoice_status = 'Paid';
+        _this11.payment_check = '';
+      } else {
+        _this11.invoice_status = 'Partially Paid';
+        _this11.payment_check = 'Yes';
+      }
+    })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
+    });
   }
 });
 
@@ -1115,7 +1134,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-createinvoice[data-v-25ec46b4]{\r\n  width:450px;\n}\n.table-row[data-v-25ec46b4]{\r\n  height: 100px;\n}\n.inputdata[data-v-25ec46b4]{\r\n  background: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"30\"><text x=\"5\" y=\"19\" style=\"font:16px Arial;\">INV -</text></svg>') no-repeat;\r\n  font: 16px \"Arial\";\r\n  padding-left: 45px;\n}\n.edit-cont[data-v-25ec46b4]{\r\n  position: absolute;\r\n  top: 35px;\r\n   left: 350px;\r\n   border: none;\n}\n.select-cont[data-v-25ec46b4]{\r\n  width: 200px;\n}\n.required-field[data-v-25ec46b4]::after {\r\n  content: \"*\";\r\n  color: red;\n}\n.text-danger[data-v-25ec46b4]{\r\n  font-size: 12px;\n}\n.button-container[data-v-25ec46b4]{\r\n    display: flex;\r\n    justify-content: space-between;\n}\n.btn-modal[data-v-25ec46b4]{\r\n  color: black;\r\n  border: 0;\r\n  background:#7ADAAA ;\n}\n.modal-selection[data-v-25ec46b4]{\r\n  flex: 1 !important;\n}\n#createinvoice-datatable thead[data-v-25ec46b4] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-25ec46b4] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-25ec46b4]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.createinvoice-div[data-v-25ec46b4]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-25ec46b4]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-25ec46b4]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-25ec46b4]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-25ec46b4]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-25ec46b4]:focus, .btn.focus[data-v-25ec46b4]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-25ec46b4]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-25ec46b4]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-25ec46b4]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-25ec46b4]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-25ec46b4]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.dark-theme-btn[data-v-25ec46b4]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-25ec46b4]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-25ec46b4]:focus, .btn.focus[data-v-25ec46b4]\r\n{\r\n  box-shadow: 0 0;\n}\n.check-position[data-v-25ec46b4]\r\n{\r\n  margin-left: 15%;\n}\n.static-value[data-v-25ec46b4]{\r\n  position:absolute;\r\n  left: 10px;\r\n  font-weight: bold;\r\n  color: #6e707e;\r\n  font-size: 13px !important;\r\n  top: 40px;\n}\n.setpadding[data-v-25ec46b4]\r\n{\r\n  padding-left: 40px;\n}\n.form-text[data-v-25ec46b4]{\r\n\tposition:relative;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-25ec46b4]\r\n  {\r\n    border-right: 2px solid #eee;\r\n    padding-right: 8%;\n}\n.primary-div[data-v-25ec46b4]\r\n  {\r\n    padding-left: 8%;\n}\n}\n#mydatepicker[data-v-25ec46b4]{\r\n    display: block;\r\n    width: 100%;\r\n    height: calc(1.5em + 0.75rem + 2px);\r\n    padding: 0.375rem 0.75rem;\r\n    font-size: 1rem;\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    color: #6e707e;\r\n    background-color: #fff;\r\n    background-clip: padding-box;\r\n    border: 1px solid #d1d3e2;\r\n    border-radius: 0.35rem;\r\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\n.td-style[data-v-25ec46b4]{\r\n  width:150px;\n}\n.tdwidth[data-v-25ec46b4]\r\n{\r\n  width: 90px;\n}\n.red-color[data-v-25ec46b4]\r\n{\r\n  color:red;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-createinvoice[data-v-25ec46b4]{\r\n  width:450px;\n}\n.table-row[data-v-25ec46b4]{\r\n  height: 100px;\n}\n.inputdata[data-v-25ec46b4]{\r\n  background: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"30\"><text x=\"5\" y=\"19\" style=\"font:16px Arial;\">INV -</text></svg>') no-repeat;\r\n  font: 16px \"Arial\";\r\n  padding-left: 45px;\n}\n.edit-cont[data-v-25ec46b4]{\r\n  position: absolute;\r\n  top: 35px;\r\n   left: 350px;\r\n   border: none;\n}\n.select-cont[data-v-25ec46b4]{\r\n  width: 200px;\n}\n.required-field[data-v-25ec46b4]::after {\r\n  content: \"*\";\r\n  color: red;\n}\n.text-danger[data-v-25ec46b4]{\r\n  font-size: 12px;\n}\n.button-container[data-v-25ec46b4]{\r\n    display: flex;\r\n    justify-content: space-between;\n}\n.btn-modal[data-v-25ec46b4]{\r\n  color: black;\r\n  border: 0;\r\n  background:#7ADAAA ;\n}\n.modal-selection[data-v-25ec46b4]{\r\n  flex: 1 !important;\n}\n#createinvoice-datatable thead[data-v-25ec46b4] {\r\n    background: #3376C2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-25ec46b4] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-25ec46b4]\r\n{\r\n  font-size: 13px;\r\n  color: #000;\n}\n.editinvoice-div[data-v-25ec46b4]\r\n{\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-25ec46b4]\r\n{\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-25ec46b4]\r\n{\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-25ec46b4]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-25ec46b4]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-25ec46b4]:focus, .btn.focus[data-v-25ec46b4]\r\n{\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-25ec46b4]\r\n{\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-25ec46b4]\r\n{\r\n  border: 1px solid #D6E3F2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-25ec46b4]\r\n{\r\n  width: 130px;\n}\n.sum-price ul[data-v-25ec46b4]\r\n{\r\n  list-style-type: none;\n}\n.sum-price li[data-v-25ec46b4]{\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n};\n.dark-theme-btn[data-v-25ec46b4]\r\n{\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-25ec46b4]\r\n{\r\n  background-color: #EDF2F6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-25ec46b4]:focus, .btn.focus[data-v-25ec46b4]\r\n{\r\n  box-shadow: 0 0;\n}\n.check-position[data-v-25ec46b4]\r\n{\r\n  margin-left: 15%;\n}\n.static-value[data-v-25ec46b4]{\r\n  position:absolute;\r\n  left: 10px;\r\n  font-weight: bold;\r\n  color: #6e707e;\r\n  font-size: 13px !important;\r\n  top: 40px;\n}\n.setpadding[data-v-25ec46b4]\r\n{\r\n  padding-left: 40px;\n}\n.form-text[data-v-25ec46b4]{\r\n\tposition:relative;\n}\n@media (min-width: 768px) {\n.detail-div[data-v-25ec46b4]\r\n  {\r\n    border-right: 2px solid #eee;\r\n    padding-right: 8%;\n}\n.primary-div[data-v-25ec46b4]\r\n  {\r\n    padding-left: 8%;\n}\n}\n#mydatepicker[data-v-25ec46b4]{\r\n    display: block;\r\n    width: 100%;\r\n    height: calc(1.5em + 0.75rem + 2px);\r\n    padding: 0.375rem 0.75rem;\r\n    font-size: 1rem;\r\n    font-weight: 400;\r\n    line-height: 1.5;\r\n    color: #6e707e;\r\n    background-color: #fff;\r\n    background-clip: padding-box;\r\n    border: 1px solid #d1d3e2;\r\n    border-radius: 0.35rem;\r\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\n.td-style[data-v-25ec46b4]{\r\n  width:150px;\n}\n.tdwidth[data-v-25ec46b4]\r\n{\r\n  width: 90px;\n}\n.red-color[data-v-25ec46b4]\r\n{\r\n  color:red;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1263,7 +1282,7 @@ var render = function() {
         on: {
           submit: function($event) {
             $event.preventDefault()
-            return _vm.create_invoice.apply(null, arguments)
+            return _vm.edit_invoice.apply(null, arguments)
           }
         }
       },
@@ -1276,7 +1295,7 @@ var render = function() {
           },
           [
             _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
-              _vm._v("Edit Sales Invoice")
+              _vm._v("Edit Sales Invoice: " + _vm._s(_vm.invoice_no))
             ]),
             _vm._v(" "),
             _c(
@@ -1290,7 +1309,7 @@ var render = function() {
                     attrs: { type: "button" },
                     on: {
                       click: function($event) {
-                        return _vm.create_invoice()
+                        return _vm.edit_invoice()
                       }
                     }
                   },
@@ -1314,7 +1333,7 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-12 createinvoice-div" }, [
+          _c("div", { staticClass: "col-md-12 editinvoice-div" }, [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-4" }, [
                 _c("div", { staticClass: "form-group" }, [
@@ -2168,52 +2187,6 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }, [
-                _c("div", { staticClass: "form-group form-text" }, [
-                  _c("label", [_vm._v("Invoice No.")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.formdata.invoiceno,
-                        expression: "formdata.invoiceno"
-                      }
-                    ],
-                    staticClass: "form-control form-control-user setpadding",
-                    attrs: {
-                      type: "number",
-                      title: "yo",
-                      id: "invno",
-                      "aria-describedby": "emailHelp",
-                      placeholder: ""
-                    },
-                    domProps: { value: _vm.formdata.invoiceno },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.formdata, "invoiceno", $event.target.value)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    { staticClass: "static-value", attrs: { for: "invno" } },
-                    [_vm._v("INV -")]
-                  ),
-                  _vm._v(" "),
-                  _vm.$v.formdata.invoiceno.$error
-                    ? _c("span", { staticClass: "text-danger" }, [
-                        _vm._v("Please Enter invoice no")
-                      ])
-                    : _vm._e()
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-2" }, [
                 _c(
                   "div",
                   { staticClass: "form-group" },
@@ -2465,7 +2438,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "col-md-12 createinvoice-div pb-3",
+              staticClass: "col-md-12 editinvoice-div pb-3",
               staticStyle: { padding: "0" }
             },
             [
