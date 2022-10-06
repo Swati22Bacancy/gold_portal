@@ -18,6 +18,7 @@ use DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\PurchasePayments;
 use App\Models\CustomerTransaction;
+use App\Models\InvoiceSignature;
 
 class SalesController extends Controller
 {

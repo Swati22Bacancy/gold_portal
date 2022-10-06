@@ -169,6 +169,7 @@
    </VueHtml2pdf>
 
                   <!-- <i class="fa fa-download" style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"></i> -->
+                  <span class="material-symbols-outlined" v-if="!signaturedata.signature_filename" title="Add Signature" style="color:#00AA5B; background-color: #EDF2F6; margin:3% 0% 3% 0%; border-radius:50%; padding: 11%; font-size: 23px;cursor:pointer;" data-toggle="modal" data-target="#dosign">draw</span>
                   <span style="color:#48c6f6;background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 10%;font-size: 25px; margin-left: 30%;" class="material-symbols-outlined" @click="generateReport">download</span>  </div>
                   <i class="fab fa-whatsapp" style="color:#00AA5B; background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%; font-size: 18px;"></i>
                   <!-- <i class="fas fa-envelope" style="background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;"></i> -->
@@ -185,12 +186,12 @@
                       class="fas fa-pencil-alt"
                       style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-right:35%"
                   ></i> -->
-                  <span style="background-color: #EDF2F6; border-radius:50%; padding: 18%; margin-right:35%" class="material-symbols-outlined">edit</span>
+                  <span style="background-color: #EDF2F6; border-radius:50%; padding: 18%; margin-right:35%;color:red;cursor: pointer;" class="material-symbols-outlined" data-toggle="modal" data-target="#deleteInvoiceConfirmation">delete</span>
                   <!-- <i
                       class="fas fa-trash-alt"
                       style="background-color: #EDF2F6; border-radius:50%; padding: 15%; "
                   ></i> -->
-                  <span style="background-color: #EDF2F6; border-radius:50%; padding: 18%;color:red" class="material-symbols-outlined">delete</span>
+                  <span style="background-color: #EDF2F6; border-radius:50%; padding: 18%;cursor: pointer;" @click="edit_invoice()" class="material-symbols-outlined">edit</span>
               </div>
           </div>
           <div class="">
@@ -293,7 +294,12 @@
                       </div>
                   </div>
                   <div class="row">
-                      <div class="col-md-6"></div>
+                      <div class="col-md-6">
+                        <div v-if="signaturedata.signature_filename">
+                            <img :src="signaturedata.signature_filename" style="height:100px;"/><br>
+                            <span class="ml-3">Signed By: <span style="font-weight:600;">{{signaturedata.signed_by}}</span></span>
+                        </div>
+                      </div>
                       <div class="col-md-2"></div>
                       <div class="col-md-2 sum-price">
                           <ul style="text-align: left;">
@@ -928,6 +934,60 @@
               </div>
           </div>
 
+          <!-- Modal -->
+      <div class="modal fade" id="deleteInvoiceConfirmation" tabindex="-1" role="dialog" aria-labelledby="deleteInvoiceConfirmationLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h6 class="modal-title" id="deleteInvoiceConfirmationLabel">Confirmation</h6>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true" style="color:#fff">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <p style="color:#000;font-size:14px;">Are you sure you want to delete this Sales Invoice?</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn admin-btn mobile-mb" data-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn admin-btn mobile-mb" style="background-color: #ff0000 !important;color: #fff;" @click="deleteSalesInvoice()">Delete</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+    
+      <!-- Modal -->
+      <div class="modal fade" id="dosign" tabindex="-1" role="dialog" aria-labelledby="dosign" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="dosignh1">Add Signature</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color: #fff">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                  <label>Signature</label><br />
+                  <VueSignaturePad width="560px" height="250px" ref="signaturePad" style="border:1px solid #ccc" :options="{onBegin: () => {$refs.signaturePad.resizeCanvas()}}"/>
+                  <!-- <div>
+                    <button @click="save">Save</button>
+                    <button @click="undo">Undo</button>
+                  </div> -->
+                  <span v-if="no_sign" class="text-danger">Please add signature</span>
+                  <br>
+                  <label class="required-field">Signed By</label>
+                  <input type="text" class="form-control form-control-user" placeholder="" v-model="signed_by" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" @click="save" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Save</button>
+                    <button type="button" @click="undo" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Undo</button>
+                    <button type="button" data-dismiss="modal"
+                    aria-label="Close" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button>
+                </div>
+            </div>
+        </div>
+      </div>
+
       </div>
   </div>
 </template>
@@ -937,7 +997,8 @@ import moment from 'moment';
 import { ModelSelect } from 'vue-search-select'
 import Datepicker from "vuejs-datepicker";
 import {objectToFormData} from '../../object-to-formdata';
-import VueHtml2pdf from 'vue-html2pdf'
+import VueHtml2pdf from 'vue-html2pdf';
+import VueSignaturePad from "vue-signature-pad";
 
 export default {
   name: "ViewSales",
@@ -945,7 +1006,8 @@ export default {
       Datepicker,
       moment,
       ModelSelect,
-      VueHtml2pdf
+      VueHtml2pdf,
+      VueSignaturePad
   },
   data() {
       return {
@@ -1010,10 +1072,66 @@ export default {
           cashSelected: false,
           purchases:[],
           purchase_id:"",
-          purchase_amount:""
+          purchase_amount:"",
+          signaturedata: {
+            signature_filename:'',
+            signed_by:'',
+          },
       };
   },
   methods: {
+    deleteSalesInvoice() {
+      axios.get('/delete_salesinvoice/'+this.$route.params.id)
+        .then(resp => {
+          this.$router.push("/sales");
+        })
+        .catch(error => {
+          let message = 'Something went wrong, Please try again';
+          let toast = Vue.toasted.show(message, {
+            theme: "toasted-error",
+            position: "top-center",
+            duration: 5000,
+          });
+            console.log(error);
+        })
+    },
+    edit_invoice()
+    {
+      if(this.paymentcount>0)
+      {
+        alert('Please delete all the payments first!');
+      }
+      else
+      {
+        this.$router.push("/editinvoice/"+this.$route.params.id);
+      }
+    },
+    undo() {
+      this.$refs.signaturePad.undoSignature();
+    },
+    async save() {
+      const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
+      if(isEmpty)
+      {
+        this.no_sign=true;
+      }
+      else
+      { 
+        const response = await axios.post("add_salessignature", {'signature':data,'signedby':this.signed_by,'sales_id':this.$route.params.id});
+        if(response.data.id)
+        {
+          this.$router.go();
+        }
+        else
+        {
+          let toast = Vue.toasted.show('Something went wrong, Please try again', {
+              theme: "toasted-error",
+              position: "top-center",
+              duration: 5000,
+            });
+        }
+      }
+    },
     generateReport () {
            this.$refs.html2Pdf.generatePdf()
     },
@@ -1563,6 +1681,15 @@ export default {
         })
         .catch(function(error) {
         });
+    
+    axios.get('/invoicesales_signature/'+this.$route.params.id)
+      .then((response) => {
+          this.signaturedata = response.data;
+          this.signaturedata.signature_filename = '/uploads/'+response.data.signature_filename;
+      })
+      .catch(function(error) {
+          //app.$notify(error.response.data.error, "error");
+      });
   }
 };
 </script>

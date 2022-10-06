@@ -20,6 +20,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
 /* harmony import */ var _object_to_formdata__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../object-to-formdata */ "./resources/js/object-to-formdata.js");
 /* harmony import */ var vue_html2pdf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-html2pdf */ "./node_modules/vue-html2pdf/dist/vue-html2pdf.esm.js");
+/* harmony import */ var vue_signature_pad__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-signature-pad */ "./node_modules/vue-signature-pad/dist/vue-signature-pad.common.js");
+/* harmony import */ var vue_signature_pad__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_signature_pad__WEBPACK_IMPORTED_MODULE_6__);
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -966,6 +968,67 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -977,7 +1040,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_3__.default,
     moment: (moment__WEBPACK_IMPORTED_MODULE_1___default()),
     ModelSelect: vue_search_select__WEBPACK_IMPORTED_MODULE_2__.ModelSelect,
-    VueHtml2pdf: vue_html2pdf__WEBPACK_IMPORTED_MODULE_5__.default
+    VueHtml2pdf: vue_html2pdf__WEBPACK_IMPORTED_MODULE_5__.default,
+    VueSignaturePad: (vue_signature_pad__WEBPACK_IMPORTED_MODULE_6___default())
   },
   data: function data() {
     return {
@@ -1045,10 +1109,89 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       cashSelected: false,
       purchases: [],
       purchase_id: "",
-      purchase_amount: ""
+      purchase_amount: "",
+      signaturedata: {
+        signature_filename: '',
+        signed_by: ''
+      }
     };
   },
   methods: {
+    deleteSalesInvoice: function deleteSalesInvoice() {
+      var _this = this;
+
+      axios.get('/delete_salesinvoice/' + this.$route.params.id).then(function (resp) {
+        _this.$router.push("/sales");
+      })["catch"](function (error) {
+        var message = 'Something went wrong, Please try again';
+        var toast = Vue.toasted.show(message, {
+          theme: "toasted-error",
+          position: "top-center",
+          duration: 5000
+        });
+        console.log(error);
+      });
+    },
+    edit_invoice: function edit_invoice() {
+      if (this.paymentcount > 0) {
+        alert('Please delete all the payments first!');
+      } else {
+        this.$router.push("/editinvoice/" + this.$route.params.id);
+      }
+    },
+    undo: function undo() {
+      this.$refs.signaturePad.undoSignature();
+    },
+    save: function save() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _this2$$refs$signatur, isEmpty, data, response, toast;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this2$$refs$signatur = _this2.$refs.signaturePad.saveSignature(), isEmpty = _this2$$refs$signatur.isEmpty, data = _this2$$refs$signatur.data;
+
+                if (!isEmpty) {
+                  _context.next = 5;
+                  break;
+                }
+
+                _this2.no_sign = true;
+                _context.next = 9;
+                break;
+
+              case 5:
+                _context.next = 7;
+                return axios.post("add_salessignature", {
+                  'signature': data,
+                  'signedby': _this2.signed_by,
+                  'sales_id': _this2.$route.params.id
+                });
+
+              case 7:
+                response = _context.sent;
+
+                if (response.data.id) {
+                  _this2.$router.go();
+                } else {
+                  toast = Vue.toasted.show('Something went wrong, Please try again', {
+                    theme: "toasted-error",
+                    position: "top-center",
+                    duration: 5000
+                  });
+                }
+
+              case 9:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
     generateReport: function generateReport() {
       this.$refs.html2Pdf.generatePdf();
     },
@@ -1068,10 +1211,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     fetchPo: function fetchPo() {
-      var _this = this;
+      var _this3 = this;
 
       axios.get('/purchase_details/' + this.purchase_id).then(function (response) {
-        _this.purchase_amount = response.data.totalamount;
+        _this3.purchase_amount = response.data.totalamount;
       });
     },
     dateFormateChanger: function dateFormateChanger(d) {
@@ -1130,60 +1273,60 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.addrefund = "";
     },
     save_payment: function save_payment(index) {
-      var _this2 = this;
+      var _this4 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var date, response, arr, response1, toast;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _this2.invoice_items[index].sales_id = _this2.$route.params.id;
-                date = new Date(_this2.invoice_items[index].payment_date);
-                _this2.invoice_items[index].payment_date = date;
-                _this2.invoice_items[index].action = _this2.payaction;
-                _context.next = 6;
-                return axios.post("create_payment", _this2.invoice_items[index]);
+                _this4.invoice_items[index].sales_id = _this4.$route.params.id;
+                date = new Date(_this4.invoice_items[index].payment_date);
+                _this4.invoice_items[index].payment_date = date;
+                _this4.invoice_items[index].action = _this4.payaction;
+                _context2.next = 6;
+                return axios.post("create_payment", _this4.invoice_items[index]);
 
               case 6:
-                response = _context.sent;
+                response = _context2.sent;
 
                 if (response.data.id) {
                   arr = {};
                   arr.payment_date = response.data.payment_date;
-                  arr.method = _this2.invoice_items[index].method;
-                  arr.totalamount = _this2.invoice_items[index].totalamount;
-                  arr.action = _this2.payaction;
+                  arr.method = _this4.invoice_items[index].method;
+                  arr.totalamount = _this4.invoice_items[index].totalamount;
+                  arr.action = _this4.payaction;
                   arr.id = response.data.id;
 
-                  _this2.formdata.salepayments.push(arr);
+                  _this4.formdata.salepayments.push(arr);
 
-                  _this2.addpayment = "";
-                  _this2.paymentcount = _this2.paymentcount + 1; //this.invoice_items.splice(index,1);
+                  _this4.addpayment = "";
+                  _this4.paymentcount = _this4.paymentcount + 1; //this.invoice_items.splice(index,1);
 
-                  if (_this2.payaction == 'Receive') {
-                    _this2.due_payment = _this2.due_payment - _this2.invoice_items[index].totalamount;
-                    _this2.paymentclass = 'receive_class';
+                  if (_this4.payaction == 'Receive') {
+                    _this4.due_payment = _this4.due_payment - _this4.invoice_items[index].totalamount;
+                    _this4.paymentclass = 'receive_class';
                   } else {
-                    if (_this2.over_paid < 0) {
-                      _this2.due_payment = parseFloat(_this2.over_paid) + parseFloat(_this2.invoice_items[index].totalamount);
-                      _this2.over_paid = _this2.due_payment > 0 ? 0 : parseFloat(Math.abs(_this2.over_paid)) - parseFloat(_this2.invoice_items[index].totalamount);
+                    if (_this4.over_paid < 0) {
+                      _this4.due_payment = parseFloat(_this4.over_paid) + parseFloat(_this4.invoice_items[index].totalamount);
+                      _this4.over_paid = _this4.due_payment > 0 ? 0 : parseFloat(Math.abs(_this4.over_paid)) - parseFloat(_this4.invoice_items[index].totalamount);
                     } else {
-                      _this2.due_payment = parseFloat(_this2.due_payment) + parseFloat(_this2.invoice_items[index].totalamount);
+                      _this4.due_payment = parseFloat(_this4.due_payment) + parseFloat(_this4.invoice_items[index].totalamount);
                     } //this.due_payment = parseFloat(this.due_payment) + parseFloat(this.invoice_items[index].totalamount);
 
 
-                    _this2.paymentclass = 'refund_class';
+                    _this4.paymentclass = 'refund_class';
                   }
 
-                  _this2.due_payment = _this2.due_payment.toFixed(2);
+                  _this4.due_payment = _this4.due_payment.toFixed(2);
 
-                  if (_this2.due_payment < 0) {
-                    _this2.over_paid = _this2.due_payment;
+                  if (_this4.due_payment < 0) {
+                    _this4.over_paid = _this4.due_payment;
                   }
 
-                  _this2.due_payment = _this2.due_payment < 0 ? 0 : _this2.due_payment;
-                  _this2.invoice_items = [{
+                  _this4.due_payment = _this4.due_payment < 0 ? 0 : _this4.due_payment;
+                  _this4.invoice_items = [{
                     payment_date: Date.now(),
                     totalamount: "",
                     bank: "ICIC Bank Accounts",
@@ -1192,24 +1335,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     action: ""
                   }];
 
-                  if (_this2.paymentcount == 0) {
-                    _this2.invoice_status = "UnPaid";
-                    _this2.payment_check = "Yes";
-                  } else if (_this2.over_paid < 0) {
-                    _this2.invoice_status = "Over Paid";
-                    _this2.payment_check = "";
-                  } else if (_this2.due_payment == 0) {
-                    _this2.invoice_status = "Paid";
-                    _this2.payment_check = "";
+                  if (_this4.paymentcount == 0) {
+                    _this4.invoice_status = "UnPaid";
+                    _this4.payment_check = "Yes";
+                  } else if (_this4.over_paid < 0) {
+                    _this4.invoice_status = "Over Paid";
+                    _this4.payment_check = "";
+                  } else if (_this4.due_payment == 0) {
+                    _this4.invoice_status = "Paid";
+                    _this4.payment_check = "";
                   } else {
-                    _this2.invoice_status = "Partially Paid";
-                    _this2.payment_check = "Yes";
+                    _this4.invoice_status = "Partially Paid";
+                    _this4.payment_check = "Yes";
                   }
 
-                  _this2.statusdata = {};
-                  _this2.statusdata.sales_id = _this2.$route.params.id;
-                  _this2.statusdata.status = _this2.invoice_status;
-                  response1 = axios.post("update_invoicestatus", _this2.statusdata);
+                  _this4.statusdata = {};
+                  _this4.statusdata.sales_id = _this4.$route.params.id;
+                  _this4.statusdata.status = _this4.invoice_status;
+                  response1 = axios.post("update_invoicestatus", _this4.statusdata);
                 } else {
                   toast = Vue.toasted.show("Something went wrong, Please try again", {
                     theme: "toasted-error",
@@ -1220,10 +1363,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 8:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
+        }, _callee2);
       }))();
     },
     onFileChange: function onFileChange(e, id) {
@@ -1313,45 +1456,45 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.urlArr[id].splice(index, 1);
     },
     uploadfile: function uploadfile(index) {
-      var _this3 = this;
+      var _this5 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
         var response, toast, _toast;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _this3.postFormData.sales_id = _this3.$route.params.id;
+                _this5.postFormData.sales_id = _this5.$route.params.id;
 
                 if (index == 1) {
-                  _this3.postFormData.kyc = _this3.uploaddata.registration;
-                  _this3.postFormData.category = 'registration';
+                  _this5.postFormData.kyc = _this5.uploaddata.registration;
+                  _this5.postFormData.category = 'registration';
                 }
 
                 if (index == 2) {
-                  _this3.postFormData.kyc = _this3.uploaddata.vat;
-                  _this3.postFormData.category = 'vat';
+                  _this5.postFormData.kyc = _this5.uploaddata.vat;
+                  _this5.postFormData.category = 'vat';
                 }
 
                 if (index == 3) {
-                  _this3.postFormData.kyc = _this3.uploaddata.iddoc;
-                  _this3.postFormData.category = 'iddoc';
+                  _this5.postFormData.kyc = _this5.uploaddata.iddoc;
+                  _this5.postFormData.category = 'iddoc';
                 }
 
                 if (index == 4) {
-                  _this3.postFormData.kyc = _this3.uploaddata.credit;
-                  _this3.postFormData.category = 'credit';
+                  _this5.postFormData.kyc = _this5.uploaddata.credit;
+                  _this5.postFormData.category = 'credit';
                 }
 
-                _context2.next = 7;
-                return axios.post("upload_kyc", (0,_object_to_formdata__WEBPACK_IMPORTED_MODULE_4__.objectToFormData)(_this3.postFormData));
+                _context3.next = 7;
+                return axios.post("upload_kyc", (0,_object_to_formdata__WEBPACK_IMPORTED_MODULE_4__.objectToFormData)(_this5.postFormData));
 
               case 7:
-                response = _context2.sent;
+                response = _context3.sent;
 
                 if (response.data.id) {
-                  _this3.note = "";
+                  _this5.note = "";
                   toast = Vue.toasted.show("Document successfully uploaded", {
                     theme: "toasted-success",
                     position: "top-center",
@@ -1367,34 +1510,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 9:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     },
     save_note: function save_note() {
-      var _this4 = this;
+      var _this6 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
         var notedata, response, toast, _toast2;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
                 notedata = {
-                  sales_id: _this4.$route.params.id,
-                  note: _this4.note
+                  sales_id: _this6.$route.params.id,
+                  note: _this6.note
                 };
-                _context3.next = 3;
+                _context4.next = 3;
                 return axios.post("create_note", notedata);
 
               case 3:
-                response = _context3.sent;
+                response = _context4.sent;
 
                 if (response.data.id) {
-                  _this4.note = "";
+                  _this6.note = "";
                   toast = Vue.toasted.show("Note successfully added", {
                     theme: "toasted-success",
                     position: "top-center",
@@ -1410,52 +1553,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3);
+        }, _callee4);
       }))();
     },
     save_refund: function save_refund(index) {
-      var _this5 = this;
+      var _this7 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
         var date, response, arr, toast;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
-                _this5.refund_items[index].sales_id = _this5.$route.params.id;
-                date = new Date(_this5.refund_items[index].refund_date);
-                _this5.refund_items[index].payment_date = date;
-                _this5.refund_items[index].action = 'Refund';
-                _context4.next = 6;
-                return axios.post("create_payment", _this5.refund_items[index]);
+                _this7.refund_items[index].sales_id = _this7.$route.params.id;
+                date = new Date(_this7.refund_items[index].refund_date);
+                _this7.refund_items[index].payment_date = date;
+                _this7.refund_items[index].action = 'Refund';
+                _context5.next = 6;
+                return axios.post("create_payment", _this7.refund_items[index]);
 
               case 6:
-                response = _context4.sent;
+                response = _context5.sent;
 
                 if (response.data.id) {
                   arr = {};
                   arr.payment_date = response.data.payment_date;
-                  arr.method = _this5.refund_items[index].method;
-                  arr.totalamount = _this5.refund_items[index].totalamount;
+                  arr.method = _this7.refund_items[index].method;
+                  arr.totalamount = _this7.refund_items[index].totalamount;
                   arr.id = response.data.id;
 
-                  _this5.formdata.salepayments.push(arr);
+                  _this7.formdata.salepayments.push(arr);
 
-                  _this5.addpayment = "";
-                  _this5.refundcount = _this5.refundcount + 1; //this.refund_items.splice(index,1);
+                  _this7.addpayment = "";
+                  _this7.refundcount = _this7.refundcount + 1; //this.refund_items.splice(index,1);
 
-                  _this5.due_payment = parseFloat(_this5.due_payment) + parseFloat(_this5.refund_items[index].totalamount);
-                  _this5.due_payment = _this5.due_payment.toFixed(2);
+                  _this7.due_payment = parseFloat(_this7.due_payment) + parseFloat(_this7.refund_items[index].totalamount);
+                  _this7.due_payment = _this7.due_payment.toFixed(2);
 
-                  if (_this5.due_payment < 0) {
-                    _this5.over_paid = _this5.due_payment;
+                  if (_this7.due_payment < 0) {
+                    _this7.over_paid = _this7.due_payment;
                   }
 
-                  _this5.due_payment = _this5.due_payment < 0 ? 0 : _this5.due_payment;
-                  _this5.refund_items = [{
+                  _this7.due_payment = _this7.due_payment < 0 ? 0 : _this7.due_payment;
+                  _this7.refund_items = [{
                     refund_date: Date.now(),
                     totalamount: "",
                     bank: "ICIC Bank Accounts",
@@ -1492,10 +1635,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 8:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4);
+        }, _callee5);
       }))();
     },
     selectrecord: function selectrecord(id) {
@@ -1508,10 +1651,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.fileid = id;
     },
     deleteFile: function deleteFile(id) {
-      var _this6 = this;
+      var _this8 = this;
 
       axios.get("/delete-file/" + id).then(function (resp) {
-        _this6.$router.go();
+        _this8.$router.go();
       })["catch"](function (error) {
         var message = "Something went wrong, Please try again";
         var toast = Vue.toasted.show(message, {
@@ -1523,10 +1666,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     deleteRefund: function deleteRefund(id) {
-      var _this7 = this;
+      var _this9 = this;
 
       axios.get("/delete-refund/" + id).then(function (resp) {
-        _this7.$router.go();
+        _this9.$router.go();
       })["catch"](function (error) {
         var message = "Something went wrong, Please try again";
         var toast = Vue.toasted.show(message, {
@@ -1538,10 +1681,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     deleteRecord: function deleteRecord(id) {
-      var _this8 = this;
+      var _this10 = this;
 
       axios.get("/delete-payment/" + id).then(function (resp) {
-        _this8.$router.go();
+        _this10.$router.go();
       })["catch"](function (error) {
         var message = "Something went wrong, Please try again";
         var toast = Vue.toasted.show(message, {
@@ -1567,53 +1710,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     apply_contra: function apply_contra() {
-      var _this9 = this;
+      var _this11 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
         var exchangedata, response, response1, toast;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context6.prev = _context6.next) {
               case 0:
                 exchangedata = {
-                  sales_id: _this9.$route.params.id,
-                  purchase_id: _this9.purchase_id,
-                  due_payment: _this9.due_payment,
+                  sales_id: _this11.$route.params.id,
+                  purchase_id: _this11.purchase_id,
+                  due_payment: _this11.due_payment,
                   action: 'Exchange'
                 };
-                _context5.next = 3;
+                _context6.next = 3;
                 return axios.post("apply_contra", exchangedata);
 
               case 3:
-                response = _context5.sent;
+                response = _context6.sent;
 
                 if (response.data.id) {
-                  _this9.due_payment = _this9.due_payment - _this9.purchase_amount;
-                  _this9.due_payment = _this9.due_payment.toFixed(2);
+                  _this11.due_payment = _this11.due_payment - _this11.purchase_amount;
+                  _this11.due_payment = _this11.due_payment.toFixed(2);
 
-                  if (_this9.due_payment < 0) {
-                    _this9.over_paid = _this9.due_payment;
+                  if (_this11.due_payment < 0) {
+                    _this11.over_paid = _this11.due_payment;
                   }
 
-                  _this9.due_payment = _this9.due_payment < 0 ? 0 : _this9.due_payment;
+                  _this11.due_payment = _this11.due_payment < 0 ? 0 : _this11.due_payment;
 
-                  if (_this9.over_paid < 0) {
-                    _this9.invoice_status = "Over Paid";
-                    _this9.payment_check = "";
-                  } else if (_this9.due_payment == 0) {
-                    _this9.invoice_status = "Paid";
-                    _this9.payment_check = "";
+                  if (_this11.over_paid < 0) {
+                    _this11.invoice_status = "Over Paid";
+                    _this11.payment_check = "";
+                  } else if (_this11.due_payment == 0) {
+                    _this11.invoice_status = "Paid";
+                    _this11.payment_check = "";
                   } else {
-                    _this9.invoice_status = "Partially Paid";
-                    _this9.payment_check = "Yes";
+                    _this11.invoice_status = "Partially Paid";
+                    _this11.payment_check = "Yes";
                   }
 
-                  _this9.statusdata = {};
-                  _this9.statusdata.sales_id = _this9.$route.params.id;
-                  _this9.statusdata.status = _this9.invoice_status;
-                  response1 = axios.post("update_invoicestatus", _this9.statusdata);
+                  _this11.statusdata = {};
+                  _this11.statusdata.sales_id = _this11.$route.params.id;
+                  _this11.statusdata.status = _this11.invoice_status;
+                  response1 = axios.post("update_invoicestatus", _this11.statusdata);
 
-                  _this9.$router.go();
+                  _this11.$router.go();
                 } else {
                   toast = Vue.toasted.show("Something went wrong, Please try again", {
                     theme: "toasted-error",
@@ -1624,51 +1767,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
               case "end":
-                return _context5.stop();
+                return _context6.stop();
             }
           }
-        }, _callee5);
+        }, _callee6);
       }))();
     }
   },
   mounted: function mounted() {
-    var _this10 = this;
+    var _this12 = this;
 
     axios.get("/sales_details/" + this.$route.params.id).then(function (response) {
-      _this10.formdata = response.data;
-      _this10.paymentcount = _this10.formdata.salepayments.length;
+      _this12.formdata = response.data;
+      _this12.paymentcount = _this12.formdata.salepayments.length;
 
       if (response.data.payment_due < 0) {
-        _this10.over_paid = response.data.payment_due.toFixed(2);
+        _this12.over_paid = response.data.payment_due.toFixed(2);
       }
 
-      _this10.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
-      _this10.due_payment = _this10.due_payment.toFixed(2);
+      _this12.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
+      _this12.due_payment = _this12.due_payment.toFixed(2);
 
-      if (_this10.paymentcount == 0) {
-        _this10.invoice_status = "UnPaid";
-        _this10.payment_check = "Yes";
-      } else if (_this10.over_paid < 0) {
-        _this10.invoice_status = "Over Paid";
-        _this10.payment_check = "";
-      } else if (_this10.due_payment == 0) {
-        _this10.invoice_status = "Paid";
-        _this10.payment_check = "";
+      if (_this12.paymentcount == 0) {
+        _this12.invoice_status = "UnPaid";
+        _this12.payment_check = "Yes";
+      } else if (_this12.over_paid < 0) {
+        _this12.invoice_status = "Over Paid";
+        _this12.payment_check = "";
+      } else if (_this12.due_payment == 0) {
+        _this12.invoice_status = "Paid";
+        _this12.payment_check = "";
       } else {
-        _this10.invoice_status = "Partially Paid";
-        _this10.payment_check = "Yes";
+        _this12.invoice_status = "Partially Paid";
+        _this12.payment_check = "Yes";
       }
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
     axios.get("/sales_history/" + this.$route.params.id).then(function (response) {
-      _this10.formdata.saleshistory = response.data;
+      _this12.formdata.saleshistory = response.data;
     })["catch"](function (error) {});
     axios.get('/sales_list/').then(function (response) {
-      _this10.sales = response.data;
+      _this12.sales = response.data;
     })["catch"](function (error) {});
     axios.get('/purchase_list/').then(function (response) {
-      _this10.purchases = response.data;
-      _this10.purchases = _this10.purchases.map(function (purchase) {
+      _this12.purchases = response.data;
+      _this12.purchases = _this12.purchases.map(function (purchase) {
         return {
           value: purchase.id,
           text: "".concat(moment__WEBPACK_IMPORTED_MODULE_1___default()(purchase.issue_date, 'YYYY-MM-DD').format('DD MMM YYYY') || '', " |   ").concat(purchase.invoiceno || '', "  | ").concat(purchase.firstname || "", "  ").concat(purchase.lastname || "", " | \xA3").concat(purchase.totalamount || "", " ")
@@ -1677,9 +1820,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
     axios.get('/fetch_kyc/' + this.$route.params.id).then(function (response) {
-      _this10.kycdocs = response.data;
-      console.log(_this10.kycdocs);
+      _this12.kycdocs = response.data;
+      console.log(_this12.kycdocs);
     })["catch"](function (error) {});
+    axios.get('/invoicesales_signature/' + this.$route.params.id).then(function (response) {
+      _this12.signaturedata = response.data;
+      _this12.signaturedata.signature_filename = '/uploads/' + response.data.signature_filename;
+    })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
+    });
   }
 });
 
@@ -12087,6 +12235,612 @@ var St=function(){function t(){this.pos=0,this.bufferLength=0,this.eof=!1,this.b
 
 /***/ }),
 
+/***/ "./node_modules/merge-images/dist/index.es2015.js":
+/*!********************************************************!*\
+  !*** ./node_modules/merge-images/dist/index.es2015.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// Defaults
+var defaultOptions = {
+	format: 'image/png',
+	quality: 0.92,
+	width: undefined,
+	height: undefined,
+	Canvas: undefined,
+	crossOrigin: undefined
+};
+
+// Return Promise
+var mergeImages = function (sources, options) {
+	if ( sources === void 0 ) sources = [];
+	if ( options === void 0 ) options = {};
+
+	return new Promise(function (resolve) {
+	options = Object.assign({}, defaultOptions, options);
+
+	// Setup browser/Node.js specific variables
+	var canvas = options.Canvas ? new options.Canvas() : window.document.createElement('canvas');
+	var Image = options.Canvas ? options.Canvas.Image : window.Image;
+	if (options.Canvas) {
+		options.quality *= 100;
+	}
+
+	// Load sources
+	var images = sources.map(function (source) { return new Promise(function (resolve, reject) {
+		// Convert sources to objects
+		if (source.constructor.name !== 'Object') {
+			source = { src: source };
+		}
+
+		// Resolve source and img when loaded
+		var img = new Image();
+		img.crossOrigin = options.crossOrigin;
+		img.onerror = function () { return reject(new Error('Couldn\'t load image')); };
+		img.onload = function () { return resolve(Object.assign({}, source, { img: img })); };
+		img.src = source.src;
+	}); });
+
+	// Get canvas context
+	var ctx = canvas.getContext('2d');
+
+	// When sources have loaded
+	resolve(Promise.all(images)
+		.then(function (images) {
+			// Set canvas dimensions
+			var getSize = function (dim) { return options[dim] || Math.max.apply(Math, images.map(function (image) { return image.img[dim]; })); };
+			canvas.width = getSize('width');
+			canvas.height = getSize('height');
+
+			// Draw images to canvas
+			images.forEach(function (image) {
+				ctx.globalAlpha = image.opacity ? image.opacity : 1;
+				return ctx.drawImage(image.img, image.x || 0, image.y || 0);
+			});
+
+			if (options.Canvas && options.format === 'image/jpeg') {
+				// Resolve data URI for node-canvas jpeg async
+				return new Promise(function (resolve) {
+					canvas.toDataURL(options.format, {
+						quality: options.quality,
+						progressive: false
+					}, function (err, jpeg) {
+						if (err) {
+							throw err;
+						}
+						resolve(jpeg);
+					});
+				});
+			}
+
+			// Resolve all other data URIs sync
+			return canvas.toDataURL(options.format, options.quality);
+		}));
+});
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (mergeImages);
+//# sourceMappingURL=index.es2015.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/signature_pad/dist/signature_pad.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/signature_pad/dist/signature_pad.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/*!
+ * Signature Pad v3.0.0-beta.4 | https://github.com/szimek/signature_pad
+ * (c) 2020 Szymon Nowak | Released under the MIT license
+ */
+
+class Point {
+    constructor(x, y, time) {
+        this.x = x;
+        this.y = y;
+        this.time = time || Date.now();
+    }
+    distanceTo(start) {
+        return Math.sqrt(Math.pow(this.x - start.x, 2) + Math.pow(this.y - start.y, 2));
+    }
+    equals(other) {
+        return this.x === other.x && this.y === other.y && this.time === other.time;
+    }
+    velocityFrom(start) {
+        return this.time !== start.time
+            ? this.distanceTo(start) / (this.time - start.time)
+            : 0;
+    }
+}
+
+class Bezier {
+    constructor(startPoint, control2, control1, endPoint, startWidth, endWidth) {
+        this.startPoint = startPoint;
+        this.control2 = control2;
+        this.control1 = control1;
+        this.endPoint = endPoint;
+        this.startWidth = startWidth;
+        this.endWidth = endWidth;
+    }
+    static fromPoints(points, widths) {
+        const c2 = this.calculateControlPoints(points[0], points[1], points[2]).c2;
+        const c3 = this.calculateControlPoints(points[1], points[2], points[3]).c1;
+        return new Bezier(points[1], c2, c3, points[2], widths.start, widths.end);
+    }
+    static calculateControlPoints(s1, s2, s3) {
+        const dx1 = s1.x - s2.x;
+        const dy1 = s1.y - s2.y;
+        const dx2 = s2.x - s3.x;
+        const dy2 = s2.y - s3.y;
+        const m1 = { x: (s1.x + s2.x) / 2.0, y: (s1.y + s2.y) / 2.0 };
+        const m2 = { x: (s2.x + s3.x) / 2.0, y: (s2.y + s3.y) / 2.0 };
+        const l1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
+        const l2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+        const dxm = m1.x - m2.x;
+        const dym = m1.y - m2.y;
+        const k = l2 / (l1 + l2);
+        const cm = { x: m2.x + dxm * k, y: m2.y + dym * k };
+        const tx = s2.x - cm.x;
+        const ty = s2.y - cm.y;
+        return {
+            c1: new Point(m1.x + tx, m1.y + ty),
+            c2: new Point(m2.x + tx, m2.y + ty),
+        };
+    }
+    length() {
+        const steps = 10;
+        let length = 0;
+        let px;
+        let py;
+        for (let i = 0; i <= steps; i += 1) {
+            const t = i / steps;
+            const cx = this.point(t, this.startPoint.x, this.control1.x, this.control2.x, this.endPoint.x);
+            const cy = this.point(t, this.startPoint.y, this.control1.y, this.control2.y, this.endPoint.y);
+            if (i > 0) {
+                const xdiff = cx - px;
+                const ydiff = cy - py;
+                length += Math.sqrt(xdiff * xdiff + ydiff * ydiff);
+            }
+            px = cx;
+            py = cy;
+        }
+        return length;
+    }
+    point(t, start, c1, c2, end) {
+        return (start * (1.0 - t) * (1.0 - t) * (1.0 - t))
+            + (3.0 * c1 * (1.0 - t) * (1.0 - t) * t)
+            + (3.0 * c2 * (1.0 - t) * t * t)
+            + (end * t * t * t);
+    }
+}
+
+function throttle(fn, wait = 250) {
+    let previous = 0;
+    let timeout = null;
+    let result;
+    let storedContext;
+    let storedArgs;
+    const later = () => {
+        previous = Date.now();
+        timeout = null;
+        result = fn.apply(storedContext, storedArgs);
+        if (!timeout) {
+            storedContext = null;
+            storedArgs = [];
+        }
+    };
+    return function wrapper(...args) {
+        const now = Date.now();
+        const remaining = wait - (now - previous);
+        storedContext = this;
+        storedArgs = args;
+        if (remaining <= 0 || remaining > wait) {
+            if (timeout) {
+                clearTimeout(timeout);
+                timeout = null;
+            }
+            previous = now;
+            result = fn.apply(storedContext, storedArgs);
+            if (!timeout) {
+                storedContext = null;
+                storedArgs = [];
+            }
+        }
+        else if (!timeout) {
+            timeout = window.setTimeout(later, remaining);
+        }
+        return result;
+    };
+}
+
+class SignaturePad {
+    constructor(canvas, options = {}) {
+        this.canvas = canvas;
+        this.options = options;
+        this._handleMouseDown = (event) => {
+            if (event.which === 1) {
+                this._mouseButtonDown = true;
+                this._strokeBegin(event);
+            }
+        };
+        this._handleMouseMove = (event) => {
+            if (this._mouseButtonDown) {
+                this._strokeMoveUpdate(event);
+            }
+        };
+        this._handleMouseUp = (event) => {
+            if (event.which === 1 && this._mouseButtonDown) {
+                this._mouseButtonDown = false;
+                this._strokeEnd(event);
+            }
+        };
+        this._handleTouchStart = (event) => {
+            event.preventDefault();
+            if (event.targetTouches.length === 1) {
+                const touch = event.changedTouches[0];
+                this._strokeBegin(touch);
+            }
+        };
+        this._handleTouchMove = (event) => {
+            event.preventDefault();
+            const touch = event.targetTouches[0];
+            this._strokeMoveUpdate(touch);
+        };
+        this._handleTouchEnd = (event) => {
+            const wasCanvasTouched = event.target === this.canvas;
+            if (wasCanvasTouched) {
+                event.preventDefault();
+                const touch = event.changedTouches[0];
+                this._strokeEnd(touch);
+            }
+        };
+        this.velocityFilterWeight = options.velocityFilterWeight || 0.7;
+        this.minWidth = options.minWidth || 0.5;
+        this.maxWidth = options.maxWidth || 2.5;
+        this.throttle = ('throttle' in options ? options.throttle : 16);
+        this.minDistance = ('minDistance' in options
+            ? options.minDistance
+            : 5);
+        this.dotSize =
+            options.dotSize ||
+                function dotSize() {
+                    return (this.minWidth + this.maxWidth) / 2;
+                };
+        this.penColor = options.penColor || 'black';
+        this.backgroundColor = options.backgroundColor || 'rgba(0,0,0,0)';
+        this.onBegin = options.onBegin;
+        this.onEnd = options.onEnd;
+        this._strokeMoveUpdate = this.throttle
+            ? throttle(SignaturePad.prototype._strokeUpdate, this.throttle)
+            : SignaturePad.prototype._strokeUpdate;
+        this._ctx = canvas.getContext('2d');
+        this.clear();
+        this.on();
+    }
+    clear() {
+        const { _ctx: ctx, canvas } = this;
+        ctx.fillStyle = this.backgroundColor;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        this._data = [];
+        this._reset();
+        this._isEmpty = true;
+    }
+    fromDataURL(dataUrl, options = {}, callback) {
+        const image = new Image();
+        const ratio = options.ratio || window.devicePixelRatio || 1;
+        const width = options.width || this.canvas.width / ratio;
+        const height = options.height || this.canvas.height / ratio;
+        this._reset();
+        image.onload = () => {
+            this._ctx.drawImage(image, 0, 0, width, height);
+            if (callback) {
+                callback();
+            }
+        };
+        image.onerror = (error) => {
+            if (callback) {
+                callback(error);
+            }
+        };
+        image.src = dataUrl;
+        this._isEmpty = false;
+    }
+    toDataURL(type = 'image/png', encoderOptions) {
+        switch (type) {
+            case 'image/svg+xml':
+                return this._toSVG();
+            default:
+                return this.canvas.toDataURL(type, encoderOptions);
+        }
+    }
+    on() {
+        this.canvas.style.touchAction = 'none';
+        this.canvas.style.msTouchAction = 'none';
+        if (window.PointerEvent) {
+            this._handlePointerEvents();
+        }
+        else {
+            this._handleMouseEvents();
+            if ('ontouchstart' in window) {
+                this._handleTouchEvents();
+            }
+        }
+    }
+    off() {
+        this.canvas.style.touchAction = 'auto';
+        this.canvas.style.msTouchAction = 'auto';
+        this.canvas.removeEventListener('pointerdown', this._handleMouseDown);
+        this.canvas.removeEventListener('pointermove', this._handleMouseMove);
+        document.removeEventListener('pointerup', this._handleMouseUp);
+        this.canvas.removeEventListener('mousedown', this._handleMouseDown);
+        this.canvas.removeEventListener('mousemove', this._handleMouseMove);
+        document.removeEventListener('mouseup', this._handleMouseUp);
+        this.canvas.removeEventListener('touchstart', this._handleTouchStart);
+        this.canvas.removeEventListener('touchmove', this._handleTouchMove);
+        this.canvas.removeEventListener('touchend', this._handleTouchEnd);
+    }
+    isEmpty() {
+        return this._isEmpty;
+    }
+    fromData(pointGroups) {
+        this.clear();
+        this._fromData(pointGroups, ({ color, curve }) => this._drawCurve({ color, curve }), ({ color, point }) => this._drawDot({ color, point }));
+        this._data = pointGroups;
+    }
+    toData() {
+        return this._data;
+    }
+    _strokeBegin(event) {
+        const newPointGroup = {
+            color: this.penColor,
+            points: [],
+        };
+        if (typeof this.onBegin === 'function') {
+            this.onBegin(event);
+        }
+        this._data.push(newPointGroup);
+        this._reset();
+        this._strokeUpdate(event);
+    }
+    _strokeUpdate(event) {
+        if (this._data.length === 0) {
+            this._strokeBegin(event);
+            return;
+        }
+        const x = event.clientX;
+        const y = event.clientY;
+        const point = this._createPoint(x, y);
+        const lastPointGroup = this._data[this._data.length - 1];
+        const lastPoints = lastPointGroup.points;
+        const lastPoint = lastPoints.length > 0 && lastPoints[lastPoints.length - 1];
+        const isLastPointTooClose = lastPoint
+            ? point.distanceTo(lastPoint) <= this.minDistance
+            : false;
+        const color = lastPointGroup.color;
+        if (!lastPoint || !(lastPoint && isLastPointTooClose)) {
+            const curve = this._addPoint(point);
+            if (!lastPoint) {
+                this._drawDot({ color, point });
+            }
+            else if (curve) {
+                this._drawCurve({ color, curve });
+            }
+            lastPoints.push({
+                time: point.time,
+                x: point.x,
+                y: point.y,
+            });
+        }
+    }
+    _strokeEnd(event) {
+        this._strokeUpdate(event);
+        if (typeof this.onEnd === 'function') {
+            this.onEnd(event);
+        }
+    }
+    _handlePointerEvents() {
+        this._mouseButtonDown = false;
+        this.canvas.addEventListener('pointerdown', this._handleMouseDown);
+        this.canvas.addEventListener('pointermove', this._handleMouseMove);
+        document.addEventListener('pointerup', this._handleMouseUp);
+    }
+    _handleMouseEvents() {
+        this._mouseButtonDown = false;
+        this.canvas.addEventListener('mousedown', this._handleMouseDown);
+        this.canvas.addEventListener('mousemove', this._handleMouseMove);
+        document.addEventListener('mouseup', this._handleMouseUp);
+    }
+    _handleTouchEvents() {
+        this.canvas.addEventListener('touchstart', this._handleTouchStart);
+        this.canvas.addEventListener('touchmove', this._handleTouchMove);
+        this.canvas.addEventListener('touchend', this._handleTouchEnd);
+    }
+    _reset() {
+        this._lastPoints = [];
+        this._lastVelocity = 0;
+        this._lastWidth = (this.minWidth + this.maxWidth) / 2;
+        this._ctx.fillStyle = this.penColor;
+    }
+    _createPoint(x, y) {
+        const rect = this.canvas.getBoundingClientRect();
+        return new Point(x - rect.left, y - rect.top, new Date().getTime());
+    }
+    _addPoint(point) {
+        const { _lastPoints } = this;
+        _lastPoints.push(point);
+        if (_lastPoints.length > 2) {
+            if (_lastPoints.length === 3) {
+                _lastPoints.unshift(_lastPoints[0]);
+            }
+            const widths = this._calculateCurveWidths(_lastPoints[1], _lastPoints[2]);
+            const curve = Bezier.fromPoints(_lastPoints, widths);
+            _lastPoints.shift();
+            return curve;
+        }
+        return null;
+    }
+    _calculateCurveWidths(startPoint, endPoint) {
+        const velocity = this.velocityFilterWeight * endPoint.velocityFrom(startPoint) +
+            (1 - this.velocityFilterWeight) * this._lastVelocity;
+        const newWidth = this._strokeWidth(velocity);
+        const widths = {
+            end: newWidth,
+            start: this._lastWidth,
+        };
+        this._lastVelocity = velocity;
+        this._lastWidth = newWidth;
+        return widths;
+    }
+    _strokeWidth(velocity) {
+        return Math.max(this.maxWidth / (velocity + 1), this.minWidth);
+    }
+    _drawCurveSegment(x, y, width) {
+        const ctx = this._ctx;
+        ctx.moveTo(x, y);
+        ctx.arc(x, y, width, 0, 2 * Math.PI, false);
+        this._isEmpty = false;
+    }
+    _drawCurve({ color, curve }) {
+        const ctx = this._ctx;
+        const widthDelta = curve.endWidth - curve.startWidth;
+        const drawSteps = Math.floor(curve.length()) * 2;
+        ctx.beginPath();
+        ctx.fillStyle = color;
+        for (let i = 0; i < drawSteps; i += 1) {
+            const t = i / drawSteps;
+            const tt = t * t;
+            const ttt = tt * t;
+            const u = 1 - t;
+            const uu = u * u;
+            const uuu = uu * u;
+            let x = uuu * curve.startPoint.x;
+            x += 3 * uu * t * curve.control1.x;
+            x += 3 * u * tt * curve.control2.x;
+            x += ttt * curve.endPoint.x;
+            let y = uuu * curve.startPoint.y;
+            y += 3 * uu * t * curve.control1.y;
+            y += 3 * u * tt * curve.control2.y;
+            y += ttt * curve.endPoint.y;
+            const width = Math.min(curve.startWidth + ttt * widthDelta, this.maxWidth);
+            this._drawCurveSegment(x, y, width);
+        }
+        ctx.closePath();
+        ctx.fill();
+    }
+    _drawDot({ color, point, }) {
+        const ctx = this._ctx;
+        const width = typeof this.dotSize === 'function' ? this.dotSize() : this.dotSize;
+        ctx.beginPath();
+        this._drawCurveSegment(point.x, point.y, width);
+        ctx.closePath();
+        ctx.fillStyle = color;
+        ctx.fill();
+    }
+    _fromData(pointGroups, drawCurve, drawDot) {
+        for (const group of pointGroups) {
+            const { color, points } = group;
+            if (points.length > 1) {
+                for (let j = 0; j < points.length; j += 1) {
+                    const basicPoint = points[j];
+                    const point = new Point(basicPoint.x, basicPoint.y, basicPoint.time);
+                    this.penColor = color;
+                    if (j === 0) {
+                        this._reset();
+                    }
+                    const curve = this._addPoint(point);
+                    if (curve) {
+                        drawCurve({ color, curve });
+                    }
+                }
+            }
+            else {
+                this._reset();
+                drawDot({
+                    color,
+                    point: points[0],
+                });
+            }
+        }
+    }
+    _toSVG() {
+        const pointGroups = this._data;
+        const ratio = Math.max(window.devicePixelRatio || 1, 1);
+        const minX = 0;
+        const minY = 0;
+        const maxX = this.canvas.width / ratio;
+        const maxY = this.canvas.height / ratio;
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('width', this.canvas.width.toString());
+        svg.setAttribute('height', this.canvas.height.toString());
+        this._fromData(pointGroups, ({ color, curve }) => {
+            const path = document.createElement('path');
+            if (!isNaN(curve.control1.x) &&
+                !isNaN(curve.control1.y) &&
+                !isNaN(curve.control2.x) &&
+                !isNaN(curve.control2.y)) {
+                const attr = `M ${curve.startPoint.x.toFixed(3)},${curve.startPoint.y.toFixed(3)} ` +
+                    `C ${curve.control1.x.toFixed(3)},${curve.control1.y.toFixed(3)} ` +
+                    `${curve.control2.x.toFixed(3)},${curve.control2.y.toFixed(3)} ` +
+                    `${curve.endPoint.x.toFixed(3)},${curve.endPoint.y.toFixed(3)}`;
+                path.setAttribute('d', attr);
+                path.setAttribute('stroke-width', (curve.endWidth * 2.25).toFixed(3));
+                path.setAttribute('stroke', color);
+                path.setAttribute('fill', 'none');
+                path.setAttribute('stroke-linecap', 'round');
+                svg.appendChild(path);
+            }
+        }, ({ color, point }) => {
+            const circle = document.createElement('circle');
+            const dotSize = typeof this.dotSize === 'function' ? this.dotSize() : this.dotSize;
+            circle.setAttribute('r', dotSize.toString());
+            circle.setAttribute('cx', point.x.toString());
+            circle.setAttribute('cy', point.y.toString());
+            circle.setAttribute('fill', color);
+            svg.appendChild(circle);
+        });
+        const prefix = 'data:image/svg+xml;base64,';
+        const header = '<svg' +
+            ' xmlns="http://www.w3.org/2000/svg"' +
+            ' xmlns:xlink="http://www.w3.org/1999/xlink"' +
+            ` viewBox="${minX} ${minY} ${maxX} ${maxY}"` +
+            ` width="${maxX}"` +
+            ` height="${maxY}"` +
+            '>';
+        let body = svg.innerHTML;
+        if (body === undefined) {
+            const dummy = document.createElement('dummy');
+            const nodes = svg.childNodes;
+            dummy.innerHTML = '';
+            for (let i = 0; i < nodes.length; i += 1) {
+                dummy.appendChild(nodes[i].cloneNode(true));
+            }
+            body = dummy.innerHTML;
+        }
+        const footer = '</svg>';
+        const data = header + body + footer;
+        return prefix + btoa(data);
+    }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SignaturePad);
+//# sourceMappingURL=signature_pad.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewsales.vue?vue&type=style&index=0&id=483c8698&scoped=true&lang=css&":
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewsales.vue?vue&type=style&index=0&id=483c8698&scoped=true&lang=css& ***!
@@ -13412,6 +14166,30 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
+                  !_vm.signaturedata.signature_filename
+                    ? _c(
+                        "span",
+                        {
+                          staticClass: "material-symbols-outlined",
+                          staticStyle: {
+                            color: "#00AA5B",
+                            "background-color": "#EDF2F6",
+                            margin: "3% 0% 3% 0%",
+                            "border-radius": "50%",
+                            padding: "11%",
+                            "font-size": "23px",
+                            cursor: "pointer"
+                          },
+                          attrs: {
+                            title: "Add Signature",
+                            "data-toggle": "modal",
+                            "data-target": "#dosign"
+                          }
+                        },
+                        [_vm._v("draw")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
                   _c(
                     "span",
                     {
@@ -13478,7 +14256,66 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _vm._m(0)
+          _c(
+            "div",
+            {
+              staticClass:
+                "d-sm-flex align-items-center justify-content-between",
+              staticStyle: { "margin-left": "-20%" }
+            },
+            [
+              _c("i", {
+                staticClass: "fas fa-link",
+                staticStyle: {
+                  color: "#48c6f6",
+                  "background-color": "#EDF2F6",
+                  "border-radius": "50%",
+                  padding: "22%",
+                  "margin-right": "35%",
+                  "font-size": "15px"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: {
+                    "background-color": "#EDF2F6",
+                    "border-radius": "50%",
+                    padding: "18%",
+                    "margin-right": "35%",
+                    color: "red",
+                    cursor: "pointer"
+                  },
+                  attrs: {
+                    "data-toggle": "modal",
+                    "data-target": "#deleteInvoiceConfirmation"
+                  }
+                },
+                [_vm._v("delete")]
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass: "material-symbols-outlined",
+                  staticStyle: {
+                    "background-color": "#EDF2F6",
+                    "border-radius": "50%",
+                    padding: "18%",
+                    cursor: "pointer"
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.edit_invoice()
+                    }
+                  }
+                },
+                [_vm._v("edit")]
+              )
+            ]
+          )
         ]
       ),
       _vm._v(" "),
@@ -13732,7 +14569,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(1),
+                      _vm._m(0),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -13788,11 +14625,28 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6" }),
+              _c("div", { staticClass: "col-md-6" }, [
+                _vm.signaturedata.signature_filename
+                  ? _c("div", [
+                      _c("img", {
+                        staticStyle: { height: "100px" },
+                        attrs: { src: _vm.signaturedata.signature_filename }
+                      }),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "ml-3" }, [
+                        _vm._v("Signed By: "),
+                        _c("span", { staticStyle: { "font-weight": "600" } }, [
+                          _vm._v(_vm._s(_vm.signaturedata.signed_by))
+                        ])
+                      ])
+                    ])
+                  : _vm._e()
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
-              _vm._m(2),
+              _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2 sum-price" }, [
                 _c("ul", [
@@ -13995,7 +14849,7 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "modal-content" }, [
-                        _vm._m(3),
+                        _vm._m(2),
                         _vm._v(" "),
                         _c("div", { staticClass: "modal-body" }, [
                           _c(
@@ -15055,7 +15909,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._m(4),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -15473,9 +16327,9 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(5),
+                _vm._m(4),
                 _vm._v(" "),
-                _vm._m(6),
+                _vm._m(5),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(
@@ -15537,9 +16391,9 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(7),
+                _vm._m(6),
                 _vm._v(" "),
-                _vm._m(8),
+                _vm._m(7),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(
@@ -15581,64 +16435,187 @@ var render = function() {
             ]
           )
         ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "deleteInvoiceConfirmation",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "deleteInvoiceConfirmationLabel",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "modal-dialog", attrs: { role: "document" } },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(8),
+                _vm._v(" "),
+                _vm._m(9),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Cancel")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb",
+                      staticStyle: {
+                        "background-color": "#ff0000 !important",
+                        color: "#fff"
+                      },
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteSalesInvoice()
+                        }
+                      }
+                    },
+                    [_vm._v("Delete")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "dosign",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "dosign",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "modal-dialog", attrs: { role: "document" } },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(10),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "modal-body" },
+                  [
+                    _c("label", [_vm._v("Signature")]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("VueSignaturePad", {
+                      ref: "signaturePad",
+                      staticStyle: { border: "1px solid #ccc" },
+                      attrs: {
+                        width: "560px",
+                        height: "250px",
+                        options: {
+                          onBegin: function() {
+                            _vm.$refs.signaturePad.resizeCanvas()
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.no_sign
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v("Please add signature")
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "required-field" }, [
+                      _vm._v("Signed By")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.signed_by,
+                          expression: "signed_by"
+                        }
+                      ],
+                      staticClass: "form-control form-control-user",
+                      attrs: { type: "text", placeholder: "" },
+                      domProps: { value: _vm.signed_by },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.signed_by = $event.target.value
+                        }
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb btn-nwidth",
+                      staticStyle: { "background-color": "#7adaaa !important" },
+                      attrs: { type: "button" },
+                      on: { click: _vm.save }
+                    },
+                    [_vm._v("Save")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb btn-nwidth",
+                      staticStyle: { "background-color": "#7adaaa !important" },
+                      attrs: { type: "button" },
+                      on: { click: _vm.undo }
+                    },
+                    [_vm._v("Undo")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn admin-btn mobile-mb btn-nwidth",
+                      attrs: {
+                        type: "button",
+                        "data-dismiss": "modal",
+                        "aria-label": "Close"
+                      }
+                    },
+                    [_vm._v("Cancel")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]
       )
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "d-sm-flex align-items-center justify-content-between",
-        staticStyle: { "margin-left": "-20%" }
-      },
-      [
-        _c("i", {
-          staticClass: "fas fa-link",
-          staticStyle: {
-            color: "#48c6f6",
-            "background-color": "#EDF2F6",
-            "border-radius": "50%",
-            padding: "22%",
-            "margin-right": "35%",
-            "font-size": "15px"
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "material-symbols-outlined",
-            staticStyle: {
-              "background-color": "#EDF2F6",
-              "border-radius": "50%",
-              padding: "18%",
-              "margin-right": "35%"
-            }
-          },
-          [_vm._v("edit")]
-        ),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "material-symbols-outlined",
-            staticStyle: {
-              "background-color": "#EDF2F6",
-              "border-radius": "50%",
-              padding: "18%",
-              color: "red"
-            }
-          },
-          [_vm._v("delete")]
-        )
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -15823,6 +16800,85 @@ var staticRenderFns = [
           "\n                              Are you sure you want to delete this record?\n                          "
         )
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h6",
+        {
+          staticClass: "modal-title",
+          attrs: { id: "deleteInvoiceConfirmationLabel" }
+        },
+        [_vm._v("Confirmation")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [
+          _c(
+            "span",
+            {
+              staticStyle: { color: "#fff" },
+              attrs: { "aria-hidden": "true" }
+            },
+            [_vm._v("×")]
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("p", { staticStyle: { color: "#000", "font-size": "14px" } }, [
+        _vm._v("Are you sure you want to delete this Sales Invoice?")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h6", { staticClass: "modal-title", attrs: { id: "dosignh1" } }, [
+        _vm._v("Add Signature")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [
+          _c(
+            "span",
+            {
+              staticStyle: { color: "#fff" },
+              attrs: { "aria-hidden": "true" }
+            },
+            [_vm._v("×")]
+          )
+        ]
+      )
     ])
   }
 ]
@@ -20837,6 +21893,18 @@ module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u20
 
 /******/ });
 //# sourceMappingURL=VueSearchSelect.common.js.map
+
+/***/ }),
+
+/***/ "./node_modules/vue-signature-pad/dist/vue-signature-pad.common.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/vue-signature-pad/dist/vue-signature-pad.common.js ***!
+  \*************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+function _interopDefault(a){return a&&"object"==typeof a&&"default"in a?a["default"]:a}var SignaturePad=_interopDefault(__webpack_require__(/*! signature_pad */ "./node_modules/signature_pad/dist/signature_pad.js")),mergeImages=_interopDefault(__webpack_require__(/*! merge-images */ "./node_modules/merge-images/dist/index.es2015.js")),IMAGE_TYPES=["image/png","image/jpeg","image/svg+xml"],checkSaveType=function(a){return IMAGE_TYPES.includes(a)},DEFAULT_OPTIONS={dotSize:3/2,minWidth:.5,maxWidth:2.5,throttle:16,minDistance:5,backgroundColor:"rgba(0,0,0,0)",penColor:"black",velocityFilterWeight:.7,onBegin:function(){},onEnd:function(){}},convert2NonReactive=function(a){return JSON.parse(JSON.stringify(a))},TRANSPARENT_PNG={src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",x:0,y:0},VueSignaturePad={name:"VueSignaturePad",props:{width:{type:String,default:"100%"},height:{type:String,default:"100%"},customStyle:{type:Object},options:{type:Object,default:function(){return{}}},images:{type:Array,default:function(){return[]}}},data:function(){return{signaturePad:{},cacheImages:[],signatureData:TRANSPARENT_PNG,onResizeHandler:null}},mounted:function(){var a=this,b=a.options,c=this.$refs.signaturePadCanvas,d=new SignaturePad(c,Object.assign({},DEFAULT_OPTIONS,b));this.signaturePad=d,this.onResizeHandler=this.resizeCanvas.bind(this),window.addEventListener("resize",this.onResizeHandler,!1),this.resizeCanvas()},beforeDestroy:function(){this.onResizeHandler&&window.removeEventListener("resize",this.onResizeHandler,!1)},methods:{resizeCanvas:function(){var a=this.$refs.signaturePadCanvas,b=this.signaturePad.toData(),c=Math.max(window.devicePixelRatio||1,1);a.width=a.offsetWidth*c,a.height=a.offsetHeight*c,a.getContext("2d").scale(c,c),this.signaturePad.clear(),this.signatureData=TRANSPARENT_PNG,this.signaturePad.fromData(b)},saveSignature:function(a,b){void 0===a&&(a=IMAGE_TYPES[0]);var c=this,d=c.signaturePad,e={isEmpty:!1,data:void 0};if(!checkSaveType(a)){var f=IMAGE_TYPES.join(", ");throw new Error("The Image type is incorrect! We are support "+f+" types.")}return d.isEmpty()?Object.assign({},e,{isEmpty:!0}):(this.signatureData=d.toDataURL(a,b),Object.assign({},e,{data:this.signatureData}))},undoSignature:function(){var a=this,b=a.signaturePad,c=b.toData();if(c)return b.fromData(c.slice(0,-1))},mergeImageAndSignature:function(a){return this.signatureData=a,mergeImages(this.images.concat(this.cacheImages,[this.signatureData]))},addImages:function(a){return void 0===a&&(a=[]),this.cacheImages=this.cacheImages.concat(a),mergeImages(this.images.concat(this.cacheImages,[this.signatureData]))},fromDataURL:function(a,b,c){return void 0===b&&(b={}),this.signaturePad.fromDataURL(a,b,c)},fromData:function(a){return this.signaturePad.fromData(a)},toData:function(){return this.signaturePad.toData()},lockSignaturePad:function(){return this.signaturePad.off()},openSignaturePad:function(){return this.signaturePad.on()},isEmpty:function(){return this.signaturePad.isEmpty()},getPropImagesAndCacheImages:function(){return this.propsImagesAndCustomImages},clearCacheImages:function(){return this.cacheImages=[],this.cacheImages},clearSignature:function(){return this.signaturePad.clear()}},computed:{propsImagesAndCustomImages:function(){var a=convert2NonReactive(this.images),b=convert2NonReactive(this.cacheImages);return a.concat(b)}},watch:{options:function(a){var b=this;Object.keys(a).forEach(function(c){b.signaturePad[c]&&(b.signaturePad[c]=a[c])})}},render:function(a){var b=this,c=b.width,d=b.height,e=b.customStyle;return a("div",{style:Object.assign({},{width:c,height:d},e)},[a("canvas",{style:{width:"100%",height:"100%"},ref:"signaturePadCanvas"})])}};VueSignaturePad.install=function(a){return a.component(VueSignaturePad.name,VueSignaturePad)},"undefined"!=typeof window&&window.Vue&&window.Vue.use(VueSignaturePad),module.exports=VueSignaturePad;
+
 
 /***/ }),
 
