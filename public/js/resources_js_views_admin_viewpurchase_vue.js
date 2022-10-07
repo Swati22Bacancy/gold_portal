@@ -16359,7 +16359,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       signaturedata: {
         signature_filename: '',
         signed_by: ''
-      }
+      },
+      sign_flag: ''
     };
   },
   methods: {
@@ -16653,6 +16654,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     });
     axios.get('/invoice_signature/' + this.$route.params.id).then(function (response) {
       _this6.signaturedata = response.data;
+      _this6.sign_flag = response.data.signature_filename;
       _this6.signaturedata.signature_filename = '/uploads/' + response.data.signature_filename;
       console.log(_this6.signaturedata.signature_filename);
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
@@ -17544,7 +17546,7 @@ var render = function() {
                 "d-sm-flex align-items-center justify-content-between"
             },
             [
-              !_vm.signaturedata.signature_filename
+              !_vm.sign_flag
                 ? _c(
                     "span",
                     {
@@ -17934,7 +17936,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-6" }, [
-                _vm.signaturedata.signature_filename
+                _vm.sign_flag
                   ? _c("div", [
                       _c("img", {
                         staticStyle: { height: "100px" },
