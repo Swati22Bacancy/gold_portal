@@ -156,8 +156,7 @@
     </div>
   </div> 
   <div>
-    <p class="s4"
-      style="padding-left: 49pt; text-indent: 0pt; text-align: center">
+    <p class="s4" style="padding-left: 49pt; text-indent: 0pt; text-align: center">
       Goldbank T/AS Gold Warehouse Limited, 215 The Broadway, Southall,
       Middlesex, UB1 1NB. Registered in England Number 08101794.<br>
       <a href="mailto:accounts@gold-bank.co.uk" class="s5" target="_blank">
