@@ -34,7 +34,7 @@
        pdf-orientation="portrait"
        pdf-content-width="800px"
        ref="html2Pdf"
-   >
+>
    <section slot="pdf-content">
         <div style=" padding: 0px 6%;">
         <div class="container" style=" padding: 30px 6%;">
@@ -107,7 +107,7 @@
         <thead>
           <tr>
             <th style="width:350px">Description</th>
-            <th class="p" style="width: 200px;">VAT</th>
+            <th style="width: 200px;">VAT</th>
             <th>Amount GBP</th>
           </tr>
         </thead>
@@ -1694,11 +1694,7 @@ export default {
 };
 </script>
 <style scoped>
-    * {
-        margin: 0;
-        padding: 0;
-        text-indent: 0;
-      }
+
 #createinvoice-datatable thead {
   background: #3376c2;
   color: #fff;
@@ -1911,15 +1907,7 @@ h2 {
         font-size: 12pt;
         margin: 0pt;
       }
-.p{
-        color: black;
-        font-family: Calibri, sans-serif;
-        font-style: normal;
-        font-weight: normal;
-        text-decoration: none;
-        font-size: 12px;
-        margin: 0pt;
-  }
+
       .s1 {
         color: black;
         font-family: Calibri, sans-serif;
