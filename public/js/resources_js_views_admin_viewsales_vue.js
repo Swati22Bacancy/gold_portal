@@ -1027,6 +1027,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -1049,6 +1051,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       addrefund: "",
       theme: "cust-type",
       formdata: {},
+      companydata: {},
       rows: [],
       urlArr: {
         1: [],
@@ -1109,10 +1112,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       purchases: [],
       purchase_id: "",
       purchase_amount: "",
+      signed_by: '',
+      no_sign: false,
       signaturedata: {
         signature_filename: '',
         signed_by: ''
-      }
+      },
+      sign_flag: ''
     };
   },
   methods: {
@@ -1776,6 +1782,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     var _this12 = this;
 
+    axios.get('/saved_companydetails/').then(function (response) {
+      _this12.companydata = response.data;
+    })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
+    });
     axios.get("/sales_details/" + this.$route.params.id).then(function (response) {
       _this12.formdata = response.data;
       _this12.paymentcount = _this12.formdata.salepayments.length;
@@ -1824,6 +1834,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     })["catch"](function (error) {});
     axios.get('/invoicesales_signature/' + this.$route.params.id).then(function (response) {
       _this12.signaturedata = response.data;
+      _this12.sign_flag = response.data.signature_filename;
       _this12.signaturedata.signature_filename = '/uploads/' + response.data.signature_filename;
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
@@ -1946,7 +1957,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#createinvoice-datatable thead[data-v-483c8698] {\r\n  background: #3376c2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n  font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.download-containter[data-v-483c8698]{\r\n  margin-top: 200px;\r\n  margin-left: 600px;\n}\n.choose-cont[data-v-483c8698]{\r\n    display: flex;\r\n    /* justify-content: center; */\n}\n.imagePreview[data-v-483c8698] {\r\n  width: 70px;\n}\n.previewContainer[data-v-483c8698] {\r\n  position: relative;\n}\n.closeIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 51px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.closeIcon i[data-v-483c8698]\r\n{\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.downloadIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 30px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.downloadIcon i[data-v-483c8698]\r\n{\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.salesdata[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-483c8698] {\r\n  border-radius: 50%;\n}\n.btn-container[data-v-483c8698] {\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width: 100% !important;\n}\n.selectedclr[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-483c8698] {\r\n  width: auto;\r\n  font-size: 13px !important;\r\n  color: #000;\r\n  border: none;\r\n  height: 40px;\r\n  padding: 5px 20px;\r\n  border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698] {\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698] {\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-483c8698] {\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698] {\r\n  background-color: #edf2f6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus,\r\n.btn.focus[data-v-483c8698] {\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-483c8698] {\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698] {\r\n  border: 1px solid #d6e3f2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698] {\r\n  width: 130px;\n}\n.sum-price ul[data-v-483c8698] {\r\n  list-style-type: none;\n}\n.sum-price li[data-v-483c8698] {\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n}\n.viewsales-div > p[data-v-483c8698] {\r\n  color: #3376c2;\r\n  font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n  color: #000;\r\n  font-size: 13px;\n}\n.class_red[data-v-483c8698]\r\n{\r\n  color:rgb(255 0 0);\n}\n.class_green[data-v-483c8698]\r\n{\r\n  color:#7adaaa;\n}\n.bold_font[data-v-483c8698]\r\n{\r\n    font-weight: 600;\n}\n.invoicelist a[data-v-483c8698] \r\n{\r\n    color: #000;\n}\n#saleshistory-datatable thead[data-v-483c8698]\r\n{\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#saleshistory-datatable thead th[data-v-483c8698]\r\n{\r\n    font-weight: 100;\n}\n#kyc-datatable[data-v-483c8698]\r\n{\r\n    font-size: 13px;\n}\n#applycontra .modal-dialog[data-v-483c8698]\r\n{\r\n    max-width: 700px;\n}\n.red-color[data-v-483c8698]\r\n{\r\n    color:red !important;\n}\n.container[data-v-483c8698] {\r\n    padding: 0px 6%;\r\n    margin-top: 0px;\n}\n.col-sm[data-v-483c8698] {\r\n    padding: 0 10px;\n}\n.row[data-v-483c8698] {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\n}\nh2[data-v-483c8698] {\r\n        color: black;\r\n        font-family: Calibri, sans-serif;\r\n        font-style: normal;\r\n        font-weight: bold;\r\n        text-decoration: none;\r\n        font-size: 12pt;\n}\n.cont2 p[data-v-483c8698]{\r\n        color: black;\r\n        font-family: Calibri, sans-serif;\r\n        font-style: normal;\r\n        font-weight: normal;\r\n        text-decoration: none;\r\n        font-size: 12pt;\r\n        margin: 0pt;\n}\n.s1[data-v-483c8698] {\r\n        color: black;\r\n        font-family: Calibri, sans-serif;\r\n        font-style: normal;\r\n        font-weight: normal;\r\n        text-decoration: none;\r\n        font-size: 22pt;\n}\n.s3[data-v-483c8698] {\r\n        color: black;\r\n        font-family: Calibri;\r\n        font-style: normal;\r\n        font-weight: normal;\r\n        text-decoration: underline;\r\n        font-size: 9px;\n}\n.s4[data-v-483c8698],.s5[data-v-483c8698] {\r\n        color: black;\r\n        font-family: Calibri;\r\n        font-style: normal;\r\n        font-weight: normal;\r\n        text-decoration: none;\r\n        font-size: 9px;\n}\nth[data-v-483c8698], td[data-v-483c8698]{\r\n        border-bottom:1px solid black;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.pdf_section *[data-v-483c8698] {\r\n        margin: 0;\r\n        padding: 0;\r\n        text-indent: 0;\n}\n#dosign .modal-dialog[data-v-483c8698]\r\n{\r\n    max-width: 600px;\n}\n#createinvoice-datatable thead[data-v-483c8698] {\r\n  background: #3376c2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n  font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.download-containter[data-v-483c8698]{\r\n  margin-top: 200px;\r\n  margin-left: 600px;\n}\n.choose-cont[data-v-483c8698]{\r\n    display: flex;\r\n    /* justify-content: center; */\n}\n.imagePreview[data-v-483c8698] {\r\n  width: 70px;\n}\n.previewContainer[data-v-483c8698] {\r\n  position: relative;\n}\n.closeIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 51px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.closeIcon i[data-v-483c8698]\r\n{\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.downloadIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 30px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.downloadIcon i[data-v-483c8698]\r\n{\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.salesdata[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-483c8698] {\r\n  border-radius: 50%;\n}\n.btn-container[data-v-483c8698] {\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width: 100% !important;\n}\n.selectedclr[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-483c8698] {\r\n  width: auto;\r\n  font-size: 13px !important;\r\n  color: #000;\r\n  border: none;\r\n  height: 40px;\r\n  padding: 5px 20px;\r\n  border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698] {\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698] {\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-483c8698] {\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698] {\r\n  background-color: #edf2f6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus,\r\n.btn.focus[data-v-483c8698] {\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-483c8698] {\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698] {\r\n  border: 1px solid #d6e3f2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698] {\r\n  width: 130px;\n}\n.sum-price ul[data-v-483c8698] {\r\n  list-style-type: none;\n}\n.sum-price li[data-v-483c8698] {\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n}\n.viewsales-div > p[data-v-483c8698] {\r\n  color: #3376c2;\r\n  font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n  color: #000;\r\n  font-size: 13px;\n}\n.class_red[data-v-483c8698]\r\n{\r\n  color:rgb(255 0 0);\n}\n.class_green[data-v-483c8698]\r\n{\r\n  color:#7adaaa;\n}\n.bold_font[data-v-483c8698]\r\n{\r\n    font-weight: 600;\n}\n.invoicelist a[data-v-483c8698] \r\n{\r\n    color: #000;\n}\n#saleshistory-datatable thead[data-v-483c8698]\r\n{\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#saleshistory-datatable thead th[data-v-483c8698]\r\n{\r\n    font-weight: 100;\n}\n#kyc-datatable[data-v-483c8698]\r\n{\r\n    font-size: 13px;\n}\n#applycontra .modal-dialog[data-v-483c8698]\r\n{\r\n    max-width: 700px;\n}\n.red-color[data-v-483c8698]\r\n{\r\n    color:red !important;\n}\n.container[data-v-483c8698] {\r\n    padding: 0px 6%;\r\n    margin-top: 0px;\n}\n.col-sm[data-v-483c8698] {\r\n    padding: 0 10px;\n}\n.row[data-v-483c8698] {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\n}\nh2[data-v-483c8698] {\r\n        color: black;\r\n        font-family: Calibri, sans-serif;\r\n        font-style: normal;\r\n        font-weight: bold;\r\n        text-decoration: none;\r\n        font-size: 12pt;\n}\n.cont2 p[data-v-483c8698]{\r\n        color: black;\r\n        font-family: Calibri, sans-serif;\r\n        font-style: normal;\r\n        font-weight: normal;\r\n        text-decoration: none;\r\n        font-size: 12pt;\r\n        margin: 0pt;\n}\n.s1[data-v-483c8698] {\r\n        color: black;\r\n        font-family: Calibri, sans-serif;\r\n        font-style: normal;\r\n        font-weight: normal;\r\n        text-decoration: none;\r\n        font-size: 22pt;\n}\n.s3[data-v-483c8698] {\r\n        color: black;\r\n        font-family: Calibri;\r\n        font-style: normal;\r\n        font-weight: normal;\r\n        text-decoration: underline;\r\n        font-size: 9px;\n}\n.s4[data-v-483c8698],.s5[data-v-483c8698] {\r\n        color: black;\r\n        font-family: Calibri;\r\n        font-style: normal;\r\n        font-weight: normal;\r\n        text-decoration: none;\r\n        font-size: 9px;\n}\nth[data-v-483c8698], td[data-v-483c8698]{\r\n        border-bottom:1px solid black;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13561,9 +13572,13 @@ var render = function() {
                     [
                       _c(
                         "section",
-                        { attrs: { slot: "pdf-content" }, slot: "pdf-content" },
+                        {
+                          staticClass: "pdf_section",
+                          attrs: { slot: "pdf-content" },
+                          slot: "pdf-content"
+                        },
                         [
-                          _c("div", { staticStyle: { padding: "0px 6%" } }, [
+                          _c("div", { staticStyle: { padding: "0px 2%" } }, [
                             _c(
                               "div",
                               {
@@ -13613,11 +13628,22 @@ var render = function() {
                                           }
                                         },
                                         [
-                                          _vm._v("\n      215 The Broadway "),
+                                          _vm._v(
+                                            "\n        " +
+                                              _vm._s(
+                                                _vm.companydata.company_name
+                                              ) +
+                                              " "
+                                          ),
                                           _c("br"),
-                                          _vm._v("Southall,"),
+                                          _vm._v(
+                                            _vm._s(_vm.companydata.address1)
+                                          ),
                                           _c("br"),
-                                          _vm._v(" Middlesex")
+                                          _vm._v(
+                                            " " +
+                                              _vm._s(_vm.companydata.address2)
+                                          )
                                         ]
                                       ),
                                       _vm._v(" "),
@@ -13625,19 +13651,7 @@ var render = function() {
                                         "h2",
                                         {
                                           staticStyle: {
-                                            "padding-left": "13pt",
-                                            "text-indent": "0pt",
-                                            "text-align": "left",
-                                            "font-size": "11px"
-                                          }
-                                        },
-                                        [_vm._v("\n      Ub1 1nb\n    ")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "h2",
-                                        {
-                                          staticStyle: {
+                                            padding: "0",
                                             "padding-left": "13pt",
                                             "text-indent": "0pt",
                                             "text-align": "left",
@@ -13646,7 +13660,9 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n      Vat No: 140 1 873 39\n    "
+                                            "\n        " +
+                                              _vm._s(_vm.companydata.postcode) +
+                                              "\n        "
                                           )
                                         ]
                                       ),
@@ -13663,7 +13679,32 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n      t: 0203 500 1111\n    "
+                                            "\n        Vat No: " +
+                                              _vm._s(
+                                                _vm.companydata.vat_number
+                                              ) +
+                                              "\n        "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "h2",
+                                        {
+                                          staticStyle: {
+                                            "padding-left": "13pt",
+                                            "text-indent": "0pt",
+                                            "text-align": "left",
+                                            "font-size": "11px"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n        t: " +
+                                              _vm._s(
+                                                _vm.companydata.contact_mobile
+                                              ) +
+                                              "\n        "
                                           )
                                         ]
                                       ),
@@ -13683,11 +13724,7 @@ var render = function() {
                                             "a",
                                             {
                                               staticClass: "a",
-                                              attrs: {
-                                                href:
-                                                  "mailto:accounts@gold-bank.co.uk",
-                                                target: "_blank"
-                                              }
+                                              attrs: { target: "_blank" }
                                             },
                                             [_vm._v("e: ")]
                                           ),
@@ -13695,13 +13732,16 @@ var render = function() {
                                           _c(
                                             "a",
                                             {
-                                              attrs: {
-                                                href:
-                                                  "mailto:accounts@gold-bank.co.uk",
-                                                target: "_blank"
-                                              }
+                                              staticClass: "a",
+                                              attrs: { target: "_blank" }
                                             },
-                                            [_vm._v("accounts@gold-bank.co.uk")]
+                                            [
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm.companydata.contact_email
+                                                )
+                                              )
+                                            ]
                                           )
                                         ]
                                       )
@@ -13724,23 +13764,14 @@ var render = function() {
                                         "font-size": "11px"
                                       }
                                     },
-                                    [_vm._v("\n      Lee Vaughan\n    ")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "p",
-                                    {
-                                      staticStyle: {
-                                        "padding-left": "12pt",
-                                        "text-indent": "0pt",
-                                        "text-align": "left",
-                                        "font-size": "11px"
-                                      }
-                                    },
                                     [
-                                      _vm._v("\n      30 Howden Avenue"),
-                                      _c("br"),
-                                      _vm._v(" Skellow\n    ")
+                                      _vm._v(
+                                        "\n            " +
+                                          _vm._s(_vm.formdata.firstname) +
+                                          " " +
+                                          _vm._s(_vm.formdata.lastname) +
+                                          "\n        "
+                                      )
                                     ]
                                   ),
                                   _vm._v(" "),
@@ -13755,13 +13786,11 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _vm._v("\n      Doncaster"),
-                                      _c("br"),
-                                      _vm._v(" Yorkshire"),
-                                      _c("br"),
-                                      _vm._v("DN6 8LJ"),
-                                      _c("br"),
-                                      _vm._v(" GBR\n    ")
+                                      _vm._v(
+                                        "\n            " +
+                                          _vm._s(_vm.formdata.billing_address) +
+                                          "\n        "
+                                      )
                                     ]
                                   )
                                 ]),
@@ -13800,7 +13829,11 @@ var render = function() {
                                             "font-size": "11px"
                                           }
                                         },
-                                        [_vm._v("\n      Invoice Date\n    ")]
+                                        [
+                                          _vm._v(
+                                            "\n        Invoice Date\n        "
+                                          )
+                                        ]
                                       ),
                                       _vm._v(" "),
                                       _c(
@@ -13845,7 +13878,11 @@ var render = function() {
                                             "font-size": "11px"
                                           }
                                         },
-                                        [_vm._v("\n      Invoice Number\n    ")]
+                                        [
+                                          _vm._v(
+                                            "\n        Invoice Number\n        "
+                                          )
+                                        ]
                                       ),
                                       _vm._v(" "),
                                       _c(
@@ -13869,11 +13906,7 @@ var render = function() {
                                             },
                                             [
                                               _vm._v(
-                                                _vm._s(
-                                                  _vm.dateFormateChanger(
-                                                    _vm.formdata.invoiceno
-                                                  )
-                                                )
+                                                _vm._s(_vm.formdata.invoiceno)
                                               )
                                             ]
                                           )
@@ -13890,7 +13923,7 @@ var render = function() {
                                             "font-size": "11px"
                                           }
                                         },
-                                        [_vm._v("Account\n    ")]
+                                        [_vm._v("Account\n        ")]
                                       ),
                                       _vm._v(" "),
                                       _c(
@@ -13905,7 +13938,7 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n      Online OrderVAT Number140187339\n    "
+                                            "\n        Online OrderVAT Number140187339\n        "
                                           )
                                         ]
                                       ),
@@ -13937,66 +13970,107 @@ var render = function() {
                                       _vm._v(" "),
                                       _c(
                                         "th",
-                                        { staticStyle: { width: "200px" } },
-                                        [_vm._v("VAT")]
+                                        { staticStyle: { width: "100px" } },
+                                        [_vm._v("Unit Price")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "th",
+                                        { staticStyle: { width: "100px" } },
+                                        [_vm._v("VAT(%)")]
                                       ),
                                       _vm._v(" "),
                                       _c("th", [_vm._v("Amount GBP")])
                                     ])
                                   ]),
                                   _vm._v(" "),
-                                  _c("tbody", [
-                                    _c("tr", [
-                                      _c("td", [
-                                        _vm._v(
-                                          "1 x Gold Sovereign Coin (8g) (Mixed"
-                                        ),
-                                        _c("br"),
-                                        _vm._v(" Years)")
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td"),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("393")])
-                                    ]),
-                                    _c("br"),
-                                    _c("br"),
-                                    _vm._v(" "),
-                                    _c("tr", [
-                                      _c("td", {
-                                        staticStyle: { border: "none" }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("Total No VAT")]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v("0.00")])
-                                    ]),
-                                    _c("br"),
-                                    _c("br"),
-                                    _vm._v(" "),
-                                    _c("tr", [
-                                      _c("td", {
-                                        staticStyle: { border: "none" }
-                                      }),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        { staticStyle: { border: "none" } },
-                                        [
-                                          _c("strong", [
-                                            _vm._v("Amount Due GBP")
+                                  _c(
+                                    "tbody",
+                                    [
+                                      _vm._l(_vm.formdata.salesitem, function(
+                                        saleitem
+                                      ) {
+                                        return _c("tr", { key: saleitem.id }, [
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(saleitem.quantity) +
+                                                " x " +
+                                                _vm._s(saleitem.typename) +
+                                                " " +
+                                                _vm._s(saleitem.productname) +
+                                                " (" +
+                                                _vm._s(saleitem.weight) +
+                                                "g) "
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(_vm._s(saleitem.unitprice))
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(_vm._s(saleitem.vat))
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(saleitem.invoice_amount)
+                                            )
                                           ])
-                                        ]
-                                      ),
+                                        ])
+                                      }),
+                                      _c("br"),
+                                      _c("br"),
                                       _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        { staticStyle: { border: "none" } },
-                                        [_vm._v("0.00")]
-                                      )
-                                    ]),
-                                    _c("br")
-                                  ])
+                                      _c("tr", [
+                                        _c("td", {
+                                          staticStyle: { border: "none" }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("td"),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v("Total No VAT")]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(_vm.formdata.vattotal))
+                                        ])
+                                      ]),
+                                      _c("br"),
+                                      _c("br"),
+                                      _vm._v(" "),
+                                      _c("tr", [
+                                        _c("td", {
+                                          staticStyle: { border: "none" }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("td", {
+                                          staticStyle: { border: "none" }
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          { staticStyle: { border: "none" } },
+                                          [
+                                            _c("strong", [
+                                              _vm._v("Amount Due GBP")
+                                            ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          { staticStyle: { border: "none" } },
+                                          [
+                                            _vm._v(
+                                              _vm._s(_vm.formdata.totalamount)
+                                            )
+                                          ]
+                                        )
+                                      ]),
+                                      _c("br")
+                                    ],
+                                    2
+                                  )
                                 ])
                               ]
                             ),
@@ -14025,7 +14099,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n      Goods supplied by us remain the property of Gold Warehouse Limited until\n      paid for in full. Interest will be charged at 4% per month. The person\n      signing for the goods is personally responsible for the payment of this\n      invoice and for any loss or damage however caused.\n    "
+                                    "\n        Goods supplied by us remain the property of Gold Warehouse Limited until\n        paid for in full. Interest will be charged at 4% per month. The person\n        signing for the goods is personally responsible for the payment of this\n        invoice and for any loss or damage however caused.\n        "
                                   )
                                 ]
                               ),
@@ -14042,13 +14116,28 @@ var render = function() {
                                   }
                                 },
                                 [
-                                  _vm._v(
-                                    "\n      Signed:_________________________________\n    "
-                                  )
+                                  _vm._v("\n        Signed:  "),
+                                  _c("img", {
+                                    staticStyle: { height: "100px" },
+                                    attrs: {
+                                      src: _vm.signaturedata.signature_filename
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "ml-3" }, [
+                                    _vm._v("Signed By: "),
+                                    _c(
+                                      "span",
+                                      { staticStyle: { "font-weight": "600" } },
+                                      [
+                                        _vm._v(
+                                          _vm._s(_vm.signaturedata.signed_by)
+                                        )
+                                      ]
+                                    )
+                                  ])
                                 ]
-                              ),
-                              _c("br"),
-                              _c("br")
+                              )
                             ]),
                             _vm._v(" "),
                             _c(
@@ -14068,15 +14157,15 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n      Gold Bank is a trading name for Gold Warehouse Ltd"
+                                      "\n        Gold Bank is a trading name for Gold Warehouse Ltd"
                                     ),
                                     _c("br"),
                                     _vm._v(
-                                      " Cheques can be made\n      payable to Gold Warehouse Limited."
+                                      " Cheques can be made\n        payable to Gold Warehouse Limited."
                                     ),
                                     _c("br"),
                                     _vm._v(
-                                      " Please make BACS/CHAPS/FASTER payments\n      to:"
+                                      " Please make BACS/CHAPS/FASTER payments\n        to:"
                                     ),
                                     _c("br"),
                                     _vm._v("Wise Bank"),
@@ -14101,15 +14190,10 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n      The Output Tax Of £________________________On\n      Supply Of This Gold Is To Be Accounted For By The Buyer To HMRC.\n    "
+                                      "\n        The Output Tax Of £________________________On\n        Supply Of This Gold Is To Be Accounted For By The Buyer To HMRC.\n        "
                                     )
                                   ]
                                 ),
-                                _c("br"),
-                                _c("br"),
-                                _c("br"),
-                                _c("br"),
-                                _c("br"),
                                 _c("br"),
                                 _c("br"),
                                 _c("br"),
@@ -14135,7 +14219,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n      Goldbank T/AS Gold Warehouse Limited, 215 The Broadway, Southall,\n      Middlesex, UB1 1NB. Registered in England Number 08101794."
+                                  "\n        Goldbank T/AS Gold Warehouse Limited, 215 The Broadway, Southall,\n        Middlesex, UB1 1NB. Registered in England Number 08101794."
                                 ),
                                 _c("br"),
                                 _vm._v(" "),
@@ -14150,7 +14234,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n        VAT Registration Number 140187339 Telephone:0203 500 1111 Email:\n        accounts@gold-bank.co.uk"
+                                      "\n            VAT Registration Number 140187339 Telephone:0203 500 1111 Email:\n            accounts@gold-bank.co.uk"
                                     )
                                   ]
                                 )
@@ -14162,7 +14246,7 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  !_vm.signaturedata.signature_filename
+                  !_vm.sign_flag
                     ? _c(
                         "span",
                         {
@@ -14622,7 +14706,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-6" }, [
-                _vm.signaturedata.signature_filename
+                _vm.sign_flag
                   ? _c("div", [
                       _c("img", {
                         staticStyle: { height: "100px" },
