@@ -152,7 +152,7 @@
         to:<br>Wise Bank<br> Sort code: <b>23-14-70</b><br>Account No: <b>24730434</b>
         </p><br>
         <p style="padding-left: 6pt; text-indent: 0pt; text-align: left">
-        The Output Tax Of £________________________On
+        The Output Tax Of £ <span style="font-weight:600;">{{output_tax}}</span> On
         Supply Of This Gold Is To Be Accounted For By The Buyer To HMRC.
         </p><br><br><br><br><br><br><br><br>
         </div>
@@ -1082,6 +1082,7 @@ export default {
                 signed_by:'',
             },
             sign_flag:'',
+            output_tax:""
       };
   },
   methods: {
@@ -1634,10 +1635,15 @@ export default {
               if (response.data.payment_due < 0) {
                   this.over_paid = response.data.payment_due.toFixed(2);
               }
-              this.due_payment =
-                  response.data.payment_due < 0
-                      ? 0
-                      : response.data.payment_due;
+              this.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
+              this.output_tax=0;
+              for(var j=0; j<this.formdata.salesitem.length; j++)
+              {
+                if(empty(this.formdata.salesitem[j].vat) && this.formdata.salesitem[j].metal_type=='gold')
+                {
+                    this.output_tax += parseFloat(this.formdata.salesitem[j].invoice_amount)*20/100;
+                }
+              }
               this.due_payment = this.due_payment.toFixed(2);
               if (this.paymentcount == 0) {
                   this.invoice_status = "UnPaid";

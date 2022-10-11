@@ -1118,7 +1118,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         signature_filename: '',
         signed_by: ''
       },
-      sign_flag: ''
+      sign_flag: '',
+      output_tax: ""
     };
   },
   methods: {
@@ -1795,6 +1796,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       _this12.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
+      _this12.output_tax = 0;
+
+      for (var j = 0; j < _this12.formdata.salesitem.length; j++) {
+        if (empty(_this12.formdata.salesitem[j].vat) && _this12.formdata.salesitem[j].metal_type == 'gold') {
+          _this12.output_tax += parseFloat(_this12.formdata.salesitem[j].invoice_amount) * 20 / 100;
+        }
+      }
+
       _this12.due_payment = _this12.due_payment.toFixed(2);
 
       if (_this12.paymentcount == 0) {
@@ -14189,8 +14198,14 @@ var render = function() {
                                     }
                                   },
                                   [
+                                    _vm._v("\n        The Output Tax Of £ "),
+                                    _c(
+                                      "span",
+                                      { staticStyle: { "font-weight": "600" } },
+                                      [_vm._v(_vm._s(_vm.output_tax))]
+                                    ),
                                     _vm._v(
-                                      "\n        The Output Tax Of £________________________On\n        Supply Of This Gold Is To Be Accounted For By The Buyer To HMRC.\n        "
+                                      " On\n        Supply Of This Gold Is To Be Accounted For By The Buyer To HMRC.\n        "
                                     )
                                   ]
                                 ),
