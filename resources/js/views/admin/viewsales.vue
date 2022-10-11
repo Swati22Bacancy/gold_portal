@@ -35,7 +35,7 @@
        pdf-content-width="800px"
        ref="html2Pdf"
 >
-   <section slot="pdf-content" class="pdf_section">
+   <section slot="pdf-content" class="pdf_section" id="pdf_section">
         <div style=" padding: 0px 2%;">
             <div class="container" style=" padding: 30px 6%;">
             <div class="row">
@@ -176,7 +176,7 @@
                   <!-- <i class="fas fa-envelope" style="background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;"></i> -->
                   <span style="color:blue;background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;font-size: 19px;" class="material-symbols-outlined">mail</span>
                   <!-- <i class="fas fa-print" @click="ondownload()" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;"></i> -->
-                  <span class="material-symbols-outlined" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;">print</span>
+                  <span class="material-symbols-outlined" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;" @click="printDiv('pdf_section')">print</span>
               </div>
               <div class="d-sm-flex align-items-center justify-content-between" style="margin-left: -20%;">
                   <i
@@ -1140,6 +1140,16 @@ export default {
     },
     generateReport () {
            this.$refs.html2Pdf.generatePdf()
+    },
+    printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
     },
     ondownload() {
         axios({

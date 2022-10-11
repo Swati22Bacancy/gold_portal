@@ -1201,6 +1201,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     generateReport: function generateReport() {
       this.$refs.html2Pdf.generatePdf();
     },
+    printDiv: function printDiv(divName) {
+      var printContents = document.getElementById(divName).innerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
+    },
     ondownload: function ondownload() {
       axios({
         url: 'downloadPdf',
@@ -13583,7 +13590,7 @@ var render = function() {
                         "section",
                         {
                           staticClass: "pdf_section",
-                          attrs: { slot: "pdf-content" },
+                          attrs: { slot: "pdf-content", id: "pdf_section" },
                           slot: "pdf-content"
                         },
                         [
@@ -14344,6 +14351,11 @@ var render = function() {
                     "border-radius": "50%",
                     padding: "15%",
                     "margin-left": "30%"
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.printDiv("pdf_section")
+                    }
                   }
                 },
                 [_vm._v("print")]
