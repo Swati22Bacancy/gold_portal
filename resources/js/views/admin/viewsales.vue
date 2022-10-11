@@ -174,7 +174,7 @@
                   <span style="color:#48c6f6;background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 10%;font-size: 25px; margin-left: 30%;" class="material-symbols-outlined" @click="generateReport">download</span>  </div>
                   <i class="fab fa-whatsapp" style="color:#00AA5B; background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%; font-size: 18px;"></i>
                   <!-- <i class="fas fa-envelope" style="background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;"></i> -->
-                  <span style="color:blue;background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;font-size: 19px;" class="material-symbols-outlined">mail</span>
+                  <span style="color:blue;background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;font-size: 19px;" class="material-symbols-outlined" @click="sendemail">mail</span>
                   <!-- <i class="fas fa-print" @click="ondownload()" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;"></i> -->
                   <span class="material-symbols-outlined" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;" @click="printDiv('pdf_section')">print</span>
               </div>
@@ -1140,6 +1140,22 @@ export default {
     },
     generateReport () {
            this.$refs.html2Pdf.generatePdf()
+    },
+    sendemail()
+    {
+        var maildata={};
+        maildata.salesdata=this.formdata;
+        maildata.companydata = this.companydata;
+        maildata.signaturedata = this.signaturedata;
+        const response = axios.post(
+            "send-email",
+            maildata
+        );
+        // console.log('in');
+        // axios.post('/send-email')
+        // .then((response) => {
+            
+        // });
     },
     printDiv(divName) { 
         var printContents = document.getElementById(divName).innerHTML;

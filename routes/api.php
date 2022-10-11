@@ -141,6 +141,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('delete_salesinvoice/{id}', [Api\SalesController::class, 'deletesalesinvoice']);
     Route::post('add_salessignature',[Api\SalesController::class, 'addsignature']);
     Route::get('invoicesales_signature/{id}', [Api\SalesController::class, 'fetchinvoicesignature']);
+    Route::post('send-email', [Api\SalesController::class, 'sendMailWithPDF']);
     
 
     // Purchase Invoice Routes

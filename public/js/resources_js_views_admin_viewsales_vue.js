@@ -1201,6 +1201,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     generateReport: function generateReport() {
       this.$refs.html2Pdf.generatePdf();
     },
+    sendemail: function sendemail() {
+      var maildata = {};
+      maildata.salesdata = this.formdata;
+      maildata.companydata = this.companydata;
+      maildata.signaturedata = this.signaturedata;
+      var response = axios.post("send-email", maildata); // console.log('in');
+      // axios.post('/send-email')
+      // .then((response) => {
+      // });
+    },
     printDiv: function printDiv(divName) {
       var printContents = document.getElementById(divName).innerHTML;
       var originalContents = document.body.innerHTML;
@@ -14337,7 +14347,8 @@ var render = function() {
                     padding: "15%",
                     "margin-left": "30%",
                     "font-size": "19px"
-                  }
+                  },
+                  on: { click: _vm.sendemail }
                 },
                 [_vm._v("mail")]
               ),

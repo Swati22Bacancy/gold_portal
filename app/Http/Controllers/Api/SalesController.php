@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\PurchasePayments;
 use App\Models\CustomerTransaction;
 use App\Models\InvoiceSignature;
+use PDF;
+use Mail;
 
 class SalesController extends Controller
 {
@@ -740,5 +742,25 @@ class SalesController extends Controller
         $signature = InvoiceSignature::where('sales_id',$id)->first();
 
         return response()->json($signature);
+    }
+
+    public function sendMailWithPDF(Request $request)
+    {
+        $data["email"] = "swati.suthar@bacancy.com";
+        $data["title"] = "Welcome to Gold Bank Accounting Portal";
+        $data["body"] = "This is the email body.";
+        $data["salesdata"] = $request->input('salesdata');
+        $data["companydata"] = $request->input('companydata');
+        $data["signaturedata"] = $request->input('signaturedata');
+        
+        $pdf = PDF::loadView('mail', $data);
+
+        Mail::send('Mails.invoice', $data, function ($message) use ($data, $pdf) {
+            $message->to($data["email"], $data["email"])
+                ->subject($data["title"])
+                ->attachData($pdf->output(), "Sales Invoice.pdf");
+        });
+
+        dd('Email has been sent successfully');
     }
 }
