@@ -1141,7 +1141,7 @@ export default {
     generateReport () {
            this.$refs.html2Pdf.generatePdf()
     },
-    printDiv(divName) {
+    printDiv(divName) { 
         var printContents = document.getElementById(divName).innerHTML;
         var originalContents = document.body.innerHTML;
 
