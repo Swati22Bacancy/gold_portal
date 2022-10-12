@@ -746,7 +746,7 @@ class SalesController extends Controller
 
     public function sendMailWithPDF(Request $request)
     {
-        $data["email"] = "swati.suthar@bacancy.com";
+        $data["email"] = "ishita.shah@bacancy.com";
         $data["title"] = "Welcome to Gold Bank Accounting Portal";
         $data["body"] = "This is the email body.";
         $data["salesdata"] = $request->input('salesdata');
