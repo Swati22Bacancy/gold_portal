@@ -112,7 +112,7 @@ h2 {
         </p>
      </div>
   <div class="col-4" style="padding-left: 400px; float:right; margin-top:50px">
-        <p class="s1" style=" margin-right: 10px; text-align: left">SALES INVOICE</p>
+        <p class="s1" style=" margin-right: 10px; text-align: left">{{ $title }}</p>
         <div style="font-size:10px;  text-align: left;">
         <h2
         style=" text-align: left; font-size:11px;">
@@ -181,10 +181,14 @@ h2 {
         signing for the goods is personally responsible for the payment of this
         invoice and for any loss or damage however caused.
         </p><br><br><br><br>
+        @if(!empty($signaturedata['id'])) 
         <p style=" text-align: left; font-size: 11px;">
         Signed:  <img src="' . url({{$signaturedata['signature_filename']}}) . '" style="height:100px;"/>
-        <span class="ml-3">Signed By: <span style="font-weight:600;">{{$signaturedata['signed_by']}}</span></span>
+        <span class="ml-3">
+        Signed By: <span style="font-weight:600;">{{$signaturedata['signed_by']}}</span>
+        </span>
         </p>
+        @endif
         </div>
         <div class="container1 s3" style="font-size:11px">
         <p style="text-align: left;">

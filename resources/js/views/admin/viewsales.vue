@@ -171,12 +171,12 @@
 
                   <!-- <i class="fa fa-download" style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"></i> -->
                   <span class="material-symbols-outlined" v-if="!sign_flag" title="Add Signature" style="color:#00AA5B; background-color: #EDF2F6; margin:3% 0% 3% 0%; border-radius:50%; padding: 11%; font-size: 23px;cursor:pointer;" data-toggle="modal" data-target="#dosign">draw</span>
-                  <span style="color:#48c6f6;background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 10%;font-size: 25px; margin-left: 30%;" class="material-symbols-outlined" @click="generateReport">download</span>  </div>
+                  <span style="color:#48c6f6;background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 10%;font-size: 25px; margin-left: 30%;cursor: pointer;" class="material-symbols-outlined" @click="generateReport">download</span>  </div>
                   <i class="fab fa-whatsapp" style="color:#00AA5B; background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%; font-size: 18px;"></i>
                   <!-- <i class="fas fa-envelope" style="background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;"></i> -->
-                  <span style="color:blue;background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;font-size: 19px;" class="material-symbols-outlined" @click="sendemail">mail</span>
+                  <span style="color:blue;background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;font-size: 19px;cursor: pointer;" class="material-symbols-outlined" @click="sendemail">mail</span>
                   <!-- <i class="fas fa-print" @click="ondownload()" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;"></i> -->
-                  <span class="material-symbols-outlined" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;" @click="printDiv('pdf_section')">print</span>
+                  <span class="material-symbols-outlined" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;cursor: pointer;" @click="printDiv('pdf_section')">print</span>
               </div>
               <div class="d-sm-flex align-items-center justify-content-between" style="margin-left: -20%;">
                   <i
@@ -1141,16 +1141,34 @@ export default {
     generateReport () {
            this.$refs.html2Pdf.generatePdf()
     },
-    sendemail()
+    async sendemail()
     {
         var maildata={};
         maildata.salesdata=this.formdata;
+        maildata.customeremail=this.formdata.customer_email;
         maildata.companydata = this.companydata;
         maildata.signaturedata = this.signaturedata;
-        const response = axios.post(
+        const response = await axios.post(
             "send-email",
             maildata
         );
+
+        if(response.data.status=="success")
+        {
+          let toast = Vue.toasted.show("Email has been sent successfully", {
+            theme: "toasted-success",
+            position: "top-center",
+            duration: 5000,
+          });
+        }
+        else
+        {
+          let toast = Vue.toasted.show('Something went wrong, Please try again', {
+            theme: "toasted-error",
+            position: "top-center",
+            duration: 5000,
+          });
+        }
         // console.log('in');
         // axios.post('/send-email')
         // .then((response) => {

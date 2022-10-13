@@ -1202,14 +1202,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$refs.html2Pdf.generatePdf();
     },
     sendemail: function sendemail() {
-      var maildata = {};
-      maildata.salesdata = this.formdata;
-      maildata.companydata = this.companydata;
-      maildata.signaturedata = this.signaturedata;
-      var response = axios.post("send-email", maildata); // console.log('in');
-      // axios.post('/send-email')
-      // .then((response) => {
-      // });
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var maildata, response, toast, _toast;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                maildata = {};
+                maildata.salesdata = _this3.formdata;
+                maildata.customeremail = _this3.formdata.customer_email;
+                maildata.companydata = _this3.companydata;
+                maildata.signaturedata = _this3.signaturedata;
+                _context2.next = 7;
+                return axios.post("send-email", maildata);
+
+              case 7:
+                response = _context2.sent;
+
+                if (response.data.status == "success") {
+                  toast = Vue.toasted.show("Email has been sent successfully", {
+                    theme: "toasted-success",
+                    position: "top-center",
+                    duration: 5000
+                  });
+                } else {
+                  _toast = Vue.toasted.show('Something went wrong, Please try again', {
+                    theme: "toasted-error",
+                    position: "top-center",
+                    duration: 5000
+                  });
+                } // console.log('in');
+                // axios.post('/send-email')
+                // .then((response) => {
+                // });
+
+
+              case 9:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     },
     printDiv: function printDiv(divName) {
       var printContents = document.getElementById(divName).innerHTML;
@@ -1234,10 +1271,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     fetchPo: function fetchPo() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.get('/purchase_details/' + this.purchase_id).then(function (response) {
-        _this3.purchase_amount = response.data.totalamount;
+        _this4.purchase_amount = response.data.totalamount;
       });
     },
     dateFormateChanger: function dateFormateChanger(d) {
@@ -1296,60 +1333,60 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.addrefund = "";
     },
     save_payment: function save_payment(index) {
-      var _this4 = this;
+      var _this5 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
         var date, response, arr, response1, toast;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _this4.invoice_items[index].sales_id = _this4.$route.params.id;
-                date = new Date(_this4.invoice_items[index].payment_date);
-                _this4.invoice_items[index].payment_date = date;
-                _this4.invoice_items[index].action = _this4.payaction;
-                _context2.next = 6;
-                return axios.post("create_payment", _this4.invoice_items[index]);
+                _this5.invoice_items[index].sales_id = _this5.$route.params.id;
+                date = new Date(_this5.invoice_items[index].payment_date);
+                _this5.invoice_items[index].payment_date = date;
+                _this5.invoice_items[index].action = _this5.payaction;
+                _context3.next = 6;
+                return axios.post("create_payment", _this5.invoice_items[index]);
 
               case 6:
-                response = _context2.sent;
+                response = _context3.sent;
 
                 if (response.data.id) {
                   arr = {};
                   arr.payment_date = response.data.payment_date;
-                  arr.method = _this4.invoice_items[index].method;
-                  arr.totalamount = _this4.invoice_items[index].totalamount;
-                  arr.action = _this4.payaction;
+                  arr.method = _this5.invoice_items[index].method;
+                  arr.totalamount = _this5.invoice_items[index].totalamount;
+                  arr.action = _this5.payaction;
                   arr.id = response.data.id;
 
-                  _this4.formdata.salepayments.push(arr);
+                  _this5.formdata.salepayments.push(arr);
 
-                  _this4.addpayment = "";
-                  _this4.paymentcount = _this4.paymentcount + 1; //this.invoice_items.splice(index,1);
+                  _this5.addpayment = "";
+                  _this5.paymentcount = _this5.paymentcount + 1; //this.invoice_items.splice(index,1);
 
-                  if (_this4.payaction == 'Receive') {
-                    _this4.due_payment = _this4.due_payment - _this4.invoice_items[index].totalamount;
-                    _this4.paymentclass = 'receive_class';
+                  if (_this5.payaction == 'Receive') {
+                    _this5.due_payment = _this5.due_payment - _this5.invoice_items[index].totalamount;
+                    _this5.paymentclass = 'receive_class';
                   } else {
-                    if (_this4.over_paid < 0) {
-                      _this4.due_payment = parseFloat(_this4.over_paid) + parseFloat(_this4.invoice_items[index].totalamount);
-                      _this4.over_paid = _this4.due_payment > 0 ? 0 : parseFloat(Math.abs(_this4.over_paid)) - parseFloat(_this4.invoice_items[index].totalamount);
+                    if (_this5.over_paid < 0) {
+                      _this5.due_payment = parseFloat(_this5.over_paid) + parseFloat(_this5.invoice_items[index].totalamount);
+                      _this5.over_paid = _this5.due_payment > 0 ? 0 : parseFloat(Math.abs(_this5.over_paid)) - parseFloat(_this5.invoice_items[index].totalamount);
                     } else {
-                      _this4.due_payment = parseFloat(_this4.due_payment) + parseFloat(_this4.invoice_items[index].totalamount);
+                      _this5.due_payment = parseFloat(_this5.due_payment) + parseFloat(_this5.invoice_items[index].totalamount);
                     } //this.due_payment = parseFloat(this.due_payment) + parseFloat(this.invoice_items[index].totalamount);
 
 
-                    _this4.paymentclass = 'refund_class';
+                    _this5.paymentclass = 'refund_class';
                   }
 
-                  _this4.due_payment = _this4.due_payment.toFixed(2);
+                  _this5.due_payment = _this5.due_payment.toFixed(2);
 
-                  if (_this4.due_payment < 0) {
-                    _this4.over_paid = _this4.due_payment;
+                  if (_this5.due_payment < 0) {
+                    _this5.over_paid = _this5.due_payment;
                   }
 
-                  _this4.due_payment = _this4.due_payment < 0 ? 0 : _this4.due_payment;
-                  _this4.invoice_items = [{
+                  _this5.due_payment = _this5.due_payment < 0 ? 0 : _this5.due_payment;
+                  _this5.invoice_items = [{
                     payment_date: Date.now(),
                     totalamount: "",
                     bank: "ICIC Bank Accounts",
@@ -1358,24 +1395,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     action: ""
                   }];
 
-                  if (_this4.paymentcount == 0) {
-                    _this4.invoice_status = "UnPaid";
-                    _this4.payment_check = "Yes";
-                  } else if (_this4.over_paid < 0) {
-                    _this4.invoice_status = "Over Paid";
-                    _this4.payment_check = "";
-                  } else if (_this4.due_payment == 0) {
-                    _this4.invoice_status = "Paid";
-                    _this4.payment_check = "";
+                  if (_this5.paymentcount == 0) {
+                    _this5.invoice_status = "UnPaid";
+                    _this5.payment_check = "Yes";
+                  } else if (_this5.over_paid < 0) {
+                    _this5.invoice_status = "Over Paid";
+                    _this5.payment_check = "";
+                  } else if (_this5.due_payment == 0) {
+                    _this5.invoice_status = "Paid";
+                    _this5.payment_check = "";
                   } else {
-                    _this4.invoice_status = "Partially Paid";
-                    _this4.payment_check = "Yes";
+                    _this5.invoice_status = "Partially Paid";
+                    _this5.payment_check = "Yes";
                   }
 
-                  _this4.statusdata = {};
-                  _this4.statusdata.sales_id = _this4.$route.params.id;
-                  _this4.statusdata.status = _this4.invoice_status;
-                  response1 = axios.post("update_invoicestatus", _this4.statusdata);
+                  _this5.statusdata = {};
+                  _this5.statusdata.sales_id = _this5.$route.params.id;
+                  _this5.statusdata.status = _this5.invoice_status;
+                  response1 = axios.post("update_invoicestatus", _this5.statusdata);
                 } else {
                   toast = Vue.toasted.show("Something went wrong, Please try again", {
                     theme: "toasted-error",
@@ -1386,10 +1423,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 8:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     },
     onFileChange: function onFileChange(e, id) {
@@ -1479,52 +1516,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.urlArr[id].splice(index, 1);
     },
     uploadfile: function uploadfile(index) {
-      var _this5 = this;
+      var _this6 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-        var response, toast, _toast;
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        var response, toast, _toast2;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
-                _this5.postFormData.sales_id = _this5.$route.params.id;
+                _this6.postFormData.sales_id = _this6.$route.params.id;
 
                 if (index == 1) {
-                  _this5.postFormData.kyc = _this5.uploaddata.registration;
-                  _this5.postFormData.category = 'registration';
+                  _this6.postFormData.kyc = _this6.uploaddata.registration;
+                  _this6.postFormData.category = 'registration';
                 }
 
                 if (index == 2) {
-                  _this5.postFormData.kyc = _this5.uploaddata.vat;
-                  _this5.postFormData.category = 'vat';
+                  _this6.postFormData.kyc = _this6.uploaddata.vat;
+                  _this6.postFormData.category = 'vat';
                 }
 
                 if (index == 3) {
-                  _this5.postFormData.kyc = _this5.uploaddata.iddoc;
-                  _this5.postFormData.category = 'iddoc';
+                  _this6.postFormData.kyc = _this6.uploaddata.iddoc;
+                  _this6.postFormData.category = 'iddoc';
                 }
 
                 if (index == 4) {
-                  _this5.postFormData.kyc = _this5.uploaddata.credit;
-                  _this5.postFormData.category = 'credit';
+                  _this6.postFormData.kyc = _this6.uploaddata.credit;
+                  _this6.postFormData.category = 'credit';
                 }
 
-                _context3.next = 7;
-                return axios.post("upload_kyc", (0,_object_to_formdata__WEBPACK_IMPORTED_MODULE_4__.objectToFormData)(_this5.postFormData));
+                _context4.next = 7;
+                return axios.post("upload_kyc", (0,_object_to_formdata__WEBPACK_IMPORTED_MODULE_4__.objectToFormData)(_this6.postFormData));
 
               case 7:
-                response = _context3.sent;
+                response = _context4.sent;
 
                 if (response.data.id) {
-                  _this5.note = "";
+                  _this6.note = "";
                   toast = Vue.toasted.show("Document successfully uploaded", {
                     theme: "toasted-success",
                     position: "top-center",
                     duration: 5000
                   });
                 } else {
-                  _toast = Vue.toasted.show("Please choose file", {
+                  _toast2 = Vue.toasted.show("Please choose file", {
                     theme: "toasted-error",
                     position: "top-center",
                     duration: 5000
@@ -1533,41 +1570,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 9:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3);
+        }, _callee4);
       }))();
     },
     save_note: function save_note() {
-      var _this6 = this;
+      var _this7 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
-        var notedata, response, toast, _toast2;
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+        var notedata, response, toast, _toast3;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
                 notedata = {
-                  sales_id: _this6.$route.params.id,
-                  note: _this6.note
+                  sales_id: _this7.$route.params.id,
+                  note: _this7.note
                 };
-                _context4.next = 3;
+                _context5.next = 3;
                 return axios.post("create_note", notedata);
 
               case 3:
-                response = _context4.sent;
+                response = _context5.sent;
 
                 if (response.data.id) {
-                  _this6.note = "";
+                  _this7.note = "";
                   toast = Vue.toasted.show("Note successfully added", {
                     theme: "toasted-success",
                     position: "top-center",
                     duration: 5000
                   });
                 } else {
-                  _toast2 = Vue.toasted.show("Something went wrong, Please try again", {
+                  _toast3 = Vue.toasted.show("Something went wrong, Please try again", {
                     theme: "toasted-error",
                     position: "top-center",
                     duration: 5000
@@ -1576,52 +1613,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4);
+        }, _callee5);
       }))();
     },
     save_refund: function save_refund(index) {
-      var _this7 = this;
+      var _this8 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
         var date, response, arr, toast;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context6.prev = _context6.next) {
               case 0:
-                _this7.refund_items[index].sales_id = _this7.$route.params.id;
-                date = new Date(_this7.refund_items[index].refund_date);
-                _this7.refund_items[index].payment_date = date;
-                _this7.refund_items[index].action = 'Refund';
-                _context5.next = 6;
-                return axios.post("create_payment", _this7.refund_items[index]);
+                _this8.refund_items[index].sales_id = _this8.$route.params.id;
+                date = new Date(_this8.refund_items[index].refund_date);
+                _this8.refund_items[index].payment_date = date;
+                _this8.refund_items[index].action = 'Refund';
+                _context6.next = 6;
+                return axios.post("create_payment", _this8.refund_items[index]);
 
               case 6:
-                response = _context5.sent;
+                response = _context6.sent;
 
                 if (response.data.id) {
                   arr = {};
                   arr.payment_date = response.data.payment_date;
-                  arr.method = _this7.refund_items[index].method;
-                  arr.totalamount = _this7.refund_items[index].totalamount;
+                  arr.method = _this8.refund_items[index].method;
+                  arr.totalamount = _this8.refund_items[index].totalamount;
                   arr.id = response.data.id;
 
-                  _this7.formdata.salepayments.push(arr);
+                  _this8.formdata.salepayments.push(arr);
 
-                  _this7.addpayment = "";
-                  _this7.refundcount = _this7.refundcount + 1; //this.refund_items.splice(index,1);
+                  _this8.addpayment = "";
+                  _this8.refundcount = _this8.refundcount + 1; //this.refund_items.splice(index,1);
 
-                  _this7.due_payment = parseFloat(_this7.due_payment) + parseFloat(_this7.refund_items[index].totalamount);
-                  _this7.due_payment = _this7.due_payment.toFixed(2);
+                  _this8.due_payment = parseFloat(_this8.due_payment) + parseFloat(_this8.refund_items[index].totalamount);
+                  _this8.due_payment = _this8.due_payment.toFixed(2);
 
-                  if (_this7.due_payment < 0) {
-                    _this7.over_paid = _this7.due_payment;
+                  if (_this8.due_payment < 0) {
+                    _this8.over_paid = _this8.due_payment;
                   }
 
-                  _this7.due_payment = _this7.due_payment < 0 ? 0 : _this7.due_payment;
-                  _this7.refund_items = [{
+                  _this8.due_payment = _this8.due_payment < 0 ? 0 : _this8.due_payment;
+                  _this8.refund_items = [{
                     refund_date: Date.now(),
                     totalamount: "",
                     bank: "ICIC Bank Accounts",
@@ -1658,10 +1695,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 8:
               case "end":
-                return _context5.stop();
+                return _context6.stop();
             }
           }
-        }, _callee5);
+        }, _callee6);
       }))();
     },
     selectrecord: function selectrecord(id) {
@@ -1674,24 +1711,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.fileid = id;
     },
     deleteFile: function deleteFile(id) {
-      var _this8 = this;
-
-      axios.get("/delete-file/" + id).then(function (resp) {
-        _this8.$router.go();
-      })["catch"](function (error) {
-        var message = "Something went wrong, Please try again";
-        var toast = Vue.toasted.show(message, {
-          theme: "toasted-error",
-          position: "top-center",
-          duration: 5000
-        });
-        console.log(error);
-      });
-    },
-    deleteRefund: function deleteRefund(id) {
       var _this9 = this;
 
-      axios.get("/delete-refund/" + id).then(function (resp) {
+      axios.get("/delete-file/" + id).then(function (resp) {
         _this9.$router.go();
       })["catch"](function (error) {
         var message = "Something went wrong, Please try again";
@@ -1703,11 +1725,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         console.log(error);
       });
     },
-    deleteRecord: function deleteRecord(id) {
+    deleteRefund: function deleteRefund(id) {
       var _this10 = this;
 
-      axios.get("/delete-payment/" + id).then(function (resp) {
+      axios.get("/delete-refund/" + id).then(function (resp) {
         _this10.$router.go();
+      })["catch"](function (error) {
+        var message = "Something went wrong, Please try again";
+        var toast = Vue.toasted.show(message, {
+          theme: "toasted-error",
+          position: "top-center",
+          duration: 5000
+        });
+        console.log(error);
+      });
+    },
+    deleteRecord: function deleteRecord(id) {
+      var _this11 = this;
+
+      axios.get("/delete-payment/" + id).then(function (resp) {
+        _this11.$router.go();
       })["catch"](function (error) {
         var message = "Something went wrong, Please try again";
         var toast = Vue.toasted.show(message, {
@@ -1733,53 +1770,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     apply_contra: function apply_contra() {
-      var _this11 = this;
+      var _this12 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
         var exchangedata, response, response1, toast;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
           while (1) {
-            switch (_context6.prev = _context6.next) {
+            switch (_context7.prev = _context7.next) {
               case 0:
                 exchangedata = {
-                  sales_id: _this11.$route.params.id,
-                  purchase_id: _this11.purchase_id,
-                  due_payment: _this11.due_payment,
+                  sales_id: _this12.$route.params.id,
+                  purchase_id: _this12.purchase_id,
+                  due_payment: _this12.due_payment,
                   action: 'Exchange'
                 };
-                _context6.next = 3;
+                _context7.next = 3;
                 return axios.post("apply_contra", exchangedata);
 
               case 3:
-                response = _context6.sent;
+                response = _context7.sent;
 
                 if (response.data.id) {
-                  _this11.due_payment = _this11.due_payment - _this11.purchase_amount;
-                  _this11.due_payment = _this11.due_payment.toFixed(2);
+                  _this12.due_payment = _this12.due_payment - _this12.purchase_amount;
+                  _this12.due_payment = _this12.due_payment.toFixed(2);
 
-                  if (_this11.due_payment < 0) {
-                    _this11.over_paid = _this11.due_payment;
+                  if (_this12.due_payment < 0) {
+                    _this12.over_paid = _this12.due_payment;
                   }
 
-                  _this11.due_payment = _this11.due_payment < 0 ? 0 : _this11.due_payment;
+                  _this12.due_payment = _this12.due_payment < 0 ? 0 : _this12.due_payment;
 
-                  if (_this11.over_paid < 0) {
-                    _this11.invoice_status = "Over Paid";
-                    _this11.payment_check = "";
-                  } else if (_this11.due_payment == 0) {
-                    _this11.invoice_status = "Paid";
-                    _this11.payment_check = "";
+                  if (_this12.over_paid < 0) {
+                    _this12.invoice_status = "Over Paid";
+                    _this12.payment_check = "";
+                  } else if (_this12.due_payment == 0) {
+                    _this12.invoice_status = "Paid";
+                    _this12.payment_check = "";
                   } else {
-                    _this11.invoice_status = "Partially Paid";
-                    _this11.payment_check = "Yes";
+                    _this12.invoice_status = "Partially Paid";
+                    _this12.payment_check = "Yes";
                   }
 
-                  _this11.statusdata = {};
-                  _this11.statusdata.sales_id = _this11.$route.params.id;
-                  _this11.statusdata.status = _this11.invoice_status;
-                  response1 = axios.post("update_invoicestatus", _this11.statusdata);
+                  _this12.statusdata = {};
+                  _this12.statusdata.sales_id = _this12.$route.params.id;
+                  _this12.statusdata.status = _this12.invoice_status;
+                  response1 = axios.post("update_invoicestatus", _this12.statusdata);
 
-                  _this11.$router.go();
+                  _this12.$router.go();
                 } else {
                   toast = Vue.toasted.show("Something went wrong, Please try again", {
                     theme: "toasted-error",
@@ -1790,63 +1827,63 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
               case "end":
-                return _context6.stop();
+                return _context7.stop();
             }
           }
-        }, _callee6);
+        }, _callee7);
       }))();
     }
   },
   mounted: function mounted() {
-    var _this12 = this;
+    var _this13 = this;
 
     axios.get('/saved_companydetails/').then(function (response) {
-      _this12.companydata = response.data;
+      _this13.companydata = response.data;
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
     axios.get("/sales_details/" + this.$route.params.id).then(function (response) {
-      _this12.formdata = response.data;
-      _this12.paymentcount = _this12.formdata.salepayments.length;
+      _this13.formdata = response.data;
+      _this13.paymentcount = _this13.formdata.salepayments.length;
 
       if (response.data.payment_due < 0) {
-        _this12.over_paid = response.data.payment_due.toFixed(2);
+        _this13.over_paid = response.data.payment_due.toFixed(2);
       }
 
-      _this12.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
-      _this12.output_tax = 0;
+      _this13.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
+      _this13.output_tax = 0;
 
-      for (var j = 0; j < _this12.formdata.salesitem.length; j++) {
-        if (empty(_this12.formdata.salesitem[j].vat) && _this12.formdata.salesitem[j].metal_type == 'gold') {
-          _this12.output_tax += parseFloat(_this12.formdata.salesitem[j].invoice_amount) * 20 / 100;
+      for (var j = 0; j < _this13.formdata.salesitem.length; j++) {
+        if (empty(_this13.formdata.salesitem[j].vat) && _this13.formdata.salesitem[j].metal_type == 'gold') {
+          _this13.output_tax += parseFloat(_this13.formdata.salesitem[j].invoice_amount) * 20 / 100;
         }
       }
 
-      _this12.due_payment = _this12.due_payment.toFixed(2);
+      _this13.due_payment = _this13.due_payment.toFixed(2);
 
-      if (_this12.paymentcount == 0) {
-        _this12.invoice_status = "UnPaid";
-        _this12.payment_check = "Yes";
-      } else if (_this12.over_paid < 0) {
-        _this12.invoice_status = "Over Paid";
-        _this12.payment_check = "";
-      } else if (_this12.due_payment == 0) {
-        _this12.invoice_status = "Paid";
-        _this12.payment_check = "";
+      if (_this13.paymentcount == 0) {
+        _this13.invoice_status = "UnPaid";
+        _this13.payment_check = "Yes";
+      } else if (_this13.over_paid < 0) {
+        _this13.invoice_status = "Over Paid";
+        _this13.payment_check = "";
+      } else if (_this13.due_payment == 0) {
+        _this13.invoice_status = "Paid";
+        _this13.payment_check = "";
       } else {
-        _this12.invoice_status = "Partially Paid";
-        _this12.payment_check = "Yes";
+        _this13.invoice_status = "Partially Paid";
+        _this13.payment_check = "Yes";
       }
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
     axios.get("/sales_history/" + this.$route.params.id).then(function (response) {
-      _this12.formdata.saleshistory = response.data;
+      _this13.formdata.saleshistory = response.data;
     })["catch"](function (error) {});
     axios.get('/sales_list/').then(function (response) {
-      _this12.sales = response.data;
+      _this13.sales = response.data;
     })["catch"](function (error) {});
     axios.get('/purchase_list/').then(function (response) {
-      _this12.purchases = response.data;
-      _this12.purchases = _this12.purchases.map(function (purchase) {
+      _this13.purchases = response.data;
+      _this13.purchases = _this13.purchases.map(function (purchase) {
         return {
           value: purchase.id,
           text: "".concat(moment__WEBPACK_IMPORTED_MODULE_1___default()(purchase.issue_date, 'YYYY-MM-DD').format('DD MMM YYYY') || '', " |   ").concat(purchase.invoiceno || '', "  | ").concat(purchase.firstname || "", "  ").concat(purchase.lastname || "", " | \xA3").concat(purchase.totalamount || "", " ")
@@ -1855,13 +1892,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
     axios.get('/fetch_kyc/' + this.$route.params.id).then(function (response) {
-      _this12.kycdocs = response.data;
-      console.log(_this12.kycdocs);
+      _this13.kycdocs = response.data;
+      console.log(_this13.kycdocs);
     })["catch"](function (error) {});
     axios.get('/invoicesales_signature/' + this.$route.params.id).then(function (response) {
-      _this12.signaturedata = response.data;
-      _this12.sign_flag = response.data.signature_filename;
-      _this12.signaturedata.signature_filename = '/uploads/' + response.data.signature_filename;
+      _this13.signaturedata = response.data;
+      _this13.sign_flag = response.data.signature_filename;
+      _this13.signaturedata.signature_filename = '/uploads/' + response.data.signature_filename;
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
   }
@@ -14313,7 +14350,8 @@ var render = function() {
                         "border-radius": "50%",
                         padding: "10%",
                         "font-size": "25px",
-                        "margin-left": "30%"
+                        "margin-left": "30%",
+                        cursor: "pointer"
                       },
                       on: { click: _vm.generateReport }
                     },
@@ -14346,7 +14384,8 @@ var render = function() {
                     "border-radius": "50%",
                     padding: "15%",
                     "margin-left": "30%",
-                    "font-size": "19px"
+                    "font-size": "19px",
+                    cursor: "pointer"
                   },
                   on: { click: _vm.sendemail }
                 },
@@ -14361,7 +14400,8 @@ var render = function() {
                     "background-color": "#EDF2F6",
                     "border-radius": "50%",
                     padding: "15%",
-                    "margin-left": "30%"
+                    "margin-left": "30%",
+                    cursor: "pointer"
                   },
                   on: {
                     click: function($event) {

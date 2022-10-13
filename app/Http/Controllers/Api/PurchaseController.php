@@ -109,7 +109,7 @@ class PurchaseController extends Controller
 
     public function purchasedetails($id)
     {
-        $purchase = Purchases::leftjoin('customers', 'customers.id', '=', 'purchase_invoice.customer_id')->select('purchase_invoice.*','customers.first_name as firstname','customers.last_name as lastname')->where('purchase_invoice.id',$id)->orderBy('purchase_invoice.id', 'DESC')->first();
+        $purchase = Purchases::leftjoin('customers', 'customers.id', '=', 'purchase_invoice.customer_id')->select('purchase_invoice.*','customers.first_name as firstname','customers.last_name as lastname','customers.email as customer_email')->where('purchase_invoice.id',$id)->orderBy('purchase_invoice.id', 'DESC')->first();
 
         $purchaseitems = PurchaseItems::leftjoin('producttypes', 'producttypes.id', '=', 'purchase_items.producttype_id')->leftjoin('products', 'products.id', '=', 'purchase_items.product_id')->select('purchase_items.*','producttypes.name as typename','products.name as productname')->where('purchase_id',$id)->get();
 
