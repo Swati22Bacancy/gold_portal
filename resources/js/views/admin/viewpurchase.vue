@@ -60,12 +60,12 @@
           <div class="container">
           <div class="row">
           <div class="col-8 cont2">
-          <p style="padding-left: 12pt; text-indent: 0pt; text-align: left; font-size:11px;">
-            Lee Vaughan <br> 30 Howden Avenue Skellow
-          </p>
-          <p style="padding-left: 12pt; text-indent: 0pt; text-align: left; font-size:11px;">
-            Doncaster <br> Yorkshire <br> DN6 <br> 8LJ <br> GBR
-          </p>
+            <p style="padding-left: 12pt; text-indent: 0pt; text-align: left; font-size:11px;">
+            {{ formdata.firstname }} {{ formdata.lastname }}
+            </p>
+            <p style="padding-left: 12pt; text-indent: 0pt; text-align: left; font-size:11px;">
+                {{ formdata.billing_address }}
+            </p>
        </div>
           <div class="col-4">
           <p class="s1" style="padding-left: 13pt; text-indent: 0pt; margin-right: 10px; text-align: left">PURCHASE INVOICE</p>
@@ -97,28 +97,31 @@
           <table class="pdf_cont">
               <thead>
               <tr>
-                  <th style="width:350px">Description</th>
-                  <th style="width: 200px;">VAT(%)</th>
-                  <th>Amount GBP</th>
+                <th style="width:350px">Description</th>
+                <th style="width: 100px;">Unit Price</th>
+                <th style="width: 100px;">VAT(%)</th>
+                <th>Amount GBP</th>
               </tr>
               </thead>
               <tbody>
-                  <tr>
-                      <td>1 x Gold Sovereign Coin (8g) (Mixed Years) </td>
-                      <td></td>
-                      <td>393.0</td> 
-                  </tr><br><br>
-                  <tr>
-                      <td style="border:none"></td>
-                      <td >Total No VAT</td>
-                      <td>{{ formdata.vattotal }}</td>
-                      
-                  </tr><br><br>
-                  <tr>
-                      <td style="border:none"></td>
-                      <td style="border:none"><strong>Amount Due GBP</strong></td>
-                      <td style="border:none">{{ formdata.totalamount }}</td>
-                  </tr><br>
+                <tr v-for="purchaseitem in formdata.purchaseitem" :key="purchaseitem.id">
+                    <td>{{ purchaseitem.quantity }} x {{ purchaseitem.typename }} {{ purchaseitem.productname }} ({{ purchaseitem.weight }}g) </td>
+                    <td>{{ purchaseitem.unitprice }}</td>
+                    <td>{{ purchaseitem.vat }}</td>
+                    <td>{{ purchaseitem.invoice_amount }}</td>
+                </tr><br><br>
+                <tr>
+                    <td style="border:none"></td>
+                    <td ></td>
+                    <td>Total No VAT</td>
+                    <td>{{ formdata.vattotal }}</td>
+                </tr><br><br>
+                <tr>
+                    <td style="border:none"></td>
+                    <td style="border:none"></td>
+                    <td style="border:none"><strong>Amount Due GBP</strong></td>
+                    <td style="border:none">{{ formdata.totalamount }}</td>
+                </tr><br>
               </tbody>
           </table>
       </div>
@@ -145,7 +148,7 @@
           <p style="padding-left: 6pt; text-indent: 0pt; text-align: left">
           The Output Tax Of £ <span style="font-weight:600;">{{output_tax}}</span> On
           Supply Of This Gold Is To Be Accounted For By The Buyer To HMRC.
-          </p><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+          </p><br><br><br><br><br><br><br><br>
           </div>
       </div> 
       <div>
@@ -163,12 +166,12 @@
                   <!-- <i class="fab fa-whatsapp" title="Add Signature" style="color:#00AA5B; background-color: #EDF2F6; margin:3% 0% 3% 0%; border-radius:50%; padding: 15%; margin-left: 30%; font-size: 18px;" data-toggle="modal" data-target="#dosign"></i> -->
                   <span class="material-symbols-outlined" v-if="!sign_flag" title="Add Signature" style="color:#00AA5B; background-color: #EDF2F6; margin:3% 0% 3% 0%; border-radius:50%; padding: 11%; font-size: 23px;cursor:pointer;" data-toggle="modal" data-target="#dosign">draw</span>
                   <!-- <i class="fa fa-download" style="background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%;"></i> -->
-                  <span style="color:#48c6f6;background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 10%;font-size: 25px; margin-left: 30%;" class="material-symbols-outlined" @click="generateReport">download</span>
+                  <span style="color:#48c6f6;background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 10%;font-size: 25px; margin-left: 30%;cursor: pointer;" class="material-symbols-outlined" @click="generateReport">download</span>
                   <i class="fab fa-whatsapp" style="color:#00AA5B; background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%; font-size: 18px;"></i>
                   <!-- <i class="fas fa-envelope" style="background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;"></i> -->
-                  <span style="color:blue;background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 16%;font-size: 19px;margin-right: 20%;" class="material-symbols-outlined">mail</span>
+                  <span style="color:blue;background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 16%;font-size: 19px;margin-right: 20%;cursor: pointer;" class="material-symbols-outlined" @click="sendemail">mail</span>
                   <!-- <i class="fas fa-print" @click="ondownload()" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;"></i> -->
-                  <span class="material-symbols-outlined" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 0%;" @click="printDiv('pdf_section')">print</span>
+                  <span class="material-symbols-outlined" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 0%;cursor: pointer;" @click="printDiv('pdf_section')">print</span>
                   
               </div>
               <div
@@ -527,6 +530,7 @@ export default {
         signed_by:'',
       },
       sign_flag:'',
+      output_tax:""
     };
   },
   methods:
@@ -735,6 +739,41 @@ export default {
     generateReport () {
              this.$refs.html2Pdf.generatePdf()
       },
+    async sendemail()
+    {
+        var maildata={};
+        maildata.salesdata=this.formdata;
+        maildata.salesdata.salesitem=this.formdata.purchaseitem;
+        maildata.companydata = this.companydata;
+        maildata.signaturedata = this.signaturedata;
+        maildata.title = 'Purchase Order';
+        const response = await axios.post(
+            "send-email",
+            maildata
+        );
+        
+        if(response.data.status=="success")
+        {
+          let toast = Vue.toasted.show("Email has been sent successfully", {
+            theme: "toasted-success",
+            position: "top-center",
+            duration: 5000,
+          });
+        }
+        else
+        {
+          let toast = Vue.toasted.show('Something went wrong, Please try again', {
+            theme: "toasted-error",
+            position: "top-center",
+            duration: 5000,
+          });
+        }
+        // console.log('in');
+        // axios.post('/send-email')
+        // .then((response) => {
+            
+        // });
+    },
     printDiv(divName) { 
           var printContents = document.getElementById(divName).innerHTML;
           var originalContents = document.body.innerHTML;
@@ -748,6 +787,13 @@ export default {
   },
   mounted()
   {
+    axios.get('/saved_companydetails/')
+        .then((response) => {
+            this.companydata = response.data;
+        })
+        .catch(function(error) {
+            //app.$notify(error.response.data.error, "error");
+        });
     axios.get('/purchase_details/'+this.$route.params.id)
       .then((response) => {
           this.formdata = response.data;
@@ -757,6 +803,14 @@ export default {
             this.over_paid = response.data.payment_due;
           }
           this.due_payment = (response.data.payment_due<0)?0:response.data.payment_due;
+          this.output_tax=0;
+          for(var j=0; j<this.formdata.purchaseitem.length; j++)
+          {
+            if(empty(this.formdata.purchaseitem[j].vat) && this.formdata.purchaseitem[j].metal_type=='gold')
+            {
+                this.output_tax += parseFloat(this.formdata.purchaseitem[j].invoice_amount)*20/100;
+            }
+          }
           if(this.paymentcount==0)
           {
             this.invoice_status='UnPaid';

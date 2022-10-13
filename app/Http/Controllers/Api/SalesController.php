@@ -746,21 +746,36 @@ class SalesController extends Controller
 
     public function sendMailWithPDF(Request $request)
     {
-        $data["email"] = "ishita.shah@bacancy.com";
+        $data["email"] = "swati.suthar@bacancy.com";
         $data["title"] = "Welcome to Gold Bank Accounting Portal";
         $data["body"] = "This is the email body.";
         $data["salesdata"] = $request->input('salesdata');
         $data["companydata"] = $request->input('companydata');
         $data["signaturedata"] = $request->input('signaturedata');
+        $data["title"] = ($request->input('title')=='Purchase Order')?$request->input('title'):'Sales Invoice';
+        $pdfname = ($request->input('title')=='Purchase Order')?"Purchase Order.pdf":"Sales Invoice.pdf";
         
         $pdf = PDF::loadView('mail', $data);
 
-        Mail::send('Mails.invoice', $data, function ($message) use ($data, $pdf) {
-            $message->to($data["email"], $data["email"])
-                ->subject($data["title"])
-                ->attachData($pdf->output(), "Sales Invoice.pdf");
-        });
-
-        dd('Email has been sent successfully');
+        try {
+            Mail::send('Mails.invoice', $data, function ($message) use ($data, $pdf, $pdfname) {
+                $message->to($data["email"], $data["email"])
+                    ->subject($data["title"])
+                    ->attachData($pdf->output(), $pdfname);
+            });
+            
+            return response()->json(
+                [
+                    'status' => 'success',
+                    'message' => 'Email has been sent successfully'
+                ],
+                200
+            );
+        }
+        catch (\Exception $e) {
+            return response([
+                'message' => 'Internal error, please try again later.' //$e->getMessage()
+            ], 400);
+        }
     }
 }

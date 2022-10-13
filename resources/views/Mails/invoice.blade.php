@@ -1,1 +1,1 @@
-Please find attached Sales Invoice.
+Please find attached {{$title}}.

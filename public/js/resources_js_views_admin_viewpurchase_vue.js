@@ -16460,6 +16460,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -16508,7 +16511,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         signature_filename: '',
         signed_by: ''
       },
-      sign_flag: ''
+      sign_flag: '',
+      output_tax: ""
     };
   },
   methods: {
@@ -16765,6 +16769,54 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     generateReport: function generateReport() {
       this.$refs.html2Pdf.generatePdf();
     },
+    sendemail: function sendemail() {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        var maildata, response, toast, _toast2;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                maildata = {};
+                maildata.salesdata = _this6.formdata;
+                maildata.salesdata.salesitem = _this6.formdata.purchaseitem;
+                maildata.companydata = _this6.companydata;
+                maildata.signaturedata = _this6.signaturedata;
+                maildata.title = 'Purchase Order';
+                _context4.next = 8;
+                return axios.post("send-email", maildata);
+
+              case 8:
+                response = _context4.sent;
+
+                if (response.data.status == "success") {
+                  toast = Vue.toasted.show("Email has been sent successfully", {
+                    theme: "toasted-success",
+                    position: "top-center",
+                    duration: 5000
+                  });
+                } else {
+                  _toast2 = Vue.toasted.show('Something went wrong, Please try again', {
+                    theme: "toasted-error",
+                    position: "top-center",
+                    duration: 5000
+                  });
+                } // console.log('in');
+                // axios.post('/send-email')
+                // .then((response) => {
+                // });
+
+
+              case 10:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
     printDiv: function printDiv(divName) {
       var printContents = document.getElementById(divName).innerHTML;
       var originalContents = document.body.innerHTML;
@@ -16774,47 +16826,58 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   mounted: function mounted() {
-    var _this6 = this;
+    var _this7 = this;
 
+    axios.get('/saved_companydetails/').then(function (response) {
+      _this7.companydata = response.data;
+    })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
+    });
     axios.get('/purchase_details/' + this.$route.params.id).then(function (response) {
-      _this6.formdata = response.data;
-      _this6.paymentcount = _this6.formdata.purchasepayments.length;
+      _this7.formdata = response.data;
+      _this7.paymentcount = _this7.formdata.purchasepayments.length;
 
       if (response.data.payment_due < 0) {
-        _this6.over_paid = response.data.payment_due;
+        _this7.over_paid = response.data.payment_due;
       }
 
-      _this6.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
+      _this7.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
+      _this7.output_tax = 0;
 
-      if (_this6.paymentcount == 0) {
-        _this6.invoice_status = 'UnPaid';
-        _this6.payment_check = 'Yes';
-      } else if (_this6.over_paid < 0) {
-        _this6.invoice_status = 'Over Paid';
-        _this6.payment_check = '';
-      } else if (_this6.due_payment == 0) {
-        _this6.invoice_status = 'Paid';
-        _this6.payment_check = '';
+      for (var j = 0; j < _this7.formdata.purchaseitem.length; j++) {
+        if (empty(_this7.formdata.purchaseitem[j].vat) && _this7.formdata.purchaseitem[j].metal_type == 'gold') {
+          _this7.output_tax += parseFloat(_this7.formdata.purchaseitem[j].invoice_amount) * 20 / 100;
+        }
+      }
+
+      if (_this7.paymentcount == 0) {
+        _this7.invoice_status = 'UnPaid';
+        _this7.payment_check = 'Yes';
+      } else if (_this7.over_paid < 0) {
+        _this7.invoice_status = 'Over Paid';
+        _this7.payment_check = '';
+      } else if (_this7.due_payment == 0) {
+        _this7.invoice_status = 'Paid';
+        _this7.payment_check = '';
       } else {
-        _this6.invoice_status = 'Partially Paid';
-        _this6.payment_check = 'Yes';
+        _this7.invoice_status = 'Partially Paid';
+        _this7.payment_check = 'Yes';
       }
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
     axios.get('/purchase_history/' + this.$route.params.id).then(function (response) {
-      _this6.formdata.purchasehistory = response.data;
+      _this7.formdata.purchasehistory = response.data;
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
     axios.get('/purchase_list/').then(function (response) {
-      _this6.purchases = response.data;
-      console.log(_this6.purchases);
+      _this7.purchases = response.data;
+      console.log(_this7.purchases);
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
     axios.get('/invoice_signature/' + this.$route.params.id).then(function (response) {
-      _this6.signaturedata = response.data;
-      _this6.sign_flag = response.data.signature_filename;
-      _this6.signaturedata.signature_filename = '/uploads/' + response.data.signature_filename;
-      console.log(_this6.signaturedata.signature_filename);
+      _this7.signaturedata = response.data;
+      _this7.sign_flag = response.data.signature_filename;
+      _this7.signaturedata.signature_filename = '/uploads/' + response.data.signature_filename;
+      console.log(_this7.signaturedata.signature_filename);
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
   }
@@ -28675,9 +28738,13 @@ var render = function() {
                                   }
                                 },
                                 [
-                                  _vm._v("\n          Lee Vaughan "),
-                                  _c("br"),
-                                  _vm._v(" 30 Howden Avenue Skellow\n        ")
+                                  _vm._v(
+                                    "\n          " +
+                                      _vm._s(_vm.formdata.firstname) +
+                                      " " +
+                                      _vm._s(_vm.formdata.lastname) +
+                                      "\n          "
+                                  )
                                 ]
                               ),
                               _vm._v(" "),
@@ -28692,15 +28759,11 @@ var render = function() {
                                   }
                                 },
                                 [
-                                  _vm._v("\n          Doncaster "),
-                                  _c("br"),
-                                  _vm._v(" Yorkshire "),
-                                  _c("br"),
-                                  _vm._v(" DN6 "),
-                                  _c("br"),
-                                  _vm._v(" 8LJ "),
-                                  _c("br"),
-                                  _vm._v(" GBR\n        ")
+                                  _vm._v(
+                                    "\n              " +
+                                      _vm._s(_vm.formdata.billing_address) +
+                                      "\n          "
+                                  )
                                 ]
                               )
                             ]),
@@ -28875,7 +28938,13 @@ var render = function() {
                                   _vm._v(" "),
                                   _c(
                                     "th",
-                                    { staticStyle: { width: "200px" } },
+                                    { staticStyle: { width: "100px" } },
+                                    [_vm._v("Unit Price")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "th",
+                                    { staticStyle: { width: "100px" } },
                                     [_vm._v("VAT(%)")]
                                   ),
                                   _vm._v(" "),
@@ -28883,50 +28952,85 @@ var render = function() {
                                 ])
                               ]),
                               _vm._v(" "),
-                              _c("tbody", [
-                                _c("tr", [
-                                  _c("td", [
-                                    _vm._v(
-                                      "1 x Gold Sovereign Coin (8g) (Mixed Years) "
+                              _c(
+                                "tbody",
+                                [
+                                  _vm._l(_vm.formdata.purchaseitem, function(
+                                    purchaseitem
+                                  ) {
+                                    return _c("tr", { key: purchaseitem.id }, [
+                                      _c("td", [
+                                        _vm._v(
+                                          _vm._s(purchaseitem.quantity) +
+                                            " x " +
+                                            _vm._s(purchaseitem.typename) +
+                                            " " +
+                                            _vm._s(purchaseitem.productname) +
+                                            " (" +
+                                            _vm._s(purchaseitem.weight) +
+                                            "g) "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(purchaseitem.unitprice))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(_vm._s(purchaseitem.vat))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          _vm._s(purchaseitem.invoice_amount)
+                                        )
+                                      ])
+                                    ])
+                                  }),
+                                  _c("br"),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _c("td", {
+                                      staticStyle: { border: "none" }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("td"),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v("Total No VAT")]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(_vm.formdata.vattotal))
+                                    ])
+                                  ]),
+                                  _c("br"),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c("tr", [
+                                    _c("td", {
+                                      staticStyle: { border: "none" }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("td", {
+                                      staticStyle: { border: "none" }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticStyle: { border: "none" } },
+                                      [_c("strong", [_vm._v("Amount Due GBP")])]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticStyle: { border: "none" } },
+                                      [_vm._v(_vm._s(_vm.formdata.totalamount))]
                                     )
                                   ]),
-                                  _vm._v(" "),
-                                  _c("td"),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("393.0")])
-                                ]),
-                                _c("br"),
-                                _c("br"),
-                                _vm._v(" "),
-                                _c("tr", [
-                                  _c("td", { staticStyle: { border: "none" } }),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v("Total No VAT")]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(_vm.formdata.vattotal))
-                                  ])
-                                ]),
-                                _c("br"),
-                                _c("br"),
-                                _vm._v(" "),
-                                _c("tr", [
-                                  _c("td", { staticStyle: { border: "none" } }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "td",
-                                    { staticStyle: { border: "none" } },
-                                    [_c("strong", [_vm._v("Amount Due GBP")])]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "td",
-                                    { staticStyle: { border: "none" } },
-                                    [_vm._v(_vm._s(_vm.formdata.totalamount))]
-                                  )
-                                ]),
-                                _c("br")
-                              ])
+                                  _c("br")
+                                ],
+                                2
+                              )
                             ])
                           ]
                         ),
@@ -29060,12 +29164,6 @@ var render = function() {
                             _c("br"),
                             _c("br"),
                             _c("br"),
-                            _c("br"),
-                            _c("br"),
-                            _c("br"),
-                            _c("br"),
-                            _c("br"),
-                            _c("br"),
                             _c("br")
                           ]
                         )
@@ -29146,7 +29244,8 @@ var render = function() {
                     "border-radius": "50%",
                     padding: "10%",
                     "font-size": "25px",
-                    "margin-left": "30%"
+                    "margin-left": "30%",
+                    cursor: "pointer"
                   },
                   on: { click: _vm.generateReport }
                 },
@@ -29177,8 +29276,10 @@ var render = function() {
                     padding: "15%",
                     "margin-left": "16%",
                     "font-size": "19px",
-                    "margin-right": "20%"
-                  }
+                    "margin-right": "20%",
+                    cursor: "pointer"
+                  },
+                  on: { click: _vm.sendemail }
                 },
                 [_vm._v("mail")]
               ),
@@ -29191,7 +29292,8 @@ var render = function() {
                     "background-color": "#EDF2F6",
                     "border-radius": "50%",
                     padding: "15%",
-                    "margin-left": "0%"
+                    "margin-left": "0%",
+                    cursor: "pointer"
                   },
                   on: {
                     click: function($event) {
