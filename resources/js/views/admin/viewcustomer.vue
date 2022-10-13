@@ -131,6 +131,40 @@
                                   v-model="formdata.whatsapp"
                                 />
                               </div>
+                              <h6>Bank Details</h6>
+                <div class="form-group customer-input">
+                  <label>Account Name</label>
+                  <input
+                    type="tsxt"
+                    class="form-control form-control-user"
+                    id="crt-customer"
+                    aria-describedby="emailHelp"
+                    placeholder=""
+                    v-model="formdata.accountname"
+                  />
+                </div>
+                <div class="form-group customer-input">
+                  <label>Account Number</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-user"
+                    id="crt-customer"
+                    aria-describedby="emailHelp"
+                    placeholder=""
+                    v-model="formdata.accountnumber"
+                  />
+                </div>
+                <div class="form-group customer-input">
+                  <label>Sort Code</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-user"
+                    id="crt-customer"
+                    aria-describedby="emailHelp"
+                    placeholder=""
+                    v-model="formdata.sortcode"
+                  />
+                </div>
                             </div>
                             <div class="col-md-6 primary-div">
                               <h6>Primary Contact</h6>
@@ -245,6 +279,40 @@
                                   v-model="formdata.email"
                                 />
                               </div>
+                              <h6>Bank Details</h6>
+                  <div class="form-group customer-input">
+                  <label>Account Name</label>
+                  <input
+                    type="tsxt"
+                    class="form-control form-control-user"
+                    id="crt-customer"
+                    aria-describedby="emailHelp"
+                    placeholder=""
+                    v-model="formdata.accountname"
+                  />
+                </div>
+                <div class="form-group customer-input">
+                  <label>Account Number</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-user"
+                    id="crt-customer"
+                    aria-describedby="emailHelp"
+                    placeholder=""
+                    v-model="formdata.accountnumber"
+                  />
+                </div>
+                <div class="form-group customer-input">
+                  <label>Sort Code</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-user"
+                    id="crt-customer"
+                    aria-describedby="emailHelp"
+                    placeholder=""
+                    v-model="formdata.sortcode"
+                  />
+                </div>
                             </div>
                             <div class="col-md-6 primary-div">
                               <div class="form-group customer-input">
