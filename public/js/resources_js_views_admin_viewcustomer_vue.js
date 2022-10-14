@@ -872,6 +872,74 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -18560,6 +18628,167 @@ var render = function() {
                                                 }
                                               })
                                             ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("h6", [_vm._v("Bank Details")]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Account Name")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata.accountname,
+                                                    expression:
+                                                      "formdata.accountname"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "tsxt",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value:
+                                                    _vm.formdata.accountname
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "accountname",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Account Number")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata
+                                                        .accountnumber,
+                                                    expression:
+                                                      "formdata.accountnumber"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value:
+                                                    _vm.formdata.accountnumber
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "accountnumber",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Sort Code")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata.sortcode,
+                                                    expression:
+                                                      "formdata.sortcode"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value: _vm.formdata.sortcode
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "sortcode",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
                                           )
                                         ]
                                       ),
@@ -19114,6 +19343,167 @@ var render = function() {
                                                     _vm.$set(
                                                       _vm.formdata,
                                                       "email",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("h6", [_vm._v("Bank Details")]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Account Name")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata.accountname,
+                                                    expression:
+                                                      "formdata.accountname"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "tsxt",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value:
+                                                    _vm.formdata.accountname
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "accountname",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Account Number")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata
+                                                        .accountnumber,
+                                                    expression:
+                                                      "formdata.accountnumber"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value:
+                                                    _vm.formdata.accountnumber
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "accountnumber",
+                                                      $event.target.value
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-group customer-input"
+                                            },
+                                            [
+                                              _c("label", [
+                                                _vm._v("Sort Code")
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.formdata.sortcode,
+                                                    expression:
+                                                      "formdata.sortcode"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control form-control-user",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: "crt-customer",
+                                                  "aria-describedby":
+                                                    "emailHelp",
+                                                  placeholder: ""
+                                                },
+                                                domProps: {
+                                                  value: _vm.formdata.sortcode
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.formdata,
+                                                      "sortcode",
                                                       $event.target.value
                                                     )
                                                   }

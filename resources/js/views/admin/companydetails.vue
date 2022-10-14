@@ -135,6 +135,80 @@
                   </div>
                 
               </div>
+              <h6 >GBP Account</h6>
+              <div class="row">
+                <div class="form-group col-md-4">
+                    <label>Account Name</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      id="crt-customer"
+                      aria-describedby="emailHelp"
+                      placeholder=""
+                      v-model="formdata.gbp_accountname"
+                    />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Sort Code</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      id="crt-customer"
+                      aria-describedby="emailHelp"
+                      placeholder=""
+                      v-model="formdata.gbp_sortcode"
+                    />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Account Number</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      id="crt-customer"
+                      aria-describedby="emailHelp"
+                      placeholder=""
+                      v-model="formdata.gbp_accountnumber"
+                    />
+                  </div>
+                
+              </div>
+              <h6 >USD Account</h6>
+              <div class="row">
+                <div class="form-group col-md-4">
+                    <label>Account Number</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      id="crt-customer"
+                      aria-describedby="emailHelp"
+                      placeholder=""
+                      v-model="formdata.usd_accountnumber"
+                    />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Bank Code</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      id="crt-customer"
+                      aria-describedby="emailHelp"
+                      placeholder=""
+                      v-model="formdata.usd_bankcode"
+                    />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>ABA Routing No</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      id="crt-customer"
+                      aria-describedby="emailHelp"
+                      placeholder=""
+                      v-model="formdata.usd_abaroutingno"
+                    />
+                  </div>
+                
+              </div>
               <h6 >Default Payment Terms</h6>
               <div class="row">
                 <div class="form-group col-md-1">
