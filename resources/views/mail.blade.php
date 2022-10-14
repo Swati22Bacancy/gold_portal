@@ -183,10 +183,11 @@ h2 {
         </p><br><br><br><br>
         @if(!empty($signaturedata['id'])) 
         <p style=" text-align: left; font-size: 11px;">
-        Signed:  <img src="' . url({{$signaturedata['signature_filename']}}) . '" style="height:100px;"/>
+        <img src="' . url({{$signaturedata['signature_filename']}}) . '" style="height:100px;"/>
+        <br>
         <span class="ml-3">
         Signed By: <span style="font-weight:600;">{{$signaturedata['signed_by']}}</span>
-        </span>
+        </span><br>
         </p>
         @endif
         </div>

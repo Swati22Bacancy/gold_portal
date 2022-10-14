@@ -1029,6 +1029,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -1850,14 +1855,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       _this13.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
-      _this13.output_tax = 0;
-
-      for (var j = 0; j < _this13.formdata.salesitem.length; j++) {
-        if (empty(_this13.formdata.salesitem[j].vat) && _this13.formdata.salesitem[j].metal_type == 'gold') {
-          _this13.output_tax += parseFloat(_this13.formdata.salesitem[j].invoice_amount) * 20 / 100;
-        }
-      }
-
       _this13.due_payment = _this13.due_payment.toFixed(2);
 
       if (_this13.paymentcount == 0) {
@@ -1873,6 +1870,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this13.invoice_status = "Partially Paid";
         _this13.payment_check = "Yes";
       }
+
+      _this13.output_tax = 0;
+
+      for (var j = 0; j < _this13.formdata.salesitem.length; j++) {
+        if (empty(_this13.formdata.salesitem[j].vat) && _this13.formdata.salesitem[j].metal_type == 'gold') {
+          _this13.output_tax += parseFloat(_this13.formdata.salesitem[j].invoice_amount) * 20 / 100;
+        }
+      }
+
+      console.log(_this13.invoice_status);
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
     axios.get("/sales_history/" + this.$route.params.id).then(function (response) {
@@ -13855,6 +13862,25 @@ var render = function() {
                                           "\n        "
                                       )
                                     ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    {
+                                      staticStyle: {
+                                        "padding-left": "12pt",
+                                        "text-indent": "0pt",
+                                        "text-align": "left",
+                                        "font-size": "11px"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n            VAT: " +
+                                          _vm._s(_vm.formdata.vat) +
+                                          "\n        "
+                                      )
+                                    ]
                                   )
                                 ]),
                                 _vm._v(" "),
@@ -14162,7 +14188,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n        Goods supplied by us remain the property of Gold Warehouse Limited until\n        paid for in full. Interest will be charged at 4% per month. The person\n        signing for the goods is personally responsible for the payment of this\n        invoice and for any loss or damage however caused.\n        "
+                                    "\n            Goods supplied by us remain the property of Gold Warehouse Limited until\n            paid for in full. Interest will be charged at 4% per month. The person\n            signing for the goods is personally responsible for the payment of this\n            invoice and for any loss or damage however caused.\n            "
                                   )
                                 ]
                               ),
@@ -14179,13 +14205,14 @@ var render = function() {
                                   }
                                 },
                                 [
-                                  _vm._v("\n        Signed:  "),
                                   _c("img", {
                                     staticStyle: { height: "100px" },
                                     attrs: {
                                       src: _vm.signaturedata.signature_filename
                                     }
                                   }),
+                                  _vm._v(" "),
+                                  _c("br"),
                                   _vm._v(" "),
                                   _c("span", { staticClass: "ml-3" }, [
                                     _vm._v("Signed By: "),
@@ -14202,6 +14229,8 @@ var render = function() {
                                 ]
                               )
                             ]),
+                            _vm._v(" "),
+                            _c("br"),
                             _vm._v(" "),
                             _c(
                               "div",
@@ -14242,27 +14271,35 @@ var render = function() {
                                 ),
                                 _c("br"),
                                 _vm._v(" "),
-                                _c(
-                                  "p",
-                                  {
-                                    staticStyle: {
-                                      "padding-left": "6pt",
-                                      "text-indent": "0pt",
-                                      "text-align": "left"
-                                    }
-                                  },
-                                  [
-                                    _vm._v("\n        The Output Tax Of £ "),
-                                    _c(
-                                      "span",
-                                      { staticStyle: { "font-weight": "600" } },
-                                      [_vm._v(_vm._s(_vm.output_tax))]
-                                    ),
-                                    _vm._v(
-                                      " On\n        Supply Of This Gold Is To Be Accounted For By The Buyer To HMRC.\n        "
+                                _vm.output_tax
+                                  ? _c(
+                                      "p",
+                                      {
+                                        staticStyle: {
+                                          "padding-left": "6pt",
+                                          "text-indent": "0pt",
+                                          "text-align": "left"
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n        The Output Tax Of £ "
+                                        ),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "600"
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(_vm.output_tax))]
+                                        ),
+                                        _vm._v(
+                                          " On\n        Supply Of This Gold Is To Be Accounted For By The Buyer To HMRC.\n        "
+                                        )
+                                      ]
                                     )
-                                  ]
-                                ),
+                                  : _vm._e(),
                                 _c("br"),
                                 _c("br"),
                                 _c("br"),

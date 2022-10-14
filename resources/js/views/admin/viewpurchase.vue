@@ -804,14 +804,7 @@ export default {
             this.over_paid = response.data.payment_due;
           }
           this.due_payment = (response.data.payment_due<0)?0:response.data.payment_due;
-          this.output_tax=0;
-          for(var j=0; j<this.formdata.purchaseitem.length; j++)
-          {
-            if(empty(this.formdata.purchaseitem[j].vat) && this.formdata.purchaseitem[j].metal_type=='gold')
-            {
-                this.output_tax += parseFloat(this.formdata.purchaseitem[j].invoice_amount)*20/100;
-            }
-          }
+          
           if(this.paymentcount==0)
           {
             this.invoice_status='UnPaid';
@@ -831,6 +824,14 @@ export default {
           {
             this.invoice_status='Partially Paid';
             this.payment_check='Yes';
+          }
+          this.output_tax=0;
+          for(var j=0; j<this.formdata.purchaseitem.length; j++)
+          {
+            if(empty(this.formdata.purchaseitem[j].vat) && this.formdata.purchaseitem[j].metal_type=='gold')
+            {
+                this.output_tax += parseFloat(this.formdata.purchaseitem[j].invoice_amount)*20/100;
+            }
           }
       })
       .catch(function(error) {

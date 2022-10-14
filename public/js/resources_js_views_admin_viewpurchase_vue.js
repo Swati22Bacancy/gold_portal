@@ -16842,13 +16842,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       _this7.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
-      _this7.output_tax = 0;
-
-      for (var j = 0; j < _this7.formdata.purchaseitem.length; j++) {
-        if (empty(_this7.formdata.purchaseitem[j].vat) && _this7.formdata.purchaseitem[j].metal_type == 'gold') {
-          _this7.output_tax += parseFloat(_this7.formdata.purchaseitem[j].invoice_amount) * 20 / 100;
-        }
-      }
 
       if (_this7.paymentcount == 0) {
         _this7.invoice_status = 'UnPaid';
@@ -16862,6 +16855,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else {
         _this7.invoice_status = 'Partially Paid';
         _this7.payment_check = 'Yes';
+      }
+
+      _this7.output_tax = 0;
+
+      for (var j = 0; j < _this7.formdata.purchaseitem.length; j++) {
+        if (empty(_this7.formdata.purchaseitem[j].vat) && _this7.formdata.purchaseitem[j].metal_type == 'gold') {
+          _this7.output_tax += parseFloat(_this7.formdata.purchaseitem[j].invoice_amount) * 20 / 100;
+        }
       }
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });

@@ -72,6 +72,9 @@
         <p style="padding-left: 12pt; text-indent: 0pt; text-align: left; font-size:11px;">
             {{ formdata.billing_address }}
         </p>
+        <p style="padding-left: 12pt; text-indent: 0pt; text-align: left; font-size:11px;">
+            VAT: {{ formdata.vat }}
+        </p>
      </div>
         <div class="col-4">
         <p class="s1" style="padding-left: 13pt; text-indent: 0pt; margin-right: 10px; text-align: left">SALES INVOICE</p>
@@ -133,25 +136,27 @@
     </div>
         <!-- ------------------------ -->
         <div class="container s3">
-        <p style="text-indent: 0pt;text-align: justify;font-size: 12px;">Payment Terms:</p>
-        <p style=" text-indent: 0pt; text-align: justify; font-size: 12px;">
-        Goods supplied by us remain the property of Gold Warehouse Limited until
-        paid for in full. Interest will be charged at 4% per month. The person
-        signing for the goods is personally responsible for the payment of this
-        invoice and for any loss or damage however caused.
-        </p><br><br>
-        <p style=" text-indent: 0pt; text-align: left; font-size: 11px;">
-        Signed:  <img :src="signaturedata.signature_filename" style="height:100px;"/>
-        <span class="ml-3">Signed By: <span style="font-weight:600;">{{signaturedata.signed_by}}</span></span>
-        </p>
+            <p style="text-indent: 0pt;text-align: justify;font-size: 12px;">Payment Terms:</p>
+            <p style=" text-indent: 0pt; text-align: justify; font-size: 12px;">
+            Goods supplied by us remain the property of Gold Warehouse Limited until
+            paid for in full. Interest will be charged at 4% per month. The person
+            signing for the goods is personally responsible for the payment of this
+            invoice and for any loss or damage however caused.
+            </p><br><br>
+            <p style=" text-indent: 0pt; text-align: left; font-size: 11px;">
+                <img :src="signaturedata.signature_filename" style="height:100px;"/>
+                <br>
+                <span class="ml-3">Signed By: <span style="font-weight:600;">{{signaturedata.signed_by}}</span></span>
+            </p>
         </div>
+        <br>
         <div class="container s3" style="font-size:11px">
         <p style="text-indent: 0pt; text-align: left;">
         Gold Bank is a trading name for Gold Warehouse Ltd<br> Cheques can be made
         payable to Gold Warehouse Limited.<br> Please make BACS/CHAPS/FASTER payments
         to:<br>Wise Bank<br> Sort code: <b>23-14-70</b><br>Account No: <b>24730434</b>
         </p><br>
-        <p style="padding-left: 6pt; text-indent: 0pt; text-align: left">
+        <p style="padding-left: 6pt; text-indent: 0pt; text-align: left" v-if="output_tax">
         The Output Tax Of £ <span style="font-weight:600;">{{output_tax}}</span> On
         Supply Of This Gold Is To Be Accounted For By The Buyer To HMRC.
         </p><br><br><br><br><br><br><br><br>
@@ -1674,20 +1679,14 @@ export default {
       axios
           .get("/sales_details/" + this.$route.params.id)
           .then(response => {
+            
               this.formdata = response.data;
               this.paymentcount = this.formdata.salepayments.length;
               if (response.data.payment_due < 0) {
                   this.over_paid = response.data.payment_due.toFixed(2);
               }
               this.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
-              this.output_tax=0;
-              for(var j=0; j<this.formdata.salesitem.length; j++)
-              {
-                if(empty(this.formdata.salesitem[j].vat) && this.formdata.salesitem[j].metal_type=='gold')
-                {
-                    this.output_tax += parseFloat(this.formdata.salesitem[j].invoice_amount)*20/100;
-                }
-              }
+              
               this.due_payment = this.due_payment.toFixed(2);
               if (this.paymentcount == 0) {
                   this.invoice_status = "UnPaid";
@@ -1702,6 +1701,15 @@ export default {
                   this.invoice_status = "Partially Paid";
                   this.payment_check = "Yes";
               }
+              this.output_tax=0;
+              for(var j=0; j<this.formdata.salesitem.length; j++)
+              {
+                if(empty(this.formdata.salesitem[j].vat) && this.formdata.salesitem[j].metal_type=='gold')
+                {
+                    this.output_tax += parseFloat(this.formdata.salesitem[j].invoice_amount)*20/100;
+                }
+              }
+                console.log(this.invoice_status);
           })
           .catch(function(error) {
               //app.$notify(error.response.data.error, "error");
