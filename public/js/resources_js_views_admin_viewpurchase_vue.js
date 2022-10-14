@@ -16458,11 +16458,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -28568,7 +28563,7 @@ var render = function() {
                               _c(
                                 "div",
                                 {
-                                  staticClass: "col-8",
+                                  staticClass: "col-7",
                                   staticStyle: { "padding-top": "55px" }
                                 },
                                 [
@@ -28586,7 +28581,7 @@ var render = function() {
                               _c(
                                 "div",
                                 {
-                                  staticClass: "col-4 s3",
+                                  staticClass: "col-5 s3",
                                   staticStyle: {
                                     "font-size": "9px",
                                     "text-align": "left",
@@ -28608,7 +28603,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n        " +
+                                        "\n          " +
                                           _vm._s(_vm.companydata.company_name) +
                                           " "
                                       ),
@@ -28635,9 +28630,9 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n        " +
+                                        "\n          " +
                                           _vm._s(_vm.companydata.postcode) +
-                                          "\n        "
+                                          "\n          "
                                       )
                                     ]
                                   ),
@@ -28655,9 +28650,9 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n        Vat No: " +
+                                        "\n          Vat No: " +
                                           _vm._s(_vm.companydata.vat_number) +
-                                          "\n        "
+                                          "\n          "
                                       )
                                     ]
                                   ),
@@ -28675,11 +28670,11 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n        t: " +
+                                        "\n          t: " +
                                           _vm._s(
                                             _vm.companydata.contact_mobile
                                           ) +
-                                          "\n        "
+                                          "\n          "
                                       )
                                     ]
                                   ),
@@ -28728,7 +28723,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("div", { staticClass: "container" }, [
                           _c("div", { staticClass: "row" }, [
-                            _c("div", { staticClass: "col-8 cont2" }, [
+                            _c("div", { staticClass: "col-7 cont2" }, [
                               _c(
                                 "p",
                                 {
@@ -28741,11 +28736,11 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n          " +
+                                    "\n            " +
                                       _vm._s(_vm.formdata.firstname) +
                                       " " +
                                       _vm._s(_vm.formdata.lastname) +
-                                      "\n          "
+                                      "\n            "
                                   )
                                 ]
                               ),
@@ -28762,15 +28757,15 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n              " +
+                                    "\n                " +
                                       _vm._s(_vm.formdata.billing_address) +
-                                      "\n          "
+                                      "\n            "
                                   )
                                 ]
                               )
                             ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-4" }, [
+                            _c("div", { staticClass: "col-5" }, [
                               _c(
                                 "p",
                                 {
@@ -28805,7 +28800,11 @@ var render = function() {
                                         "font-weight": "bold"
                                       }
                                     },
-                                    [_vm._v("\n        Invoice Date\n        ")]
+                                    [
+                                      _vm._v(
+                                        "\n          Invoice Date\n          "
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -28853,7 +28852,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n        Invoice Number\n        "
+                                        "\n          Invoice Number\n          "
                                       )
                                     ]
                                   ),
@@ -28893,7 +28892,7 @@ var render = function() {
                                         "font-weight": "bold"
                                       }
                                     },
-                                    [_vm._v("Account\n        ")]
+                                    [_vm._v("Account\n          ")]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -28908,7 +28907,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n        Online OrderVAT Number140187339\n        "
+                                        "\n          Online OrderVAT Number140187339\n          "
                                       )
                                     ]
                                   ),
@@ -29061,7 +29060,23 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n        Goods supplied by us remain the property of Gold Warehouse Limited until\n        paid for in full. Interest will be charged at 4% per month. The person\n        signing for the goods is personally responsible for the payment of this\n        invoice and for any loss or damage however caused.\n        "
+                                "\n            I confirm that i am atleast 18 years of age"
+                              ),
+                              _c("br"),
+                              _vm._v(
+                                "\nThe goods i am selling are owned by me and i have the right to sell them"
+                              ),
+                              _c("br"),
+                              _vm._v(
+                                "\nThe goods i am selling are not subject to any court proceedings and are police safe."
+                              ),
+                              _c("br"),
+                              _vm._v(
+                                "\nThe goods i am selling if indicated as 'scrap' cannot later be returned or refunded"
+                              ),
+                              _c("br"),
+                              _vm._v(
+                                "\nI am happy with and accept the offer being provided to me by Gold Warehouse Limited.\n          "
                               )
                             ]
                           ),
@@ -29078,22 +29093,13 @@ var render = function() {
                               }
                             },
                             [
-                              _vm._v("\n        Signed:  "),
+                              _vm._v("\n          Signed:  "),
                               _c("img", {
                                 staticStyle: { height: "100px" },
                                 attrs: {
                                   src: _vm.signaturedata.signature_filename
                                 }
-                              }),
-                              _vm._v(" "),
-                              _c("span", { staticClass: "ml-3" }, [
-                                _vm._v("Signed By: "),
-                                _c(
-                                  "span",
-                                  { staticStyle: { "font-weight": "600" } },
-                                  [_vm._v(_vm._s(_vm.signaturedata.signed_by))]
-                                )
-                              ])
+                              })
                             ]
                           ),
                           _c("br")
@@ -29115,17 +29121,7 @@ var render = function() {
                                 }
                               },
                               [
-                                _vm._v(
-                                  "\n        Gold Bank is a trading name for Gold Warehouse Ltd"
-                                ),
-                                _c("br"),
-                                _vm._v(
-                                  " Cheques can be made\n        payable to Gold Warehouse Limited."
-                                ),
-                                _c("br"),
-                                _vm._v(
-                                  " Please make BACS/CHAPS/FASTER payments\n        to:"
-                                ),
+                                _vm._v("\n          Our Bank details:"),
                                 _c("br"),
                                 _vm._v("Wise Bank"),
                                 _c("br"),
@@ -29148,17 +29144,23 @@ var render = function() {
                                 }
                               },
                               [
-                                _vm._v("\n        The Output Tax Of £ "),
+                                _vm._v("\n          The Output Tax Of £ "),
                                 _c(
                                   "span",
                                   { staticStyle: { "font-weight": "600" } },
                                   [_vm._v(_vm._s(_vm.output_tax))]
                                 ),
                                 _vm._v(
-                                  " On\n        Supply Of This Gold Is To Be Accounted For By The Buyer To HMRC.\n        "
+                                  " On\n          Supply Of This Gold Is To Be Accounted For By The Buyer To HMRC.\n          "
                                 )
                               ]
                             ),
+                            _c("br"),
+                            _c("br"),
+                            _c("br"),
+                            _c("br"),
+                            _c("br"),
+                            _c("br"),
                             _c("br"),
                             _c("br"),
                             _c("br"),
@@ -29184,24 +29186,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n        Goldbank T/AS Gold Warehouse Limited, 215 The Broadway, Southall,\n        Middlesex, UB1 1NB. Registered in England Number 08101794."
-                            ),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "s5",
-                                attrs: {
-                                  href: "mailto:accounts@gold-bank.co.uk",
-                                  target: "_blank"
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n            VAT Registration Number 140187339 Telephone:0203 500 1111 Email:\n            accounts@gold-bank.co.uk"
-                                )
-                              ]
+                              "\n            Company Registration No: 08101794. Registered Office: 215 the broadway, southall, Southall, middlesex, ub1 1nb, United Kingdom"
                             )
                           ]
                         )

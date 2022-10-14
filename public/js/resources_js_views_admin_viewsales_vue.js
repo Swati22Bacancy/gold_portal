@@ -1034,6 +1034,756 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1117,13 +1867,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       purchases: [],
       purchase_id: "",
       purchase_amount: "",
-      signed_by: '',
+      signed_by: "",
       no_sign: false,
       signaturedata: {
-        signature_filename: '',
-        signed_by: ''
+        signature_filename: "",
+        signed_by: ""
       },
-      sign_flag: '',
+      sign_flag: "",
       output_tax: ""
     };
   },
@@ -1131,10 +1881,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     deleteSalesInvoice: function deleteSalesInvoice() {
       var _this = this;
 
-      axios.get('/delete_salesinvoice/' + this.$route.params.id).then(function (resp) {
+      axios.get("/delete_salesinvoice/" + this.$route.params.id).then(function (resp) {
         _this.$router.push("/sales");
       })["catch"](function (error) {
-        var message = 'Something went wrong, Please try again';
+        var message = "Something went wrong, Please try again";
         var toast = Vue.toasted.show(message, {
           theme: "toasted-error",
           position: "top-center",
@@ -1145,7 +1895,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     edit_invoice: function edit_invoice() {
       if (this.paymentcount > 0) {
-        alert('Please delete all the payments first!');
+        alert("Please delete all the payments first!");
       } else {
         this.$router.push("/editinvoice/" + this.$route.params.id);
       }
@@ -1177,9 +1927,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 5:
                 _context.next = 7;
                 return axios.post("add_salessignature", {
-                  'signature': data,
-                  'signedby': _this2.signed_by,
-                  'sales_id': _this2.$route.params.id
+                  signature: data,
+                  signedby: _this2.signed_by,
+                  sales_id: _this2.$route.params.id
                 });
 
               case 7:
@@ -1188,7 +1938,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (response.data.id) {
                   _this2.$router.go();
                 } else {
-                  toast = Vue.toasted.show('Something went wrong, Please try again', {
+                  toast = Vue.toasted.show("Something went wrong, Please try again", {
                     theme: "toasted-error",
                     position: "top-center",
                     duration: 5000
@@ -1234,7 +1984,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     duration: 5000
                   });
                 } else {
-                  _toast = Vue.toasted.show('Something went wrong, Please try again', {
+                  _toast = Vue.toasted.show("Something went wrong, Please try again", {
                     theme: "toasted-error",
                     position: "top-center",
                     duration: 5000
@@ -1262,35 +2012,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     ondownload: function ondownload() {
       axios({
-        url: 'downloadPdf',
-        method: 'GET',
-        responseType: 'arraybuffer'
+        url: "downloadPdf",
+        method: "GET",
+        responseType: "arraybuffer"
       }).then(function (response) {
         var blob = new Blob([response.data], {
-          type: 'application/pdf'
+          type: "application/pdf"
         });
-        var link = document.createElement('a');
+        var link = document.createElement("a");
         link.href = window.URL.createObjectURL(blob);
-        link.download = 'test.pdf';
+        link.download = "test.pdf";
         link.click();
       });
     },
     fetchPo: function fetchPo() {
       var _this4 = this;
 
-      axios.get('/purchase_details/' + this.purchase_id).then(function (response) {
+      axios.get("/purchase_details/" + this.purchase_id).then(function (response) {
         _this4.purchase_amount = response.data.totalamount;
       });
     },
     dateFormateChanger: function dateFormateChanger(d) {
-      return moment__WEBPACK_IMPORTED_MODULE_1___default()(d, 'YYYY-MM-DD').format('DD MMM YYYY');
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(d, "YYYY-MM-DD").format("DD MMM YYYY");
     },
     gotosales: function gotosales(id) {
       this.$router.push("/viewsales/" + id);
     },
     dropdownCash: function dropdownCash(index) {
-      if (this.invoice_items[index].bank == 'Cash Account') {
-        this.invoice_items[index].method = 'Cash';
+      if (this.invoice_items[index].bank == "Cash Account") {
+        this.invoice_items[index].method = "Cash";
         this.cashSelected = true;
       } else {
         this.cashSelected = false;
@@ -1369,9 +2119,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this5.addpayment = "";
                   _this5.paymentcount = _this5.paymentcount + 1; //this.invoice_items.splice(index,1);
 
-                  if (_this5.payaction == 'Receive') {
+                  if (_this5.payaction == "Receive") {
                     _this5.due_payment = _this5.due_payment - _this5.invoice_items[index].totalamount;
-                    _this5.paymentclass = 'receive_class';
+                    _this5.paymentclass = "receive_class";
                   } else {
                     if (_this5.over_paid < 0) {
                       _this5.due_payment = parseFloat(_this5.over_paid) + parseFloat(_this5.invoice_items[index].totalamount);
@@ -1381,7 +2131,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     } //this.due_payment = parseFloat(this.due_payment) + parseFloat(this.invoice_items[index].totalamount);
 
 
-                    _this5.paymentclass = 'refund_class';
+                    _this5.paymentclass = "refund_class";
                   }
 
                   _this5.due_payment = _this5.due_payment.toFixed(2);
@@ -1462,12 +2212,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
           if (key.type.includes("image")) {
             this.urlArr[id].push({
-              fileType: 'image',
+              fileType: "image",
               url: URL.createObjectURL(key)
             });
           } else {
             this.urlArr[id].push({
-              fileType: 'nonImage',
+              fileType: "nonImage",
               url: ""
             });
           }
@@ -1534,22 +2284,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (index == 1) {
                   _this6.postFormData.kyc = _this6.uploaddata.registration;
-                  _this6.postFormData.category = 'registration';
+                  _this6.postFormData.category = "registration";
                 }
 
                 if (index == 2) {
                   _this6.postFormData.kyc = _this6.uploaddata.vat;
-                  _this6.postFormData.category = 'vat';
+                  _this6.postFormData.category = "vat";
                 }
 
                 if (index == 3) {
                   _this6.postFormData.kyc = _this6.uploaddata.iddoc;
-                  _this6.postFormData.category = 'iddoc';
+                  _this6.postFormData.category = "iddoc";
                 }
 
                 if (index == 4) {
                   _this6.postFormData.kyc = _this6.uploaddata.credit;
-                  _this6.postFormData.category = 'credit';
+                  _this6.postFormData.category = "credit";
                 }
 
                 _context4.next = 7;
@@ -1636,7 +2386,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this8.refund_items[index].sales_id = _this8.$route.params.id;
                 date = new Date(_this8.refund_items[index].refund_date);
                 _this8.refund_items[index].payment_date = date;
-                _this8.refund_items[index].action = 'Refund';
+                _this8.refund_items[index].action = "Refund";
                 _context6.next = 6;
                 return axios.post("create_payment", _this8.refund_items[index]);
 
@@ -1762,12 +2512,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     download: function download(image) {
       axios.get("/download-kyc?image=" + image, {
-        responseType: 'blob'
+        responseType: "blob"
       }).then(function (response) {
         var url = window.URL.createObjectURL(new Blob([response.data]));
-        var link = document.createElement('a');
+        var link = document.createElement("a");
         link.href = url;
-        link.setAttribute('download', image);
+        link.setAttribute("download", image);
         document.body.appendChild(link);
         link.click();
       })["catch"](function (e) {
@@ -1787,7 +2537,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   sales_id: _this12.$route.params.id,
                   purchase_id: _this12.purchase_id,
                   due_payment: _this12.due_payment,
-                  action: 'Exchange'
+                  action: "Exchange"
                 };
                 _context7.next = 3;
                 return axios.post("apply_contra", exchangedata);
@@ -1842,7 +2592,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     var _this13 = this;
 
-    axios.get('/saved_companydetails/').then(function (response) {
+    axios.get("/saved_companydetails/").then(function (response) {
       _this13.companydata = response.data;
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
@@ -1874,7 +2624,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _this13.output_tax = 0;
 
       for (var j = 0; j < _this13.formdata.salesitem.length; j++) {
-        if (empty(_this13.formdata.salesitem[j].vat) && _this13.formdata.salesitem[j].metal_type == 'gold') {
+        if (empty(_this13.formdata.salesitem[j].vat) && _this13.formdata.salesitem[j].metal_type == "gold") {
           _this13.output_tax += parseFloat(_this13.formdata.salesitem[j].invoice_amount) * 20 / 100;
         }
       }
@@ -1885,27 +2635,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     axios.get("/sales_history/" + this.$route.params.id).then(function (response) {
       _this13.formdata.saleshistory = response.data;
     })["catch"](function (error) {});
-    axios.get('/sales_list/').then(function (response) {
+    axios.get("/sales_list/").then(function (response) {
       _this13.sales = response.data;
     })["catch"](function (error) {});
-    axios.get('/purchase_list/').then(function (response) {
+    axios.get("/purchase_list/").then(function (response) {
       _this13.purchases = response.data;
       _this13.purchases = _this13.purchases.map(function (purchase) {
         return {
           value: purchase.id,
-          text: "".concat(moment__WEBPACK_IMPORTED_MODULE_1___default()(purchase.issue_date, 'YYYY-MM-DD').format('DD MMM YYYY') || '', " |   ").concat(purchase.invoiceno || '', "  | ").concat(purchase.firstname || "", "  ").concat(purchase.lastname || "", " | \xA3").concat(purchase.totalamount || "", " ")
+          text: "".concat(moment__WEBPACK_IMPORTED_MODULE_1___default()(purchase.issue_date, "YYYY-MM-DD").format("DD MMM YYYY") || "", " |   ").concat(purchase.invoiceno || "", "  | ").concat(purchase.firstname || "", "  ").concat(purchase.lastname || "", " | \xA3").concat(purchase.totalamount || "", " ")
         };
       });
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
-    axios.get('/fetch_kyc/' + this.$route.params.id).then(function (response) {
+    axios.get("/fetch_kyc/" + this.$route.params.id).then(function (response) {
       _this13.kycdocs = response.data;
       console.log(_this13.kycdocs);
     })["catch"](function (error) {});
-    axios.get('/invoicesales_signature/' + this.$route.params.id).then(function (response) {
+    axios.get("/invoicesales_signature/" + this.$route.params.id).then(function (response) {
       _this13.signaturedata = response.data;
       _this13.sign_flag = response.data.signature_filename;
-      _this13.signaturedata.signature_filename = '/uploads/' + response.data.signature_filename;
+      _this13.signaturedata.signature_filename = "/uploads/" + response.data.signature_filename;
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
   }
@@ -2027,7 +2777,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.pdf_section *[data-v-483c8698] {\r\n        margin: 0;\r\n        padding: 0;\r\n        text-indent: 0;\n}\n#dosign .modal-dialog[data-v-483c8698]\r\n{\r\n    max-width: 600px;\n}\n#createinvoice-datatable thead[data-v-483c8698] {\r\n  background: #3376c2;\r\n  color: #fff;\r\n  font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n  font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.download-containter[data-v-483c8698]{\r\n  margin-top: 200px;\r\n  margin-left: 600px;\n}\n.choose-cont[data-v-483c8698]{\r\n    display: flex;\r\n    /* justify-content: center; */\n}\n.imagePreview[data-v-483c8698] {\r\n  width: 70px;\n}\n.previewContainer[data-v-483c8698] {\r\n  position: relative;\n}\n.closeIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 51px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.closeIcon i[data-v-483c8698]\r\n{\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.downloadIcon[data-v-483c8698] {\r\n  position: absolute;\r\n  top: -15px;\r\n  left: 30px;\r\n  font-size: 20px;\r\n  cursor: pointer;\n}\n.downloadIcon i[data-v-483c8698]\r\n{\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.salesdata[data-v-483c8698] {\r\n  font-size: 13px;\r\n  color: #000;\n}\n.btn-head[data-v-483c8698] {\r\n  border-radius: 50%;\n}\n.btn-container[data-v-483c8698] {\r\n  display: flex;\r\n  justify-content: space-between !important;\r\n  width: 100% !important;\n}\n.selectedclr[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff !important;\n}\n.cont[data-v-483c8698] {\r\n  width: auto;\r\n  font-size: 13px !important;\r\n  color: #000;\r\n  border: none;\r\n  height: 40px;\r\n  padding: 5px 20px;\r\n  border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698] {\r\n  background: #fff;\r\n  padding: 34px 23px 0px 23px;\r\n  border-radius: 8px;\r\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698] {\r\n  font-size: 12px;\n}\n.crt-invoice[data-v-483c8698] {\r\n  padding: 0px 2%;\r\n  color: #000;\n}\n.dark-theme-btn[data-v-483c8698] {\r\n  background-color: #245388 !important;\r\n  color: #fff;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698] {\r\n  background-color: #edf2f6 !important;\r\n  color: #000;\r\n  width: 100px;\r\n  font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus,\r\n.btn.focus[data-v-483c8698] {\r\n  box-shadow: 0 0;\n}\n.table-div[data-v-483c8698] {\r\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698] {\r\n  border: 1px solid #d6e3f2 !important;\r\n  height: 40px;\r\n  border-radius: 5px;\r\n  width: 100%;\r\n  font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698] {\r\n  width: 130px;\n}\n.sum-price ul[data-v-483c8698] {\r\n  list-style-type: none;\n}\n.sum-price li[data-v-483c8698] {\r\n  padding: 5px 0px;\r\n  font-size: 11px;\n}\n.viewsales-div > p[data-v-483c8698] {\r\n  color: #3376c2;\r\n  font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n  color: #000;\r\n  font-size: 13px;\n}\n.class_red[data-v-483c8698]\r\n{\r\n  color:rgb(255 0 0);\n}\n.class_green[data-v-483c8698]\r\n{\r\n  color:#7adaaa;\n}\n.bold_font[data-v-483c8698]\r\n{\r\n    font-weight: 600;\n}\n.invoicelist a[data-v-483c8698] \r\n{\r\n    color: #000;\n}\n#saleshistory-datatable thead[data-v-483c8698]\r\n{\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#saleshistory-datatable thead th[data-v-483c8698]\r\n{\r\n    font-weight: 100;\n}\n#kyc-datatable[data-v-483c8698]\r\n{\r\n    font-size: 13px;\n}\n#applycontra .modal-dialog[data-v-483c8698]\r\n{\r\n    max-width: 700px;\n}\n.red-color[data-v-483c8698]\r\n{\r\n    color:red !important;\n}\n.container[data-v-483c8698] {\r\n    padding: 0px 6%;\r\n    margin-top: 0px;\n}\n.col-sm[data-v-483c8698] {\r\n    padding: 0 10px;\n}\n.row[data-v-483c8698] {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\n}\nh2[data-v-483c8698] {\r\n        color: black;\r\n        font-family: Calibri, sans-serif;\r\n        font-style: normal;\r\n        font-weight: bold;\r\n        text-decoration: none;\r\n        font-size: 12pt;\n}\n.cont2 p[data-v-483c8698]{\r\n        color: black;\r\n        font-family: Calibri, sans-serif;\r\n        font-style: normal;\r\n        font-weight: normal;\r\n        text-decoration: none;\r\n        font-size: 12pt;\r\n        margin: 0pt;\n}\n.s1[data-v-483c8698] {\r\n        color: black;\r\n        font-family: Calibri, sans-serif;\r\n        font-style: normal;\r\n        font-weight: normal;\r\n        text-decoration: none;\r\n        font-size: 22pt;\n}\n.s3[data-v-483c8698] {\r\n        color: black;\r\n        font-family: Calibri;\r\n        font-style: normal;\r\n        font-weight: normal;\r\n        text-decoration: underline;\r\n        font-size: 9px;\n}\n.s4[data-v-483c8698],.s5[data-v-483c8698] {\r\n        color: black;\r\n        font-family: Calibri;\r\n        font-style: normal;\r\n        font-weight: normal;\r\n        text-decoration: none;\r\n        font-size: 9px;\n}\nth[data-v-483c8698], td[data-v-483c8698]{\r\n        border-bottom:1px solid black;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.pdf_section *[data-v-483c8698] {\r\n    margin: 0;\r\n    padding: 0;\r\n    text-indent: 0;\n}\n#dosign .modal-dialog[data-v-483c8698] {\r\n    max-width: 600px;\n}\n#createinvoice-datatable thead[data-v-483c8698] {\r\n    background: #3376c2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698] {\r\n    font-size: 13px;\r\n    color: #000;\n}\n.download-containter[data-v-483c8698] {\r\n    margin-top: 200px;\r\n    margin-left: 600px;\n}\n.choose-cont[data-v-483c8698] {\r\n    display: flex;\r\n    /* justify-content: center; */\n}\n.imagePreview[data-v-483c8698] {\r\n    width: 70px;\n}\n.previewContainer[data-v-483c8698] {\r\n    position: relative;\n}\n.closeIcon[data-v-483c8698] {\r\n    position: absolute;\r\n    top: -15px;\r\n    left: 51px;\r\n    font-size: 20px;\r\n    cursor: pointer;\n}\n.closeIcon i[data-v-483c8698] {\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.downloadIcon[data-v-483c8698] {\r\n    position: absolute;\r\n    top: -15px;\r\n    left: 30px;\r\n    font-size: 20px;\r\n    cursor: pointer;\n}\n.downloadIcon i[data-v-483c8698] {\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.salesdata[data-v-483c8698] {\r\n    font-size: 13px;\r\n    color: #000;\n}\n.btn-head[data-v-483c8698] {\r\n    border-radius: 50%;\n}\n.btn-container[data-v-483c8698] {\r\n    display: flex;\r\n    justify-content: space-between !important;\r\n    width: 100% !important;\n}\n.selectedclr[data-v-483c8698] {\r\n    background-color: #245388 !important;\r\n    color: #fff !important;\n}\n.cont[data-v-483c8698] {\r\n    width: auto;\r\n    font-size: 13px !important;\r\n    color: #000;\r\n    border: none;\r\n    height: 40px;\r\n    padding: 5px 20px;\r\n    border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698] {\r\n    background: #fff;\r\n    padding: 34px 23px 0px 23px;\r\n    border-radius: 8px;\r\n    box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698] {\r\n    font-size: 12px;\n}\n.crt-invoice[data-v-483c8698] {\r\n    padding: 0px 2%;\r\n    color: #000;\n}\n.dark-theme-btn[data-v-483c8698] {\r\n    background-color: #245388 !important;\r\n    color: #fff;\r\n    width: 100px;\r\n    font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698] {\r\n    background-color: #edf2f6 !important;\r\n    color: #000;\r\n    width: 100px;\r\n    font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus,\r\n.btn.focus[data-v-483c8698] {\r\n    box-shadow: 0 0;\n}\n.table-div[data-v-483c8698] {\r\n    border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698] {\r\n    border: 1px solid #d6e3f2 !important;\r\n    height: 40px;\r\n    border-radius: 5px;\r\n    width: 100%;\r\n    font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698] {\r\n    width: 130px;\n}\n.sum-price ul[data-v-483c8698] {\r\n    list-style-type: none;\n}\n.sum-price li[data-v-483c8698] {\r\n    padding: 5px 0px;\r\n    font-size: 11px;\n}\n.viewsales-div > p[data-v-483c8698] {\r\n    color: #3376c2;\r\n    font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n    color: #000;\r\n    font-size: 13px;\n}\n.class_red[data-v-483c8698] {\r\n    color: rgb(255 0 0);\n}\n.class_green[data-v-483c8698] {\r\n    color: #7adaaa;\n}\n.bold_font[data-v-483c8698] {\r\n    font-weight: 600;\n}\n.invoicelist a[data-v-483c8698] {\r\n    color: #000;\n}\n#saleshistory-datatable thead[data-v-483c8698] {\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#saleshistory-datatable thead th[data-v-483c8698] {\r\n    font-weight: 100;\n}\n#kyc-datatable[data-v-483c8698] {\r\n    font-size: 13px;\n}\n#applycontra .modal-dialog[data-v-483c8698] {\r\n    max-width: 700px;\n}\n.red-color[data-v-483c8698] {\r\n    color: red !important;\n}\n.container[data-v-483c8698] {\r\n    padding: 0px 6%;\r\n    margin-top: 0px;\n}\n.col-sm[data-v-483c8698] {\r\n    padding: 0 10px;\n}\n.row[data-v-483c8698] {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\n}\nh2[data-v-483c8698] {\r\n    color: black;\r\n    font-family: Calibri, sans-serif;\r\n    font-style: normal;\r\n    font-weight: bold;\r\n    text-decoration: none;\r\n    font-size: 12pt;\n}\n.cont2 p[data-v-483c8698] {\r\n    color: black;\r\n    font-family: Calibri, sans-serif;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    text-decoration: none;\r\n    font-size: 12pt;\r\n    margin: 0pt;\n}\n.s1[data-v-483c8698] {\r\n    color: black;\r\n    font-family: Calibri, sans-serif;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    text-decoration: none;\r\n    font-size: 22pt;\n}\n.s3[data-v-483c8698] {\r\n    color: black;\r\n    font-family: Calibri;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    text-decoration: underline;\r\n    font-size: 9px;\n}\n.s4[data-v-483c8698],\r\n.s5[data-v-483c8698] {\r\n    color: black;\r\n    font-family: Calibri;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    text-decoration: none;\r\n    font-size: 9px;\n}\nth[data-v-483c8698],\r\ntd[data-v-483c8698] {\r\n    border-bottom: 1px solid black;\n}\n.flex-parent[data-v-483c8698] {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\n}\n.box[data-v-483c8698] {\r\n    background-color: white;\r\n    height: 110px;\r\n    padding: 5px;\r\n    width: 330px;\r\n    border: 0.5px solid;\n}\n.box_size[data-v-483c8698] {\r\n    margin-top: 10px;\r\n    font-size: 11px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13596,9 +14346,9 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                      " +
+                    "\n                    " +
                       _vm._s(_vm.formdata.invoiceno) +
-                      "\n                  "
+                      "\n                "
                   )
                 ]
               ),
@@ -13699,11 +14449,11 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n        " +
+                                            "\n                                                " +
                                               _vm._s(
                                                 _vm.companydata.company_name
                                               ) +
-                                              " "
+                                              "\n                                                "
                                           ),
                                           _c("br"),
                                           _vm._v(
@@ -13711,8 +14461,9 @@ var render = function() {
                                           ),
                                           _c("br"),
                                           _vm._v(
-                                            " " +
-                                              _vm._s(_vm.companydata.address2)
+                                            "\n                                                " +
+                                              _vm._s(_vm.companydata.address2) +
+                                              "\n                                            "
                                           )
                                         ]
                                       ),
@@ -13730,9 +14481,9 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n        " +
+                                            "\n                                                " +
                                               _vm._s(_vm.companydata.postcode) +
-                                              "\n        "
+                                              "\n                                            "
                                           )
                                         ]
                                       ),
@@ -13749,11 +14500,11 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n        Vat No: " +
+                                            "\n                                                Vat No:\n                                                " +
                                               _vm._s(
                                                 _vm.companydata.vat_number
                                               ) +
-                                              "\n        "
+                                              "\n                                            "
                                           )
                                         ]
                                       ),
@@ -13770,11 +14521,11 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n        t: " +
+                                            "\n                                                t:\n                                                " +
                                               _vm._s(
                                                 _vm.companydata.contact_mobile
                                               ) +
-                                              "\n        "
+                                              "\n                                            "
                                           )
                                         ]
                                       ),
@@ -13796,7 +14547,11 @@ var render = function() {
                                               staticClass: "a",
                                               attrs: { target: "_blank" }
                                             },
-                                            [_vm._v("e: ")]
+                                            [
+                                              _vm._v(
+                                                "e:\n                                                "
+                                              )
+                                            ]
                                           ),
                                           _vm._v(" "),
                                           _c(
@@ -13836,11 +14591,11 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n            " +
+                                        "\n                                                " +
                                           _vm._s(_vm.formdata.firstname) +
-                                          " " +
+                                          "\n                                                " +
                                           _vm._s(_vm.formdata.lastname) +
-                                          "\n        "
+                                          "\n                                            "
                                       )
                                     ]
                                   ),
@@ -13857,9 +14612,9 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n            " +
+                                        "\n                                                " +
                                           _vm._s(_vm.formdata.billing_address) +
-                                          "\n        "
+                                          "\n                                            "
                                       )
                                     ]
                                   ),
@@ -13876,9 +14631,9 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n            VAT: " +
+                                        "\n                                                VAT: " +
                                           _vm._s(_vm.formdata.vat) +
-                                          "\n        "
+                                          "\n                                            "
                                       )
                                     ]
                                   )
@@ -13896,7 +14651,11 @@ var render = function() {
                                         "text-align": "left"
                                       }
                                     },
-                                    [_vm._v("SALES INVOICE")]
+                                    [
+                                      _vm._v(
+                                        "\n                                                SALES INVOICE\n                                            "
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -13920,7 +14679,7 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n        Invoice Date\n        "
+                                            "\n                                                    Invoice Date\n                                                "
                                           )
                                         ]
                                       ),
@@ -13969,7 +14728,7 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n        Invoice Number\n        "
+                                            "\n                                                    Invoice Number\n                                                "
                                           )
                                         ]
                                       ),
@@ -14012,7 +14771,11 @@ var render = function() {
                                             "font-size": "11px"
                                           }
                                         },
-                                        [_vm._v("Account\n        ")]
+                                        [
+                                          _vm._v(
+                                            "\n                                                    Account\n                                                "
+                                          )
+                                        ]
                                       ),
                                       _vm._v(" "),
                                       _c(
@@ -14027,10 +14790,11 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n        Online OrderVAT Number140187339\n        "
+                                            "\n                                                    Online OrderVAT\n                                                    Number140187339\n                                                "
                                           )
                                         ]
                                       ),
+                                      _vm._v(" "),
                                       _c("br"),
                                       _c("br")
                                     ]
@@ -14038,6 +14802,7 @@ var render = function() {
                                 ])
                               ])
                             ]),
+                            _vm._v(" "),
                             _c("br"),
                             _c("br"),
                             _vm._v(" "),
@@ -14054,19 +14819,31 @@ var render = function() {
                                       _c(
                                         "th",
                                         { staticStyle: { width: "350px" } },
-                                        [_vm._v("Description")]
+                                        [
+                                          _vm._v(
+                                            "\n                                                    Description\n                                                "
+                                          )
+                                        ]
                                       ),
                                       _vm._v(" "),
                                       _c(
                                         "th",
-                                        { staticStyle: { width: "100px" } },
-                                        [_vm._v("Unit Price")]
+                                        { staticStyle: { width: "120px" } },
+                                        [
+                                          _vm._v(
+                                            "\n                                                    Unit Price\n                                                "
+                                          )
+                                        ]
                                       ),
                                       _vm._v(" "),
                                       _c(
                                         "th",
-                                        { staticStyle: { width: "100px" } },
-                                        [_vm._v("VAT(%)")]
+                                        { staticStyle: { width: "120px" } },
+                                        [
+                                          _vm._v(
+                                            "\n                                                    VAT(%)\n                                                "
+                                          )
+                                        ]
                                       ),
                                       _vm._v(" "),
                                       _c("th", [_vm._v("Amount GBP")])
@@ -14082,19 +14859,24 @@ var render = function() {
                                         return _c("tr", { key: saleitem.id }, [
                                           _c("td", [
                                             _vm._v(
-                                              _vm._s(saleitem.quantity) +
-                                                " x " +
+                                              "\n                                                    " +
+                                                _vm._s(saleitem.quantity) +
+                                                "\n                                                    x\n                                                    " +
                                                 _vm._s(saleitem.typename) +
-                                                " " +
+                                                "\n                                                    " +
                                                 _vm._s(saleitem.productname) +
-                                                " (" +
+                                                "\n                                                    (" +
                                                 _vm._s(saleitem.weight) +
-                                                "g) "
+                                                "g)\n                                                "
                                             )
                                           ]),
                                           _vm._v(" "),
                                           _c("td", [
-                                            _vm._v(_vm._s(saleitem.unitprice))
+                                            _vm._v(
+                                              "\n                                                    " +
+                                                _vm._s(saleitem.unitprice) +
+                                                "\n                                                "
+                                            )
                                           ]),
                                           _vm._v(" "),
                                           _c("td", [
@@ -14103,11 +14885,16 @@ var render = function() {
                                           _vm._v(" "),
                                           _c("td", [
                                             _vm._v(
-                                              _vm._s(saleitem.invoice_amount)
+                                              "\n                                                    " +
+                                                _vm._s(
+                                                  saleitem.invoice_amount
+                                                ) +
+                                                "\n                                                "
                                             )
                                           ])
                                         ])
                                       }),
+                                      _vm._v(" "),
                                       _c("br"),
                                       _c("br"),
                                       _vm._v(" "),
@@ -14121,9 +14908,14 @@ var render = function() {
                                         _c("td", [_vm._v("Total No VAT")]),
                                         _vm._v(" "),
                                         _c("td", [
-                                          _vm._v(_vm._s(_vm.formdata.vattotal))
+                                          _vm._v(
+                                            "\n                                                    " +
+                                              _vm._s(_vm.formdata.vattotal) +
+                                              "\n                                                "
+                                          )
                                         ])
                                       ]),
+                                      _vm._v(" "),
                                       _c("br"),
                                       _c("br"),
                                       _vm._v(" "),
@@ -14138,24 +14930,39 @@ var render = function() {
                                         _vm._v(" "),
                                         _c(
                                           "td",
-                                          { staticStyle: { border: "none" } },
+                                          {
+                                            staticStyle: {
+                                              border: "none",
+                                              "font-weight": "bold"
+                                            }
+                                          },
                                           [
-                                            _c("strong", [
-                                              _vm._v("Amount Due GBP")
-                                            ])
+                                            _vm._v(
+                                              "\n                                                    Amount Due\n                                                        GBP\n                                                "
+                                            )
                                           ]
                                         ),
                                         _vm._v(" "),
                                         _c(
                                           "td",
-                                          { staticStyle: { border: "none" } },
+                                          {
+                                            staticStyle: {
+                                              border: "none",
+                                              "font-weight": "bold"
+                                            }
+                                          },
                                           [
                                             _vm._v(
-                                              _vm._s(_vm.formdata.totalamount)
+                                              "\n                                                    " +
+                                                _vm._s(
+                                                  _vm.formdata.totalamount
+                                                ) +
+                                                "\n                                                "
                                             )
                                           ]
                                         )
                                       ]),
+                                      _vm._v(" "),
                                       _c("br")
                                     ],
                                     2
@@ -14174,7 +14981,11 @@ var render = function() {
                                     "font-size": "12px"
                                   }
                                 },
-                                [_vm._v("Payment Terms:")]
+                                [
+                                  _vm._v(
+                                    "\n                                        Payment Terms:\n                                    "
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _c(
@@ -14188,10 +14999,15 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n            Goods supplied by us remain the property of Gold Warehouse Limited until\n            paid for in full. Interest will be charged at 4% per month. The person\n            signing for the goods is personally responsible for the payment of this\n            invoice and for any loss or damage however caused.\n            "
+                                    "\n                                        Goods supplied by us remain the\n                                        property of Gold Warehouse Limited\n                                        until paid for in full. Interest\n                                        will be charged at 4% per month."
+                                  ),
+                                  _c("br"),
+                                  _vm._v(
+                                    "\n                                        The person signing for the goods is\n                                        personally responsible for the\n                                        payment of this invoice and for any\n                                        loss or damage however caused.\n                                    "
                                   )
                                 ]
                               ),
+                              _vm._v(" "),
                               _c("br"),
                               _c("br"),
                               _vm._v(" "),
@@ -14205,6 +15021,9 @@ var render = function() {
                                   }
                                 },
                                 [
+                                  _vm._v(
+                                    "\n                                        Signed:\n                                        "
+                                  ),
                                   _c("img", {
                                     staticStyle: { height: "100px" },
                                     attrs: {
@@ -14212,20 +15031,7 @@ var render = function() {
                                     }
                                   }),
                                   _vm._v(" "),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c("span", { staticClass: "ml-3" }, [
-                                    _vm._v("Signed By: "),
-                                    _c(
-                                      "span",
-                                      { staticStyle: { "font-weight": "600" } },
-                                      [
-                                        _vm._v(
-                                          _vm._s(_vm.signaturedata.signed_by)
-                                        )
-                                      ]
-                                    )
-                                  ])
+                                  _c("br")
                                 ]
                               )
                             ]),
@@ -14236,7 +15042,7 @@ var render = function() {
                               "div",
                               {
                                 staticClass: "container s3",
-                                staticStyle: { "font-size": "11px" }
+                                staticStyle: { "font-size": "12px" }
                               },
                               [
                                 _c(
@@ -14249,57 +15055,136 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n        Gold Bank is a trading name for Gold Warehouse Ltd"
+                                      "\n                                        Gold Bank is a trading name for Gold\n                                        Warehouse Ltd"
                                     ),
                                     _c("br"),
                                     _vm._v(
-                                      " Cheques can be made\n        payable to Gold Warehouse Limited."
+                                      "\n                                        Please make BACS/CHAPS/FASTER\n                                        payments to:"
                                     ),
-                                    _c("br"),
-                                    _vm._v(
-                                      " Please make BACS/CHAPS/FASTER payments\n        to:"
-                                    ),
-                                    _c("br"),
-                                    _vm._v("Wise Bank"),
-                                    _c("br"),
-                                    _vm._v(" Sort code: "),
-                                    _c("b", [_vm._v("23-14-70")]),
-                                    _c("br"),
-                                    _vm._v("Account No: "),
-                                    _c("b", [_vm._v("24730434")])
+                                    _c("br")
                                   ]
                                 ),
+                                _vm._v(" "),
                                 _c("br"),
                                 _vm._v(" "),
-                                _vm.output_tax
-                                  ? _c(
-                                      "p",
-                                      {
-                                        staticStyle: {
-                                          "padding-left": "6pt",
-                                          "text-indent": "0pt",
-                                          "text-align": "left"
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n        The Output Tax Of £ "
-                                        ),
-                                        _c(
-                                          "span",
-                                          {
-                                            staticStyle: {
-                                              "font-weight": "600"
-                                            }
-                                          },
-                                          [_vm._v(_vm._s(_vm.output_tax))]
-                                        ),
-                                        _vm._v(
-                                          " On\n        Supply Of This Gold Is To Be Accounted For By The Buyer To HMRC.\n        "
-                                        )
-                                      ]
+                                _c("div", { staticClass: "flex-parent" }, [
+                                  _c("div", { staticClass: "box" }, [
+                                    _c("p", { staticClass: "box_size" }, [
+                                      _c(
+                                        "span",
+                                        {
+                                          staticStyle: { "font-weight": "bold" }
+                                        },
+                                        [_vm._v("GBP Account")]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("p", { staticClass: "box_size" }, [
+                                      _vm._v(
+                                        "\n                                                Gold Warehouse Ltd"
+                                      ),
+                                      _c("br"),
+                                      _vm._v(
+                                        "\n                                                Sort code:"
+                                      ),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticStyle: { "font-weight": "bold" }
+                                        },
+                                        [_vm._v("23-14-70")]
+                                      ),
+                                      _c("br"),
+                                      _vm._v(
+                                        "\n                                                Account No:"
+                                      ),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticStyle: { "font-weight": "bold" }
+                                        },
+                                        [_vm._v("24730434")]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "box" }, [
+                                    _c("p", { staticClass: "box_size" }, [
+                                      _c(
+                                        "span",
+                                        {
+                                          staticStyle: { "font-weight": "bold" }
+                                        },
+                                        [_vm._v("USD Account")]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("p", { staticClass: "box_size" }, [
+                                      _c(
+                                        "span",
+                                        {
+                                          staticStyle: { "font-weight": "bold" }
+                                        },
+                                        [_vm._v("Account number ")]
+                                      ),
+                                      _vm._v("8312378352"),
+                                      _c("br"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticStyle: { "font-weight": "bold" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "Bank code\n                                                    (SWIFT/BIC)"
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v("CMFGUS33"),
+                                      _c("br"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticStyle: { "font-weight": "bold" }
+                                        },
+                                        [_vm._v("ABA Routing No")]
+                                      ),
+                                      _vm._v(
+                                        "084009519\n                                            "
+                                      )
+                                    ])
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("br"),
+                                _c("br"),
+                                _vm._v(" "),
+                                _c(
+                                  "p",
+                                  {
+                                    staticStyle: {
+                                      "padding-left": "6pt",
+                                      "text-indent": "0pt",
+                                      "text-align": "left"
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        The Output Tax Of £\n                                        "
+                                    ),
+                                    _c(
+                                      "span",
+                                      { staticStyle: { "font-weight": "600" } },
+                                      [_vm._v(_vm._s(_vm.output_tax))]
+                                    ),
+                                    _vm._v(
+                                      "\n                                        On Supply Of This Gold Is To Be\n                                        Accounted For By The Buyer To HMRC.\n                                    "
                                     )
-                                  : _vm._e(),
+                                  ]
+                                ),
+                                _vm._v(" "),
                                 _c("br"),
                                 _c("br"),
                                 _c("br"),
@@ -14325,7 +15210,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n        Goldbank T/AS Gold Warehouse Limited, 215 The Broadway, Southall,\n        Middlesex, UB1 1NB. Registered in England Number 08101794."
+                                  "\n                                    Goldbank T/AS Gold Warehouse Limited,\n                                    215 The Broadway, Southall, Middlesex,\n                                    UB1 1NB. Registered in England Number\n                                    08101794."
                                 ),
                                 _c("br"),
                                 _vm._v(" "),
@@ -14340,7 +15225,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n            VAT Registration Number 140187339 Telephone:0203 500 1111 Email:\n            accounts@gold-bank.co.uk"
+                                      "\n                                        VAT Registration Number 140187339\n                                        Telephone:0203 500 1111 Email:\n                                        accounts@gold-bank.co.uk"
                                     )
                                   ]
                                 )
@@ -14532,7 +15417,7 @@ var render = function() {
                     { staticStyle: { color: "#4682B4", "font-size": "15px" } },
                     [
                       _vm._v(
-                        "\n                              Customer\n                          "
+                        "\n                            Customer\n                        "
                       )
                     ]
                   ),
@@ -14540,7 +15425,7 @@ var render = function() {
                   _c("span", [
                     _vm._v(
                       _vm._s(_vm.formdata.firstname) +
-                        " " +
+                        "\n                            " +
                         _vm._s(_vm.formdata.lastname) +
                         ", "
                     ),
@@ -14562,7 +15447,7 @@ var render = function() {
                     { staticStyle: { color: "#4682B4", "font-size": "15px" } },
                     [
                       _vm._v(
-                        "\n                              VAT No.\n                          "
+                        "\n                            VAT No.\n                        "
                       )
                     ]
                   ),
@@ -14583,7 +15468,7 @@ var render = function() {
                     { staticStyle: { color: "#4682B4", "font-size": "15px" } },
                     [
                       _vm._v(
-                        "\n                              Issue Date\n                          "
+                        "\n                            Issue Date\n                        "
                       )
                     ]
                   ),
@@ -14608,7 +15493,7 @@ var render = function() {
                     { staticStyle: { color: "#4682B4", "font-size": "15px" } },
                     [
                       _vm._v(
-                        "\n                              Due Date\n                          "
+                        "\n                            Due Date\n                        "
                       )
                     ]
                   ),
@@ -14633,7 +15518,7 @@ var render = function() {
                     { staticStyle: { color: "#4682B4", "font-size": "15px" } },
                     [
                       _vm._v(
-                        "\n                              Amount Due\n                          "
+                        "\n                            Amount Due\n                        "
                       )
                     ]
                   ),
@@ -14657,7 +15542,7 @@ var render = function() {
                   { staticStyle: { color: "#4682B4", "font-size": "15px" } },
                   [
                     _vm._v(
-                      "\n                              Status\n                          "
+                      "\n                            Status\n                        "
                     )
                   ]
                 ),
@@ -14675,14 +15560,21 @@ var render = function() {
                           },
                           attrs: { type: "button" }
                         },
-                        [_vm._v(" " + _vm._s(_vm.invoice_status))]
+                        [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(_vm.invoice_status)
+                          )
+                        ]
                       )
                     : _vm._e(),
                   _c("br"),
                   _vm._v(" "),
                   _vm.over_paid < 0
                     ? _c("span", [
-                        _vm._v(" Over Amount: "),
+                        _vm._v(
+                          "\n                                Over Amount:\n                                "
+                        ),
                         _c("i", {
                           staticClass: "fa fa-pound-sign",
                           staticStyle: {
@@ -14706,7 +15598,12 @@ var render = function() {
                           },
                           attrs: { type: "button" }
                         },
-                        [_vm._v(" " + _vm._s(_vm.invoice_status))]
+                        [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(_vm.invoice_status)
+                          )
+                        ]
                       )
                     : _vm._e(),
                   _c("br"),
@@ -14725,9 +15622,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                                  " +
+                            "\n                                " +
                               _vm._s(_vm.invoice_status) +
-                              "\n                              "
+                              "\n                            "
                           )
                         ]
                       )
@@ -14806,7 +15703,7 @@ var render = function() {
                               }),
                               _vm._v(
                                 _vm._s(saleitem.invoice_amount) +
-                                  "\n                                      "
+                                  "\n                                    "
                               )
                             ])
                           ])
@@ -14830,7 +15727,7 @@ var render = function() {
                       _c("br"),
                       _vm._v(" "),
                       _c("span", { staticClass: "ml-3" }, [
-                        _vm._v("Signed By: "),
+                        _vm._v("Signed By:\n                                "),
                         _c("span", { staticStyle: { "font-weight": "600" } }, [
                           _vm._v(_vm._s(_vm.signaturedata.signed_by))
                         ])
@@ -14855,7 +15752,7 @@ var render = function() {
                     }),
                     _vm._v(
                       _vm._s(_vm.formdata.subtotal) +
-                        "\n                              "
+                        "\n                            "
                     )
                   ]),
                   _vm._v(" "),
@@ -14869,7 +15766,7 @@ var render = function() {
                     }),
                     _vm._v(
                       _vm._s(_vm.formdata.vattotal) +
-                        "\n                              "
+                        "\n                            "
                     )
                   ]),
                   _vm._v(" "),
@@ -14909,9 +15806,9 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                              Payment(" +
+                    "\n                            Payment(" +
                       _vm._s(_vm.paymentcount) +
-                      ")\n                          "
+                      ")\n                        "
                   )
                 ]
               ),
@@ -14931,7 +15828,7 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                              Notes\n                          "
+                    "\n                            Notes\n                        "
                   )
                 ]
               ),
@@ -14953,7 +15850,7 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                              Customer Kyc(4)\n                          "
+                    "\n                            Customer Kyc(4)\n                        "
                   )
                 ]
               ),
@@ -14975,7 +15872,7 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                              History\n                          "
+                    "\n                            History\n                        "
                   )
                 ]
               )
@@ -15000,7 +15897,7 @@ var render = function() {
                     staticStyle: { "margin-right": "5px" }
                   }),
                   _vm._v(
-                    "\n                              Add Payment\n                          "
+                    "\n                            Add Payment\n                        "
                   )
                 ]
               ),
@@ -15018,7 +15915,7 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                            Apply Contra\n                          "
+                    "\n                            Apply Contra\n                        "
                   )
                 ]
               ),
@@ -15092,7 +15989,11 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("Save")]
+                            [
+                              _vm._v(
+                                "\n                                            Save\n                                        "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -15105,7 +16006,11 @@ var render = function() {
                                 "aria-label": "Close"
                               }
                             },
-                            [_vm._v("Cancel")]
+                            [
+                              _vm._v(
+                                "\n                                            Cancel\n                                        "
+                              )
+                            ]
                           )
                         ])
                       ])
@@ -15126,7 +16031,11 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("Refund")]
+                [
+                  _vm._v(
+                    "\n                            Refund\n                        "
+                  )
+                ]
               )
             ])
           ])
@@ -15165,11 +16074,13 @@ var render = function() {
                           return _c("tr", { key: salepayment.id }, [
                             _c("td", [
                               _vm._v(
-                                _vm._s(
-                                  _vm.dateFormateChanger(
-                                    salepayment.payment_date
-                                  )
-                                )
+                                "\n                            " +
+                                  _vm._s(
+                                    _vm.dateFormateChanger(
+                                      salepayment.payment_date
+                                    )
+                                  ) +
+                                  "\n                        "
                               )
                             ]),
                             _vm._v(" "),
@@ -15191,7 +16102,9 @@ var render = function() {
                               },
                               [
                                 salepayment.action == "Refund"
-                                  ? _c("span", [_vm._v("- ")])
+                                  ? _c("span", [
+                                      _vm._v("-\n                            ")
+                                    ])
                                   : _vm._e(),
                                 _vm._v(" "),
                                 _c("i", {
@@ -15203,7 +16116,7 @@ var render = function() {
                                 }),
                                 _vm._v(
                                   _vm._s(salepayment.totalamount) +
-                                    " \n                              "
+                                    "\n                            "
                                 )
                               ]
                             ),
@@ -15498,7 +16411,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                                  Cancel\n                              "
+                                    "\n                                Cancel\n                            "
                                   )
                                 ]
                               )
@@ -15523,7 +16436,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                                  Save\n                              "
+                                    "\n                                Save\n                            "
                                   )
                                 ]
                               )
@@ -15606,7 +16519,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                  Save\n                              "
+                              "\n                                Save\n                            "
                             )
                           ]
                         )
@@ -15645,7 +16558,7 @@ var render = function() {
                       _c("tr", [
                         _c("td", { staticStyle: { color: "black" } }, [
                           _vm._v(
-                            "\n                                  Registration Certificate\n                              "
+                            "\n                                Registration Certificate\n                            "
                           )
                         ]),
                         _vm._v(" "),
@@ -16114,15 +17027,21 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            _vm._s(_vm.dateFormateChanger(salehistory.log_date))
+                            "\n                            " +
+                              _vm._s(
+                                _vm.dateFormateChanger(salehistory.log_date)
+                              ) +
+                              "\n                        "
                           )
                         ]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            _vm._s(salehistory.firstname) +
-                              " " +
-                              _vm._s(salehistory.lastname)
+                            "\n                            " +
+                              _vm._s(salehistory.firstname) +
+                              "\n                            " +
+                              _vm._s(salehistory.lastname) +
+                              "\n                        "
                           )
                         ]),
                         _vm._v(" "),
@@ -16182,9 +17101,9 @@ var render = function() {
                                 }
                               }),
                               _vm._v(
-                                "\n                              " +
+                                "\n                            " +
                                   _vm._s(salerefund.totalamount) +
-                                  " Refunded\n                          "
+                                  " Refunded\n                        "
                               )
                             ]),
                             _vm._v(" "),
@@ -16463,7 +17382,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                                  Cancel\n                              "
+                                    "\n                                Cancel\n                            "
                                   )
                                 ]
                               )
@@ -16488,7 +17407,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                                  Save\n                              "
+                                    "\n                                Save\n                            "
                                   )
                                 ]
                               )
@@ -16535,7 +17454,7 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                              Cancel\n                          "
+                        "\n                            Cancel\n                        "
                       )
                     ]
                   ),
@@ -16557,7 +17476,7 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                              Delete\n                          "
+                        "\n                            Delete\n                        "
                       )
                     ]
                   )
@@ -16599,7 +17518,7 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                              Cancel\n                          "
+                        "\n                            Cancel\n                        "
                       )
                     ]
                   ),
@@ -16621,7 +17540,7 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                              Delete\n                          "
+                        "\n                            Delete\n                        "
                       )
                     ]
                   )
@@ -16661,7 +17580,11 @@ var render = function() {
                       staticClass: "btn admin-btn mobile-mb",
                       attrs: { type: "button", "data-dismiss": "modal" }
                     },
-                    [_vm._v("Cancel")]
+                    [
+                      _vm._v(
+                        "\n                            Cancel\n                        "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -16679,7 +17602,11 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Delete")]
+                    [
+                      _vm._v(
+                        "\n                            Delete\n                        "
+                      )
+                    ]
                   )
                 ])
               ])
@@ -16775,7 +17702,11 @@ var render = function() {
                       attrs: { type: "button" },
                       on: { click: _vm.save }
                     },
-                    [_vm._v("Save")]
+                    [
+                      _vm._v(
+                        "\n                            Save\n                        "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -16786,7 +17717,11 @@ var render = function() {
                       attrs: { type: "button" },
                       on: { click: _vm.undo }
                     },
-                    [_vm._v("Undo")]
+                    [
+                      _vm._v(
+                        "\n                            Undo\n                        "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -16799,7 +17734,11 @@ var render = function() {
                         "aria-label": "Close"
                       }
                     },
-                    [_vm._v("Cancel")]
+                    [
+                      _vm._v(
+                        "\n                            Cancel\n                        "
+                      )
+                    ]
                   )
                 ])
               ])
@@ -16853,7 +17792,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c("h6", { staticClass: "modal-title", attrs: { id: "applycontrah1" } }, [
-        _vm._v("Apply Contra")
+        _vm._v(
+          "\n                                            Apply Contra\n                                        "
+        )
       ]),
       _vm._v(" "),
       _c(
@@ -16908,7 +17849,7 @@ var staticRenderFns = [
         },
         [
           _vm._v(
-            "\n                              Confirmation\n                          "
+            "\n                            Confirmation\n                        "
           )
         ]
       ),
@@ -16943,7 +17884,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "modal-body" }, [
       _c("p", { staticStyle: { color: "#000", "font-size": "14px" } }, [
         _vm._v(
-          "\n                              Are you sure you want to delete this file?\n                          "
+          "\n                            Are you sure you want to delete this file?\n                        "
         )
       ])
     ])
@@ -16959,7 +17900,11 @@ var staticRenderFns = [
           staticClass: "modal-title",
           attrs: { id: "deleteConfirmationLabel" }
         },
-        [_vm._v("Confirmation")]
+        [
+          _vm._v(
+            "\n                            Confirmation\n                        "
+          )
+        ]
       ),
       _vm._v(" "),
       _c(
@@ -16992,7 +17937,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "modal-body" }, [
       _c("p", { staticStyle: { color: "#000", "font-size": "14px" } }, [
         _vm._v(
-          "\n                              Are you sure you want to delete this record?\n                          "
+          "\n                            Are you sure you want to delete this record?\n                        "
         )
       ])
     ])
@@ -17008,7 +17953,11 @@ var staticRenderFns = [
           staticClass: "modal-title",
           attrs: { id: "deleteInvoiceConfirmationLabel" }
         },
-        [_vm._v("Confirmation")]
+        [
+          _vm._v(
+            "\n                            Confirmation\n                        "
+          )
+        ]
       ),
       _vm._v(" "),
       _c(
@@ -17040,7 +17989,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-body" }, [
       _c("p", { staticStyle: { color: "#000", "font-size": "14px" } }, [
-        _vm._v("Are you sure you want to delete this Sales Invoice?")
+        _vm._v(
+          "\n                            Are you sure you want to delete this Sales\n                            Invoice?\n                        "
+        )
       ])
     ])
   },
@@ -17050,7 +18001,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c("h6", { staticClass: "modal-title", attrs: { id: "dosignh1" } }, [
-        _vm._v("Add Signature")
+        _vm._v(
+          "\n                            Add Signature\n                        "
+        )
       ]),
       _vm._v(" "),
       _c(
