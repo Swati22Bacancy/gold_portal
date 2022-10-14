@@ -1406,8 +1406,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.formdata.gbp_accountname,
-                          expression: "formdata.gbp_accountname"
+                          value: _vm.formdata.account_name,
+                          expression: "formdata.account_name"
                         }
                       ],
                       staticClass: "form-control form-control-user",
@@ -1417,7 +1417,7 @@ var render = function() {
                         "aria-describedby": "emailHelp",
                         placeholder: ""
                       },
-                      domProps: { value: _vm.formdata.gbp_accountname },
+                      domProps: { value: _vm.formdata.account_name },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
@@ -1425,7 +1425,7 @@ var render = function() {
                           }
                           _vm.$set(
                             _vm.formdata,
-                            "gbp_accountname",
+                            "account_name",
                             $event.target.value
                           )
                         }
@@ -1441,8 +1441,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.formdata.gbp_sortcode,
-                          expression: "formdata.gbp_sortcode"
+                          value: _vm.formdata.sort_code,
+                          expression: "formdata.sort_code"
                         }
                       ],
                       staticClass: "form-control form-control-user",
@@ -1452,7 +1452,7 @@ var render = function() {
                         "aria-describedby": "emailHelp",
                         placeholder: ""
                       },
-                      domProps: { value: _vm.formdata.gbp_sortcode },
+                      domProps: { value: _vm.formdata.sort_code },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
@@ -1460,7 +1460,7 @@ var render = function() {
                           }
                           _vm.$set(
                             _vm.formdata,
-                            "gbp_sortcode",
+                            "sort_code",
                             $event.target.value
                           )
                         }
@@ -1476,8 +1476,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.formdata.gbp_accountnumber,
-                          expression: "formdata.gbp_accountnumber"
+                          value: _vm.formdata.account_number,
+                          expression: "formdata.account_number"
                         }
                       ],
                       staticClass: "form-control form-control-user",
@@ -1487,7 +1487,7 @@ var render = function() {
                         "aria-describedby": "emailHelp",
                         placeholder: ""
                       },
-                      domProps: { value: _vm.formdata.gbp_accountnumber },
+                      domProps: { value: _vm.formdata.account_number },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
@@ -1495,7 +1495,7 @@ var render = function() {
                           }
                           _vm.$set(
                             _vm.formdata,
-                            "gbp_accountnumber",
+                            "account_number",
                             $event.target.value
                           )
                         }
@@ -1515,8 +1515,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.formdata.usd_accountnumber,
-                          expression: "formdata.usd_accountnumber"
+                          value: _vm.formdata.usd_account_number,
+                          expression: "formdata.usd_account_number"
                         }
                       ],
                       staticClass: "form-control form-control-user",
@@ -1526,7 +1526,7 @@ var render = function() {
                         "aria-describedby": "emailHelp",
                         placeholder: ""
                       },
-                      domProps: { value: _vm.formdata.usd_accountnumber },
+                      domProps: { value: _vm.formdata.usd_account_number },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
@@ -1534,7 +1534,7 @@ var render = function() {
                           }
                           _vm.$set(
                             _vm.formdata,
-                            "usd_accountnumber",
+                            "usd_account_number",
                             $event.target.value
                           )
                         }
@@ -1550,8 +1550,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.formdata.usd_bankcode,
-                          expression: "formdata.usd_bankcode"
+                          value: _vm.formdata.bank_code,
+                          expression: "formdata.bank_code"
                         }
                       ],
                       staticClass: "form-control form-control-user",
@@ -1561,7 +1561,7 @@ var render = function() {
                         "aria-describedby": "emailHelp",
                         placeholder: ""
                       },
-                      domProps: { value: _vm.formdata.usd_bankcode },
+                      domProps: { value: _vm.formdata.bank_code },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
@@ -1569,7 +1569,7 @@ var render = function() {
                           }
                           _vm.$set(
                             _vm.formdata,
-                            "usd_bankcode",
+                            "bank_code",
                             $event.target.value
                           )
                         }
@@ -1585,8 +1585,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.formdata.usd_abaroutingno,
-                          expression: "formdata.usd_abaroutingno"
+                          value: _vm.formdata.routing_number,
+                          expression: "formdata.routing_number"
                         }
                       ],
                       staticClass: "form-control form-control-user",
@@ -1596,7 +1596,7 @@ var render = function() {
                         "aria-describedby": "emailHelp",
                         placeholder: ""
                       },
-                      domProps: { value: _vm.formdata.usd_abaroutingno },
+                      domProps: { value: _vm.formdata.routing_number },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
@@ -1604,7 +1604,7 @@ var render = function() {
                           }
                           _vm.$set(
                             _vm.formdata,
-                            "usd_abaroutingno",
+                            "routing_number",
                             $event.target.value
                           )
                         }

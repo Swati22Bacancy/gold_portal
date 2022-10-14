@@ -1025,7 +1025,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   credit_period: _this3.formdata.credit_period,
                   company_code: _this3.formdata.company_code,
                   customertype: _this3.formdata.customertype,
-                  group_id: _this3.formdata.group_id
+                  group_id: _this3.formdata.group_id,
+                  account_name: _this3.formdata.account_name,
+                  account_number: _this3.formdata.account_number,
+                  sort_code: _this3.formdata.sort_code
                 });
 
               case 4:
@@ -18649,9 +18652,9 @@ var render = function() {
                                                     name: "model",
                                                     rawName: "v-model",
                                                     value:
-                                                      _vm.formdata.accountname,
+                                                      _vm.formdata.account_name,
                                                     expression:
-                                                      "formdata.accountname"
+                                                      "formdata.account_name"
                                                   }
                                                 ],
                                                 staticClass:
@@ -18665,7 +18668,7 @@ var render = function() {
                                                 },
                                                 domProps: {
                                                   value:
-                                                    _vm.formdata.accountname
+                                                    _vm.formdata.account_name
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -18676,7 +18679,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.formdata,
-                                                      "accountname",
+                                                      "account_name",
                                                       $event.target.value
                                                     )
                                                   }
@@ -18703,9 +18706,9 @@ var render = function() {
                                                     rawName: "v-model",
                                                     value:
                                                       _vm.formdata
-                                                        .accountnumber,
+                                                        .account_number,
                                                     expression:
-                                                      "formdata.accountnumber"
+                                                      "formdata.account_number"
                                                   }
                                                 ],
                                                 staticClass:
@@ -18719,7 +18722,7 @@ var render = function() {
                                                 },
                                                 domProps: {
                                                   value:
-                                                    _vm.formdata.accountnumber
+                                                    _vm.formdata.account_number
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -18730,7 +18733,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.formdata,
-                                                      "accountnumber",
+                                                      "account_number",
                                                       $event.target.value
                                                     )
                                                   }
@@ -18756,9 +18759,9 @@ var render = function() {
                                                     name: "model",
                                                     rawName: "v-model",
                                                     value:
-                                                      _vm.formdata.sortcode,
+                                                      _vm.formdata.sort_code,
                                                     expression:
-                                                      "formdata.sortcode"
+                                                      "formdata.sort_code"
                                                   }
                                                 ],
                                                 staticClass:
@@ -18771,7 +18774,7 @@ var render = function() {
                                                   placeholder: ""
                                                 },
                                                 domProps: {
-                                                  value: _vm.formdata.sortcode
+                                                  value: _vm.formdata.sort_code
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -18782,7 +18785,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.formdata,
-                                                      "sortcode",
+                                                      "sort_code",
                                                       $event.target.value
                                                     )
                                                   }
@@ -19370,9 +19373,9 @@ var render = function() {
                                                     name: "model",
                                                     rawName: "v-model",
                                                     value:
-                                                      _vm.formdata.accountname,
+                                                      _vm.formdata.account_name,
                                                     expression:
-                                                      "formdata.accountname"
+                                                      "formdata.account_name"
                                                   }
                                                 ],
                                                 staticClass:
@@ -19386,7 +19389,7 @@ var render = function() {
                                                 },
                                                 domProps: {
                                                   value:
-                                                    _vm.formdata.accountname
+                                                    _vm.formdata.account_name
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -19397,7 +19400,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.formdata,
-                                                      "accountname",
+                                                      "account_name",
                                                       $event.target.value
                                                     )
                                                   }
@@ -19424,9 +19427,9 @@ var render = function() {
                                                     rawName: "v-model",
                                                     value:
                                                       _vm.formdata
-                                                        .accountnumber,
+                                                        .account_number,
                                                     expression:
-                                                      "formdata.accountnumber"
+                                                      "formdata.account_number"
                                                   }
                                                 ],
                                                 staticClass:
@@ -19440,7 +19443,7 @@ var render = function() {
                                                 },
                                                 domProps: {
                                                   value:
-                                                    _vm.formdata.accountnumber
+                                                    _vm.formdata.account_number
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -19451,7 +19454,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.formdata,
-                                                      "accountnumber",
+                                                      "account_number",
                                                       $event.target.value
                                                     )
                                                   }
@@ -19477,9 +19480,9 @@ var render = function() {
                                                     name: "model",
                                                     rawName: "v-model",
                                                     value:
-                                                      _vm.formdata.sortcode,
+                                                      _vm.formdata.sort_code,
                                                     expression:
-                                                      "formdata.sortcode"
+                                                      "formdata.sort_code"
                                                   }
                                                 ],
                                                 staticClass:
@@ -19492,7 +19495,7 @@ var render = function() {
                                                   placeholder: ""
                                                 },
                                                 domProps: {
-                                                  value: _vm.formdata.sortcode
+                                                  value: _vm.formdata.sort_code
                                                 },
                                                 on: {
                                                   input: function($event) {
@@ -19503,7 +19506,7 @@ var render = function() {
                                                     }
                                                     _vm.$set(
                                                       _vm.formdata,
-                                                      "sortcode",
+                                                      "sort_code",
                                                       $event.target.value
                                                     )
                                                   }

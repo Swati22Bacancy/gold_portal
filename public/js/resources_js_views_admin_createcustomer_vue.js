@@ -435,7 +435,10 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__.helpers.regex
                   credit_period: _this.formdata.credit_period,
                   company_code: _this.formdata.company_code,
                   customertype: _this.formdata.customertype,
-                  group_id: _this.formdata.group_id
+                  group_id: _this.formdata.group_id,
+                  account_name: _this.formdata.account_name,
+                  account_number: _this.formdata.account_number,
+                  sort_code: _this.formdata.sort_code
                 });
 
               case 7:
@@ -1073,8 +1076,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formdata.accountname,
-                            expression: "formdata.accountname"
+                            value: _vm.formdata.account_name,
+                            expression: "formdata.account_name"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -1084,7 +1087,7 @@ var render = function() {
                           "aria-describedby": "emailHelp",
                           placeholder: ""
                         },
-                        domProps: { value: _vm.formdata.accountname },
+                        domProps: { value: _vm.formdata.account_name },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -1092,7 +1095,7 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.formdata,
-                              "accountname",
+                              "account_name",
                               $event.target.value
                             )
                           }
@@ -1108,8 +1111,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formdata.accountnumber,
-                            expression: "formdata.accountnumber"
+                            value: _vm.formdata.account_number,
+                            expression: "formdata.account_number"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -1119,7 +1122,7 @@ var render = function() {
                           "aria-describedby": "emailHelp",
                           placeholder: ""
                         },
-                        domProps: { value: _vm.formdata.accountnumber },
+                        domProps: { value: _vm.formdata.account_number },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -1127,7 +1130,7 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.formdata,
-                              "accountnumber",
+                              "account_number",
                               $event.target.value
                             )
                           }
@@ -1143,8 +1146,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formdata.sortcode,
-                            expression: "formdata.sortcode"
+                            value: _vm.formdata.sort_code,
+                            expression: "formdata.sort_code"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -1154,7 +1157,7 @@ var render = function() {
                           "aria-describedby": "emailHelp",
                           placeholder: ""
                         },
-                        domProps: { value: _vm.formdata.sortcode },
+                        domProps: { value: _vm.formdata.sort_code },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -1162,7 +1165,7 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.formdata,
-                              "sortcode",
+                              "sort_code",
                               $event.target.value
                             )
                           }
@@ -1582,8 +1585,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formdata.accountname,
-                            expression: "formdata.accountname"
+                            value: _vm.formdata.account_name,
+                            expression: "formdata.account_name"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -1593,7 +1596,7 @@ var render = function() {
                           "aria-describedby": "emailHelp",
                           placeholder: ""
                         },
-                        domProps: { value: _vm.formdata.accountname },
+                        domProps: { value: _vm.formdata.account_name },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -1601,7 +1604,7 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.formdata,
-                              "accountname",
+                              "account_name",
                               $event.target.value
                             )
                           }
@@ -1617,8 +1620,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formdata.accountnumber,
-                            expression: "formdata.accountnumber"
+                            value: _vm.formdata.account_number,
+                            expression: "formdata.account_number"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -1628,7 +1631,7 @@ var render = function() {
                           "aria-describedby": "emailHelp",
                           placeholder: ""
                         },
-                        domProps: { value: _vm.formdata.accountnumber },
+                        domProps: { value: _vm.formdata.account_number },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -1636,7 +1639,7 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.formdata,
-                              "accountnumber",
+                              "account_number",
                               $event.target.value
                             )
                           }
@@ -1652,8 +1655,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.formdata.sortcode,
-                            expression: "formdata.sortcode"
+                            value: _vm.formdata.sort_code,
+                            expression: "formdata.sort_code"
                           }
                         ],
                         staticClass: "form-control form-control-user",
@@ -1663,7 +1666,7 @@ var render = function() {
                           "aria-describedby": "emailHelp",
                           placeholder: ""
                         },
-                        domProps: { value: _vm.formdata.sortcode },
+                        domProps: { value: _vm.formdata.sort_code },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -1671,7 +1674,7 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.formdata,
-                              "sortcode",
+                              "sort_code",
                               $event.target.value
                             )
                           }

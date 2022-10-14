@@ -101,6 +101,12 @@ class CompanyDetailsController extends Controller
                 'incorporation_file_original_name' => $originalIncName,
                 'accounting_file' => $newAccountName,
                 'accounting_file_original_name' => $originalAccountName,
+                'account_name' => $request->input('account_name'),
+                'account_number' => $request->input('account_number'),
+                'sort_code' => $request->input('sort_code'),
+                'usd_account_number' => $request->input('usd_account_number'),
+                'bank_code' => $request->input('bank_code'),
+                'routing_number' => $request->input('routing_number'),
             ]);
 
             return response()->json($companydetails);
@@ -239,6 +245,12 @@ class CompanyDetailsController extends Controller
                 'incorporation_file_original_name' => $originalIncName,
                 'accounting_file' => $newAccountName,
                 'accounting_file_original_name' => $originalAccountName,
+                'account_name' => $request->input('account_name'),
+                'account_number' => $request->input('account_number'),
+                'sort_code' => $request->input('sort_code'),
+                'usd_account_number' => $request->input('usd_account_number'),
+                'bank_code' => $request->input('bank_code'),
+                'routing_number' => $request->input('routing_number'),
             ]);
 
             return response()->json($companydetails);

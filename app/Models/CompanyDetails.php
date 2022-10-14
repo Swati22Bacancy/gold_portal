@@ -28,6 +28,12 @@ class CompanyDetails extends Authenticatable
         'vat_status',
         'vat_number',
         'sector_id',
-        'business_type'
+        'business_type',
+        'account_name',
+        'account_number',
+        'sort_code',
+        'usd_account_number',
+        'bank_code',
+        'routing_number'
     ];
 }

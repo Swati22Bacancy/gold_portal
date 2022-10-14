@@ -25,6 +25,9 @@ class Customer extends Authenticatable
         'company_code',
         'customer_type',
         'company_name',
-        'group_id'
+        'group_id',
+        'account_name',
+        'account_number',
+        'sort_code'
     ];
 }

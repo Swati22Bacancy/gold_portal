@@ -140,7 +140,7 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.accountname"
+                    v-model="formdata.account_name"
                   />
                 </div>
                 <div class="form-group customer-input">
@@ -151,7 +151,7 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.accountnumber"
+                    v-model="formdata.account_number"
                   />
                 </div>
                 <div class="form-group customer-input">
@@ -162,7 +162,7 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.sortcode"
+                    v-model="formdata.sort_code"
                   />
                 </div>
                             </div>
@@ -288,7 +288,7 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.accountname"
+                    v-model="formdata.account_name"
                   />
                 </div>
                 <div class="form-group customer-input">
@@ -299,7 +299,7 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.accountnumber"
+                    v-model="formdata.account_number"
                   />
                 </div>
                 <div class="form-group customer-input">
@@ -310,7 +310,7 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.sortcode"
+                    v-model="formdata.sort_code"
                   />
                 </div>
                             </div>
@@ -488,6 +488,9 @@ export default {
           company_code: this.formdata.company_code,
           customertype: this.formdata.customertype,
           group_id: this.formdata.group_id,
+          account_name: this.formdata.account_name,
+          account_number: this.formdata.account_number,
+          sort_code: this.formdata.sort_code,
         });
           let message =
             "Customer has been successfully updated.";

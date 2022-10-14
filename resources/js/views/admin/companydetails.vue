@@ -145,7 +145,7 @@
                       id="crt-customer"
                       aria-describedby="emailHelp"
                       placeholder=""
-                      v-model="formdata.gbp_accountname"
+                      v-model="formdata.account_name"
                     />
                   </div>
                   <div class="form-group col-md-4">
@@ -156,7 +156,7 @@
                       id="crt-customer"
                       aria-describedby="emailHelp"
                       placeholder=""
-                      v-model="formdata.gbp_sortcode"
+                      v-model="formdata.sort_code"
                     />
                   </div>
                   <div class="form-group col-md-4">
@@ -167,7 +167,7 @@
                       id="crt-customer"
                       aria-describedby="emailHelp"
                       placeholder=""
-                      v-model="formdata.gbp_accountnumber"
+                      v-model="formdata.account_number"
                     />
                   </div>
                 
@@ -182,7 +182,7 @@
                       id="crt-customer"
                       aria-describedby="emailHelp"
                       placeholder=""
-                      v-model="formdata.usd_accountnumber"
+                      v-model="formdata.usd_account_number"
                     />
                   </div>
                   <div class="form-group col-md-4">
@@ -193,7 +193,7 @@
                       id="crt-customer"
                       aria-describedby="emailHelp"
                       placeholder=""
-                      v-model="formdata.usd_bankcode"
+                      v-model="formdata.bank_code"
                     />
                   </div>
                   <div class="form-group col-md-4">
@@ -204,7 +204,7 @@
                       id="crt-customer"
                       aria-describedby="emailHelp"
                       placeholder=""
-                      v-model="formdata.usd_abaroutingno"
+                      v-model="formdata.routing_number"
                     />
                   </div>
                 

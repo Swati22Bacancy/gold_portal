@@ -26,6 +26,9 @@ class CustomerController extends Controller
                 'company_code' => $request->input('company_code'),
                 'customer_type' => $request->input('customertype'),
                 'group_id' => $request->input('group_id'),
+                'account_name' => $request->input('account_name'),
+                'account_number' => $request->input('account_number'),
+                'sort_code' => $request->input('sort_code'),
             ]);
 
             return response()->json($customer);
@@ -102,7 +105,10 @@ class CustomerController extends Controller
                 'credit_period' => $request->input('credit_period'),
                 'company_code' => $request->input('company_code'),
                 'customer_type' => $request->input('customertype'),
-                'group_id' => $request->input('group_id')
+                'group_id' => $request->input('group_id'),
+                'account_name' => $request->input('account_name'),
+                'account_number' => $request->input('account_number'),
+                'sort_code' => $request->input('sort_code'),
             ]);
 
             return response()->json($customer);
