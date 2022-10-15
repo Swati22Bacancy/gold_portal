@@ -1771,19 +1771,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2777,7 +2764,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.pdf_section *[data-v-483c8698] {\r\n    margin: 0;\r\n    padding: 0;\r\n    text-indent: 0;\n}\n#dosign .modal-dialog[data-v-483c8698] {\r\n    max-width: 600px;\n}\n#createinvoice-datatable thead[data-v-483c8698] {\r\n    background: #3376c2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698] {\r\n    font-size: 13px;\r\n    color: #000;\n}\n.download-containter[data-v-483c8698] {\r\n    margin-top: 200px;\r\n    margin-left: 600px;\n}\n.choose-cont[data-v-483c8698] {\r\n    display: flex;\r\n    /* justify-content: center; */\n}\n.imagePreview[data-v-483c8698] {\r\n    width: 70px;\n}\n.previewContainer[data-v-483c8698] {\r\n    position: relative;\n}\n.closeIcon[data-v-483c8698] {\r\n    position: absolute;\r\n    top: -15px;\r\n    left: 51px;\r\n    font-size: 20px;\r\n    cursor: pointer;\n}\n.closeIcon i[data-v-483c8698] {\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.downloadIcon[data-v-483c8698] {\r\n    position: absolute;\r\n    top: -15px;\r\n    left: 30px;\r\n    font-size: 20px;\r\n    cursor: pointer;\n}\n.downloadIcon i[data-v-483c8698] {\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.salesdata[data-v-483c8698] {\r\n    font-size: 13px;\r\n    color: #000;\n}\n.btn-head[data-v-483c8698] {\r\n    border-radius: 50%;\n}\n.btn-container[data-v-483c8698] {\r\n    display: flex;\r\n    justify-content: space-between !important;\r\n    width: 100% !important;\n}\n.selectedclr[data-v-483c8698] {\r\n    background-color: #245388 !important;\r\n    color: #fff !important;\n}\n.cont[data-v-483c8698] {\r\n    width: auto;\r\n    font-size: 13px !important;\r\n    color: #000;\r\n    border: none;\r\n    height: 40px;\r\n    padding: 5px 20px;\r\n    border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698] {\r\n    background: #fff;\r\n    padding: 34px 23px 0px 23px;\r\n    border-radius: 8px;\r\n    box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698] {\r\n    font-size: 12px;\n}\n.crt-invoice[data-v-483c8698] {\r\n    padding: 0px 2%;\r\n    color: #000;\n}\n.dark-theme-btn[data-v-483c8698] {\r\n    background-color: #245388 !important;\r\n    color: #fff;\r\n    width: 100px;\r\n    font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698] {\r\n    background-color: #edf2f6 !important;\r\n    color: #000;\r\n    width: 100px;\r\n    font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus,\r\n.btn.focus[data-v-483c8698] {\r\n    box-shadow: 0 0;\n}\n.table-div[data-v-483c8698] {\r\n    border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698] {\r\n    border: 1px solid #d6e3f2 !important;\r\n    height: 40px;\r\n    border-radius: 5px;\r\n    width: 100%;\r\n    font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698] {\r\n    width: 130px;\n}\n.sum-price ul[data-v-483c8698] {\r\n    list-style-type: none;\n}\n.sum-price li[data-v-483c8698] {\r\n    padding: 5px 0px;\r\n    font-size: 11px;\n}\n.viewsales-div > p[data-v-483c8698] {\r\n    color: #3376c2;\r\n    font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n    color: #000;\r\n    font-size: 13px;\n}\n.class_red[data-v-483c8698] {\r\n    color: rgb(255 0 0);\n}\n.class_green[data-v-483c8698] {\r\n    color: #7adaaa;\n}\n.bold_font[data-v-483c8698] {\r\n    font-weight: 600;\n}\n.invoicelist a[data-v-483c8698] {\r\n    color: #000;\n}\n#saleshistory-datatable thead[data-v-483c8698] {\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#saleshistory-datatable thead th[data-v-483c8698] {\r\n    font-weight: 100;\n}\n#kyc-datatable[data-v-483c8698] {\r\n    font-size: 13px;\n}\n#applycontra .modal-dialog[data-v-483c8698] {\r\n    max-width: 700px;\n}\n.red-color[data-v-483c8698] {\r\n    color: red !important;\n}\n.container[data-v-483c8698] {\r\n    padding: 0px 6%;\r\n    margin-top: 0px;\n}\n.col-sm[data-v-483c8698] {\r\n    padding: 0 10px;\n}\n.row[data-v-483c8698] {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\n}\nh2[data-v-483c8698] {\r\n    color: black;\r\n    font-family: Calibri, sans-serif;\r\n    font-style: normal;\r\n    font-weight: bold;\r\n    text-decoration: none;\r\n    font-size: 12pt;\n}\n.cont2 p[data-v-483c8698] {\r\n    color: black;\r\n    font-family: Calibri, sans-serif;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    text-decoration: none;\r\n    font-size: 12pt;\r\n    margin: 0pt;\n}\n.s1[data-v-483c8698] {\r\n    color: black;\r\n    font-family: Calibri, sans-serif;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    text-decoration: none;\r\n    font-size: 22pt;\n}\n.s3[data-v-483c8698] {\r\n    color: black;\r\n    font-family: Calibri;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    text-decoration: underline;\r\n    font-size: 9px;\n}\n.s4[data-v-483c8698],\r\n.s5[data-v-483c8698] {\r\n    color: black;\r\n    font-family: Calibri;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    text-decoration: none;\r\n    font-size: 9px;\n}\nth[data-v-483c8698],\r\ntd[data-v-483c8698] {\r\n    border-bottom: 1px solid black;\n}\n.flex-parent[data-v-483c8698] {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\n}\n.box[data-v-483c8698] {\r\n    background-color: white;\r\n    height: 110px;\r\n    padding: 5px;\r\n    width: 330px;\r\n    border: 0.5px solid;\n}\n.box_size[data-v-483c8698] {\r\n    margin-top: 10px;\r\n    font-size: 11px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.pdf_section *[data-v-483c8698] {\r\n    margin: 0;\r\n    padding: 0;\r\n    text-indent: 0;\n}\n#dosign .modal-dialog[data-v-483c8698] {\r\n    max-width: 600px;\n}\n#createinvoice-datatable thead[data-v-483c8698] {\r\n    background: #3376c2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-483c8698] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-483c8698] {\r\n    font-size: 13px;\r\n    color: #000;\n}\n.download-containter[data-v-483c8698] {\r\n    margin-top: 200px;\r\n    margin-left: 600px;\n}\n.choose-cont[data-v-483c8698] {\r\n    display: flex;\r\n    /* justify-content: center; */\n}\n.imagePreview[data-v-483c8698] {\r\n    width: 70px;\n}\n.previewContainer[data-v-483c8698] {\r\n    position: relative;\n}\n.closeIcon[data-v-483c8698] {\r\n    position: absolute;\r\n    top: -15px;\r\n    left: 51px;\r\n    font-size: 20px;\r\n    cursor: pointer;\n}\n.closeIcon i[data-v-483c8698] {\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.downloadIcon[data-v-483c8698] {\r\n    position: absolute;\r\n    top: -15px;\r\n    left: 30px;\r\n    font-size: 20px;\r\n    cursor: pointer;\n}\n.downloadIcon i[data-v-483c8698] {\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.salesdata[data-v-483c8698] {\r\n    font-size: 13px;\r\n    color: #000;\n}\n.btn-head[data-v-483c8698] {\r\n    border-radius: 50%;\n}\n.btn-container[data-v-483c8698] {\r\n    display: flex;\r\n    justify-content: space-between !important;\r\n    width: 100% !important;\n}\n.selectedclr[data-v-483c8698] {\r\n    background-color: #245388 !important;\r\n    color: #fff !important;\n}\n.cont[data-v-483c8698] {\r\n    width: auto;\r\n    font-size: 13px !important;\r\n    color: #000;\r\n    border: none;\r\n    height: 40px;\r\n    padding: 5px 20px;\r\n    border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-483c8698] {\r\n    background: #fff;\r\n    padding: 34px 23px 0px 23px;\r\n    border-radius: 8px;\r\n    box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-483c8698] {\r\n    font-size: 12px;\n}\n.crt-invoice[data-v-483c8698] {\r\n    padding: 0px 2%;\r\n    color: #000;\n}\n.dark-theme-btn[data-v-483c8698] {\r\n    background-color: #245388 !important;\r\n    color: #fff;\r\n    width: 100px;\r\n    font-size: 12px !important;\n}\n.light-theme-btn[data-v-483c8698] {\r\n    background-color: #edf2f6 !important;\r\n    color: #000;\r\n    width: 100px;\r\n    font-size: 12px !important;\n}\n.btn[data-v-483c8698]:focus,\r\n.btn.focus[data-v-483c8698] {\r\n    box-shadow: 0 0;\n}\n.table-div[data-v-483c8698] {\r\n    border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-483c8698] {\r\n    border: 1px solid #d6e3f2 !important;\r\n    height: 40px;\r\n    border-radius: 5px;\r\n    width: 100%;\r\n    font-size: 13px;\n}\n.btn-addwidth[data-v-483c8698] {\r\n    width: 130px;\n}\n.sum-price ul[data-v-483c8698] {\r\n    list-style-type: none;\n}\n.sum-price li[data-v-483c8698] {\r\n    padding: 5px 0px;\r\n    font-size: 11px;\n}\n.viewsales-div > p[data-v-483c8698] {\r\n    color: #3376c2;\r\n    font-size: 12px;\n}\n.viewsales-div span[data-v-483c8698] {\r\n    color: #000;\r\n    font-size: 13px;\n}\n.class_red[data-v-483c8698] {\r\n    color: rgb(255 0 0);\n}\n.class_green[data-v-483c8698] {\r\n    color: #7adaaa;\n}\n.bold_font[data-v-483c8698] {\r\n    font-weight: 600;\n}\n.invoicelist a[data-v-483c8698] {\r\n    color: #000;\n}\n#saleshistory-datatable thead[data-v-483c8698] {\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#saleshistory-datatable thead th[data-v-483c8698] {\r\n    font-weight: 100;\n}\n#kyc-datatable[data-v-483c8698] {\r\n    font-size: 13px;\n}\n#applycontra .modal-dialog[data-v-483c8698] {\r\n    max-width: 700px;\n}\n.red-color[data-v-483c8698] {\r\n    color: red !important;\n}\n#pdf_section .container[data-v-483c8698] {\r\n    padding: 0px 6%;\r\n    margin-top: 0px;\n}\n#pdf_section .col-sm[data-v-483c8698] {\r\n    padding: 0 10px;\n}\n#pdf_section .row[data-v-483c8698] {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\n}\n#pdf_section h2[data-v-483c8698] {\r\n    color: black;\r\n    font-family: Calibri, sans-serif;\r\n    font-style: normal;\r\n    font-weight: bold;\r\n    text-decoration: none;\r\n    font-size: 12pt;\n}\n.cont2 p[data-v-483c8698] {\r\n    color: black;\r\n    font-family: Calibri, sans-serif;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    text-decoration: none;\r\n    font-size: 12pt;\r\n    margin: 0pt;\n}\n.s1[data-v-483c8698] {\r\n    color: black;\r\n    font-family: Calibri, sans-serif;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    text-decoration: none;\r\n    font-size: 22pt;\n}\n.s3[data-v-483c8698] {\r\n    color: black;\r\n    font-family: Calibri;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    /* text-decoration: underline; */\r\n    font-size: 9px;\n}\n.s4[data-v-483c8698],\r\n.s5[data-v-483c8698] {\r\n    color: black;\r\n    font-family: Calibri;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    text-decoration: none;\r\n    font-size: 9px;\n}\nth[data-v-483c8698]{\r\n    border-bottom: 1px solid black;\n}\n.flex-parent[data-v-483c8698] {\r\n    display: flex;\r\n    /* justify-content: center;\r\n    align-items: center; */\n}\n.box[data-v-483c8698] {\r\n    background-color: white;\r\n    height: 110px;\r\n    padding: 5px;\r\n    width: 330px;\r\n    border: 0.5px solid;\n}\n.box_size[data-v-483c8698] {\r\n    margin-top: 10px;\r\n    font-size: 12px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -14415,12 +14402,8 @@ var render = function() {
                                     },
                                     [
                                       _c("img", {
-                                        attrs: {
-                                          width: "200",
-                                          height: "46",
-                                          src:
-                                            "data:image/jpg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAuAOUDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9JPGPjxdAuI7CxhF7qkuAI+SqZ6ZA5JPYf/WzZs9K8RzwiW71xLaZhnyILVGSM+mTya4Dw4/9qfFMyzDfm5mcB+SNobb+WB+VeyZr5vAVJ5jKpXqSaipOKSbW3V2s23c9CvFYdRhFatXb3Oc06/1m115dO1IW9xbyxNJDdwqULFSMhlycHmuhllSCN5JHEcaAszMcAAdSTWbN4g0qO6SGW9gS5VuInfDgkcDHXkGsr4k3bQeDLwxll83YmRxwWGfzGR+Nei6scNQqTU+flu97tWW339zn5XUnFWtczrXxjqPi7V57PQlitbKIfvL6dC5x2IXgc84B6+1aOpWniXS7V7m01RNTeNdzW09sq7x32lMHPtWb8HoVXw9dSgDe9yQW7kBVwP1P513dceBpTxeGVetN80tdG0l2slp99zatKNKo4QirLy3Oc8HeNLbxZbNhfs97EP3kBOeP7ynuP5fkTF4/1y98OaVFe2UibjKImSVNwwQTkd88Vwnhpv7N+KUsMPyRG5nh2LwNvzYH0GB+VdZ8Xv8AkVY/+vlP/QWrhp46tWyytOTtOF1dabdTaVGEMRBJaOzNjwVqd3rmgwaheSq0kxbCRptVQGK/ieP1rfrmPhp/yJWnf9tP/RjV09e/gZSnhaUpO7cU380cNZJVZJd2eeeOvGmq+GNcjtLWSF4ZIllHmxZK5ZhjIIz0rpprPxFFEzQ6lYzygfLHLaMin6kOSPyrz34u/wDI1Wn/AF6p/wChvXr9ePg3PEYvE05zdotW1ate511rU6VOUUtd9PQ5Hwz48/tTUX0rUrb7BqiErtByjkdQPQ/nn1rrq8d+KI/svxpBdW/yTmKOfd/thiAfyUV7D2rqy3E1ak62HrO7pu1+6d7X89DPEU4xUKkdFJbHhPwh+JXiXxN+1P8AtAeENT1M3Xh3wunh5tHsjBEn2X7TZyyT/Oqh33OoPzs2OgwOK9s1aym1LS7u1t7+40ueaJo0vrRY2mgYjAdBIjoWHUblYeoI4r5t+Av/ACe9+1R/1z8J/wDpvnr6dr3DiPyN+Hv7U37SvxE/bNv/AIDQ/GWHTY4Nb1fSU12Twpp8xIskuGDmEIvLi3xjfxu74wfWfHf7dXxp/Y/+OuheCPjhpHh/xH4FvvLS38aaRZTWc93b7kR7soryJ5keS0luqA5I2nayFvmf4AXkun/8Ff8AxHdQWU+pzweLfF8sdlatGstwwt9RIjQyMiBmIwC7KuSMsBk1vftx+M7v47ftmeCvB/xutrz4K/DjSk3WsmoRR3NzJbzFTJL5tsZY90rxJFuDtHDsJbJVwyA/ZOuD+OvxZ074FfB/xb491QJJbaFYSXKwO5QXE33YYdwBwZJWjjBwcFxXb2tzDe20VxbypcW8yCSOWJgyOpGQykcEEc5FfHH7avh9f2nfi/8ADn9nG31Wew0u5jn8X+LZ7HcLiCwgBitU/uESzyMMMDtZInxwAwB6h+w3+0If2lf2cPDXiq8vFu/Edup0vXWWMRkX0IUOxVQFHmI0cuEG0CUAAYwPfK/HH/glP8Tb74BftQ+Mvgx4umh046zJNpxhZg4TV7KR1EayBtoDJ9oXPO9lhA68/sdTA+RtL/bp0zw3+2145+BnjaWDTbU3FgvhnVSAiGSaxt5GtJj6tJIxRj1LbD/BX1hqdrLf6bd20F5Pp000TxpeWwQywMVIEiCRWQsp5G5WXI5BHFfiZ+1/8NLT4y/8FV9b8D393Np9pr2o6TYPdW4DPDv0y1AcA8HBwcd/Uda+y/2Y/wBqbxn8FvirD+zl+0POieI4lSHwv4xlZvK1yEsywrJKx+Z2wESQ4LMpR/3vLoDxvwR+01+0D4q/b2k+A0vxemg0GHXL2yfVE8O6abp7a2ilnIAMG0SMkWzfghS27YQNh++P2kZ/E/hH9nPxbrXhrxlqOj+IfDGh3WrR6p9ks53vXtrWRyk8ckBj2yFct5axkHG3C5U/md8Hf+U1F/8A9jHrv/pvu6/Tv9qz/k134w/9ibrH/pFNTA+Mf+CZP7R/xm/aq8Z+Lbrxx8R5pdG8MRWj/wBk2ejWEIvXnMoHmSiHcqKITwmCSw+YbSG9i/av+LHxI1j44eBvhJ8CfGR0vx1cRSaj4ijfTra7stL0zKhbm4aWJmWQscKiHJBG4DfGW/Nz9h/9pq8/ZT+C/wAcPF2l6SdW1u8m0TSdODjMFvPIuoOJp+QdiiJuB95ii8Biw/Q//gljqPhDxd8EtY8ZWOsz+IfiTr2pPN421DUAVuzeBnaFCuSPJWOQGMr8p3P91gyIgPrLwJ4c1bwvoYtNa8V6j4xv2fzG1HUra1gcfKo2IltDGoTILDcGb5jliMAFdDRTA8j1W1bwT8RYdRmUmxnnaUSkHADgh+nddx49MetesxypNEkiMHjcBlZTkEHoQajvrG21K3aC6gS4hbqkigiseHwRpltEYYPtcFuc5gjvJVQ+vG6vFw2Eq4GdRUbOEnezdmm9+juvy8zsqVY1lHn0a0OB1lTqXxZi+yj7R5dzAX8vnaF27s/TBz9K9H8VaMdf8P3lihCySICmem4EMB+YA/GrGlaHYaJCY7G1jtlPUqPmb6k8n8avU8Ll/s4VlWd3VbbS2V+i/wAxVa/M4cn2djzb4TamLF77RLofZ7oSmVI34ZjjDD6jaD+fpXoOo6hBpVlNdXMgigiUszE/p9T0xVPVvDGma3Isl5aLJMmCsqko4x0+ZSDVWTwTpdyyG6S4vRGcqt1dSSKPwLYpYahisHQ9hDllbZttaeas9vJ6+QVJ0qs+d3V9zhvhzpVxrfii51+VDHAskkg9GkfPA9QAT+ldD8Xf+RWi/wCvlP8A0Fq7KGCO2iSKGNYo0GFRBgKPYCqOseHbDXlRb+F50Q5VPNdVz64BAzyeaxWWSpYCeFpu8pXu3pq/vLeIUq6qSWiMr4af8iTp3/bT/wBGNWzb6pFeapcWsEiv9lQefjnDMTtGfYK2R7j3rNTwHokaCNLSRUHRRcygflurQ0bQLDw/FJFYW4t45G3MNxbJ6dSTXZhqeJpU6VGSjaKSbTbbsraKy6+ZlUlTlKUle78v+CeYfF3nxVaf9eqf+hvXrssqQxs8jhEUEszHAA7kmsXUfBOjatdG4vLV7iYjG555OB6D5uB7Ux/AmhyYElo8gByA9xKwz9C1cmHwmJw2Ir1oqL52ratWtf8Auvua1KtOpCEHf3fL/gnAXsD/ABG8dsbZTJpsGxHmxgCMHnn1Y7sd+fY49eqCzsbfT4RDbQR28QOQkSBR+QqeuvA4J4XnnN3nN3b/AEXkjKtW9paKVktj5i+An/J737VP/XPwn/6b56+ne1ch4a+Ffh/wn8QvGXjXToJo9e8WiyXVZXmZkkFrE0UG1TwuFcg4610mraZDrWl3Wn3D3EcFzE0Mj2lzJbTBWGCUljZXRvRlYEdQQa9Q5j8Yv2a/+UyWr/8AY5eLP/ROoV2//BbvxtoOseMPhf4ZsdSgutf0W31G41KziO57VLj7L5Ac9AWEMhC9QMHGGUn7S1f/AIJofs4a/q17qmp/D+41HUr2d7m6vLvxHqss08rsWeR3a6JZmYkkk5JJNdD8Nv2CfgF8JfEkGv8Ahr4a6dBq9uQ0Fzf3FxqBgcMrLJGLmSQI4Kgh1AYc4IycgDf2J9M8R/Dj9jf4e2/xGlk03VdL0d5rv+0m8trK0Ekj26S7seX5Vt5SlWwU2YPINfOH7Knw2+JP7Rup+Pf2jNG+I8/wuuPH2rSW9lb2ehWGpNJpVni3t8vOjGMgxujBQu8xK5ByuPt74n/CXw38YtAk0TxTHqdzpMsckM9pYazeafHcRuNrxzC2mj81CONr7hyeOTR8K/hL4Y+CvhKHwz4QtLyw0KBiYLO61O6vlgGB8sZuJJCicZ2KQoJJxkmkB+NP/BQ74Q+P/wBl/wDaR8K/Eqfxfc+KtY1fydWtvFM2m21mRqNmyL5ZghHl/Ii2zZKgPvOdxDGv2T+C/wAVdH+N/wAK/DHjrQZN+m65ZJdIhILQv92SFsEjfHIro2CfmQ8muf8AjV+zD8Of2iEtYviFo994gtLVleGx/tu/trVHUOFk8iGdI/MxK437d2GxnAAqX4Nfs2fD79n3SdR0vwBpN9oOmX7F5rL+2r65gDkYLok0zrG5AALoFY7VyeBhgfmJ8W/+U1dj/wBjDon/AKbbWv0q/ae/Zb8F/tV+AG8OeLLQJeWwkl0rWYF/0nTZ2XG9DkblOF3Rk7X2rnlVZeTk/wCCe3wIl8af8Je/hPVH8V/ahfDW28VaubwXAORL532vdvBAO7Oa+g9M0+LSdNtbKBp3htokhRrmd55WVQAC8kjM7tgcsxLE5JJJzQB+MH7LPwk8f/Bf/gqb4M0D4ktPeeI2fUrj+1ppGlXVITpl2qXSStzIH2nLH5twYNhgwH6q/tWf8mu/GH/sTdY/9Ipq6bxr8KfCvxC1rwtrGvaPDe6t4Yv/AO0tHvslZrSbGG2sCCUYYDIcq21SRlFIk+JHw00H4teFbnw34ljv59GugyXNtY6pdWH2hGRkeORreWNnjZXYGNiVPGQcDAB+Uv8AwSA+HOgfF3wp+0D4O8UWEepaFrNhpVrcwOoJwWvCrqSDtdGCurdVZVYcgV5l8OPFfjH/AIJZ/tj3vh/X5ru/8IXEkcWpiGMxRavpblvIvYkbIMkZLMACcOk0W/BY1+r3wl/Yn+DvwJ8RHXPAXhq/8NagwAla08Q6mYpwDkLLE1yUlUEk7XUj2rofjh+zH8Mf2kLbS4PiL4Vg8RDS3d7OQ3M9tLDvADASQujbTgZUnBKg4yBQB6JomtWHiXRrDV9Ku4tQ0y/t47q1u7dw0c8LqGR1YdVZSCD6GiuL+EPwG8GfAjQG0LwTZ6jpOi5zHp0+t315bwfM7HyY55nWLc0js3lhdxOWyQKKAPQe9FFGc0AFFFBoAKa7rGu5iFHqTTvWjNAGfc+IdMtM+ff28WP78oFUJfH/AIag/wBZr2np/vXCj+tb+aBQByz/ABT8Hx53+J9KX63af41PpPxF8L69qMdhp3iDTr69kzst4LlHdsAk4AOeACa6KjrQB55out6vc/H7xbok2qTyaHY+HNIv7fTjFCEjnubjUI5W3hPMPy2cWAWIG5+ORtqXGt638QPiP4k8NaTrl14Y0nw1FaLc32nw28l3dXk6NKYv38ciJFHCYWJCFnabAZBERJLrvw78Vf8ACxdd8V+G/FGk6TJquj2Gktb6jokl6Yvs015Isist1ECWN6w2leNg65Nak/gC7sfHs/irQtVh06fUbWGz1W0u7Q3EV0sPmeTKm2SMxzDzSrP8wZFVSvyqygHJHx14m03T/iT4Ya/gufFXheygvdN1e7twUu7e4jk+zy3MUexd4mt7hJFj2BljDL5e8KqwfFK88a+G7dYZrvwd4s0jXrDTtf0RfJmkt2knjRo90kbCSCVH3xzIFLqVPyMHRdm3+FF9DoXi9n1y3n8WeJ2Rr3VpbBjbxqkaxRxRW/nbliVFYhTKTvkkck7iKueOPhHp/jDxToHiaG6k0nXdLng826t0BF/aJMs32WdT95A6h0bIaN8lTteVJADCmsvEviP4z+KNLg8e67omk6fpmmX0FjYWunMgeZ7tJFLTWsjlT9mQ/eyCzc4wBk3Pxs1y38M6hpRgsT45tfFkPg0TrE/2FpplhnW7Ee/dtWznWZoi4y6NEHxiQ9TqHgPxdD8QPEHibQvE2iWKapYWdilpqGhTXRhFu1wwYul5Fu3NcvxtGAoHqaSX4JabJ4NutIa/uW1W51dPEMmubU+0NqSTpNHMQBgqvlxxBDx5KLGSRQBneI9Q8QfCG+8Oahe+KdQ8WaFqer2ui30OrW9ok1s1y/k280DW0MIP7+SFXV9w2MWUqU2yJpnxbv8ARPibqHh3xTFHBomo6ibLw9rca7YzcCJHaxuOyynJeJ+BIN0ZAeNTNuX3w+1bxXqvhy58U61Y6hY6NNHqC2Gnaa9qlxfIrKksheeXMaF/MSPGVkRGLttAqxcfDKz8QaF4s0TxT9l1zSNevnufs8cD25hj2xhBvEjN5qNGHWZChVgpUKVBoAT4baxdJ4Ivb3Xtal1BrPUdUhk1C+WGIiG3vJ4lLeUiIMRxLk7R3Jqyvxb8FP8Ad8VaQ30vI/8AGp/hx4Nk8AeEbXQ5tWuNcmhmuJn1G8RVnuGlnklLybQFL5k+YqFBOSFUEKOmoA5qP4meE5jhPEemOfa6Q/1q3F410Cf/AFes2Umf7s6n+tbVFAFa31K1u/8AU3Ecuf7jA1ZozxQTigAoHagHNGecUAHaiijrQAUUDpRQB//Z"
-                                        }
+                                        staticStyle: { width: "240px" },
+                                        attrs: { src: "/images/logo.png" }
                                       })
                                     ]
                                   ),
@@ -14444,7 +14427,7 @@ var render = function() {
                                             "padding-left": "13pt",
                                             "text-indent": "-1pt",
                                             "text-align": "left",
-                                            "font-size": "11px"
+                                            "font-size": "13px"
                                           }
                                         },
                                         [
@@ -14476,7 +14459,7 @@ var render = function() {
                                             "padding-left": "13pt",
                                             "text-indent": "0pt",
                                             "text-align": "left",
-                                            "font-size": "11px"
+                                            "font-size": "13px"
                                           }
                                         },
                                         [
@@ -14488,6 +14471,8 @@ var render = function() {
                                         ]
                                       ),
                                       _vm._v(" "),
+                                      _c("br"),
+                                      _vm._v(" "),
                                       _c(
                                         "h2",
                                         {
@@ -14495,7 +14480,7 @@ var render = function() {
                                             "padding-left": "13pt",
                                             "text-indent": "0pt",
                                             "text-align": "left",
-                                            "font-size": "11px"
+                                            "font-size": "13px"
                                           }
                                         },
                                         [
@@ -14516,7 +14501,7 @@ var render = function() {
                                             "padding-left": "13pt",
                                             "text-indent": "0pt",
                                             "text-align": "left",
-                                            "font-size": "11px"
+                                            "font-size": "13px"
                                           }
                                         },
                                         [
@@ -14531,42 +14516,22 @@ var render = function() {
                                       ),
                                       _vm._v(" "),
                                       _c(
-                                        "p",
+                                        "h2",
                                         {
                                           staticStyle: {
                                             "padding-left": "13pt",
                                             "text-indent": "0pt",
                                             "text-align": "left",
-                                            "font-size": "11px"
+                                            "font-size": "13px"
                                           }
                                         },
                                         [
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass: "a",
-                                              attrs: { target: "_blank" }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "e:\n                                                "
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass: "a",
-                                              attrs: { target: "_blank" }
-                                            },
-                                            [
-                                              _vm._v(
-                                                _vm._s(
-                                                  _vm.companydata.contact_email
-                                                )
-                                              )
-                                            ]
+                                          _vm._v(
+                                            "\n                                            e:\n                                                " +
+                                              _vm._s(
+                                                _vm.companydata.contact_email
+                                              ) +
+                                              "\n                                            "
                                           )
                                         ]
                                       )
@@ -14580,13 +14545,14 @@ var render = function() {
                               _c("div", { staticClass: "row" }, [
                                 _c("div", { staticClass: "col-8 cont2" }, [
                                   _c(
-                                    "p",
+                                    "h2",
                                     {
                                       staticStyle: {
                                         "padding-left": "12pt",
                                         "text-indent": "0pt",
                                         "text-align": "left",
-                                        "font-size": "11px"
+                                        "font-size": "13px",
+                                        "font-weight": "500"
                                       }
                                     },
                                     [
@@ -14595,19 +14561,20 @@ var render = function() {
                                           _vm._s(_vm.formdata.firstname) +
                                           "\n                                                " +
                                           _vm._s(_vm.formdata.lastname) +
-                                          "\n                                            "
+                                          "\n                                        "
                                       )
                                     ]
                                   ),
                                   _vm._v(" "),
                                   _c(
-                                    "p",
+                                    "h2",
                                     {
                                       staticStyle: {
                                         "padding-left": "12pt",
                                         "text-indent": "0pt",
                                         "text-align": "left",
-                                        "font-size": "11px"
+                                        "font-size": "13px",
+                                        "font-weight": "500"
                                       }
                                     },
                                     [
@@ -14620,20 +14587,21 @@ var render = function() {
                                   ),
                                   _vm._v(" "),
                                   _c(
-                                    "p",
+                                    "h2",
                                     {
                                       staticStyle: {
                                         "padding-left": "12pt",
                                         "text-indent": "0pt",
                                         "text-align": "left",
-                                        "font-size": "11px"
+                                        "font-size": "13px",
+                                        "font-weight": "500"
                                       }
                                     },
                                     [
                                       _vm._v(
                                         "\n                                                VAT: " +
                                           _vm._s(_vm.formdata.vat) +
-                                          "\n                                            "
+                                          "\n                                        "
                                       )
                                     ]
                                   )
@@ -14645,7 +14613,7 @@ var render = function() {
                                     {
                                       staticClass: "s1",
                                       staticStyle: {
-                                        "padding-left": "13pt",
+                                        "padding-left": "11pt",
                                         "text-indent": "0pt",
                                         "margin-right": "10px",
                                         "text-align": "left"
@@ -14657,6 +14625,8 @@ var render = function() {
                                       )
                                     ]
                                   ),
+                                  _vm._v(" "),
+                                  _c("br"),
                                   _vm._v(" "),
                                   _c(
                                     "div",
@@ -14674,7 +14644,7 @@ var render = function() {
                                             "padding-left": "12pt",
                                             "text-indent": "0pt",
                                             "text-align": "left",
-                                            "font-size": "11px"
+                                            "font-size": "12px"
                                           }
                                         },
                                         [
@@ -14685,33 +14655,23 @@ var render = function() {
                                       ),
                                       _vm._v(" "),
                                       _c(
-                                        "p",
+                                        "h2",
                                         {
                                           staticStyle: {
+                                            "text-align": "left",
+                                            "font-size": "12px",
                                             "padding-left": "13pt",
                                             "text-indent": "0pt",
-                                            "text-align": "left",
-                                            "font-size": "11px"
+                                            "font-weight": "500"
                                           }
                                         },
                                         [
-                                          _c(
-                                            "span",
-                                            {
-                                              staticStyle: {
-                                                "text-align": "left",
-                                                "font-size": "11px"
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                _vm._s(
-                                                  _vm.dateFormateChanger(
-                                                    _vm.formdata.issue_date
-                                                  )
-                                                )
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.dateFormateChanger(
+                                                _vm.formdata.issue_date
                                               )
-                                            ]
+                                            )
                                           )
                                         ]
                                       ),
@@ -14723,7 +14683,7 @@ var render = function() {
                                             "padding-left": "13pt",
                                             "text-indent": "0pt",
                                             "text-align": "left",
-                                            "font-size": "11px"
+                                            "font-size": "12px"
                                           }
                                         },
                                         [
@@ -14734,31 +14694,17 @@ var render = function() {
                                       ),
                                       _vm._v(" "),
                                       _c(
-                                        "p",
+                                        "h2",
                                         {
                                           staticStyle: {
+                                            "text-align": "left",
+                                            "font-size": "12px",
                                             "padding-left": "13pt",
                                             "text-indent": "0pt",
-                                            "text-align": "left",
-                                            "font-size": "11px"
+                                            "font-weight": "500"
                                           }
                                         },
-                                        [
-                                          _c(
-                                            "span",
-                                            {
-                                              staticStyle: {
-                                                "text-align": "left",
-                                                "font-size": "11px"
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                _vm._s(_vm.formdata.invoiceno)
-                                              )
-                                            ]
-                                          )
-                                        ]
+                                        [_vm._v(_vm._s(_vm.formdata.invoiceno))]
                                       ),
                                       _vm._v(" "),
                                       _c(
@@ -14768,7 +14714,7 @@ var render = function() {
                                             "padding-left": "13pt",
                                             "text-indent": "0pt",
                                             "text-align": "left",
-                                            "font-size": "11px"
+                                            "font-size": "12px"
                                           }
                                         },
                                         [
@@ -14779,18 +14725,23 @@ var render = function() {
                                       ),
                                       _vm._v(" "),
                                       _c(
-                                        "p",
+                                        "h2",
                                         {
                                           staticStyle: {
+                                            "text-align": "left",
+                                            "font-size": "12px",
                                             "padding-left": "13pt",
                                             "text-indent": "0pt",
-                                            "text-align": "left",
-                                            "font-size": "11px"
+                                            "font-weight": "500"
                                           }
                                         },
                                         [
                                           _vm._v(
-                                            "\n                                                    Online OrderVAT\n                                                    Number140187339\n                                                "
+                                            "\n                                                    " +
+                                              _vm._s(
+                                                _vm.formdata.company_code
+                                              ) +
+                                              "\n                                                "
                                           )
                                         ]
                                       ),
@@ -14804,7 +14755,6 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("br"),
-                            _c("br"),
                             _vm._v(" "),
                             _c(
                               "div",
@@ -14813,161 +14763,325 @@ var render = function() {
                                 staticStyle: { "font-size": "10px" }
                               },
                               [
-                                _c("table", [
-                                  _c("thead", [
-                                    _c("tr", [
-                                      _c(
-                                        "th",
-                                        { staticStyle: { width: "350px" } },
-                                        [
-                                          _vm._v(
-                                            "\n                                                    Description\n                                                "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "th",
-                                        { staticStyle: { width: "120px" } },
-                                        [
-                                          _vm._v(
-                                            "\n                                                    Unit Price\n                                                "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "th",
-                                        { staticStyle: { width: "120px" } },
-                                        [
-                                          _vm._v(
-                                            "\n                                                    VAT(%)\n                                                "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("th", [_vm._v("Amount GBP")])
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "tbody",
-                                    [
-                                      _vm._l(_vm.formdata.salesitem, function(
-                                        saleitem
-                                      ) {
-                                        return _c("tr", { key: saleitem.id }, [
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                                    " +
-                                                _vm._s(saleitem.quantity) +
-                                                "\n                                                    x\n                                                    " +
-                                                _vm._s(saleitem.typename) +
-                                                "\n                                                    " +
-                                                _vm._s(saleitem.productname) +
-                                                "\n                                                    (" +
-                                                _vm._s(saleitem.weight) +
-                                                "g)\n                                                "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                                    " +
-                                                _vm._s(saleitem.unitprice) +
-                                                "\n                                                "
-                                            )
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(_vm._s(saleitem.vat))
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(
-                                              "\n                                                    " +
-                                                _vm._s(
-                                                  saleitem.invoice_amount
-                                                ) +
-                                                "\n                                                "
-                                            )
-                                          ])
-                                        ])
-                                      }),
-                                      _vm._v(" "),
-                                      _c("br"),
-                                      _c("br"),
-                                      _vm._v(" "),
+                                _c(
+                                  "table",
+                                  { staticStyle: { width: "100%" } },
+                                  [
+                                    _c("thead", [
                                       _c("tr", [
-                                        _c("td", {
-                                          staticStyle: { border: "none" }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("td"),
-                                        _vm._v(" "),
-                                        _c("td", [_vm._v("Total No VAT")]),
-                                        _vm._v(" "),
-                                        _c("td", [
-                                          _vm._v(
-                                            "\n                                                    " +
-                                              _vm._s(_vm.formdata.vattotal) +
-                                              "\n                                                "
-                                          )
-                                        ])
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("br"),
-                                      _c("br"),
-                                      _vm._v(" "),
-                                      _c("tr", [
-                                        _c("td", {
-                                          staticStyle: { border: "none" }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("td", {
-                                          staticStyle: { border: "none" }
-                                        }),
-                                        _vm._v(" "),
                                         _c(
-                                          "td",
+                                          "th",
                                           {
                                             staticStyle: {
-                                              border: "none",
-                                              "font-weight": "bold"
+                                              width: "350px",
+                                              "font-size": "12px",
+                                              "padding-bottom": "8px"
                                             }
                                           },
                                           [
-                                            _vm._v(
-                                              "\n                                                    Amount Due\n                                                        GBP\n                                                "
+                                            _c(
+                                              "h2",
+                                              {
+                                                staticStyle: {
+                                                  "font-size": "14px"
+                                                }
+                                              },
+                                              [_vm._v("Description")]
                                             )
                                           ]
                                         ),
                                         _vm._v(" "),
                                         _c(
-                                          "td",
+                                          "th",
                                           {
                                             staticStyle: {
-                                              border: "none",
-                                              "font-weight": "bold"
+                                              width: "120px",
+                                              "font-size": "12px",
+                                              "padding-bottom": "8px"
                                             }
                                           },
                                           [
-                                            _vm._v(
-                                              "\n                                                    " +
-                                                _vm._s(
-                                                  _vm.formdata.totalamount
-                                                ) +
-                                                "\n                                                "
+                                            _c(
+                                              "h2",
+                                              {
+                                                staticStyle: {
+                                                  "font-size": "14px"
+                                                }
+                                              },
+                                              [_vm._v("Unit Price")]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "th",
+                                          {
+                                            staticStyle: {
+                                              width: "120px",
+                                              "font-size": "12px",
+                                              "padding-bottom": "8px"
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "h2",
+                                              {
+                                                staticStyle: {
+                                                  "font-size": "14px"
+                                                }
+                                              },
+                                              [_vm._v("VAT(%)")]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "th",
+                                          {
+                                            staticStyle: {
+                                              "font-size": "12px",
+                                              "padding-bottom": "8px",
+                                              "text-align": "right"
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "h2",
+                                              {
+                                                staticStyle: {
+                                                  "font-size": "14px"
+                                                }
+                                              },
+                                              [_vm._v("Amount GBP")]
                                             )
                                           ]
                                         )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("br")
-                                    ],
-                                    2
-                                  )
-                                ])
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "tbody",
+                                      [
+                                        _vm._l(_vm.formdata.salesitem, function(
+                                          saleitem
+                                        ) {
+                                          return _c(
+                                            "tr",
+                                            {
+                                              key: saleitem.id,
+                                              staticStyle: {
+                                                "border-bottom":
+                                                  "1px solid #ccc !important"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticStyle: {
+                                                    "padding-bottom": "4px",
+                                                    "padding-top": "3px",
+                                                    "font-size": "12px"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                                    " +
+                                                      _vm._s(
+                                                        saleitem.quantity
+                                                      ) +
+                                                      "\n                                                    x\n                                                    " +
+                                                      _vm._s(
+                                                        saleitem.typename
+                                                      ) +
+                                                      "\n                                                    " +
+                                                      _vm._s(
+                                                        saleitem.productname
+                                                      ) +
+                                                      "\n                                                    (" +
+                                                      _vm._s(saleitem.weight) +
+                                                      "g)\n                                                "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticStyle: {
+                                                    "padding-bottom": "4px",
+                                                    "padding-top": "3px",
+                                                    "font-size": "12px"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                                    " +
+                                                      _vm._s(
+                                                        saleitem.unitprice
+                                                      ) +
+                                                      "\n                                                "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticStyle: {
+                                                    "padding-bottom": "4px",
+                                                    "padding-top": "3px",
+                                                    "font-size": "12px"
+                                                  }
+                                                },
+                                                [_vm._v(_vm._s(saleitem.vat))]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticStyle: {
+                                                    "padding-bottom": "4px",
+                                                    "padding-top": "3px",
+                                                    "font-size": "12px",
+                                                    "text-align": "right"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                                    " +
+                                                      _vm._s(
+                                                        saleitem.invoice_amount
+                                                      ) +
+                                                      "\n                                                "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        }),
+                                        _vm._v(" "),
+                                        _c("br"),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _c("tr", [
+                                          _c("td", {
+                                            staticStyle: { border: "none" }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("td", {
+                                            staticStyle: {
+                                              "border-bottom": "1px solid black"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticStyle: {
+                                                "font-size": "12px",
+                                                "border-bottom":
+                                                  "1px solid black"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "h2",
+                                                {
+                                                  staticStyle: {
+                                                    "font-size": "12px",
+                                                    "font-weight": "500"
+                                                  }
+                                                },
+                                                [_vm._v("Total No VAT")]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticStyle: {
+                                                "font-size": "12px",
+                                                "text-align": "right",
+                                                "border-bottom":
+                                                  "1px solid black"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                                    " +
+                                                  _vm._s(
+                                                    _vm.formdata.vattotal
+                                                  ) +
+                                                  "\n                                                "
+                                              )
+                                            ]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("br"),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _c("tr", [
+                                          _c("td", {
+                                            staticStyle: { border: "none" }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("td", {
+                                            staticStyle: { border: "none" }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticStyle: {
+                                                border: "none",
+                                                "font-weight": "bold",
+                                                "font-size": "12px"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "h2",
+                                                {
+                                                  staticStyle: {
+                                                    "font-size": "13px"
+                                                  }
+                                                },
+                                                [_vm._v("Amount Due GBP")]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticStyle: {
+                                                border: "none",
+                                                "font-weight": "bold",
+                                                "font-size": "12px",
+                                                "text-align": "right"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                                    " +
+                                                  _vm._s(
+                                                    _vm.formdata.totalamount
+                                                  ) +
+                                                  "\n                                                "
+                                              )
+                                            ]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("br")
+                                      ],
+                                      2
+                                    )
+                                  ]
+                                )
                               ]
                             ),
                             _vm._v(" "),
@@ -14994,16 +15108,13 @@ var render = function() {
                                   staticStyle: {
                                     "text-indent": "0pt",
                                     "text-align": "justify",
-                                    "font-size": "12px"
+                                    "font-size": "13px",
+                                    "line-height": "1.1"
                                   }
                                 },
                                 [
                                   _vm._v(
-                                    "\n                                        Goods supplied by us remain the\n                                        property of Gold Warehouse Limited\n                                        until paid for in full. Interest\n                                        will be charged at 4% per month."
-                                  ),
-                                  _c("br"),
-                                  _vm._v(
-                                    "\n                                        The person signing for the goods is\n                                        personally responsible for the\n                                        payment of this invoice and for any\n                                        loss or damage however caused.\n                                    "
+                                    "\n                                        Goods supplied by us remain the\n                                        property of Gold Warehouse Limited\n                                        until paid for in full. Interest\n                                        will be charged at 4% per month.\n                                        The person signing for the goods is\n                                        personally responsible for the\n                                        payment of this invoice and for any\n                                        loss or damage however caused.\n                                    "
                                   )
                                 ]
                               ),
@@ -15017,19 +15128,31 @@ var render = function() {
                                   staticStyle: {
                                     "text-indent": "0pt",
                                     "text-align": "left",
-                                    "font-size": "11px"
+                                    "font-size": "12px"
                                   }
                                 },
                                 [
-                                  _vm._v(
-                                    "\n                                        Signed:\n                                        "
-                                  ),
                                   _c("img", {
                                     staticStyle: { height: "100px" },
                                     attrs: {
                                       src: _vm.signaturedata.signature_filename
                                     }
                                   }),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c("span", [
+                                    _vm._v("Signed By: "),
+                                    _c(
+                                      "span",
+                                      { staticStyle: { "font-weight": "600" } },
+                                      [
+                                        _vm._v(
+                                          _vm._s(_vm.signaturedata.signed_by)
+                                        )
+                                      ]
+                                    )
+                                  ]),
                                   _vm._v(" "),
                                   _c("br")
                                 ]
@@ -15042,7 +15165,10 @@ var render = function() {
                               "div",
                               {
                                 staticClass: "container s3",
-                                staticStyle: { "font-size": "12px" }
+                                staticStyle: {
+                                  "font-size": "13px",
+                                  width: "100%"
+                                }
                               },
                               [
                                 _c(
@@ -15050,7 +15176,8 @@ var render = function() {
                                   {
                                     staticStyle: {
                                       "text-indent": "0pt",
-                                      "text-align": "left"
+                                      "text-align": "left",
+                                      "line-height": "1.1"
                                     }
                                   },
                                   [
@@ -15068,128 +15195,177 @@ var render = function() {
                                 _c("br"),
                                 _vm._v(" "),
                                 _c("div", { staticClass: "flex-parent" }, [
-                                  _c("div", { staticClass: "box" }, [
-                                    _c("p", { staticClass: "box_size" }, [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticStyle: { "font-weight": "bold" }
-                                        },
-                                        [_vm._v("GBP Account")]
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("p", { staticClass: "box_size" }, [
-                                      _vm._v(
-                                        "\n                                                Gold Warehouse Ltd"
-                                      ),
-                                      _c("br"),
-                                      _vm._v(
-                                        "\n                                                Sort code:"
-                                      ),
-                                      _c(
-                                        "span",
-                                        {
-                                          staticStyle: { "font-weight": "bold" }
-                                        },
-                                        [_vm._v("23-14-70")]
-                                      ),
-                                      _c("br"),
-                                      _vm._v(
-                                        "\n                                                Account No:"
-                                      ),
-                                      _c(
-                                        "span",
-                                        {
-                                          staticStyle: { "font-weight": "bold" }
-                                        },
-                                        [_vm._v("24730434")]
-                                      )
-                                    ])
-                                  ]),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "box",
+                                      staticStyle: { width: "100%" }
+                                    },
+                                    [
+                                      _c("p", { staticClass: "box_size" }, [
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "bold"
+                                            }
+                                          },
+                                          [_vm._v("GBP Account")]
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("p", { staticClass: "box_size" }, [
+                                        _vm._v(
+                                          "\n                                                " +
+                                            _vm._s(_vm.companydata.account_name)
+                                        ),
+                                        _c("br"),
+                                        _vm._v(
+                                          "\n                                                Sort code:"
+                                        ),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "bold"
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              _vm._s(_vm.companydata.sort_code)
+                                            )
+                                          ]
+                                        ),
+                                        _c("br"),
+                                        _vm._v(
+                                          "\n                                                Account No:"
+                                        ),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "bold"
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.companydata.account_number
+                                              )
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    ]
+                                  ),
                                   _vm._v(" "),
-                                  _c("div", { staticClass: "box" }, [
-                                    _c("p", { staticClass: "box_size" }, [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticStyle: { "font-weight": "bold" }
-                                        },
-                                        [_vm._v("USD Account")]
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("p", { staticClass: "box_size" }, [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticStyle: { "font-weight": "bold" }
-                                        },
-                                        [_vm._v("Account number ")]
-                                      ),
-                                      _vm._v("8312378352"),
-                                      _c("br"),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "box",
+                                      staticStyle: { width: "100%" }
+                                    },
+                                    [
+                                      _c("p", { staticClass: "box_size" }, [
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "bold"
+                                            }
+                                          },
+                                          [_vm._v("USD Account")]
+                                        )
+                                      ]),
                                       _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        {
-                                          staticStyle: { "font-weight": "bold" }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "Bank code\n                                                    (SWIFT/BIC)"
+                                      _c("p", { staticClass: "box_size" }, [
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "bold"
+                                            }
+                                          },
+                                          [_vm._v("Account number ")]
+                                        ),
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.companydata.usd_account_number
                                           )
-                                        ]
-                                      ),
-                                      _vm._v("CMFGUS33"),
-                                      _c("br"),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        {
-                                          staticStyle: { "font-weight": "bold" }
-                                        },
-                                        [_vm._v("ABA Routing No")]
-                                      ),
-                                      _vm._v(
-                                        "084009519\n                                            "
-                                      )
-                                    ])
-                                  ])
+                                        ),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "bold"
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "Bank code\n                                                    (SWIFT/BIC)"
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(
+                                          _vm._s(_vm.companydata.bank_code)
+                                        ),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "bold"
+                                            }
+                                          },
+                                          [_vm._v("ABA Routing No")]
+                                        ),
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.companydata.routing_number
+                                          ) +
+                                            "\n                                            "
+                                        )
+                                      ])
+                                    ]
+                                  )
                                 ]),
                                 _vm._v(" "),
                                 _c("br"),
                                 _c("br"),
                                 _vm._v(" "),
-                                _c(
-                                  "p",
-                                  {
-                                    staticStyle: {
-                                      "padding-left": "6pt",
-                                      "text-indent": "0pt",
-                                      "text-align": "left"
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                        The Output Tax Of £\n                                        "
-                                    ),
-                                    _c(
-                                      "span",
-                                      { staticStyle: { "font-weight": "600" } },
-                                      [_vm._v(_vm._s(_vm.output_tax))]
-                                    ),
-                                    _vm._v(
-                                      "\n                                        On Supply Of This Gold Is To Be\n                                        Accounted For By The Buyer To HMRC.\n                                    "
+                                _vm.output_tax
+                                  ? _c(
+                                      "p",
+                                      {
+                                        staticStyle: {
+                                          "padding-left": "6pt",
+                                          "text-indent": "0pt",
+                                          "text-align": "left"
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                        The Output Tax Of £\n                                        "
+                                        ),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "600"
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(_vm.output_tax))]
+                                        ),
+                                        _vm._v(
+                                          "\n                                        On Supply Of This Gold Is To Be\n                                        Accounted For By The Buyer To HMRC.\n                                    "
+                                        )
+                                      ]
                                     )
-                                  ]
-                                ),
+                                  : _vm._e(),
                                 _vm._v(" "),
-                                _c("br"),
-                                _c("br"),
-                                _c("br"),
-                                _c("br"),
-                                _c("br"),
                                 _c("br"),
                                 _c("br"),
                                 _c("br")
@@ -15205,7 +15381,8 @@ var render = function() {
                                 staticStyle: {
                                   "padding-left": "49pt",
                                   "text-indent": "0pt",
-                                  "text-align": "center"
+                                  "text-align": "center",
+                                  "font-size": "10px"
                                 }
                               },
                               [
@@ -15218,6 +15395,7 @@ var render = function() {
                                   "a",
                                   {
                                     staticClass: "s5",
+                                    staticStyle: { "font-size": "10px" },
                                     attrs: {
                                       href: "mailto:accounts@gold-bank.co.uk",
                                       target: "_blank"

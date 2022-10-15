@@ -126,7 +126,7 @@ class SalesController extends Controller
 
     public function salesdetails($id)
     {
-        $sales = Sales::leftjoin('customers', 'customers.id', '=', 'sales_invoice.customer_id')->select('sales_invoice.*','customers.first_name as firstname','customers.last_name as lastname','customers.vat as vat','customers.email as customer_email')->where('sales_invoice.id',$id)->orderBy('sales_invoice.id', 'DESC')->first();
+        $sales = Sales::leftjoin('customers', 'customers.id', '=', 'sales_invoice.customer_id')->select('sales_invoice.*','customers.first_name as firstname','customers.last_name as lastname','customers.vat as vat','customers.email as customer_email','customers.company_code as company_code')->where('sales_invoice.id',$id)->orderBy('sales_invoice.id', 'DESC')->first();
 
         $saleitems = SalesItems::leftjoin('producttypes', 'producttypes.id', '=', 'sales_items.producttype_id')->leftjoin('products', 'products.id', '=', 'sales_items.product_id')->select('sales_items.*','producttypes.name as typename','producttypes.metal_type as metal_type','products.name as productname')->where('sales_id',$id)->get();
 
