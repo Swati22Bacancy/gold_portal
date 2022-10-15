@@ -2611,7 +2611,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _this13.output_tax = 0;
 
       for (var j = 0; j < _this13.formdata.salesitem.length; j++) {
-        if (empty(_this13.formdata.salesitem[j].vat) && _this13.formdata.salesitem[j].metal_type == "gold") {
+        if (empty(_this13.formdata.salesitem[j].vat) && _this13.formdata.salesitem[j].metal_type == "gold" && _this13.formdata.customer_type == 'customer_type') {
           _this13.output_tax += parseFloat(_this13.formdata.salesitem[j].invoice_amount) * 20 / 100;
         }
       }
@@ -14368,7 +14368,7 @@ var render = function() {
                         "enable-download": true,
                         "preview-modal": false,
                         "paginate-elements-by-height": 1400,
-                        filename: "Invoice",
+                        filename: _vm.formdata.invoiceno,
                         "pdf-quality": 2,
                         "manual-pagination": false,
                         "pdf-format": "a4",
@@ -15221,7 +15221,7 @@ var render = function() {
                                         ),
                                         _c("br"),
                                         _vm._v(
-                                          "\n                                                Sort code:"
+                                          "\n                                                Sort code: "
                                         ),
                                         _c(
                                           "span",
@@ -15238,7 +15238,7 @@ var render = function() {
                                         ),
                                         _c("br"),
                                         _vm._v(
-                                          "\n                                                Account No:"
+                                          "\n                                                Account No: "
                                         ),
                                         _c(
                                           "span",
@@ -15286,7 +15286,7 @@ var render = function() {
                                               "font-weight": "bold"
                                             }
                                           },
-                                          [_vm._v("Account number ")]
+                                          [_vm._v("Account number: ")]
                                         ),
                                         _vm._v(
                                           _vm._s(
@@ -15304,7 +15304,7 @@ var render = function() {
                                           },
                                           [
                                             _vm._v(
-                                              "Bank code\n                                                    (SWIFT/BIC)"
+                                              "Bank code\n                                                    (SWIFT/BIC): "
                                             )
                                           ]
                                         ),
@@ -15320,7 +15320,7 @@ var render = function() {
                                               "font-weight": "bold"
                                             }
                                           },
-                                          [_vm._v("ABA Routing No")]
+                                          [_vm._v("ABA Routing No: ")]
                                         ),
                                         _vm._v(
                                           _vm._s(

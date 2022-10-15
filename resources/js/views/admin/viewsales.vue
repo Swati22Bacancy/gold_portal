@@ -48,7 +48,7 @@
                             :enable-download="true"
                             :preview-modal="false"
                             :paginate-elements-by-height="1400"
-                            filename="Invoice"
+                            :filename="formdata.invoiceno"
                             :pdf-quality="2"
                             :manual-pagination="false"
                             pdf-format="a4"
@@ -335,11 +335,11 @@
                                                 </p>
                                                 <p class="box_size">
                                                     {{companydata.account_name}}<br />
-                                                    Sort code:<span
+                                                    Sort code: <span
                                                         style="font-weight:bold"
                                                         >{{companydata.sort_code}}</span
                                                     ><br />
-                                                    Account No:<span
+                                                    Account No: <span
                                                         style="font-weight:bold"
                                                         >{{companydata.account_number}}</span
                                                     >
@@ -351,10 +351,10 @@
                                                     <span style="font-weight:bold">USD Account</span>
                                                 </p>
                                                 <p class="box_size">
-                                                    <span style="font-weight:bold">Account number </span>{{companydata.usd_account_number}}<br />
+                                                    <span style="font-weight:bold">Account number: </span>{{companydata.usd_account_number}}<br />
                                                     <span style="font-weight:bold">Bank code
-                                                        (SWIFT/BIC)</span>{{companydata.bank_code}}<br />
-                                                    <span style="font-weight:bold">ABA Routing No</span>{{companydata.routing_number}}
+                                                        (SWIFT/BIC): </span>{{companydata.bank_code}}<br />
+                                                    <span style="font-weight:bold">ABA Routing No: </span>{{companydata.routing_number}}
                                                 </p>
                                             </div>
                                         </div>
@@ -2436,16 +2436,9 @@ export default {
                 }
                 this.output_tax = 0;
                 for (var j = 0; j < this.formdata.salesitem.length; j++) {
-                    if (
-                        empty(this.formdata.salesitem[j].vat) &&
-                        this.formdata.salesitem[j].metal_type == "gold"
-                    ) {
-                        this.output_tax +=
-                            (parseFloat(
-                                this.formdata.salesitem[j].invoice_amount
-                            ) *
-                                20) /
-                            100;
+                    if ( empty(this.formdata.salesitem[j].vat) && this.formdata.salesitem[j].metal_type == "gold" && this.formdata.customer_type=='customer_type') 
+                    {
+                        this.output_tax += (parseFloat( this.formdata.salesitem[j].invoice_amount ) *20) /100;
                     }
                 }
                 console.log(this.invoice_status);
