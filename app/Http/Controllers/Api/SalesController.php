@@ -753,9 +753,10 @@ class SalesController extends Controller
         $data["salesdata"] = $request->input('salesdata');
         $data["companydata"] = $request->input('companydata');
         $data["signaturedata"] = $request->input('signaturedata');
-        $data["title"] = ($request->input('title')=='Purchase Order')?$request->input('title'):'Sales Invoice';
-        $pdfname = ($request->input('title')=='Purchase Order')?"Purchase Order.pdf":"Sales Invoice.pdf";
-        
+        $data["invoicetitle"] = ($request->input('title')=='Purchase Order')?$request->input('title'):'Sales Invoice';
+        $data["title"] = 'Invoice '.$data["salesdata"]['invoiceno'].' from Gold Bank for '.$data["salesdata"]['firstname'].' '.$data["salesdata"]['lastname'];
+        //$pdfname = ($request->input('title')=='Purchase Order')?"Purchase Order.pdf":"Sales Invoice.pdf";
+        $pdfname = 'Invoice '.$data["salesdata"]['invoiceno'].'.pdf';
         $pdf = PDF::loadView('mail', $data);
 
         try {
