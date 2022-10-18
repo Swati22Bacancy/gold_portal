@@ -26,6 +26,7 @@
               <div class="col-md-3">
                 <div class="form-group customer-input">
                   <label>Company Code</label>
+              
                   <input
                     type="text"
                     class="form-control form-control-user"
@@ -33,6 +34,7 @@
                     aria-describedby="emailHelp"
                     placeholder=""
                     v-model="formdata.company_code"
+                    
                   />
                 </div>
               </div>
@@ -49,7 +51,8 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.company_name"
+                    @blur="BussinessBlur"
+                    v-model.trim="formdata.company_name"
                   />
                   <span v-if="$v.formdata.company_name.$error" class="text-danger">Please enter valid name</span>
                 </div>    
@@ -61,7 +64,8 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.registered_address"
+                    @blur="BussinessBlur"
+                    v-model.trim="formdata.registered_address"
                   />
                   <span v-if="$v.formdata.registered_address.$error" class="text-danger">Please enter address</span>
                 </div>
@@ -237,7 +241,8 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.first_name"
+                    @blur="IndividualBlur"
+                    v-model.trim="formdata.first_name"
                   />
                   <span v-if="$v.formdata.first_name.$error" class="text-danger">Please your first name</span>
                 </div>
@@ -250,7 +255,8 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.last_name"
+                    @blur="IndividualBlur"
+                    v-model.trim="formdata.last_name"
                   />
                   <span v-if="$v.formdata.last_name.$error" class="text-danger">Please your last name</span>
                 </div>
@@ -311,7 +317,8 @@
                     id="crt-customer"
                     aria-describedby="emailHelp"
                     placeholder=""
-                    v-model="formdata.registered_address"
+                    @blur="IndividualBlur"
+                    v-model.trim="formdata.registered_address"
                   />
                 </div>
                 <span v-if="$v.formdata.registered_address.$error" class="text-danger">Please enter address</span>
@@ -353,6 +360,7 @@
 </template>
 
 <script>
+import { breakStatement } from "@babel/types";
 import { required,email,helpers} from "vuelidate/lib/validators";
 import { customerRules } from './rules/customerRules'
 const isName = helpers.regex("custom", /^[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}[_ ]{0,1}[a-zA-Z]{1,}$/);
@@ -363,11 +371,13 @@ export default {
       rules : customerRules,
       customerType: 'business',
       theme: 'cust-type',
+      mathFun: Math.floor(Math.random() * 100),
       formdata: {
         company_name: "",
         registered_address:"",
         first_name: "",
         last_name: "",
+        company_code:"/" + Math.floor(Math.random() * 100),
       },
       groups:{}
     };
@@ -425,7 +435,45 @@ export default {
             this.groups = response.data;
         });
     },
+    BussinessBlur(e){
+      var words="";
+    if(this.formdata.company_name)
+    {
+        words = this.formdata.company_name.split(" ");
+    }
+       var answer = "";
+       console.log(this.formdata.company_name)
+       if(words.length != 0){
+        console.log("if")
+      for (var i = 0; i < words.length; i = i+1) {
+        console.log("hii")
+      if(i > 1){
+         break;
+      }
+      else{
+         answer = answer + words[i][0];
+      }
+    } 
+  }
+  else{
+    console.log("else")
+  }
+
+     answer = answer + this.formdata.registered_address.substring(0, 2);
+     answer = answer + "/" + this.mathFun;
+     this.formdata.company_code = answer;
+    return answer;
+    },
+    IndividualBlur(e){
+      var answer = ""; 
+      answer = answer + this.formdata.first_name.substring(0, 1) + this.formdata.last_name.substring(0, 1);
+      answer = answer + this.formdata.registered_address.substring(0, 2);
+     answer = answer + "/" + this.mathFun;
+     this.formdata.company_code = answer;
+    return answer;
+    }
   },
+  
    validations: {
     formdata: {
       company_name: {
