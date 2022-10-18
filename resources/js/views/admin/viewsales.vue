@@ -1884,6 +1884,7 @@ export default {
             maildata.customeremail = this.formdata.customer_email;
             maildata.companydata = this.companydata;
             maildata.signaturedata = this.signaturedata;
+            maildata.output_tax = this.output_tax;
             const response = await axios.post("send-email", maildata);
 
             if (response.data.status == "success") {

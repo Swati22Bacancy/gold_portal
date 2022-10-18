@@ -1958,10 +1958,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 maildata.customeremail = _this3.formdata.customer_email;
                 maildata.companydata = _this3.companydata;
                 maildata.signaturedata = _this3.signaturedata;
-                _context2.next = 7;
+                maildata.output_tax = _this3.output_tax;
+                _context2.next = 8;
                 return axios.post("send-email", maildata);
 
-              case 7:
+              case 8:
                 response = _context2.sent;
 
                 if (response.data.status == "success") {
@@ -1982,7 +1983,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // });
 
 
-              case 9:
+              case 10:
               case "end":
                 return _context2.stop();
             }
