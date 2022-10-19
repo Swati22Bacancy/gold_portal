@@ -14403,7 +14403,7 @@ var render = function() {
                                     },
                                     [
                                       _c("img", {
-                                        staticStyle: { width: "240px" },
+                                        staticStyle: { width: "230px" },
                                         attrs: { src: "/images/logo.png" }
                                       })
                                     ]

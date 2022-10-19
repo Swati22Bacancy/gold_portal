@@ -34,7 +34,7 @@
               <div class="container" style=" padding: 30px 6%;">
               <div class="row">
                   <div class="col-7"  style="padding-top: 55px;">
-                    <img :src="'/images/logo.png'" style="width:240px;"/>
+                    <img :src="'/images/logo.png'" style="width:230px;"/>
                   </div>
           <div class="col-5 s3" style="font-size:9px; text-align:left; float:left">
             <h2  style="padding-top: 45px; padding-left: 13pt;text-indent: -1pt;text-align: left; font-size:13px;font-weight: bold;">
