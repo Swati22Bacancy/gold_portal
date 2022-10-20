@@ -760,7 +760,7 @@ class SalesController extends Controller
         $pdfname = 'Invoice '.$data["salesdata"]['invoiceno'].'.pdf';
         $pdf = PDF::loadView('mail', $data);
 
-        try {
+        // try {
             Mail::send('Mails.invoice', $data, function ($message) use ($data, $pdf, $pdfname) {
                 $message->to($data["email"], $data["email"])
                     ->subject($data["title"])
@@ -774,11 +774,11 @@ class SalesController extends Controller
                 ],
                 200
             );
-        }
-        catch (\Exception $e) {
-            return response([
-                'message' => 'Internal error, please try again later.' //$e->getMessage()
-            ], 400);
-        }
+        // }
+        // catch (\Exception $e) {
+        //     return response([
+        //         'message' => 'Internal error, please try again later.' //$e->getMessage()
+        //     ], 400);
+        // }
     }
 }
