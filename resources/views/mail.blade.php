@@ -4,12 +4,7 @@
     <title>Laravel 8 Generate PDF And Attach To Email Example - NiceSnippets.com</title>
 </head>
 <style>
-
-@font-face {
-  font-family: "Titillium-Web-Regular";
-  src: url({{ public_path('fonts/fonts/TitilliumWeb-Regular.ttf') }}) format('truetype');
-       font-style: normal;
-}  
+ 
 .pdf_section * {
     margin: 0;
     padding: 0;
