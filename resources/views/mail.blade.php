@@ -128,7 +128,7 @@
         <!-- ---------------------------------------- -->
         <div class="container1">
             <div class="row">
-                <div class="col-8 cont2" style="padding-left:8px; float:left; margin-top:50px">
+                <div class="col-8 cont2" style="padding-left:8px; float:left; margin-top:50px; font-weight:Calibri">
                     <p style="padding-left: 8px; text-align: left; font-size:11px;">
                         {{ $salesdata['firstname'] }} {{ $salesdata['lastname'] }}
                     </p>
@@ -139,7 +139,7 @@
                     VAT: {{ $salesdata['vat'] }}
                     </p>
                 </div>
-                <div class="col-4" style="padding-right: 50px; float:right; margin-top:30px">
+                <div class="col-4" style="padding-right: 50px; float:right; margin-top:30px; font-weight:Calibri">
                         <p class="s1" style=" margin-right: 10px; text-align: left">{{ $invoicetitle }}</p>
                         <br>
                         <div style="font-size:10px;  text-align: left;">
@@ -169,14 +169,14 @@
         <div class="container1" style="font-size:10px; margin-top:150px">
         <table style="width:100%">
             <thead>
-            <tr style="border-bottom:1px solid #000;">
+            <tr style="border-bottom:1px solid #000; font-family: Calibri;">
                 <th style="width:300px;text-align:left;padding-bottom:5px;"><h2 style="font-size: 12px;">Description</h2></th>
                 <th style="width: 100px;text-align:left;padding-bottom:5px;"><h2 style="font-size: 12px;">Unit Price</h2></th>
                 <th style="width: 100px;text-align:left;padding-bottom:5px;"><h2 style="font-size: 12px;">VAT(%)</h2></th>
                 <th><h2 style="font-size: 12px;text-align:right;padding-bottom:5px;">Amount GBP</h2></th>
             </tr>
             </thead>
-            <tbody style="width:100%;text-align: center;">
+            <tbody style="width:100%;text-align: center; font-family: Calibri;">
                 @foreach ($salesdata['salesitem'] as $sale)
                 <tr>
                     <td style="padding-bottom:6px;padding-top:5px;font-size: 12px;text-align:left;">{{ $sale['quantity'] }} x {{ $sale['typename'] }} {{ $sale['productname'] }} ({{ $sale['weight'] }}g) </td>
@@ -202,25 +202,25 @@
     </div>
         <!-- ------------------------ -->
         <div class="container1 s3">
-            <p style="text-align: justify;font-size: 12px;">Payment Terms:</p>
-            <p style=" text-align: justify; font-size: 12px;">
+            <p style="text-align: justify;font-size: 13px; font-family: Georgia;">Payment Terms:</p>
+            <p style=" text-align: justify; font-size: 13px;">
             Goods supplied by us remain the property of Gold Warehouse Limited until
-            paid for in full. Interest will be charged at 4% per month. The person
-            signing for the goods is personally responsible for the payment of this
-            invoice and for any loss or damage however caused.
+        paid for in full. Interest will be charged at 4% per month. The person
+        signing for the goods is personally responsible for the payment of this
+        invoice and for any loss or damage however caused.
             </p><br><br><br><br>
             @if(!empty($signaturedata['id'])) 
             <p style=" text-align: left; font-size: 11px;">
             <img src="' . url({{$signaturedata['signature_filename']}}) . '" style="height:100px;"/>
             <br>
             <span class="ml-3">
-            Signed By: <span style="font-weight:600;">{{$signaturedata['signed_by']}}</span>
+            Signed By: <span style="font-weight:600; font-family: Georgia;">{{$signaturedata['signed_by']}}</span>
             </span><br>
             </p>
             @endif
             <br>
         </div>
-        <div class="container1 s3" style="font-size:11px">
+        <div class="container1 s3" style="font-size:12px; font-family:Calibri">
             <p style="text-align: left;">
                 Gold Bank is a trading name for Gold
                 Warehouse Ltd<br />
@@ -228,12 +228,11 @@
                 payments to:<br />
             </p><br>
             @if($output_tax)
-            <p style="padding-left: 6px; text-align: left">
+            <p style="padding-left: 6px; text-align: left; font-family:Calibri">
             The Output Tax Of £ <span style="font-weight:600;"> {{$output_tax}} </span> On
             Supply Of This Gold Is To Be Accounted For By The Buyer To HMRC.
             </p>
             @endif
-            <br>
         </div>
         <div class="flex-parent">
             <div class="box" style="padding-top:10px;padding-left:10px;">
@@ -269,7 +268,7 @@
             </div>
         </div>
     </div> 
-    <div style="margin-top:200px;">
+    <div style="margin-top:180px;">
         <p class="s4" style="padding-left: 49px; text-align: center">
         Goldbank T/AS Gold Warehouse Limited, 215 The Broadway, Southall,
         Middlesex, UB1 1NB. Registered in England Number 08101794.<br>
