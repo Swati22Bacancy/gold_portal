@@ -160,4 +160,5 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('delete_purchaseorder/{id}', [Api\PurchaseController::class, 'deletepurchaseorder']);
     Route::post('add_signature',[Api\PurchaseController::class, 'addsignature']);
     Route::get('invoice_signature/{id}', [Api\PurchaseController::class, 'fetchinvoicesignature']);
+    Route::post('send-purchaseemail', [Api\PurchaseController::class, 'sendMailWithPDF']);
 });

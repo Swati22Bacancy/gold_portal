@@ -788,9 +788,10 @@ export default {
         maildata.companydata = this.companydata;
         maildata.signaturedata = this.signaturedata;
         maildata.customeremail=this.formdata.customer_email;
+        maildata.output_tax = this.output_tax;
         maildata.title = 'Purchase Order';
         const response = await axios.post(
-            "send-email",
+            "send-purchaseemail",
             maildata
         );
         

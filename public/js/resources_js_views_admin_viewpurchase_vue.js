@@ -16826,11 +16826,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 maildata.companydata = _this6.companydata;
                 maildata.signaturedata = _this6.signaturedata;
                 maildata.customeremail = _this6.formdata.customer_email;
+                maildata.output_tax = _this6.output_tax;
                 maildata.title = 'Purchase Order';
-                _context4.next = 9;
-                return axios.post("send-email", maildata);
+                _context4.next = 10;
+                return axios.post("send-purchaseemail", maildata);
 
-              case 9:
+              case 10:
                 response = _context4.sent;
 
                 if (response.data.status == "success") {
@@ -16851,7 +16852,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // });
 
 
-              case 11:
+              case 12:
               case "end":
                 return _context4.stop();
             }

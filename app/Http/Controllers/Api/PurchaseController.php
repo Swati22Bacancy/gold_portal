@@ -15,6 +15,8 @@ use DB;
 use App\Models\CustomerTransaction;
 use App\Models\SalesPayments;
 use App\Models\InvoiceSignature;
+use PDF;
+use Mail;
 
 class PurchaseController extends Controller
 {
@@ -109,7 +111,7 @@ class PurchaseController extends Controller
 
     public function purchasedetails($id)
     {
-        $purchase = Purchases::leftjoin('customers', 'customers.id', '=', 'purchase_invoice.customer_id')->select('purchase_invoice.*','customers.first_name as firstname','customers.last_name as lastname','customers.email as customer_email','customers.account_name as account_name','customers.account_number as account_number','customers.sort_code as sort_code','customers.customer_type as customer_type')->where('purchase_invoice.id',$id)->orderBy('purchase_invoice.id', 'DESC')->first();
+        $purchase = Purchases::leftjoin('customers', 'customers.id', '=', 'purchase_invoice.customer_id')->select('purchase_invoice.*','customers.first_name as firstname','customers.last_name as lastname','customers.email as customer_email','customers.account_name as account_name','customers.account_number as account_number','customers.sort_code as sort_code','customers.customer_type as customer_type','customers.company_code as company_code',)->where('purchase_invoice.id',$id)->orderBy('purchase_invoice.id', 'DESC')->first();
 
         $purchaseitems = PurchaseItems::leftjoin('producttypes', 'producttypes.id', '=', 'purchase_items.producttype_id')->leftjoin('products', 'products.id', '=', 'purchase_items.product_id')->select('purchase_items.*','producttypes.name as typename','products.name as productname')->where('purchase_id',$id)->get();
 
@@ -459,5 +461,43 @@ class PurchaseController extends Controller
         $signature = InvoiceSignature::where('purchase_id',$id)->first();
 
         return response()->json($signature);
+    }
+
+    public function sendMailWithPDF(Request $request)
+    {
+        $data["email"] = "swati.suthar@bacancy.com";
+        //$data["email"] = $request->input('customeremail');
+        $data["title"] = "Welcome to Gold Bank Accounting Portal";
+        $data["body"] = "This is the email body.";
+        $data["salesdata"] = $request->input('salesdata');
+        $data["companydata"] = $request->input('companydata');
+        $data["signaturedata"] = $request->input('signaturedata');
+        $data["output_tax"] = $request->input('output_tax');
+        $data["invoicetitle"] = ($request->input('title')=='Purchase Order')?$request->input('title'):'Sales Invoice';
+        $data["title"] = 'Invoice '.$data["salesdata"]['invoiceno'].' from Gold Bank for '.$data["salesdata"]['firstname'].' '.$data["salesdata"]['lastname'];
+        //$pdfname = ($request->input('title')=='Purchase Order')?"Purchase Order.pdf":"Sales Invoice.pdf";
+        $pdfname = 'Invoice '.$data["salesdata"]['invoiceno'].'.pdf';
+        $pdf = PDF::loadView('purchasemail', $data);
+
+        // try {
+            Mail::send('Mails.invoice', $data, function ($message) use ($data, $pdf, $pdfname) {
+                $message->to($data["email"], $data["email"])
+                    ->subject($data["title"])
+                    ->attachData($pdf->output(), $pdfname);
+            });
+            
+            return response()->json(
+                [
+                    'status' => 'success',
+                    'message' => 'Email has been sent successfully'
+                ],
+                200
+            );
+        // }
+        // catch (\Exception $e) {
+        //     return response([
+        //         'message' => 'Internal error, please try again later.' //$e->getMessage()
+        //     ], 400);
+        // }
     }
 }
