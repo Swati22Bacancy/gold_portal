@@ -465,7 +465,7 @@ class PurchaseController extends Controller
 
     public function sendMailWithPDF(Request $request)
     {
-        $data["email"] = "ishita.shah@bacancy.com";
+        $data["email"] = "swati.suthar@bacancy.com";
         //$data["email"] = $request->input('customeremail');
         $data["title"] = "Welcome to Gold Bank Accounting Portal";
         $data["body"] = "This is the email body.";

@@ -105,7 +105,7 @@
             <img src="{{ public_path('images/logo.png') }}" width="230" height="40">
             
         </div>
-        <div class="col-4 s3" style="font-size:9px; text-align:left; position: absolute; margin-top:-110px; padding-left: 445px;">
+        <div class="col-4 s3" style="font-size:9px; text-align:left; position: absolute; margin-top:-110px; padding-left: 410px;">
             <h2  style="padding-top: 45px; text-align: left; font-size:11px;">
             {{$companydata['company_name']}} <br>{{$companydata['address1']}}<br> {{$companydata['address2']}}</h2>
             <h2 style="padding:0; text-align: left; font-size:11px;">
@@ -136,7 +136,7 @@
                         {{ $salesdata['billing_address'] }}
                     </p>
                 </div>
-                <div class="col-4" style="padding-right: 50px; float:right; margin-top:30px">
+                <div class="col-4" style="float:right; margin-top:30px">
                         <p class="s1" style=" margin-right: 10px; text-align: left">PURCHASE INVOICE</p>
                         <br>
                         <div style="font-size:10px;  text-align: left;">
@@ -266,7 +266,8 @@
             </div>
         </div>
     </div> 
-    <div style="margin-top:200px;">
+    <br>
+    <div style="margin-top:100px;">
         <p class="s4" style="padding-left: 49px; text-align: center">
         Goldbank T/AS Gold Warehouse Limited, 215 The Broadway, Southall,
         Middlesex, UB1 1NB. Registered in England Number 08101794.<br>

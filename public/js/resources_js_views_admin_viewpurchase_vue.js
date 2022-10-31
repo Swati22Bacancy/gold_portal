@@ -16553,7 +16553,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         signed_by: ''
       },
       sign_flag: '',
-      output_tax: ""
+      output_tax: "",
+      loading: false
     };
   },
   methods: {
