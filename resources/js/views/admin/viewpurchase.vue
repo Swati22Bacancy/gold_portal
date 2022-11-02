@@ -1,5 +1,6 @@
 <template>
   <div class="row">
+    
     <div class="col-1" v-if="sidebarflag" style="font-size: 12px;">
       <div v-for="purchase in purchases" :key="purchase.id"  v-bind:class = "(purchase.invoiceno==formdata.invoiceno)?'bold_font':''" style="color:#000">
       
@@ -211,6 +212,9 @@
                   <i class="fab fa-whatsapp" style="color:#00AA5B; background-color: #EDF2F6; margin:3%; border-radius:50%; padding: 15%; margin-left: 30%; font-size: 18px;"></i>
                   <!-- <i class="fas fa-envelope" style="background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 30%;"></i> -->
                   <span style="color:blue;background-color: #EDF2F6; border-radius:50%; padding: 15%;margin-left: 16%;font-size: 19px;margin-right: 20%;cursor: pointer;" class="material-symbols-outlined" @click="sendemail">mail</span>
+                  
+                  <!-- <span class="" v-if="loading">Please Wait...</span> -->
+                  <the-loader v-if="loading"></the-loader>
                   <!-- <i class="fas fa-print" @click="ondownload()" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;"></i> -->
                   <span class="material-symbols-outlined" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 0%;cursor: pointer;" @click="printDiv('pdf_section')">print</span>
                   
@@ -527,12 +531,14 @@ import moment from 'moment';
 import VueSignaturePad from "vue-signature-pad";
 import Datepicker from 'vuejs-datepicker';
 import VueHtml2pdf from 'vue-html2pdf';
+import TheLoader from "../../components/TheLoader";
 export default {
   name: "Dashboard",
   components: {
     Datepicker,
     VueSignaturePad,
-    VueHtml2pdf
+    VueHtml2pdf,
+    TheLoader
   },
   data() {
     return {
@@ -783,6 +789,7 @@ export default {
       },
     async sendemail()
     {
+        this.loading = true
         var maildata={};
         maildata.salesdata=this.formdata;
         maildata.salesdata.salesitem=this.formdata.purchaseitem;
@@ -794,29 +801,43 @@ export default {
         const response = await axios.post(
             "send-purchaseemail",
             maildata
-        );
+        ).then(resp => {
+                    if (resp.data.status == "success") {
+                        this.loading = false;
+                        let toast = Vue.toasted.show(
+                            "Email has been sent successfully",
+                            {
+                                theme: "toasted-success",
+                                position: "top-center",
+                                duration: 5000
+                            }
+                        );
+                    } else {
+                        this.loading = false;
+                        let toast = Vue.toasted.show(
+                            "Something went wrong, Please try again",
+                            {
+                                theme: "toasted-error",
+                                position: "top-center",
+                                duration: 5000
+                            }
+                        );
+                    }
+                })
+                .catch(error => {
+                
+                    this.loading = false;
+                        let toast = Vue.toasted.show(
+                            "Internal error, please try again later",
+                            {
+                                theme: "toasted-error",
+                                position: "top-center",
+                                duration: 5000
+                            }
+                        );
+            });
         
-        if(response.data.status=="success")
-        {
-          let toast = Vue.toasted.show("Email has been sent successfully", {
-            theme: "toasted-success",
-            position: "top-center",
-            duration: 5000,
-          });
-        }
-        else
-        {
-          let toast = Vue.toasted.show('Something went wrong, Please try again', {
-            theme: "toasted-error",
-            position: "top-center",
-            duration: 5000,
-          });
-        }
-        // console.log('in');
-        // axios.post('/send-email')
-        // .then((response) => {
-            
-        // });
+        
     },
     printDiv(divName) { 
           var printContents = document.getElementById(divName).innerHTML;

@@ -422,6 +422,7 @@
                         @click="sendemail"
                         >mail</span
                     >
+                    <the-loader v-if="loading"></the-loader>
                     <!-- <i class="fas fa-print" @click="ondownload()" style="background-color: #EDF2F6; border-radius:50%; padding: 15%; margin-left: 30%;"></i> -->
                     <span
                         class="material-symbols-outlined"
@@ -1742,6 +1743,7 @@ import Datepicker from "vuejs-datepicker";
 import { objectToFormData } from "../../object-to-formdata";
 import VueHtml2pdf from "vue-html2pdf";
 import VueSignaturePad from "vue-signature-pad";
+import TheLoader from "../../components/TheLoader";
 
 export default {
     name: "ViewSales",
@@ -1750,7 +1752,8 @@ export default {
         moment,
         ModelSelect,
         VueHtml2pdf,
-        VueSignaturePad
+        VueSignaturePad,
+        TheLoader
     },
     data() {
         return {
@@ -1821,7 +1824,8 @@ export default {
                 signed_by: ""
             },
             sign_flag: "",
-            output_tax: ""
+            output_tax: "",
+            loading:false,
         };
     },
     methods: {
@@ -1879,33 +1883,49 @@ export default {
             this.$refs.html2Pdf.generatePdf();
         },
         async sendemail() {
+            this.loading = true
             var maildata = {};
             maildata.salesdata = this.formdata;
             maildata.customeremail = this.formdata.customer_email;
             maildata.companydata = this.companydata;
             maildata.signaturedata = this.signaturedata;
             maildata.output_tax = this.output_tax;
-            const response = await axios.post("send-email", maildata);
-
-            if (response.data.status == "success") {
-                let toast = Vue.toasted.show(
-                    "Email has been sent successfully",
-                    {
-                        theme: "toasted-success",
-                        position: "top-center",
-                        duration: 5000
+            const response = await axios.post("send-email", maildata).then(resp => {
+                    if (resp.data.status == "success") {
+                        this.loading = false;
+                        let toast = Vue.toasted.show(
+                            "Email has been sent successfully",
+                            {
+                                theme: "toasted-success",
+                                position: "top-center",
+                                duration: 5000
+                            }
+                        );
+                    } else {
+                        this.loading = false;
+                        let toast = Vue.toasted.show(
+                            "Something went wrong, Please try again",
+                            {
+                                theme: "toasted-error",
+                                position: "top-center",
+                                duration: 5000
+                            }
+                        );
                     }
-                );
-            } else {
-                let toast = Vue.toasted.show(
-                    "Something went wrong, Please try again",
-                    {
-                        theme: "toasted-error",
-                        position: "top-center",
-                        duration: 5000
-                    }
-                );
-            }
+                })
+                .catch(error => {
+                
+                    this.loading = false;
+                        let toast = Vue.toasted.show(
+                            "Internal error, please try again later",
+                            {
+                                theme: "toasted-error",
+                                position: "top-center",
+                                duration: 5000
+                            }
+                        );
+                //app.$notify(error.response.data.error, "error");
+            });
             // console.log('in');
             // axios.post('/send-email')
             // .then((response) => {
