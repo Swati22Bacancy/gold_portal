@@ -31,8 +31,8 @@
           <div class="col-md-12 Container-date">
             <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search by invoice,Purchase Order" style="background-color:#FFFFFF !important;margin-right:5px;"/>
             <div class="Container-date">
-           <p>Date Range</p> <Datepicker v-model="issue_date" class="date-cont"></Datepicker>
-            <Datepicker v-model="due_date" class="date-cont"></Datepicker></div>
+           <p>Date Range</p> <Datepicker v-model="issue_date1" class="date-cont"></Datepicker>
+            <Datepicker v-model="due_date1" class="date-cont"></Datepicker></div>
             <select class="tab-selector" style="width:100px; margin-right:5px; margin-left:5px">
               <option value="Option 1" selected>Total Value</option>
               <option value="Option 1" >Option 1</option>
@@ -161,6 +161,8 @@ export default {
     return {
       issue_date:Date.now(),
       due_date:Date.now(),
+      issue_date1:Date.now(),
+      due_date1:Date.now(),
       tabList: ["All", "UnPaid", "Partial Payments", "Paid"],
     };
   },

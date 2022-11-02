@@ -845,6 +845,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       issue_date: Date.now(),
       due_date: Date.now(),
+      issue_date1: Date.now(),
+      due_date1: Date.now(),
       tabList: ["All", "UnPaid", "Partial Payments", "Paid"]
     };
   },
@@ -18300,22 +18302,22 @@ var render = function() {
                         _c("Datepicker", {
                           staticClass: "date-cont",
                           model: {
-                            value: _vm.issue_date,
+                            value: _vm.issue_date1,
                             callback: function($$v) {
-                              _vm.issue_date = $$v
+                              _vm.issue_date1 = $$v
                             },
-                            expression: "issue_date"
+                            expression: "issue_date1"
                           }
                         }),
                         _vm._v(" "),
                         _c("Datepicker", {
                           staticClass: "date-cont",
                           model: {
-                            value: _vm.due_date,
+                            value: _vm.due_date1,
                             callback: function($$v) {
-                              _vm.due_date = $$v
+                              _vm.due_date1 = $$v
                             },
-                            expression: "due_date"
+                            expression: "due_date1"
                           }
                         })
                       ],

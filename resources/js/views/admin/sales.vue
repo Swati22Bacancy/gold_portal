@@ -19,7 +19,7 @@
         <router-link to="/createinvoice"><button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;"><i class="fas fa-plus" style="margin-right: 5px;"></i>Create Invoice</button></router-link>
         <button type="button" class="btn admin-btn mobile-mb">Sales Reconsile</button>
         <button type="button" class="btn admin-btn mobile-mb">Import</button>
-        <button type="button" class="btn admin-btn mobile-mb">Export</button>
+        <a type="button" class="btn admin-btn mobile-mb" @click="exportsales" :href="url">Export</a>
       </div>
       
       
@@ -164,7 +164,11 @@ export default {
       issue_date:Date.now(),
       due_date:Date.now(),
       tabList: ["All", "Paid", "Partial Payments", "Awaiting Payment"],
+      url: "",
     };
+  },
+  watch: {
+
   },
   mounted(){
     
@@ -173,6 +177,16 @@ export default {
     advanceSearch(){
       console.log(this.issue_date);
       console.log(this.due_date);
+    },
+    exportsales()
+    {
+      axios.get('/export_sales/')
+        .then((response) => {
+            
+        })
+        .catch(function(error) {
+            //app.$notify(error.response.data.error, "error");
+        });
     }
   }
   

@@ -688,14 +688,20 @@ __webpack_require__.r(__webpack_exports__);
     return {
       issue_date: Date.now(),
       due_date: Date.now(),
-      tabList: ["All", "Paid", "Partial Payments", "Awaiting Payment"]
+      tabList: ["All", "Paid", "Partial Payments", "Awaiting Payment"],
+      url: ""
     };
   },
+  watch: {},
   mounted: function mounted() {},
   methods: {
     advanceSearch: function advanceSearch() {
       console.log(this.issue_date);
       console.log(this.due_date);
+    },
+    exportsales: function exportsales() {
+      axios.get('/export_sales/').then(function (response) {})["catch"](function (error) {//app.$notify(error.response.data.error, "error");
+      });
     }
   }
 });
@@ -18014,10 +18020,11 @@ var render = function() {
             ),
             _vm._v(" "),
             _c(
-              "button",
+              "a",
               {
                 staticClass: "btn admin-btn mobile-mb",
-                attrs: { type: "button" }
+                attrs: { type: "button", href: _vm.url },
+                on: { click: _vm.exportsales }
               },
               [_vm._v("Export")]
             )

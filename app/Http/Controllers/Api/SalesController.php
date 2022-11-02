@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\PurchasePayments;
 use App\Models\CustomerTransaction;
 use App\Models\InvoiceSignature;
+use App\Exports\SalesExport;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 use Mail;
 
@@ -746,7 +748,7 @@ class SalesController extends Controller
 
     public function sendMailWithPDF(Request $request)
     {
-        $data["email"] = "swati1.suthar@bacancy.com";
+        $data["email"] = "swati.suthar@bacancy.com";
         //$data["email"] = $request->input('customeremail');
         $data["title"] = "Welcome to Gold Bank Accounting Portal";
         $data["body"] = "This is the email body.";
@@ -780,5 +782,11 @@ class SalesController extends Controller
                 'message' => 'Internal error, please try again later.' //$e->getMessage()
             ], 400);
         }
+    }
+
+    public function exportsales(Request $request)
+    {
+        //return (new SalesExport())->download('sales.xlsx');
+        return Excel::download(new SalesExport, 'users.xlsx');
     }
 }
