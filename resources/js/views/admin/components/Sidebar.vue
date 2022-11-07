@@ -44,7 +44,7 @@
       </li>
 
       <li class="nav-item" v-if="is_super_admin()">
-        <router-link class="nav-link" to="/admin">
+        <router-link class="nav-link" to="/deliverynotes">
           <span class="material-symbols-outlined" style="font-size:19px;margin-right:10%;">local_shipping</span>
           <span>Delivery Notes</span></router-link
         >

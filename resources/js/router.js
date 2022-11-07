@@ -144,6 +144,33 @@ let router = new Router({
             }
         },
         {
+            path: "/deliverynotes",
+            name: "deliverynotes",
+            component: () => import("./views/admin/deliverynotes.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/create_deliverynote",
+            name: "createdeliverynote",
+            component: () => import("./views/admin/createdeliverynote.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/view_deliverynote/:id",
+            name: "viewdeliverynote",
+            component: () => import("./views/admin/deliverynotes.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/quotes",
             name: "quotes",
             component: () => import("./views/admin/quotes.vue"),

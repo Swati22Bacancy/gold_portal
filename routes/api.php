@@ -162,4 +162,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('add_signature',[Api\PurchaseController::class, 'addsignature']);
     Route::get('invoice_signature/{id}', [Api\PurchaseController::class, 'fetchinvoicesignature']);
     Route::post('send-purchaseemail', [Api\PurchaseController::class, 'sendMailWithPDF']);
+
+    // Delivery Notes Routes
+    Route::post('create_deliverynote',[Api\DeliveryNotesController::class, 'createdeliverynote']);
+    Route::get('get_note_key', [Api\DeliveryNotesController::class, 'getinvoicekey']);
+    Route::get('deliverynotes_list', [Api\DeliveryNotesController::class, 'deliverynoteslist']);
+    Route::get('deliverynotes_details/{id}', [Api\DeliveryNotesController::class, 'deliverynotesdetails']);
 });
