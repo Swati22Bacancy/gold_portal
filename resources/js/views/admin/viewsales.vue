@@ -1834,6 +1834,7 @@ export default {
                 .get("/delete_salesinvoice/" + this.$route.params.id)
                 .then(resp => {
                     this.$router.push("/sales");
+                    this.$router.go();
                 })
                 .catch(error => {
                     let message = "Something went wrong, Please try again";

@@ -164,7 +164,16 @@ let router = new Router({
         {
             path: "/view_deliverynote/:id",
             name: "viewdeliverynote",
-            component: () => import("./views/admin/deliverynotes.vue"),
+            component: () => import("./views/admin/viewdeliverynote.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/edit_deliverynote/:id",
+            name: "editdeliverynote",
+            component: () => import("./views/admin/editdeliverynote.vue"),
             meta: {
                 requiresAuth: true,
                 layout: AdminLayout

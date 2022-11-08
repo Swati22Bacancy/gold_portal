@@ -109,7 +109,7 @@ export default {
      },
     gotodeliverynotes(id)
     {
-      this.$router.push("/viewdeliverynotes/"+id);
+      this.$router.push("/view_deliverynote/"+id);
     },
     getDeliverynotes() {
         return axios.get("deliverynotes_list/").then(response => {

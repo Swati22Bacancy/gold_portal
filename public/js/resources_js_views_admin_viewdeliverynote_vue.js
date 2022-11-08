@@ -1,15958 +1,4 @@
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_views_admin_viewpurchase_vue"],{
-
-/***/ "./node_modules/@babel/helper-validator-identifier/lib/identifier.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/@babel/helper-validator-identifier/lib/identifier.js ***!
-  \***************************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.isIdentifierStart = isIdentifierStart;
-exports.isIdentifierChar = isIdentifierChar;
-exports.isIdentifierName = isIdentifierName;
-let nonASCIIidentifierStartChars = "\xaa\xb5\xba\xc0-\xd6\xd8-\xf6\xf8-\u02c1\u02c6-\u02d1\u02e0-\u02e4\u02ec\u02ee\u0370-\u0374\u0376\u0377\u037a-\u037d\u037f\u0386\u0388-\u038a\u038c\u038e-\u03a1\u03a3-\u03f5\u03f7-\u0481\u048a-\u052f\u0531-\u0556\u0559\u0560-\u0588\u05d0-\u05ea\u05ef-\u05f2\u0620-\u064a\u066e\u066f\u0671-\u06d3\u06d5\u06e5\u06e6\u06ee\u06ef\u06fa-\u06fc\u06ff\u0710\u0712-\u072f\u074d-\u07a5\u07b1\u07ca-\u07ea\u07f4\u07f5\u07fa\u0800-\u0815\u081a\u0824\u0828\u0840-\u0858\u0860-\u086a\u08a0-\u08b4\u08b6-\u08c7\u0904-\u0939\u093d\u0950\u0958-\u0961\u0971-\u0980\u0985-\u098c\u098f\u0990\u0993-\u09a8\u09aa-\u09b0\u09b2\u09b6-\u09b9\u09bd\u09ce\u09dc\u09dd\u09df-\u09e1\u09f0\u09f1\u09fc\u0a05-\u0a0a\u0a0f\u0a10\u0a13-\u0a28\u0a2a-\u0a30\u0a32\u0a33\u0a35\u0a36\u0a38\u0a39\u0a59-\u0a5c\u0a5e\u0a72-\u0a74\u0a85-\u0a8d\u0a8f-\u0a91\u0a93-\u0aa8\u0aaa-\u0ab0\u0ab2\u0ab3\u0ab5-\u0ab9\u0abd\u0ad0\u0ae0\u0ae1\u0af9\u0b05-\u0b0c\u0b0f\u0b10\u0b13-\u0b28\u0b2a-\u0b30\u0b32\u0b33\u0b35-\u0b39\u0b3d\u0b5c\u0b5d\u0b5f-\u0b61\u0b71\u0b83\u0b85-\u0b8a\u0b8e-\u0b90\u0b92-\u0b95\u0b99\u0b9a\u0b9c\u0b9e\u0b9f\u0ba3\u0ba4\u0ba8-\u0baa\u0bae-\u0bb9\u0bd0\u0c05-\u0c0c\u0c0e-\u0c10\u0c12-\u0c28\u0c2a-\u0c39\u0c3d\u0c58-\u0c5a\u0c60\u0c61\u0c80\u0c85-\u0c8c\u0c8e-\u0c90\u0c92-\u0ca8\u0caa-\u0cb3\u0cb5-\u0cb9\u0cbd\u0cde\u0ce0\u0ce1\u0cf1\u0cf2\u0d04-\u0d0c\u0d0e-\u0d10\u0d12-\u0d3a\u0d3d\u0d4e\u0d54-\u0d56\u0d5f-\u0d61\u0d7a-\u0d7f\u0d85-\u0d96\u0d9a-\u0db1\u0db3-\u0dbb\u0dbd\u0dc0-\u0dc6\u0e01-\u0e30\u0e32\u0e33\u0e40-\u0e46\u0e81\u0e82\u0e84\u0e86-\u0e8a\u0e8c-\u0ea3\u0ea5\u0ea7-\u0eb0\u0eb2\u0eb3\u0ebd\u0ec0-\u0ec4\u0ec6\u0edc-\u0edf\u0f00\u0f40-\u0f47\u0f49-\u0f6c\u0f88-\u0f8c\u1000-\u102a\u103f\u1050-\u1055\u105a-\u105d\u1061\u1065\u1066\u106e-\u1070\u1075-\u1081\u108e\u10a0-\u10c5\u10c7\u10cd\u10d0-\u10fa\u10fc-\u1248\u124a-\u124d\u1250-\u1256\u1258\u125a-\u125d\u1260-\u1288\u128a-\u128d\u1290-\u12b0\u12b2-\u12b5\u12b8-\u12be\u12c0\u12c2-\u12c5\u12c8-\u12d6\u12d8-\u1310\u1312-\u1315\u1318-\u135a\u1380-\u138f\u13a0-\u13f5\u13f8-\u13fd\u1401-\u166c\u166f-\u167f\u1681-\u169a\u16a0-\u16ea\u16ee-\u16f8\u1700-\u170c\u170e-\u1711\u1720-\u1731\u1740-\u1751\u1760-\u176c\u176e-\u1770\u1780-\u17b3\u17d7\u17dc\u1820-\u1878\u1880-\u18a8\u18aa\u18b0-\u18f5\u1900-\u191e\u1950-\u196d\u1970-\u1974\u1980-\u19ab\u19b0-\u19c9\u1a00-\u1a16\u1a20-\u1a54\u1aa7\u1b05-\u1b33\u1b45-\u1b4b\u1b83-\u1ba0\u1bae\u1baf\u1bba-\u1be5\u1c00-\u1c23\u1c4d-\u1c4f\u1c5a-\u1c7d\u1c80-\u1c88\u1c90-\u1cba\u1cbd-\u1cbf\u1ce9-\u1cec\u1cee-\u1cf3\u1cf5\u1cf6\u1cfa\u1d00-\u1dbf\u1e00-\u1f15\u1f18-\u1f1d\u1f20-\u1f45\u1f48-\u1f4d\u1f50-\u1f57\u1f59\u1f5b\u1f5d\u1f5f-\u1f7d\u1f80-\u1fb4\u1fb6-\u1fbc\u1fbe\u1fc2-\u1fc4\u1fc6-\u1fcc\u1fd0-\u1fd3\u1fd6-\u1fdb\u1fe0-\u1fec\u1ff2-\u1ff4\u1ff6-\u1ffc\u2071\u207f\u2090-\u209c\u2102\u2107\u210a-\u2113\u2115\u2118-\u211d\u2124\u2126\u2128\u212a-\u2139\u213c-\u213f\u2145-\u2149\u214e\u2160-\u2188\u2c00-\u2c2e\u2c30-\u2c5e\u2c60-\u2ce4\u2ceb-\u2cee\u2cf2\u2cf3\u2d00-\u2d25\u2d27\u2d2d\u2d30-\u2d67\u2d6f\u2d80-\u2d96\u2da0-\u2da6\u2da8-\u2dae\u2db0-\u2db6\u2db8-\u2dbe\u2dc0-\u2dc6\u2dc8-\u2dce\u2dd0-\u2dd6\u2dd8-\u2dde\u3005-\u3007\u3021-\u3029\u3031-\u3035\u3038-\u303c\u3041-\u3096\u309b-\u309f\u30a1-\u30fa\u30fc-\u30ff\u3105-\u312f\u3131-\u318e\u31a0-\u31bf\u31f0-\u31ff\u3400-\u4dbf\u4e00-\u9ffc\ua000-\ua48c\ua4d0-\ua4fd\ua500-\ua60c\ua610-\ua61f\ua62a\ua62b\ua640-\ua66e\ua67f-\ua69d\ua6a0-\ua6ef\ua717-\ua71f\ua722-\ua788\ua78b-\ua7bf\ua7c2-\ua7ca\ua7f5-\ua801\ua803-\ua805\ua807-\ua80a\ua80c-\ua822\ua840-\ua873\ua882-\ua8b3\ua8f2-\ua8f7\ua8fb\ua8fd\ua8fe\ua90a-\ua925\ua930-\ua946\ua960-\ua97c\ua984-\ua9b2\ua9cf\ua9e0-\ua9e4\ua9e6-\ua9ef\ua9fa-\ua9fe\uaa00-\uaa28\uaa40-\uaa42\uaa44-\uaa4b\uaa60-\uaa76\uaa7a\uaa7e-\uaaaf\uaab1\uaab5\uaab6\uaab9-\uaabd\uaac0\uaac2\uaadb-\uaadd\uaae0-\uaaea\uaaf2-\uaaf4\uab01-\uab06\uab09-\uab0e\uab11-\uab16\uab20-\uab26\uab28-\uab2e\uab30-\uab5a\uab5c-\uab69\uab70-\uabe2\uac00-\ud7a3\ud7b0-\ud7c6\ud7cb-\ud7fb\uf900-\ufa6d\ufa70-\ufad9\ufb00-\ufb06\ufb13-\ufb17\ufb1d\ufb1f-\ufb28\ufb2a-\ufb36\ufb38-\ufb3c\ufb3e\ufb40\ufb41\ufb43\ufb44\ufb46-\ufbb1\ufbd3-\ufd3d\ufd50-\ufd8f\ufd92-\ufdc7\ufdf0-\ufdfb\ufe70-\ufe74\ufe76-\ufefc\uff21-\uff3a\uff41-\uff5a\uff66-\uffbe\uffc2-\uffc7\uffca-\uffcf\uffd2-\uffd7\uffda-\uffdc";
-let nonASCIIidentifierChars = "\u200c\u200d\xb7\u0300-\u036f\u0387\u0483-\u0487\u0591-\u05bd\u05bf\u05c1\u05c2\u05c4\u05c5\u05c7\u0610-\u061a\u064b-\u0669\u0670\u06d6-\u06dc\u06df-\u06e4\u06e7\u06e8\u06ea-\u06ed\u06f0-\u06f9\u0711\u0730-\u074a\u07a6-\u07b0\u07c0-\u07c9\u07eb-\u07f3\u07fd\u0816-\u0819\u081b-\u0823\u0825-\u0827\u0829-\u082d\u0859-\u085b\u08d3-\u08e1\u08e3-\u0903\u093a-\u093c\u093e-\u094f\u0951-\u0957\u0962\u0963\u0966-\u096f\u0981-\u0983\u09bc\u09be-\u09c4\u09c7\u09c8\u09cb-\u09cd\u09d7\u09e2\u09e3\u09e6-\u09ef\u09fe\u0a01-\u0a03\u0a3c\u0a3e-\u0a42\u0a47\u0a48\u0a4b-\u0a4d\u0a51\u0a66-\u0a71\u0a75\u0a81-\u0a83\u0abc\u0abe-\u0ac5\u0ac7-\u0ac9\u0acb-\u0acd\u0ae2\u0ae3\u0ae6-\u0aef\u0afa-\u0aff\u0b01-\u0b03\u0b3c\u0b3e-\u0b44\u0b47\u0b48\u0b4b-\u0b4d\u0b55-\u0b57\u0b62\u0b63\u0b66-\u0b6f\u0b82\u0bbe-\u0bc2\u0bc6-\u0bc8\u0bca-\u0bcd\u0bd7\u0be6-\u0bef\u0c00-\u0c04\u0c3e-\u0c44\u0c46-\u0c48\u0c4a-\u0c4d\u0c55\u0c56\u0c62\u0c63\u0c66-\u0c6f\u0c81-\u0c83\u0cbc\u0cbe-\u0cc4\u0cc6-\u0cc8\u0cca-\u0ccd\u0cd5\u0cd6\u0ce2\u0ce3\u0ce6-\u0cef\u0d00-\u0d03\u0d3b\u0d3c\u0d3e-\u0d44\u0d46-\u0d48\u0d4a-\u0d4d\u0d57\u0d62\u0d63\u0d66-\u0d6f\u0d81-\u0d83\u0dca\u0dcf-\u0dd4\u0dd6\u0dd8-\u0ddf\u0de6-\u0def\u0df2\u0df3\u0e31\u0e34-\u0e3a\u0e47-\u0e4e\u0e50-\u0e59\u0eb1\u0eb4-\u0ebc\u0ec8-\u0ecd\u0ed0-\u0ed9\u0f18\u0f19\u0f20-\u0f29\u0f35\u0f37\u0f39\u0f3e\u0f3f\u0f71-\u0f84\u0f86\u0f87\u0f8d-\u0f97\u0f99-\u0fbc\u0fc6\u102b-\u103e\u1040-\u1049\u1056-\u1059\u105e-\u1060\u1062-\u1064\u1067-\u106d\u1071-\u1074\u1082-\u108d\u108f-\u109d\u135d-\u135f\u1369-\u1371\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17b4-\u17d3\u17dd\u17e0-\u17e9\u180b-\u180d\u1810-\u1819\u18a9\u1920-\u192b\u1930-\u193b\u1946-\u194f\u19d0-\u19da\u1a17-\u1a1b\u1a55-\u1a5e\u1a60-\u1a7c\u1a7f-\u1a89\u1a90-\u1a99\u1ab0-\u1abd\u1abf\u1ac0\u1b00-\u1b04\u1b34-\u1b44\u1b50-\u1b59\u1b6b-\u1b73\u1b80-\u1b82\u1ba1-\u1bad\u1bb0-\u1bb9\u1be6-\u1bf3\u1c24-\u1c37\u1c40-\u1c49\u1c50-\u1c59\u1cd0-\u1cd2\u1cd4-\u1ce8\u1ced\u1cf4\u1cf7-\u1cf9\u1dc0-\u1df9\u1dfb-\u1dff\u203f\u2040\u2054\u20d0-\u20dc\u20e1\u20e5-\u20f0\u2cef-\u2cf1\u2d7f\u2de0-\u2dff\u302a-\u302f\u3099\u309a\ua620-\ua629\ua66f\ua674-\ua67d\ua69e\ua69f\ua6f0\ua6f1\ua802\ua806\ua80b\ua823-\ua827\ua82c\ua880\ua881\ua8b4-\ua8c5\ua8d0-\ua8d9\ua8e0-\ua8f1\ua8ff-\ua909\ua926-\ua92d\ua947-\ua953\ua980-\ua983\ua9b3-\ua9c0\ua9d0-\ua9d9\ua9e5\ua9f0-\ua9f9\uaa29-\uaa36\uaa43\uaa4c\uaa4d\uaa50-\uaa59\uaa7b-\uaa7d\uaab0\uaab2-\uaab4\uaab7\uaab8\uaabe\uaabf\uaac1\uaaeb-\uaaef\uaaf5\uaaf6\uabe3-\uabea\uabec\uabed\uabf0-\uabf9\ufb1e\ufe00-\ufe0f\ufe20-\ufe2f\ufe33\ufe34\ufe4d-\ufe4f\uff10-\uff19\uff3f";
-const nonASCIIidentifierStart = new RegExp("[" + nonASCIIidentifierStartChars + "]");
-const nonASCIIidentifier = new RegExp("[" + nonASCIIidentifierStartChars + nonASCIIidentifierChars + "]");
-nonASCIIidentifierStartChars = nonASCIIidentifierChars = null;
-const astralIdentifierStartCodes = [0, 11, 2, 25, 2, 18, 2, 1, 2, 14, 3, 13, 35, 122, 70, 52, 268, 28, 4, 48, 48, 31, 14, 29, 6, 37, 11, 29, 3, 35, 5, 7, 2, 4, 43, 157, 19, 35, 5, 35, 5, 39, 9, 51, 157, 310, 10, 21, 11, 7, 153, 5, 3, 0, 2, 43, 2, 1, 4, 0, 3, 22, 11, 22, 10, 30, 66, 18, 2, 1, 11, 21, 11, 25, 71, 55, 7, 1, 65, 0, 16, 3, 2, 2, 2, 28, 43, 28, 4, 28, 36, 7, 2, 27, 28, 53, 11, 21, 11, 18, 14, 17, 111, 72, 56, 50, 14, 50, 14, 35, 349, 41, 7, 1, 79, 28, 11, 0, 9, 21, 107, 20, 28, 22, 13, 52, 76, 44, 33, 24, 27, 35, 30, 0, 3, 0, 9, 34, 4, 0, 13, 47, 15, 3, 22, 0, 2, 0, 36, 17, 2, 24, 85, 6, 2, 0, 2, 3, 2, 14, 2, 9, 8, 46, 39, 7, 3, 1, 3, 21, 2, 6, 2, 1, 2, 4, 4, 0, 19, 0, 13, 4, 159, 52, 19, 3, 21, 2, 31, 47, 21, 1, 2, 0, 185, 46, 42, 3, 37, 47, 21, 0, 60, 42, 14, 0, 72, 26, 230, 43, 117, 63, 32, 7, 3, 0, 3, 7, 2, 1, 2, 23, 16, 0, 2, 0, 95, 7, 3, 38, 17, 0, 2, 0, 29, 0, 11, 39, 8, 0, 22, 0, 12, 45, 20, 0, 35, 56, 264, 8, 2, 36, 18, 0, 50, 29, 113, 6, 2, 1, 2, 37, 22, 0, 26, 5, 2, 1, 2, 31, 15, 0, 328, 18, 190, 0, 80, 921, 103, 110, 18, 195, 2749, 1070, 4050, 582, 8634, 568, 8, 30, 114, 29, 19, 47, 17, 3, 32, 20, 6, 18, 689, 63, 129, 74, 6, 0, 67, 12, 65, 1, 2, 0, 29, 6135, 9, 1237, 43, 8, 8952, 286, 50, 2, 18, 3, 9, 395, 2309, 106, 6, 12, 4, 8, 8, 9, 5991, 84, 2, 70, 2, 1, 3, 0, 3, 1, 3, 3, 2, 11, 2, 0, 2, 6, 2, 64, 2, 3, 3, 7, 2, 6, 2, 27, 2, 3, 2, 4, 2, 0, 4, 6, 2, 339, 3, 24, 2, 24, 2, 30, 2, 24, 2, 30, 2, 24, 2, 30, 2, 24, 2, 30, 2, 24, 2, 7, 2357, 44, 11, 6, 17, 0, 370, 43, 1301, 196, 60, 67, 8, 0, 1205, 3, 2, 26, 2, 1, 2, 0, 3, 0, 2, 9, 2, 3, 2, 0, 2, 0, 7, 0, 5, 0, 2, 0, 2, 0, 2, 2, 2, 1, 2, 0, 3, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 1, 2, 0, 3, 3, 2, 6, 2, 3, 2, 3, 2, 0, 2, 9, 2, 16, 6, 2, 2, 4, 2, 16, 4421, 42717, 35, 4148, 12, 221, 3, 5761, 15, 7472, 3104, 541, 1507, 4938];
-const astralIdentifierCodes = [509, 0, 227, 0, 150, 4, 294, 9, 1368, 2, 2, 1, 6, 3, 41, 2, 5, 0, 166, 1, 574, 3, 9, 9, 370, 1, 154, 10, 176, 2, 54, 14, 32, 9, 16, 3, 46, 10, 54, 9, 7, 2, 37, 13, 2, 9, 6, 1, 45, 0, 13, 2, 49, 13, 9, 3, 2, 11, 83, 11, 7, 0, 161, 11, 6, 9, 7, 3, 56, 1, 2, 6, 3, 1, 3, 2, 10, 0, 11, 1, 3, 6, 4, 4, 193, 17, 10, 9, 5, 0, 82, 19, 13, 9, 214, 6, 3, 8, 28, 1, 83, 16, 16, 9, 82, 12, 9, 9, 84, 14, 5, 9, 243, 14, 166, 9, 71, 5, 2, 1, 3, 3, 2, 0, 2, 1, 13, 9, 120, 6, 3, 6, 4, 0, 29, 9, 41, 6, 2, 3, 9, 0, 10, 10, 47, 15, 406, 7, 2, 7, 17, 9, 57, 21, 2, 13, 123, 5, 4, 0, 2, 1, 2, 6, 2, 0, 9, 9, 49, 4, 2, 1, 2, 4, 9, 9, 330, 3, 19306, 9, 135, 4, 60, 6, 26, 9, 1014, 0, 2, 54, 8, 3, 82, 0, 12, 1, 19628, 1, 5319, 4, 4, 5, 9, 7, 3, 6, 31, 3, 149, 2, 1418, 49, 513, 54, 5, 49, 9, 0, 15, 0, 23, 4, 2, 14, 1361, 6, 2, 16, 3, 6, 2, 1, 2, 4, 262, 6, 10, 9, 419, 13, 1495, 6, 110, 6, 6, 9, 4759, 9, 787719, 239];
-
-function isInAstralSet(code, set) {
-  let pos = 0x10000;
-
-  for (let i = 0, length = set.length; i < length; i += 2) {
-    pos += set[i];
-    if (pos > code) return false;
-    pos += set[i + 1];
-    if (pos >= code) return true;
-  }
-
-  return false;
-}
-
-function isIdentifierStart(code) {
-  if (code < 65) return code === 36;
-  if (code <= 90) return true;
-  if (code < 97) return code === 95;
-  if (code <= 122) return true;
-
-  if (code <= 0xffff) {
-    return code >= 0xaa && nonASCIIidentifierStart.test(String.fromCharCode(code));
-  }
-
-  return isInAstralSet(code, astralIdentifierStartCodes);
-}
-
-function isIdentifierChar(code) {
-  if (code < 48) return code === 36;
-  if (code < 58) return true;
-  if (code < 65) return false;
-  if (code <= 90) return true;
-  if (code < 97) return code === 95;
-  if (code <= 122) return true;
-
-  if (code <= 0xffff) {
-    return code >= 0xaa && nonASCIIidentifier.test(String.fromCharCode(code));
-  }
-
-  return isInAstralSet(code, astralIdentifierStartCodes) || isInAstralSet(code, astralIdentifierCodes);
-}
-
-function isIdentifierName(name) {
-  let isFirst = true;
-
-  for (let i = 0; i < name.length; i++) {
-    let cp = name.charCodeAt(i);
-
-    if ((cp & 0xfc00) === 0xd800 && i + 1 < name.length) {
-      const trail = name.charCodeAt(++i);
-
-      if ((trail & 0xfc00) === 0xdc00) {
-        cp = 0x10000 + ((cp & 0x3ff) << 10) + (trail & 0x3ff);
-      }
-    }
-
-    if (isFirst) {
-      isFirst = false;
-
-      if (!isIdentifierStart(cp)) {
-        return false;
-      }
-    } else if (!isIdentifierChar(cp)) {
-      return false;
-    }
-  }
-
-  return !isFirst;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/helper-validator-identifier/lib/index.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/helper-validator-identifier/lib/index.js ***!
-  \**********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-Object.defineProperty(exports, "isIdentifierName", ({
-  enumerable: true,
-  get: function () {
-    return _identifier.isIdentifierName;
-  }
-}));
-Object.defineProperty(exports, "isIdentifierChar", ({
-  enumerable: true,
-  get: function () {
-    return _identifier.isIdentifierChar;
-  }
-}));
-Object.defineProperty(exports, "isIdentifierStart", ({
-  enumerable: true,
-  get: function () {
-    return _identifier.isIdentifierStart;
-  }
-}));
-Object.defineProperty(exports, "isReservedWord", ({
-  enumerable: true,
-  get: function () {
-    return _keyword.isReservedWord;
-  }
-}));
-Object.defineProperty(exports, "isStrictBindOnlyReservedWord", ({
-  enumerable: true,
-  get: function () {
-    return _keyword.isStrictBindOnlyReservedWord;
-  }
-}));
-Object.defineProperty(exports, "isStrictBindReservedWord", ({
-  enumerable: true,
-  get: function () {
-    return _keyword.isStrictBindReservedWord;
-  }
-}));
-Object.defineProperty(exports, "isStrictReservedWord", ({
-  enumerable: true,
-  get: function () {
-    return _keyword.isStrictReservedWord;
-  }
-}));
-Object.defineProperty(exports, "isKeyword", ({
-  enumerable: true,
-  get: function () {
-    return _keyword.isKeyword;
-  }
-}));
-
-var _identifier = __webpack_require__(/*! ./identifier */ "./node_modules/@babel/helper-validator-identifier/lib/identifier.js");
-
-var _keyword = __webpack_require__(/*! ./keyword */ "./node_modules/@babel/helper-validator-identifier/lib/keyword.js");
-
-/***/ }),
-
-/***/ "./node_modules/@babel/helper-validator-identifier/lib/keyword.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/@babel/helper-validator-identifier/lib/keyword.js ***!
-  \************************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.isReservedWord = isReservedWord;
-exports.isStrictReservedWord = isStrictReservedWord;
-exports.isStrictBindOnlyReservedWord = isStrictBindOnlyReservedWord;
-exports.isStrictBindReservedWord = isStrictBindReservedWord;
-exports.isKeyword = isKeyword;
-const reservedWords = {
-  keyword: ["break", "case", "catch", "continue", "debugger", "default", "do", "else", "finally", "for", "function", "if", "return", "switch", "throw", "try", "var", "const", "while", "with", "new", "this", "super", "class", "extends", "export", "import", "null", "true", "false", "in", "instanceof", "typeof", "void", "delete"],
-  strict: ["implements", "interface", "let", "package", "private", "protected", "public", "static", "yield"],
-  strictBind: ["eval", "arguments"]
-};
-const keywords = new Set(reservedWords.keyword);
-const reservedWordsStrictSet = new Set(reservedWords.strict);
-const reservedWordsStrictBindSet = new Set(reservedWords.strictBind);
-
-function isReservedWord(word, inModule) {
-  return inModule && word === "await" || word === "enum";
-}
-
-function isStrictReservedWord(word, inModule) {
-  return isReservedWord(word, inModule) || reservedWordsStrictSet.has(word);
-}
-
-function isStrictBindOnlyReservedWord(word) {
-  return reservedWordsStrictBindSet.has(word);
-}
-
-function isStrictBindReservedWord(word, inModule) {
-  return isStrictReservedWord(word, inModule) || isStrictBindOnlyReservedWord(word);
-}
-
-function isKeyword(word) {
-  return keywords.has(word);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/asserts/assertNode.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/asserts/assertNode.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = assertNode;
-
-var _isNode = __webpack_require__(/*! ../validators/isNode */ "./node_modules/@babel/types/lib/validators/isNode.js");
-
-function assertNode(node) {
-  if (!(0, _isNode.default)(node)) {
-    var _node$type;
-
-    const type = (_node$type = node == null ? void 0 : node.type) != null ? _node$type : JSON.stringify(node);
-    throw new TypeError(`Not a valid node of type "${type}"`);
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/asserts/generated/index.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/asserts/generated/index.js ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.assertArrayExpression = assertArrayExpression;
-exports.assertAssignmentExpression = assertAssignmentExpression;
-exports.assertBinaryExpression = assertBinaryExpression;
-exports.assertInterpreterDirective = assertInterpreterDirective;
-exports.assertDirective = assertDirective;
-exports.assertDirectiveLiteral = assertDirectiveLiteral;
-exports.assertBlockStatement = assertBlockStatement;
-exports.assertBreakStatement = assertBreakStatement;
-exports.assertCallExpression = assertCallExpression;
-exports.assertCatchClause = assertCatchClause;
-exports.assertConditionalExpression = assertConditionalExpression;
-exports.assertContinueStatement = assertContinueStatement;
-exports.assertDebuggerStatement = assertDebuggerStatement;
-exports.assertDoWhileStatement = assertDoWhileStatement;
-exports.assertEmptyStatement = assertEmptyStatement;
-exports.assertExpressionStatement = assertExpressionStatement;
-exports.assertFile = assertFile;
-exports.assertForInStatement = assertForInStatement;
-exports.assertForStatement = assertForStatement;
-exports.assertFunctionDeclaration = assertFunctionDeclaration;
-exports.assertFunctionExpression = assertFunctionExpression;
-exports.assertIdentifier = assertIdentifier;
-exports.assertIfStatement = assertIfStatement;
-exports.assertLabeledStatement = assertLabeledStatement;
-exports.assertStringLiteral = assertStringLiteral;
-exports.assertNumericLiteral = assertNumericLiteral;
-exports.assertNullLiteral = assertNullLiteral;
-exports.assertBooleanLiteral = assertBooleanLiteral;
-exports.assertRegExpLiteral = assertRegExpLiteral;
-exports.assertLogicalExpression = assertLogicalExpression;
-exports.assertMemberExpression = assertMemberExpression;
-exports.assertNewExpression = assertNewExpression;
-exports.assertProgram = assertProgram;
-exports.assertObjectExpression = assertObjectExpression;
-exports.assertObjectMethod = assertObjectMethod;
-exports.assertObjectProperty = assertObjectProperty;
-exports.assertRestElement = assertRestElement;
-exports.assertReturnStatement = assertReturnStatement;
-exports.assertSequenceExpression = assertSequenceExpression;
-exports.assertParenthesizedExpression = assertParenthesizedExpression;
-exports.assertSwitchCase = assertSwitchCase;
-exports.assertSwitchStatement = assertSwitchStatement;
-exports.assertThisExpression = assertThisExpression;
-exports.assertThrowStatement = assertThrowStatement;
-exports.assertTryStatement = assertTryStatement;
-exports.assertUnaryExpression = assertUnaryExpression;
-exports.assertUpdateExpression = assertUpdateExpression;
-exports.assertVariableDeclaration = assertVariableDeclaration;
-exports.assertVariableDeclarator = assertVariableDeclarator;
-exports.assertWhileStatement = assertWhileStatement;
-exports.assertWithStatement = assertWithStatement;
-exports.assertAssignmentPattern = assertAssignmentPattern;
-exports.assertArrayPattern = assertArrayPattern;
-exports.assertArrowFunctionExpression = assertArrowFunctionExpression;
-exports.assertClassBody = assertClassBody;
-exports.assertClassExpression = assertClassExpression;
-exports.assertClassDeclaration = assertClassDeclaration;
-exports.assertExportAllDeclaration = assertExportAllDeclaration;
-exports.assertExportDefaultDeclaration = assertExportDefaultDeclaration;
-exports.assertExportNamedDeclaration = assertExportNamedDeclaration;
-exports.assertExportSpecifier = assertExportSpecifier;
-exports.assertForOfStatement = assertForOfStatement;
-exports.assertImportDeclaration = assertImportDeclaration;
-exports.assertImportDefaultSpecifier = assertImportDefaultSpecifier;
-exports.assertImportNamespaceSpecifier = assertImportNamespaceSpecifier;
-exports.assertImportSpecifier = assertImportSpecifier;
-exports.assertMetaProperty = assertMetaProperty;
-exports.assertClassMethod = assertClassMethod;
-exports.assertObjectPattern = assertObjectPattern;
-exports.assertSpreadElement = assertSpreadElement;
-exports.assertSuper = assertSuper;
-exports.assertTaggedTemplateExpression = assertTaggedTemplateExpression;
-exports.assertTemplateElement = assertTemplateElement;
-exports.assertTemplateLiteral = assertTemplateLiteral;
-exports.assertYieldExpression = assertYieldExpression;
-exports.assertAwaitExpression = assertAwaitExpression;
-exports.assertImport = assertImport;
-exports.assertBigIntLiteral = assertBigIntLiteral;
-exports.assertExportNamespaceSpecifier = assertExportNamespaceSpecifier;
-exports.assertOptionalMemberExpression = assertOptionalMemberExpression;
-exports.assertOptionalCallExpression = assertOptionalCallExpression;
-exports.assertAnyTypeAnnotation = assertAnyTypeAnnotation;
-exports.assertArrayTypeAnnotation = assertArrayTypeAnnotation;
-exports.assertBooleanTypeAnnotation = assertBooleanTypeAnnotation;
-exports.assertBooleanLiteralTypeAnnotation = assertBooleanLiteralTypeAnnotation;
-exports.assertNullLiteralTypeAnnotation = assertNullLiteralTypeAnnotation;
-exports.assertClassImplements = assertClassImplements;
-exports.assertDeclareClass = assertDeclareClass;
-exports.assertDeclareFunction = assertDeclareFunction;
-exports.assertDeclareInterface = assertDeclareInterface;
-exports.assertDeclareModule = assertDeclareModule;
-exports.assertDeclareModuleExports = assertDeclareModuleExports;
-exports.assertDeclareTypeAlias = assertDeclareTypeAlias;
-exports.assertDeclareOpaqueType = assertDeclareOpaqueType;
-exports.assertDeclareVariable = assertDeclareVariable;
-exports.assertDeclareExportDeclaration = assertDeclareExportDeclaration;
-exports.assertDeclareExportAllDeclaration = assertDeclareExportAllDeclaration;
-exports.assertDeclaredPredicate = assertDeclaredPredicate;
-exports.assertExistsTypeAnnotation = assertExistsTypeAnnotation;
-exports.assertFunctionTypeAnnotation = assertFunctionTypeAnnotation;
-exports.assertFunctionTypeParam = assertFunctionTypeParam;
-exports.assertGenericTypeAnnotation = assertGenericTypeAnnotation;
-exports.assertInferredPredicate = assertInferredPredicate;
-exports.assertInterfaceExtends = assertInterfaceExtends;
-exports.assertInterfaceDeclaration = assertInterfaceDeclaration;
-exports.assertInterfaceTypeAnnotation = assertInterfaceTypeAnnotation;
-exports.assertIntersectionTypeAnnotation = assertIntersectionTypeAnnotation;
-exports.assertMixedTypeAnnotation = assertMixedTypeAnnotation;
-exports.assertEmptyTypeAnnotation = assertEmptyTypeAnnotation;
-exports.assertNullableTypeAnnotation = assertNullableTypeAnnotation;
-exports.assertNumberLiteralTypeAnnotation = assertNumberLiteralTypeAnnotation;
-exports.assertNumberTypeAnnotation = assertNumberTypeAnnotation;
-exports.assertObjectTypeAnnotation = assertObjectTypeAnnotation;
-exports.assertObjectTypeInternalSlot = assertObjectTypeInternalSlot;
-exports.assertObjectTypeCallProperty = assertObjectTypeCallProperty;
-exports.assertObjectTypeIndexer = assertObjectTypeIndexer;
-exports.assertObjectTypeProperty = assertObjectTypeProperty;
-exports.assertObjectTypeSpreadProperty = assertObjectTypeSpreadProperty;
-exports.assertOpaqueType = assertOpaqueType;
-exports.assertQualifiedTypeIdentifier = assertQualifiedTypeIdentifier;
-exports.assertStringLiteralTypeAnnotation = assertStringLiteralTypeAnnotation;
-exports.assertStringTypeAnnotation = assertStringTypeAnnotation;
-exports.assertSymbolTypeAnnotation = assertSymbolTypeAnnotation;
-exports.assertThisTypeAnnotation = assertThisTypeAnnotation;
-exports.assertTupleTypeAnnotation = assertTupleTypeAnnotation;
-exports.assertTypeofTypeAnnotation = assertTypeofTypeAnnotation;
-exports.assertTypeAlias = assertTypeAlias;
-exports.assertTypeAnnotation = assertTypeAnnotation;
-exports.assertTypeCastExpression = assertTypeCastExpression;
-exports.assertTypeParameter = assertTypeParameter;
-exports.assertTypeParameterDeclaration = assertTypeParameterDeclaration;
-exports.assertTypeParameterInstantiation = assertTypeParameterInstantiation;
-exports.assertUnionTypeAnnotation = assertUnionTypeAnnotation;
-exports.assertVariance = assertVariance;
-exports.assertVoidTypeAnnotation = assertVoidTypeAnnotation;
-exports.assertEnumDeclaration = assertEnumDeclaration;
-exports.assertEnumBooleanBody = assertEnumBooleanBody;
-exports.assertEnumNumberBody = assertEnumNumberBody;
-exports.assertEnumStringBody = assertEnumStringBody;
-exports.assertEnumSymbolBody = assertEnumSymbolBody;
-exports.assertEnumBooleanMember = assertEnumBooleanMember;
-exports.assertEnumNumberMember = assertEnumNumberMember;
-exports.assertEnumStringMember = assertEnumStringMember;
-exports.assertEnumDefaultedMember = assertEnumDefaultedMember;
-exports.assertIndexedAccessType = assertIndexedAccessType;
-exports.assertOptionalIndexedAccessType = assertOptionalIndexedAccessType;
-exports.assertJSXAttribute = assertJSXAttribute;
-exports.assertJSXClosingElement = assertJSXClosingElement;
-exports.assertJSXElement = assertJSXElement;
-exports.assertJSXEmptyExpression = assertJSXEmptyExpression;
-exports.assertJSXExpressionContainer = assertJSXExpressionContainer;
-exports.assertJSXSpreadChild = assertJSXSpreadChild;
-exports.assertJSXIdentifier = assertJSXIdentifier;
-exports.assertJSXMemberExpression = assertJSXMemberExpression;
-exports.assertJSXNamespacedName = assertJSXNamespacedName;
-exports.assertJSXOpeningElement = assertJSXOpeningElement;
-exports.assertJSXSpreadAttribute = assertJSXSpreadAttribute;
-exports.assertJSXText = assertJSXText;
-exports.assertJSXFragment = assertJSXFragment;
-exports.assertJSXOpeningFragment = assertJSXOpeningFragment;
-exports.assertJSXClosingFragment = assertJSXClosingFragment;
-exports.assertNoop = assertNoop;
-exports.assertPlaceholder = assertPlaceholder;
-exports.assertV8IntrinsicIdentifier = assertV8IntrinsicIdentifier;
-exports.assertArgumentPlaceholder = assertArgumentPlaceholder;
-exports.assertBindExpression = assertBindExpression;
-exports.assertClassProperty = assertClassProperty;
-exports.assertPipelineTopicExpression = assertPipelineTopicExpression;
-exports.assertPipelineBareFunction = assertPipelineBareFunction;
-exports.assertPipelinePrimaryTopicReference = assertPipelinePrimaryTopicReference;
-exports.assertClassPrivateProperty = assertClassPrivateProperty;
-exports.assertClassPrivateMethod = assertClassPrivateMethod;
-exports.assertImportAttribute = assertImportAttribute;
-exports.assertDecorator = assertDecorator;
-exports.assertDoExpression = assertDoExpression;
-exports.assertExportDefaultSpecifier = assertExportDefaultSpecifier;
-exports.assertPrivateName = assertPrivateName;
-exports.assertRecordExpression = assertRecordExpression;
-exports.assertTupleExpression = assertTupleExpression;
-exports.assertDecimalLiteral = assertDecimalLiteral;
-exports.assertStaticBlock = assertStaticBlock;
-exports.assertModuleExpression = assertModuleExpression;
-exports.assertTSParameterProperty = assertTSParameterProperty;
-exports.assertTSDeclareFunction = assertTSDeclareFunction;
-exports.assertTSDeclareMethod = assertTSDeclareMethod;
-exports.assertTSQualifiedName = assertTSQualifiedName;
-exports.assertTSCallSignatureDeclaration = assertTSCallSignatureDeclaration;
-exports.assertTSConstructSignatureDeclaration = assertTSConstructSignatureDeclaration;
-exports.assertTSPropertySignature = assertTSPropertySignature;
-exports.assertTSMethodSignature = assertTSMethodSignature;
-exports.assertTSIndexSignature = assertTSIndexSignature;
-exports.assertTSAnyKeyword = assertTSAnyKeyword;
-exports.assertTSBooleanKeyword = assertTSBooleanKeyword;
-exports.assertTSBigIntKeyword = assertTSBigIntKeyword;
-exports.assertTSIntrinsicKeyword = assertTSIntrinsicKeyword;
-exports.assertTSNeverKeyword = assertTSNeverKeyword;
-exports.assertTSNullKeyword = assertTSNullKeyword;
-exports.assertTSNumberKeyword = assertTSNumberKeyword;
-exports.assertTSObjectKeyword = assertTSObjectKeyword;
-exports.assertTSStringKeyword = assertTSStringKeyword;
-exports.assertTSSymbolKeyword = assertTSSymbolKeyword;
-exports.assertTSUndefinedKeyword = assertTSUndefinedKeyword;
-exports.assertTSUnknownKeyword = assertTSUnknownKeyword;
-exports.assertTSVoidKeyword = assertTSVoidKeyword;
-exports.assertTSThisType = assertTSThisType;
-exports.assertTSFunctionType = assertTSFunctionType;
-exports.assertTSConstructorType = assertTSConstructorType;
-exports.assertTSTypeReference = assertTSTypeReference;
-exports.assertTSTypePredicate = assertTSTypePredicate;
-exports.assertTSTypeQuery = assertTSTypeQuery;
-exports.assertTSTypeLiteral = assertTSTypeLiteral;
-exports.assertTSArrayType = assertTSArrayType;
-exports.assertTSTupleType = assertTSTupleType;
-exports.assertTSOptionalType = assertTSOptionalType;
-exports.assertTSRestType = assertTSRestType;
-exports.assertTSNamedTupleMember = assertTSNamedTupleMember;
-exports.assertTSUnionType = assertTSUnionType;
-exports.assertTSIntersectionType = assertTSIntersectionType;
-exports.assertTSConditionalType = assertTSConditionalType;
-exports.assertTSInferType = assertTSInferType;
-exports.assertTSParenthesizedType = assertTSParenthesizedType;
-exports.assertTSTypeOperator = assertTSTypeOperator;
-exports.assertTSIndexedAccessType = assertTSIndexedAccessType;
-exports.assertTSMappedType = assertTSMappedType;
-exports.assertTSLiteralType = assertTSLiteralType;
-exports.assertTSExpressionWithTypeArguments = assertTSExpressionWithTypeArguments;
-exports.assertTSInterfaceDeclaration = assertTSInterfaceDeclaration;
-exports.assertTSInterfaceBody = assertTSInterfaceBody;
-exports.assertTSTypeAliasDeclaration = assertTSTypeAliasDeclaration;
-exports.assertTSAsExpression = assertTSAsExpression;
-exports.assertTSTypeAssertion = assertTSTypeAssertion;
-exports.assertTSEnumDeclaration = assertTSEnumDeclaration;
-exports.assertTSEnumMember = assertTSEnumMember;
-exports.assertTSModuleDeclaration = assertTSModuleDeclaration;
-exports.assertTSModuleBlock = assertTSModuleBlock;
-exports.assertTSImportType = assertTSImportType;
-exports.assertTSImportEqualsDeclaration = assertTSImportEqualsDeclaration;
-exports.assertTSExternalModuleReference = assertTSExternalModuleReference;
-exports.assertTSNonNullExpression = assertTSNonNullExpression;
-exports.assertTSExportAssignment = assertTSExportAssignment;
-exports.assertTSNamespaceExportDeclaration = assertTSNamespaceExportDeclaration;
-exports.assertTSTypeAnnotation = assertTSTypeAnnotation;
-exports.assertTSTypeParameterInstantiation = assertTSTypeParameterInstantiation;
-exports.assertTSTypeParameterDeclaration = assertTSTypeParameterDeclaration;
-exports.assertTSTypeParameter = assertTSTypeParameter;
-exports.assertExpression = assertExpression;
-exports.assertBinary = assertBinary;
-exports.assertScopable = assertScopable;
-exports.assertBlockParent = assertBlockParent;
-exports.assertBlock = assertBlock;
-exports.assertStatement = assertStatement;
-exports.assertTerminatorless = assertTerminatorless;
-exports.assertCompletionStatement = assertCompletionStatement;
-exports.assertConditional = assertConditional;
-exports.assertLoop = assertLoop;
-exports.assertWhile = assertWhile;
-exports.assertExpressionWrapper = assertExpressionWrapper;
-exports.assertFor = assertFor;
-exports.assertForXStatement = assertForXStatement;
-exports.assertFunction = assertFunction;
-exports.assertFunctionParent = assertFunctionParent;
-exports.assertPureish = assertPureish;
-exports.assertDeclaration = assertDeclaration;
-exports.assertPatternLike = assertPatternLike;
-exports.assertLVal = assertLVal;
-exports.assertTSEntityName = assertTSEntityName;
-exports.assertLiteral = assertLiteral;
-exports.assertImmutable = assertImmutable;
-exports.assertUserWhitespacable = assertUserWhitespacable;
-exports.assertMethod = assertMethod;
-exports.assertObjectMember = assertObjectMember;
-exports.assertProperty = assertProperty;
-exports.assertUnaryLike = assertUnaryLike;
-exports.assertPattern = assertPattern;
-exports.assertClass = assertClass;
-exports.assertModuleDeclaration = assertModuleDeclaration;
-exports.assertExportDeclaration = assertExportDeclaration;
-exports.assertModuleSpecifier = assertModuleSpecifier;
-exports.assertFlow = assertFlow;
-exports.assertFlowType = assertFlowType;
-exports.assertFlowBaseAnnotation = assertFlowBaseAnnotation;
-exports.assertFlowDeclaration = assertFlowDeclaration;
-exports.assertFlowPredicate = assertFlowPredicate;
-exports.assertEnumBody = assertEnumBody;
-exports.assertEnumMember = assertEnumMember;
-exports.assertJSX = assertJSX;
-exports.assertPrivate = assertPrivate;
-exports.assertTSTypeElement = assertTSTypeElement;
-exports.assertTSType = assertTSType;
-exports.assertTSBaseType = assertTSBaseType;
-exports.assertNumberLiteral = assertNumberLiteral;
-exports.assertRegexLiteral = assertRegexLiteral;
-exports.assertRestProperty = assertRestProperty;
-exports.assertSpreadProperty = assertSpreadProperty;
-
-var _is = __webpack_require__(/*! ../../validators/is */ "./node_modules/@babel/types/lib/validators/is.js");
-
-function assert(type, node, opts) {
-  if (!(0, _is.default)(type, node, opts)) {
-    throw new Error(`Expected type "${type}" with option ${JSON.stringify(opts)}, ` + `but instead got "${node.type}".`);
-  }
-}
-
-function assertArrayExpression(node, opts) {
-  assert("ArrayExpression", node, opts);
-}
-
-function assertAssignmentExpression(node, opts) {
-  assert("AssignmentExpression", node, opts);
-}
-
-function assertBinaryExpression(node, opts) {
-  assert("BinaryExpression", node, opts);
-}
-
-function assertInterpreterDirective(node, opts) {
-  assert("InterpreterDirective", node, opts);
-}
-
-function assertDirective(node, opts) {
-  assert("Directive", node, opts);
-}
-
-function assertDirectiveLiteral(node, opts) {
-  assert("DirectiveLiteral", node, opts);
-}
-
-function assertBlockStatement(node, opts) {
-  assert("BlockStatement", node, opts);
-}
-
-function assertBreakStatement(node, opts) {
-  assert("BreakStatement", node, opts);
-}
-
-function assertCallExpression(node, opts) {
-  assert("CallExpression", node, opts);
-}
-
-function assertCatchClause(node, opts) {
-  assert("CatchClause", node, opts);
-}
-
-function assertConditionalExpression(node, opts) {
-  assert("ConditionalExpression", node, opts);
-}
-
-function assertContinueStatement(node, opts) {
-  assert("ContinueStatement", node, opts);
-}
-
-function assertDebuggerStatement(node, opts) {
-  assert("DebuggerStatement", node, opts);
-}
-
-function assertDoWhileStatement(node, opts) {
-  assert("DoWhileStatement", node, opts);
-}
-
-function assertEmptyStatement(node, opts) {
-  assert("EmptyStatement", node, opts);
-}
-
-function assertExpressionStatement(node, opts) {
-  assert("ExpressionStatement", node, opts);
-}
-
-function assertFile(node, opts) {
-  assert("File", node, opts);
-}
-
-function assertForInStatement(node, opts) {
-  assert("ForInStatement", node, opts);
-}
-
-function assertForStatement(node, opts) {
-  assert("ForStatement", node, opts);
-}
-
-function assertFunctionDeclaration(node, opts) {
-  assert("FunctionDeclaration", node, opts);
-}
-
-function assertFunctionExpression(node, opts) {
-  assert("FunctionExpression", node, opts);
-}
-
-function assertIdentifier(node, opts) {
-  assert("Identifier", node, opts);
-}
-
-function assertIfStatement(node, opts) {
-  assert("IfStatement", node, opts);
-}
-
-function assertLabeledStatement(node, opts) {
-  assert("LabeledStatement", node, opts);
-}
-
-function assertStringLiteral(node, opts) {
-  assert("StringLiteral", node, opts);
-}
-
-function assertNumericLiteral(node, opts) {
-  assert("NumericLiteral", node, opts);
-}
-
-function assertNullLiteral(node, opts) {
-  assert("NullLiteral", node, opts);
-}
-
-function assertBooleanLiteral(node, opts) {
-  assert("BooleanLiteral", node, opts);
-}
-
-function assertRegExpLiteral(node, opts) {
-  assert("RegExpLiteral", node, opts);
-}
-
-function assertLogicalExpression(node, opts) {
-  assert("LogicalExpression", node, opts);
-}
-
-function assertMemberExpression(node, opts) {
-  assert("MemberExpression", node, opts);
-}
-
-function assertNewExpression(node, opts) {
-  assert("NewExpression", node, opts);
-}
-
-function assertProgram(node, opts) {
-  assert("Program", node, opts);
-}
-
-function assertObjectExpression(node, opts) {
-  assert("ObjectExpression", node, opts);
-}
-
-function assertObjectMethod(node, opts) {
-  assert("ObjectMethod", node, opts);
-}
-
-function assertObjectProperty(node, opts) {
-  assert("ObjectProperty", node, opts);
-}
-
-function assertRestElement(node, opts) {
-  assert("RestElement", node, opts);
-}
-
-function assertReturnStatement(node, opts) {
-  assert("ReturnStatement", node, opts);
-}
-
-function assertSequenceExpression(node, opts) {
-  assert("SequenceExpression", node, opts);
-}
-
-function assertParenthesizedExpression(node, opts) {
-  assert("ParenthesizedExpression", node, opts);
-}
-
-function assertSwitchCase(node, opts) {
-  assert("SwitchCase", node, opts);
-}
-
-function assertSwitchStatement(node, opts) {
-  assert("SwitchStatement", node, opts);
-}
-
-function assertThisExpression(node, opts) {
-  assert("ThisExpression", node, opts);
-}
-
-function assertThrowStatement(node, opts) {
-  assert("ThrowStatement", node, opts);
-}
-
-function assertTryStatement(node, opts) {
-  assert("TryStatement", node, opts);
-}
-
-function assertUnaryExpression(node, opts) {
-  assert("UnaryExpression", node, opts);
-}
-
-function assertUpdateExpression(node, opts) {
-  assert("UpdateExpression", node, opts);
-}
-
-function assertVariableDeclaration(node, opts) {
-  assert("VariableDeclaration", node, opts);
-}
-
-function assertVariableDeclarator(node, opts) {
-  assert("VariableDeclarator", node, opts);
-}
-
-function assertWhileStatement(node, opts) {
-  assert("WhileStatement", node, opts);
-}
-
-function assertWithStatement(node, opts) {
-  assert("WithStatement", node, opts);
-}
-
-function assertAssignmentPattern(node, opts) {
-  assert("AssignmentPattern", node, opts);
-}
-
-function assertArrayPattern(node, opts) {
-  assert("ArrayPattern", node, opts);
-}
-
-function assertArrowFunctionExpression(node, opts) {
-  assert("ArrowFunctionExpression", node, opts);
-}
-
-function assertClassBody(node, opts) {
-  assert("ClassBody", node, opts);
-}
-
-function assertClassExpression(node, opts) {
-  assert("ClassExpression", node, opts);
-}
-
-function assertClassDeclaration(node, opts) {
-  assert("ClassDeclaration", node, opts);
-}
-
-function assertExportAllDeclaration(node, opts) {
-  assert("ExportAllDeclaration", node, opts);
-}
-
-function assertExportDefaultDeclaration(node, opts) {
-  assert("ExportDefaultDeclaration", node, opts);
-}
-
-function assertExportNamedDeclaration(node, opts) {
-  assert("ExportNamedDeclaration", node, opts);
-}
-
-function assertExportSpecifier(node, opts) {
-  assert("ExportSpecifier", node, opts);
-}
-
-function assertForOfStatement(node, opts) {
-  assert("ForOfStatement", node, opts);
-}
-
-function assertImportDeclaration(node, opts) {
-  assert("ImportDeclaration", node, opts);
-}
-
-function assertImportDefaultSpecifier(node, opts) {
-  assert("ImportDefaultSpecifier", node, opts);
-}
-
-function assertImportNamespaceSpecifier(node, opts) {
-  assert("ImportNamespaceSpecifier", node, opts);
-}
-
-function assertImportSpecifier(node, opts) {
-  assert("ImportSpecifier", node, opts);
-}
-
-function assertMetaProperty(node, opts) {
-  assert("MetaProperty", node, opts);
-}
-
-function assertClassMethod(node, opts) {
-  assert("ClassMethod", node, opts);
-}
-
-function assertObjectPattern(node, opts) {
-  assert("ObjectPattern", node, opts);
-}
-
-function assertSpreadElement(node, opts) {
-  assert("SpreadElement", node, opts);
-}
-
-function assertSuper(node, opts) {
-  assert("Super", node, opts);
-}
-
-function assertTaggedTemplateExpression(node, opts) {
-  assert("TaggedTemplateExpression", node, opts);
-}
-
-function assertTemplateElement(node, opts) {
-  assert("TemplateElement", node, opts);
-}
-
-function assertTemplateLiteral(node, opts) {
-  assert("TemplateLiteral", node, opts);
-}
-
-function assertYieldExpression(node, opts) {
-  assert("YieldExpression", node, opts);
-}
-
-function assertAwaitExpression(node, opts) {
-  assert("AwaitExpression", node, opts);
-}
-
-function assertImport(node, opts) {
-  assert("Import", node, opts);
-}
-
-function assertBigIntLiteral(node, opts) {
-  assert("BigIntLiteral", node, opts);
-}
-
-function assertExportNamespaceSpecifier(node, opts) {
-  assert("ExportNamespaceSpecifier", node, opts);
-}
-
-function assertOptionalMemberExpression(node, opts) {
-  assert("OptionalMemberExpression", node, opts);
-}
-
-function assertOptionalCallExpression(node, opts) {
-  assert("OptionalCallExpression", node, opts);
-}
-
-function assertAnyTypeAnnotation(node, opts) {
-  assert("AnyTypeAnnotation", node, opts);
-}
-
-function assertArrayTypeAnnotation(node, opts) {
-  assert("ArrayTypeAnnotation", node, opts);
-}
-
-function assertBooleanTypeAnnotation(node, opts) {
-  assert("BooleanTypeAnnotation", node, opts);
-}
-
-function assertBooleanLiteralTypeAnnotation(node, opts) {
-  assert("BooleanLiteralTypeAnnotation", node, opts);
-}
-
-function assertNullLiteralTypeAnnotation(node, opts) {
-  assert("NullLiteralTypeAnnotation", node, opts);
-}
-
-function assertClassImplements(node, opts) {
-  assert("ClassImplements", node, opts);
-}
-
-function assertDeclareClass(node, opts) {
-  assert("DeclareClass", node, opts);
-}
-
-function assertDeclareFunction(node, opts) {
-  assert("DeclareFunction", node, opts);
-}
-
-function assertDeclareInterface(node, opts) {
-  assert("DeclareInterface", node, opts);
-}
-
-function assertDeclareModule(node, opts) {
-  assert("DeclareModule", node, opts);
-}
-
-function assertDeclareModuleExports(node, opts) {
-  assert("DeclareModuleExports", node, opts);
-}
-
-function assertDeclareTypeAlias(node, opts) {
-  assert("DeclareTypeAlias", node, opts);
-}
-
-function assertDeclareOpaqueType(node, opts) {
-  assert("DeclareOpaqueType", node, opts);
-}
-
-function assertDeclareVariable(node, opts) {
-  assert("DeclareVariable", node, opts);
-}
-
-function assertDeclareExportDeclaration(node, opts) {
-  assert("DeclareExportDeclaration", node, opts);
-}
-
-function assertDeclareExportAllDeclaration(node, opts) {
-  assert("DeclareExportAllDeclaration", node, opts);
-}
-
-function assertDeclaredPredicate(node, opts) {
-  assert("DeclaredPredicate", node, opts);
-}
-
-function assertExistsTypeAnnotation(node, opts) {
-  assert("ExistsTypeAnnotation", node, opts);
-}
-
-function assertFunctionTypeAnnotation(node, opts) {
-  assert("FunctionTypeAnnotation", node, opts);
-}
-
-function assertFunctionTypeParam(node, opts) {
-  assert("FunctionTypeParam", node, opts);
-}
-
-function assertGenericTypeAnnotation(node, opts) {
-  assert("GenericTypeAnnotation", node, opts);
-}
-
-function assertInferredPredicate(node, opts) {
-  assert("InferredPredicate", node, opts);
-}
-
-function assertInterfaceExtends(node, opts) {
-  assert("InterfaceExtends", node, opts);
-}
-
-function assertInterfaceDeclaration(node, opts) {
-  assert("InterfaceDeclaration", node, opts);
-}
-
-function assertInterfaceTypeAnnotation(node, opts) {
-  assert("InterfaceTypeAnnotation", node, opts);
-}
-
-function assertIntersectionTypeAnnotation(node, opts) {
-  assert("IntersectionTypeAnnotation", node, opts);
-}
-
-function assertMixedTypeAnnotation(node, opts) {
-  assert("MixedTypeAnnotation", node, opts);
-}
-
-function assertEmptyTypeAnnotation(node, opts) {
-  assert("EmptyTypeAnnotation", node, opts);
-}
-
-function assertNullableTypeAnnotation(node, opts) {
-  assert("NullableTypeAnnotation", node, opts);
-}
-
-function assertNumberLiteralTypeAnnotation(node, opts) {
-  assert("NumberLiteralTypeAnnotation", node, opts);
-}
-
-function assertNumberTypeAnnotation(node, opts) {
-  assert("NumberTypeAnnotation", node, opts);
-}
-
-function assertObjectTypeAnnotation(node, opts) {
-  assert("ObjectTypeAnnotation", node, opts);
-}
-
-function assertObjectTypeInternalSlot(node, opts) {
-  assert("ObjectTypeInternalSlot", node, opts);
-}
-
-function assertObjectTypeCallProperty(node, opts) {
-  assert("ObjectTypeCallProperty", node, opts);
-}
-
-function assertObjectTypeIndexer(node, opts) {
-  assert("ObjectTypeIndexer", node, opts);
-}
-
-function assertObjectTypeProperty(node, opts) {
-  assert("ObjectTypeProperty", node, opts);
-}
-
-function assertObjectTypeSpreadProperty(node, opts) {
-  assert("ObjectTypeSpreadProperty", node, opts);
-}
-
-function assertOpaqueType(node, opts) {
-  assert("OpaqueType", node, opts);
-}
-
-function assertQualifiedTypeIdentifier(node, opts) {
-  assert("QualifiedTypeIdentifier", node, opts);
-}
-
-function assertStringLiteralTypeAnnotation(node, opts) {
-  assert("StringLiteralTypeAnnotation", node, opts);
-}
-
-function assertStringTypeAnnotation(node, opts) {
-  assert("StringTypeAnnotation", node, opts);
-}
-
-function assertSymbolTypeAnnotation(node, opts) {
-  assert("SymbolTypeAnnotation", node, opts);
-}
-
-function assertThisTypeAnnotation(node, opts) {
-  assert("ThisTypeAnnotation", node, opts);
-}
-
-function assertTupleTypeAnnotation(node, opts) {
-  assert("TupleTypeAnnotation", node, opts);
-}
-
-function assertTypeofTypeAnnotation(node, opts) {
-  assert("TypeofTypeAnnotation", node, opts);
-}
-
-function assertTypeAlias(node, opts) {
-  assert("TypeAlias", node, opts);
-}
-
-function assertTypeAnnotation(node, opts) {
-  assert("TypeAnnotation", node, opts);
-}
-
-function assertTypeCastExpression(node, opts) {
-  assert("TypeCastExpression", node, opts);
-}
-
-function assertTypeParameter(node, opts) {
-  assert("TypeParameter", node, opts);
-}
-
-function assertTypeParameterDeclaration(node, opts) {
-  assert("TypeParameterDeclaration", node, opts);
-}
-
-function assertTypeParameterInstantiation(node, opts) {
-  assert("TypeParameterInstantiation", node, opts);
-}
-
-function assertUnionTypeAnnotation(node, opts) {
-  assert("UnionTypeAnnotation", node, opts);
-}
-
-function assertVariance(node, opts) {
-  assert("Variance", node, opts);
-}
-
-function assertVoidTypeAnnotation(node, opts) {
-  assert("VoidTypeAnnotation", node, opts);
-}
-
-function assertEnumDeclaration(node, opts) {
-  assert("EnumDeclaration", node, opts);
-}
-
-function assertEnumBooleanBody(node, opts) {
-  assert("EnumBooleanBody", node, opts);
-}
-
-function assertEnumNumberBody(node, opts) {
-  assert("EnumNumberBody", node, opts);
-}
-
-function assertEnumStringBody(node, opts) {
-  assert("EnumStringBody", node, opts);
-}
-
-function assertEnumSymbolBody(node, opts) {
-  assert("EnumSymbolBody", node, opts);
-}
-
-function assertEnumBooleanMember(node, opts) {
-  assert("EnumBooleanMember", node, opts);
-}
-
-function assertEnumNumberMember(node, opts) {
-  assert("EnumNumberMember", node, opts);
-}
-
-function assertEnumStringMember(node, opts) {
-  assert("EnumStringMember", node, opts);
-}
-
-function assertEnumDefaultedMember(node, opts) {
-  assert("EnumDefaultedMember", node, opts);
-}
-
-function assertIndexedAccessType(node, opts) {
-  assert("IndexedAccessType", node, opts);
-}
-
-function assertOptionalIndexedAccessType(node, opts) {
-  assert("OptionalIndexedAccessType", node, opts);
-}
-
-function assertJSXAttribute(node, opts) {
-  assert("JSXAttribute", node, opts);
-}
-
-function assertJSXClosingElement(node, opts) {
-  assert("JSXClosingElement", node, opts);
-}
-
-function assertJSXElement(node, opts) {
-  assert("JSXElement", node, opts);
-}
-
-function assertJSXEmptyExpression(node, opts) {
-  assert("JSXEmptyExpression", node, opts);
-}
-
-function assertJSXExpressionContainer(node, opts) {
-  assert("JSXExpressionContainer", node, opts);
-}
-
-function assertJSXSpreadChild(node, opts) {
-  assert("JSXSpreadChild", node, opts);
-}
-
-function assertJSXIdentifier(node, opts) {
-  assert("JSXIdentifier", node, opts);
-}
-
-function assertJSXMemberExpression(node, opts) {
-  assert("JSXMemberExpression", node, opts);
-}
-
-function assertJSXNamespacedName(node, opts) {
-  assert("JSXNamespacedName", node, opts);
-}
-
-function assertJSXOpeningElement(node, opts) {
-  assert("JSXOpeningElement", node, opts);
-}
-
-function assertJSXSpreadAttribute(node, opts) {
-  assert("JSXSpreadAttribute", node, opts);
-}
-
-function assertJSXText(node, opts) {
-  assert("JSXText", node, opts);
-}
-
-function assertJSXFragment(node, opts) {
-  assert("JSXFragment", node, opts);
-}
-
-function assertJSXOpeningFragment(node, opts) {
-  assert("JSXOpeningFragment", node, opts);
-}
-
-function assertJSXClosingFragment(node, opts) {
-  assert("JSXClosingFragment", node, opts);
-}
-
-function assertNoop(node, opts) {
-  assert("Noop", node, opts);
-}
-
-function assertPlaceholder(node, opts) {
-  assert("Placeholder", node, opts);
-}
-
-function assertV8IntrinsicIdentifier(node, opts) {
-  assert("V8IntrinsicIdentifier", node, opts);
-}
-
-function assertArgumentPlaceholder(node, opts) {
-  assert("ArgumentPlaceholder", node, opts);
-}
-
-function assertBindExpression(node, opts) {
-  assert("BindExpression", node, opts);
-}
-
-function assertClassProperty(node, opts) {
-  assert("ClassProperty", node, opts);
-}
-
-function assertPipelineTopicExpression(node, opts) {
-  assert("PipelineTopicExpression", node, opts);
-}
-
-function assertPipelineBareFunction(node, opts) {
-  assert("PipelineBareFunction", node, opts);
-}
-
-function assertPipelinePrimaryTopicReference(node, opts) {
-  assert("PipelinePrimaryTopicReference", node, opts);
-}
-
-function assertClassPrivateProperty(node, opts) {
-  assert("ClassPrivateProperty", node, opts);
-}
-
-function assertClassPrivateMethod(node, opts) {
-  assert("ClassPrivateMethod", node, opts);
-}
-
-function assertImportAttribute(node, opts) {
-  assert("ImportAttribute", node, opts);
-}
-
-function assertDecorator(node, opts) {
-  assert("Decorator", node, opts);
-}
-
-function assertDoExpression(node, opts) {
-  assert("DoExpression", node, opts);
-}
-
-function assertExportDefaultSpecifier(node, opts) {
-  assert("ExportDefaultSpecifier", node, opts);
-}
-
-function assertPrivateName(node, opts) {
-  assert("PrivateName", node, opts);
-}
-
-function assertRecordExpression(node, opts) {
-  assert("RecordExpression", node, opts);
-}
-
-function assertTupleExpression(node, opts) {
-  assert("TupleExpression", node, opts);
-}
-
-function assertDecimalLiteral(node, opts) {
-  assert("DecimalLiteral", node, opts);
-}
-
-function assertStaticBlock(node, opts) {
-  assert("StaticBlock", node, opts);
-}
-
-function assertModuleExpression(node, opts) {
-  assert("ModuleExpression", node, opts);
-}
-
-function assertTSParameterProperty(node, opts) {
-  assert("TSParameterProperty", node, opts);
-}
-
-function assertTSDeclareFunction(node, opts) {
-  assert("TSDeclareFunction", node, opts);
-}
-
-function assertTSDeclareMethod(node, opts) {
-  assert("TSDeclareMethod", node, opts);
-}
-
-function assertTSQualifiedName(node, opts) {
-  assert("TSQualifiedName", node, opts);
-}
-
-function assertTSCallSignatureDeclaration(node, opts) {
-  assert("TSCallSignatureDeclaration", node, opts);
-}
-
-function assertTSConstructSignatureDeclaration(node, opts) {
-  assert("TSConstructSignatureDeclaration", node, opts);
-}
-
-function assertTSPropertySignature(node, opts) {
-  assert("TSPropertySignature", node, opts);
-}
-
-function assertTSMethodSignature(node, opts) {
-  assert("TSMethodSignature", node, opts);
-}
-
-function assertTSIndexSignature(node, opts) {
-  assert("TSIndexSignature", node, opts);
-}
-
-function assertTSAnyKeyword(node, opts) {
-  assert("TSAnyKeyword", node, opts);
-}
-
-function assertTSBooleanKeyword(node, opts) {
-  assert("TSBooleanKeyword", node, opts);
-}
-
-function assertTSBigIntKeyword(node, opts) {
-  assert("TSBigIntKeyword", node, opts);
-}
-
-function assertTSIntrinsicKeyword(node, opts) {
-  assert("TSIntrinsicKeyword", node, opts);
-}
-
-function assertTSNeverKeyword(node, opts) {
-  assert("TSNeverKeyword", node, opts);
-}
-
-function assertTSNullKeyword(node, opts) {
-  assert("TSNullKeyword", node, opts);
-}
-
-function assertTSNumberKeyword(node, opts) {
-  assert("TSNumberKeyword", node, opts);
-}
-
-function assertTSObjectKeyword(node, opts) {
-  assert("TSObjectKeyword", node, opts);
-}
-
-function assertTSStringKeyword(node, opts) {
-  assert("TSStringKeyword", node, opts);
-}
-
-function assertTSSymbolKeyword(node, opts) {
-  assert("TSSymbolKeyword", node, opts);
-}
-
-function assertTSUndefinedKeyword(node, opts) {
-  assert("TSUndefinedKeyword", node, opts);
-}
-
-function assertTSUnknownKeyword(node, opts) {
-  assert("TSUnknownKeyword", node, opts);
-}
-
-function assertTSVoidKeyword(node, opts) {
-  assert("TSVoidKeyword", node, opts);
-}
-
-function assertTSThisType(node, opts) {
-  assert("TSThisType", node, opts);
-}
-
-function assertTSFunctionType(node, opts) {
-  assert("TSFunctionType", node, opts);
-}
-
-function assertTSConstructorType(node, opts) {
-  assert("TSConstructorType", node, opts);
-}
-
-function assertTSTypeReference(node, opts) {
-  assert("TSTypeReference", node, opts);
-}
-
-function assertTSTypePredicate(node, opts) {
-  assert("TSTypePredicate", node, opts);
-}
-
-function assertTSTypeQuery(node, opts) {
-  assert("TSTypeQuery", node, opts);
-}
-
-function assertTSTypeLiteral(node, opts) {
-  assert("TSTypeLiteral", node, opts);
-}
-
-function assertTSArrayType(node, opts) {
-  assert("TSArrayType", node, opts);
-}
-
-function assertTSTupleType(node, opts) {
-  assert("TSTupleType", node, opts);
-}
-
-function assertTSOptionalType(node, opts) {
-  assert("TSOptionalType", node, opts);
-}
-
-function assertTSRestType(node, opts) {
-  assert("TSRestType", node, opts);
-}
-
-function assertTSNamedTupleMember(node, opts) {
-  assert("TSNamedTupleMember", node, opts);
-}
-
-function assertTSUnionType(node, opts) {
-  assert("TSUnionType", node, opts);
-}
-
-function assertTSIntersectionType(node, opts) {
-  assert("TSIntersectionType", node, opts);
-}
-
-function assertTSConditionalType(node, opts) {
-  assert("TSConditionalType", node, opts);
-}
-
-function assertTSInferType(node, opts) {
-  assert("TSInferType", node, opts);
-}
-
-function assertTSParenthesizedType(node, opts) {
-  assert("TSParenthesizedType", node, opts);
-}
-
-function assertTSTypeOperator(node, opts) {
-  assert("TSTypeOperator", node, opts);
-}
-
-function assertTSIndexedAccessType(node, opts) {
-  assert("TSIndexedAccessType", node, opts);
-}
-
-function assertTSMappedType(node, opts) {
-  assert("TSMappedType", node, opts);
-}
-
-function assertTSLiteralType(node, opts) {
-  assert("TSLiteralType", node, opts);
-}
-
-function assertTSExpressionWithTypeArguments(node, opts) {
-  assert("TSExpressionWithTypeArguments", node, opts);
-}
-
-function assertTSInterfaceDeclaration(node, opts) {
-  assert("TSInterfaceDeclaration", node, opts);
-}
-
-function assertTSInterfaceBody(node, opts) {
-  assert("TSInterfaceBody", node, opts);
-}
-
-function assertTSTypeAliasDeclaration(node, opts) {
-  assert("TSTypeAliasDeclaration", node, opts);
-}
-
-function assertTSAsExpression(node, opts) {
-  assert("TSAsExpression", node, opts);
-}
-
-function assertTSTypeAssertion(node, opts) {
-  assert("TSTypeAssertion", node, opts);
-}
-
-function assertTSEnumDeclaration(node, opts) {
-  assert("TSEnumDeclaration", node, opts);
-}
-
-function assertTSEnumMember(node, opts) {
-  assert("TSEnumMember", node, opts);
-}
-
-function assertTSModuleDeclaration(node, opts) {
-  assert("TSModuleDeclaration", node, opts);
-}
-
-function assertTSModuleBlock(node, opts) {
-  assert("TSModuleBlock", node, opts);
-}
-
-function assertTSImportType(node, opts) {
-  assert("TSImportType", node, opts);
-}
-
-function assertTSImportEqualsDeclaration(node, opts) {
-  assert("TSImportEqualsDeclaration", node, opts);
-}
-
-function assertTSExternalModuleReference(node, opts) {
-  assert("TSExternalModuleReference", node, opts);
-}
-
-function assertTSNonNullExpression(node, opts) {
-  assert("TSNonNullExpression", node, opts);
-}
-
-function assertTSExportAssignment(node, opts) {
-  assert("TSExportAssignment", node, opts);
-}
-
-function assertTSNamespaceExportDeclaration(node, opts) {
-  assert("TSNamespaceExportDeclaration", node, opts);
-}
-
-function assertTSTypeAnnotation(node, opts) {
-  assert("TSTypeAnnotation", node, opts);
-}
-
-function assertTSTypeParameterInstantiation(node, opts) {
-  assert("TSTypeParameterInstantiation", node, opts);
-}
-
-function assertTSTypeParameterDeclaration(node, opts) {
-  assert("TSTypeParameterDeclaration", node, opts);
-}
-
-function assertTSTypeParameter(node, opts) {
-  assert("TSTypeParameter", node, opts);
-}
-
-function assertExpression(node, opts) {
-  assert("Expression", node, opts);
-}
-
-function assertBinary(node, opts) {
-  assert("Binary", node, opts);
-}
-
-function assertScopable(node, opts) {
-  assert("Scopable", node, opts);
-}
-
-function assertBlockParent(node, opts) {
-  assert("BlockParent", node, opts);
-}
-
-function assertBlock(node, opts) {
-  assert("Block", node, opts);
-}
-
-function assertStatement(node, opts) {
-  assert("Statement", node, opts);
-}
-
-function assertTerminatorless(node, opts) {
-  assert("Terminatorless", node, opts);
-}
-
-function assertCompletionStatement(node, opts) {
-  assert("CompletionStatement", node, opts);
-}
-
-function assertConditional(node, opts) {
-  assert("Conditional", node, opts);
-}
-
-function assertLoop(node, opts) {
-  assert("Loop", node, opts);
-}
-
-function assertWhile(node, opts) {
-  assert("While", node, opts);
-}
-
-function assertExpressionWrapper(node, opts) {
-  assert("ExpressionWrapper", node, opts);
-}
-
-function assertFor(node, opts) {
-  assert("For", node, opts);
-}
-
-function assertForXStatement(node, opts) {
-  assert("ForXStatement", node, opts);
-}
-
-function assertFunction(node, opts) {
-  assert("Function", node, opts);
-}
-
-function assertFunctionParent(node, opts) {
-  assert("FunctionParent", node, opts);
-}
-
-function assertPureish(node, opts) {
-  assert("Pureish", node, opts);
-}
-
-function assertDeclaration(node, opts) {
-  assert("Declaration", node, opts);
-}
-
-function assertPatternLike(node, opts) {
-  assert("PatternLike", node, opts);
-}
-
-function assertLVal(node, opts) {
-  assert("LVal", node, opts);
-}
-
-function assertTSEntityName(node, opts) {
-  assert("TSEntityName", node, opts);
-}
-
-function assertLiteral(node, opts) {
-  assert("Literal", node, opts);
-}
-
-function assertImmutable(node, opts) {
-  assert("Immutable", node, opts);
-}
-
-function assertUserWhitespacable(node, opts) {
-  assert("UserWhitespacable", node, opts);
-}
-
-function assertMethod(node, opts) {
-  assert("Method", node, opts);
-}
-
-function assertObjectMember(node, opts) {
-  assert("ObjectMember", node, opts);
-}
-
-function assertProperty(node, opts) {
-  assert("Property", node, opts);
-}
-
-function assertUnaryLike(node, opts) {
-  assert("UnaryLike", node, opts);
-}
-
-function assertPattern(node, opts) {
-  assert("Pattern", node, opts);
-}
-
-function assertClass(node, opts) {
-  assert("Class", node, opts);
-}
-
-function assertModuleDeclaration(node, opts) {
-  assert("ModuleDeclaration", node, opts);
-}
-
-function assertExportDeclaration(node, opts) {
-  assert("ExportDeclaration", node, opts);
-}
-
-function assertModuleSpecifier(node, opts) {
-  assert("ModuleSpecifier", node, opts);
-}
-
-function assertFlow(node, opts) {
-  assert("Flow", node, opts);
-}
-
-function assertFlowType(node, opts) {
-  assert("FlowType", node, opts);
-}
-
-function assertFlowBaseAnnotation(node, opts) {
-  assert("FlowBaseAnnotation", node, opts);
-}
-
-function assertFlowDeclaration(node, opts) {
-  assert("FlowDeclaration", node, opts);
-}
-
-function assertFlowPredicate(node, opts) {
-  assert("FlowPredicate", node, opts);
-}
-
-function assertEnumBody(node, opts) {
-  assert("EnumBody", node, opts);
-}
-
-function assertEnumMember(node, opts) {
-  assert("EnumMember", node, opts);
-}
-
-function assertJSX(node, opts) {
-  assert("JSX", node, opts);
-}
-
-function assertPrivate(node, opts) {
-  assert("Private", node, opts);
-}
-
-function assertTSTypeElement(node, opts) {
-  assert("TSTypeElement", node, opts);
-}
-
-function assertTSType(node, opts) {
-  assert("TSType", node, opts);
-}
-
-function assertTSBaseType(node, opts) {
-  assert("TSBaseType", node, opts);
-}
-
-function assertNumberLiteral(node, opts) {
-  console.trace("The node type NumberLiteral has been renamed to NumericLiteral");
-  assert("NumberLiteral", node, opts);
-}
-
-function assertRegexLiteral(node, opts) {
-  console.trace("The node type RegexLiteral has been renamed to RegExpLiteral");
-  assert("RegexLiteral", node, opts);
-}
-
-function assertRestProperty(node, opts) {
-  console.trace("The node type RestProperty has been renamed to RestElement");
-  assert("RestProperty", node, opts);
-}
-
-function assertSpreadProperty(node, opts) {
-  console.trace("The node type SpreadProperty has been renamed to SpreadElement");
-  assert("SpreadProperty", node, opts);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/ast-types/generated/index.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/ast-types/generated/index.js ***!
-  \********************************************************************/
-/***/ (() => {
-
-
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/builders/builder.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/@babel/types/lib/builders/builder.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = builder;
-
-var _definitions = __webpack_require__(/*! ../definitions */ "./node_modules/@babel/types/lib/definitions/index.js");
-
-var _validate = __webpack_require__(/*! ../validators/validate */ "./node_modules/@babel/types/lib/validators/validate.js");
-
-function builder(type, ...args) {
-  const keys = _definitions.BUILDER_KEYS[type];
-  const countArgs = args.length;
-
-  if (countArgs > keys.length) {
-    throw new Error(`${type}: Too many arguments passed. Received ${countArgs} but can receive no more than ${keys.length}`);
-  }
-
-  const node = {
-    type
-  };
-  let i = 0;
-  keys.forEach(key => {
-    const field = _definitions.NODE_FIELDS[type][key];
-    let arg;
-    if (i < countArgs) arg = args[i];
-
-    if (arg === undefined) {
-      arg = Array.isArray(field.default) ? [] : field.default;
-    }
-
-    node[key] = arg;
-    i++;
-  });
-
-  for (const key of Object.keys(node)) {
-    (0, _validate.default)(node, key, node[key]);
-  }
-
-  return node;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/builders/flow/createFlowUnionType.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/builders/flow/createFlowUnionType.js ***!
-  \****************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = createFlowUnionType;
-
-var _generated = __webpack_require__(/*! ../generated */ "./node_modules/@babel/types/lib/builders/generated/index.js");
-
-var _removeTypeDuplicates = __webpack_require__(/*! ../../modifications/flow/removeTypeDuplicates */ "./node_modules/@babel/types/lib/modifications/flow/removeTypeDuplicates.js");
-
-function createFlowUnionType(types) {
-  const flattened = (0, _removeTypeDuplicates.default)(types);
-
-  if (flattened.length === 1) {
-    return flattened[0];
-  } else {
-    return (0, _generated.unionTypeAnnotation)(flattened);
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/builders/flow/createTypeAnnotationBasedOnTypeof.js":
-/*!******************************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/builders/flow/createTypeAnnotationBasedOnTypeof.js ***!
-  \******************************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = createTypeAnnotationBasedOnTypeof;
-
-var _generated = __webpack_require__(/*! ../generated */ "./node_modules/@babel/types/lib/builders/generated/index.js");
-
-function createTypeAnnotationBasedOnTypeof(type) {
-  if (type === "string") {
-    return (0, _generated.stringTypeAnnotation)();
-  } else if (type === "number") {
-    return (0, _generated.numberTypeAnnotation)();
-  } else if (type === "undefined") {
-    return (0, _generated.voidTypeAnnotation)();
-  } else if (type === "boolean") {
-    return (0, _generated.booleanTypeAnnotation)();
-  } else if (type === "function") {
-    return (0, _generated.genericTypeAnnotation)((0, _generated.identifier)("Function"));
-  } else if (type === "object") {
-    return (0, _generated.genericTypeAnnotation)((0, _generated.identifier)("Object"));
-  } else if (type === "symbol") {
-    return (0, _generated.genericTypeAnnotation)((0, _generated.identifier)("Symbol"));
-  } else if (type === "bigint") {
-    return (0, _generated.anyTypeAnnotation)();
-  } else {
-    throw new Error("Invalid typeof value: " + type);
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/builders/generated/index.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/builders/generated/index.js ***!
-  \*******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.arrayExpression = arrayExpression;
-exports.assignmentExpression = assignmentExpression;
-exports.binaryExpression = binaryExpression;
-exports.interpreterDirective = interpreterDirective;
-exports.directive = directive;
-exports.directiveLiteral = directiveLiteral;
-exports.blockStatement = blockStatement;
-exports.breakStatement = breakStatement;
-exports.callExpression = callExpression;
-exports.catchClause = catchClause;
-exports.conditionalExpression = conditionalExpression;
-exports.continueStatement = continueStatement;
-exports.debuggerStatement = debuggerStatement;
-exports.doWhileStatement = doWhileStatement;
-exports.emptyStatement = emptyStatement;
-exports.expressionStatement = expressionStatement;
-exports.file = file;
-exports.forInStatement = forInStatement;
-exports.forStatement = forStatement;
-exports.functionDeclaration = functionDeclaration;
-exports.functionExpression = functionExpression;
-exports.identifier = identifier;
-exports.ifStatement = ifStatement;
-exports.labeledStatement = labeledStatement;
-exports.stringLiteral = stringLiteral;
-exports.numericLiteral = numericLiteral;
-exports.nullLiteral = nullLiteral;
-exports.booleanLiteral = booleanLiteral;
-exports.regExpLiteral = regExpLiteral;
-exports.logicalExpression = logicalExpression;
-exports.memberExpression = memberExpression;
-exports.newExpression = newExpression;
-exports.program = program;
-exports.objectExpression = objectExpression;
-exports.objectMethod = objectMethod;
-exports.objectProperty = objectProperty;
-exports.restElement = restElement;
-exports.returnStatement = returnStatement;
-exports.sequenceExpression = sequenceExpression;
-exports.parenthesizedExpression = parenthesizedExpression;
-exports.switchCase = switchCase;
-exports.switchStatement = switchStatement;
-exports.thisExpression = thisExpression;
-exports.throwStatement = throwStatement;
-exports.tryStatement = tryStatement;
-exports.unaryExpression = unaryExpression;
-exports.updateExpression = updateExpression;
-exports.variableDeclaration = variableDeclaration;
-exports.variableDeclarator = variableDeclarator;
-exports.whileStatement = whileStatement;
-exports.withStatement = withStatement;
-exports.assignmentPattern = assignmentPattern;
-exports.arrayPattern = arrayPattern;
-exports.arrowFunctionExpression = arrowFunctionExpression;
-exports.classBody = classBody;
-exports.classExpression = classExpression;
-exports.classDeclaration = classDeclaration;
-exports.exportAllDeclaration = exportAllDeclaration;
-exports.exportDefaultDeclaration = exportDefaultDeclaration;
-exports.exportNamedDeclaration = exportNamedDeclaration;
-exports.exportSpecifier = exportSpecifier;
-exports.forOfStatement = forOfStatement;
-exports.importDeclaration = importDeclaration;
-exports.importDefaultSpecifier = importDefaultSpecifier;
-exports.importNamespaceSpecifier = importNamespaceSpecifier;
-exports.importSpecifier = importSpecifier;
-exports.metaProperty = metaProperty;
-exports.classMethod = classMethod;
-exports.objectPattern = objectPattern;
-exports.spreadElement = spreadElement;
-exports.super = _super;
-exports.taggedTemplateExpression = taggedTemplateExpression;
-exports.templateElement = templateElement;
-exports.templateLiteral = templateLiteral;
-exports.yieldExpression = yieldExpression;
-exports.awaitExpression = awaitExpression;
-exports.import = _import;
-exports.bigIntLiteral = bigIntLiteral;
-exports.exportNamespaceSpecifier = exportNamespaceSpecifier;
-exports.optionalMemberExpression = optionalMemberExpression;
-exports.optionalCallExpression = optionalCallExpression;
-exports.anyTypeAnnotation = anyTypeAnnotation;
-exports.arrayTypeAnnotation = arrayTypeAnnotation;
-exports.booleanTypeAnnotation = booleanTypeAnnotation;
-exports.booleanLiteralTypeAnnotation = booleanLiteralTypeAnnotation;
-exports.nullLiteralTypeAnnotation = nullLiteralTypeAnnotation;
-exports.classImplements = classImplements;
-exports.declareClass = declareClass;
-exports.declareFunction = declareFunction;
-exports.declareInterface = declareInterface;
-exports.declareModule = declareModule;
-exports.declareModuleExports = declareModuleExports;
-exports.declareTypeAlias = declareTypeAlias;
-exports.declareOpaqueType = declareOpaqueType;
-exports.declareVariable = declareVariable;
-exports.declareExportDeclaration = declareExportDeclaration;
-exports.declareExportAllDeclaration = declareExportAllDeclaration;
-exports.declaredPredicate = declaredPredicate;
-exports.existsTypeAnnotation = existsTypeAnnotation;
-exports.functionTypeAnnotation = functionTypeAnnotation;
-exports.functionTypeParam = functionTypeParam;
-exports.genericTypeAnnotation = genericTypeAnnotation;
-exports.inferredPredicate = inferredPredicate;
-exports.interfaceExtends = interfaceExtends;
-exports.interfaceDeclaration = interfaceDeclaration;
-exports.interfaceTypeAnnotation = interfaceTypeAnnotation;
-exports.intersectionTypeAnnotation = intersectionTypeAnnotation;
-exports.mixedTypeAnnotation = mixedTypeAnnotation;
-exports.emptyTypeAnnotation = emptyTypeAnnotation;
-exports.nullableTypeAnnotation = nullableTypeAnnotation;
-exports.numberLiteralTypeAnnotation = numberLiteralTypeAnnotation;
-exports.numberTypeAnnotation = numberTypeAnnotation;
-exports.objectTypeAnnotation = objectTypeAnnotation;
-exports.objectTypeInternalSlot = objectTypeInternalSlot;
-exports.objectTypeCallProperty = objectTypeCallProperty;
-exports.objectTypeIndexer = objectTypeIndexer;
-exports.objectTypeProperty = objectTypeProperty;
-exports.objectTypeSpreadProperty = objectTypeSpreadProperty;
-exports.opaqueType = opaqueType;
-exports.qualifiedTypeIdentifier = qualifiedTypeIdentifier;
-exports.stringLiteralTypeAnnotation = stringLiteralTypeAnnotation;
-exports.stringTypeAnnotation = stringTypeAnnotation;
-exports.symbolTypeAnnotation = symbolTypeAnnotation;
-exports.thisTypeAnnotation = thisTypeAnnotation;
-exports.tupleTypeAnnotation = tupleTypeAnnotation;
-exports.typeofTypeAnnotation = typeofTypeAnnotation;
-exports.typeAlias = typeAlias;
-exports.typeAnnotation = typeAnnotation;
-exports.typeCastExpression = typeCastExpression;
-exports.typeParameter = typeParameter;
-exports.typeParameterDeclaration = typeParameterDeclaration;
-exports.typeParameterInstantiation = typeParameterInstantiation;
-exports.unionTypeAnnotation = unionTypeAnnotation;
-exports.variance = variance;
-exports.voidTypeAnnotation = voidTypeAnnotation;
-exports.enumDeclaration = enumDeclaration;
-exports.enumBooleanBody = enumBooleanBody;
-exports.enumNumberBody = enumNumberBody;
-exports.enumStringBody = enumStringBody;
-exports.enumSymbolBody = enumSymbolBody;
-exports.enumBooleanMember = enumBooleanMember;
-exports.enumNumberMember = enumNumberMember;
-exports.enumStringMember = enumStringMember;
-exports.enumDefaultedMember = enumDefaultedMember;
-exports.indexedAccessType = indexedAccessType;
-exports.optionalIndexedAccessType = optionalIndexedAccessType;
-exports.jSXAttribute = exports.jsxAttribute = jsxAttribute;
-exports.jSXClosingElement = exports.jsxClosingElement = jsxClosingElement;
-exports.jSXElement = exports.jsxElement = jsxElement;
-exports.jSXEmptyExpression = exports.jsxEmptyExpression = jsxEmptyExpression;
-exports.jSXExpressionContainer = exports.jsxExpressionContainer = jsxExpressionContainer;
-exports.jSXSpreadChild = exports.jsxSpreadChild = jsxSpreadChild;
-exports.jSXIdentifier = exports.jsxIdentifier = jsxIdentifier;
-exports.jSXMemberExpression = exports.jsxMemberExpression = jsxMemberExpression;
-exports.jSXNamespacedName = exports.jsxNamespacedName = jsxNamespacedName;
-exports.jSXOpeningElement = exports.jsxOpeningElement = jsxOpeningElement;
-exports.jSXSpreadAttribute = exports.jsxSpreadAttribute = jsxSpreadAttribute;
-exports.jSXText = exports.jsxText = jsxText;
-exports.jSXFragment = exports.jsxFragment = jsxFragment;
-exports.jSXOpeningFragment = exports.jsxOpeningFragment = jsxOpeningFragment;
-exports.jSXClosingFragment = exports.jsxClosingFragment = jsxClosingFragment;
-exports.noop = noop;
-exports.placeholder = placeholder;
-exports.v8IntrinsicIdentifier = v8IntrinsicIdentifier;
-exports.argumentPlaceholder = argumentPlaceholder;
-exports.bindExpression = bindExpression;
-exports.classProperty = classProperty;
-exports.pipelineTopicExpression = pipelineTopicExpression;
-exports.pipelineBareFunction = pipelineBareFunction;
-exports.pipelinePrimaryTopicReference = pipelinePrimaryTopicReference;
-exports.classPrivateProperty = classPrivateProperty;
-exports.classPrivateMethod = classPrivateMethod;
-exports.importAttribute = importAttribute;
-exports.decorator = decorator;
-exports.doExpression = doExpression;
-exports.exportDefaultSpecifier = exportDefaultSpecifier;
-exports.privateName = privateName;
-exports.recordExpression = recordExpression;
-exports.tupleExpression = tupleExpression;
-exports.decimalLiteral = decimalLiteral;
-exports.staticBlock = staticBlock;
-exports.moduleExpression = moduleExpression;
-exports.tSParameterProperty = exports.tsParameterProperty = tsParameterProperty;
-exports.tSDeclareFunction = exports.tsDeclareFunction = tsDeclareFunction;
-exports.tSDeclareMethod = exports.tsDeclareMethod = tsDeclareMethod;
-exports.tSQualifiedName = exports.tsQualifiedName = tsQualifiedName;
-exports.tSCallSignatureDeclaration = exports.tsCallSignatureDeclaration = tsCallSignatureDeclaration;
-exports.tSConstructSignatureDeclaration = exports.tsConstructSignatureDeclaration = tsConstructSignatureDeclaration;
-exports.tSPropertySignature = exports.tsPropertySignature = tsPropertySignature;
-exports.tSMethodSignature = exports.tsMethodSignature = tsMethodSignature;
-exports.tSIndexSignature = exports.tsIndexSignature = tsIndexSignature;
-exports.tSAnyKeyword = exports.tsAnyKeyword = tsAnyKeyword;
-exports.tSBooleanKeyword = exports.tsBooleanKeyword = tsBooleanKeyword;
-exports.tSBigIntKeyword = exports.tsBigIntKeyword = tsBigIntKeyword;
-exports.tSIntrinsicKeyword = exports.tsIntrinsicKeyword = tsIntrinsicKeyword;
-exports.tSNeverKeyword = exports.tsNeverKeyword = tsNeverKeyword;
-exports.tSNullKeyword = exports.tsNullKeyword = tsNullKeyword;
-exports.tSNumberKeyword = exports.tsNumberKeyword = tsNumberKeyword;
-exports.tSObjectKeyword = exports.tsObjectKeyword = tsObjectKeyword;
-exports.tSStringKeyword = exports.tsStringKeyword = tsStringKeyword;
-exports.tSSymbolKeyword = exports.tsSymbolKeyword = tsSymbolKeyword;
-exports.tSUndefinedKeyword = exports.tsUndefinedKeyword = tsUndefinedKeyword;
-exports.tSUnknownKeyword = exports.tsUnknownKeyword = tsUnknownKeyword;
-exports.tSVoidKeyword = exports.tsVoidKeyword = tsVoidKeyword;
-exports.tSThisType = exports.tsThisType = tsThisType;
-exports.tSFunctionType = exports.tsFunctionType = tsFunctionType;
-exports.tSConstructorType = exports.tsConstructorType = tsConstructorType;
-exports.tSTypeReference = exports.tsTypeReference = tsTypeReference;
-exports.tSTypePredicate = exports.tsTypePredicate = tsTypePredicate;
-exports.tSTypeQuery = exports.tsTypeQuery = tsTypeQuery;
-exports.tSTypeLiteral = exports.tsTypeLiteral = tsTypeLiteral;
-exports.tSArrayType = exports.tsArrayType = tsArrayType;
-exports.tSTupleType = exports.tsTupleType = tsTupleType;
-exports.tSOptionalType = exports.tsOptionalType = tsOptionalType;
-exports.tSRestType = exports.tsRestType = tsRestType;
-exports.tSNamedTupleMember = exports.tsNamedTupleMember = tsNamedTupleMember;
-exports.tSUnionType = exports.tsUnionType = tsUnionType;
-exports.tSIntersectionType = exports.tsIntersectionType = tsIntersectionType;
-exports.tSConditionalType = exports.tsConditionalType = tsConditionalType;
-exports.tSInferType = exports.tsInferType = tsInferType;
-exports.tSParenthesizedType = exports.tsParenthesizedType = tsParenthesizedType;
-exports.tSTypeOperator = exports.tsTypeOperator = tsTypeOperator;
-exports.tSIndexedAccessType = exports.tsIndexedAccessType = tsIndexedAccessType;
-exports.tSMappedType = exports.tsMappedType = tsMappedType;
-exports.tSLiteralType = exports.tsLiteralType = tsLiteralType;
-exports.tSExpressionWithTypeArguments = exports.tsExpressionWithTypeArguments = tsExpressionWithTypeArguments;
-exports.tSInterfaceDeclaration = exports.tsInterfaceDeclaration = tsInterfaceDeclaration;
-exports.tSInterfaceBody = exports.tsInterfaceBody = tsInterfaceBody;
-exports.tSTypeAliasDeclaration = exports.tsTypeAliasDeclaration = tsTypeAliasDeclaration;
-exports.tSAsExpression = exports.tsAsExpression = tsAsExpression;
-exports.tSTypeAssertion = exports.tsTypeAssertion = tsTypeAssertion;
-exports.tSEnumDeclaration = exports.tsEnumDeclaration = tsEnumDeclaration;
-exports.tSEnumMember = exports.tsEnumMember = tsEnumMember;
-exports.tSModuleDeclaration = exports.tsModuleDeclaration = tsModuleDeclaration;
-exports.tSModuleBlock = exports.tsModuleBlock = tsModuleBlock;
-exports.tSImportType = exports.tsImportType = tsImportType;
-exports.tSImportEqualsDeclaration = exports.tsImportEqualsDeclaration = tsImportEqualsDeclaration;
-exports.tSExternalModuleReference = exports.tsExternalModuleReference = tsExternalModuleReference;
-exports.tSNonNullExpression = exports.tsNonNullExpression = tsNonNullExpression;
-exports.tSExportAssignment = exports.tsExportAssignment = tsExportAssignment;
-exports.tSNamespaceExportDeclaration = exports.tsNamespaceExportDeclaration = tsNamespaceExportDeclaration;
-exports.tSTypeAnnotation = exports.tsTypeAnnotation = tsTypeAnnotation;
-exports.tSTypeParameterInstantiation = exports.tsTypeParameterInstantiation = tsTypeParameterInstantiation;
-exports.tSTypeParameterDeclaration = exports.tsTypeParameterDeclaration = tsTypeParameterDeclaration;
-exports.tSTypeParameter = exports.tsTypeParameter = tsTypeParameter;
-exports.numberLiteral = NumberLiteral;
-exports.regexLiteral = RegexLiteral;
-exports.restProperty = RestProperty;
-exports.spreadProperty = SpreadProperty;
-
-var _builder = __webpack_require__(/*! ../builder */ "./node_modules/@babel/types/lib/builders/builder.js");
-
-function arrayExpression(elements) {
-  return (0, _builder.default)("ArrayExpression", ...arguments);
-}
-
-function assignmentExpression(operator, left, right) {
-  return (0, _builder.default)("AssignmentExpression", ...arguments);
-}
-
-function binaryExpression(operator, left, right) {
-  return (0, _builder.default)("BinaryExpression", ...arguments);
-}
-
-function interpreterDirective(value) {
-  return (0, _builder.default)("InterpreterDirective", ...arguments);
-}
-
-function directive(value) {
-  return (0, _builder.default)("Directive", ...arguments);
-}
-
-function directiveLiteral(value) {
-  return (0, _builder.default)("DirectiveLiteral", ...arguments);
-}
-
-function blockStatement(body, directives) {
-  return (0, _builder.default)("BlockStatement", ...arguments);
-}
-
-function breakStatement(label) {
-  return (0, _builder.default)("BreakStatement", ...arguments);
-}
-
-function callExpression(callee, _arguments) {
-  return (0, _builder.default)("CallExpression", ...arguments);
-}
-
-function catchClause(param, body) {
-  return (0, _builder.default)("CatchClause", ...arguments);
-}
-
-function conditionalExpression(test, consequent, alternate) {
-  return (0, _builder.default)("ConditionalExpression", ...arguments);
-}
-
-function continueStatement(label) {
-  return (0, _builder.default)("ContinueStatement", ...arguments);
-}
-
-function debuggerStatement() {
-  return (0, _builder.default)("DebuggerStatement", ...arguments);
-}
-
-function doWhileStatement(test, body) {
-  return (0, _builder.default)("DoWhileStatement", ...arguments);
-}
-
-function emptyStatement() {
-  return (0, _builder.default)("EmptyStatement", ...arguments);
-}
-
-function expressionStatement(expression) {
-  return (0, _builder.default)("ExpressionStatement", ...arguments);
-}
-
-function file(program, comments, tokens) {
-  return (0, _builder.default)("File", ...arguments);
-}
-
-function forInStatement(left, right, body) {
-  return (0, _builder.default)("ForInStatement", ...arguments);
-}
-
-function forStatement(init, test, update, body) {
-  return (0, _builder.default)("ForStatement", ...arguments);
-}
-
-function functionDeclaration(id, params, body, generator, async) {
-  return (0, _builder.default)("FunctionDeclaration", ...arguments);
-}
-
-function functionExpression(id, params, body, generator, async) {
-  return (0, _builder.default)("FunctionExpression", ...arguments);
-}
-
-function identifier(name) {
-  return (0, _builder.default)("Identifier", ...arguments);
-}
-
-function ifStatement(test, consequent, alternate) {
-  return (0, _builder.default)("IfStatement", ...arguments);
-}
-
-function labeledStatement(label, body) {
-  return (0, _builder.default)("LabeledStatement", ...arguments);
-}
-
-function stringLiteral(value) {
-  return (0, _builder.default)("StringLiteral", ...arguments);
-}
-
-function numericLiteral(value) {
-  return (0, _builder.default)("NumericLiteral", ...arguments);
-}
-
-function nullLiteral() {
-  return (0, _builder.default)("NullLiteral", ...arguments);
-}
-
-function booleanLiteral(value) {
-  return (0, _builder.default)("BooleanLiteral", ...arguments);
-}
-
-function regExpLiteral(pattern, flags) {
-  return (0, _builder.default)("RegExpLiteral", ...arguments);
-}
-
-function logicalExpression(operator, left, right) {
-  return (0, _builder.default)("LogicalExpression", ...arguments);
-}
-
-function memberExpression(object, property, computed, optional) {
-  return (0, _builder.default)("MemberExpression", ...arguments);
-}
-
-function newExpression(callee, _arguments) {
-  return (0, _builder.default)("NewExpression", ...arguments);
-}
-
-function program(body, directives, sourceType, interpreter) {
-  return (0, _builder.default)("Program", ...arguments);
-}
-
-function objectExpression(properties) {
-  return (0, _builder.default)("ObjectExpression", ...arguments);
-}
-
-function objectMethod(kind, key, params, body, computed, generator, async) {
-  return (0, _builder.default)("ObjectMethod", ...arguments);
-}
-
-function objectProperty(key, value, computed, shorthand, decorators) {
-  return (0, _builder.default)("ObjectProperty", ...arguments);
-}
-
-function restElement(argument) {
-  return (0, _builder.default)("RestElement", ...arguments);
-}
-
-function returnStatement(argument) {
-  return (0, _builder.default)("ReturnStatement", ...arguments);
-}
-
-function sequenceExpression(expressions) {
-  return (0, _builder.default)("SequenceExpression", ...arguments);
-}
-
-function parenthesizedExpression(expression) {
-  return (0, _builder.default)("ParenthesizedExpression", ...arguments);
-}
-
-function switchCase(test, consequent) {
-  return (0, _builder.default)("SwitchCase", ...arguments);
-}
-
-function switchStatement(discriminant, cases) {
-  return (0, _builder.default)("SwitchStatement", ...arguments);
-}
-
-function thisExpression() {
-  return (0, _builder.default)("ThisExpression", ...arguments);
-}
-
-function throwStatement(argument) {
-  return (0, _builder.default)("ThrowStatement", ...arguments);
-}
-
-function tryStatement(block, handler, finalizer) {
-  return (0, _builder.default)("TryStatement", ...arguments);
-}
-
-function unaryExpression(operator, argument, prefix) {
-  return (0, _builder.default)("UnaryExpression", ...arguments);
-}
-
-function updateExpression(operator, argument, prefix) {
-  return (0, _builder.default)("UpdateExpression", ...arguments);
-}
-
-function variableDeclaration(kind, declarations) {
-  return (0, _builder.default)("VariableDeclaration", ...arguments);
-}
-
-function variableDeclarator(id, init) {
-  return (0, _builder.default)("VariableDeclarator", ...arguments);
-}
-
-function whileStatement(test, body) {
-  return (0, _builder.default)("WhileStatement", ...arguments);
-}
-
-function withStatement(object, body) {
-  return (0, _builder.default)("WithStatement", ...arguments);
-}
-
-function assignmentPattern(left, right) {
-  return (0, _builder.default)("AssignmentPattern", ...arguments);
-}
-
-function arrayPattern(elements) {
-  return (0, _builder.default)("ArrayPattern", ...arguments);
-}
-
-function arrowFunctionExpression(params, body, async) {
-  return (0, _builder.default)("ArrowFunctionExpression", ...arguments);
-}
-
-function classBody(body) {
-  return (0, _builder.default)("ClassBody", ...arguments);
-}
-
-function classExpression(id, superClass, body, decorators) {
-  return (0, _builder.default)("ClassExpression", ...arguments);
-}
-
-function classDeclaration(id, superClass, body, decorators) {
-  return (0, _builder.default)("ClassDeclaration", ...arguments);
-}
-
-function exportAllDeclaration(source) {
-  return (0, _builder.default)("ExportAllDeclaration", ...arguments);
-}
-
-function exportDefaultDeclaration(declaration) {
-  return (0, _builder.default)("ExportDefaultDeclaration", ...arguments);
-}
-
-function exportNamedDeclaration(declaration, specifiers, source) {
-  return (0, _builder.default)("ExportNamedDeclaration", ...arguments);
-}
-
-function exportSpecifier(local, exported) {
-  return (0, _builder.default)("ExportSpecifier", ...arguments);
-}
-
-function forOfStatement(left, right, body, _await) {
-  return (0, _builder.default)("ForOfStatement", ...arguments);
-}
-
-function importDeclaration(specifiers, source) {
-  return (0, _builder.default)("ImportDeclaration", ...arguments);
-}
-
-function importDefaultSpecifier(local) {
-  return (0, _builder.default)("ImportDefaultSpecifier", ...arguments);
-}
-
-function importNamespaceSpecifier(local) {
-  return (0, _builder.default)("ImportNamespaceSpecifier", ...arguments);
-}
-
-function importSpecifier(local, imported) {
-  return (0, _builder.default)("ImportSpecifier", ...arguments);
-}
-
-function metaProperty(meta, property) {
-  return (0, _builder.default)("MetaProperty", ...arguments);
-}
-
-function classMethod(kind, key, params, body, computed, _static, generator, async) {
-  return (0, _builder.default)("ClassMethod", ...arguments);
-}
-
-function objectPattern(properties) {
-  return (0, _builder.default)("ObjectPattern", ...arguments);
-}
-
-function spreadElement(argument) {
-  return (0, _builder.default)("SpreadElement", ...arguments);
-}
-
-function _super() {
-  return (0, _builder.default)("Super", ...arguments);
-}
-
-function taggedTemplateExpression(tag, quasi) {
-  return (0, _builder.default)("TaggedTemplateExpression", ...arguments);
-}
-
-function templateElement(value, tail) {
-  return (0, _builder.default)("TemplateElement", ...arguments);
-}
-
-function templateLiteral(quasis, expressions) {
-  return (0, _builder.default)("TemplateLiteral", ...arguments);
-}
-
-function yieldExpression(argument, delegate) {
-  return (0, _builder.default)("YieldExpression", ...arguments);
-}
-
-function awaitExpression(argument) {
-  return (0, _builder.default)("AwaitExpression", ...arguments);
-}
-
-function _import() {
-  return (0, _builder.default)("Import", ...arguments);
-}
-
-function bigIntLiteral(value) {
-  return (0, _builder.default)("BigIntLiteral", ...arguments);
-}
-
-function exportNamespaceSpecifier(exported) {
-  return (0, _builder.default)("ExportNamespaceSpecifier", ...arguments);
-}
-
-function optionalMemberExpression(object, property, computed, optional) {
-  return (0, _builder.default)("OptionalMemberExpression", ...arguments);
-}
-
-function optionalCallExpression(callee, _arguments, optional) {
-  return (0, _builder.default)("OptionalCallExpression", ...arguments);
-}
-
-function anyTypeAnnotation() {
-  return (0, _builder.default)("AnyTypeAnnotation", ...arguments);
-}
-
-function arrayTypeAnnotation(elementType) {
-  return (0, _builder.default)("ArrayTypeAnnotation", ...arguments);
-}
-
-function booleanTypeAnnotation() {
-  return (0, _builder.default)("BooleanTypeAnnotation", ...arguments);
-}
-
-function booleanLiteralTypeAnnotation(value) {
-  return (0, _builder.default)("BooleanLiteralTypeAnnotation", ...arguments);
-}
-
-function nullLiteralTypeAnnotation() {
-  return (0, _builder.default)("NullLiteralTypeAnnotation", ...arguments);
-}
-
-function classImplements(id, typeParameters) {
-  return (0, _builder.default)("ClassImplements", ...arguments);
-}
-
-function declareClass(id, typeParameters, _extends, body) {
-  return (0, _builder.default)("DeclareClass", ...arguments);
-}
-
-function declareFunction(id) {
-  return (0, _builder.default)("DeclareFunction", ...arguments);
-}
-
-function declareInterface(id, typeParameters, _extends, body) {
-  return (0, _builder.default)("DeclareInterface", ...arguments);
-}
-
-function declareModule(id, body, kind) {
-  return (0, _builder.default)("DeclareModule", ...arguments);
-}
-
-function declareModuleExports(typeAnnotation) {
-  return (0, _builder.default)("DeclareModuleExports", ...arguments);
-}
-
-function declareTypeAlias(id, typeParameters, right) {
-  return (0, _builder.default)("DeclareTypeAlias", ...arguments);
-}
-
-function declareOpaqueType(id, typeParameters, supertype) {
-  return (0, _builder.default)("DeclareOpaqueType", ...arguments);
-}
-
-function declareVariable(id) {
-  return (0, _builder.default)("DeclareVariable", ...arguments);
-}
-
-function declareExportDeclaration(declaration, specifiers, source) {
-  return (0, _builder.default)("DeclareExportDeclaration", ...arguments);
-}
-
-function declareExportAllDeclaration(source) {
-  return (0, _builder.default)("DeclareExportAllDeclaration", ...arguments);
-}
-
-function declaredPredicate(value) {
-  return (0, _builder.default)("DeclaredPredicate", ...arguments);
-}
-
-function existsTypeAnnotation() {
-  return (0, _builder.default)("ExistsTypeAnnotation", ...arguments);
-}
-
-function functionTypeAnnotation(typeParameters, params, rest, returnType) {
-  return (0, _builder.default)("FunctionTypeAnnotation", ...arguments);
-}
-
-function functionTypeParam(name, typeAnnotation) {
-  return (0, _builder.default)("FunctionTypeParam", ...arguments);
-}
-
-function genericTypeAnnotation(id, typeParameters) {
-  return (0, _builder.default)("GenericTypeAnnotation", ...arguments);
-}
-
-function inferredPredicate() {
-  return (0, _builder.default)("InferredPredicate", ...arguments);
-}
-
-function interfaceExtends(id, typeParameters) {
-  return (0, _builder.default)("InterfaceExtends", ...arguments);
-}
-
-function interfaceDeclaration(id, typeParameters, _extends, body) {
-  return (0, _builder.default)("InterfaceDeclaration", ...arguments);
-}
-
-function interfaceTypeAnnotation(_extends, body) {
-  return (0, _builder.default)("InterfaceTypeAnnotation", ...arguments);
-}
-
-function intersectionTypeAnnotation(types) {
-  return (0, _builder.default)("IntersectionTypeAnnotation", ...arguments);
-}
-
-function mixedTypeAnnotation() {
-  return (0, _builder.default)("MixedTypeAnnotation", ...arguments);
-}
-
-function emptyTypeAnnotation() {
-  return (0, _builder.default)("EmptyTypeAnnotation", ...arguments);
-}
-
-function nullableTypeAnnotation(typeAnnotation) {
-  return (0, _builder.default)("NullableTypeAnnotation", ...arguments);
-}
-
-function numberLiteralTypeAnnotation(value) {
-  return (0, _builder.default)("NumberLiteralTypeAnnotation", ...arguments);
-}
-
-function numberTypeAnnotation() {
-  return (0, _builder.default)("NumberTypeAnnotation", ...arguments);
-}
-
-function objectTypeAnnotation(properties, indexers, callProperties, internalSlots, exact) {
-  return (0, _builder.default)("ObjectTypeAnnotation", ...arguments);
-}
-
-function objectTypeInternalSlot(id, value, optional, _static, method) {
-  return (0, _builder.default)("ObjectTypeInternalSlot", ...arguments);
-}
-
-function objectTypeCallProperty(value) {
-  return (0, _builder.default)("ObjectTypeCallProperty", ...arguments);
-}
-
-function objectTypeIndexer(id, key, value, variance) {
-  return (0, _builder.default)("ObjectTypeIndexer", ...arguments);
-}
-
-function objectTypeProperty(key, value, variance) {
-  return (0, _builder.default)("ObjectTypeProperty", ...arguments);
-}
-
-function objectTypeSpreadProperty(argument) {
-  return (0, _builder.default)("ObjectTypeSpreadProperty", ...arguments);
-}
-
-function opaqueType(id, typeParameters, supertype, impltype) {
-  return (0, _builder.default)("OpaqueType", ...arguments);
-}
-
-function qualifiedTypeIdentifier(id, qualification) {
-  return (0, _builder.default)("QualifiedTypeIdentifier", ...arguments);
-}
-
-function stringLiteralTypeAnnotation(value) {
-  return (0, _builder.default)("StringLiteralTypeAnnotation", ...arguments);
-}
-
-function stringTypeAnnotation() {
-  return (0, _builder.default)("StringTypeAnnotation", ...arguments);
-}
-
-function symbolTypeAnnotation() {
-  return (0, _builder.default)("SymbolTypeAnnotation", ...arguments);
-}
-
-function thisTypeAnnotation() {
-  return (0, _builder.default)("ThisTypeAnnotation", ...arguments);
-}
-
-function tupleTypeAnnotation(types) {
-  return (0, _builder.default)("TupleTypeAnnotation", ...arguments);
-}
-
-function typeofTypeAnnotation(argument) {
-  return (0, _builder.default)("TypeofTypeAnnotation", ...arguments);
-}
-
-function typeAlias(id, typeParameters, right) {
-  return (0, _builder.default)("TypeAlias", ...arguments);
-}
-
-function typeAnnotation(typeAnnotation) {
-  return (0, _builder.default)("TypeAnnotation", ...arguments);
-}
-
-function typeCastExpression(expression, typeAnnotation) {
-  return (0, _builder.default)("TypeCastExpression", ...arguments);
-}
-
-function typeParameter(bound, _default, variance) {
-  return (0, _builder.default)("TypeParameter", ...arguments);
-}
-
-function typeParameterDeclaration(params) {
-  return (0, _builder.default)("TypeParameterDeclaration", ...arguments);
-}
-
-function typeParameterInstantiation(params) {
-  return (0, _builder.default)("TypeParameterInstantiation", ...arguments);
-}
-
-function unionTypeAnnotation(types) {
-  return (0, _builder.default)("UnionTypeAnnotation", ...arguments);
-}
-
-function variance(kind) {
-  return (0, _builder.default)("Variance", ...arguments);
-}
-
-function voidTypeAnnotation() {
-  return (0, _builder.default)("VoidTypeAnnotation", ...arguments);
-}
-
-function enumDeclaration(id, body) {
-  return (0, _builder.default)("EnumDeclaration", ...arguments);
-}
-
-function enumBooleanBody(members) {
-  return (0, _builder.default)("EnumBooleanBody", ...arguments);
-}
-
-function enumNumberBody(members) {
-  return (0, _builder.default)("EnumNumberBody", ...arguments);
-}
-
-function enumStringBody(members) {
-  return (0, _builder.default)("EnumStringBody", ...arguments);
-}
-
-function enumSymbolBody(members) {
-  return (0, _builder.default)("EnumSymbolBody", ...arguments);
-}
-
-function enumBooleanMember(id) {
-  return (0, _builder.default)("EnumBooleanMember", ...arguments);
-}
-
-function enumNumberMember(id, init) {
-  return (0, _builder.default)("EnumNumberMember", ...arguments);
-}
-
-function enumStringMember(id, init) {
-  return (0, _builder.default)("EnumStringMember", ...arguments);
-}
-
-function enumDefaultedMember(id) {
-  return (0, _builder.default)("EnumDefaultedMember", ...arguments);
-}
-
-function indexedAccessType(objectType, indexType) {
-  return (0, _builder.default)("IndexedAccessType", ...arguments);
-}
-
-function optionalIndexedAccessType(objectType, indexType) {
-  return (0, _builder.default)("OptionalIndexedAccessType", ...arguments);
-}
-
-function jsxAttribute(name, value) {
-  return (0, _builder.default)("JSXAttribute", ...arguments);
-}
-
-function jsxClosingElement(name) {
-  return (0, _builder.default)("JSXClosingElement", ...arguments);
-}
-
-function jsxElement(openingElement, closingElement, children, selfClosing) {
-  return (0, _builder.default)("JSXElement", ...arguments);
-}
-
-function jsxEmptyExpression() {
-  return (0, _builder.default)("JSXEmptyExpression", ...arguments);
-}
-
-function jsxExpressionContainer(expression) {
-  return (0, _builder.default)("JSXExpressionContainer", ...arguments);
-}
-
-function jsxSpreadChild(expression) {
-  return (0, _builder.default)("JSXSpreadChild", ...arguments);
-}
-
-function jsxIdentifier(name) {
-  return (0, _builder.default)("JSXIdentifier", ...arguments);
-}
-
-function jsxMemberExpression(object, property) {
-  return (0, _builder.default)("JSXMemberExpression", ...arguments);
-}
-
-function jsxNamespacedName(namespace, name) {
-  return (0, _builder.default)("JSXNamespacedName", ...arguments);
-}
-
-function jsxOpeningElement(name, attributes, selfClosing) {
-  return (0, _builder.default)("JSXOpeningElement", ...arguments);
-}
-
-function jsxSpreadAttribute(argument) {
-  return (0, _builder.default)("JSXSpreadAttribute", ...arguments);
-}
-
-function jsxText(value) {
-  return (0, _builder.default)("JSXText", ...arguments);
-}
-
-function jsxFragment(openingFragment, closingFragment, children) {
-  return (0, _builder.default)("JSXFragment", ...arguments);
-}
-
-function jsxOpeningFragment() {
-  return (0, _builder.default)("JSXOpeningFragment", ...arguments);
-}
-
-function jsxClosingFragment() {
-  return (0, _builder.default)("JSXClosingFragment", ...arguments);
-}
-
-function noop() {
-  return (0, _builder.default)("Noop", ...arguments);
-}
-
-function placeholder(expectedNode, name) {
-  return (0, _builder.default)("Placeholder", ...arguments);
-}
-
-function v8IntrinsicIdentifier(name) {
-  return (0, _builder.default)("V8IntrinsicIdentifier", ...arguments);
-}
-
-function argumentPlaceholder() {
-  return (0, _builder.default)("ArgumentPlaceholder", ...arguments);
-}
-
-function bindExpression(object, callee) {
-  return (0, _builder.default)("BindExpression", ...arguments);
-}
-
-function classProperty(key, value, typeAnnotation, decorators, computed, _static) {
-  return (0, _builder.default)("ClassProperty", ...arguments);
-}
-
-function pipelineTopicExpression(expression) {
-  return (0, _builder.default)("PipelineTopicExpression", ...arguments);
-}
-
-function pipelineBareFunction(callee) {
-  return (0, _builder.default)("PipelineBareFunction", ...arguments);
-}
-
-function pipelinePrimaryTopicReference() {
-  return (0, _builder.default)("PipelinePrimaryTopicReference", ...arguments);
-}
-
-function classPrivateProperty(key, value, decorators, _static) {
-  return (0, _builder.default)("ClassPrivateProperty", ...arguments);
-}
-
-function classPrivateMethod(kind, key, params, body, _static) {
-  return (0, _builder.default)("ClassPrivateMethod", ...arguments);
-}
-
-function importAttribute(key, value) {
-  return (0, _builder.default)("ImportAttribute", ...arguments);
-}
-
-function decorator(expression) {
-  return (0, _builder.default)("Decorator", ...arguments);
-}
-
-function doExpression(body, async) {
-  return (0, _builder.default)("DoExpression", ...arguments);
-}
-
-function exportDefaultSpecifier(exported) {
-  return (0, _builder.default)("ExportDefaultSpecifier", ...arguments);
-}
-
-function privateName(id) {
-  return (0, _builder.default)("PrivateName", ...arguments);
-}
-
-function recordExpression(properties) {
-  return (0, _builder.default)("RecordExpression", ...arguments);
-}
-
-function tupleExpression(elements) {
-  return (0, _builder.default)("TupleExpression", ...arguments);
-}
-
-function decimalLiteral(value) {
-  return (0, _builder.default)("DecimalLiteral", ...arguments);
-}
-
-function staticBlock(body) {
-  return (0, _builder.default)("StaticBlock", ...arguments);
-}
-
-function moduleExpression(body) {
-  return (0, _builder.default)("ModuleExpression", ...arguments);
-}
-
-function tsParameterProperty(parameter) {
-  return (0, _builder.default)("TSParameterProperty", ...arguments);
-}
-
-function tsDeclareFunction(id, typeParameters, params, returnType) {
-  return (0, _builder.default)("TSDeclareFunction", ...arguments);
-}
-
-function tsDeclareMethod(decorators, key, typeParameters, params, returnType) {
-  return (0, _builder.default)("TSDeclareMethod", ...arguments);
-}
-
-function tsQualifiedName(left, right) {
-  return (0, _builder.default)("TSQualifiedName", ...arguments);
-}
-
-function tsCallSignatureDeclaration(typeParameters, parameters, typeAnnotation) {
-  return (0, _builder.default)("TSCallSignatureDeclaration", ...arguments);
-}
-
-function tsConstructSignatureDeclaration(typeParameters, parameters, typeAnnotation) {
-  return (0, _builder.default)("TSConstructSignatureDeclaration", ...arguments);
-}
-
-function tsPropertySignature(key, typeAnnotation, initializer) {
-  return (0, _builder.default)("TSPropertySignature", ...arguments);
-}
-
-function tsMethodSignature(key, typeParameters, parameters, typeAnnotation) {
-  return (0, _builder.default)("TSMethodSignature", ...arguments);
-}
-
-function tsIndexSignature(parameters, typeAnnotation) {
-  return (0, _builder.default)("TSIndexSignature", ...arguments);
-}
-
-function tsAnyKeyword() {
-  return (0, _builder.default)("TSAnyKeyword", ...arguments);
-}
-
-function tsBooleanKeyword() {
-  return (0, _builder.default)("TSBooleanKeyword", ...arguments);
-}
-
-function tsBigIntKeyword() {
-  return (0, _builder.default)("TSBigIntKeyword", ...arguments);
-}
-
-function tsIntrinsicKeyword() {
-  return (0, _builder.default)("TSIntrinsicKeyword", ...arguments);
-}
-
-function tsNeverKeyword() {
-  return (0, _builder.default)("TSNeverKeyword", ...arguments);
-}
-
-function tsNullKeyword() {
-  return (0, _builder.default)("TSNullKeyword", ...arguments);
-}
-
-function tsNumberKeyword() {
-  return (0, _builder.default)("TSNumberKeyword", ...arguments);
-}
-
-function tsObjectKeyword() {
-  return (0, _builder.default)("TSObjectKeyword", ...arguments);
-}
-
-function tsStringKeyword() {
-  return (0, _builder.default)("TSStringKeyword", ...arguments);
-}
-
-function tsSymbolKeyword() {
-  return (0, _builder.default)("TSSymbolKeyword", ...arguments);
-}
-
-function tsUndefinedKeyword() {
-  return (0, _builder.default)("TSUndefinedKeyword", ...arguments);
-}
-
-function tsUnknownKeyword() {
-  return (0, _builder.default)("TSUnknownKeyword", ...arguments);
-}
-
-function tsVoidKeyword() {
-  return (0, _builder.default)("TSVoidKeyword", ...arguments);
-}
-
-function tsThisType() {
-  return (0, _builder.default)("TSThisType", ...arguments);
-}
-
-function tsFunctionType(typeParameters, parameters, typeAnnotation) {
-  return (0, _builder.default)("TSFunctionType", ...arguments);
-}
-
-function tsConstructorType(typeParameters, parameters, typeAnnotation) {
-  return (0, _builder.default)("TSConstructorType", ...arguments);
-}
-
-function tsTypeReference(typeName, typeParameters) {
-  return (0, _builder.default)("TSTypeReference", ...arguments);
-}
-
-function tsTypePredicate(parameterName, typeAnnotation, asserts) {
-  return (0, _builder.default)("TSTypePredicate", ...arguments);
-}
-
-function tsTypeQuery(exprName) {
-  return (0, _builder.default)("TSTypeQuery", ...arguments);
-}
-
-function tsTypeLiteral(members) {
-  return (0, _builder.default)("TSTypeLiteral", ...arguments);
-}
-
-function tsArrayType(elementType) {
-  return (0, _builder.default)("TSArrayType", ...arguments);
-}
-
-function tsTupleType(elementTypes) {
-  return (0, _builder.default)("TSTupleType", ...arguments);
-}
-
-function tsOptionalType(typeAnnotation) {
-  return (0, _builder.default)("TSOptionalType", ...arguments);
-}
-
-function tsRestType(typeAnnotation) {
-  return (0, _builder.default)("TSRestType", ...arguments);
-}
-
-function tsNamedTupleMember(label, elementType, optional) {
-  return (0, _builder.default)("TSNamedTupleMember", ...arguments);
-}
-
-function tsUnionType(types) {
-  return (0, _builder.default)("TSUnionType", ...arguments);
-}
-
-function tsIntersectionType(types) {
-  return (0, _builder.default)("TSIntersectionType", ...arguments);
-}
-
-function tsConditionalType(checkType, extendsType, trueType, falseType) {
-  return (0, _builder.default)("TSConditionalType", ...arguments);
-}
-
-function tsInferType(typeParameter) {
-  return (0, _builder.default)("TSInferType", ...arguments);
-}
-
-function tsParenthesizedType(typeAnnotation) {
-  return (0, _builder.default)("TSParenthesizedType", ...arguments);
-}
-
-function tsTypeOperator(typeAnnotation) {
-  return (0, _builder.default)("TSTypeOperator", ...arguments);
-}
-
-function tsIndexedAccessType(objectType, indexType) {
-  return (0, _builder.default)("TSIndexedAccessType", ...arguments);
-}
-
-function tsMappedType(typeParameter, typeAnnotation, nameType) {
-  return (0, _builder.default)("TSMappedType", ...arguments);
-}
-
-function tsLiteralType(literal) {
-  return (0, _builder.default)("TSLiteralType", ...arguments);
-}
-
-function tsExpressionWithTypeArguments(expression, typeParameters) {
-  return (0, _builder.default)("TSExpressionWithTypeArguments", ...arguments);
-}
-
-function tsInterfaceDeclaration(id, typeParameters, _extends, body) {
-  return (0, _builder.default)("TSInterfaceDeclaration", ...arguments);
-}
-
-function tsInterfaceBody(body) {
-  return (0, _builder.default)("TSInterfaceBody", ...arguments);
-}
-
-function tsTypeAliasDeclaration(id, typeParameters, typeAnnotation) {
-  return (0, _builder.default)("TSTypeAliasDeclaration", ...arguments);
-}
-
-function tsAsExpression(expression, typeAnnotation) {
-  return (0, _builder.default)("TSAsExpression", ...arguments);
-}
-
-function tsTypeAssertion(typeAnnotation, expression) {
-  return (0, _builder.default)("TSTypeAssertion", ...arguments);
-}
-
-function tsEnumDeclaration(id, members) {
-  return (0, _builder.default)("TSEnumDeclaration", ...arguments);
-}
-
-function tsEnumMember(id, initializer) {
-  return (0, _builder.default)("TSEnumMember", ...arguments);
-}
-
-function tsModuleDeclaration(id, body) {
-  return (0, _builder.default)("TSModuleDeclaration", ...arguments);
-}
-
-function tsModuleBlock(body) {
-  return (0, _builder.default)("TSModuleBlock", ...arguments);
-}
-
-function tsImportType(argument, qualifier, typeParameters) {
-  return (0, _builder.default)("TSImportType", ...arguments);
-}
-
-function tsImportEqualsDeclaration(id, moduleReference) {
-  return (0, _builder.default)("TSImportEqualsDeclaration", ...arguments);
-}
-
-function tsExternalModuleReference(expression) {
-  return (0, _builder.default)("TSExternalModuleReference", ...arguments);
-}
-
-function tsNonNullExpression(expression) {
-  return (0, _builder.default)("TSNonNullExpression", ...arguments);
-}
-
-function tsExportAssignment(expression) {
-  return (0, _builder.default)("TSExportAssignment", ...arguments);
-}
-
-function tsNamespaceExportDeclaration(id) {
-  return (0, _builder.default)("TSNamespaceExportDeclaration", ...arguments);
-}
-
-function tsTypeAnnotation(typeAnnotation) {
-  return (0, _builder.default)("TSTypeAnnotation", ...arguments);
-}
-
-function tsTypeParameterInstantiation(params) {
-  return (0, _builder.default)("TSTypeParameterInstantiation", ...arguments);
-}
-
-function tsTypeParameterDeclaration(params) {
-  return (0, _builder.default)("TSTypeParameterDeclaration", ...arguments);
-}
-
-function tsTypeParameter(constraint, _default, name) {
-  return (0, _builder.default)("TSTypeParameter", ...arguments);
-}
-
-function NumberLiteral(...args) {
-  console.trace("The node type NumberLiteral has been renamed to NumericLiteral");
-  return (0, _builder.default)("NumberLiteral", ...args);
-}
-
-function RegexLiteral(...args) {
-  console.trace("The node type RegexLiteral has been renamed to RegExpLiteral");
-  return (0, _builder.default)("RegexLiteral", ...args);
-}
-
-function RestProperty(...args) {
-  console.trace("The node type RestProperty has been renamed to RestElement");
-  return (0, _builder.default)("RestProperty", ...args);
-}
-
-function SpreadProperty(...args) {
-  console.trace("The node type SpreadProperty has been renamed to SpreadElement");
-  return (0, _builder.default)("SpreadProperty", ...args);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/builders/generated/uppercase.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/builders/generated/uppercase.js ***!
-  \***********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-Object.defineProperty(exports, "ArrayExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.arrayExpression;
-  }
-}));
-Object.defineProperty(exports, "AssignmentExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.assignmentExpression;
-  }
-}));
-Object.defineProperty(exports, "BinaryExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.binaryExpression;
-  }
-}));
-Object.defineProperty(exports, "InterpreterDirective", ({
-  enumerable: true,
-  get: function () {
-    return _index.interpreterDirective;
-  }
-}));
-Object.defineProperty(exports, "Directive", ({
-  enumerable: true,
-  get: function () {
-    return _index.directive;
-  }
-}));
-Object.defineProperty(exports, "DirectiveLiteral", ({
-  enumerable: true,
-  get: function () {
-    return _index.directiveLiteral;
-  }
-}));
-Object.defineProperty(exports, "BlockStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.blockStatement;
-  }
-}));
-Object.defineProperty(exports, "BreakStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.breakStatement;
-  }
-}));
-Object.defineProperty(exports, "CallExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.callExpression;
-  }
-}));
-Object.defineProperty(exports, "CatchClause", ({
-  enumerable: true,
-  get: function () {
-    return _index.catchClause;
-  }
-}));
-Object.defineProperty(exports, "ConditionalExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.conditionalExpression;
-  }
-}));
-Object.defineProperty(exports, "ContinueStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.continueStatement;
-  }
-}));
-Object.defineProperty(exports, "DebuggerStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.debuggerStatement;
-  }
-}));
-Object.defineProperty(exports, "DoWhileStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.doWhileStatement;
-  }
-}));
-Object.defineProperty(exports, "EmptyStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.emptyStatement;
-  }
-}));
-Object.defineProperty(exports, "ExpressionStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.expressionStatement;
-  }
-}));
-Object.defineProperty(exports, "File", ({
-  enumerable: true,
-  get: function () {
-    return _index.file;
-  }
-}));
-Object.defineProperty(exports, "ForInStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.forInStatement;
-  }
-}));
-Object.defineProperty(exports, "ForStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.forStatement;
-  }
-}));
-Object.defineProperty(exports, "FunctionDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.functionDeclaration;
-  }
-}));
-Object.defineProperty(exports, "FunctionExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.functionExpression;
-  }
-}));
-Object.defineProperty(exports, "Identifier", ({
-  enumerable: true,
-  get: function () {
-    return _index.identifier;
-  }
-}));
-Object.defineProperty(exports, "IfStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.ifStatement;
-  }
-}));
-Object.defineProperty(exports, "LabeledStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.labeledStatement;
-  }
-}));
-Object.defineProperty(exports, "StringLiteral", ({
-  enumerable: true,
-  get: function () {
-    return _index.stringLiteral;
-  }
-}));
-Object.defineProperty(exports, "NumericLiteral", ({
-  enumerable: true,
-  get: function () {
-    return _index.numericLiteral;
-  }
-}));
-Object.defineProperty(exports, "NullLiteral", ({
-  enumerable: true,
-  get: function () {
-    return _index.nullLiteral;
-  }
-}));
-Object.defineProperty(exports, "BooleanLiteral", ({
-  enumerable: true,
-  get: function () {
-    return _index.booleanLiteral;
-  }
-}));
-Object.defineProperty(exports, "RegExpLiteral", ({
-  enumerable: true,
-  get: function () {
-    return _index.regExpLiteral;
-  }
-}));
-Object.defineProperty(exports, "LogicalExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.logicalExpression;
-  }
-}));
-Object.defineProperty(exports, "MemberExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.memberExpression;
-  }
-}));
-Object.defineProperty(exports, "NewExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.newExpression;
-  }
-}));
-Object.defineProperty(exports, "Program", ({
-  enumerable: true,
-  get: function () {
-    return _index.program;
-  }
-}));
-Object.defineProperty(exports, "ObjectExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.objectExpression;
-  }
-}));
-Object.defineProperty(exports, "ObjectMethod", ({
-  enumerable: true,
-  get: function () {
-    return _index.objectMethod;
-  }
-}));
-Object.defineProperty(exports, "ObjectProperty", ({
-  enumerable: true,
-  get: function () {
-    return _index.objectProperty;
-  }
-}));
-Object.defineProperty(exports, "RestElement", ({
-  enumerable: true,
-  get: function () {
-    return _index.restElement;
-  }
-}));
-Object.defineProperty(exports, "ReturnStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.returnStatement;
-  }
-}));
-Object.defineProperty(exports, "SequenceExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.sequenceExpression;
-  }
-}));
-Object.defineProperty(exports, "ParenthesizedExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.parenthesizedExpression;
-  }
-}));
-Object.defineProperty(exports, "SwitchCase", ({
-  enumerable: true,
-  get: function () {
-    return _index.switchCase;
-  }
-}));
-Object.defineProperty(exports, "SwitchStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.switchStatement;
-  }
-}));
-Object.defineProperty(exports, "ThisExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.thisExpression;
-  }
-}));
-Object.defineProperty(exports, "ThrowStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.throwStatement;
-  }
-}));
-Object.defineProperty(exports, "TryStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.tryStatement;
-  }
-}));
-Object.defineProperty(exports, "UnaryExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.unaryExpression;
-  }
-}));
-Object.defineProperty(exports, "UpdateExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.updateExpression;
-  }
-}));
-Object.defineProperty(exports, "VariableDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.variableDeclaration;
-  }
-}));
-Object.defineProperty(exports, "VariableDeclarator", ({
-  enumerable: true,
-  get: function () {
-    return _index.variableDeclarator;
-  }
-}));
-Object.defineProperty(exports, "WhileStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.whileStatement;
-  }
-}));
-Object.defineProperty(exports, "WithStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.withStatement;
-  }
-}));
-Object.defineProperty(exports, "AssignmentPattern", ({
-  enumerable: true,
-  get: function () {
-    return _index.assignmentPattern;
-  }
-}));
-Object.defineProperty(exports, "ArrayPattern", ({
-  enumerable: true,
-  get: function () {
-    return _index.arrayPattern;
-  }
-}));
-Object.defineProperty(exports, "ArrowFunctionExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.arrowFunctionExpression;
-  }
-}));
-Object.defineProperty(exports, "ClassBody", ({
-  enumerable: true,
-  get: function () {
-    return _index.classBody;
-  }
-}));
-Object.defineProperty(exports, "ClassExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.classExpression;
-  }
-}));
-Object.defineProperty(exports, "ClassDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.classDeclaration;
-  }
-}));
-Object.defineProperty(exports, "ExportAllDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.exportAllDeclaration;
-  }
-}));
-Object.defineProperty(exports, "ExportDefaultDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.exportDefaultDeclaration;
-  }
-}));
-Object.defineProperty(exports, "ExportNamedDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.exportNamedDeclaration;
-  }
-}));
-Object.defineProperty(exports, "ExportSpecifier", ({
-  enumerable: true,
-  get: function () {
-    return _index.exportSpecifier;
-  }
-}));
-Object.defineProperty(exports, "ForOfStatement", ({
-  enumerable: true,
-  get: function () {
-    return _index.forOfStatement;
-  }
-}));
-Object.defineProperty(exports, "ImportDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.importDeclaration;
-  }
-}));
-Object.defineProperty(exports, "ImportDefaultSpecifier", ({
-  enumerable: true,
-  get: function () {
-    return _index.importDefaultSpecifier;
-  }
-}));
-Object.defineProperty(exports, "ImportNamespaceSpecifier", ({
-  enumerable: true,
-  get: function () {
-    return _index.importNamespaceSpecifier;
-  }
-}));
-Object.defineProperty(exports, "ImportSpecifier", ({
-  enumerable: true,
-  get: function () {
-    return _index.importSpecifier;
-  }
-}));
-Object.defineProperty(exports, "MetaProperty", ({
-  enumerable: true,
-  get: function () {
-    return _index.metaProperty;
-  }
-}));
-Object.defineProperty(exports, "ClassMethod", ({
-  enumerable: true,
-  get: function () {
-    return _index.classMethod;
-  }
-}));
-Object.defineProperty(exports, "ObjectPattern", ({
-  enumerable: true,
-  get: function () {
-    return _index.objectPattern;
-  }
-}));
-Object.defineProperty(exports, "SpreadElement", ({
-  enumerable: true,
-  get: function () {
-    return _index.spreadElement;
-  }
-}));
-Object.defineProperty(exports, "Super", ({
-  enumerable: true,
-  get: function () {
-    return _index.super;
-  }
-}));
-Object.defineProperty(exports, "TaggedTemplateExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.taggedTemplateExpression;
-  }
-}));
-Object.defineProperty(exports, "TemplateElement", ({
-  enumerable: true,
-  get: function () {
-    return _index.templateElement;
-  }
-}));
-Object.defineProperty(exports, "TemplateLiteral", ({
-  enumerable: true,
-  get: function () {
-    return _index.templateLiteral;
-  }
-}));
-Object.defineProperty(exports, "YieldExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.yieldExpression;
-  }
-}));
-Object.defineProperty(exports, "AwaitExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.awaitExpression;
-  }
-}));
-Object.defineProperty(exports, "Import", ({
-  enumerable: true,
-  get: function () {
-    return _index.import;
-  }
-}));
-Object.defineProperty(exports, "BigIntLiteral", ({
-  enumerable: true,
-  get: function () {
-    return _index.bigIntLiteral;
-  }
-}));
-Object.defineProperty(exports, "ExportNamespaceSpecifier", ({
-  enumerable: true,
-  get: function () {
-    return _index.exportNamespaceSpecifier;
-  }
-}));
-Object.defineProperty(exports, "OptionalMemberExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.optionalMemberExpression;
-  }
-}));
-Object.defineProperty(exports, "OptionalCallExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.optionalCallExpression;
-  }
-}));
-Object.defineProperty(exports, "AnyTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.anyTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "ArrayTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.arrayTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "BooleanTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.booleanTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "BooleanLiteralTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.booleanLiteralTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "NullLiteralTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.nullLiteralTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "ClassImplements", ({
-  enumerable: true,
-  get: function () {
-    return _index.classImplements;
-  }
-}));
-Object.defineProperty(exports, "DeclareClass", ({
-  enumerable: true,
-  get: function () {
-    return _index.declareClass;
-  }
-}));
-Object.defineProperty(exports, "DeclareFunction", ({
-  enumerable: true,
-  get: function () {
-    return _index.declareFunction;
-  }
-}));
-Object.defineProperty(exports, "DeclareInterface", ({
-  enumerable: true,
-  get: function () {
-    return _index.declareInterface;
-  }
-}));
-Object.defineProperty(exports, "DeclareModule", ({
-  enumerable: true,
-  get: function () {
-    return _index.declareModule;
-  }
-}));
-Object.defineProperty(exports, "DeclareModuleExports", ({
-  enumerable: true,
-  get: function () {
-    return _index.declareModuleExports;
-  }
-}));
-Object.defineProperty(exports, "DeclareTypeAlias", ({
-  enumerable: true,
-  get: function () {
-    return _index.declareTypeAlias;
-  }
-}));
-Object.defineProperty(exports, "DeclareOpaqueType", ({
-  enumerable: true,
-  get: function () {
-    return _index.declareOpaqueType;
-  }
-}));
-Object.defineProperty(exports, "DeclareVariable", ({
-  enumerable: true,
-  get: function () {
-    return _index.declareVariable;
-  }
-}));
-Object.defineProperty(exports, "DeclareExportDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.declareExportDeclaration;
-  }
-}));
-Object.defineProperty(exports, "DeclareExportAllDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.declareExportAllDeclaration;
-  }
-}));
-Object.defineProperty(exports, "DeclaredPredicate", ({
-  enumerable: true,
-  get: function () {
-    return _index.declaredPredicate;
-  }
-}));
-Object.defineProperty(exports, "ExistsTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.existsTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "FunctionTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.functionTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "FunctionTypeParam", ({
-  enumerable: true,
-  get: function () {
-    return _index.functionTypeParam;
-  }
-}));
-Object.defineProperty(exports, "GenericTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.genericTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "InferredPredicate", ({
-  enumerable: true,
-  get: function () {
-    return _index.inferredPredicate;
-  }
-}));
-Object.defineProperty(exports, "InterfaceExtends", ({
-  enumerable: true,
-  get: function () {
-    return _index.interfaceExtends;
-  }
-}));
-Object.defineProperty(exports, "InterfaceDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.interfaceDeclaration;
-  }
-}));
-Object.defineProperty(exports, "InterfaceTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.interfaceTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "IntersectionTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.intersectionTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "MixedTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.mixedTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "EmptyTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.emptyTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "NullableTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.nullableTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "NumberLiteralTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.numberLiteralTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "NumberTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.numberTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "ObjectTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.objectTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "ObjectTypeInternalSlot", ({
-  enumerable: true,
-  get: function () {
-    return _index.objectTypeInternalSlot;
-  }
-}));
-Object.defineProperty(exports, "ObjectTypeCallProperty", ({
-  enumerable: true,
-  get: function () {
-    return _index.objectTypeCallProperty;
-  }
-}));
-Object.defineProperty(exports, "ObjectTypeIndexer", ({
-  enumerable: true,
-  get: function () {
-    return _index.objectTypeIndexer;
-  }
-}));
-Object.defineProperty(exports, "ObjectTypeProperty", ({
-  enumerable: true,
-  get: function () {
-    return _index.objectTypeProperty;
-  }
-}));
-Object.defineProperty(exports, "ObjectTypeSpreadProperty", ({
-  enumerable: true,
-  get: function () {
-    return _index.objectTypeSpreadProperty;
-  }
-}));
-Object.defineProperty(exports, "OpaqueType", ({
-  enumerable: true,
-  get: function () {
-    return _index.opaqueType;
-  }
-}));
-Object.defineProperty(exports, "QualifiedTypeIdentifier", ({
-  enumerable: true,
-  get: function () {
-    return _index.qualifiedTypeIdentifier;
-  }
-}));
-Object.defineProperty(exports, "StringLiteralTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.stringLiteralTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "StringTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.stringTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "SymbolTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.symbolTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "ThisTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.thisTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "TupleTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.tupleTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "TypeofTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.typeofTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "TypeAlias", ({
-  enumerable: true,
-  get: function () {
-    return _index.typeAlias;
-  }
-}));
-Object.defineProperty(exports, "TypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.typeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "TypeCastExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.typeCastExpression;
-  }
-}));
-Object.defineProperty(exports, "TypeParameter", ({
-  enumerable: true,
-  get: function () {
-    return _index.typeParameter;
-  }
-}));
-Object.defineProperty(exports, "TypeParameterDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.typeParameterDeclaration;
-  }
-}));
-Object.defineProperty(exports, "TypeParameterInstantiation", ({
-  enumerable: true,
-  get: function () {
-    return _index.typeParameterInstantiation;
-  }
-}));
-Object.defineProperty(exports, "UnionTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.unionTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "Variance", ({
-  enumerable: true,
-  get: function () {
-    return _index.variance;
-  }
-}));
-Object.defineProperty(exports, "VoidTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.voidTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "EnumDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.enumDeclaration;
-  }
-}));
-Object.defineProperty(exports, "EnumBooleanBody", ({
-  enumerable: true,
-  get: function () {
-    return _index.enumBooleanBody;
-  }
-}));
-Object.defineProperty(exports, "EnumNumberBody", ({
-  enumerable: true,
-  get: function () {
-    return _index.enumNumberBody;
-  }
-}));
-Object.defineProperty(exports, "EnumStringBody", ({
-  enumerable: true,
-  get: function () {
-    return _index.enumStringBody;
-  }
-}));
-Object.defineProperty(exports, "EnumSymbolBody", ({
-  enumerable: true,
-  get: function () {
-    return _index.enumSymbolBody;
-  }
-}));
-Object.defineProperty(exports, "EnumBooleanMember", ({
-  enumerable: true,
-  get: function () {
-    return _index.enumBooleanMember;
-  }
-}));
-Object.defineProperty(exports, "EnumNumberMember", ({
-  enumerable: true,
-  get: function () {
-    return _index.enumNumberMember;
-  }
-}));
-Object.defineProperty(exports, "EnumStringMember", ({
-  enumerable: true,
-  get: function () {
-    return _index.enumStringMember;
-  }
-}));
-Object.defineProperty(exports, "EnumDefaultedMember", ({
-  enumerable: true,
-  get: function () {
-    return _index.enumDefaultedMember;
-  }
-}));
-Object.defineProperty(exports, "IndexedAccessType", ({
-  enumerable: true,
-  get: function () {
-    return _index.indexedAccessType;
-  }
-}));
-Object.defineProperty(exports, "OptionalIndexedAccessType", ({
-  enumerable: true,
-  get: function () {
-    return _index.optionalIndexedAccessType;
-  }
-}));
-Object.defineProperty(exports, "JSXAttribute", ({
-  enumerable: true,
-  get: function () {
-    return _index.jsxAttribute;
-  }
-}));
-Object.defineProperty(exports, "JSXClosingElement", ({
-  enumerable: true,
-  get: function () {
-    return _index.jsxClosingElement;
-  }
-}));
-Object.defineProperty(exports, "JSXElement", ({
-  enumerable: true,
-  get: function () {
-    return _index.jsxElement;
-  }
-}));
-Object.defineProperty(exports, "JSXEmptyExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.jsxEmptyExpression;
-  }
-}));
-Object.defineProperty(exports, "JSXExpressionContainer", ({
-  enumerable: true,
-  get: function () {
-    return _index.jsxExpressionContainer;
-  }
-}));
-Object.defineProperty(exports, "JSXSpreadChild", ({
-  enumerable: true,
-  get: function () {
-    return _index.jsxSpreadChild;
-  }
-}));
-Object.defineProperty(exports, "JSXIdentifier", ({
-  enumerable: true,
-  get: function () {
-    return _index.jsxIdentifier;
-  }
-}));
-Object.defineProperty(exports, "JSXMemberExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.jsxMemberExpression;
-  }
-}));
-Object.defineProperty(exports, "JSXNamespacedName", ({
-  enumerable: true,
-  get: function () {
-    return _index.jsxNamespacedName;
-  }
-}));
-Object.defineProperty(exports, "JSXOpeningElement", ({
-  enumerable: true,
-  get: function () {
-    return _index.jsxOpeningElement;
-  }
-}));
-Object.defineProperty(exports, "JSXSpreadAttribute", ({
-  enumerable: true,
-  get: function () {
-    return _index.jsxSpreadAttribute;
-  }
-}));
-Object.defineProperty(exports, "JSXText", ({
-  enumerable: true,
-  get: function () {
-    return _index.jsxText;
-  }
-}));
-Object.defineProperty(exports, "JSXFragment", ({
-  enumerable: true,
-  get: function () {
-    return _index.jsxFragment;
-  }
-}));
-Object.defineProperty(exports, "JSXOpeningFragment", ({
-  enumerable: true,
-  get: function () {
-    return _index.jsxOpeningFragment;
-  }
-}));
-Object.defineProperty(exports, "JSXClosingFragment", ({
-  enumerable: true,
-  get: function () {
-    return _index.jsxClosingFragment;
-  }
-}));
-Object.defineProperty(exports, "Noop", ({
-  enumerable: true,
-  get: function () {
-    return _index.noop;
-  }
-}));
-Object.defineProperty(exports, "Placeholder", ({
-  enumerable: true,
-  get: function () {
-    return _index.placeholder;
-  }
-}));
-Object.defineProperty(exports, "V8IntrinsicIdentifier", ({
-  enumerable: true,
-  get: function () {
-    return _index.v8IntrinsicIdentifier;
-  }
-}));
-Object.defineProperty(exports, "ArgumentPlaceholder", ({
-  enumerable: true,
-  get: function () {
-    return _index.argumentPlaceholder;
-  }
-}));
-Object.defineProperty(exports, "BindExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.bindExpression;
-  }
-}));
-Object.defineProperty(exports, "ClassProperty", ({
-  enumerable: true,
-  get: function () {
-    return _index.classProperty;
-  }
-}));
-Object.defineProperty(exports, "PipelineTopicExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.pipelineTopicExpression;
-  }
-}));
-Object.defineProperty(exports, "PipelineBareFunction", ({
-  enumerable: true,
-  get: function () {
-    return _index.pipelineBareFunction;
-  }
-}));
-Object.defineProperty(exports, "PipelinePrimaryTopicReference", ({
-  enumerable: true,
-  get: function () {
-    return _index.pipelinePrimaryTopicReference;
-  }
-}));
-Object.defineProperty(exports, "ClassPrivateProperty", ({
-  enumerable: true,
-  get: function () {
-    return _index.classPrivateProperty;
-  }
-}));
-Object.defineProperty(exports, "ClassPrivateMethod", ({
-  enumerable: true,
-  get: function () {
-    return _index.classPrivateMethod;
-  }
-}));
-Object.defineProperty(exports, "ImportAttribute", ({
-  enumerable: true,
-  get: function () {
-    return _index.importAttribute;
-  }
-}));
-Object.defineProperty(exports, "Decorator", ({
-  enumerable: true,
-  get: function () {
-    return _index.decorator;
-  }
-}));
-Object.defineProperty(exports, "DoExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.doExpression;
-  }
-}));
-Object.defineProperty(exports, "ExportDefaultSpecifier", ({
-  enumerable: true,
-  get: function () {
-    return _index.exportDefaultSpecifier;
-  }
-}));
-Object.defineProperty(exports, "PrivateName", ({
-  enumerable: true,
-  get: function () {
-    return _index.privateName;
-  }
-}));
-Object.defineProperty(exports, "RecordExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.recordExpression;
-  }
-}));
-Object.defineProperty(exports, "TupleExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.tupleExpression;
-  }
-}));
-Object.defineProperty(exports, "DecimalLiteral", ({
-  enumerable: true,
-  get: function () {
-    return _index.decimalLiteral;
-  }
-}));
-Object.defineProperty(exports, "StaticBlock", ({
-  enumerable: true,
-  get: function () {
-    return _index.staticBlock;
-  }
-}));
-Object.defineProperty(exports, "ModuleExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.moduleExpression;
-  }
-}));
-Object.defineProperty(exports, "TSParameterProperty", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsParameterProperty;
-  }
-}));
-Object.defineProperty(exports, "TSDeclareFunction", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsDeclareFunction;
-  }
-}));
-Object.defineProperty(exports, "TSDeclareMethod", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsDeclareMethod;
-  }
-}));
-Object.defineProperty(exports, "TSQualifiedName", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsQualifiedName;
-  }
-}));
-Object.defineProperty(exports, "TSCallSignatureDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsCallSignatureDeclaration;
-  }
-}));
-Object.defineProperty(exports, "TSConstructSignatureDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsConstructSignatureDeclaration;
-  }
-}));
-Object.defineProperty(exports, "TSPropertySignature", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsPropertySignature;
-  }
-}));
-Object.defineProperty(exports, "TSMethodSignature", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsMethodSignature;
-  }
-}));
-Object.defineProperty(exports, "TSIndexSignature", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsIndexSignature;
-  }
-}));
-Object.defineProperty(exports, "TSAnyKeyword", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsAnyKeyword;
-  }
-}));
-Object.defineProperty(exports, "TSBooleanKeyword", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsBooleanKeyword;
-  }
-}));
-Object.defineProperty(exports, "TSBigIntKeyword", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsBigIntKeyword;
-  }
-}));
-Object.defineProperty(exports, "TSIntrinsicKeyword", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsIntrinsicKeyword;
-  }
-}));
-Object.defineProperty(exports, "TSNeverKeyword", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsNeverKeyword;
-  }
-}));
-Object.defineProperty(exports, "TSNullKeyword", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsNullKeyword;
-  }
-}));
-Object.defineProperty(exports, "TSNumberKeyword", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsNumberKeyword;
-  }
-}));
-Object.defineProperty(exports, "TSObjectKeyword", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsObjectKeyword;
-  }
-}));
-Object.defineProperty(exports, "TSStringKeyword", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsStringKeyword;
-  }
-}));
-Object.defineProperty(exports, "TSSymbolKeyword", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsSymbolKeyword;
-  }
-}));
-Object.defineProperty(exports, "TSUndefinedKeyword", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsUndefinedKeyword;
-  }
-}));
-Object.defineProperty(exports, "TSUnknownKeyword", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsUnknownKeyword;
-  }
-}));
-Object.defineProperty(exports, "TSVoidKeyword", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsVoidKeyword;
-  }
-}));
-Object.defineProperty(exports, "TSThisType", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsThisType;
-  }
-}));
-Object.defineProperty(exports, "TSFunctionType", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsFunctionType;
-  }
-}));
-Object.defineProperty(exports, "TSConstructorType", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsConstructorType;
-  }
-}));
-Object.defineProperty(exports, "TSTypeReference", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsTypeReference;
-  }
-}));
-Object.defineProperty(exports, "TSTypePredicate", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsTypePredicate;
-  }
-}));
-Object.defineProperty(exports, "TSTypeQuery", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsTypeQuery;
-  }
-}));
-Object.defineProperty(exports, "TSTypeLiteral", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsTypeLiteral;
-  }
-}));
-Object.defineProperty(exports, "TSArrayType", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsArrayType;
-  }
-}));
-Object.defineProperty(exports, "TSTupleType", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsTupleType;
-  }
-}));
-Object.defineProperty(exports, "TSOptionalType", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsOptionalType;
-  }
-}));
-Object.defineProperty(exports, "TSRestType", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsRestType;
-  }
-}));
-Object.defineProperty(exports, "TSNamedTupleMember", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsNamedTupleMember;
-  }
-}));
-Object.defineProperty(exports, "TSUnionType", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsUnionType;
-  }
-}));
-Object.defineProperty(exports, "TSIntersectionType", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsIntersectionType;
-  }
-}));
-Object.defineProperty(exports, "TSConditionalType", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsConditionalType;
-  }
-}));
-Object.defineProperty(exports, "TSInferType", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsInferType;
-  }
-}));
-Object.defineProperty(exports, "TSParenthesizedType", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsParenthesizedType;
-  }
-}));
-Object.defineProperty(exports, "TSTypeOperator", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsTypeOperator;
-  }
-}));
-Object.defineProperty(exports, "TSIndexedAccessType", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsIndexedAccessType;
-  }
-}));
-Object.defineProperty(exports, "TSMappedType", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsMappedType;
-  }
-}));
-Object.defineProperty(exports, "TSLiteralType", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsLiteralType;
-  }
-}));
-Object.defineProperty(exports, "TSExpressionWithTypeArguments", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsExpressionWithTypeArguments;
-  }
-}));
-Object.defineProperty(exports, "TSInterfaceDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsInterfaceDeclaration;
-  }
-}));
-Object.defineProperty(exports, "TSInterfaceBody", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsInterfaceBody;
-  }
-}));
-Object.defineProperty(exports, "TSTypeAliasDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsTypeAliasDeclaration;
-  }
-}));
-Object.defineProperty(exports, "TSAsExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsAsExpression;
-  }
-}));
-Object.defineProperty(exports, "TSTypeAssertion", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsTypeAssertion;
-  }
-}));
-Object.defineProperty(exports, "TSEnumDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsEnumDeclaration;
-  }
-}));
-Object.defineProperty(exports, "TSEnumMember", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsEnumMember;
-  }
-}));
-Object.defineProperty(exports, "TSModuleDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsModuleDeclaration;
-  }
-}));
-Object.defineProperty(exports, "TSModuleBlock", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsModuleBlock;
-  }
-}));
-Object.defineProperty(exports, "TSImportType", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsImportType;
-  }
-}));
-Object.defineProperty(exports, "TSImportEqualsDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsImportEqualsDeclaration;
-  }
-}));
-Object.defineProperty(exports, "TSExternalModuleReference", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsExternalModuleReference;
-  }
-}));
-Object.defineProperty(exports, "TSNonNullExpression", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsNonNullExpression;
-  }
-}));
-Object.defineProperty(exports, "TSExportAssignment", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsExportAssignment;
-  }
-}));
-Object.defineProperty(exports, "TSNamespaceExportDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsNamespaceExportDeclaration;
-  }
-}));
-Object.defineProperty(exports, "TSTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsTypeAnnotation;
-  }
-}));
-Object.defineProperty(exports, "TSTypeParameterInstantiation", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsTypeParameterInstantiation;
-  }
-}));
-Object.defineProperty(exports, "TSTypeParameterDeclaration", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsTypeParameterDeclaration;
-  }
-}));
-Object.defineProperty(exports, "TSTypeParameter", ({
-  enumerable: true,
-  get: function () {
-    return _index.tsTypeParameter;
-  }
-}));
-Object.defineProperty(exports, "NumberLiteral", ({
-  enumerable: true,
-  get: function () {
-    return _index.numberLiteral;
-  }
-}));
-Object.defineProperty(exports, "RegexLiteral", ({
-  enumerable: true,
-  get: function () {
-    return _index.regexLiteral;
-  }
-}));
-Object.defineProperty(exports, "RestProperty", ({
-  enumerable: true,
-  get: function () {
-    return _index.restProperty;
-  }
-}));
-Object.defineProperty(exports, "SpreadProperty", ({
-  enumerable: true,
-  get: function () {
-    return _index.spreadProperty;
-  }
-}));
-
-var _index = __webpack_require__(/*! ./index */ "./node_modules/@babel/types/lib/builders/generated/index.js");
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/builders/react/buildChildren.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/builders/react/buildChildren.js ***!
-  \***********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = buildChildren;
-
-var _generated = __webpack_require__(/*! ../../validators/generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-var _cleanJSXElementLiteralChild = __webpack_require__(/*! ../../utils/react/cleanJSXElementLiteralChild */ "./node_modules/@babel/types/lib/utils/react/cleanJSXElementLiteralChild.js");
-
-function buildChildren(node) {
-  const elements = [];
-
-  for (let i = 0; i < node.children.length; i++) {
-    let child = node.children[i];
-
-    if ((0, _generated.isJSXText)(child)) {
-      (0, _cleanJSXElementLiteralChild.default)(child, elements);
-      continue;
-    }
-
-    if ((0, _generated.isJSXExpressionContainer)(child)) child = child.expression;
-    if ((0, _generated.isJSXEmptyExpression)(child)) continue;
-    elements.push(child);
-  }
-
-  return elements;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/builders/typescript/createTSUnionType.js":
-/*!********************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/builders/typescript/createTSUnionType.js ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = createTSUnionType;
-
-var _generated = __webpack_require__(/*! ../generated */ "./node_modules/@babel/types/lib/builders/generated/index.js");
-
-var _removeTypeDuplicates = __webpack_require__(/*! ../../modifications/typescript/removeTypeDuplicates */ "./node_modules/@babel/types/lib/modifications/typescript/removeTypeDuplicates.js");
-
-function createTSUnionType(typeAnnotations) {
-  const types = typeAnnotations.map(type => type.typeAnnotation);
-  const flattened = (0, _removeTypeDuplicates.default)(types);
-
-  if (flattened.length === 1) {
-    return flattened[0];
-  } else {
-    return (0, _generated.tsUnionType)(flattened);
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/clone/clone.js":
-/*!******************************************************!*\
-  !*** ./node_modules/@babel/types/lib/clone/clone.js ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = clone;
-
-var _cloneNode = __webpack_require__(/*! ./cloneNode */ "./node_modules/@babel/types/lib/clone/cloneNode.js");
-
-function clone(node) {
-  return (0, _cloneNode.default)(node, false);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/clone/cloneDeep.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/@babel/types/lib/clone/cloneDeep.js ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = cloneDeep;
-
-var _cloneNode = __webpack_require__(/*! ./cloneNode */ "./node_modules/@babel/types/lib/clone/cloneNode.js");
-
-function cloneDeep(node) {
-  return (0, _cloneNode.default)(node);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/clone/cloneDeepWithoutLoc.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/clone/cloneDeepWithoutLoc.js ***!
-  \********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = cloneDeepWithoutLoc;
-
-var _cloneNode = __webpack_require__(/*! ./cloneNode */ "./node_modules/@babel/types/lib/clone/cloneNode.js");
-
-function cloneDeepWithoutLoc(node) {
-  return (0, _cloneNode.default)(node, true, true);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/clone/cloneNode.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/@babel/types/lib/clone/cloneNode.js ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = cloneNode;
-
-var _definitions = __webpack_require__(/*! ../definitions */ "./node_modules/@babel/types/lib/definitions/index.js");
-
-var _generated = __webpack_require__(/*! ../validators/generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-const has = Function.call.bind(Object.prototype.hasOwnProperty);
-
-function cloneIfNode(obj, deep, withoutLoc) {
-  if (obj && typeof obj.type === "string") {
-    return cloneNode(obj, deep, withoutLoc);
-  }
-
-  return obj;
-}
-
-function cloneIfNodeOrArray(obj, deep, withoutLoc) {
-  if (Array.isArray(obj)) {
-    return obj.map(node => cloneIfNode(node, deep, withoutLoc));
-  }
-
-  return cloneIfNode(obj, deep, withoutLoc);
-}
-
-function cloneNode(node, deep = true, withoutLoc = false) {
-  if (!node) return node;
-  const {
-    type
-  } = node;
-  const newNode = {
-    type: node.type
-  };
-
-  if ((0, _generated.isIdentifier)(node)) {
-    newNode.name = node.name;
-
-    if (has(node, "optional") && typeof node.optional === "boolean") {
-      newNode.optional = node.optional;
-    }
-
-    if (has(node, "typeAnnotation")) {
-      newNode.typeAnnotation = deep ? cloneIfNodeOrArray(node.typeAnnotation, true, withoutLoc) : node.typeAnnotation;
-    }
-  } else if (!has(_definitions.NODE_FIELDS, type)) {
-    throw new Error(`Unknown node type: "${type}"`);
-  } else {
-    for (const field of Object.keys(_definitions.NODE_FIELDS[type])) {
-      if (has(node, field)) {
-        if (deep) {
-          newNode[field] = (0, _generated.isFile)(node) && field === "comments" ? maybeCloneComments(node.comments, deep, withoutLoc) : cloneIfNodeOrArray(node[field], true, withoutLoc);
-        } else {
-          newNode[field] = node[field];
-        }
-      }
-    }
-  }
-
-  if (has(node, "loc")) {
-    if (withoutLoc) {
-      newNode.loc = null;
-    } else {
-      newNode.loc = node.loc;
-    }
-  }
-
-  if (has(node, "leadingComments")) {
-    newNode.leadingComments = maybeCloneComments(node.leadingComments, deep, withoutLoc);
-  }
-
-  if (has(node, "innerComments")) {
-    newNode.innerComments = maybeCloneComments(node.innerComments, deep, withoutLoc);
-  }
-
-  if (has(node, "trailingComments")) {
-    newNode.trailingComments = maybeCloneComments(node.trailingComments, deep, withoutLoc);
-  }
-
-  if (has(node, "extra")) {
-    newNode.extra = Object.assign({}, node.extra);
-  }
-
-  return newNode;
-}
-
-function maybeCloneComments(comments, deep, withoutLoc) {
-  if (!comments || !deep) {
-    return comments;
-  }
-
-  return comments.map(({
-    type,
-    value,
-    loc
-  }) => {
-    if (withoutLoc) {
-      return {
-        type,
-        value,
-        loc: null
-      };
-    }
-
-    return {
-      type,
-      value,
-      loc
-    };
-  });
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/clone/cloneWithoutLoc.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/clone/cloneWithoutLoc.js ***!
-  \****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = cloneWithoutLoc;
-
-var _cloneNode = __webpack_require__(/*! ./cloneNode */ "./node_modules/@babel/types/lib/clone/cloneNode.js");
-
-function cloneWithoutLoc(node) {
-  return (0, _cloneNode.default)(node, false, true);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/comments/addComment.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/comments/addComment.js ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = addComment;
-
-var _addComments = __webpack_require__(/*! ./addComments */ "./node_modules/@babel/types/lib/comments/addComments.js");
-
-function addComment(node, type, content, line) {
-  return (0, _addComments.default)(node, type, [{
-    type: line ? "CommentLine" : "CommentBlock",
-    value: content
-  }]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/comments/addComments.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/comments/addComments.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = addComments;
-
-function addComments(node, type, comments) {
-  if (!comments || !node) return node;
-  const key = `${type}Comments`;
-
-  if (node[key]) {
-    if (type === "leading") {
-      node[key] = comments.concat(node[key]);
-    } else {
-      node[key] = node[key].concat(comments);
-    }
-  } else {
-    node[key] = comments;
-  }
-
-  return node;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/comments/inheritInnerComments.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/comments/inheritInnerComments.js ***!
-  \************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = inheritInnerComments;
-
-var _inherit = __webpack_require__(/*! ../utils/inherit */ "./node_modules/@babel/types/lib/utils/inherit.js");
-
-function inheritInnerComments(child, parent) {
-  (0, _inherit.default)("innerComments", child, parent);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/comments/inheritLeadingComments.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/comments/inheritLeadingComments.js ***!
-  \**************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = inheritLeadingComments;
-
-var _inherit = __webpack_require__(/*! ../utils/inherit */ "./node_modules/@babel/types/lib/utils/inherit.js");
-
-function inheritLeadingComments(child, parent) {
-  (0, _inherit.default)("leadingComments", child, parent);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/comments/inheritTrailingComments.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/comments/inheritTrailingComments.js ***!
-  \***************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = inheritTrailingComments;
-
-var _inherit = __webpack_require__(/*! ../utils/inherit */ "./node_modules/@babel/types/lib/utils/inherit.js");
-
-function inheritTrailingComments(child, parent) {
-  (0, _inherit.default)("trailingComments", child, parent);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/comments/inheritsComments.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/comments/inheritsComments.js ***!
-  \********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = inheritsComments;
-
-var _inheritTrailingComments = __webpack_require__(/*! ./inheritTrailingComments */ "./node_modules/@babel/types/lib/comments/inheritTrailingComments.js");
-
-var _inheritLeadingComments = __webpack_require__(/*! ./inheritLeadingComments */ "./node_modules/@babel/types/lib/comments/inheritLeadingComments.js");
-
-var _inheritInnerComments = __webpack_require__(/*! ./inheritInnerComments */ "./node_modules/@babel/types/lib/comments/inheritInnerComments.js");
-
-function inheritsComments(child, parent) {
-  (0, _inheritTrailingComments.default)(child, parent);
-  (0, _inheritLeadingComments.default)(child, parent);
-  (0, _inheritInnerComments.default)(child, parent);
-  return child;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/comments/removeComments.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/comments/removeComments.js ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = removeComments;
-
-var _constants = __webpack_require__(/*! ../constants */ "./node_modules/@babel/types/lib/constants/index.js");
-
-function removeComments(node) {
-  _constants.COMMENT_KEYS.forEach(key => {
-    node[key] = null;
-  });
-
-  return node;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/constants/generated/index.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/constants/generated/index.js ***!
-  \********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.TSBASETYPE_TYPES = exports.TSTYPE_TYPES = exports.TSTYPEELEMENT_TYPES = exports.PRIVATE_TYPES = exports.JSX_TYPES = exports.ENUMMEMBER_TYPES = exports.ENUMBODY_TYPES = exports.FLOWPREDICATE_TYPES = exports.FLOWDECLARATION_TYPES = exports.FLOWBASEANNOTATION_TYPES = exports.FLOWTYPE_TYPES = exports.FLOW_TYPES = exports.MODULESPECIFIER_TYPES = exports.EXPORTDECLARATION_TYPES = exports.MODULEDECLARATION_TYPES = exports.CLASS_TYPES = exports.PATTERN_TYPES = exports.UNARYLIKE_TYPES = exports.PROPERTY_TYPES = exports.OBJECTMEMBER_TYPES = exports.METHOD_TYPES = exports.USERWHITESPACABLE_TYPES = exports.IMMUTABLE_TYPES = exports.LITERAL_TYPES = exports.TSENTITYNAME_TYPES = exports.LVAL_TYPES = exports.PATTERNLIKE_TYPES = exports.DECLARATION_TYPES = exports.PUREISH_TYPES = exports.FUNCTIONPARENT_TYPES = exports.FUNCTION_TYPES = exports.FORXSTATEMENT_TYPES = exports.FOR_TYPES = exports.EXPRESSIONWRAPPER_TYPES = exports.WHILE_TYPES = exports.LOOP_TYPES = exports.CONDITIONAL_TYPES = exports.COMPLETIONSTATEMENT_TYPES = exports.TERMINATORLESS_TYPES = exports.STATEMENT_TYPES = exports.BLOCK_TYPES = exports.BLOCKPARENT_TYPES = exports.SCOPABLE_TYPES = exports.BINARY_TYPES = exports.EXPRESSION_TYPES = void 0;
-
-var _definitions = __webpack_require__(/*! ../../definitions */ "./node_modules/@babel/types/lib/definitions/index.js");
-
-const EXPRESSION_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Expression"];
-exports.EXPRESSION_TYPES = EXPRESSION_TYPES;
-const BINARY_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Binary"];
-exports.BINARY_TYPES = BINARY_TYPES;
-const SCOPABLE_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Scopable"];
-exports.SCOPABLE_TYPES = SCOPABLE_TYPES;
-const BLOCKPARENT_TYPES = _definitions.FLIPPED_ALIAS_KEYS["BlockParent"];
-exports.BLOCKPARENT_TYPES = BLOCKPARENT_TYPES;
-const BLOCK_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Block"];
-exports.BLOCK_TYPES = BLOCK_TYPES;
-const STATEMENT_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Statement"];
-exports.STATEMENT_TYPES = STATEMENT_TYPES;
-const TERMINATORLESS_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Terminatorless"];
-exports.TERMINATORLESS_TYPES = TERMINATORLESS_TYPES;
-const COMPLETIONSTATEMENT_TYPES = _definitions.FLIPPED_ALIAS_KEYS["CompletionStatement"];
-exports.COMPLETIONSTATEMENT_TYPES = COMPLETIONSTATEMENT_TYPES;
-const CONDITIONAL_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Conditional"];
-exports.CONDITIONAL_TYPES = CONDITIONAL_TYPES;
-const LOOP_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Loop"];
-exports.LOOP_TYPES = LOOP_TYPES;
-const WHILE_TYPES = _definitions.FLIPPED_ALIAS_KEYS["While"];
-exports.WHILE_TYPES = WHILE_TYPES;
-const EXPRESSIONWRAPPER_TYPES = _definitions.FLIPPED_ALIAS_KEYS["ExpressionWrapper"];
-exports.EXPRESSIONWRAPPER_TYPES = EXPRESSIONWRAPPER_TYPES;
-const FOR_TYPES = _definitions.FLIPPED_ALIAS_KEYS["For"];
-exports.FOR_TYPES = FOR_TYPES;
-const FORXSTATEMENT_TYPES = _definitions.FLIPPED_ALIAS_KEYS["ForXStatement"];
-exports.FORXSTATEMENT_TYPES = FORXSTATEMENT_TYPES;
-const FUNCTION_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Function"];
-exports.FUNCTION_TYPES = FUNCTION_TYPES;
-const FUNCTIONPARENT_TYPES = _definitions.FLIPPED_ALIAS_KEYS["FunctionParent"];
-exports.FUNCTIONPARENT_TYPES = FUNCTIONPARENT_TYPES;
-const PUREISH_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Pureish"];
-exports.PUREISH_TYPES = PUREISH_TYPES;
-const DECLARATION_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Declaration"];
-exports.DECLARATION_TYPES = DECLARATION_TYPES;
-const PATTERNLIKE_TYPES = _definitions.FLIPPED_ALIAS_KEYS["PatternLike"];
-exports.PATTERNLIKE_TYPES = PATTERNLIKE_TYPES;
-const LVAL_TYPES = _definitions.FLIPPED_ALIAS_KEYS["LVal"];
-exports.LVAL_TYPES = LVAL_TYPES;
-const TSENTITYNAME_TYPES = _definitions.FLIPPED_ALIAS_KEYS["TSEntityName"];
-exports.TSENTITYNAME_TYPES = TSENTITYNAME_TYPES;
-const LITERAL_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Literal"];
-exports.LITERAL_TYPES = LITERAL_TYPES;
-const IMMUTABLE_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Immutable"];
-exports.IMMUTABLE_TYPES = IMMUTABLE_TYPES;
-const USERWHITESPACABLE_TYPES = _definitions.FLIPPED_ALIAS_KEYS["UserWhitespacable"];
-exports.USERWHITESPACABLE_TYPES = USERWHITESPACABLE_TYPES;
-const METHOD_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Method"];
-exports.METHOD_TYPES = METHOD_TYPES;
-const OBJECTMEMBER_TYPES = _definitions.FLIPPED_ALIAS_KEYS["ObjectMember"];
-exports.OBJECTMEMBER_TYPES = OBJECTMEMBER_TYPES;
-const PROPERTY_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Property"];
-exports.PROPERTY_TYPES = PROPERTY_TYPES;
-const UNARYLIKE_TYPES = _definitions.FLIPPED_ALIAS_KEYS["UnaryLike"];
-exports.UNARYLIKE_TYPES = UNARYLIKE_TYPES;
-const PATTERN_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Pattern"];
-exports.PATTERN_TYPES = PATTERN_TYPES;
-const CLASS_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Class"];
-exports.CLASS_TYPES = CLASS_TYPES;
-const MODULEDECLARATION_TYPES = _definitions.FLIPPED_ALIAS_KEYS["ModuleDeclaration"];
-exports.MODULEDECLARATION_TYPES = MODULEDECLARATION_TYPES;
-const EXPORTDECLARATION_TYPES = _definitions.FLIPPED_ALIAS_KEYS["ExportDeclaration"];
-exports.EXPORTDECLARATION_TYPES = EXPORTDECLARATION_TYPES;
-const MODULESPECIFIER_TYPES = _definitions.FLIPPED_ALIAS_KEYS["ModuleSpecifier"];
-exports.MODULESPECIFIER_TYPES = MODULESPECIFIER_TYPES;
-const FLOW_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Flow"];
-exports.FLOW_TYPES = FLOW_TYPES;
-const FLOWTYPE_TYPES = _definitions.FLIPPED_ALIAS_KEYS["FlowType"];
-exports.FLOWTYPE_TYPES = FLOWTYPE_TYPES;
-const FLOWBASEANNOTATION_TYPES = _definitions.FLIPPED_ALIAS_KEYS["FlowBaseAnnotation"];
-exports.FLOWBASEANNOTATION_TYPES = FLOWBASEANNOTATION_TYPES;
-const FLOWDECLARATION_TYPES = _definitions.FLIPPED_ALIAS_KEYS["FlowDeclaration"];
-exports.FLOWDECLARATION_TYPES = FLOWDECLARATION_TYPES;
-const FLOWPREDICATE_TYPES = _definitions.FLIPPED_ALIAS_KEYS["FlowPredicate"];
-exports.FLOWPREDICATE_TYPES = FLOWPREDICATE_TYPES;
-const ENUMBODY_TYPES = _definitions.FLIPPED_ALIAS_KEYS["EnumBody"];
-exports.ENUMBODY_TYPES = ENUMBODY_TYPES;
-const ENUMMEMBER_TYPES = _definitions.FLIPPED_ALIAS_KEYS["EnumMember"];
-exports.ENUMMEMBER_TYPES = ENUMMEMBER_TYPES;
-const JSX_TYPES = _definitions.FLIPPED_ALIAS_KEYS["JSX"];
-exports.JSX_TYPES = JSX_TYPES;
-const PRIVATE_TYPES = _definitions.FLIPPED_ALIAS_KEYS["Private"];
-exports.PRIVATE_TYPES = PRIVATE_TYPES;
-const TSTYPEELEMENT_TYPES = _definitions.FLIPPED_ALIAS_KEYS["TSTypeElement"];
-exports.TSTYPEELEMENT_TYPES = TSTYPEELEMENT_TYPES;
-const TSTYPE_TYPES = _definitions.FLIPPED_ALIAS_KEYS["TSType"];
-exports.TSTYPE_TYPES = TSTYPE_TYPES;
-const TSBASETYPE_TYPES = _definitions.FLIPPED_ALIAS_KEYS["TSBaseType"];
-exports.TSBASETYPE_TYPES = TSBASETYPE_TYPES;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/constants/index.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/@babel/types/lib/constants/index.js ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.NOT_LOCAL_BINDING = exports.BLOCK_SCOPED_SYMBOL = exports.INHERIT_KEYS = exports.UNARY_OPERATORS = exports.STRING_UNARY_OPERATORS = exports.NUMBER_UNARY_OPERATORS = exports.BOOLEAN_UNARY_OPERATORS = exports.ASSIGNMENT_OPERATORS = exports.BINARY_OPERATORS = exports.NUMBER_BINARY_OPERATORS = exports.BOOLEAN_BINARY_OPERATORS = exports.COMPARISON_BINARY_OPERATORS = exports.EQUALITY_BINARY_OPERATORS = exports.BOOLEAN_NUMBER_BINARY_OPERATORS = exports.UPDATE_OPERATORS = exports.LOGICAL_OPERATORS = exports.COMMENT_KEYS = exports.FOR_INIT_KEYS = exports.FLATTENABLE_KEYS = exports.STATEMENT_OR_BLOCK_KEYS = void 0;
-const STATEMENT_OR_BLOCK_KEYS = ["consequent", "body", "alternate"];
-exports.STATEMENT_OR_BLOCK_KEYS = STATEMENT_OR_BLOCK_KEYS;
-const FLATTENABLE_KEYS = ["body", "expressions"];
-exports.FLATTENABLE_KEYS = FLATTENABLE_KEYS;
-const FOR_INIT_KEYS = ["left", "init"];
-exports.FOR_INIT_KEYS = FOR_INIT_KEYS;
-const COMMENT_KEYS = ["leadingComments", "trailingComments", "innerComments"];
-exports.COMMENT_KEYS = COMMENT_KEYS;
-const LOGICAL_OPERATORS = ["||", "&&", "??"];
-exports.LOGICAL_OPERATORS = LOGICAL_OPERATORS;
-const UPDATE_OPERATORS = ["++", "--"];
-exports.UPDATE_OPERATORS = UPDATE_OPERATORS;
-const BOOLEAN_NUMBER_BINARY_OPERATORS = [">", "<", ">=", "<="];
-exports.BOOLEAN_NUMBER_BINARY_OPERATORS = BOOLEAN_NUMBER_BINARY_OPERATORS;
-const EQUALITY_BINARY_OPERATORS = ["==", "===", "!=", "!=="];
-exports.EQUALITY_BINARY_OPERATORS = EQUALITY_BINARY_OPERATORS;
-const COMPARISON_BINARY_OPERATORS = [...EQUALITY_BINARY_OPERATORS, "in", "instanceof"];
-exports.COMPARISON_BINARY_OPERATORS = COMPARISON_BINARY_OPERATORS;
-const BOOLEAN_BINARY_OPERATORS = [...COMPARISON_BINARY_OPERATORS, ...BOOLEAN_NUMBER_BINARY_OPERATORS];
-exports.BOOLEAN_BINARY_OPERATORS = BOOLEAN_BINARY_OPERATORS;
-const NUMBER_BINARY_OPERATORS = ["-", "/", "%", "*", "**", "&", "|", ">>", ">>>", "<<", "^"];
-exports.NUMBER_BINARY_OPERATORS = NUMBER_BINARY_OPERATORS;
-const BINARY_OPERATORS = ["+", ...NUMBER_BINARY_OPERATORS, ...BOOLEAN_BINARY_OPERATORS];
-exports.BINARY_OPERATORS = BINARY_OPERATORS;
-const ASSIGNMENT_OPERATORS = ["=", "+=", ...NUMBER_BINARY_OPERATORS.map(op => op + "="), ...LOGICAL_OPERATORS.map(op => op + "=")];
-exports.ASSIGNMENT_OPERATORS = ASSIGNMENT_OPERATORS;
-const BOOLEAN_UNARY_OPERATORS = ["delete", "!"];
-exports.BOOLEAN_UNARY_OPERATORS = BOOLEAN_UNARY_OPERATORS;
-const NUMBER_UNARY_OPERATORS = ["+", "-", "~"];
-exports.NUMBER_UNARY_OPERATORS = NUMBER_UNARY_OPERATORS;
-const STRING_UNARY_OPERATORS = ["typeof"];
-exports.STRING_UNARY_OPERATORS = STRING_UNARY_OPERATORS;
-const UNARY_OPERATORS = ["void", "throw", ...BOOLEAN_UNARY_OPERATORS, ...NUMBER_UNARY_OPERATORS, ...STRING_UNARY_OPERATORS];
-exports.UNARY_OPERATORS = UNARY_OPERATORS;
-const INHERIT_KEYS = {
-  optional: ["typeAnnotation", "typeParameters", "returnType"],
-  force: ["start", "loc", "end"]
-};
-exports.INHERIT_KEYS = INHERIT_KEYS;
-const BLOCK_SCOPED_SYMBOL = Symbol.for("var used to be block scoped");
-exports.BLOCK_SCOPED_SYMBOL = BLOCK_SCOPED_SYMBOL;
-const NOT_LOCAL_BINDING = Symbol.for("should not be considered a local binding");
-exports.NOT_LOCAL_BINDING = NOT_LOCAL_BINDING;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/converters/ensureBlock.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/converters/ensureBlock.js ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = ensureBlock;
-
-var _toBlock = __webpack_require__(/*! ./toBlock */ "./node_modules/@babel/types/lib/converters/toBlock.js");
-
-function ensureBlock(node, key = "body") {
-  return node[key] = (0, _toBlock.default)(node[key], node);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/converters/gatherSequenceExpressions.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/converters/gatherSequenceExpressions.js ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = gatherSequenceExpressions;
-
-var _getBindingIdentifiers = __webpack_require__(/*! ../retrievers/getBindingIdentifiers */ "./node_modules/@babel/types/lib/retrievers/getBindingIdentifiers.js");
-
-var _generated = __webpack_require__(/*! ../validators/generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-var _generated2 = __webpack_require__(/*! ../builders/generated */ "./node_modules/@babel/types/lib/builders/generated/index.js");
-
-var _cloneNode = __webpack_require__(/*! ../clone/cloneNode */ "./node_modules/@babel/types/lib/clone/cloneNode.js");
-
-function gatherSequenceExpressions(nodes, scope, declars) {
-  const exprs = [];
-  let ensureLastUndefined = true;
-
-  for (const node of nodes) {
-    if (!(0, _generated.isEmptyStatement)(node)) {
-      ensureLastUndefined = false;
-    }
-
-    if ((0, _generated.isExpression)(node)) {
-      exprs.push(node);
-    } else if ((0, _generated.isExpressionStatement)(node)) {
-      exprs.push(node.expression);
-    } else if ((0, _generated.isVariableDeclaration)(node)) {
-      if (node.kind !== "var") return;
-
-      for (const declar of node.declarations) {
-        const bindings = (0, _getBindingIdentifiers.default)(declar);
-
-        for (const key of Object.keys(bindings)) {
-          declars.push({
-            kind: node.kind,
-            id: (0, _cloneNode.default)(bindings[key])
-          });
-        }
-
-        if (declar.init) {
-          exprs.push((0, _generated2.assignmentExpression)("=", declar.id, declar.init));
-        }
-      }
-
-      ensureLastUndefined = true;
-    } else if ((0, _generated.isIfStatement)(node)) {
-      const consequent = node.consequent ? gatherSequenceExpressions([node.consequent], scope, declars) : scope.buildUndefinedNode();
-      const alternate = node.alternate ? gatherSequenceExpressions([node.alternate], scope, declars) : scope.buildUndefinedNode();
-      if (!consequent || !alternate) return;
-      exprs.push((0, _generated2.conditionalExpression)(node.test, consequent, alternate));
-    } else if ((0, _generated.isBlockStatement)(node)) {
-      const body = gatherSequenceExpressions(node.body, scope, declars);
-      if (!body) return;
-      exprs.push(body);
-    } else if ((0, _generated.isEmptyStatement)(node)) {
-      if (nodes.indexOf(node) === 0) {
-        ensureLastUndefined = true;
-      }
-    } else {
-      return;
-    }
-  }
-
-  if (ensureLastUndefined) {
-    exprs.push(scope.buildUndefinedNode());
-  }
-
-  if (exprs.length === 1) {
-    return exprs[0];
-  } else {
-    return (0, _generated2.sequenceExpression)(exprs);
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/converters/toBindingIdentifierName.js":
-/*!*****************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/converters/toBindingIdentifierName.js ***!
-  \*****************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = toBindingIdentifierName;
-
-var _toIdentifier = __webpack_require__(/*! ./toIdentifier */ "./node_modules/@babel/types/lib/converters/toIdentifier.js");
-
-function toBindingIdentifierName(name) {
-  name = (0, _toIdentifier.default)(name);
-  if (name === "eval" || name === "arguments") name = "_" + name;
-  return name;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/converters/toBlock.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/converters/toBlock.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = toBlock;
-
-var _generated = __webpack_require__(/*! ../validators/generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-var _generated2 = __webpack_require__(/*! ../builders/generated */ "./node_modules/@babel/types/lib/builders/generated/index.js");
-
-function toBlock(node, parent) {
-  if ((0, _generated.isBlockStatement)(node)) {
-    return node;
-  }
-
-  let blockNodes = [];
-
-  if ((0, _generated.isEmptyStatement)(node)) {
-    blockNodes = [];
-  } else {
-    if (!(0, _generated.isStatement)(node)) {
-      if ((0, _generated.isFunction)(parent)) {
-        node = (0, _generated2.returnStatement)(node);
-      } else {
-        node = (0, _generated2.expressionStatement)(node);
-      }
-    }
-
-    blockNodes = [node];
-  }
-
-  return (0, _generated2.blockStatement)(blockNodes);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/converters/toComputedKey.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/converters/toComputedKey.js ***!
-  \*******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = toComputedKey;
-
-var _generated = __webpack_require__(/*! ../validators/generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-var _generated2 = __webpack_require__(/*! ../builders/generated */ "./node_modules/@babel/types/lib/builders/generated/index.js");
-
-function toComputedKey(node, key = node.key || node.property) {
-  if (!node.computed && (0, _generated.isIdentifier)(key)) key = (0, _generated2.stringLiteral)(key.name);
-  return key;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/converters/toExpression.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/converters/toExpression.js ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = void 0;
-
-var _generated = __webpack_require__(/*! ../validators/generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-var _default = toExpression;
-exports.default = _default;
-
-function toExpression(node) {
-  if ((0, _generated.isExpressionStatement)(node)) {
-    node = node.expression;
-  }
-
-  if ((0, _generated.isExpression)(node)) {
-    return node;
-  }
-
-  if ((0, _generated.isClass)(node)) {
-    node.type = "ClassExpression";
-  } else if ((0, _generated.isFunction)(node)) {
-    node.type = "FunctionExpression";
-  }
-
-  if (!(0, _generated.isExpression)(node)) {
-    throw new Error(`cannot turn ${node.type} to an expression`);
-  }
-
-  return node;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/converters/toIdentifier.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/converters/toIdentifier.js ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = toIdentifier;
-
-var _isValidIdentifier = __webpack_require__(/*! ../validators/isValidIdentifier */ "./node_modules/@babel/types/lib/validators/isValidIdentifier.js");
-
-var _helperValidatorIdentifier = __webpack_require__(/*! @babel/helper-validator-identifier */ "./node_modules/@babel/helper-validator-identifier/lib/index.js");
-
-function toIdentifier(input) {
-  input = input + "";
-  let name = "";
-
-  for (const c of input) {
-    name += (0, _helperValidatorIdentifier.isIdentifierChar)(c.codePointAt(0)) ? c : "-";
-  }
-
-  name = name.replace(/^[-0-9]+/, "");
-  name = name.replace(/[-\s]+(.)?/g, function (match, c) {
-    return c ? c.toUpperCase() : "";
-  });
-
-  if (!(0, _isValidIdentifier.default)(name)) {
-    name = `_${name}`;
-  }
-
-  return name || "_";
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/converters/toKeyAlias.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/converters/toKeyAlias.js ***!
-  \****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = toKeyAlias;
-
-var _generated = __webpack_require__(/*! ../validators/generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-var _cloneNode = __webpack_require__(/*! ../clone/cloneNode */ "./node_modules/@babel/types/lib/clone/cloneNode.js");
-
-var _removePropertiesDeep = __webpack_require__(/*! ../modifications/removePropertiesDeep */ "./node_modules/@babel/types/lib/modifications/removePropertiesDeep.js");
-
-function toKeyAlias(node, key = node.key) {
-  let alias;
-
-  if (node.kind === "method") {
-    return toKeyAlias.increment() + "";
-  } else if ((0, _generated.isIdentifier)(key)) {
-    alias = key.name;
-  } else if ((0, _generated.isStringLiteral)(key)) {
-    alias = JSON.stringify(key.value);
-  } else {
-    alias = JSON.stringify((0, _removePropertiesDeep.default)((0, _cloneNode.default)(key)));
-  }
-
-  if (node.computed) {
-    alias = `[${alias}]`;
-  }
-
-  if (node.static) {
-    alias = `static:${alias}`;
-  }
-
-  return alias;
-}
-
-toKeyAlias.uid = 0;
-
-toKeyAlias.increment = function () {
-  if (toKeyAlias.uid >= Number.MAX_SAFE_INTEGER) {
-    return toKeyAlias.uid = 0;
-  } else {
-    return toKeyAlias.uid++;
-  }
-};
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/converters/toSequenceExpression.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/converters/toSequenceExpression.js ***!
-  \**************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = toSequenceExpression;
-
-var _gatherSequenceExpressions = __webpack_require__(/*! ./gatherSequenceExpressions */ "./node_modules/@babel/types/lib/converters/gatherSequenceExpressions.js");
-
-function toSequenceExpression(nodes, scope) {
-  if (!(nodes != null && nodes.length)) return;
-  const declars = [];
-  const result = (0, _gatherSequenceExpressions.default)(nodes, scope, declars);
-  if (!result) return;
-
-  for (const declar of declars) {
-    scope.push(declar);
-  }
-
-  return result;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/converters/toStatement.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/converters/toStatement.js ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = void 0;
-
-var _generated = __webpack_require__(/*! ../validators/generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-var _generated2 = __webpack_require__(/*! ../builders/generated */ "./node_modules/@babel/types/lib/builders/generated/index.js");
-
-var _default = toStatement;
-exports.default = _default;
-
-function toStatement(node, ignore) {
-  if ((0, _generated.isStatement)(node)) {
-    return node;
-  }
-
-  let mustHaveId = false;
-  let newType;
-
-  if ((0, _generated.isClass)(node)) {
-    mustHaveId = true;
-    newType = "ClassDeclaration";
-  } else if ((0, _generated.isFunction)(node)) {
-    mustHaveId = true;
-    newType = "FunctionDeclaration";
-  } else if ((0, _generated.isAssignmentExpression)(node)) {
-    return (0, _generated2.expressionStatement)(node);
-  }
-
-  if (mustHaveId && !node.id) {
-    newType = false;
-  }
-
-  if (!newType) {
-    if (ignore) {
-      return false;
-    } else {
-      throw new Error(`cannot turn ${node.type} to a statement`);
-    }
-  }
-
-  node.type = newType;
-  return node;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/converters/valueToNode.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/converters/valueToNode.js ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = void 0;
-
-var _isValidIdentifier = __webpack_require__(/*! ../validators/isValidIdentifier */ "./node_modules/@babel/types/lib/validators/isValidIdentifier.js");
-
-var _generated = __webpack_require__(/*! ../builders/generated */ "./node_modules/@babel/types/lib/builders/generated/index.js");
-
-var _default = valueToNode;
-exports.default = _default;
-const objectToString = Function.call.bind(Object.prototype.toString);
-
-function isRegExp(value) {
-  return objectToString(value) === "[object RegExp]";
-}
-
-function isPlainObject(value) {
-  if (typeof value !== "object" || value === null || Object.prototype.toString.call(value) !== "[object Object]") {
-    return false;
-  }
-
-  const proto = Object.getPrototypeOf(value);
-  return proto === null || Object.getPrototypeOf(proto) === null;
-}
-
-function valueToNode(value) {
-  if (value === undefined) {
-    return (0, _generated.identifier)("undefined");
-  }
-
-  if (value === true || value === false) {
-    return (0, _generated.booleanLiteral)(value);
-  }
-
-  if (value === null) {
-    return (0, _generated.nullLiteral)();
-  }
-
-  if (typeof value === "string") {
-    return (0, _generated.stringLiteral)(value);
-  }
-
-  if (typeof value === "number") {
-    let result;
-
-    if (Number.isFinite(value)) {
-      result = (0, _generated.numericLiteral)(Math.abs(value));
-    } else {
-      let numerator;
-
-      if (Number.isNaN(value)) {
-        numerator = (0, _generated.numericLiteral)(0);
-      } else {
-        numerator = (0, _generated.numericLiteral)(1);
-      }
-
-      result = (0, _generated.binaryExpression)("/", numerator, (0, _generated.numericLiteral)(0));
-    }
-
-    if (value < 0 || Object.is(value, -0)) {
-      result = (0, _generated.unaryExpression)("-", result);
-    }
-
-    return result;
-  }
-
-  if (isRegExp(value)) {
-    const pattern = value.source;
-    const flags = value.toString().match(/\/([a-z]+|)$/)[1];
-    return (0, _generated.regExpLiteral)(pattern, flags);
-  }
-
-  if (Array.isArray(value)) {
-    return (0, _generated.arrayExpression)(value.map(valueToNode));
-  }
-
-  if (isPlainObject(value)) {
-    const props = [];
-
-    for (const key of Object.keys(value)) {
-      let nodeKey;
-
-      if ((0, _isValidIdentifier.default)(key)) {
-        nodeKey = (0, _generated.identifier)(key);
-      } else {
-        nodeKey = (0, _generated.stringLiteral)(key);
-      }
-
-      props.push((0, _generated.objectProperty)(nodeKey, valueToNode(value[key])));
-    }
-
-    return (0, _generated.objectExpression)(props);
-  }
-
-  throw new Error("don't know how to turn this value into a node");
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/definitions/core.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/@babel/types/lib/definitions/core.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.classMethodOrDeclareMethodCommon = exports.classMethodOrPropertyCommon = exports.patternLikeCommon = exports.functionDeclarationCommon = exports.functionTypeAnnotationCommon = exports.functionCommon = void 0;
-
-var _is = __webpack_require__(/*! ../validators/is */ "./node_modules/@babel/types/lib/validators/is.js");
-
-var _isValidIdentifier = __webpack_require__(/*! ../validators/isValidIdentifier */ "./node_modules/@babel/types/lib/validators/isValidIdentifier.js");
-
-var _helperValidatorIdentifier = __webpack_require__(/*! @babel/helper-validator-identifier */ "./node_modules/@babel/helper-validator-identifier/lib/index.js");
-
-var _constants = __webpack_require__(/*! ../constants */ "./node_modules/@babel/types/lib/constants/index.js");
-
-var _utils = __webpack_require__(/*! ./utils */ "./node_modules/@babel/types/lib/definitions/utils.js");
-
-(0, _utils.default)("ArrayExpression", {
-  fields: {
-    elements: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeOrValueType)("null", "Expression", "SpreadElement"))),
-      default: !process.env.BABEL_TYPES_8_BREAKING ? [] : undefined
-    }
-  },
-  visitor: ["elements"],
-  aliases: ["Expression"]
-});
-(0, _utils.default)("AssignmentExpression", {
-  fields: {
-    operator: {
-      validate: function () {
-        if (!process.env.BABEL_TYPES_8_BREAKING) {
-          return (0, _utils.assertValueType)("string");
-        }
-
-        const identifier = (0, _utils.assertOneOf)(..._constants.ASSIGNMENT_OPERATORS);
-        const pattern = (0, _utils.assertOneOf)("=");
-        return function (node, key, val) {
-          const validator = (0, _is.default)("Pattern", node.left) ? pattern : identifier;
-          validator(node, key, val);
-        };
-      }()
-    },
-    left: {
-      validate: !process.env.BABEL_TYPES_8_BREAKING ? (0, _utils.assertNodeType)("LVal") : (0, _utils.assertNodeType)("Identifier", "MemberExpression", "ArrayPattern", "ObjectPattern")
-    },
-    right: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  },
-  builder: ["operator", "left", "right"],
-  visitor: ["left", "right"],
-  aliases: ["Expression"]
-});
-(0, _utils.default)("BinaryExpression", {
-  builder: ["operator", "left", "right"],
-  fields: {
-    operator: {
-      validate: (0, _utils.assertOneOf)(..._constants.BINARY_OPERATORS)
-    },
-    left: {
-      validate: function () {
-        const expression = (0, _utils.assertNodeType)("Expression");
-        const inOp = (0, _utils.assertNodeType)("Expression", "PrivateName");
-
-        const validator = function (node, key, val) {
-          const validator = node.operator === "in" ? inOp : expression;
-          validator(node, key, val);
-        };
-
-        validator.oneOfNodeTypes = ["Expression", "PrivateName"];
-        return validator;
-      }()
-    },
-    right: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  },
-  visitor: ["left", "right"],
-  aliases: ["Binary", "Expression"]
-});
-(0, _utils.default)("InterpreterDirective", {
-  builder: ["value"],
-  fields: {
-    value: {
-      validate: (0, _utils.assertValueType)("string")
-    }
-  }
-});
-(0, _utils.default)("Directive", {
-  visitor: ["value"],
-  fields: {
-    value: {
-      validate: (0, _utils.assertNodeType)("DirectiveLiteral")
-    }
-  }
-});
-(0, _utils.default)("DirectiveLiteral", {
-  builder: ["value"],
-  fields: {
-    value: {
-      validate: (0, _utils.assertValueType)("string")
-    }
-  }
-});
-(0, _utils.default)("BlockStatement", {
-  builder: ["body", "directives"],
-  visitor: ["directives", "body"],
-  fields: {
-    directives: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Directive"))),
-      default: []
-    },
-    body: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Statement")))
-    }
-  },
-  aliases: ["Scopable", "BlockParent", "Block", "Statement"]
-});
-(0, _utils.default)("BreakStatement", {
-  visitor: ["label"],
-  fields: {
-    label: {
-      validate: (0, _utils.assertNodeType)("Identifier"),
-      optional: true
-    }
-  },
-  aliases: ["Statement", "Terminatorless", "CompletionStatement"]
-});
-(0, _utils.default)("CallExpression", {
-  visitor: ["callee", "arguments", "typeParameters", "typeArguments"],
-  builder: ["callee", "arguments"],
-  aliases: ["Expression"],
-  fields: Object.assign({
-    callee: {
-      validate: (0, _utils.assertNodeType)("Expression", "V8IntrinsicIdentifier")
-    },
-    arguments: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Expression", "SpreadElement", "JSXNamespacedName", "ArgumentPlaceholder")))
-    }
-  }, !process.env.BABEL_TYPES_8_BREAKING ? {
-    optional: {
-      validate: (0, _utils.assertOneOf)(true, false),
-      optional: true
-    }
-  } : {}, {
-    typeArguments: {
-      validate: (0, _utils.assertNodeType)("TypeParameterInstantiation"),
-      optional: true
-    },
-    typeParameters: {
-      validate: (0, _utils.assertNodeType)("TSTypeParameterInstantiation"),
-      optional: true
-    }
-  })
-});
-(0, _utils.default)("CatchClause", {
-  visitor: ["param", "body"],
-  fields: {
-    param: {
-      validate: (0, _utils.assertNodeType)("Identifier", "ArrayPattern", "ObjectPattern"),
-      optional: true
-    },
-    body: {
-      validate: (0, _utils.assertNodeType)("BlockStatement")
-    }
-  },
-  aliases: ["Scopable", "BlockParent"]
-});
-(0, _utils.default)("ConditionalExpression", {
-  visitor: ["test", "consequent", "alternate"],
-  fields: {
-    test: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    consequent: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    alternate: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  },
-  aliases: ["Expression", "Conditional"]
-});
-(0, _utils.default)("ContinueStatement", {
-  visitor: ["label"],
-  fields: {
-    label: {
-      validate: (0, _utils.assertNodeType)("Identifier"),
-      optional: true
-    }
-  },
-  aliases: ["Statement", "Terminatorless", "CompletionStatement"]
-});
-(0, _utils.default)("DebuggerStatement", {
-  aliases: ["Statement"]
-});
-(0, _utils.default)("DoWhileStatement", {
-  visitor: ["test", "body"],
-  fields: {
-    test: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    body: {
-      validate: (0, _utils.assertNodeType)("Statement")
-    }
-  },
-  aliases: ["Statement", "BlockParent", "Loop", "While", "Scopable"]
-});
-(0, _utils.default)("EmptyStatement", {
-  aliases: ["Statement"]
-});
-(0, _utils.default)("ExpressionStatement", {
-  visitor: ["expression"],
-  fields: {
-    expression: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  },
-  aliases: ["Statement", "ExpressionWrapper"]
-});
-(0, _utils.default)("File", {
-  builder: ["program", "comments", "tokens"],
-  visitor: ["program"],
-  fields: {
-    program: {
-      validate: (0, _utils.assertNodeType)("Program")
-    },
-    comments: {
-      validate: !process.env.BABEL_TYPES_8_BREAKING ? Object.assign(() => {}, {
-        each: {
-          oneOfNodeTypes: ["CommentBlock", "CommentLine"]
-        }
-      }) : (0, _utils.assertEach)((0, _utils.assertNodeType)("CommentBlock", "CommentLine")),
-      optional: true
-    },
-    tokens: {
-      validate: (0, _utils.assertEach)(Object.assign(() => {}, {
-        type: "any"
-      })),
-      optional: true
-    }
-  }
-});
-(0, _utils.default)("ForInStatement", {
-  visitor: ["left", "right", "body"],
-  aliases: ["Scopable", "Statement", "For", "BlockParent", "Loop", "ForXStatement"],
-  fields: {
-    left: {
-      validate: !process.env.BABEL_TYPES_8_BREAKING ? (0, _utils.assertNodeType)("VariableDeclaration", "LVal") : (0, _utils.assertNodeType)("VariableDeclaration", "Identifier", "MemberExpression", "ArrayPattern", "ObjectPattern")
-    },
-    right: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    body: {
-      validate: (0, _utils.assertNodeType)("Statement")
-    }
-  }
-});
-(0, _utils.default)("ForStatement", {
-  visitor: ["init", "test", "update", "body"],
-  aliases: ["Scopable", "Statement", "For", "BlockParent", "Loop"],
-  fields: {
-    init: {
-      validate: (0, _utils.assertNodeType)("VariableDeclaration", "Expression"),
-      optional: true
-    },
-    test: {
-      validate: (0, _utils.assertNodeType)("Expression"),
-      optional: true
-    },
-    update: {
-      validate: (0, _utils.assertNodeType)("Expression"),
-      optional: true
-    },
-    body: {
-      validate: (0, _utils.assertNodeType)("Statement")
-    }
-  }
-});
-const functionCommon = {
-  params: {
-    validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Identifier", "Pattern", "RestElement")))
-  },
-  generator: {
-    default: false
-  },
-  async: {
-    default: false
-  }
-};
-exports.functionCommon = functionCommon;
-const functionTypeAnnotationCommon = {
-  returnType: {
-    validate: (0, _utils.assertNodeType)("TypeAnnotation", "TSTypeAnnotation", "Noop"),
-    optional: true
-  },
-  typeParameters: {
-    validate: (0, _utils.assertNodeType)("TypeParameterDeclaration", "TSTypeParameterDeclaration", "Noop"),
-    optional: true
-  }
-};
-exports.functionTypeAnnotationCommon = functionTypeAnnotationCommon;
-const functionDeclarationCommon = Object.assign({}, functionCommon, {
-  declare: {
-    validate: (0, _utils.assertValueType)("boolean"),
-    optional: true
-  },
-  id: {
-    validate: (0, _utils.assertNodeType)("Identifier"),
-    optional: true
-  }
-});
-exports.functionDeclarationCommon = functionDeclarationCommon;
-(0, _utils.default)("FunctionDeclaration", {
-  builder: ["id", "params", "body", "generator", "async"],
-  visitor: ["id", "params", "body", "returnType", "typeParameters"],
-  fields: Object.assign({}, functionDeclarationCommon, functionTypeAnnotationCommon, {
-    body: {
-      validate: (0, _utils.assertNodeType)("BlockStatement")
-    }
-  }),
-  aliases: ["Scopable", "Function", "BlockParent", "FunctionParent", "Statement", "Pureish", "Declaration"],
-  validate: function () {
-    if (!process.env.BABEL_TYPES_8_BREAKING) return () => {};
-    const identifier = (0, _utils.assertNodeType)("Identifier");
-    return function (parent, key, node) {
-      if (!(0, _is.default)("ExportDefaultDeclaration", parent)) {
-        identifier(node, "id", node.id);
-      }
-    };
-  }()
-});
-(0, _utils.default)("FunctionExpression", {
-  inherits: "FunctionDeclaration",
-  aliases: ["Scopable", "Function", "BlockParent", "FunctionParent", "Expression", "Pureish"],
-  fields: Object.assign({}, functionCommon, functionTypeAnnotationCommon, {
-    id: {
-      validate: (0, _utils.assertNodeType)("Identifier"),
-      optional: true
-    },
-    body: {
-      validate: (0, _utils.assertNodeType)("BlockStatement")
-    }
-  })
-});
-const patternLikeCommon = {
-  typeAnnotation: {
-    validate: (0, _utils.assertNodeType)("TypeAnnotation", "TSTypeAnnotation", "Noop"),
-    optional: true
-  },
-  decorators: {
-    validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Decorator")))
-  }
-};
-exports.patternLikeCommon = patternLikeCommon;
-(0, _utils.default)("Identifier", {
-  builder: ["name"],
-  visitor: ["typeAnnotation", "decorators"],
-  aliases: ["Expression", "PatternLike", "LVal", "TSEntityName"],
-  fields: Object.assign({}, patternLikeCommon, {
-    name: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("string"), Object.assign(function (node, key, val) {
-        if (!process.env.BABEL_TYPES_8_BREAKING) return;
-
-        if (!(0, _isValidIdentifier.default)(val, false)) {
-          throw new TypeError(`"${val}" is not a valid identifier name`);
-        }
-      }, {
-        type: "string"
-      }))
-    },
-    optional: {
-      validate: (0, _utils.assertValueType)("boolean"),
-      optional: true
-    }
-  }),
-
-  validate(parent, key, node) {
-    if (!process.env.BABEL_TYPES_8_BREAKING) return;
-    const match = /\.(\w+)$/.exec(key);
-    if (!match) return;
-    const [, parentKey] = match;
-    const nonComp = {
-      computed: false
-    };
-
-    if (parentKey === "property") {
-      if ((0, _is.default)("MemberExpression", parent, nonComp)) return;
-      if ((0, _is.default)("OptionalMemberExpression", parent, nonComp)) return;
-    } else if (parentKey === "key") {
-      if ((0, _is.default)("Property", parent, nonComp)) return;
-      if ((0, _is.default)("Method", parent, nonComp)) return;
-    } else if (parentKey === "exported") {
-      if ((0, _is.default)("ExportSpecifier", parent)) return;
-    } else if (parentKey === "imported") {
-      if ((0, _is.default)("ImportSpecifier", parent, {
-        imported: node
-      })) return;
-    } else if (parentKey === "meta") {
-      if ((0, _is.default)("MetaProperty", parent, {
-        meta: node
-      })) return;
-    }
-
-    if (((0, _helperValidatorIdentifier.isKeyword)(node.name) || (0, _helperValidatorIdentifier.isReservedWord)(node.name, false)) && node.name !== "this") {
-      throw new TypeError(`"${node.name}" is not a valid identifier`);
-    }
-  }
-
-});
-(0, _utils.default)("IfStatement", {
-  visitor: ["test", "consequent", "alternate"],
-  aliases: ["Statement", "Conditional"],
-  fields: {
-    test: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    consequent: {
-      validate: (0, _utils.assertNodeType)("Statement")
-    },
-    alternate: {
-      optional: true,
-      validate: (0, _utils.assertNodeType)("Statement")
-    }
-  }
-});
-(0, _utils.default)("LabeledStatement", {
-  visitor: ["label", "body"],
-  aliases: ["Statement"],
-  fields: {
-    label: {
-      validate: (0, _utils.assertNodeType)("Identifier")
-    },
-    body: {
-      validate: (0, _utils.assertNodeType)("Statement")
-    }
-  }
-});
-(0, _utils.default)("StringLiteral", {
-  builder: ["value"],
-  fields: {
-    value: {
-      validate: (0, _utils.assertValueType)("string")
-    }
-  },
-  aliases: ["Expression", "Pureish", "Literal", "Immutable"]
-});
-(0, _utils.default)("NumericLiteral", {
-  builder: ["value"],
-  deprecatedAlias: "NumberLiteral",
-  fields: {
-    value: {
-      validate: (0, _utils.assertValueType)("number")
-    }
-  },
-  aliases: ["Expression", "Pureish", "Literal", "Immutable"]
-});
-(0, _utils.default)("NullLiteral", {
-  aliases: ["Expression", "Pureish", "Literal", "Immutable"]
-});
-(0, _utils.default)("BooleanLiteral", {
-  builder: ["value"],
-  fields: {
-    value: {
-      validate: (0, _utils.assertValueType)("boolean")
-    }
-  },
-  aliases: ["Expression", "Pureish", "Literal", "Immutable"]
-});
-(0, _utils.default)("RegExpLiteral", {
-  builder: ["pattern", "flags"],
-  deprecatedAlias: "RegexLiteral",
-  aliases: ["Expression", "Pureish", "Literal"],
-  fields: {
-    pattern: {
-      validate: (0, _utils.assertValueType)("string")
-    },
-    flags: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("string"), Object.assign(function (node, key, val) {
-        if (!process.env.BABEL_TYPES_8_BREAKING) return;
-        const invalid = /[^gimsuy]/.exec(val);
-
-        if (invalid) {
-          throw new TypeError(`"${invalid[0]}" is not a valid RegExp flag`);
-        }
-      }, {
-        type: "string"
-      })),
-      default: ""
-    }
-  }
-});
-(0, _utils.default)("LogicalExpression", {
-  builder: ["operator", "left", "right"],
-  visitor: ["left", "right"],
-  aliases: ["Binary", "Expression"],
-  fields: {
-    operator: {
-      validate: (0, _utils.assertOneOf)(..._constants.LOGICAL_OPERATORS)
-    },
-    left: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    right: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  }
-});
-(0, _utils.default)("MemberExpression", {
-  builder: ["object", "property", "computed", ...(!process.env.BABEL_TYPES_8_BREAKING ? ["optional"] : [])],
-  visitor: ["object", "property"],
-  aliases: ["Expression", "LVal"],
-  fields: Object.assign({
-    object: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    property: {
-      validate: function () {
-        const normal = (0, _utils.assertNodeType)("Identifier", "PrivateName");
-        const computed = (0, _utils.assertNodeType)("Expression");
-
-        const validator = function (node, key, val) {
-          const validator = node.computed ? computed : normal;
-          validator(node, key, val);
-        };
-
-        validator.oneOfNodeTypes = ["Expression", "Identifier", "PrivateName"];
-        return validator;
-      }()
-    },
-    computed: {
-      default: false
-    }
-  }, !process.env.BABEL_TYPES_8_BREAKING ? {
-    optional: {
-      validate: (0, _utils.assertOneOf)(true, false),
-      optional: true
-    }
-  } : {})
-});
-(0, _utils.default)("NewExpression", {
-  inherits: "CallExpression"
-});
-(0, _utils.default)("Program", {
-  visitor: ["directives", "body"],
-  builder: ["body", "directives", "sourceType", "interpreter"],
-  fields: {
-    sourceFile: {
-      validate: (0, _utils.assertValueType)("string")
-    },
-    sourceType: {
-      validate: (0, _utils.assertOneOf)("script", "module"),
-      default: "script"
-    },
-    interpreter: {
-      validate: (0, _utils.assertNodeType)("InterpreterDirective"),
-      default: null,
-      optional: true
-    },
-    directives: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Directive"))),
-      default: []
-    },
-    body: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Statement")))
-    }
-  },
-  aliases: ["Scopable", "BlockParent", "Block"]
-});
-(0, _utils.default)("ObjectExpression", {
-  visitor: ["properties"],
-  aliases: ["Expression"],
-  fields: {
-    properties: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("ObjectMethod", "ObjectProperty", "SpreadElement")))
-    }
-  }
-});
-(0, _utils.default)("ObjectMethod", {
-  builder: ["kind", "key", "params", "body", "computed", "generator", "async"],
-  fields: Object.assign({}, functionCommon, functionTypeAnnotationCommon, {
-    kind: Object.assign({
-      validate: (0, _utils.assertOneOf)("method", "get", "set")
-    }, !process.env.BABEL_TYPES_8_BREAKING ? {
-      default: "method"
-    } : {}),
-    computed: {
-      default: false
-    },
-    key: {
-      validate: function () {
-        const normal = (0, _utils.assertNodeType)("Identifier", "StringLiteral", "NumericLiteral");
-        const computed = (0, _utils.assertNodeType)("Expression");
-
-        const validator = function (node, key, val) {
-          const validator = node.computed ? computed : normal;
-          validator(node, key, val);
-        };
-
-        validator.oneOfNodeTypes = ["Expression", "Identifier", "StringLiteral", "NumericLiteral"];
-        return validator;
-      }()
-    },
-    decorators: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Decorator"))),
-      optional: true
-    },
-    body: {
-      validate: (0, _utils.assertNodeType)("BlockStatement")
-    }
-  }),
-  visitor: ["key", "params", "body", "decorators", "returnType", "typeParameters"],
-  aliases: ["UserWhitespacable", "Function", "Scopable", "BlockParent", "FunctionParent", "Method", "ObjectMember"]
-});
-(0, _utils.default)("ObjectProperty", {
-  builder: ["key", "value", "computed", "shorthand", ...(!process.env.BABEL_TYPES_8_BREAKING ? ["decorators"] : [])],
-  fields: {
-    computed: {
-      default: false
-    },
-    key: {
-      validate: function () {
-        const normal = (0, _utils.assertNodeType)("Identifier", "StringLiteral", "NumericLiteral");
-        const computed = (0, _utils.assertNodeType)("Expression");
-
-        const validator = function (node, key, val) {
-          const validator = node.computed ? computed : normal;
-          validator(node, key, val);
-        };
-
-        validator.oneOfNodeTypes = ["Expression", "Identifier", "StringLiteral", "NumericLiteral"];
-        return validator;
-      }()
-    },
-    value: {
-      validate: (0, _utils.assertNodeType)("Expression", "PatternLike")
-    },
-    shorthand: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("boolean"), Object.assign(function (node, key, val) {
-        if (!process.env.BABEL_TYPES_8_BREAKING) return;
-
-        if (val && node.computed) {
-          throw new TypeError("Property shorthand of ObjectProperty cannot be true if computed is true");
-        }
-      }, {
-        type: "boolean"
-      }), function (node, key, val) {
-        if (!process.env.BABEL_TYPES_8_BREAKING) return;
-
-        if (val && !(0, _is.default)("Identifier", node.key)) {
-          throw new TypeError("Property shorthand of ObjectProperty cannot be true if key is not an Identifier");
-        }
-      }),
-      default: false
-    },
-    decorators: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Decorator"))),
-      optional: true
-    }
-  },
-  visitor: ["key", "value", "decorators"],
-  aliases: ["UserWhitespacable", "Property", "ObjectMember"],
-  validate: function () {
-    const pattern = (0, _utils.assertNodeType)("Identifier", "Pattern");
-    const expression = (0, _utils.assertNodeType)("Expression");
-    return function (parent, key, node) {
-      if (!process.env.BABEL_TYPES_8_BREAKING) return;
-      const validator = (0, _is.default)("ObjectPattern", parent) ? pattern : expression;
-      validator(node, "value", node.value);
-    };
-  }()
-});
-(0, _utils.default)("RestElement", {
-  visitor: ["argument", "typeAnnotation"],
-  builder: ["argument"],
-  aliases: ["LVal", "PatternLike"],
-  deprecatedAlias: "RestProperty",
-  fields: Object.assign({}, patternLikeCommon, {
-    argument: {
-      validate: !process.env.BABEL_TYPES_8_BREAKING ? (0, _utils.assertNodeType)("LVal") : (0, _utils.assertNodeType)("Identifier", "Pattern", "MemberExpression")
-    }
-  }),
-
-  validate(parent, key) {
-    if (!process.env.BABEL_TYPES_8_BREAKING) return;
-    const match = /(\w+)\[(\d+)\]/.exec(key);
-    if (!match) throw new Error("Internal Babel error: malformed key.");
-    const [, listKey, index] = match;
-
-    if (parent[listKey].length > index + 1) {
-      throw new TypeError(`RestElement must be last element of ${listKey}`);
-    }
-  }
-
-});
-(0, _utils.default)("ReturnStatement", {
-  visitor: ["argument"],
-  aliases: ["Statement", "Terminatorless", "CompletionStatement"],
-  fields: {
-    argument: {
-      validate: (0, _utils.assertNodeType)("Expression"),
-      optional: true
-    }
-  }
-});
-(0, _utils.default)("SequenceExpression", {
-  visitor: ["expressions"],
-  fields: {
-    expressions: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Expression")))
-    }
-  },
-  aliases: ["Expression"]
-});
-(0, _utils.default)("ParenthesizedExpression", {
-  visitor: ["expression"],
-  aliases: ["Expression", "ExpressionWrapper"],
-  fields: {
-    expression: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  }
-});
-(0, _utils.default)("SwitchCase", {
-  visitor: ["test", "consequent"],
-  fields: {
-    test: {
-      validate: (0, _utils.assertNodeType)("Expression"),
-      optional: true
-    },
-    consequent: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Statement")))
-    }
-  }
-});
-(0, _utils.default)("SwitchStatement", {
-  visitor: ["discriminant", "cases"],
-  aliases: ["Statement", "BlockParent", "Scopable"],
-  fields: {
-    discriminant: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    cases: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("SwitchCase")))
-    }
-  }
-});
-(0, _utils.default)("ThisExpression", {
-  aliases: ["Expression"]
-});
-(0, _utils.default)("ThrowStatement", {
-  visitor: ["argument"],
-  aliases: ["Statement", "Terminatorless", "CompletionStatement"],
-  fields: {
-    argument: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  }
-});
-(0, _utils.default)("TryStatement", {
-  visitor: ["block", "handler", "finalizer"],
-  aliases: ["Statement"],
-  fields: {
-    block: {
-      validate: (0, _utils.chain)((0, _utils.assertNodeType)("BlockStatement"), Object.assign(function (node) {
-        if (!process.env.BABEL_TYPES_8_BREAKING) return;
-
-        if (!node.handler && !node.finalizer) {
-          throw new TypeError("TryStatement expects either a handler or finalizer, or both");
-        }
-      }, {
-        oneOfNodeTypes: ["BlockStatement"]
-      }))
-    },
-    handler: {
-      optional: true,
-      validate: (0, _utils.assertNodeType)("CatchClause")
-    },
-    finalizer: {
-      optional: true,
-      validate: (0, _utils.assertNodeType)("BlockStatement")
-    }
-  }
-});
-(0, _utils.default)("UnaryExpression", {
-  builder: ["operator", "argument", "prefix"],
-  fields: {
-    prefix: {
-      default: true
-    },
-    argument: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    operator: {
-      validate: (0, _utils.assertOneOf)(..._constants.UNARY_OPERATORS)
-    }
-  },
-  visitor: ["argument"],
-  aliases: ["UnaryLike", "Expression"]
-});
-(0, _utils.default)("UpdateExpression", {
-  builder: ["operator", "argument", "prefix"],
-  fields: {
-    prefix: {
-      default: false
-    },
-    argument: {
-      validate: !process.env.BABEL_TYPES_8_BREAKING ? (0, _utils.assertNodeType)("Expression") : (0, _utils.assertNodeType)("Identifier", "MemberExpression")
-    },
-    operator: {
-      validate: (0, _utils.assertOneOf)(..._constants.UPDATE_OPERATORS)
-    }
-  },
-  visitor: ["argument"],
-  aliases: ["Expression"]
-});
-(0, _utils.default)("VariableDeclaration", {
-  builder: ["kind", "declarations"],
-  visitor: ["declarations"],
-  aliases: ["Statement", "Declaration"],
-  fields: {
-    declare: {
-      validate: (0, _utils.assertValueType)("boolean"),
-      optional: true
-    },
-    kind: {
-      validate: (0, _utils.assertOneOf)("var", "let", "const")
-    },
-    declarations: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("VariableDeclarator")))
-    }
-  },
-
-  validate(parent, key, node) {
-    if (!process.env.BABEL_TYPES_8_BREAKING) return;
-    if (!(0, _is.default)("ForXStatement", parent, {
-      left: node
-    })) return;
-
-    if (node.declarations.length !== 1) {
-      throw new TypeError(`Exactly one VariableDeclarator is required in the VariableDeclaration of a ${parent.type}`);
-    }
-  }
-
-});
-(0, _utils.default)("VariableDeclarator", {
-  visitor: ["id", "init"],
-  fields: {
-    id: {
-      validate: function () {
-        if (!process.env.BABEL_TYPES_8_BREAKING) {
-          return (0, _utils.assertNodeType)("LVal");
-        }
-
-        const normal = (0, _utils.assertNodeType)("Identifier", "ArrayPattern", "ObjectPattern");
-        const without = (0, _utils.assertNodeType)("Identifier");
-        return function (node, key, val) {
-          const validator = node.init ? normal : without;
-          validator(node, key, val);
-        };
-      }()
-    },
-    definite: {
-      optional: true,
-      validate: (0, _utils.assertValueType)("boolean")
-    },
-    init: {
-      optional: true,
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  }
-});
-(0, _utils.default)("WhileStatement", {
-  visitor: ["test", "body"],
-  aliases: ["Statement", "BlockParent", "Loop", "While", "Scopable"],
-  fields: {
-    test: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    body: {
-      validate: (0, _utils.assertNodeType)("Statement")
-    }
-  }
-});
-(0, _utils.default)("WithStatement", {
-  visitor: ["object", "body"],
-  aliases: ["Statement"],
-  fields: {
-    object: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    body: {
-      validate: (0, _utils.assertNodeType)("Statement")
-    }
-  }
-});
-(0, _utils.default)("AssignmentPattern", {
-  visitor: ["left", "right", "decorators"],
-  builder: ["left", "right"],
-  aliases: ["Pattern", "PatternLike", "LVal"],
-  fields: Object.assign({}, patternLikeCommon, {
-    left: {
-      validate: (0, _utils.assertNodeType)("Identifier", "ObjectPattern", "ArrayPattern", "MemberExpression")
-    },
-    right: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    decorators: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Decorator"))),
-      optional: true
-    }
-  })
-});
-(0, _utils.default)("ArrayPattern", {
-  visitor: ["elements", "typeAnnotation"],
-  builder: ["elements"],
-  aliases: ["Pattern", "PatternLike", "LVal"],
-  fields: Object.assign({}, patternLikeCommon, {
-    elements: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeOrValueType)("null", "PatternLike")))
-    },
-    decorators: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Decorator"))),
-      optional: true
-    }
-  })
-});
-(0, _utils.default)("ArrowFunctionExpression", {
-  builder: ["params", "body", "async"],
-  visitor: ["params", "body", "returnType", "typeParameters"],
-  aliases: ["Scopable", "Function", "BlockParent", "FunctionParent", "Expression", "Pureish"],
-  fields: Object.assign({}, functionCommon, functionTypeAnnotationCommon, {
-    expression: {
-      validate: (0, _utils.assertValueType)("boolean")
-    },
-    body: {
-      validate: (0, _utils.assertNodeType)("BlockStatement", "Expression")
-    }
-  })
-});
-(0, _utils.default)("ClassBody", {
-  visitor: ["body"],
-  fields: {
-    body: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("ClassMethod", "ClassPrivateMethod", "ClassProperty", "ClassPrivateProperty", "TSDeclareMethod", "TSIndexSignature")))
-    }
-  }
-});
-(0, _utils.default)("ClassExpression", {
-  builder: ["id", "superClass", "body", "decorators"],
-  visitor: ["id", "body", "superClass", "mixins", "typeParameters", "superTypeParameters", "implements", "decorators"],
-  aliases: ["Scopable", "Class", "Expression"],
-  fields: {
-    id: {
-      validate: (0, _utils.assertNodeType)("Identifier"),
-      optional: true
-    },
-    typeParameters: {
-      validate: (0, _utils.assertNodeType)("TypeParameterDeclaration", "TSTypeParameterDeclaration", "Noop"),
-      optional: true
-    },
-    body: {
-      validate: (0, _utils.assertNodeType)("ClassBody")
-    },
-    superClass: {
-      optional: true,
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    superTypeParameters: {
-      validate: (0, _utils.assertNodeType)("TypeParameterInstantiation", "TSTypeParameterInstantiation"),
-      optional: true
-    },
-    implements: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("TSExpressionWithTypeArguments", "ClassImplements"))),
-      optional: true
-    },
-    decorators: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Decorator"))),
-      optional: true
-    },
-    mixins: {
-      validate: (0, _utils.assertNodeType)("InterfaceExtends"),
-      optional: true
-    }
-  }
-});
-(0, _utils.default)("ClassDeclaration", {
-  inherits: "ClassExpression",
-  aliases: ["Scopable", "Class", "Statement", "Declaration"],
-  fields: {
-    id: {
-      validate: (0, _utils.assertNodeType)("Identifier")
-    },
-    typeParameters: {
-      validate: (0, _utils.assertNodeType)("TypeParameterDeclaration", "TSTypeParameterDeclaration", "Noop"),
-      optional: true
-    },
-    body: {
-      validate: (0, _utils.assertNodeType)("ClassBody")
-    },
-    superClass: {
-      optional: true,
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    superTypeParameters: {
-      validate: (0, _utils.assertNodeType)("TypeParameterInstantiation", "TSTypeParameterInstantiation"),
-      optional: true
-    },
-    implements: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("TSExpressionWithTypeArguments", "ClassImplements"))),
-      optional: true
-    },
-    decorators: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Decorator"))),
-      optional: true
-    },
-    mixins: {
-      validate: (0, _utils.assertNodeType)("InterfaceExtends"),
-      optional: true
-    },
-    declare: {
-      validate: (0, _utils.assertValueType)("boolean"),
-      optional: true
-    },
-    abstract: {
-      validate: (0, _utils.assertValueType)("boolean"),
-      optional: true
-    }
-  },
-  validate: function () {
-    const identifier = (0, _utils.assertNodeType)("Identifier");
-    return function (parent, key, node) {
-      if (!process.env.BABEL_TYPES_8_BREAKING) return;
-
-      if (!(0, _is.default)("ExportDefaultDeclaration", parent)) {
-        identifier(node, "id", node.id);
-      }
-    };
-  }()
-});
-(0, _utils.default)("ExportAllDeclaration", {
-  visitor: ["source"],
-  aliases: ["Statement", "Declaration", "ModuleDeclaration", "ExportDeclaration"],
-  fields: {
-    source: {
-      validate: (0, _utils.assertNodeType)("StringLiteral")
-    },
-    exportKind: (0, _utils.validateOptional)((0, _utils.assertOneOf)("type", "value")),
-    assertions: {
-      optional: true,
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("ImportAttribute")))
-    }
-  }
-});
-(0, _utils.default)("ExportDefaultDeclaration", {
-  visitor: ["declaration"],
-  aliases: ["Statement", "Declaration", "ModuleDeclaration", "ExportDeclaration"],
-  fields: {
-    declaration: {
-      validate: (0, _utils.assertNodeType)("FunctionDeclaration", "TSDeclareFunction", "ClassDeclaration", "Expression")
-    }
-  }
-});
-(0, _utils.default)("ExportNamedDeclaration", {
-  visitor: ["declaration", "specifiers", "source"],
-  aliases: ["Statement", "Declaration", "ModuleDeclaration", "ExportDeclaration"],
-  fields: {
-    declaration: {
-      optional: true,
-      validate: (0, _utils.chain)((0, _utils.assertNodeType)("Declaration"), Object.assign(function (node, key, val) {
-        if (!process.env.BABEL_TYPES_8_BREAKING) return;
-
-        if (val && node.specifiers.length) {
-          throw new TypeError("Only declaration or specifiers is allowed on ExportNamedDeclaration");
-        }
-      }, {
-        oneOfNodeTypes: ["Declaration"]
-      }), function (node, key, val) {
-        if (!process.env.BABEL_TYPES_8_BREAKING) return;
-
-        if (val && node.source) {
-          throw new TypeError("Cannot export a declaration from a source");
-        }
-      })
-    },
-    assertions: {
-      optional: true,
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("ImportAttribute")))
-    },
-    specifiers: {
-      default: [],
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)(function () {
-        const sourced = (0, _utils.assertNodeType)("ExportSpecifier", "ExportDefaultSpecifier", "ExportNamespaceSpecifier");
-        const sourceless = (0, _utils.assertNodeType)("ExportSpecifier");
-        if (!process.env.BABEL_TYPES_8_BREAKING) return sourced;
-        return function (node, key, val) {
-          const validator = node.source ? sourced : sourceless;
-          validator(node, key, val);
-        };
-      }()))
-    },
-    source: {
-      validate: (0, _utils.assertNodeType)("StringLiteral"),
-      optional: true
-    },
-    exportKind: (0, _utils.validateOptional)((0, _utils.assertOneOf)("type", "value"))
-  }
-});
-(0, _utils.default)("ExportSpecifier", {
-  visitor: ["local", "exported"],
-  aliases: ["ModuleSpecifier"],
-  fields: {
-    local: {
-      validate: (0, _utils.assertNodeType)("Identifier")
-    },
-    exported: {
-      validate: (0, _utils.assertNodeType)("Identifier", "StringLiteral")
-    }
-  }
-});
-(0, _utils.default)("ForOfStatement", {
-  visitor: ["left", "right", "body"],
-  builder: ["left", "right", "body", "await"],
-  aliases: ["Scopable", "Statement", "For", "BlockParent", "Loop", "ForXStatement"],
-  fields: {
-    left: {
-      validate: function () {
-        if (!process.env.BABEL_TYPES_8_BREAKING) {
-          return (0, _utils.assertNodeType)("VariableDeclaration", "LVal");
-        }
-
-        const declaration = (0, _utils.assertNodeType)("VariableDeclaration");
-        const lval = (0, _utils.assertNodeType)("Identifier", "MemberExpression", "ArrayPattern", "ObjectPattern");
-        return function (node, key, val) {
-          if ((0, _is.default)("VariableDeclaration", val)) {
-            declaration(node, key, val);
-          } else {
-            lval(node, key, val);
-          }
-        };
-      }()
-    },
-    right: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    body: {
-      validate: (0, _utils.assertNodeType)("Statement")
-    },
-    await: {
-      default: false
-    }
-  }
-});
-(0, _utils.default)("ImportDeclaration", {
-  visitor: ["specifiers", "source"],
-  aliases: ["Statement", "Declaration", "ModuleDeclaration"],
-  fields: {
-    assertions: {
-      optional: true,
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("ImportAttribute")))
-    },
-    specifiers: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("ImportSpecifier", "ImportDefaultSpecifier", "ImportNamespaceSpecifier")))
-    },
-    source: {
-      validate: (0, _utils.assertNodeType)("StringLiteral")
-    },
-    importKind: {
-      validate: (0, _utils.assertOneOf)("type", "typeof", "value"),
-      optional: true
-    }
-  }
-});
-(0, _utils.default)("ImportDefaultSpecifier", {
-  visitor: ["local"],
-  aliases: ["ModuleSpecifier"],
-  fields: {
-    local: {
-      validate: (0, _utils.assertNodeType)("Identifier")
-    }
-  }
-});
-(0, _utils.default)("ImportNamespaceSpecifier", {
-  visitor: ["local"],
-  aliases: ["ModuleSpecifier"],
-  fields: {
-    local: {
-      validate: (0, _utils.assertNodeType)("Identifier")
-    }
-  }
-});
-(0, _utils.default)("ImportSpecifier", {
-  visitor: ["local", "imported"],
-  aliases: ["ModuleSpecifier"],
-  fields: {
-    local: {
-      validate: (0, _utils.assertNodeType)("Identifier")
-    },
-    imported: {
-      validate: (0, _utils.assertNodeType)("Identifier", "StringLiteral")
-    },
-    importKind: {
-      validate: (0, _utils.assertOneOf)("type", "typeof"),
-      optional: true
-    }
-  }
-});
-(0, _utils.default)("MetaProperty", {
-  visitor: ["meta", "property"],
-  aliases: ["Expression"],
-  fields: {
-    meta: {
-      validate: (0, _utils.chain)((0, _utils.assertNodeType)("Identifier"), Object.assign(function (node, key, val) {
-        if (!process.env.BABEL_TYPES_8_BREAKING) return;
-        let property;
-
-        switch (val.name) {
-          case "function":
-            property = "sent";
-            break;
-
-          case "new":
-            property = "target";
-            break;
-
-          case "import":
-            property = "meta";
-            break;
-        }
-
-        if (!(0, _is.default)("Identifier", node.property, {
-          name: property
-        })) {
-          throw new TypeError("Unrecognised MetaProperty");
-        }
-      }, {
-        oneOfNodeTypes: ["Identifier"]
-      }))
-    },
-    property: {
-      validate: (0, _utils.assertNodeType)("Identifier")
-    }
-  }
-});
-const classMethodOrPropertyCommon = {
-  abstract: {
-    validate: (0, _utils.assertValueType)("boolean"),
-    optional: true
-  },
-  accessibility: {
-    validate: (0, _utils.assertOneOf)("public", "private", "protected"),
-    optional: true
-  },
-  static: {
-    default: false
-  },
-  override: {
-    default: false
-  },
-  computed: {
-    default: false
-  },
-  optional: {
-    validate: (0, _utils.assertValueType)("boolean"),
-    optional: true
-  },
-  key: {
-    validate: (0, _utils.chain)(function () {
-      const normal = (0, _utils.assertNodeType)("Identifier", "StringLiteral", "NumericLiteral");
-      const computed = (0, _utils.assertNodeType)("Expression");
-      return function (node, key, val) {
-        const validator = node.computed ? computed : normal;
-        validator(node, key, val);
-      };
-    }(), (0, _utils.assertNodeType)("Identifier", "StringLiteral", "NumericLiteral", "Expression"))
-  }
-};
-exports.classMethodOrPropertyCommon = classMethodOrPropertyCommon;
-const classMethodOrDeclareMethodCommon = Object.assign({}, functionCommon, classMethodOrPropertyCommon, {
-  params: {
-    validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Identifier", "Pattern", "RestElement", "TSParameterProperty")))
-  },
-  kind: {
-    validate: (0, _utils.assertOneOf)("get", "set", "method", "constructor"),
-    default: "method"
-  },
-  access: {
-    validate: (0, _utils.chain)((0, _utils.assertValueType)("string"), (0, _utils.assertOneOf)("public", "private", "protected")),
-    optional: true
-  },
-  decorators: {
-    validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Decorator"))),
-    optional: true
-  }
-});
-exports.classMethodOrDeclareMethodCommon = classMethodOrDeclareMethodCommon;
-(0, _utils.default)("ClassMethod", {
-  aliases: ["Function", "Scopable", "BlockParent", "FunctionParent", "Method"],
-  builder: ["kind", "key", "params", "body", "computed", "static", "generator", "async"],
-  visitor: ["key", "params", "body", "decorators", "returnType", "typeParameters"],
-  fields: Object.assign({}, classMethodOrDeclareMethodCommon, functionTypeAnnotationCommon, {
-    body: {
-      validate: (0, _utils.assertNodeType)("BlockStatement")
-    }
-  })
-});
-(0, _utils.default)("ObjectPattern", {
-  visitor: ["properties", "typeAnnotation", "decorators"],
-  builder: ["properties"],
-  aliases: ["Pattern", "PatternLike", "LVal"],
-  fields: Object.assign({}, patternLikeCommon, {
-    properties: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("RestElement", "ObjectProperty")))
-    }
-  })
-});
-(0, _utils.default)("SpreadElement", {
-  visitor: ["argument"],
-  aliases: ["UnaryLike"],
-  deprecatedAlias: "SpreadProperty",
-  fields: {
-    argument: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  }
-});
-(0, _utils.default)("Super", {
-  aliases: ["Expression"]
-});
-(0, _utils.default)("TaggedTemplateExpression", {
-  visitor: ["tag", "quasi"],
-  aliases: ["Expression"],
-  fields: {
-    tag: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    quasi: {
-      validate: (0, _utils.assertNodeType)("TemplateLiteral")
-    },
-    typeParameters: {
-      validate: (0, _utils.assertNodeType)("TypeParameterInstantiation", "TSTypeParameterInstantiation"),
-      optional: true
-    }
-  }
-});
-(0, _utils.default)("TemplateElement", {
-  builder: ["value", "tail"],
-  fields: {
-    value: {
-      validate: (0, _utils.assertShape)({
-        raw: {
-          validate: (0, _utils.assertValueType)("string")
-        },
-        cooked: {
-          validate: (0, _utils.assertValueType)("string"),
-          optional: true
-        }
-      })
-    },
-    tail: {
-      default: false
-    }
-  }
-});
-(0, _utils.default)("TemplateLiteral", {
-  visitor: ["quasis", "expressions"],
-  aliases: ["Expression", "Literal"],
-  fields: {
-    quasis: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("TemplateElement")))
-    },
-    expressions: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Expression", "TSType")), function (node, key, val) {
-        if (node.quasis.length !== val.length + 1) {
-          throw new TypeError(`Number of ${node.type} quasis should be exactly one more than the number of expressions.\nExpected ${val.length + 1} quasis but got ${node.quasis.length}`);
-        }
-      })
-    }
-  }
-});
-(0, _utils.default)("YieldExpression", {
-  builder: ["argument", "delegate"],
-  visitor: ["argument"],
-  aliases: ["Expression", "Terminatorless"],
-  fields: {
-    delegate: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("boolean"), Object.assign(function (node, key, val) {
-        if (!process.env.BABEL_TYPES_8_BREAKING) return;
-
-        if (val && !node.argument) {
-          throw new TypeError("Property delegate of YieldExpression cannot be true if there is no argument");
-        }
-      }, {
-        type: "boolean"
-      })),
-      default: false
-    },
-    argument: {
-      optional: true,
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  }
-});
-(0, _utils.default)("AwaitExpression", {
-  builder: ["argument"],
-  visitor: ["argument"],
-  aliases: ["Expression", "Terminatorless"],
-  fields: {
-    argument: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  }
-});
-(0, _utils.default)("Import", {
-  aliases: ["Expression"]
-});
-(0, _utils.default)("BigIntLiteral", {
-  builder: ["value"],
-  fields: {
-    value: {
-      validate: (0, _utils.assertValueType)("string")
-    }
-  },
-  aliases: ["Expression", "Pureish", "Literal", "Immutable"]
-});
-(0, _utils.default)("ExportNamespaceSpecifier", {
-  visitor: ["exported"],
-  aliases: ["ModuleSpecifier"],
-  fields: {
-    exported: {
-      validate: (0, _utils.assertNodeType)("Identifier")
-    }
-  }
-});
-(0, _utils.default)("OptionalMemberExpression", {
-  builder: ["object", "property", "computed", "optional"],
-  visitor: ["object", "property"],
-  aliases: ["Expression"],
-  fields: {
-    object: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    property: {
-      validate: function () {
-        const normal = (0, _utils.assertNodeType)("Identifier");
-        const computed = (0, _utils.assertNodeType)("Expression");
-
-        const validator = function (node, key, val) {
-          const validator = node.computed ? computed : normal;
-          validator(node, key, val);
-        };
-
-        validator.oneOfNodeTypes = ["Expression", "Identifier"];
-        return validator;
-      }()
-    },
-    computed: {
-      default: false
-    },
-    optional: {
-      validate: !process.env.BABEL_TYPES_8_BREAKING ? (0, _utils.assertValueType)("boolean") : (0, _utils.chain)((0, _utils.assertValueType)("boolean"), (0, _utils.assertOptionalChainStart)())
-    }
-  }
-});
-(0, _utils.default)("OptionalCallExpression", {
-  visitor: ["callee", "arguments", "typeParameters", "typeArguments"],
-  builder: ["callee", "arguments", "optional"],
-  aliases: ["Expression"],
-  fields: {
-    callee: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    arguments: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Expression", "SpreadElement", "JSXNamespacedName", "ArgumentPlaceholder")))
-    },
-    optional: {
-      validate: !process.env.BABEL_TYPES_8_BREAKING ? (0, _utils.assertValueType)("boolean") : (0, _utils.chain)((0, _utils.assertValueType)("boolean"), (0, _utils.assertOptionalChainStart)())
-    },
-    typeArguments: {
-      validate: (0, _utils.assertNodeType)("TypeParameterInstantiation"),
-      optional: true
-    },
-    typeParameters: {
-      validate: (0, _utils.assertNodeType)("TSTypeParameterInstantiation"),
-      optional: true
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/definitions/experimental.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/definitions/experimental.js ***!
-  \*******************************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
-
-
-var _utils = __webpack_require__(/*! ./utils */ "./node_modules/@babel/types/lib/definitions/utils.js");
-
-var _core = __webpack_require__(/*! ./core */ "./node_modules/@babel/types/lib/definitions/core.js");
-
-(0, _utils.default)("ArgumentPlaceholder", {});
-(0, _utils.default)("BindExpression", {
-  visitor: ["object", "callee"],
-  aliases: ["Expression"],
-  fields: !process.env.BABEL_TYPES_8_BREAKING ? {
-    object: {
-      validate: Object.assign(() => {}, {
-        oneOfNodeTypes: ["Expression"]
-      })
-    },
-    callee: {
-      validate: Object.assign(() => {}, {
-        oneOfNodeTypes: ["Expression"]
-      })
-    }
-  } : {
-    object: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    },
-    callee: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  }
-});
-(0, _utils.default)("ClassProperty", {
-  visitor: ["key", "value", "typeAnnotation", "decorators"],
-  builder: ["key", "value", "typeAnnotation", "decorators", "computed", "static"],
-  aliases: ["Property"],
-  fields: Object.assign({}, _core.classMethodOrPropertyCommon, {
-    value: {
-      validate: (0, _utils.assertNodeType)("Expression"),
-      optional: true
-    },
-    definite: {
-      validate: (0, _utils.assertValueType)("boolean"),
-      optional: true
-    },
-    typeAnnotation: {
-      validate: (0, _utils.assertNodeType)("TypeAnnotation", "TSTypeAnnotation", "Noop"),
-      optional: true
-    },
-    decorators: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Decorator"))),
-      optional: true
-    },
-    readonly: {
-      validate: (0, _utils.assertValueType)("boolean"),
-      optional: true
-    },
-    declare: {
-      validate: (0, _utils.assertValueType)("boolean"),
-      optional: true
-    }
-  })
-});
-(0, _utils.default)("PipelineTopicExpression", {
-  builder: ["expression"],
-  visitor: ["expression"],
-  fields: {
-    expression: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  }
-});
-(0, _utils.default)("PipelineBareFunction", {
-  builder: ["callee"],
-  visitor: ["callee"],
-  fields: {
-    callee: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  }
-});
-(0, _utils.default)("PipelinePrimaryTopicReference", {
-  aliases: ["Expression"]
-});
-(0, _utils.default)("ClassPrivateProperty", {
-  visitor: ["key", "value", "decorators"],
-  builder: ["key", "value", "decorators", "static"],
-  aliases: ["Property", "Private"],
-  fields: {
-    key: {
-      validate: (0, _utils.assertNodeType)("PrivateName")
-    },
-    value: {
-      validate: (0, _utils.assertNodeType)("Expression"),
-      optional: true
-    },
-    typeAnnotation: {
-      validate: (0, _utils.assertNodeType)("TypeAnnotation", "TSTypeAnnotation", "Noop"),
-      optional: true
-    },
-    decorators: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Decorator"))),
-      optional: true
-    }
-  }
-});
-(0, _utils.default)("ClassPrivateMethod", {
-  builder: ["kind", "key", "params", "body", "static"],
-  visitor: ["key", "params", "body", "decorators", "returnType", "typeParameters"],
-  aliases: ["Function", "Scopable", "BlockParent", "FunctionParent", "Method", "Private"],
-  fields: Object.assign({}, _core.classMethodOrDeclareMethodCommon, _core.functionTypeAnnotationCommon, {
-    key: {
-      validate: (0, _utils.assertNodeType)("PrivateName")
-    },
-    body: {
-      validate: (0, _utils.assertNodeType)("BlockStatement")
-    }
-  })
-});
-(0, _utils.default)("ImportAttribute", {
-  visitor: ["key", "value"],
-  fields: {
-    key: {
-      validate: (0, _utils.assertNodeType)("Identifier", "StringLiteral")
-    },
-    value: {
-      validate: (0, _utils.assertNodeType)("StringLiteral")
-    }
-  }
-});
-(0, _utils.default)("Decorator", {
-  visitor: ["expression"],
-  fields: {
-    expression: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  }
-});
-(0, _utils.default)("DoExpression", {
-  visitor: ["body"],
-  builder: ["body", "async"],
-  aliases: ["Expression"],
-  fields: {
-    body: {
-      validate: (0, _utils.assertNodeType)("BlockStatement")
-    },
-    async: {
-      validate: (0, _utils.assertValueType)("boolean"),
-      default: false
-    }
-  }
-});
-(0, _utils.default)("ExportDefaultSpecifier", {
-  visitor: ["exported"],
-  aliases: ["ModuleSpecifier"],
-  fields: {
-    exported: {
-      validate: (0, _utils.assertNodeType)("Identifier")
-    }
-  }
-});
-(0, _utils.default)("PrivateName", {
-  visitor: ["id"],
-  aliases: ["Private"],
-  fields: {
-    id: {
-      validate: (0, _utils.assertNodeType)("Identifier")
-    }
-  }
-});
-(0, _utils.default)("RecordExpression", {
-  visitor: ["properties"],
-  aliases: ["Expression"],
-  fields: {
-    properties: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("ObjectProperty", "SpreadElement")))
-    }
-  }
-});
-(0, _utils.default)("TupleExpression", {
-  fields: {
-    elements: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Expression", "SpreadElement"))),
-      default: []
-    }
-  },
-  visitor: ["elements"],
-  aliases: ["Expression"]
-});
-(0, _utils.default)("DecimalLiteral", {
-  builder: ["value"],
-  fields: {
-    value: {
-      validate: (0, _utils.assertValueType)("string")
-    }
-  },
-  aliases: ["Expression", "Pureish", "Literal", "Immutable"]
-});
-(0, _utils.default)("StaticBlock", {
-  visitor: ["body"],
-  fields: {
-    body: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("Statement")))
-    }
-  },
-  aliases: ["Scopable", "BlockParent"]
-});
-(0, _utils.default)("ModuleExpression", {
-  visitor: ["body"],
-  fields: {
-    body: {
-      validate: (0, _utils.assertNodeType)("Program")
-    }
-  },
-  aliases: ["Expression"]
-});
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/definitions/flow.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/@babel/types/lib/definitions/flow.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-
-var _utils = __webpack_require__(/*! ./utils */ "./node_modules/@babel/types/lib/definitions/utils.js");
-
-const defineInterfaceishType = (name, typeParameterType = "TypeParameterDeclaration") => {
-  (0, _utils.default)(name, {
-    builder: ["id", "typeParameters", "extends", "body"],
-    visitor: ["id", "typeParameters", "extends", "mixins", "implements", "body"],
-    aliases: ["Flow", "FlowDeclaration", "Statement", "Declaration"],
-    fields: {
-      id: (0, _utils.validateType)("Identifier"),
-      typeParameters: (0, _utils.validateOptionalType)(typeParameterType),
-      extends: (0, _utils.validateOptional)((0, _utils.arrayOfType)("InterfaceExtends")),
-      mixins: (0, _utils.validateOptional)((0, _utils.arrayOfType)("InterfaceExtends")),
-      implements: (0, _utils.validateOptional)((0, _utils.arrayOfType)("ClassImplements")),
-      body: (0, _utils.validateType)("ObjectTypeAnnotation")
-    }
-  });
-};
-
-(0, _utils.default)("AnyTypeAnnotation", {
-  aliases: ["Flow", "FlowType", "FlowBaseAnnotation"]
-});
-(0, _utils.default)("ArrayTypeAnnotation", {
-  visitor: ["elementType"],
-  aliases: ["Flow", "FlowType"],
-  fields: {
-    elementType: (0, _utils.validateType)("FlowType")
-  }
-});
-(0, _utils.default)("BooleanTypeAnnotation", {
-  aliases: ["Flow", "FlowType", "FlowBaseAnnotation"]
-});
-(0, _utils.default)("BooleanLiteralTypeAnnotation", {
-  builder: ["value"],
-  aliases: ["Flow", "FlowType"],
-  fields: {
-    value: (0, _utils.validate)((0, _utils.assertValueType)("boolean"))
-  }
-});
-(0, _utils.default)("NullLiteralTypeAnnotation", {
-  aliases: ["Flow", "FlowType", "FlowBaseAnnotation"]
-});
-(0, _utils.default)("ClassImplements", {
-  visitor: ["id", "typeParameters"],
-  aliases: ["Flow"],
-  fields: {
-    id: (0, _utils.validateType)("Identifier"),
-    typeParameters: (0, _utils.validateOptionalType)("TypeParameterInstantiation")
-  }
-});
-defineInterfaceishType("DeclareClass");
-(0, _utils.default)("DeclareFunction", {
-  visitor: ["id"],
-  aliases: ["Flow", "FlowDeclaration", "Statement", "Declaration"],
-  fields: {
-    id: (0, _utils.validateType)("Identifier"),
-    predicate: (0, _utils.validateOptionalType)("DeclaredPredicate")
-  }
-});
-defineInterfaceishType("DeclareInterface");
-(0, _utils.default)("DeclareModule", {
-  builder: ["id", "body", "kind"],
-  visitor: ["id", "body"],
-  aliases: ["Flow", "FlowDeclaration", "Statement", "Declaration"],
-  fields: {
-    id: (0, _utils.validateType)(["Identifier", "StringLiteral"]),
-    body: (0, _utils.validateType)("BlockStatement"),
-    kind: (0, _utils.validateOptional)((0, _utils.assertOneOf)("CommonJS", "ES"))
-  }
-});
-(0, _utils.default)("DeclareModuleExports", {
-  visitor: ["typeAnnotation"],
-  aliases: ["Flow", "FlowDeclaration", "Statement", "Declaration"],
-  fields: {
-    typeAnnotation: (0, _utils.validateType)("TypeAnnotation")
-  }
-});
-(0, _utils.default)("DeclareTypeAlias", {
-  visitor: ["id", "typeParameters", "right"],
-  aliases: ["Flow", "FlowDeclaration", "Statement", "Declaration"],
-  fields: {
-    id: (0, _utils.validateType)("Identifier"),
-    typeParameters: (0, _utils.validateOptionalType)("TypeParameterDeclaration"),
-    right: (0, _utils.validateType)("FlowType")
-  }
-});
-(0, _utils.default)("DeclareOpaqueType", {
-  visitor: ["id", "typeParameters", "supertype"],
-  aliases: ["Flow", "FlowDeclaration", "Statement", "Declaration"],
-  fields: {
-    id: (0, _utils.validateType)("Identifier"),
-    typeParameters: (0, _utils.validateOptionalType)("TypeParameterDeclaration"),
-    supertype: (0, _utils.validateOptionalType)("FlowType")
-  }
-});
-(0, _utils.default)("DeclareVariable", {
-  visitor: ["id"],
-  aliases: ["Flow", "FlowDeclaration", "Statement", "Declaration"],
-  fields: {
-    id: (0, _utils.validateType)("Identifier")
-  }
-});
-(0, _utils.default)("DeclareExportDeclaration", {
-  visitor: ["declaration", "specifiers", "source"],
-  aliases: ["Flow", "FlowDeclaration", "Statement", "Declaration"],
-  fields: {
-    declaration: (0, _utils.validateOptionalType)("Flow"),
-    specifiers: (0, _utils.validateOptional)((0, _utils.arrayOfType)(["ExportSpecifier", "ExportNamespaceSpecifier"])),
-    source: (0, _utils.validateOptionalType)("StringLiteral"),
-    default: (0, _utils.validateOptional)((0, _utils.assertValueType)("boolean"))
-  }
-});
-(0, _utils.default)("DeclareExportAllDeclaration", {
-  visitor: ["source"],
-  aliases: ["Flow", "FlowDeclaration", "Statement", "Declaration"],
-  fields: {
-    source: (0, _utils.validateType)("StringLiteral"),
-    exportKind: (0, _utils.validateOptional)((0, _utils.assertOneOf)("type", "value"))
-  }
-});
-(0, _utils.default)("DeclaredPredicate", {
-  visitor: ["value"],
-  aliases: ["Flow", "FlowPredicate"],
-  fields: {
-    value: (0, _utils.validateType)("Flow")
-  }
-});
-(0, _utils.default)("ExistsTypeAnnotation", {
-  aliases: ["Flow", "FlowType"]
-});
-(0, _utils.default)("FunctionTypeAnnotation", {
-  visitor: ["typeParameters", "params", "rest", "returnType"],
-  aliases: ["Flow", "FlowType"],
-  fields: {
-    typeParameters: (0, _utils.validateOptionalType)("TypeParameterDeclaration"),
-    params: (0, _utils.validate)((0, _utils.arrayOfType)("FunctionTypeParam")),
-    rest: (0, _utils.validateOptionalType)("FunctionTypeParam"),
-    this: (0, _utils.validateOptionalType)("FunctionTypeParam"),
-    returnType: (0, _utils.validateType)("FlowType")
-  }
-});
-(0, _utils.default)("FunctionTypeParam", {
-  visitor: ["name", "typeAnnotation"],
-  aliases: ["Flow"],
-  fields: {
-    name: (0, _utils.validateOptionalType)("Identifier"),
-    typeAnnotation: (0, _utils.validateType)("FlowType"),
-    optional: (0, _utils.validateOptional)((0, _utils.assertValueType)("boolean"))
-  }
-});
-(0, _utils.default)("GenericTypeAnnotation", {
-  visitor: ["id", "typeParameters"],
-  aliases: ["Flow", "FlowType"],
-  fields: {
-    id: (0, _utils.validateType)(["Identifier", "QualifiedTypeIdentifier"]),
-    typeParameters: (0, _utils.validateOptionalType)("TypeParameterInstantiation")
-  }
-});
-(0, _utils.default)("InferredPredicate", {
-  aliases: ["Flow", "FlowPredicate"]
-});
-(0, _utils.default)("InterfaceExtends", {
-  visitor: ["id", "typeParameters"],
-  aliases: ["Flow"],
-  fields: {
-    id: (0, _utils.validateType)(["Identifier", "QualifiedTypeIdentifier"]),
-    typeParameters: (0, _utils.validateOptionalType)("TypeParameterInstantiation")
-  }
-});
-defineInterfaceishType("InterfaceDeclaration");
-(0, _utils.default)("InterfaceTypeAnnotation", {
-  visitor: ["extends", "body"],
-  aliases: ["Flow", "FlowType"],
-  fields: {
-    extends: (0, _utils.validateOptional)((0, _utils.arrayOfType)("InterfaceExtends")),
-    body: (0, _utils.validateType)("ObjectTypeAnnotation")
-  }
-});
-(0, _utils.default)("IntersectionTypeAnnotation", {
-  visitor: ["types"],
-  aliases: ["Flow", "FlowType"],
-  fields: {
-    types: (0, _utils.validate)((0, _utils.arrayOfType)("FlowType"))
-  }
-});
-(0, _utils.default)("MixedTypeAnnotation", {
-  aliases: ["Flow", "FlowType", "FlowBaseAnnotation"]
-});
-(0, _utils.default)("EmptyTypeAnnotation", {
-  aliases: ["Flow", "FlowType", "FlowBaseAnnotation"]
-});
-(0, _utils.default)("NullableTypeAnnotation", {
-  visitor: ["typeAnnotation"],
-  aliases: ["Flow", "FlowType"],
-  fields: {
-    typeAnnotation: (0, _utils.validateType)("FlowType")
-  }
-});
-(0, _utils.default)("NumberLiteralTypeAnnotation", {
-  builder: ["value"],
-  aliases: ["Flow", "FlowType"],
-  fields: {
-    value: (0, _utils.validate)((0, _utils.assertValueType)("number"))
-  }
-});
-(0, _utils.default)("NumberTypeAnnotation", {
-  aliases: ["Flow", "FlowType", "FlowBaseAnnotation"]
-});
-(0, _utils.default)("ObjectTypeAnnotation", {
-  visitor: ["properties", "indexers", "callProperties", "internalSlots"],
-  aliases: ["Flow", "FlowType"],
-  builder: ["properties", "indexers", "callProperties", "internalSlots", "exact"],
-  fields: {
-    properties: (0, _utils.validate)((0, _utils.arrayOfType)(["ObjectTypeProperty", "ObjectTypeSpreadProperty"])),
-    indexers: (0, _utils.validateOptional)((0, _utils.arrayOfType)("ObjectTypeIndexer")),
-    callProperties: (0, _utils.validateOptional)((0, _utils.arrayOfType)("ObjectTypeCallProperty")),
-    internalSlots: (0, _utils.validateOptional)((0, _utils.arrayOfType)("ObjectTypeInternalSlot")),
-    exact: {
-      validate: (0, _utils.assertValueType)("boolean"),
-      default: false
-    },
-    inexact: (0, _utils.validateOptional)((0, _utils.assertValueType)("boolean"))
-  }
-});
-(0, _utils.default)("ObjectTypeInternalSlot", {
-  visitor: ["id", "value", "optional", "static", "method"],
-  aliases: ["Flow", "UserWhitespacable"],
-  fields: {
-    id: (0, _utils.validateType)("Identifier"),
-    value: (0, _utils.validateType)("FlowType"),
-    optional: (0, _utils.validate)((0, _utils.assertValueType)("boolean")),
-    static: (0, _utils.validate)((0, _utils.assertValueType)("boolean")),
-    method: (0, _utils.validate)((0, _utils.assertValueType)("boolean"))
-  }
-});
-(0, _utils.default)("ObjectTypeCallProperty", {
-  visitor: ["value"],
-  aliases: ["Flow", "UserWhitespacable"],
-  fields: {
-    value: (0, _utils.validateType)("FlowType"),
-    static: (0, _utils.validate)((0, _utils.assertValueType)("boolean"))
-  }
-});
-(0, _utils.default)("ObjectTypeIndexer", {
-  visitor: ["id", "key", "value", "variance"],
-  aliases: ["Flow", "UserWhitespacable"],
-  fields: {
-    id: (0, _utils.validateOptionalType)("Identifier"),
-    key: (0, _utils.validateType)("FlowType"),
-    value: (0, _utils.validateType)("FlowType"),
-    static: (0, _utils.validate)((0, _utils.assertValueType)("boolean")),
-    variance: (0, _utils.validateOptionalType)("Variance")
-  }
-});
-(0, _utils.default)("ObjectTypeProperty", {
-  visitor: ["key", "value", "variance"],
-  aliases: ["Flow", "UserWhitespacable"],
-  fields: {
-    key: (0, _utils.validateType)(["Identifier", "StringLiteral"]),
-    value: (0, _utils.validateType)("FlowType"),
-    kind: (0, _utils.validate)((0, _utils.assertOneOf)("init", "get", "set")),
-    static: (0, _utils.validate)((0, _utils.assertValueType)("boolean")),
-    proto: (0, _utils.validate)((0, _utils.assertValueType)("boolean")),
-    optional: (0, _utils.validate)((0, _utils.assertValueType)("boolean")),
-    variance: (0, _utils.validateOptionalType)("Variance"),
-    method: (0, _utils.validate)((0, _utils.assertValueType)("boolean"))
-  }
-});
-(0, _utils.default)("ObjectTypeSpreadProperty", {
-  visitor: ["argument"],
-  aliases: ["Flow", "UserWhitespacable"],
-  fields: {
-    argument: (0, _utils.validateType)("FlowType")
-  }
-});
-(0, _utils.default)("OpaqueType", {
-  visitor: ["id", "typeParameters", "supertype", "impltype"],
-  aliases: ["Flow", "FlowDeclaration", "Statement", "Declaration"],
-  fields: {
-    id: (0, _utils.validateType)("Identifier"),
-    typeParameters: (0, _utils.validateOptionalType)("TypeParameterDeclaration"),
-    supertype: (0, _utils.validateOptionalType)("FlowType"),
-    impltype: (0, _utils.validateType)("FlowType")
-  }
-});
-(0, _utils.default)("QualifiedTypeIdentifier", {
-  visitor: ["id", "qualification"],
-  aliases: ["Flow"],
-  fields: {
-    id: (0, _utils.validateType)("Identifier"),
-    qualification: (0, _utils.validateType)(["Identifier", "QualifiedTypeIdentifier"])
-  }
-});
-(0, _utils.default)("StringLiteralTypeAnnotation", {
-  builder: ["value"],
-  aliases: ["Flow", "FlowType"],
-  fields: {
-    value: (0, _utils.validate)((0, _utils.assertValueType)("string"))
-  }
-});
-(0, _utils.default)("StringTypeAnnotation", {
-  aliases: ["Flow", "FlowType", "FlowBaseAnnotation"]
-});
-(0, _utils.default)("SymbolTypeAnnotation", {
-  aliases: ["Flow", "FlowType", "FlowBaseAnnotation"]
-});
-(0, _utils.default)("ThisTypeAnnotation", {
-  aliases: ["Flow", "FlowType", "FlowBaseAnnotation"]
-});
-(0, _utils.default)("TupleTypeAnnotation", {
-  visitor: ["types"],
-  aliases: ["Flow", "FlowType"],
-  fields: {
-    types: (0, _utils.validate)((0, _utils.arrayOfType)("FlowType"))
-  }
-});
-(0, _utils.default)("TypeofTypeAnnotation", {
-  visitor: ["argument"],
-  aliases: ["Flow", "FlowType"],
-  fields: {
-    argument: (0, _utils.validateType)("FlowType")
-  }
-});
-(0, _utils.default)("TypeAlias", {
-  visitor: ["id", "typeParameters", "right"],
-  aliases: ["Flow", "FlowDeclaration", "Statement", "Declaration"],
-  fields: {
-    id: (0, _utils.validateType)("Identifier"),
-    typeParameters: (0, _utils.validateOptionalType)("TypeParameterDeclaration"),
-    right: (0, _utils.validateType)("FlowType")
-  }
-});
-(0, _utils.default)("TypeAnnotation", {
-  aliases: ["Flow"],
-  visitor: ["typeAnnotation"],
-  fields: {
-    typeAnnotation: (0, _utils.validateType)("FlowType")
-  }
-});
-(0, _utils.default)("TypeCastExpression", {
-  visitor: ["expression", "typeAnnotation"],
-  aliases: ["Flow", "ExpressionWrapper", "Expression"],
-  fields: {
-    expression: (0, _utils.validateType)("Expression"),
-    typeAnnotation: (0, _utils.validateType)("TypeAnnotation")
-  }
-});
-(0, _utils.default)("TypeParameter", {
-  aliases: ["Flow"],
-  visitor: ["bound", "default", "variance"],
-  fields: {
-    name: (0, _utils.validate)((0, _utils.assertValueType)("string")),
-    bound: (0, _utils.validateOptionalType)("TypeAnnotation"),
-    default: (0, _utils.validateOptionalType)("FlowType"),
-    variance: (0, _utils.validateOptionalType)("Variance")
-  }
-});
-(0, _utils.default)("TypeParameterDeclaration", {
-  aliases: ["Flow"],
-  visitor: ["params"],
-  fields: {
-    params: (0, _utils.validate)((0, _utils.arrayOfType)("TypeParameter"))
-  }
-});
-(0, _utils.default)("TypeParameterInstantiation", {
-  aliases: ["Flow"],
-  visitor: ["params"],
-  fields: {
-    params: (0, _utils.validate)((0, _utils.arrayOfType)("FlowType"))
-  }
-});
-(0, _utils.default)("UnionTypeAnnotation", {
-  visitor: ["types"],
-  aliases: ["Flow", "FlowType"],
-  fields: {
-    types: (0, _utils.validate)((0, _utils.arrayOfType)("FlowType"))
-  }
-});
-(0, _utils.default)("Variance", {
-  aliases: ["Flow"],
-  builder: ["kind"],
-  fields: {
-    kind: (0, _utils.validate)((0, _utils.assertOneOf)("minus", "plus"))
-  }
-});
-(0, _utils.default)("VoidTypeAnnotation", {
-  aliases: ["Flow", "FlowType", "FlowBaseAnnotation"]
-});
-(0, _utils.default)("EnumDeclaration", {
-  aliases: ["Statement", "Declaration"],
-  visitor: ["id", "body"],
-  fields: {
-    id: (0, _utils.validateType)("Identifier"),
-    body: (0, _utils.validateType)(["EnumBooleanBody", "EnumNumberBody", "EnumStringBody", "EnumSymbolBody"])
-  }
-});
-(0, _utils.default)("EnumBooleanBody", {
-  aliases: ["EnumBody"],
-  visitor: ["members"],
-  fields: {
-    explicitType: (0, _utils.validate)((0, _utils.assertValueType)("boolean")),
-    members: (0, _utils.validateArrayOfType)("EnumBooleanMember"),
-    hasUnknownMembers: (0, _utils.validate)((0, _utils.assertValueType)("boolean"))
-  }
-});
-(0, _utils.default)("EnumNumberBody", {
-  aliases: ["EnumBody"],
-  visitor: ["members"],
-  fields: {
-    explicitType: (0, _utils.validate)((0, _utils.assertValueType)("boolean")),
-    members: (0, _utils.validateArrayOfType)("EnumNumberMember"),
-    hasUnknownMembers: (0, _utils.validate)((0, _utils.assertValueType)("boolean"))
-  }
-});
-(0, _utils.default)("EnumStringBody", {
-  aliases: ["EnumBody"],
-  visitor: ["members"],
-  fields: {
-    explicitType: (0, _utils.validate)((0, _utils.assertValueType)("boolean")),
-    members: (0, _utils.validateArrayOfType)(["EnumStringMember", "EnumDefaultedMember"]),
-    hasUnknownMembers: (0, _utils.validate)((0, _utils.assertValueType)("boolean"))
-  }
-});
-(0, _utils.default)("EnumSymbolBody", {
-  aliases: ["EnumBody"],
-  visitor: ["members"],
-  fields: {
-    members: (0, _utils.validateArrayOfType)("EnumDefaultedMember"),
-    hasUnknownMembers: (0, _utils.validate)((0, _utils.assertValueType)("boolean"))
-  }
-});
-(0, _utils.default)("EnumBooleanMember", {
-  aliases: ["EnumMember"],
-  visitor: ["id"],
-  fields: {
-    id: (0, _utils.validateType)("Identifier"),
-    init: (0, _utils.validateType)("BooleanLiteral")
-  }
-});
-(0, _utils.default)("EnumNumberMember", {
-  aliases: ["EnumMember"],
-  visitor: ["id", "init"],
-  fields: {
-    id: (0, _utils.validateType)("Identifier"),
-    init: (0, _utils.validateType)("NumericLiteral")
-  }
-});
-(0, _utils.default)("EnumStringMember", {
-  aliases: ["EnumMember"],
-  visitor: ["id", "init"],
-  fields: {
-    id: (0, _utils.validateType)("Identifier"),
-    init: (0, _utils.validateType)("StringLiteral")
-  }
-});
-(0, _utils.default)("EnumDefaultedMember", {
-  aliases: ["EnumMember"],
-  visitor: ["id"],
-  fields: {
-    id: (0, _utils.validateType)("Identifier")
-  }
-});
-(0, _utils.default)("IndexedAccessType", {
-  visitor: ["objectType", "indexType"],
-  aliases: ["Flow", "FlowType"],
-  fields: {
-    objectType: (0, _utils.validateType)("FlowType"),
-    indexType: (0, _utils.validateType)("FlowType")
-  }
-});
-(0, _utils.default)("OptionalIndexedAccessType", {
-  visitor: ["objectType", "indexType"],
-  aliases: ["Flow", "FlowType"],
-  fields: {
-    objectType: (0, _utils.validateType)("FlowType"),
-    indexType: (0, _utils.validateType)("FlowType"),
-    optional: (0, _utils.validate)((0, _utils.assertValueType)("boolean"))
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/definitions/index.js":
-/*!************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/definitions/index.js ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-Object.defineProperty(exports, "VISITOR_KEYS", ({
-  enumerable: true,
-  get: function () {
-    return _utils.VISITOR_KEYS;
-  }
-}));
-Object.defineProperty(exports, "ALIAS_KEYS", ({
-  enumerable: true,
-  get: function () {
-    return _utils.ALIAS_KEYS;
-  }
-}));
-Object.defineProperty(exports, "FLIPPED_ALIAS_KEYS", ({
-  enumerable: true,
-  get: function () {
-    return _utils.FLIPPED_ALIAS_KEYS;
-  }
-}));
-Object.defineProperty(exports, "NODE_FIELDS", ({
-  enumerable: true,
-  get: function () {
-    return _utils.NODE_FIELDS;
-  }
-}));
-Object.defineProperty(exports, "BUILDER_KEYS", ({
-  enumerable: true,
-  get: function () {
-    return _utils.BUILDER_KEYS;
-  }
-}));
-Object.defineProperty(exports, "DEPRECATED_KEYS", ({
-  enumerable: true,
-  get: function () {
-    return _utils.DEPRECATED_KEYS;
-  }
-}));
-Object.defineProperty(exports, "NODE_PARENT_VALIDATIONS", ({
-  enumerable: true,
-  get: function () {
-    return _utils.NODE_PARENT_VALIDATIONS;
-  }
-}));
-Object.defineProperty(exports, "PLACEHOLDERS", ({
-  enumerable: true,
-  get: function () {
-    return _placeholders.PLACEHOLDERS;
-  }
-}));
-Object.defineProperty(exports, "PLACEHOLDERS_ALIAS", ({
-  enumerable: true,
-  get: function () {
-    return _placeholders.PLACEHOLDERS_ALIAS;
-  }
-}));
-Object.defineProperty(exports, "PLACEHOLDERS_FLIPPED_ALIAS", ({
-  enumerable: true,
-  get: function () {
-    return _placeholders.PLACEHOLDERS_FLIPPED_ALIAS;
-  }
-}));
-exports.TYPES = void 0;
-
-var _toFastProperties = __webpack_require__(/*! to-fast-properties */ "./node_modules/to-fast-properties/index.js");
-
-__webpack_require__(/*! ./core */ "./node_modules/@babel/types/lib/definitions/core.js");
-
-__webpack_require__(/*! ./flow */ "./node_modules/@babel/types/lib/definitions/flow.js");
-
-__webpack_require__(/*! ./jsx */ "./node_modules/@babel/types/lib/definitions/jsx.js");
-
-__webpack_require__(/*! ./misc */ "./node_modules/@babel/types/lib/definitions/misc.js");
-
-__webpack_require__(/*! ./experimental */ "./node_modules/@babel/types/lib/definitions/experimental.js");
-
-__webpack_require__(/*! ./typescript */ "./node_modules/@babel/types/lib/definitions/typescript.js");
-
-var _utils = __webpack_require__(/*! ./utils */ "./node_modules/@babel/types/lib/definitions/utils.js");
-
-var _placeholders = __webpack_require__(/*! ./placeholders */ "./node_modules/@babel/types/lib/definitions/placeholders.js");
-
-_toFastProperties(_utils.VISITOR_KEYS);
-
-_toFastProperties(_utils.ALIAS_KEYS);
-
-_toFastProperties(_utils.FLIPPED_ALIAS_KEYS);
-
-_toFastProperties(_utils.NODE_FIELDS);
-
-_toFastProperties(_utils.BUILDER_KEYS);
-
-_toFastProperties(_utils.DEPRECATED_KEYS);
-
-_toFastProperties(_placeholders.PLACEHOLDERS_ALIAS);
-
-_toFastProperties(_placeholders.PLACEHOLDERS_FLIPPED_ALIAS);
-
-const TYPES = Object.keys(_utils.VISITOR_KEYS).concat(Object.keys(_utils.FLIPPED_ALIAS_KEYS)).concat(Object.keys(_utils.DEPRECATED_KEYS));
-exports.TYPES = TYPES;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/definitions/jsx.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/@babel/types/lib/definitions/jsx.js ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-
-var _utils = __webpack_require__(/*! ./utils */ "./node_modules/@babel/types/lib/definitions/utils.js");
-
-(0, _utils.default)("JSXAttribute", {
-  visitor: ["name", "value"],
-  aliases: ["JSX", "Immutable"],
-  fields: {
-    name: {
-      validate: (0, _utils.assertNodeType)("JSXIdentifier", "JSXNamespacedName")
-    },
-    value: {
-      optional: true,
-      validate: (0, _utils.assertNodeType)("JSXElement", "JSXFragment", "StringLiteral", "JSXExpressionContainer")
-    }
-  }
-});
-(0, _utils.default)("JSXClosingElement", {
-  visitor: ["name"],
-  aliases: ["JSX", "Immutable"],
-  fields: {
-    name: {
-      validate: (0, _utils.assertNodeType)("JSXIdentifier", "JSXMemberExpression", "JSXNamespacedName")
-    }
-  }
-});
-(0, _utils.default)("JSXElement", {
-  builder: ["openingElement", "closingElement", "children", "selfClosing"],
-  visitor: ["openingElement", "children", "closingElement"],
-  aliases: ["JSX", "Immutable", "Expression"],
-  fields: {
-    openingElement: {
-      validate: (0, _utils.assertNodeType)("JSXOpeningElement")
-    },
-    closingElement: {
-      optional: true,
-      validate: (0, _utils.assertNodeType)("JSXClosingElement")
-    },
-    children: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("JSXText", "JSXExpressionContainer", "JSXSpreadChild", "JSXElement", "JSXFragment")))
-    },
-    selfClosing: {
-      validate: (0, _utils.assertValueType)("boolean"),
-      optional: true
-    }
-  }
-});
-(0, _utils.default)("JSXEmptyExpression", {
-  aliases: ["JSX"]
-});
-(0, _utils.default)("JSXExpressionContainer", {
-  visitor: ["expression"],
-  aliases: ["JSX", "Immutable"],
-  fields: {
-    expression: {
-      validate: (0, _utils.assertNodeType)("Expression", "JSXEmptyExpression")
-    }
-  }
-});
-(0, _utils.default)("JSXSpreadChild", {
-  visitor: ["expression"],
-  aliases: ["JSX", "Immutable"],
-  fields: {
-    expression: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  }
-});
-(0, _utils.default)("JSXIdentifier", {
-  builder: ["name"],
-  aliases: ["JSX"],
-  fields: {
-    name: {
-      validate: (0, _utils.assertValueType)("string")
-    }
-  }
-});
-(0, _utils.default)("JSXMemberExpression", {
-  visitor: ["object", "property"],
-  aliases: ["JSX"],
-  fields: {
-    object: {
-      validate: (0, _utils.assertNodeType)("JSXMemberExpression", "JSXIdentifier")
-    },
-    property: {
-      validate: (0, _utils.assertNodeType)("JSXIdentifier")
-    }
-  }
-});
-(0, _utils.default)("JSXNamespacedName", {
-  visitor: ["namespace", "name"],
-  aliases: ["JSX"],
-  fields: {
-    namespace: {
-      validate: (0, _utils.assertNodeType)("JSXIdentifier")
-    },
-    name: {
-      validate: (0, _utils.assertNodeType)("JSXIdentifier")
-    }
-  }
-});
-(0, _utils.default)("JSXOpeningElement", {
-  builder: ["name", "attributes", "selfClosing"],
-  visitor: ["name", "attributes"],
-  aliases: ["JSX", "Immutable"],
-  fields: {
-    name: {
-      validate: (0, _utils.assertNodeType)("JSXIdentifier", "JSXMemberExpression", "JSXNamespacedName")
-    },
-    selfClosing: {
-      default: false
-    },
-    attributes: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("JSXAttribute", "JSXSpreadAttribute")))
-    },
-    typeParameters: {
-      validate: (0, _utils.assertNodeType)("TypeParameterInstantiation", "TSTypeParameterInstantiation"),
-      optional: true
-    }
-  }
-});
-(0, _utils.default)("JSXSpreadAttribute", {
-  visitor: ["argument"],
-  aliases: ["JSX"],
-  fields: {
-    argument: {
-      validate: (0, _utils.assertNodeType)("Expression")
-    }
-  }
-});
-(0, _utils.default)("JSXText", {
-  aliases: ["JSX", "Immutable"],
-  builder: ["value"],
-  fields: {
-    value: {
-      validate: (0, _utils.assertValueType)("string")
-    }
-  }
-});
-(0, _utils.default)("JSXFragment", {
-  builder: ["openingFragment", "closingFragment", "children"],
-  visitor: ["openingFragment", "children", "closingFragment"],
-  aliases: ["JSX", "Immutable", "Expression"],
-  fields: {
-    openingFragment: {
-      validate: (0, _utils.assertNodeType)("JSXOpeningFragment")
-    },
-    closingFragment: {
-      validate: (0, _utils.assertNodeType)("JSXClosingFragment")
-    },
-    children: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("JSXText", "JSXExpressionContainer", "JSXSpreadChild", "JSXElement", "JSXFragment")))
-    }
-  }
-});
-(0, _utils.default)("JSXOpeningFragment", {
-  aliases: ["JSX", "Immutable"]
-});
-(0, _utils.default)("JSXClosingFragment", {
-  aliases: ["JSX", "Immutable"]
-});
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/definitions/misc.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/@babel/types/lib/definitions/misc.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-
-var _utils = __webpack_require__(/*! ./utils */ "./node_modules/@babel/types/lib/definitions/utils.js");
-
-var _placeholders = __webpack_require__(/*! ./placeholders */ "./node_modules/@babel/types/lib/definitions/placeholders.js");
-
-{
-  (0, _utils.default)("Noop", {
-    visitor: []
-  });
-}
-(0, _utils.default)("Placeholder", {
-  visitor: [],
-  builder: ["expectedNode", "name"],
-  fields: {
-    name: {
-      validate: (0, _utils.assertNodeType)("Identifier")
-    },
-    expectedNode: {
-      validate: (0, _utils.assertOneOf)(..._placeholders.PLACEHOLDERS)
-    }
-  }
-});
-(0, _utils.default)("V8IntrinsicIdentifier", {
-  builder: ["name"],
-  fields: {
-    name: {
-      validate: (0, _utils.assertValueType)("string")
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/definitions/placeholders.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/definitions/placeholders.js ***!
-  \*******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.PLACEHOLDERS_FLIPPED_ALIAS = exports.PLACEHOLDERS_ALIAS = exports.PLACEHOLDERS = void 0;
-
-var _utils = __webpack_require__(/*! ./utils */ "./node_modules/@babel/types/lib/definitions/utils.js");
-
-const PLACEHOLDERS = ["Identifier", "StringLiteral", "Expression", "Statement", "Declaration", "BlockStatement", "ClassBody", "Pattern"];
-exports.PLACEHOLDERS = PLACEHOLDERS;
-const PLACEHOLDERS_ALIAS = {
-  Declaration: ["Statement"],
-  Pattern: ["PatternLike", "LVal"]
-};
-exports.PLACEHOLDERS_ALIAS = PLACEHOLDERS_ALIAS;
-
-for (const type of PLACEHOLDERS) {
-  const alias = _utils.ALIAS_KEYS[type];
-  if (alias != null && alias.length) PLACEHOLDERS_ALIAS[type] = alias;
-}
-
-const PLACEHOLDERS_FLIPPED_ALIAS = {};
-exports.PLACEHOLDERS_FLIPPED_ALIAS = PLACEHOLDERS_FLIPPED_ALIAS;
-Object.keys(PLACEHOLDERS_ALIAS).forEach(type => {
-  PLACEHOLDERS_ALIAS[type].forEach(alias => {
-    if (!Object.hasOwnProperty.call(PLACEHOLDERS_FLIPPED_ALIAS, alias)) {
-      PLACEHOLDERS_FLIPPED_ALIAS[alias] = [];
-    }
-
-    PLACEHOLDERS_FLIPPED_ALIAS[alias].push(type);
-  });
-});
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/definitions/typescript.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/definitions/typescript.js ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-
-var _utils = __webpack_require__(/*! ./utils */ "./node_modules/@babel/types/lib/definitions/utils.js");
-
-var _core = __webpack_require__(/*! ./core */ "./node_modules/@babel/types/lib/definitions/core.js");
-
-const bool = (0, _utils.assertValueType)("boolean");
-const tSFunctionTypeAnnotationCommon = {
-  returnType: {
-    validate: (0, _utils.assertNodeType)("TSTypeAnnotation", "Noop"),
-    optional: true
-  },
-  typeParameters: {
-    validate: (0, _utils.assertNodeType)("TSTypeParameterDeclaration", "Noop"),
-    optional: true
-  }
-};
-(0, _utils.default)("TSParameterProperty", {
-  aliases: ["LVal"],
-  visitor: ["parameter"],
-  fields: {
-    accessibility: {
-      validate: (0, _utils.assertOneOf)("public", "private", "protected"),
-      optional: true
-    },
-    readonly: {
-      validate: (0, _utils.assertValueType)("boolean"),
-      optional: true
-    },
-    parameter: {
-      validate: (0, _utils.assertNodeType)("Identifier", "AssignmentPattern")
-    }
-  }
-});
-(0, _utils.default)("TSDeclareFunction", {
-  aliases: ["Statement", "Declaration"],
-  visitor: ["id", "typeParameters", "params", "returnType"],
-  fields: Object.assign({}, _core.functionDeclarationCommon, tSFunctionTypeAnnotationCommon)
-});
-(0, _utils.default)("TSDeclareMethod", {
-  visitor: ["decorators", "key", "typeParameters", "params", "returnType"],
-  fields: Object.assign({}, _core.classMethodOrDeclareMethodCommon, tSFunctionTypeAnnotationCommon)
-});
-(0, _utils.default)("TSQualifiedName", {
-  aliases: ["TSEntityName"],
-  visitor: ["left", "right"],
-  fields: {
-    left: (0, _utils.validateType)("TSEntityName"),
-    right: (0, _utils.validateType)("Identifier")
-  }
-});
-const signatureDeclarationCommon = {
-  typeParameters: (0, _utils.validateOptionalType)("TSTypeParameterDeclaration"),
-  parameters: (0, _utils.validateArrayOfType)(["Identifier", "RestElement"]),
-  typeAnnotation: (0, _utils.validateOptionalType)("TSTypeAnnotation")
-};
-const callConstructSignatureDeclaration = {
-  aliases: ["TSTypeElement"],
-  visitor: ["typeParameters", "parameters", "typeAnnotation"],
-  fields: signatureDeclarationCommon
-};
-(0, _utils.default)("TSCallSignatureDeclaration", callConstructSignatureDeclaration);
-(0, _utils.default)("TSConstructSignatureDeclaration", callConstructSignatureDeclaration);
-const namedTypeElementCommon = {
-  key: (0, _utils.validateType)("Expression"),
-  computed: (0, _utils.validate)(bool),
-  optional: (0, _utils.validateOptional)(bool)
-};
-(0, _utils.default)("TSPropertySignature", {
-  aliases: ["TSTypeElement"],
-  visitor: ["key", "typeAnnotation", "initializer"],
-  fields: Object.assign({}, namedTypeElementCommon, {
-    readonly: (0, _utils.validateOptional)(bool),
-    typeAnnotation: (0, _utils.validateOptionalType)("TSTypeAnnotation"),
-    initializer: (0, _utils.validateOptionalType)("Expression")
-  })
-});
-(0, _utils.default)("TSMethodSignature", {
-  aliases: ["TSTypeElement"],
-  visitor: ["key", "typeParameters", "parameters", "typeAnnotation"],
-  fields: Object.assign({}, signatureDeclarationCommon, namedTypeElementCommon, {
-    kind: {
-      validate: (0, _utils.assertOneOf)("method", "get", "set")
-    }
-  })
-});
-(0, _utils.default)("TSIndexSignature", {
-  aliases: ["TSTypeElement"],
-  visitor: ["parameters", "typeAnnotation"],
-  fields: {
-    readonly: (0, _utils.validateOptional)(bool),
-    static: (0, _utils.validateOptional)(bool),
-    parameters: (0, _utils.validateArrayOfType)("Identifier"),
-    typeAnnotation: (0, _utils.validateOptionalType)("TSTypeAnnotation")
-  }
-});
-const tsKeywordTypes = ["TSAnyKeyword", "TSBooleanKeyword", "TSBigIntKeyword", "TSIntrinsicKeyword", "TSNeverKeyword", "TSNullKeyword", "TSNumberKeyword", "TSObjectKeyword", "TSStringKeyword", "TSSymbolKeyword", "TSUndefinedKeyword", "TSUnknownKeyword", "TSVoidKeyword"];
-
-for (const type of tsKeywordTypes) {
-  (0, _utils.default)(type, {
-    aliases: ["TSType", "TSBaseType"],
-    visitor: [],
-    fields: {}
-  });
-}
-
-(0, _utils.default)("TSThisType", {
-  aliases: ["TSType", "TSBaseType"],
-  visitor: [],
-  fields: {}
-});
-const fnOrCtrBase = {
-  aliases: ["TSType"],
-  visitor: ["typeParameters", "parameters", "typeAnnotation"]
-};
-(0, _utils.default)("TSFunctionType", Object.assign({}, fnOrCtrBase, {
-  fields: signatureDeclarationCommon
-}));
-(0, _utils.default)("TSConstructorType", Object.assign({}, fnOrCtrBase, {
-  fields: Object.assign({}, signatureDeclarationCommon, {
-    abstract: (0, _utils.validateOptional)(bool)
-  })
-}));
-(0, _utils.default)("TSTypeReference", {
-  aliases: ["TSType"],
-  visitor: ["typeName", "typeParameters"],
-  fields: {
-    typeName: (0, _utils.validateType)("TSEntityName"),
-    typeParameters: (0, _utils.validateOptionalType)("TSTypeParameterInstantiation")
-  }
-});
-(0, _utils.default)("TSTypePredicate", {
-  aliases: ["TSType"],
-  visitor: ["parameterName", "typeAnnotation"],
-  builder: ["parameterName", "typeAnnotation", "asserts"],
-  fields: {
-    parameterName: (0, _utils.validateType)(["Identifier", "TSThisType"]),
-    typeAnnotation: (0, _utils.validateOptionalType)("TSTypeAnnotation"),
-    asserts: (0, _utils.validateOptional)(bool)
-  }
-});
-(0, _utils.default)("TSTypeQuery", {
-  aliases: ["TSType"],
-  visitor: ["exprName"],
-  fields: {
-    exprName: (0, _utils.validateType)(["TSEntityName", "TSImportType"])
-  }
-});
-(0, _utils.default)("TSTypeLiteral", {
-  aliases: ["TSType"],
-  visitor: ["members"],
-  fields: {
-    members: (0, _utils.validateArrayOfType)("TSTypeElement")
-  }
-});
-(0, _utils.default)("TSArrayType", {
-  aliases: ["TSType"],
-  visitor: ["elementType"],
-  fields: {
-    elementType: (0, _utils.validateType)("TSType")
-  }
-});
-(0, _utils.default)("TSTupleType", {
-  aliases: ["TSType"],
-  visitor: ["elementTypes"],
-  fields: {
-    elementTypes: (0, _utils.validateArrayOfType)(["TSType", "TSNamedTupleMember"])
-  }
-});
-(0, _utils.default)("TSOptionalType", {
-  aliases: ["TSType"],
-  visitor: ["typeAnnotation"],
-  fields: {
-    typeAnnotation: (0, _utils.validateType)("TSType")
-  }
-});
-(0, _utils.default)("TSRestType", {
-  aliases: ["TSType"],
-  visitor: ["typeAnnotation"],
-  fields: {
-    typeAnnotation: (0, _utils.validateType)("TSType")
-  }
-});
-(0, _utils.default)("TSNamedTupleMember", {
-  visitor: ["label", "elementType"],
-  builder: ["label", "elementType", "optional"],
-  fields: {
-    label: (0, _utils.validateType)("Identifier"),
-    optional: {
-      validate: bool,
-      default: false
-    },
-    elementType: (0, _utils.validateType)("TSType")
-  }
-});
-const unionOrIntersection = {
-  aliases: ["TSType"],
-  visitor: ["types"],
-  fields: {
-    types: (0, _utils.validateArrayOfType)("TSType")
-  }
-};
-(0, _utils.default)("TSUnionType", unionOrIntersection);
-(0, _utils.default)("TSIntersectionType", unionOrIntersection);
-(0, _utils.default)("TSConditionalType", {
-  aliases: ["TSType"],
-  visitor: ["checkType", "extendsType", "trueType", "falseType"],
-  fields: {
-    checkType: (0, _utils.validateType)("TSType"),
-    extendsType: (0, _utils.validateType)("TSType"),
-    trueType: (0, _utils.validateType)("TSType"),
-    falseType: (0, _utils.validateType)("TSType")
-  }
-});
-(0, _utils.default)("TSInferType", {
-  aliases: ["TSType"],
-  visitor: ["typeParameter"],
-  fields: {
-    typeParameter: (0, _utils.validateType)("TSTypeParameter")
-  }
-});
-(0, _utils.default)("TSParenthesizedType", {
-  aliases: ["TSType"],
-  visitor: ["typeAnnotation"],
-  fields: {
-    typeAnnotation: (0, _utils.validateType)("TSType")
-  }
-});
-(0, _utils.default)("TSTypeOperator", {
-  aliases: ["TSType"],
-  visitor: ["typeAnnotation"],
-  fields: {
-    operator: (0, _utils.validate)((0, _utils.assertValueType)("string")),
-    typeAnnotation: (0, _utils.validateType)("TSType")
-  }
-});
-(0, _utils.default)("TSIndexedAccessType", {
-  aliases: ["TSType"],
-  visitor: ["objectType", "indexType"],
-  fields: {
-    objectType: (0, _utils.validateType)("TSType"),
-    indexType: (0, _utils.validateType)("TSType")
-  }
-});
-(0, _utils.default)("TSMappedType", {
-  aliases: ["TSType"],
-  visitor: ["typeParameter", "typeAnnotation", "nameType"],
-  fields: {
-    readonly: (0, _utils.validateOptional)(bool),
-    typeParameter: (0, _utils.validateType)("TSTypeParameter"),
-    optional: (0, _utils.validateOptional)(bool),
-    typeAnnotation: (0, _utils.validateOptionalType)("TSType"),
-    nameType: (0, _utils.validateOptionalType)("TSType")
-  }
-});
-(0, _utils.default)("TSLiteralType", {
-  aliases: ["TSType", "TSBaseType"],
-  visitor: ["literal"],
-  fields: {
-    literal: (0, _utils.validateType)(["NumericLiteral", "StringLiteral", "BooleanLiteral", "BigIntLiteral"])
-  }
-});
-(0, _utils.default)("TSExpressionWithTypeArguments", {
-  aliases: ["TSType"],
-  visitor: ["expression", "typeParameters"],
-  fields: {
-    expression: (0, _utils.validateType)("TSEntityName"),
-    typeParameters: (0, _utils.validateOptionalType)("TSTypeParameterInstantiation")
-  }
-});
-(0, _utils.default)("TSInterfaceDeclaration", {
-  aliases: ["Statement", "Declaration"],
-  visitor: ["id", "typeParameters", "extends", "body"],
-  fields: {
-    declare: (0, _utils.validateOptional)(bool),
-    id: (0, _utils.validateType)("Identifier"),
-    typeParameters: (0, _utils.validateOptionalType)("TSTypeParameterDeclaration"),
-    extends: (0, _utils.validateOptional)((0, _utils.arrayOfType)("TSExpressionWithTypeArguments")),
-    body: (0, _utils.validateType)("TSInterfaceBody")
-  }
-});
-(0, _utils.default)("TSInterfaceBody", {
-  visitor: ["body"],
-  fields: {
-    body: (0, _utils.validateArrayOfType)("TSTypeElement")
-  }
-});
-(0, _utils.default)("TSTypeAliasDeclaration", {
-  aliases: ["Statement", "Declaration"],
-  visitor: ["id", "typeParameters", "typeAnnotation"],
-  fields: {
-    declare: (0, _utils.validateOptional)(bool),
-    id: (0, _utils.validateType)("Identifier"),
-    typeParameters: (0, _utils.validateOptionalType)("TSTypeParameterDeclaration"),
-    typeAnnotation: (0, _utils.validateType)("TSType")
-  }
-});
-(0, _utils.default)("TSAsExpression", {
-  aliases: ["Expression"],
-  visitor: ["expression", "typeAnnotation"],
-  fields: {
-    expression: (0, _utils.validateType)("Expression"),
-    typeAnnotation: (0, _utils.validateType)("TSType")
-  }
-});
-(0, _utils.default)("TSTypeAssertion", {
-  aliases: ["Expression"],
-  visitor: ["typeAnnotation", "expression"],
-  fields: {
-    typeAnnotation: (0, _utils.validateType)("TSType"),
-    expression: (0, _utils.validateType)("Expression")
-  }
-});
-(0, _utils.default)("TSEnumDeclaration", {
-  aliases: ["Statement", "Declaration"],
-  visitor: ["id", "members"],
-  fields: {
-    declare: (0, _utils.validateOptional)(bool),
-    const: (0, _utils.validateOptional)(bool),
-    id: (0, _utils.validateType)("Identifier"),
-    members: (0, _utils.validateArrayOfType)("TSEnumMember"),
-    initializer: (0, _utils.validateOptionalType)("Expression")
-  }
-});
-(0, _utils.default)("TSEnumMember", {
-  visitor: ["id", "initializer"],
-  fields: {
-    id: (0, _utils.validateType)(["Identifier", "StringLiteral"]),
-    initializer: (0, _utils.validateOptionalType)("Expression")
-  }
-});
-(0, _utils.default)("TSModuleDeclaration", {
-  aliases: ["Statement", "Declaration"],
-  visitor: ["id", "body"],
-  fields: {
-    declare: (0, _utils.validateOptional)(bool),
-    global: (0, _utils.validateOptional)(bool),
-    id: (0, _utils.validateType)(["Identifier", "StringLiteral"]),
-    body: (0, _utils.validateType)(["TSModuleBlock", "TSModuleDeclaration"])
-  }
-});
-(0, _utils.default)("TSModuleBlock", {
-  aliases: ["Scopable", "Block", "BlockParent"],
-  visitor: ["body"],
-  fields: {
-    body: (0, _utils.validateArrayOfType)("Statement")
-  }
-});
-(0, _utils.default)("TSImportType", {
-  aliases: ["TSType"],
-  visitor: ["argument", "qualifier", "typeParameters"],
-  fields: {
-    argument: (0, _utils.validateType)("StringLiteral"),
-    qualifier: (0, _utils.validateOptionalType)("TSEntityName"),
-    typeParameters: (0, _utils.validateOptionalType)("TSTypeParameterInstantiation")
-  }
-});
-(0, _utils.default)("TSImportEqualsDeclaration", {
-  aliases: ["Statement"],
-  visitor: ["id", "moduleReference"],
-  fields: {
-    isExport: (0, _utils.validate)(bool),
-    id: (0, _utils.validateType)("Identifier"),
-    moduleReference: (0, _utils.validateType)(["TSEntityName", "TSExternalModuleReference"])
-  }
-});
-(0, _utils.default)("TSExternalModuleReference", {
-  visitor: ["expression"],
-  fields: {
-    expression: (0, _utils.validateType)("StringLiteral")
-  }
-});
-(0, _utils.default)("TSNonNullExpression", {
-  aliases: ["Expression"],
-  visitor: ["expression"],
-  fields: {
-    expression: (0, _utils.validateType)("Expression")
-  }
-});
-(0, _utils.default)("TSExportAssignment", {
-  aliases: ["Statement"],
-  visitor: ["expression"],
-  fields: {
-    expression: (0, _utils.validateType)("Expression")
-  }
-});
-(0, _utils.default)("TSNamespaceExportDeclaration", {
-  aliases: ["Statement"],
-  visitor: ["id"],
-  fields: {
-    id: (0, _utils.validateType)("Identifier")
-  }
-});
-(0, _utils.default)("TSTypeAnnotation", {
-  visitor: ["typeAnnotation"],
-  fields: {
-    typeAnnotation: {
-      validate: (0, _utils.assertNodeType)("TSType")
-    }
-  }
-});
-(0, _utils.default)("TSTypeParameterInstantiation", {
-  visitor: ["params"],
-  fields: {
-    params: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("TSType")))
-    }
-  }
-});
-(0, _utils.default)("TSTypeParameterDeclaration", {
-  visitor: ["params"],
-  fields: {
-    params: {
-      validate: (0, _utils.chain)((0, _utils.assertValueType)("array"), (0, _utils.assertEach)((0, _utils.assertNodeType)("TSTypeParameter")))
-    }
-  }
-});
-(0, _utils.default)("TSTypeParameter", {
-  builder: ["constraint", "default", "name"],
-  visitor: ["constraint", "default"],
-  fields: {
-    name: {
-      validate: (0, _utils.assertValueType)("string")
-    },
-    constraint: {
-      validate: (0, _utils.assertNodeType)("TSType"),
-      optional: true
-    },
-    default: {
-      validate: (0, _utils.assertNodeType)("TSType"),
-      optional: true
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/definitions/utils.js":
-/*!************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/definitions/utils.js ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.validate = validate;
-exports.typeIs = typeIs;
-exports.validateType = validateType;
-exports.validateOptional = validateOptional;
-exports.validateOptionalType = validateOptionalType;
-exports.arrayOf = arrayOf;
-exports.arrayOfType = arrayOfType;
-exports.validateArrayOfType = validateArrayOfType;
-exports.assertEach = assertEach;
-exports.assertOneOf = assertOneOf;
-exports.assertNodeType = assertNodeType;
-exports.assertNodeOrValueType = assertNodeOrValueType;
-exports.assertValueType = assertValueType;
-exports.assertShape = assertShape;
-exports.assertOptionalChainStart = assertOptionalChainStart;
-exports.chain = chain;
-exports.default = defineType;
-exports.NODE_PARENT_VALIDATIONS = exports.DEPRECATED_KEYS = exports.BUILDER_KEYS = exports.NODE_FIELDS = exports.FLIPPED_ALIAS_KEYS = exports.ALIAS_KEYS = exports.VISITOR_KEYS = void 0;
-
-var _is = __webpack_require__(/*! ../validators/is */ "./node_modules/@babel/types/lib/validators/is.js");
-
-var _validate = __webpack_require__(/*! ../validators/validate */ "./node_modules/@babel/types/lib/validators/validate.js");
-
-const VISITOR_KEYS = {};
-exports.VISITOR_KEYS = VISITOR_KEYS;
-const ALIAS_KEYS = {};
-exports.ALIAS_KEYS = ALIAS_KEYS;
-const FLIPPED_ALIAS_KEYS = {};
-exports.FLIPPED_ALIAS_KEYS = FLIPPED_ALIAS_KEYS;
-const NODE_FIELDS = {};
-exports.NODE_FIELDS = NODE_FIELDS;
-const BUILDER_KEYS = {};
-exports.BUILDER_KEYS = BUILDER_KEYS;
-const DEPRECATED_KEYS = {};
-exports.DEPRECATED_KEYS = DEPRECATED_KEYS;
-const NODE_PARENT_VALIDATIONS = {};
-exports.NODE_PARENT_VALIDATIONS = NODE_PARENT_VALIDATIONS;
-
-function getType(val) {
-  if (Array.isArray(val)) {
-    return "array";
-  } else if (val === null) {
-    return "null";
-  } else {
-    return typeof val;
-  }
-}
-
-function validate(validate) {
-  return {
-    validate
-  };
-}
-
-function typeIs(typeName) {
-  return typeof typeName === "string" ? assertNodeType(typeName) : assertNodeType(...typeName);
-}
-
-function validateType(typeName) {
-  return validate(typeIs(typeName));
-}
-
-function validateOptional(validate) {
-  return {
-    validate,
-    optional: true
-  };
-}
-
-function validateOptionalType(typeName) {
-  return {
-    validate: typeIs(typeName),
-    optional: true
-  };
-}
-
-function arrayOf(elementType) {
-  return chain(assertValueType("array"), assertEach(elementType));
-}
-
-function arrayOfType(typeName) {
-  return arrayOf(typeIs(typeName));
-}
-
-function validateArrayOfType(typeName) {
-  return validate(arrayOfType(typeName));
-}
-
-function assertEach(callback) {
-  function validator(node, key, val) {
-    if (!Array.isArray(val)) return;
-
-    for (let i = 0; i < val.length; i++) {
-      const subkey = `${key}[${i}]`;
-      const v = val[i];
-      callback(node, subkey, v);
-      if (process.env.BABEL_TYPES_8_BREAKING) (0, _validate.validateChild)(node, subkey, v);
-    }
-  }
-
-  validator.each = callback;
-  return validator;
-}
-
-function assertOneOf(...values) {
-  function validate(node, key, val) {
-    if (values.indexOf(val) < 0) {
-      throw new TypeError(`Property ${key} expected value to be one of ${JSON.stringify(values)} but got ${JSON.stringify(val)}`);
-    }
-  }
-
-  validate.oneOf = values;
-  return validate;
-}
-
-function assertNodeType(...types) {
-  function validate(node, key, val) {
-    for (const type of types) {
-      if ((0, _is.default)(type, val)) {
-        (0, _validate.validateChild)(node, key, val);
-        return;
-      }
-    }
-
-    throw new TypeError(`Property ${key} of ${node.type} expected node to be of a type ${JSON.stringify(types)} but instead got ${JSON.stringify(val == null ? void 0 : val.type)}`);
-  }
-
-  validate.oneOfNodeTypes = types;
-  return validate;
-}
-
-function assertNodeOrValueType(...types) {
-  function validate(node, key, val) {
-    for (const type of types) {
-      if (getType(val) === type || (0, _is.default)(type, val)) {
-        (0, _validate.validateChild)(node, key, val);
-        return;
-      }
-    }
-
-    throw new TypeError(`Property ${key} of ${node.type} expected node to be of a type ${JSON.stringify(types)} but instead got ${JSON.stringify(val == null ? void 0 : val.type)}`);
-  }
-
-  validate.oneOfNodeOrValueTypes = types;
-  return validate;
-}
-
-function assertValueType(type) {
-  function validate(node, key, val) {
-    const valid = getType(val) === type;
-
-    if (!valid) {
-      throw new TypeError(`Property ${key} expected type of ${type} but got ${getType(val)}`);
-    }
-  }
-
-  validate.type = type;
-  return validate;
-}
-
-function assertShape(shape) {
-  function validate(node, key, val) {
-    const errors = [];
-
-    for (const property of Object.keys(shape)) {
-      try {
-        (0, _validate.validateField)(node, property, val[property], shape[property]);
-      } catch (error) {
-        if (error instanceof TypeError) {
-          errors.push(error.message);
-          continue;
-        }
-
-        throw error;
-      }
-    }
-
-    if (errors.length) {
-      throw new TypeError(`Property ${key} of ${node.type} expected to have the following:\n${errors.join("\n")}`);
-    }
-  }
-
-  validate.shapeOf = shape;
-  return validate;
-}
-
-function assertOptionalChainStart() {
-  function validate(node) {
-    var _current;
-
-    let current = node;
-
-    while (node) {
-      const {
-        type
-      } = current;
-
-      if (type === "OptionalCallExpression") {
-        if (current.optional) return;
-        current = current.callee;
-        continue;
-      }
-
-      if (type === "OptionalMemberExpression") {
-        if (current.optional) return;
-        current = current.object;
-        continue;
-      }
-
-      break;
-    }
-
-    throw new TypeError(`Non-optional ${node.type} must chain from an optional OptionalMemberExpression or OptionalCallExpression. Found chain from ${(_current = current) == null ? void 0 : _current.type}`);
-  }
-
-  return validate;
-}
-
-function chain(...fns) {
-  function validate(...args) {
-    for (const fn of fns) {
-      fn(...args);
-    }
-  }
-
-  validate.chainOf = fns;
-
-  if (fns.length >= 2 && "type" in fns[0] && fns[0].type === "array" && !("each" in fns[1])) {
-    throw new Error(`An assertValueType("array") validator can only be followed by an assertEach(...) validator.`);
-  }
-
-  return validate;
-}
-
-const validTypeOpts = ["aliases", "builder", "deprecatedAlias", "fields", "inherits", "visitor", "validate"];
-const validFieldKeys = ["default", "optional", "validate"];
-
-function defineType(type, opts = {}) {
-  const inherits = opts.inherits && store[opts.inherits] || {};
-  let fields = opts.fields;
-
-  if (!fields) {
-    fields = {};
-
-    if (inherits.fields) {
-      const keys = Object.getOwnPropertyNames(inherits.fields);
-
-      for (const key of keys) {
-        const field = inherits.fields[key];
-        const def = field.default;
-
-        if (Array.isArray(def) ? def.length > 0 : def && typeof def === "object") {
-          throw new Error("field defaults can only be primitives or empty arrays currently");
-        }
-
-        fields[key] = {
-          default: Array.isArray(def) ? [] : def,
-          optional: field.optional,
-          validate: field.validate
-        };
-      }
-    }
-  }
-
-  const visitor = opts.visitor || inherits.visitor || [];
-  const aliases = opts.aliases || inherits.aliases || [];
-  const builder = opts.builder || inherits.builder || opts.visitor || [];
-
-  for (const k of Object.keys(opts)) {
-    if (validTypeOpts.indexOf(k) === -1) {
-      throw new Error(`Unknown type option "${k}" on ${type}`);
-    }
-  }
-
-  if (opts.deprecatedAlias) {
-    DEPRECATED_KEYS[opts.deprecatedAlias] = type;
-  }
-
-  for (const key of visitor.concat(builder)) {
-    fields[key] = fields[key] || {};
-  }
-
-  for (const key of Object.keys(fields)) {
-    const field = fields[key];
-
-    if (field.default !== undefined && builder.indexOf(key) === -1) {
-      field.optional = true;
-    }
-
-    if (field.default === undefined) {
-      field.default = null;
-    } else if (!field.validate && field.default != null) {
-      field.validate = assertValueType(getType(field.default));
-    }
-
-    for (const k of Object.keys(field)) {
-      if (validFieldKeys.indexOf(k) === -1) {
-        throw new Error(`Unknown field key "${k}" on ${type}.${key}`);
-      }
-    }
-  }
-
-  VISITOR_KEYS[type] = opts.visitor = visitor;
-  BUILDER_KEYS[type] = opts.builder = builder;
-  NODE_FIELDS[type] = opts.fields = fields;
-  ALIAS_KEYS[type] = opts.aliases = aliases;
-  aliases.forEach(alias => {
-    FLIPPED_ALIAS_KEYS[alias] = FLIPPED_ALIAS_KEYS[alias] || [];
-    FLIPPED_ALIAS_KEYS[alias].push(type);
-  });
-
-  if (opts.validate) {
-    NODE_PARENT_VALIDATIONS[type] = opts.validate;
-  }
-
-  store[type] = opts;
-}
-
-const store = {};
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/index.js":
-/*!************************************************!*\
-  !*** ./node_modules/@babel/types/lib/index.js ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-var _exportNames = {
-  react: true,
-  assertNode: true,
-  createTypeAnnotationBasedOnTypeof: true,
-  createUnionTypeAnnotation: true,
-  createFlowUnionType: true,
-  createTSUnionType: true,
-  cloneNode: true,
-  clone: true,
-  cloneDeep: true,
-  cloneDeepWithoutLoc: true,
-  cloneWithoutLoc: true,
-  addComment: true,
-  addComments: true,
-  inheritInnerComments: true,
-  inheritLeadingComments: true,
-  inheritsComments: true,
-  inheritTrailingComments: true,
-  removeComments: true,
-  ensureBlock: true,
-  toBindingIdentifierName: true,
-  toBlock: true,
-  toComputedKey: true,
-  toExpression: true,
-  toIdentifier: true,
-  toKeyAlias: true,
-  toSequenceExpression: true,
-  toStatement: true,
-  valueToNode: true,
-  appendToMemberExpression: true,
-  inherits: true,
-  prependToMemberExpression: true,
-  removeProperties: true,
-  removePropertiesDeep: true,
-  removeTypeDuplicates: true,
-  getBindingIdentifiers: true,
-  getOuterBindingIdentifiers: true,
-  traverse: true,
-  traverseFast: true,
-  shallowEqual: true,
-  is: true,
-  isBinding: true,
-  isBlockScoped: true,
-  isImmutable: true,
-  isLet: true,
-  isNode: true,
-  isNodesEquivalent: true,
-  isPlaceholderType: true,
-  isReferenced: true,
-  isScope: true,
-  isSpecifierDefault: true,
-  isType: true,
-  isValidES3Identifier: true,
-  isValidIdentifier: true,
-  isVar: true,
-  matchesPattern: true,
-  validate: true,
-  buildMatchMemberExpression: true
-};
-Object.defineProperty(exports, "assertNode", ({
-  enumerable: true,
-  get: function () {
-    return _assertNode.default;
-  }
-}));
-Object.defineProperty(exports, "createTypeAnnotationBasedOnTypeof", ({
-  enumerable: true,
-  get: function () {
-    return _createTypeAnnotationBasedOnTypeof.default;
-  }
-}));
-Object.defineProperty(exports, "createUnionTypeAnnotation", ({
-  enumerable: true,
-  get: function () {
-    return _createFlowUnionType.default;
-  }
-}));
-Object.defineProperty(exports, "createFlowUnionType", ({
-  enumerable: true,
-  get: function () {
-    return _createFlowUnionType.default;
-  }
-}));
-Object.defineProperty(exports, "createTSUnionType", ({
-  enumerable: true,
-  get: function () {
-    return _createTSUnionType.default;
-  }
-}));
-Object.defineProperty(exports, "cloneNode", ({
-  enumerable: true,
-  get: function () {
-    return _cloneNode.default;
-  }
-}));
-Object.defineProperty(exports, "clone", ({
-  enumerable: true,
-  get: function () {
-    return _clone.default;
-  }
-}));
-Object.defineProperty(exports, "cloneDeep", ({
-  enumerable: true,
-  get: function () {
-    return _cloneDeep.default;
-  }
-}));
-Object.defineProperty(exports, "cloneDeepWithoutLoc", ({
-  enumerable: true,
-  get: function () {
-    return _cloneDeepWithoutLoc.default;
-  }
-}));
-Object.defineProperty(exports, "cloneWithoutLoc", ({
-  enumerable: true,
-  get: function () {
-    return _cloneWithoutLoc.default;
-  }
-}));
-Object.defineProperty(exports, "addComment", ({
-  enumerable: true,
-  get: function () {
-    return _addComment.default;
-  }
-}));
-Object.defineProperty(exports, "addComments", ({
-  enumerable: true,
-  get: function () {
-    return _addComments.default;
-  }
-}));
-Object.defineProperty(exports, "inheritInnerComments", ({
-  enumerable: true,
-  get: function () {
-    return _inheritInnerComments.default;
-  }
-}));
-Object.defineProperty(exports, "inheritLeadingComments", ({
-  enumerable: true,
-  get: function () {
-    return _inheritLeadingComments.default;
-  }
-}));
-Object.defineProperty(exports, "inheritsComments", ({
-  enumerable: true,
-  get: function () {
-    return _inheritsComments.default;
-  }
-}));
-Object.defineProperty(exports, "inheritTrailingComments", ({
-  enumerable: true,
-  get: function () {
-    return _inheritTrailingComments.default;
-  }
-}));
-Object.defineProperty(exports, "removeComments", ({
-  enumerable: true,
-  get: function () {
-    return _removeComments.default;
-  }
-}));
-Object.defineProperty(exports, "ensureBlock", ({
-  enumerable: true,
-  get: function () {
-    return _ensureBlock.default;
-  }
-}));
-Object.defineProperty(exports, "toBindingIdentifierName", ({
-  enumerable: true,
-  get: function () {
-    return _toBindingIdentifierName.default;
-  }
-}));
-Object.defineProperty(exports, "toBlock", ({
-  enumerable: true,
-  get: function () {
-    return _toBlock.default;
-  }
-}));
-Object.defineProperty(exports, "toComputedKey", ({
-  enumerable: true,
-  get: function () {
-    return _toComputedKey.default;
-  }
-}));
-Object.defineProperty(exports, "toExpression", ({
-  enumerable: true,
-  get: function () {
-    return _toExpression.default;
-  }
-}));
-Object.defineProperty(exports, "toIdentifier", ({
-  enumerable: true,
-  get: function () {
-    return _toIdentifier.default;
-  }
-}));
-Object.defineProperty(exports, "toKeyAlias", ({
-  enumerable: true,
-  get: function () {
-    return _toKeyAlias.default;
-  }
-}));
-Object.defineProperty(exports, "toSequenceExpression", ({
-  enumerable: true,
-  get: function () {
-    return _toSequenceExpression.default;
-  }
-}));
-Object.defineProperty(exports, "toStatement", ({
-  enumerable: true,
-  get: function () {
-    return _toStatement.default;
-  }
-}));
-Object.defineProperty(exports, "valueToNode", ({
-  enumerable: true,
-  get: function () {
-    return _valueToNode.default;
-  }
-}));
-Object.defineProperty(exports, "appendToMemberExpression", ({
-  enumerable: true,
-  get: function () {
-    return _appendToMemberExpression.default;
-  }
-}));
-Object.defineProperty(exports, "inherits", ({
-  enumerable: true,
-  get: function () {
-    return _inherits.default;
-  }
-}));
-Object.defineProperty(exports, "prependToMemberExpression", ({
-  enumerable: true,
-  get: function () {
-    return _prependToMemberExpression.default;
-  }
-}));
-Object.defineProperty(exports, "removeProperties", ({
-  enumerable: true,
-  get: function () {
-    return _removeProperties.default;
-  }
-}));
-Object.defineProperty(exports, "removePropertiesDeep", ({
-  enumerable: true,
-  get: function () {
-    return _removePropertiesDeep.default;
-  }
-}));
-Object.defineProperty(exports, "removeTypeDuplicates", ({
-  enumerable: true,
-  get: function () {
-    return _removeTypeDuplicates.default;
-  }
-}));
-Object.defineProperty(exports, "getBindingIdentifiers", ({
-  enumerable: true,
-  get: function () {
-    return _getBindingIdentifiers.default;
-  }
-}));
-Object.defineProperty(exports, "getOuterBindingIdentifiers", ({
-  enumerable: true,
-  get: function () {
-    return _getOuterBindingIdentifiers.default;
-  }
-}));
-Object.defineProperty(exports, "traverse", ({
-  enumerable: true,
-  get: function () {
-    return _traverse.default;
-  }
-}));
-Object.defineProperty(exports, "traverseFast", ({
-  enumerable: true,
-  get: function () {
-    return _traverseFast.default;
-  }
-}));
-Object.defineProperty(exports, "shallowEqual", ({
-  enumerable: true,
-  get: function () {
-    return _shallowEqual.default;
-  }
-}));
-Object.defineProperty(exports, "is", ({
-  enumerable: true,
-  get: function () {
-    return _is.default;
-  }
-}));
-Object.defineProperty(exports, "isBinding", ({
-  enumerable: true,
-  get: function () {
-    return _isBinding.default;
-  }
-}));
-Object.defineProperty(exports, "isBlockScoped", ({
-  enumerable: true,
-  get: function () {
-    return _isBlockScoped.default;
-  }
-}));
-Object.defineProperty(exports, "isImmutable", ({
-  enumerable: true,
-  get: function () {
-    return _isImmutable.default;
-  }
-}));
-Object.defineProperty(exports, "isLet", ({
-  enumerable: true,
-  get: function () {
-    return _isLet.default;
-  }
-}));
-Object.defineProperty(exports, "isNode", ({
-  enumerable: true,
-  get: function () {
-    return _isNode.default;
-  }
-}));
-Object.defineProperty(exports, "isNodesEquivalent", ({
-  enumerable: true,
-  get: function () {
-    return _isNodesEquivalent.default;
-  }
-}));
-Object.defineProperty(exports, "isPlaceholderType", ({
-  enumerable: true,
-  get: function () {
-    return _isPlaceholderType.default;
-  }
-}));
-Object.defineProperty(exports, "isReferenced", ({
-  enumerable: true,
-  get: function () {
-    return _isReferenced.default;
-  }
-}));
-Object.defineProperty(exports, "isScope", ({
-  enumerable: true,
-  get: function () {
-    return _isScope.default;
-  }
-}));
-Object.defineProperty(exports, "isSpecifierDefault", ({
-  enumerable: true,
-  get: function () {
-    return _isSpecifierDefault.default;
-  }
-}));
-Object.defineProperty(exports, "isType", ({
-  enumerable: true,
-  get: function () {
-    return _isType.default;
-  }
-}));
-Object.defineProperty(exports, "isValidES3Identifier", ({
-  enumerable: true,
-  get: function () {
-    return _isValidES3Identifier.default;
-  }
-}));
-Object.defineProperty(exports, "isValidIdentifier", ({
-  enumerable: true,
-  get: function () {
-    return _isValidIdentifier.default;
-  }
-}));
-Object.defineProperty(exports, "isVar", ({
-  enumerable: true,
-  get: function () {
-    return _isVar.default;
-  }
-}));
-Object.defineProperty(exports, "matchesPattern", ({
-  enumerable: true,
-  get: function () {
-    return _matchesPattern.default;
-  }
-}));
-Object.defineProperty(exports, "validate", ({
-  enumerable: true,
-  get: function () {
-    return _validate.default;
-  }
-}));
-Object.defineProperty(exports, "buildMatchMemberExpression", ({
-  enumerable: true,
-  get: function () {
-    return _buildMatchMemberExpression.default;
-  }
-}));
-exports.react = void 0;
-
-var _isReactComponent = __webpack_require__(/*! ./validators/react/isReactComponent */ "./node_modules/@babel/types/lib/validators/react/isReactComponent.js");
-
-var _isCompatTag = __webpack_require__(/*! ./validators/react/isCompatTag */ "./node_modules/@babel/types/lib/validators/react/isCompatTag.js");
-
-var _buildChildren = __webpack_require__(/*! ./builders/react/buildChildren */ "./node_modules/@babel/types/lib/builders/react/buildChildren.js");
-
-var _assertNode = __webpack_require__(/*! ./asserts/assertNode */ "./node_modules/@babel/types/lib/asserts/assertNode.js");
-
-var _generated = __webpack_require__(/*! ./asserts/generated */ "./node_modules/@babel/types/lib/asserts/generated/index.js");
-
-Object.keys(_generated).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  if (key in exports && exports[key] === _generated[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _generated[key];
-    }
-  });
-});
-
-var _createTypeAnnotationBasedOnTypeof = __webpack_require__(/*! ./builders/flow/createTypeAnnotationBasedOnTypeof */ "./node_modules/@babel/types/lib/builders/flow/createTypeAnnotationBasedOnTypeof.js");
-
-var _createFlowUnionType = __webpack_require__(/*! ./builders/flow/createFlowUnionType */ "./node_modules/@babel/types/lib/builders/flow/createFlowUnionType.js");
-
-var _createTSUnionType = __webpack_require__(/*! ./builders/typescript/createTSUnionType */ "./node_modules/@babel/types/lib/builders/typescript/createTSUnionType.js");
-
-var _generated2 = __webpack_require__(/*! ./builders/generated */ "./node_modules/@babel/types/lib/builders/generated/index.js");
-
-Object.keys(_generated2).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  if (key in exports && exports[key] === _generated2[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _generated2[key];
-    }
-  });
-});
-
-var _uppercase = __webpack_require__(/*! ./builders/generated/uppercase */ "./node_modules/@babel/types/lib/builders/generated/uppercase.js");
-
-Object.keys(_uppercase).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  if (key in exports && exports[key] === _uppercase[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _uppercase[key];
-    }
-  });
-});
-
-var _cloneNode = __webpack_require__(/*! ./clone/cloneNode */ "./node_modules/@babel/types/lib/clone/cloneNode.js");
-
-var _clone = __webpack_require__(/*! ./clone/clone */ "./node_modules/@babel/types/lib/clone/clone.js");
-
-var _cloneDeep = __webpack_require__(/*! ./clone/cloneDeep */ "./node_modules/@babel/types/lib/clone/cloneDeep.js");
-
-var _cloneDeepWithoutLoc = __webpack_require__(/*! ./clone/cloneDeepWithoutLoc */ "./node_modules/@babel/types/lib/clone/cloneDeepWithoutLoc.js");
-
-var _cloneWithoutLoc = __webpack_require__(/*! ./clone/cloneWithoutLoc */ "./node_modules/@babel/types/lib/clone/cloneWithoutLoc.js");
-
-var _addComment = __webpack_require__(/*! ./comments/addComment */ "./node_modules/@babel/types/lib/comments/addComment.js");
-
-var _addComments = __webpack_require__(/*! ./comments/addComments */ "./node_modules/@babel/types/lib/comments/addComments.js");
-
-var _inheritInnerComments = __webpack_require__(/*! ./comments/inheritInnerComments */ "./node_modules/@babel/types/lib/comments/inheritInnerComments.js");
-
-var _inheritLeadingComments = __webpack_require__(/*! ./comments/inheritLeadingComments */ "./node_modules/@babel/types/lib/comments/inheritLeadingComments.js");
-
-var _inheritsComments = __webpack_require__(/*! ./comments/inheritsComments */ "./node_modules/@babel/types/lib/comments/inheritsComments.js");
-
-var _inheritTrailingComments = __webpack_require__(/*! ./comments/inheritTrailingComments */ "./node_modules/@babel/types/lib/comments/inheritTrailingComments.js");
-
-var _removeComments = __webpack_require__(/*! ./comments/removeComments */ "./node_modules/@babel/types/lib/comments/removeComments.js");
-
-var _generated3 = __webpack_require__(/*! ./constants/generated */ "./node_modules/@babel/types/lib/constants/generated/index.js");
-
-Object.keys(_generated3).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  if (key in exports && exports[key] === _generated3[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _generated3[key];
-    }
-  });
-});
-
-var _constants = __webpack_require__(/*! ./constants */ "./node_modules/@babel/types/lib/constants/index.js");
-
-Object.keys(_constants).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  if (key in exports && exports[key] === _constants[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _constants[key];
-    }
-  });
-});
-
-var _ensureBlock = __webpack_require__(/*! ./converters/ensureBlock */ "./node_modules/@babel/types/lib/converters/ensureBlock.js");
-
-var _toBindingIdentifierName = __webpack_require__(/*! ./converters/toBindingIdentifierName */ "./node_modules/@babel/types/lib/converters/toBindingIdentifierName.js");
-
-var _toBlock = __webpack_require__(/*! ./converters/toBlock */ "./node_modules/@babel/types/lib/converters/toBlock.js");
-
-var _toComputedKey = __webpack_require__(/*! ./converters/toComputedKey */ "./node_modules/@babel/types/lib/converters/toComputedKey.js");
-
-var _toExpression = __webpack_require__(/*! ./converters/toExpression */ "./node_modules/@babel/types/lib/converters/toExpression.js");
-
-var _toIdentifier = __webpack_require__(/*! ./converters/toIdentifier */ "./node_modules/@babel/types/lib/converters/toIdentifier.js");
-
-var _toKeyAlias = __webpack_require__(/*! ./converters/toKeyAlias */ "./node_modules/@babel/types/lib/converters/toKeyAlias.js");
-
-var _toSequenceExpression = __webpack_require__(/*! ./converters/toSequenceExpression */ "./node_modules/@babel/types/lib/converters/toSequenceExpression.js");
-
-var _toStatement = __webpack_require__(/*! ./converters/toStatement */ "./node_modules/@babel/types/lib/converters/toStatement.js");
-
-var _valueToNode = __webpack_require__(/*! ./converters/valueToNode */ "./node_modules/@babel/types/lib/converters/valueToNode.js");
-
-var _definitions = __webpack_require__(/*! ./definitions */ "./node_modules/@babel/types/lib/definitions/index.js");
-
-Object.keys(_definitions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  if (key in exports && exports[key] === _definitions[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _definitions[key];
-    }
-  });
-});
-
-var _appendToMemberExpression = __webpack_require__(/*! ./modifications/appendToMemberExpression */ "./node_modules/@babel/types/lib/modifications/appendToMemberExpression.js");
-
-var _inherits = __webpack_require__(/*! ./modifications/inherits */ "./node_modules/@babel/types/lib/modifications/inherits.js");
-
-var _prependToMemberExpression = __webpack_require__(/*! ./modifications/prependToMemberExpression */ "./node_modules/@babel/types/lib/modifications/prependToMemberExpression.js");
-
-var _removeProperties = __webpack_require__(/*! ./modifications/removeProperties */ "./node_modules/@babel/types/lib/modifications/removeProperties.js");
-
-var _removePropertiesDeep = __webpack_require__(/*! ./modifications/removePropertiesDeep */ "./node_modules/@babel/types/lib/modifications/removePropertiesDeep.js");
-
-var _removeTypeDuplicates = __webpack_require__(/*! ./modifications/flow/removeTypeDuplicates */ "./node_modules/@babel/types/lib/modifications/flow/removeTypeDuplicates.js");
-
-var _getBindingIdentifiers = __webpack_require__(/*! ./retrievers/getBindingIdentifiers */ "./node_modules/@babel/types/lib/retrievers/getBindingIdentifiers.js");
-
-var _getOuterBindingIdentifiers = __webpack_require__(/*! ./retrievers/getOuterBindingIdentifiers */ "./node_modules/@babel/types/lib/retrievers/getOuterBindingIdentifiers.js");
-
-var _traverse = __webpack_require__(/*! ./traverse/traverse */ "./node_modules/@babel/types/lib/traverse/traverse.js");
-
-Object.keys(_traverse).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  if (key in exports && exports[key] === _traverse[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _traverse[key];
-    }
-  });
-});
-
-var _traverseFast = __webpack_require__(/*! ./traverse/traverseFast */ "./node_modules/@babel/types/lib/traverse/traverseFast.js");
-
-var _shallowEqual = __webpack_require__(/*! ./utils/shallowEqual */ "./node_modules/@babel/types/lib/utils/shallowEqual.js");
-
-var _is = __webpack_require__(/*! ./validators/is */ "./node_modules/@babel/types/lib/validators/is.js");
-
-var _isBinding = __webpack_require__(/*! ./validators/isBinding */ "./node_modules/@babel/types/lib/validators/isBinding.js");
-
-var _isBlockScoped = __webpack_require__(/*! ./validators/isBlockScoped */ "./node_modules/@babel/types/lib/validators/isBlockScoped.js");
-
-var _isImmutable = __webpack_require__(/*! ./validators/isImmutable */ "./node_modules/@babel/types/lib/validators/isImmutable.js");
-
-var _isLet = __webpack_require__(/*! ./validators/isLet */ "./node_modules/@babel/types/lib/validators/isLet.js");
-
-var _isNode = __webpack_require__(/*! ./validators/isNode */ "./node_modules/@babel/types/lib/validators/isNode.js");
-
-var _isNodesEquivalent = __webpack_require__(/*! ./validators/isNodesEquivalent */ "./node_modules/@babel/types/lib/validators/isNodesEquivalent.js");
-
-var _isPlaceholderType = __webpack_require__(/*! ./validators/isPlaceholderType */ "./node_modules/@babel/types/lib/validators/isPlaceholderType.js");
-
-var _isReferenced = __webpack_require__(/*! ./validators/isReferenced */ "./node_modules/@babel/types/lib/validators/isReferenced.js");
-
-var _isScope = __webpack_require__(/*! ./validators/isScope */ "./node_modules/@babel/types/lib/validators/isScope.js");
-
-var _isSpecifierDefault = __webpack_require__(/*! ./validators/isSpecifierDefault */ "./node_modules/@babel/types/lib/validators/isSpecifierDefault.js");
-
-var _isType = __webpack_require__(/*! ./validators/isType */ "./node_modules/@babel/types/lib/validators/isType.js");
-
-var _isValidES3Identifier = __webpack_require__(/*! ./validators/isValidES3Identifier */ "./node_modules/@babel/types/lib/validators/isValidES3Identifier.js");
-
-var _isValidIdentifier = __webpack_require__(/*! ./validators/isValidIdentifier */ "./node_modules/@babel/types/lib/validators/isValidIdentifier.js");
-
-var _isVar = __webpack_require__(/*! ./validators/isVar */ "./node_modules/@babel/types/lib/validators/isVar.js");
-
-var _matchesPattern = __webpack_require__(/*! ./validators/matchesPattern */ "./node_modules/@babel/types/lib/validators/matchesPattern.js");
-
-var _validate = __webpack_require__(/*! ./validators/validate */ "./node_modules/@babel/types/lib/validators/validate.js");
-
-var _buildMatchMemberExpression = __webpack_require__(/*! ./validators/buildMatchMemberExpression */ "./node_modules/@babel/types/lib/validators/buildMatchMemberExpression.js");
-
-var _generated4 = __webpack_require__(/*! ./validators/generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-Object.keys(_generated4).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  if (key in exports && exports[key] === _generated4[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _generated4[key];
-    }
-  });
-});
-
-var _generated5 = __webpack_require__(/*! ./ast-types/generated */ "./node_modules/@babel/types/lib/ast-types/generated/index.js");
-
-Object.keys(_generated5).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  if (key in exports && exports[key] === _generated5[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _generated5[key];
-    }
-  });
-});
-const react = {
-  isReactComponent: _isReactComponent.default,
-  isCompatTag: _isCompatTag.default,
-  buildChildren: _buildChildren.default
-};
-exports.react = react;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/modifications/appendToMemberExpression.js":
-/*!*********************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/modifications/appendToMemberExpression.js ***!
-  \*********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = appendToMemberExpression;
-
-var _generated = __webpack_require__(/*! ../builders/generated */ "./node_modules/@babel/types/lib/builders/generated/index.js");
-
-function appendToMemberExpression(member, append, computed = false) {
-  member.object = (0, _generated.memberExpression)(member.object, member.property, member.computed);
-  member.property = append;
-  member.computed = !!computed;
-  return member;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/modifications/flow/removeTypeDuplicates.js":
-/*!**********************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/modifications/flow/removeTypeDuplicates.js ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = removeTypeDuplicates;
-
-var _generated = __webpack_require__(/*! ../../validators/generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-function getQualifiedName(node) {
-  return (0, _generated.isIdentifier)(node) ? node.name : `${node.id.name}.${getQualifiedName(node.qualification)}`;
-}
-
-function removeTypeDuplicates(nodes) {
-  const generics = {};
-  const bases = {};
-  const typeGroups = [];
-  const types = [];
-
-  for (let i = 0; i < nodes.length; i++) {
-    const node = nodes[i];
-    if (!node) continue;
-
-    if (types.indexOf(node) >= 0) {
-      continue;
-    }
-
-    if ((0, _generated.isAnyTypeAnnotation)(node)) {
-      return [node];
-    }
-
-    if ((0, _generated.isFlowBaseAnnotation)(node)) {
-      bases[node.type] = node;
-      continue;
-    }
-
-    if ((0, _generated.isUnionTypeAnnotation)(node)) {
-      if (typeGroups.indexOf(node.types) < 0) {
-        nodes = nodes.concat(node.types);
-        typeGroups.push(node.types);
-      }
-
-      continue;
-    }
-
-    if ((0, _generated.isGenericTypeAnnotation)(node)) {
-      const name = getQualifiedName(node.id);
-
-      if (generics[name]) {
-        let existing = generics[name];
-
-        if (existing.typeParameters) {
-          if (node.typeParameters) {
-            existing.typeParameters.params = removeTypeDuplicates(existing.typeParameters.params.concat(node.typeParameters.params));
-          }
-        } else {
-          existing = node.typeParameters;
-        }
-      } else {
-        generics[name] = node;
-      }
-
-      continue;
-    }
-
-    types.push(node);
-  }
-
-  for (const type of Object.keys(bases)) {
-    types.push(bases[type]);
-  }
-
-  for (const name of Object.keys(generics)) {
-    types.push(generics[name]);
-  }
-
-  return types;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/modifications/inherits.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/modifications/inherits.js ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = inherits;
-
-var _constants = __webpack_require__(/*! ../constants */ "./node_modules/@babel/types/lib/constants/index.js");
-
-var _inheritsComments = __webpack_require__(/*! ../comments/inheritsComments */ "./node_modules/@babel/types/lib/comments/inheritsComments.js");
-
-function inherits(child, parent) {
-  if (!child || !parent) return child;
-
-  for (const key of _constants.INHERIT_KEYS.optional) {
-    if (child[key] == null) {
-      child[key] = parent[key];
-    }
-  }
-
-  for (const key of Object.keys(parent)) {
-    if (key[0] === "_" && key !== "__clone") child[key] = parent[key];
-  }
-
-  for (const key of _constants.INHERIT_KEYS.force) {
-    child[key] = parent[key];
-  }
-
-  (0, _inheritsComments.default)(child, parent);
-  return child;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/modifications/prependToMemberExpression.js":
-/*!**********************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/modifications/prependToMemberExpression.js ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = prependToMemberExpression;
-
-var _generated = __webpack_require__(/*! ../builders/generated */ "./node_modules/@babel/types/lib/builders/generated/index.js");
-
-function prependToMemberExpression(member, prepend) {
-  member.object = (0, _generated.memberExpression)(prepend, member.object);
-  return member;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/modifications/removeProperties.js":
-/*!*************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/modifications/removeProperties.js ***!
-  \*************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = removeProperties;
-
-var _constants = __webpack_require__(/*! ../constants */ "./node_modules/@babel/types/lib/constants/index.js");
-
-const CLEAR_KEYS = ["tokens", "start", "end", "loc", "raw", "rawValue"];
-
-const CLEAR_KEYS_PLUS_COMMENTS = _constants.COMMENT_KEYS.concat(["comments"]).concat(CLEAR_KEYS);
-
-function removeProperties(node, opts = {}) {
-  const map = opts.preserveComments ? CLEAR_KEYS : CLEAR_KEYS_PLUS_COMMENTS;
-
-  for (const key of map) {
-    if (node[key] != null) node[key] = undefined;
-  }
-
-  for (const key of Object.keys(node)) {
-    if (key[0] === "_" && node[key] != null) node[key] = undefined;
-  }
-
-  const symbols = Object.getOwnPropertySymbols(node);
-
-  for (const sym of symbols) {
-    node[sym] = null;
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/modifications/removePropertiesDeep.js":
-/*!*****************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/modifications/removePropertiesDeep.js ***!
-  \*****************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = removePropertiesDeep;
-
-var _traverseFast = __webpack_require__(/*! ../traverse/traverseFast */ "./node_modules/@babel/types/lib/traverse/traverseFast.js");
-
-var _removeProperties = __webpack_require__(/*! ./removeProperties */ "./node_modules/@babel/types/lib/modifications/removeProperties.js");
-
-function removePropertiesDeep(tree, opts) {
-  (0, _traverseFast.default)(tree, _removeProperties.default, opts);
-  return tree;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/modifications/typescript/removeTypeDuplicates.js":
-/*!****************************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/modifications/typescript/removeTypeDuplicates.js ***!
-  \****************************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = removeTypeDuplicates;
-
-var _generated = __webpack_require__(/*! ../../validators/generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-function removeTypeDuplicates(nodes) {
-  const generics = {};
-  const bases = {};
-  const typeGroups = [];
-  const types = [];
-
-  for (let i = 0; i < nodes.length; i++) {
-    const node = nodes[i];
-    if (!node) continue;
-
-    if (types.indexOf(node) >= 0) {
-      continue;
-    }
-
-    if ((0, _generated.isTSAnyKeyword)(node)) {
-      return [node];
-    }
-
-    if ((0, _generated.isTSBaseType)(node)) {
-      bases[node.type] = node;
-      continue;
-    }
-
-    if ((0, _generated.isTSUnionType)(node)) {
-      if (typeGroups.indexOf(node.types) < 0) {
-        nodes = nodes.concat(node.types);
-        typeGroups.push(node.types);
-      }
-
-      continue;
-    }
-
-    types.push(node);
-  }
-
-  for (const type of Object.keys(bases)) {
-    types.push(bases[type]);
-  }
-
-  for (const name of Object.keys(generics)) {
-    types.push(generics[name]);
-  }
-
-  return types;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/retrievers/getBindingIdentifiers.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/retrievers/getBindingIdentifiers.js ***!
-  \***************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = getBindingIdentifiers;
-
-var _generated = __webpack_require__(/*! ../validators/generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-function getBindingIdentifiers(node, duplicates, outerOnly) {
-  let search = [].concat(node);
-  const ids = Object.create(null);
-
-  while (search.length) {
-    const id = search.shift();
-    if (!id) continue;
-    const keys = getBindingIdentifiers.keys[id.type];
-
-    if ((0, _generated.isIdentifier)(id)) {
-      if (duplicates) {
-        const _ids = ids[id.name] = ids[id.name] || [];
-
-        _ids.push(id);
-      } else {
-        ids[id.name] = id;
-      }
-
-      continue;
-    }
-
-    if ((0, _generated.isExportDeclaration)(id) && !(0, _generated.isExportAllDeclaration)(id)) {
-      if ((0, _generated.isDeclaration)(id.declaration)) {
-        search.push(id.declaration);
-      }
-
-      continue;
-    }
-
-    if (outerOnly) {
-      if ((0, _generated.isFunctionDeclaration)(id)) {
-        search.push(id.id);
-        continue;
-      }
-
-      if ((0, _generated.isFunctionExpression)(id)) {
-        continue;
-      }
-    }
-
-    if (keys) {
-      for (let i = 0; i < keys.length; i++) {
-        const key = keys[i];
-
-        if (id[key]) {
-          search = search.concat(id[key]);
-        }
-      }
-    }
-  }
-
-  return ids;
-}
-
-getBindingIdentifiers.keys = {
-  DeclareClass: ["id"],
-  DeclareFunction: ["id"],
-  DeclareModule: ["id"],
-  DeclareVariable: ["id"],
-  DeclareInterface: ["id"],
-  DeclareTypeAlias: ["id"],
-  DeclareOpaqueType: ["id"],
-  InterfaceDeclaration: ["id"],
-  TypeAlias: ["id"],
-  OpaqueType: ["id"],
-  CatchClause: ["param"],
-  LabeledStatement: ["label"],
-  UnaryExpression: ["argument"],
-  AssignmentExpression: ["left"],
-  ImportSpecifier: ["local"],
-  ImportNamespaceSpecifier: ["local"],
-  ImportDefaultSpecifier: ["local"],
-  ImportDeclaration: ["specifiers"],
-  ExportSpecifier: ["exported"],
-  ExportNamespaceSpecifier: ["exported"],
-  ExportDefaultSpecifier: ["exported"],
-  FunctionDeclaration: ["id", "params"],
-  FunctionExpression: ["id", "params"],
-  ArrowFunctionExpression: ["params"],
-  ObjectMethod: ["params"],
-  ClassMethod: ["params"],
-  ForInStatement: ["left"],
-  ForOfStatement: ["left"],
-  ClassDeclaration: ["id"],
-  ClassExpression: ["id"],
-  RestElement: ["argument"],
-  UpdateExpression: ["argument"],
-  ObjectProperty: ["value"],
-  AssignmentPattern: ["left"],
-  ArrayPattern: ["elements"],
-  ObjectPattern: ["properties"],
-  VariableDeclaration: ["declarations"],
-  VariableDeclarator: ["id"]
-};
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/retrievers/getOuterBindingIdentifiers.js":
-/*!********************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/retrievers/getOuterBindingIdentifiers.js ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = void 0;
-
-var _getBindingIdentifiers = __webpack_require__(/*! ./getBindingIdentifiers */ "./node_modules/@babel/types/lib/retrievers/getBindingIdentifiers.js");
-
-var _default = getOuterBindingIdentifiers;
-exports.default = _default;
-
-function getOuterBindingIdentifiers(node, duplicates) {
-  return (0, _getBindingIdentifiers.default)(node, duplicates, true);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/traverse/traverse.js":
-/*!************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/traverse/traverse.js ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = traverse;
-
-var _definitions = __webpack_require__(/*! ../definitions */ "./node_modules/@babel/types/lib/definitions/index.js");
-
-function traverse(node, handlers, state) {
-  if (typeof handlers === "function") {
-    handlers = {
-      enter: handlers
-    };
-  }
-
-  const {
-    enter,
-    exit
-  } = handlers;
-  traverseSimpleImpl(node, enter, exit, state, []);
-}
-
-function traverseSimpleImpl(node, enter, exit, state, ancestors) {
-  const keys = _definitions.VISITOR_KEYS[node.type];
-  if (!keys) return;
-  if (enter) enter(node, ancestors, state);
-
-  for (const key of keys) {
-    const subNode = node[key];
-
-    if (Array.isArray(subNode)) {
-      for (let i = 0; i < subNode.length; i++) {
-        const child = subNode[i];
-        if (!child) continue;
-        ancestors.push({
-          node,
-          key,
-          index: i
-        });
-        traverseSimpleImpl(child, enter, exit, state, ancestors);
-        ancestors.pop();
-      }
-    } else if (subNode) {
-      ancestors.push({
-        node,
-        key
-      });
-      traverseSimpleImpl(subNode, enter, exit, state, ancestors);
-      ancestors.pop();
-    }
-  }
-
-  if (exit) exit(node, ancestors, state);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/traverse/traverseFast.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/traverse/traverseFast.js ***!
-  \****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = traverseFast;
-
-var _definitions = __webpack_require__(/*! ../definitions */ "./node_modules/@babel/types/lib/definitions/index.js");
-
-function traverseFast(node, enter, opts) {
-  if (!node) return;
-  const keys = _definitions.VISITOR_KEYS[node.type];
-  if (!keys) return;
-  opts = opts || {};
-  enter(node, opts);
-
-  for (const key of keys) {
-    const subNode = node[key];
-
-    if (Array.isArray(subNode)) {
-      for (const node of subNode) {
-        traverseFast(node, enter, opts);
-      }
-    } else {
-      traverseFast(subNode, enter, opts);
-    }
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/utils/inherit.js":
-/*!********************************************************!*\
-  !*** ./node_modules/@babel/types/lib/utils/inherit.js ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = inherit;
-
-function inherit(key, child, parent) {
-  if (child && parent) {
-    child[key] = Array.from(new Set([].concat(child[key], parent[key]).filter(Boolean)));
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/utils/react/cleanJSXElementLiteralChild.js":
-/*!**********************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/utils/react/cleanJSXElementLiteralChild.js ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = cleanJSXElementLiteralChild;
-
-var _generated = __webpack_require__(/*! ../../builders/generated */ "./node_modules/@babel/types/lib/builders/generated/index.js");
-
-function cleanJSXElementLiteralChild(child, args) {
-  const lines = child.value.split(/\r\n|\n|\r/);
-  let lastNonEmptyLine = 0;
-
-  for (let i = 0; i < lines.length; i++) {
-    if (lines[i].match(/[^ \t]/)) {
-      lastNonEmptyLine = i;
-    }
-  }
-
-  let str = "";
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const isFirstLine = i === 0;
-    const isLastLine = i === lines.length - 1;
-    const isLastNonEmptyLine = i === lastNonEmptyLine;
-    let trimmedLine = line.replace(/\t/g, " ");
-
-    if (!isFirstLine) {
-      trimmedLine = trimmedLine.replace(/^[ ]+/, "");
-    }
-
-    if (!isLastLine) {
-      trimmedLine = trimmedLine.replace(/[ ]+$/, "");
-    }
-
-    if (trimmedLine) {
-      if (!isLastNonEmptyLine) {
-        trimmedLine += " ";
-      }
-
-      str += trimmedLine;
-    }
-  }
-
-  if (str) args.push((0, _generated.stringLiteral)(str));
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/utils/shallowEqual.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/utils/shallowEqual.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = shallowEqual;
-
-function shallowEqual(actual, expected) {
-  const keys = Object.keys(expected);
-
-  for (const key of keys) {
-    if (actual[key] !== expected[key]) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/buildMatchMemberExpression.js":
-/*!********************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/buildMatchMemberExpression.js ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = buildMatchMemberExpression;
-
-var _matchesPattern = __webpack_require__(/*! ./matchesPattern */ "./node_modules/@babel/types/lib/validators/matchesPattern.js");
-
-function buildMatchMemberExpression(match, allowPartial) {
-  const parts = match.split(".");
-  return member => (0, _matchesPattern.default)(member, parts, allowPartial);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/generated/index.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/generated/index.js ***!
-  \*********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.isArrayExpression = isArrayExpression;
-exports.isAssignmentExpression = isAssignmentExpression;
-exports.isBinaryExpression = isBinaryExpression;
-exports.isInterpreterDirective = isInterpreterDirective;
-exports.isDirective = isDirective;
-exports.isDirectiveLiteral = isDirectiveLiteral;
-exports.isBlockStatement = isBlockStatement;
-exports.isBreakStatement = isBreakStatement;
-exports.isCallExpression = isCallExpression;
-exports.isCatchClause = isCatchClause;
-exports.isConditionalExpression = isConditionalExpression;
-exports.isContinueStatement = isContinueStatement;
-exports.isDebuggerStatement = isDebuggerStatement;
-exports.isDoWhileStatement = isDoWhileStatement;
-exports.isEmptyStatement = isEmptyStatement;
-exports.isExpressionStatement = isExpressionStatement;
-exports.isFile = isFile;
-exports.isForInStatement = isForInStatement;
-exports.isForStatement = isForStatement;
-exports.isFunctionDeclaration = isFunctionDeclaration;
-exports.isFunctionExpression = isFunctionExpression;
-exports.isIdentifier = isIdentifier;
-exports.isIfStatement = isIfStatement;
-exports.isLabeledStatement = isLabeledStatement;
-exports.isStringLiteral = isStringLiteral;
-exports.isNumericLiteral = isNumericLiteral;
-exports.isNullLiteral = isNullLiteral;
-exports.isBooleanLiteral = isBooleanLiteral;
-exports.isRegExpLiteral = isRegExpLiteral;
-exports.isLogicalExpression = isLogicalExpression;
-exports.isMemberExpression = isMemberExpression;
-exports.isNewExpression = isNewExpression;
-exports.isProgram = isProgram;
-exports.isObjectExpression = isObjectExpression;
-exports.isObjectMethod = isObjectMethod;
-exports.isObjectProperty = isObjectProperty;
-exports.isRestElement = isRestElement;
-exports.isReturnStatement = isReturnStatement;
-exports.isSequenceExpression = isSequenceExpression;
-exports.isParenthesizedExpression = isParenthesizedExpression;
-exports.isSwitchCase = isSwitchCase;
-exports.isSwitchStatement = isSwitchStatement;
-exports.isThisExpression = isThisExpression;
-exports.isThrowStatement = isThrowStatement;
-exports.isTryStatement = isTryStatement;
-exports.isUnaryExpression = isUnaryExpression;
-exports.isUpdateExpression = isUpdateExpression;
-exports.isVariableDeclaration = isVariableDeclaration;
-exports.isVariableDeclarator = isVariableDeclarator;
-exports.isWhileStatement = isWhileStatement;
-exports.isWithStatement = isWithStatement;
-exports.isAssignmentPattern = isAssignmentPattern;
-exports.isArrayPattern = isArrayPattern;
-exports.isArrowFunctionExpression = isArrowFunctionExpression;
-exports.isClassBody = isClassBody;
-exports.isClassExpression = isClassExpression;
-exports.isClassDeclaration = isClassDeclaration;
-exports.isExportAllDeclaration = isExportAllDeclaration;
-exports.isExportDefaultDeclaration = isExportDefaultDeclaration;
-exports.isExportNamedDeclaration = isExportNamedDeclaration;
-exports.isExportSpecifier = isExportSpecifier;
-exports.isForOfStatement = isForOfStatement;
-exports.isImportDeclaration = isImportDeclaration;
-exports.isImportDefaultSpecifier = isImportDefaultSpecifier;
-exports.isImportNamespaceSpecifier = isImportNamespaceSpecifier;
-exports.isImportSpecifier = isImportSpecifier;
-exports.isMetaProperty = isMetaProperty;
-exports.isClassMethod = isClassMethod;
-exports.isObjectPattern = isObjectPattern;
-exports.isSpreadElement = isSpreadElement;
-exports.isSuper = isSuper;
-exports.isTaggedTemplateExpression = isTaggedTemplateExpression;
-exports.isTemplateElement = isTemplateElement;
-exports.isTemplateLiteral = isTemplateLiteral;
-exports.isYieldExpression = isYieldExpression;
-exports.isAwaitExpression = isAwaitExpression;
-exports.isImport = isImport;
-exports.isBigIntLiteral = isBigIntLiteral;
-exports.isExportNamespaceSpecifier = isExportNamespaceSpecifier;
-exports.isOptionalMemberExpression = isOptionalMemberExpression;
-exports.isOptionalCallExpression = isOptionalCallExpression;
-exports.isAnyTypeAnnotation = isAnyTypeAnnotation;
-exports.isArrayTypeAnnotation = isArrayTypeAnnotation;
-exports.isBooleanTypeAnnotation = isBooleanTypeAnnotation;
-exports.isBooleanLiteralTypeAnnotation = isBooleanLiteralTypeAnnotation;
-exports.isNullLiteralTypeAnnotation = isNullLiteralTypeAnnotation;
-exports.isClassImplements = isClassImplements;
-exports.isDeclareClass = isDeclareClass;
-exports.isDeclareFunction = isDeclareFunction;
-exports.isDeclareInterface = isDeclareInterface;
-exports.isDeclareModule = isDeclareModule;
-exports.isDeclareModuleExports = isDeclareModuleExports;
-exports.isDeclareTypeAlias = isDeclareTypeAlias;
-exports.isDeclareOpaqueType = isDeclareOpaqueType;
-exports.isDeclareVariable = isDeclareVariable;
-exports.isDeclareExportDeclaration = isDeclareExportDeclaration;
-exports.isDeclareExportAllDeclaration = isDeclareExportAllDeclaration;
-exports.isDeclaredPredicate = isDeclaredPredicate;
-exports.isExistsTypeAnnotation = isExistsTypeAnnotation;
-exports.isFunctionTypeAnnotation = isFunctionTypeAnnotation;
-exports.isFunctionTypeParam = isFunctionTypeParam;
-exports.isGenericTypeAnnotation = isGenericTypeAnnotation;
-exports.isInferredPredicate = isInferredPredicate;
-exports.isInterfaceExtends = isInterfaceExtends;
-exports.isInterfaceDeclaration = isInterfaceDeclaration;
-exports.isInterfaceTypeAnnotation = isInterfaceTypeAnnotation;
-exports.isIntersectionTypeAnnotation = isIntersectionTypeAnnotation;
-exports.isMixedTypeAnnotation = isMixedTypeAnnotation;
-exports.isEmptyTypeAnnotation = isEmptyTypeAnnotation;
-exports.isNullableTypeAnnotation = isNullableTypeAnnotation;
-exports.isNumberLiteralTypeAnnotation = isNumberLiteralTypeAnnotation;
-exports.isNumberTypeAnnotation = isNumberTypeAnnotation;
-exports.isObjectTypeAnnotation = isObjectTypeAnnotation;
-exports.isObjectTypeInternalSlot = isObjectTypeInternalSlot;
-exports.isObjectTypeCallProperty = isObjectTypeCallProperty;
-exports.isObjectTypeIndexer = isObjectTypeIndexer;
-exports.isObjectTypeProperty = isObjectTypeProperty;
-exports.isObjectTypeSpreadProperty = isObjectTypeSpreadProperty;
-exports.isOpaqueType = isOpaqueType;
-exports.isQualifiedTypeIdentifier = isQualifiedTypeIdentifier;
-exports.isStringLiteralTypeAnnotation = isStringLiteralTypeAnnotation;
-exports.isStringTypeAnnotation = isStringTypeAnnotation;
-exports.isSymbolTypeAnnotation = isSymbolTypeAnnotation;
-exports.isThisTypeAnnotation = isThisTypeAnnotation;
-exports.isTupleTypeAnnotation = isTupleTypeAnnotation;
-exports.isTypeofTypeAnnotation = isTypeofTypeAnnotation;
-exports.isTypeAlias = isTypeAlias;
-exports.isTypeAnnotation = isTypeAnnotation;
-exports.isTypeCastExpression = isTypeCastExpression;
-exports.isTypeParameter = isTypeParameter;
-exports.isTypeParameterDeclaration = isTypeParameterDeclaration;
-exports.isTypeParameterInstantiation = isTypeParameterInstantiation;
-exports.isUnionTypeAnnotation = isUnionTypeAnnotation;
-exports.isVariance = isVariance;
-exports.isVoidTypeAnnotation = isVoidTypeAnnotation;
-exports.isEnumDeclaration = isEnumDeclaration;
-exports.isEnumBooleanBody = isEnumBooleanBody;
-exports.isEnumNumberBody = isEnumNumberBody;
-exports.isEnumStringBody = isEnumStringBody;
-exports.isEnumSymbolBody = isEnumSymbolBody;
-exports.isEnumBooleanMember = isEnumBooleanMember;
-exports.isEnumNumberMember = isEnumNumberMember;
-exports.isEnumStringMember = isEnumStringMember;
-exports.isEnumDefaultedMember = isEnumDefaultedMember;
-exports.isIndexedAccessType = isIndexedAccessType;
-exports.isOptionalIndexedAccessType = isOptionalIndexedAccessType;
-exports.isJSXAttribute = isJSXAttribute;
-exports.isJSXClosingElement = isJSXClosingElement;
-exports.isJSXElement = isJSXElement;
-exports.isJSXEmptyExpression = isJSXEmptyExpression;
-exports.isJSXExpressionContainer = isJSXExpressionContainer;
-exports.isJSXSpreadChild = isJSXSpreadChild;
-exports.isJSXIdentifier = isJSXIdentifier;
-exports.isJSXMemberExpression = isJSXMemberExpression;
-exports.isJSXNamespacedName = isJSXNamespacedName;
-exports.isJSXOpeningElement = isJSXOpeningElement;
-exports.isJSXSpreadAttribute = isJSXSpreadAttribute;
-exports.isJSXText = isJSXText;
-exports.isJSXFragment = isJSXFragment;
-exports.isJSXOpeningFragment = isJSXOpeningFragment;
-exports.isJSXClosingFragment = isJSXClosingFragment;
-exports.isNoop = isNoop;
-exports.isPlaceholder = isPlaceholder;
-exports.isV8IntrinsicIdentifier = isV8IntrinsicIdentifier;
-exports.isArgumentPlaceholder = isArgumentPlaceholder;
-exports.isBindExpression = isBindExpression;
-exports.isClassProperty = isClassProperty;
-exports.isPipelineTopicExpression = isPipelineTopicExpression;
-exports.isPipelineBareFunction = isPipelineBareFunction;
-exports.isPipelinePrimaryTopicReference = isPipelinePrimaryTopicReference;
-exports.isClassPrivateProperty = isClassPrivateProperty;
-exports.isClassPrivateMethod = isClassPrivateMethod;
-exports.isImportAttribute = isImportAttribute;
-exports.isDecorator = isDecorator;
-exports.isDoExpression = isDoExpression;
-exports.isExportDefaultSpecifier = isExportDefaultSpecifier;
-exports.isPrivateName = isPrivateName;
-exports.isRecordExpression = isRecordExpression;
-exports.isTupleExpression = isTupleExpression;
-exports.isDecimalLiteral = isDecimalLiteral;
-exports.isStaticBlock = isStaticBlock;
-exports.isModuleExpression = isModuleExpression;
-exports.isTSParameterProperty = isTSParameterProperty;
-exports.isTSDeclareFunction = isTSDeclareFunction;
-exports.isTSDeclareMethod = isTSDeclareMethod;
-exports.isTSQualifiedName = isTSQualifiedName;
-exports.isTSCallSignatureDeclaration = isTSCallSignatureDeclaration;
-exports.isTSConstructSignatureDeclaration = isTSConstructSignatureDeclaration;
-exports.isTSPropertySignature = isTSPropertySignature;
-exports.isTSMethodSignature = isTSMethodSignature;
-exports.isTSIndexSignature = isTSIndexSignature;
-exports.isTSAnyKeyword = isTSAnyKeyword;
-exports.isTSBooleanKeyword = isTSBooleanKeyword;
-exports.isTSBigIntKeyword = isTSBigIntKeyword;
-exports.isTSIntrinsicKeyword = isTSIntrinsicKeyword;
-exports.isTSNeverKeyword = isTSNeverKeyword;
-exports.isTSNullKeyword = isTSNullKeyword;
-exports.isTSNumberKeyword = isTSNumberKeyword;
-exports.isTSObjectKeyword = isTSObjectKeyword;
-exports.isTSStringKeyword = isTSStringKeyword;
-exports.isTSSymbolKeyword = isTSSymbolKeyword;
-exports.isTSUndefinedKeyword = isTSUndefinedKeyword;
-exports.isTSUnknownKeyword = isTSUnknownKeyword;
-exports.isTSVoidKeyword = isTSVoidKeyword;
-exports.isTSThisType = isTSThisType;
-exports.isTSFunctionType = isTSFunctionType;
-exports.isTSConstructorType = isTSConstructorType;
-exports.isTSTypeReference = isTSTypeReference;
-exports.isTSTypePredicate = isTSTypePredicate;
-exports.isTSTypeQuery = isTSTypeQuery;
-exports.isTSTypeLiteral = isTSTypeLiteral;
-exports.isTSArrayType = isTSArrayType;
-exports.isTSTupleType = isTSTupleType;
-exports.isTSOptionalType = isTSOptionalType;
-exports.isTSRestType = isTSRestType;
-exports.isTSNamedTupleMember = isTSNamedTupleMember;
-exports.isTSUnionType = isTSUnionType;
-exports.isTSIntersectionType = isTSIntersectionType;
-exports.isTSConditionalType = isTSConditionalType;
-exports.isTSInferType = isTSInferType;
-exports.isTSParenthesizedType = isTSParenthesizedType;
-exports.isTSTypeOperator = isTSTypeOperator;
-exports.isTSIndexedAccessType = isTSIndexedAccessType;
-exports.isTSMappedType = isTSMappedType;
-exports.isTSLiteralType = isTSLiteralType;
-exports.isTSExpressionWithTypeArguments = isTSExpressionWithTypeArguments;
-exports.isTSInterfaceDeclaration = isTSInterfaceDeclaration;
-exports.isTSInterfaceBody = isTSInterfaceBody;
-exports.isTSTypeAliasDeclaration = isTSTypeAliasDeclaration;
-exports.isTSAsExpression = isTSAsExpression;
-exports.isTSTypeAssertion = isTSTypeAssertion;
-exports.isTSEnumDeclaration = isTSEnumDeclaration;
-exports.isTSEnumMember = isTSEnumMember;
-exports.isTSModuleDeclaration = isTSModuleDeclaration;
-exports.isTSModuleBlock = isTSModuleBlock;
-exports.isTSImportType = isTSImportType;
-exports.isTSImportEqualsDeclaration = isTSImportEqualsDeclaration;
-exports.isTSExternalModuleReference = isTSExternalModuleReference;
-exports.isTSNonNullExpression = isTSNonNullExpression;
-exports.isTSExportAssignment = isTSExportAssignment;
-exports.isTSNamespaceExportDeclaration = isTSNamespaceExportDeclaration;
-exports.isTSTypeAnnotation = isTSTypeAnnotation;
-exports.isTSTypeParameterInstantiation = isTSTypeParameterInstantiation;
-exports.isTSTypeParameterDeclaration = isTSTypeParameterDeclaration;
-exports.isTSTypeParameter = isTSTypeParameter;
-exports.isExpression = isExpression;
-exports.isBinary = isBinary;
-exports.isScopable = isScopable;
-exports.isBlockParent = isBlockParent;
-exports.isBlock = isBlock;
-exports.isStatement = isStatement;
-exports.isTerminatorless = isTerminatorless;
-exports.isCompletionStatement = isCompletionStatement;
-exports.isConditional = isConditional;
-exports.isLoop = isLoop;
-exports.isWhile = isWhile;
-exports.isExpressionWrapper = isExpressionWrapper;
-exports.isFor = isFor;
-exports.isForXStatement = isForXStatement;
-exports.isFunction = isFunction;
-exports.isFunctionParent = isFunctionParent;
-exports.isPureish = isPureish;
-exports.isDeclaration = isDeclaration;
-exports.isPatternLike = isPatternLike;
-exports.isLVal = isLVal;
-exports.isTSEntityName = isTSEntityName;
-exports.isLiteral = isLiteral;
-exports.isImmutable = isImmutable;
-exports.isUserWhitespacable = isUserWhitespacable;
-exports.isMethod = isMethod;
-exports.isObjectMember = isObjectMember;
-exports.isProperty = isProperty;
-exports.isUnaryLike = isUnaryLike;
-exports.isPattern = isPattern;
-exports.isClass = isClass;
-exports.isModuleDeclaration = isModuleDeclaration;
-exports.isExportDeclaration = isExportDeclaration;
-exports.isModuleSpecifier = isModuleSpecifier;
-exports.isFlow = isFlow;
-exports.isFlowType = isFlowType;
-exports.isFlowBaseAnnotation = isFlowBaseAnnotation;
-exports.isFlowDeclaration = isFlowDeclaration;
-exports.isFlowPredicate = isFlowPredicate;
-exports.isEnumBody = isEnumBody;
-exports.isEnumMember = isEnumMember;
-exports.isJSX = isJSX;
-exports.isPrivate = isPrivate;
-exports.isTSTypeElement = isTSTypeElement;
-exports.isTSType = isTSType;
-exports.isTSBaseType = isTSBaseType;
-exports.isNumberLiteral = isNumberLiteral;
-exports.isRegexLiteral = isRegexLiteral;
-exports.isRestProperty = isRestProperty;
-exports.isSpreadProperty = isSpreadProperty;
-
-var _shallowEqual = __webpack_require__(/*! ../../utils/shallowEqual */ "./node_modules/@babel/types/lib/utils/shallowEqual.js");
-
-function isArrayExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ArrayExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isAssignmentExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "AssignmentExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isBinaryExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "BinaryExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isInterpreterDirective(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "InterpreterDirective") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDirective(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "Directive") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDirectiveLiteral(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "DirectiveLiteral") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isBlockStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "BlockStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isBreakStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "BreakStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isCallExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "CallExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isCatchClause(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "CatchClause") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isConditionalExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ConditionalExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isContinueStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ContinueStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDebuggerStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "DebuggerStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDoWhileStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "DoWhileStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isEmptyStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "EmptyStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isExpressionStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ExpressionStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isFile(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "File") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isForInStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ForInStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isForStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ForStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isFunctionDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "FunctionDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isFunctionExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "FunctionExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isIdentifier(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "Identifier") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isIfStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "IfStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isLabeledStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "LabeledStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isStringLiteral(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "StringLiteral") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isNumericLiteral(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "NumericLiteral") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isNullLiteral(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "NullLiteral") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isBooleanLiteral(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "BooleanLiteral") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isRegExpLiteral(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "RegExpLiteral") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isLogicalExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "LogicalExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isMemberExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "MemberExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isNewExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "NewExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isProgram(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "Program") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isObjectExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ObjectExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isObjectMethod(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ObjectMethod") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isObjectProperty(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ObjectProperty") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isRestElement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "RestElement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isReturnStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ReturnStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isSequenceExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "SequenceExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isParenthesizedExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ParenthesizedExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isSwitchCase(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "SwitchCase") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isSwitchStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "SwitchStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isThisExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ThisExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isThrowStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ThrowStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTryStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TryStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isUnaryExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "UnaryExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isUpdateExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "UpdateExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isVariableDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "VariableDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isVariableDeclarator(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "VariableDeclarator") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isWhileStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "WhileStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isWithStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "WithStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isAssignmentPattern(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "AssignmentPattern") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isArrayPattern(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ArrayPattern") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isArrowFunctionExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ArrowFunctionExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isClassBody(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ClassBody") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isClassExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ClassExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isClassDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ClassDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isExportAllDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ExportAllDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isExportDefaultDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ExportDefaultDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isExportNamedDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ExportNamedDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isExportSpecifier(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ExportSpecifier") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isForOfStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ForOfStatement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isImportDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ImportDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isImportDefaultSpecifier(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ImportDefaultSpecifier") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isImportNamespaceSpecifier(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ImportNamespaceSpecifier") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isImportSpecifier(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ImportSpecifier") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isMetaProperty(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "MetaProperty") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isClassMethod(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ClassMethod") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isObjectPattern(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ObjectPattern") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isSpreadElement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "SpreadElement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isSuper(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "Super") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTaggedTemplateExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TaggedTemplateExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTemplateElement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TemplateElement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTemplateLiteral(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TemplateLiteral") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isYieldExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "YieldExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isAwaitExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "AwaitExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isImport(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "Import") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isBigIntLiteral(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "BigIntLiteral") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isExportNamespaceSpecifier(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ExportNamespaceSpecifier") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isOptionalMemberExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "OptionalMemberExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isOptionalCallExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "OptionalCallExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isAnyTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "AnyTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isArrayTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ArrayTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isBooleanTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "BooleanTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isBooleanLiteralTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "BooleanLiteralTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isNullLiteralTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "NullLiteralTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isClassImplements(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ClassImplements") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDeclareClass(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "DeclareClass") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDeclareFunction(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "DeclareFunction") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDeclareInterface(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "DeclareInterface") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDeclareModule(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "DeclareModule") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDeclareModuleExports(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "DeclareModuleExports") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDeclareTypeAlias(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "DeclareTypeAlias") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDeclareOpaqueType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "DeclareOpaqueType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDeclareVariable(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "DeclareVariable") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDeclareExportDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "DeclareExportDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDeclareExportAllDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "DeclareExportAllDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDeclaredPredicate(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "DeclaredPredicate") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isExistsTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ExistsTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isFunctionTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "FunctionTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isFunctionTypeParam(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "FunctionTypeParam") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isGenericTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "GenericTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isInferredPredicate(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "InferredPredicate") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isInterfaceExtends(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "InterfaceExtends") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isInterfaceDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "InterfaceDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isInterfaceTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "InterfaceTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isIntersectionTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "IntersectionTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isMixedTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "MixedTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isEmptyTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "EmptyTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isNullableTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "NullableTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isNumberLiteralTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "NumberLiteralTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isNumberTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "NumberTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isObjectTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ObjectTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isObjectTypeInternalSlot(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ObjectTypeInternalSlot") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isObjectTypeCallProperty(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ObjectTypeCallProperty") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isObjectTypeIndexer(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ObjectTypeIndexer") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isObjectTypeProperty(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ObjectTypeProperty") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isObjectTypeSpreadProperty(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ObjectTypeSpreadProperty") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isOpaqueType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "OpaqueType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isQualifiedTypeIdentifier(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "QualifiedTypeIdentifier") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isStringLiteralTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "StringLiteralTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isStringTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "StringTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isSymbolTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "SymbolTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isThisTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ThisTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTupleTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TupleTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTypeofTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TypeofTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTypeAlias(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TypeAlias") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTypeCastExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TypeCastExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTypeParameter(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TypeParameter") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTypeParameterDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TypeParameterDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTypeParameterInstantiation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TypeParameterInstantiation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isUnionTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "UnionTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isVariance(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "Variance") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isVoidTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "VoidTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isEnumDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "EnumDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isEnumBooleanBody(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "EnumBooleanBody") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isEnumNumberBody(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "EnumNumberBody") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isEnumStringBody(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "EnumStringBody") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isEnumSymbolBody(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "EnumSymbolBody") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isEnumBooleanMember(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "EnumBooleanMember") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isEnumNumberMember(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "EnumNumberMember") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isEnumStringMember(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "EnumStringMember") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isEnumDefaultedMember(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "EnumDefaultedMember") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isIndexedAccessType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "IndexedAccessType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isOptionalIndexedAccessType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "OptionalIndexedAccessType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isJSXAttribute(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "JSXAttribute") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isJSXClosingElement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "JSXClosingElement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isJSXElement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "JSXElement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isJSXEmptyExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "JSXEmptyExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isJSXExpressionContainer(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "JSXExpressionContainer") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isJSXSpreadChild(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "JSXSpreadChild") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isJSXIdentifier(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "JSXIdentifier") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isJSXMemberExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "JSXMemberExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isJSXNamespacedName(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "JSXNamespacedName") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isJSXOpeningElement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "JSXOpeningElement") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isJSXSpreadAttribute(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "JSXSpreadAttribute") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isJSXText(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "JSXText") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isJSXFragment(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "JSXFragment") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isJSXOpeningFragment(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "JSXOpeningFragment") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isJSXClosingFragment(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "JSXClosingFragment") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isNoop(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "Noop") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isPlaceholder(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "Placeholder") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isV8IntrinsicIdentifier(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "V8IntrinsicIdentifier") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isArgumentPlaceholder(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ArgumentPlaceholder") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isBindExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "BindExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isClassProperty(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ClassProperty") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isPipelineTopicExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "PipelineTopicExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isPipelineBareFunction(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "PipelineBareFunction") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isPipelinePrimaryTopicReference(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "PipelinePrimaryTopicReference") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isClassPrivateProperty(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ClassPrivateProperty") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isClassPrivateMethod(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ClassPrivateMethod") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isImportAttribute(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ImportAttribute") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDecorator(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "Decorator") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDoExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "DoExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isExportDefaultSpecifier(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ExportDefaultSpecifier") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isPrivateName(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "PrivateName") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isRecordExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "RecordExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTupleExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TupleExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDecimalLiteral(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "DecimalLiteral") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isStaticBlock(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "StaticBlock") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isModuleExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "ModuleExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSParameterProperty(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSParameterProperty") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSDeclareFunction(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSDeclareFunction") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSDeclareMethod(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSDeclareMethod") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSQualifiedName(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSQualifiedName") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSCallSignatureDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSCallSignatureDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSConstructSignatureDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSConstructSignatureDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSPropertySignature(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSPropertySignature") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSMethodSignature(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSMethodSignature") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSIndexSignature(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSIndexSignature") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSAnyKeyword(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSAnyKeyword") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSBooleanKeyword(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSBooleanKeyword") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSBigIntKeyword(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSBigIntKeyword") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSIntrinsicKeyword(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSIntrinsicKeyword") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSNeverKeyword(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSNeverKeyword") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSNullKeyword(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSNullKeyword") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSNumberKeyword(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSNumberKeyword") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSObjectKeyword(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSObjectKeyword") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSStringKeyword(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSStringKeyword") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSSymbolKeyword(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSSymbolKeyword") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSUndefinedKeyword(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSUndefinedKeyword") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSUnknownKeyword(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSUnknownKeyword") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSVoidKeyword(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSVoidKeyword") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSThisType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSThisType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSFunctionType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSFunctionType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSConstructorType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSConstructorType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSTypeReference(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSTypeReference") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSTypePredicate(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSTypePredicate") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSTypeQuery(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSTypeQuery") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSTypeLiteral(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSTypeLiteral") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSArrayType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSArrayType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSTupleType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSTupleType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSOptionalType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSOptionalType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSRestType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSRestType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSNamedTupleMember(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSNamedTupleMember") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSUnionType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSUnionType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSIntersectionType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSIntersectionType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSConditionalType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSConditionalType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSInferType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSInferType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSParenthesizedType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSParenthesizedType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSTypeOperator(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSTypeOperator") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSIndexedAccessType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSIndexedAccessType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSMappedType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSMappedType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSLiteralType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSLiteralType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSExpressionWithTypeArguments(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSExpressionWithTypeArguments") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSInterfaceDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSInterfaceDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSInterfaceBody(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSInterfaceBody") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSTypeAliasDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSTypeAliasDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSAsExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSAsExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSTypeAssertion(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSTypeAssertion") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSEnumDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSEnumDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSEnumMember(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSEnumMember") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSModuleDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSModuleDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSModuleBlock(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSModuleBlock") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSImportType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSImportType") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSImportEqualsDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSImportEqualsDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSExternalModuleReference(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSExternalModuleReference") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSNonNullExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSNonNullExpression") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSExportAssignment(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSExportAssignment") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSNamespaceExportDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSNamespaceExportDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSTypeAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSTypeAnnotation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSTypeParameterInstantiation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSTypeParameterInstantiation") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSTypeParameterDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSTypeParameterDeclaration") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSTypeParameter(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "TSTypeParameter") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isExpression(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("ArrayExpression" === nodeType || "AssignmentExpression" === nodeType || "BinaryExpression" === nodeType || "CallExpression" === nodeType || "ConditionalExpression" === nodeType || "FunctionExpression" === nodeType || "Identifier" === nodeType || "StringLiteral" === nodeType || "NumericLiteral" === nodeType || "NullLiteral" === nodeType || "BooleanLiteral" === nodeType || "RegExpLiteral" === nodeType || "LogicalExpression" === nodeType || "MemberExpression" === nodeType || "NewExpression" === nodeType || "ObjectExpression" === nodeType || "SequenceExpression" === nodeType || "ParenthesizedExpression" === nodeType || "ThisExpression" === nodeType || "UnaryExpression" === nodeType || "UpdateExpression" === nodeType || "ArrowFunctionExpression" === nodeType || "ClassExpression" === nodeType || "MetaProperty" === nodeType || "Super" === nodeType || "TaggedTemplateExpression" === nodeType || "TemplateLiteral" === nodeType || "YieldExpression" === nodeType || "AwaitExpression" === nodeType || "Import" === nodeType || "BigIntLiteral" === nodeType || "OptionalMemberExpression" === nodeType || "OptionalCallExpression" === nodeType || "TypeCastExpression" === nodeType || "JSXElement" === nodeType || "JSXFragment" === nodeType || "BindExpression" === nodeType || "PipelinePrimaryTopicReference" === nodeType || "DoExpression" === nodeType || "RecordExpression" === nodeType || "TupleExpression" === nodeType || "DecimalLiteral" === nodeType || "ModuleExpression" === nodeType || "TSAsExpression" === nodeType || "TSTypeAssertion" === nodeType || "TSNonNullExpression" === nodeType || nodeType === "Placeholder" && ("Expression" === node.expectedNode || "Identifier" === node.expectedNode || "StringLiteral" === node.expectedNode)) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isBinary(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("BinaryExpression" === nodeType || "LogicalExpression" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isScopable(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("BlockStatement" === nodeType || "CatchClause" === nodeType || "DoWhileStatement" === nodeType || "ForInStatement" === nodeType || "ForStatement" === nodeType || "FunctionDeclaration" === nodeType || "FunctionExpression" === nodeType || "Program" === nodeType || "ObjectMethod" === nodeType || "SwitchStatement" === nodeType || "WhileStatement" === nodeType || "ArrowFunctionExpression" === nodeType || "ClassExpression" === nodeType || "ClassDeclaration" === nodeType || "ForOfStatement" === nodeType || "ClassMethod" === nodeType || "ClassPrivateMethod" === nodeType || "StaticBlock" === nodeType || "TSModuleBlock" === nodeType || nodeType === "Placeholder" && "BlockStatement" === node.expectedNode) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isBlockParent(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("BlockStatement" === nodeType || "CatchClause" === nodeType || "DoWhileStatement" === nodeType || "ForInStatement" === nodeType || "ForStatement" === nodeType || "FunctionDeclaration" === nodeType || "FunctionExpression" === nodeType || "Program" === nodeType || "ObjectMethod" === nodeType || "SwitchStatement" === nodeType || "WhileStatement" === nodeType || "ArrowFunctionExpression" === nodeType || "ForOfStatement" === nodeType || "ClassMethod" === nodeType || "ClassPrivateMethod" === nodeType || "StaticBlock" === nodeType || "TSModuleBlock" === nodeType || nodeType === "Placeholder" && "BlockStatement" === node.expectedNode) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isBlock(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("BlockStatement" === nodeType || "Program" === nodeType || "TSModuleBlock" === nodeType || nodeType === "Placeholder" && "BlockStatement" === node.expectedNode) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("BlockStatement" === nodeType || "BreakStatement" === nodeType || "ContinueStatement" === nodeType || "DebuggerStatement" === nodeType || "DoWhileStatement" === nodeType || "EmptyStatement" === nodeType || "ExpressionStatement" === nodeType || "ForInStatement" === nodeType || "ForStatement" === nodeType || "FunctionDeclaration" === nodeType || "IfStatement" === nodeType || "LabeledStatement" === nodeType || "ReturnStatement" === nodeType || "SwitchStatement" === nodeType || "ThrowStatement" === nodeType || "TryStatement" === nodeType || "VariableDeclaration" === nodeType || "WhileStatement" === nodeType || "WithStatement" === nodeType || "ClassDeclaration" === nodeType || "ExportAllDeclaration" === nodeType || "ExportDefaultDeclaration" === nodeType || "ExportNamedDeclaration" === nodeType || "ForOfStatement" === nodeType || "ImportDeclaration" === nodeType || "DeclareClass" === nodeType || "DeclareFunction" === nodeType || "DeclareInterface" === nodeType || "DeclareModule" === nodeType || "DeclareModuleExports" === nodeType || "DeclareTypeAlias" === nodeType || "DeclareOpaqueType" === nodeType || "DeclareVariable" === nodeType || "DeclareExportDeclaration" === nodeType || "DeclareExportAllDeclaration" === nodeType || "InterfaceDeclaration" === nodeType || "OpaqueType" === nodeType || "TypeAlias" === nodeType || "EnumDeclaration" === nodeType || "TSDeclareFunction" === nodeType || "TSInterfaceDeclaration" === nodeType || "TSTypeAliasDeclaration" === nodeType || "TSEnumDeclaration" === nodeType || "TSModuleDeclaration" === nodeType || "TSImportEqualsDeclaration" === nodeType || "TSExportAssignment" === nodeType || "TSNamespaceExportDeclaration" === nodeType || nodeType === "Placeholder" && ("Statement" === node.expectedNode || "Declaration" === node.expectedNode || "BlockStatement" === node.expectedNode)) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTerminatorless(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("BreakStatement" === nodeType || "ContinueStatement" === nodeType || "ReturnStatement" === nodeType || "ThrowStatement" === nodeType || "YieldExpression" === nodeType || "AwaitExpression" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isCompletionStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("BreakStatement" === nodeType || "ContinueStatement" === nodeType || "ReturnStatement" === nodeType || "ThrowStatement" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isConditional(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("ConditionalExpression" === nodeType || "IfStatement" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isLoop(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("DoWhileStatement" === nodeType || "ForInStatement" === nodeType || "ForStatement" === nodeType || "WhileStatement" === nodeType || "ForOfStatement" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isWhile(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("DoWhileStatement" === nodeType || "WhileStatement" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isExpressionWrapper(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("ExpressionStatement" === nodeType || "ParenthesizedExpression" === nodeType || "TypeCastExpression" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isFor(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("ForInStatement" === nodeType || "ForStatement" === nodeType || "ForOfStatement" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isForXStatement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("ForInStatement" === nodeType || "ForOfStatement" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isFunction(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("FunctionDeclaration" === nodeType || "FunctionExpression" === nodeType || "ObjectMethod" === nodeType || "ArrowFunctionExpression" === nodeType || "ClassMethod" === nodeType || "ClassPrivateMethod" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isFunctionParent(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("FunctionDeclaration" === nodeType || "FunctionExpression" === nodeType || "ObjectMethod" === nodeType || "ArrowFunctionExpression" === nodeType || "ClassMethod" === nodeType || "ClassPrivateMethod" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isPureish(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("FunctionDeclaration" === nodeType || "FunctionExpression" === nodeType || "StringLiteral" === nodeType || "NumericLiteral" === nodeType || "NullLiteral" === nodeType || "BooleanLiteral" === nodeType || "RegExpLiteral" === nodeType || "ArrowFunctionExpression" === nodeType || "BigIntLiteral" === nodeType || "DecimalLiteral" === nodeType || nodeType === "Placeholder" && "StringLiteral" === node.expectedNode) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("FunctionDeclaration" === nodeType || "VariableDeclaration" === nodeType || "ClassDeclaration" === nodeType || "ExportAllDeclaration" === nodeType || "ExportDefaultDeclaration" === nodeType || "ExportNamedDeclaration" === nodeType || "ImportDeclaration" === nodeType || "DeclareClass" === nodeType || "DeclareFunction" === nodeType || "DeclareInterface" === nodeType || "DeclareModule" === nodeType || "DeclareModuleExports" === nodeType || "DeclareTypeAlias" === nodeType || "DeclareOpaqueType" === nodeType || "DeclareVariable" === nodeType || "DeclareExportDeclaration" === nodeType || "DeclareExportAllDeclaration" === nodeType || "InterfaceDeclaration" === nodeType || "OpaqueType" === nodeType || "TypeAlias" === nodeType || "EnumDeclaration" === nodeType || "TSDeclareFunction" === nodeType || "TSInterfaceDeclaration" === nodeType || "TSTypeAliasDeclaration" === nodeType || "TSEnumDeclaration" === nodeType || "TSModuleDeclaration" === nodeType || nodeType === "Placeholder" && "Declaration" === node.expectedNode) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isPatternLike(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("Identifier" === nodeType || "RestElement" === nodeType || "AssignmentPattern" === nodeType || "ArrayPattern" === nodeType || "ObjectPattern" === nodeType || nodeType === "Placeholder" && ("Pattern" === node.expectedNode || "Identifier" === node.expectedNode)) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isLVal(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("Identifier" === nodeType || "MemberExpression" === nodeType || "RestElement" === nodeType || "AssignmentPattern" === nodeType || "ArrayPattern" === nodeType || "ObjectPattern" === nodeType || "TSParameterProperty" === nodeType || nodeType === "Placeholder" && ("Pattern" === node.expectedNode || "Identifier" === node.expectedNode)) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSEntityName(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("Identifier" === nodeType || "TSQualifiedName" === nodeType || nodeType === "Placeholder" && "Identifier" === node.expectedNode) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isLiteral(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("StringLiteral" === nodeType || "NumericLiteral" === nodeType || "NullLiteral" === nodeType || "BooleanLiteral" === nodeType || "RegExpLiteral" === nodeType || "TemplateLiteral" === nodeType || "BigIntLiteral" === nodeType || "DecimalLiteral" === nodeType || nodeType === "Placeholder" && "StringLiteral" === node.expectedNode) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isImmutable(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("StringLiteral" === nodeType || "NumericLiteral" === nodeType || "NullLiteral" === nodeType || "BooleanLiteral" === nodeType || "BigIntLiteral" === nodeType || "JSXAttribute" === nodeType || "JSXClosingElement" === nodeType || "JSXElement" === nodeType || "JSXExpressionContainer" === nodeType || "JSXSpreadChild" === nodeType || "JSXOpeningElement" === nodeType || "JSXText" === nodeType || "JSXFragment" === nodeType || "JSXOpeningFragment" === nodeType || "JSXClosingFragment" === nodeType || "DecimalLiteral" === nodeType || nodeType === "Placeholder" && "StringLiteral" === node.expectedNode) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isUserWhitespacable(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("ObjectMethod" === nodeType || "ObjectProperty" === nodeType || "ObjectTypeInternalSlot" === nodeType || "ObjectTypeCallProperty" === nodeType || "ObjectTypeIndexer" === nodeType || "ObjectTypeProperty" === nodeType || "ObjectTypeSpreadProperty" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isMethod(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("ObjectMethod" === nodeType || "ClassMethod" === nodeType || "ClassPrivateMethod" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isObjectMember(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("ObjectMethod" === nodeType || "ObjectProperty" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isProperty(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("ObjectProperty" === nodeType || "ClassProperty" === nodeType || "ClassPrivateProperty" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isUnaryLike(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("UnaryExpression" === nodeType || "SpreadElement" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isPattern(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("AssignmentPattern" === nodeType || "ArrayPattern" === nodeType || "ObjectPattern" === nodeType || nodeType === "Placeholder" && "Pattern" === node.expectedNode) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isClass(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("ClassExpression" === nodeType || "ClassDeclaration" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isModuleDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("ExportAllDeclaration" === nodeType || "ExportDefaultDeclaration" === nodeType || "ExportNamedDeclaration" === nodeType || "ImportDeclaration" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isExportDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("ExportAllDeclaration" === nodeType || "ExportDefaultDeclaration" === nodeType || "ExportNamedDeclaration" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isModuleSpecifier(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("ExportSpecifier" === nodeType || "ImportDefaultSpecifier" === nodeType || "ImportNamespaceSpecifier" === nodeType || "ImportSpecifier" === nodeType || "ExportNamespaceSpecifier" === nodeType || "ExportDefaultSpecifier" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isFlow(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("AnyTypeAnnotation" === nodeType || "ArrayTypeAnnotation" === nodeType || "BooleanTypeAnnotation" === nodeType || "BooleanLiteralTypeAnnotation" === nodeType || "NullLiteralTypeAnnotation" === nodeType || "ClassImplements" === nodeType || "DeclareClass" === nodeType || "DeclareFunction" === nodeType || "DeclareInterface" === nodeType || "DeclareModule" === nodeType || "DeclareModuleExports" === nodeType || "DeclareTypeAlias" === nodeType || "DeclareOpaqueType" === nodeType || "DeclareVariable" === nodeType || "DeclareExportDeclaration" === nodeType || "DeclareExportAllDeclaration" === nodeType || "DeclaredPredicate" === nodeType || "ExistsTypeAnnotation" === nodeType || "FunctionTypeAnnotation" === nodeType || "FunctionTypeParam" === nodeType || "GenericTypeAnnotation" === nodeType || "InferredPredicate" === nodeType || "InterfaceExtends" === nodeType || "InterfaceDeclaration" === nodeType || "InterfaceTypeAnnotation" === nodeType || "IntersectionTypeAnnotation" === nodeType || "MixedTypeAnnotation" === nodeType || "EmptyTypeAnnotation" === nodeType || "NullableTypeAnnotation" === nodeType || "NumberLiteralTypeAnnotation" === nodeType || "NumberTypeAnnotation" === nodeType || "ObjectTypeAnnotation" === nodeType || "ObjectTypeInternalSlot" === nodeType || "ObjectTypeCallProperty" === nodeType || "ObjectTypeIndexer" === nodeType || "ObjectTypeProperty" === nodeType || "ObjectTypeSpreadProperty" === nodeType || "OpaqueType" === nodeType || "QualifiedTypeIdentifier" === nodeType || "StringLiteralTypeAnnotation" === nodeType || "StringTypeAnnotation" === nodeType || "SymbolTypeAnnotation" === nodeType || "ThisTypeAnnotation" === nodeType || "TupleTypeAnnotation" === nodeType || "TypeofTypeAnnotation" === nodeType || "TypeAlias" === nodeType || "TypeAnnotation" === nodeType || "TypeCastExpression" === nodeType || "TypeParameter" === nodeType || "TypeParameterDeclaration" === nodeType || "TypeParameterInstantiation" === nodeType || "UnionTypeAnnotation" === nodeType || "Variance" === nodeType || "VoidTypeAnnotation" === nodeType || "IndexedAccessType" === nodeType || "OptionalIndexedAccessType" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isFlowType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("AnyTypeAnnotation" === nodeType || "ArrayTypeAnnotation" === nodeType || "BooleanTypeAnnotation" === nodeType || "BooleanLiteralTypeAnnotation" === nodeType || "NullLiteralTypeAnnotation" === nodeType || "ExistsTypeAnnotation" === nodeType || "FunctionTypeAnnotation" === nodeType || "GenericTypeAnnotation" === nodeType || "InterfaceTypeAnnotation" === nodeType || "IntersectionTypeAnnotation" === nodeType || "MixedTypeAnnotation" === nodeType || "EmptyTypeAnnotation" === nodeType || "NullableTypeAnnotation" === nodeType || "NumberLiteralTypeAnnotation" === nodeType || "NumberTypeAnnotation" === nodeType || "ObjectTypeAnnotation" === nodeType || "StringLiteralTypeAnnotation" === nodeType || "StringTypeAnnotation" === nodeType || "SymbolTypeAnnotation" === nodeType || "ThisTypeAnnotation" === nodeType || "TupleTypeAnnotation" === nodeType || "TypeofTypeAnnotation" === nodeType || "UnionTypeAnnotation" === nodeType || "VoidTypeAnnotation" === nodeType || "IndexedAccessType" === nodeType || "OptionalIndexedAccessType" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isFlowBaseAnnotation(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("AnyTypeAnnotation" === nodeType || "BooleanTypeAnnotation" === nodeType || "NullLiteralTypeAnnotation" === nodeType || "MixedTypeAnnotation" === nodeType || "EmptyTypeAnnotation" === nodeType || "NumberTypeAnnotation" === nodeType || "StringTypeAnnotation" === nodeType || "SymbolTypeAnnotation" === nodeType || "ThisTypeAnnotation" === nodeType || "VoidTypeAnnotation" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isFlowDeclaration(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("DeclareClass" === nodeType || "DeclareFunction" === nodeType || "DeclareInterface" === nodeType || "DeclareModule" === nodeType || "DeclareModuleExports" === nodeType || "DeclareTypeAlias" === nodeType || "DeclareOpaqueType" === nodeType || "DeclareVariable" === nodeType || "DeclareExportDeclaration" === nodeType || "DeclareExportAllDeclaration" === nodeType || "InterfaceDeclaration" === nodeType || "OpaqueType" === nodeType || "TypeAlias" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isFlowPredicate(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("DeclaredPredicate" === nodeType || "InferredPredicate" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isEnumBody(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("EnumBooleanBody" === nodeType || "EnumNumberBody" === nodeType || "EnumStringBody" === nodeType || "EnumSymbolBody" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isEnumMember(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("EnumBooleanMember" === nodeType || "EnumNumberMember" === nodeType || "EnumStringMember" === nodeType || "EnumDefaultedMember" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isJSX(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("JSXAttribute" === nodeType || "JSXClosingElement" === nodeType || "JSXElement" === nodeType || "JSXEmptyExpression" === nodeType || "JSXExpressionContainer" === nodeType || "JSXSpreadChild" === nodeType || "JSXIdentifier" === nodeType || "JSXMemberExpression" === nodeType || "JSXNamespacedName" === nodeType || "JSXOpeningElement" === nodeType || "JSXSpreadAttribute" === nodeType || "JSXText" === nodeType || "JSXFragment" === nodeType || "JSXOpeningFragment" === nodeType || "JSXClosingFragment" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isPrivate(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("ClassPrivateProperty" === nodeType || "ClassPrivateMethod" === nodeType || "PrivateName" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSTypeElement(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("TSCallSignatureDeclaration" === nodeType || "TSConstructSignatureDeclaration" === nodeType || "TSPropertySignature" === nodeType || "TSMethodSignature" === nodeType || "TSIndexSignature" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("TSAnyKeyword" === nodeType || "TSBooleanKeyword" === nodeType || "TSBigIntKeyword" === nodeType || "TSIntrinsicKeyword" === nodeType || "TSNeverKeyword" === nodeType || "TSNullKeyword" === nodeType || "TSNumberKeyword" === nodeType || "TSObjectKeyword" === nodeType || "TSStringKeyword" === nodeType || "TSSymbolKeyword" === nodeType || "TSUndefinedKeyword" === nodeType || "TSUnknownKeyword" === nodeType || "TSVoidKeyword" === nodeType || "TSThisType" === nodeType || "TSFunctionType" === nodeType || "TSConstructorType" === nodeType || "TSTypeReference" === nodeType || "TSTypePredicate" === nodeType || "TSTypeQuery" === nodeType || "TSTypeLiteral" === nodeType || "TSArrayType" === nodeType || "TSTupleType" === nodeType || "TSOptionalType" === nodeType || "TSRestType" === nodeType || "TSUnionType" === nodeType || "TSIntersectionType" === nodeType || "TSConditionalType" === nodeType || "TSInferType" === nodeType || "TSParenthesizedType" === nodeType || "TSTypeOperator" === nodeType || "TSIndexedAccessType" === nodeType || "TSMappedType" === nodeType || "TSLiteralType" === nodeType || "TSExpressionWithTypeArguments" === nodeType || "TSImportType" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isTSBaseType(node, opts) {
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if ("TSAnyKeyword" === nodeType || "TSBooleanKeyword" === nodeType || "TSBigIntKeyword" === nodeType || "TSIntrinsicKeyword" === nodeType || "TSNeverKeyword" === nodeType || "TSNullKeyword" === nodeType || "TSNumberKeyword" === nodeType || "TSObjectKeyword" === nodeType || "TSStringKeyword" === nodeType || "TSSymbolKeyword" === nodeType || "TSUndefinedKeyword" === nodeType || "TSUnknownKeyword" === nodeType || "TSVoidKeyword" === nodeType || "TSThisType" === nodeType || "TSLiteralType" === nodeType) {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isNumberLiteral(node, opts) {
-  console.trace("The node type NumberLiteral has been renamed to NumericLiteral");
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "NumberLiteral") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isRegexLiteral(node, opts) {
-  console.trace("The node type RegexLiteral has been renamed to RegExpLiteral");
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "RegexLiteral") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isRestProperty(node, opts) {
-  console.trace("The node type RestProperty has been renamed to RestElement");
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "RestProperty") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-function isSpreadProperty(node, opts) {
-  console.trace("The node type SpreadProperty has been renamed to SpreadElement");
-  if (!node) return false;
-  const nodeType = node.type;
-
-  if (nodeType === "SpreadProperty") {
-    if (typeof opts === "undefined") {
-      return true;
-    } else {
-      return (0, _shallowEqual.default)(node, opts);
-    }
-  }
-
-  return false;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/is.js":
-/*!********************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/is.js ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = is;
-
-var _shallowEqual = __webpack_require__(/*! ../utils/shallowEqual */ "./node_modules/@babel/types/lib/utils/shallowEqual.js");
-
-var _isType = __webpack_require__(/*! ./isType */ "./node_modules/@babel/types/lib/validators/isType.js");
-
-var _isPlaceholderType = __webpack_require__(/*! ./isPlaceholderType */ "./node_modules/@babel/types/lib/validators/isPlaceholderType.js");
-
-var _definitions = __webpack_require__(/*! ../definitions */ "./node_modules/@babel/types/lib/definitions/index.js");
-
-function is(type, node, opts) {
-  if (!node) return false;
-  const matches = (0, _isType.default)(node.type, type);
-
-  if (!matches) {
-    if (!opts && node.type === "Placeholder" && type in _definitions.FLIPPED_ALIAS_KEYS) {
-      return (0, _isPlaceholderType.default)(node.expectedNode, type);
-    }
-
-    return false;
-  }
-
-  if (typeof opts === "undefined") {
-    return true;
-  } else {
-    return (0, _shallowEqual.default)(node, opts);
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/isBinding.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/isBinding.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isBinding;
-
-var _getBindingIdentifiers = __webpack_require__(/*! ../retrievers/getBindingIdentifiers */ "./node_modules/@babel/types/lib/retrievers/getBindingIdentifiers.js");
-
-function isBinding(node, parent, grandparent) {
-  if (grandparent && node.type === "Identifier" && parent.type === "ObjectProperty" && grandparent.type === "ObjectExpression") {
-    return false;
-  }
-
-  const keys = _getBindingIdentifiers.default.keys[parent.type];
-
-  if (keys) {
-    for (let i = 0; i < keys.length; i++) {
-      const key = keys[i];
-      const val = parent[key];
-
-      if (Array.isArray(val)) {
-        if (val.indexOf(node) >= 0) return true;
-      } else {
-        if (val === node) return true;
-      }
-    }
-  }
-
-  return false;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/isBlockScoped.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/isBlockScoped.js ***!
-  \*******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isBlockScoped;
-
-var _generated = __webpack_require__(/*! ./generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-var _isLet = __webpack_require__(/*! ./isLet */ "./node_modules/@babel/types/lib/validators/isLet.js");
-
-function isBlockScoped(node) {
-  return (0, _generated.isFunctionDeclaration)(node) || (0, _generated.isClassDeclaration)(node) || (0, _isLet.default)(node);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/isImmutable.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/isImmutable.js ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isImmutable;
-
-var _isType = __webpack_require__(/*! ./isType */ "./node_modules/@babel/types/lib/validators/isType.js");
-
-var _generated = __webpack_require__(/*! ./generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-function isImmutable(node) {
-  if ((0, _isType.default)(node.type, "Immutable")) return true;
-
-  if ((0, _generated.isIdentifier)(node)) {
-    if (node.name === "undefined") {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  return false;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/isLet.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/isLet.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isLet;
-
-var _generated = __webpack_require__(/*! ./generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-var _constants = __webpack_require__(/*! ../constants */ "./node_modules/@babel/types/lib/constants/index.js");
-
-function isLet(node) {
-  return (0, _generated.isVariableDeclaration)(node) && (node.kind !== "var" || node[_constants.BLOCK_SCOPED_SYMBOL]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/isNode.js":
-/*!************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/isNode.js ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isNode;
-
-var _definitions = __webpack_require__(/*! ../definitions */ "./node_modules/@babel/types/lib/definitions/index.js");
-
-function isNode(node) {
-  return !!(node && _definitions.VISITOR_KEYS[node.type]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/isNodesEquivalent.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/isNodesEquivalent.js ***!
-  \***********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isNodesEquivalent;
-
-var _definitions = __webpack_require__(/*! ../definitions */ "./node_modules/@babel/types/lib/definitions/index.js");
-
-function isNodesEquivalent(a, b) {
-  if (typeof a !== "object" || typeof b !== "object" || a == null || b == null) {
-    return a === b;
-  }
-
-  if (a.type !== b.type) {
-    return false;
-  }
-
-  const fields = Object.keys(_definitions.NODE_FIELDS[a.type] || a.type);
-  const visitorKeys = _definitions.VISITOR_KEYS[a.type];
-
-  for (const field of fields) {
-    if (typeof a[field] !== typeof b[field]) {
-      return false;
-    }
-
-    if (a[field] == null && b[field] == null) {
-      continue;
-    } else if (a[field] == null || b[field] == null) {
-      return false;
-    }
-
-    if (Array.isArray(a[field])) {
-      if (!Array.isArray(b[field])) {
-        return false;
-      }
-
-      if (a[field].length !== b[field].length) {
-        return false;
-      }
-
-      for (let i = 0; i < a[field].length; i++) {
-        if (!isNodesEquivalent(a[field][i], b[field][i])) {
-          return false;
-        }
-      }
-
-      continue;
-    }
-
-    if (typeof a[field] === "object" && !(visitorKeys != null && visitorKeys.includes(field))) {
-      for (const key of Object.keys(a[field])) {
-        if (a[field][key] !== b[field][key]) {
-          return false;
-        }
-      }
-
-      continue;
-    }
-
-    if (!isNodesEquivalent(a[field], b[field])) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/isPlaceholderType.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/isPlaceholderType.js ***!
-  \***********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isPlaceholderType;
-
-var _definitions = __webpack_require__(/*! ../definitions */ "./node_modules/@babel/types/lib/definitions/index.js");
-
-function isPlaceholderType(placeholderType, targetType) {
-  if (placeholderType === targetType) return true;
-  const aliases = _definitions.PLACEHOLDERS_ALIAS[placeholderType];
-
-  if (aliases) {
-    for (const alias of aliases) {
-      if (targetType === alias) return true;
-    }
-  }
-
-  return false;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/isReferenced.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/isReferenced.js ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isReferenced;
-
-function isReferenced(node, parent, grandparent) {
-  switch (parent.type) {
-    case "MemberExpression":
-    case "JSXMemberExpression":
-    case "OptionalMemberExpression":
-      if (parent.property === node) {
-        return !!parent.computed;
-      }
-
-      return parent.object === node;
-
-    case "VariableDeclarator":
-      return parent.init === node;
-
-    case "ArrowFunctionExpression":
-      return parent.body === node;
-
-    case "PrivateName":
-      return false;
-
-    case "ClassMethod":
-    case "ClassPrivateMethod":
-    case "ObjectMethod":
-      if (parent.params.includes(node)) {
-        return false;
-      }
-
-    case "ObjectProperty":
-    case "ClassProperty":
-    case "ClassPrivateProperty":
-      if (parent.key === node) {
-        return !!parent.computed;
-      }
-
-      if (parent.value === node) {
-        return !grandparent || grandparent.type !== "ObjectPattern";
-      }
-
-      return true;
-
-    case "ClassDeclaration":
-    case "ClassExpression":
-      return parent.superClass === node;
-
-    case "AssignmentExpression":
-      return parent.right === node;
-
-    case "AssignmentPattern":
-      return parent.right === node;
-
-    case "LabeledStatement":
-      return false;
-
-    case "CatchClause":
-      return false;
-
-    case "RestElement":
-      return false;
-
-    case "BreakStatement":
-    case "ContinueStatement":
-      return false;
-
-    case "FunctionDeclaration":
-    case "FunctionExpression":
-      return false;
-
-    case "ExportNamespaceSpecifier":
-    case "ExportDefaultSpecifier":
-      return false;
-
-    case "ExportSpecifier":
-      if (grandparent != null && grandparent.source) {
-        return false;
-      }
-
-      return parent.local === node;
-
-    case "ImportDefaultSpecifier":
-    case "ImportNamespaceSpecifier":
-    case "ImportSpecifier":
-      return false;
-
-    case "JSXAttribute":
-      return false;
-
-    case "ObjectPattern":
-    case "ArrayPattern":
-      return false;
-
-    case "MetaProperty":
-      return false;
-
-    case "ObjectTypeProperty":
-      return parent.key !== node;
-
-    case "TSEnumMember":
-      return parent.id !== node;
-
-    case "TSPropertySignature":
-      if (parent.key === node) {
-        return !!parent.computed;
-      }
-
-      return true;
-  }
-
-  return true;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/isScope.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/isScope.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isScope;
-
-var _generated = __webpack_require__(/*! ./generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-function isScope(node, parent) {
-  if ((0, _generated.isBlockStatement)(node) && ((0, _generated.isFunction)(parent) || (0, _generated.isCatchClause)(parent))) {
-    return false;
-  }
-
-  if ((0, _generated.isPattern)(node) && ((0, _generated.isFunction)(parent) || (0, _generated.isCatchClause)(parent))) {
-    return true;
-  }
-
-  return (0, _generated.isScopable)(node);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/isSpecifierDefault.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/isSpecifierDefault.js ***!
-  \************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isSpecifierDefault;
-
-var _generated = __webpack_require__(/*! ./generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-function isSpecifierDefault(specifier) {
-  return (0, _generated.isImportDefaultSpecifier)(specifier) || (0, _generated.isIdentifier)(specifier.imported || specifier.exported, {
-    name: "default"
-  });
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/isType.js":
-/*!************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/isType.js ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isType;
-
-var _definitions = __webpack_require__(/*! ../definitions */ "./node_modules/@babel/types/lib/definitions/index.js");
-
-function isType(nodeType, targetType) {
-  if (nodeType === targetType) return true;
-  if (_definitions.ALIAS_KEYS[targetType]) return false;
-  const aliases = _definitions.FLIPPED_ALIAS_KEYS[targetType];
-
-  if (aliases) {
-    if (aliases[0] === nodeType) return true;
-
-    for (const alias of aliases) {
-      if (nodeType === alias) return true;
-    }
-  }
-
-  return false;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/isValidES3Identifier.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/isValidES3Identifier.js ***!
-  \**************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isValidES3Identifier;
-
-var _isValidIdentifier = __webpack_require__(/*! ./isValidIdentifier */ "./node_modules/@babel/types/lib/validators/isValidIdentifier.js");
-
-const RESERVED_WORDS_ES3_ONLY = new Set(["abstract", "boolean", "byte", "char", "double", "enum", "final", "float", "goto", "implements", "int", "interface", "long", "native", "package", "private", "protected", "public", "short", "static", "synchronized", "throws", "transient", "volatile"]);
-
-function isValidES3Identifier(name) {
-  return (0, _isValidIdentifier.default)(name) && !RESERVED_WORDS_ES3_ONLY.has(name);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/isValidIdentifier.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/isValidIdentifier.js ***!
-  \***********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isValidIdentifier;
-
-var _helperValidatorIdentifier = __webpack_require__(/*! @babel/helper-validator-identifier */ "./node_modules/@babel/helper-validator-identifier/lib/index.js");
-
-function isValidIdentifier(name, reserved = true) {
-  if (typeof name !== "string") return false;
-
-  if (reserved) {
-    if ((0, _helperValidatorIdentifier.isKeyword)(name) || (0, _helperValidatorIdentifier.isStrictReservedWord)(name, true)) {
-      return false;
-    }
-  }
-
-  return (0, _helperValidatorIdentifier.isIdentifierName)(name);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/isVar.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/isVar.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isVar;
-
-var _generated = __webpack_require__(/*! ./generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-var _constants = __webpack_require__(/*! ../constants */ "./node_modules/@babel/types/lib/constants/index.js");
-
-function isVar(node) {
-  return (0, _generated.isVariableDeclaration)(node, {
-    kind: "var"
-  }) && !node[_constants.BLOCK_SCOPED_SYMBOL];
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/matchesPattern.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/matchesPattern.js ***!
-  \********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = matchesPattern;
-
-var _generated = __webpack_require__(/*! ./generated */ "./node_modules/@babel/types/lib/validators/generated/index.js");
-
-function matchesPattern(member, match, allowPartial) {
-  if (!(0, _generated.isMemberExpression)(member)) return false;
-  const parts = Array.isArray(match) ? match : match.split(".");
-  const nodes = [];
-  let node;
-
-  for (node = member; (0, _generated.isMemberExpression)(node); node = node.object) {
-    nodes.push(node.property);
-  }
-
-  nodes.push(node);
-  if (nodes.length < parts.length) return false;
-  if (!allowPartial && nodes.length > parts.length) return false;
-
-  for (let i = 0, j = nodes.length - 1; i < parts.length; i++, j--) {
-    const node = nodes[j];
-    let value;
-
-    if ((0, _generated.isIdentifier)(node)) {
-      value = node.name;
-    } else if ((0, _generated.isStringLiteral)(node)) {
-      value = node.value;
-    } else if ((0, _generated.isThisExpression)(node)) {
-      value = "this";
-    } else {
-      return false;
-    }
-
-    if (parts[i] !== value) return false;
-  }
-
-  return true;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/react/isCompatTag.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/react/isCompatTag.js ***!
-  \***********************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isCompatTag;
-
-function isCompatTag(tagName) {
-  return !!tagName && /^[a-z]/.test(tagName);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/react/isReactComponent.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/react/isReactComponent.js ***!
-  \****************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = void 0;
-
-var _buildMatchMemberExpression = __webpack_require__(/*! ../buildMatchMemberExpression */ "./node_modules/@babel/types/lib/validators/buildMatchMemberExpression.js");
-
-const isReactComponent = (0, _buildMatchMemberExpression.default)("React.Component");
-var _default = isReactComponent;
-exports.default = _default;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/types/lib/validators/validate.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/@babel/types/lib/validators/validate.js ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = validate;
-exports.validateField = validateField;
-exports.validateChild = validateChild;
-
-var _definitions = __webpack_require__(/*! ../definitions */ "./node_modules/@babel/types/lib/definitions/index.js");
-
-function validate(node, key, val) {
-  if (!node) return;
-  const fields = _definitions.NODE_FIELDS[node.type];
-  if (!fields) return;
-  const field = fields[key];
-  validateField(node, key, val, field);
-  validateChild(node, key, val);
-}
-
-function validateField(node, key, val, field) {
-  if (!(field != null && field.validate)) return;
-  if (field.optional && val == null) return;
-  field.validate(node, key, val);
-}
-
-function validateChild(node, key, val) {
-  if (val == null) return;
-  const validate = _definitions.NODE_PARENT_VALIDATIONS[val.type];
-  if (!validate) return;
-  validate(node, key, val);
-}
-
-/***/ }),
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_views_admin_viewdeliverynote_vue"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TheLoader.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************************************************!*\
@@ -15992,10 +38,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewpurchase.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewpurchase.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewdeliverynote.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewdeliverynote.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -16005,15 +51,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/types */ "./node_modules/@babel/types/lib/index.js");
-/* harmony import */ var _babel_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_types__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vue_signature_pad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-signature-pad */ "./node_modules/vue-signature-pad/dist/vue-signature-pad.common.js");
-/* harmony import */ var vue_signature_pad__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_signature_pad__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-search-select */ "./node_modules/vue-search-select/dist/VueSearchSelect.common.js");
+/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_search_select__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
+/* harmony import */ var _object_to_formdata__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../object-to-formdata */ "./resources/js/object-to-formdata.js");
 /* harmony import */ var vue_html2pdf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-html2pdf */ "./node_modules/vue-html2pdf/dist/vue-html2pdf.esm.js");
-/* harmony import */ var _components_TheLoader__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/TheLoader */ "./resources/js/components/TheLoader.vue");
+/* harmony import */ var vue_signature_pad__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-signature-pad */ "./node_modules/vue-signature-pad/dist/vue-signature-pad.common.js");
+/* harmony import */ var vue_signature_pad__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_signature_pad__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_TheLoader__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/TheLoader */ "./resources/js/components/TheLoader.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -16547,6 +594,155 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -16554,220 +750,104 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Dashboard",
+  name: "ViewDeliveryNote",
   components: {
-    Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_4__.default,
-    VueSignaturePad: (vue_signature_pad__WEBPACK_IMPORTED_MODULE_3___default()),
+    Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_3__.default,
+    moment: (moment__WEBPACK_IMPORTED_MODULE_1___default()),
+    ModelSelect: vue_search_select__WEBPACK_IMPORTED_MODULE_2__.ModelSelect,
     VueHtml2pdf: vue_html2pdf__WEBPACK_IMPORTED_MODULE_5__.default,
-    TheLoader: _components_TheLoader__WEBPACK_IMPORTED_MODULE_6__.default
+    VueSignaturePad: (vue_signature_pad__WEBPACK_IMPORTED_MODULE_6___default()),
+    TheLoader: _components_TheLoader__WEBPACK_IMPORTED_MODULE_7__.default
   },
   data: function data() {
     return {
-      customerType: 'business',
-      addpayment: '',
-      theme: 'cust-type',
+      customerType: "business",
+      addpayment: "",
+      addrefund: "",
+      theme: "cust-type",
       formdata: {},
       companydata: {},
       rows: [],
-      cashSelected: false,
+      urlArr: {
+        1: [],
+        2: [],
+        3: [],
+        4: []
+      },
+      filesArr: {
+        1: null,
+        2: null,
+        3: null,
+        4: null
+      },
       invoice_items: [{
         payment_date: Date.now(),
-        totalamount: '',
-        bank: 'ICIC Bank Accounts',
-        method: 'Bank Transfer',
-        comment: ''
+        totalamount: "",
+        bank: "ICIC Bank Accounts",
+        method: "Bank Transfer",
+        comment: "",
+        action: ""
+      }],
+      refund_items: [{
+        refund_date: Date.now(),
+        totalamount: "",
+        bank: "ICIC Bank Accounts",
+        method: "Bank Transfer",
+        comment: "",
+        action: "Refund"
       }],
       tabflag: false,
       sidebarflag: false,
-      paymentid: '',
+      paymentid: "",
+      refundid: "",
+      fileid: "",
       paymentcount: 0,
-      due_payment: '',
-      invoice_status: '',
-      payment_check: '',
+      due_payment: "",
+      invoice_status: "",
+      payment_check: "",
       paymenttab: false,
       notestab: false,
       kyctab: false,
-      selectedtab: 'payment',
-      note: '',
+      selectedtab: "payment",
+      note: "",
       over_paid: 0,
+      refundcount: 0,
+      payaction: "",
+      paymentclass: "",
+      sales: [],
+      postFormData: {},
+      uploaddata: {
+        registration: [],
+        vat: [],
+        iddoc: [],
+        credit: []
+      },
+      kycdocs: [],
+      cashSelected: false,
       purchases: [],
-      signed_by: '',
+      purchase_id: "",
+      purchase_amount: "",
+      signed_by: "",
       no_sign: false,
       signaturedata: {
-        signature_filename: '',
-        signed_by: ''
+        signature_filename: "",
+        signed_by: ""
       },
-      sign_flag: '',
+      sign_flag: "",
       output_tax: "",
       loading: false
     };
   },
   methods: {
-    dateFormateChanger: function dateFormateChanger(d) {
-      return moment__WEBPACK_IMPORTED_MODULE_2___default()(d, 'YYYY-MM-DD').format('DD MMM YYYY');
-    },
-    sideClick: function sideClick(id) {
-      this.$router.push("/viewpurchase/" + id);
-      location.reload();
-    },
-    dropdownCash: function dropdownCash(index) {
-      if (this.invoice_items[index].bank == 'Cash Account') {
-        this.invoice_items[index].method = 'Cash';
-        this.cashSelected = true;
-      } else {
-        this.cashSelected = false;
-      }
-    },
-    sidebarToggle: function sidebarToggle() {
-      this.sidebarflag = !this.sidebarflag;
-    },
-    changetype: function changetype(type) {
-      this.customerType = type;
-    },
-    addLine: function addLine() {
-      this.addpayment = 'show';
-    },
-    removeLine: function removeLine(index) {
-      this.addpayment = ''; //this.invoice_items.splice(index,1);
-    },
-    editpayment: function editpayment(paymentdata) {},
-    tabclick: function tabclick(param) {
-      this.selectedtab = param;
-    },
-    save_payment: function save_payment(index) {
+    deleteDeliveryNote: function deleteDeliveryNote() {
       var _this = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var date, response, arr, response1, toast;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _this.invoice_items[index].purchase_id = _this.$route.params.id;
-                date = new Date(_this.invoice_items[index].payment_date);
-                _this.invoice_items[index].payment_date = date;
-                _context.next = 5;
-                return axios.post("create_purchasepayment", _this.invoice_items[index]);
+      axios.get("/delete_deliverynote/" + this.$route.params.id).then(function (resp) {
+        _this.$router.push("/deliverynotes");
 
-              case 5:
-                response = _context.sent;
-
-                if (response.data.id) {
-                  arr = {};
-                  arr.payment_date = response.data.payment_date;
-                  arr.method = _this.invoice_items[index].method;
-                  arr.totalamount = _this.invoice_items[index].totalamount;
-                  arr.id = response.data.id;
-
-                  _this.formdata.purchasepayments.push(arr);
-
-                  _this.addpayment = '';
-                  _this.paymentcount = _this.paymentcount + 1; //this.invoice_items.splice(index,1);
-
-                  _this.due_payment = _this.due_payment - _this.invoice_items[index].totalamount;
-                  _this.due_payment = _this.due_payment.toFixed(2);
-
-                  if (_this.due_payment < 0) {
-                    _this.over_paid = _this.due_payment;
-                  }
-
-                  _this.due_payment = _this.due_payment < 0 ? 0 : _this.due_payment;
-                  _this.invoice_items = [{
-                    payment_date: Date.now(),
-                    totalamount: '',
-                    bank: 'ICIC Bank Accounts',
-                    method: 'Bank Transfer',
-                    comment: ''
-                  }];
-
-                  if (_this.paymentcount == 0) {
-                    _this.invoice_status = 'UnPaid';
-                    _this.payment_check = 'Yes';
-                  } else if (_this.over_paid < 0) {
-                    _this.invoice_status = 'Over Paid';
-                    _this.payment_check = '';
-                  } else if (_this.due_payment == 0) {
-                    _this.invoice_status = 'Paid';
-                    _this.payment_check = '';
-                  } else {
-                    _this.invoice_status = 'Partially Paid';
-                    _this.payment_check = 'Yes';
-                  }
-
-                  _this.statusdata = {};
-                  _this.statusdata.purchase_id = _this.$route.params.id; //this.statusdata.status = (this.invoice_status=='Over Paid')?'Paid':this.invoice_status;
-
-                  _this.statusdata.status = _this.invoice_status;
-                  response1 = axios.post("update_orderstatus", _this.statusdata);
-                } else {
-                  toast = Vue.toasted.show('Something went wrong, Please try again', {
-                    theme: "toasted-error",
-                    position: "top-center",
-                    duration: 5000
-                  });
-                }
-
-              case 7:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    save_note: function save_note() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var notedata, response, toast, _toast;
-
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                notedata = {
-                  purchase_id: _this2.$route.params.id,
-                  note: _this2.note
-                };
-                _context2.next = 3;
-                return axios.post("create_purchasenote", notedata);
-
-              case 3:
-                response = _context2.sent;
-
-                if (response.data.id) {
-                  _this2.note = '';
-                  toast = Vue.toasted.show('Note successfully added', {
-                    theme: "toasted-success",
-                    position: "top-center",
-                    duration: 5000
-                  });
-                } else {
-                  _toast = Vue.toasted.show('Something went wrong, Please try again', {
-                    theme: "toasted-error",
-                    position: "top-center",
-                    duration: 5000
-                  });
-                }
-
-              case 5:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
-    selectrecord: function selectrecord(id) {
-      this.paymentid = id;
-    },
-    deleteRecord: function deleteRecord(id) {
-      var _this3 = this;
-
-      axios.get('/delete_purchasepayment/' + id).then(function (resp) {
-        _this3.$router.go();
+        _this.$router.go();
       })["catch"](function (error) {
-        var message = 'Something went wrong, Please try again';
+        var message = "Something went wrong, Please try again";
         var toast = Vue.toasted.show(message, {
           theme: "toasted-error",
           position: "top-center",
@@ -16776,142 +856,64 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         console.log(error);
       });
     },
-    deletePurchaseOrder: function deletePurchaseOrder() {
-      var _this4 = this;
-
-      axios.get('/delete_purchaseorder/' + this.$route.params.id).then(function (resp) {
-        _this4.$router.push("/purchase");
-
-        _this4.$router.go();
-      })["catch"](function (error) {
-        var message = 'Something went wrong, Please try again';
-        var toast = Vue.toasted.show(message, {
-          theme: "toasted-error",
-          position: "top-center",
-          duration: 5000
-        });
-        console.log(error);
-      });
-    },
-    edit_invoice: function edit_invoice() {
-      if (this.paymentcount > 0) {
-        alert('Please delete all the payments first!');
-      } else {
-        this.$router.push("/edit_purchase/" + this.$route.params.id);
-      }
-    },
-    undo: function undo() {
-      this.$refs.signaturePad.undoSignature();
-    },
-    save: function save() {
-      var _this5 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-        var _this5$$refs$signatur, isEmpty, data, response, toast;
-
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _this5$$refs$signatur = _this5.$refs.signaturePad.saveSignature(), isEmpty = _this5$$refs$signatur.isEmpty, data = _this5$$refs$signatur.data;
-                console.log(isEmpty);
-                console.log(data);
-
-                if (!isEmpty) {
-                  _context3.next = 7;
-                  break;
-                }
-
-                _this5.no_sign = true;
-                _context3.next = 11;
-                break;
-
-              case 7:
-                _context3.next = 9;
-                return axios.post("add_signature", {
-                  'signature': data,
-                  'signedby': _this5.signed_by,
-                  'purchase_id': _this5.$route.params.id
-                });
-
-              case 9:
-                response = _context3.sent;
-
-                if (response.data.id) {
-                  _this5.$router.go();
-                } else {
-                  toast = Vue.toasted.show('Something went wrong, Please try again', {
-                    theme: "toasted-error",
-                    position: "top-center",
-                    duration: 5000
-                  });
-                }
-
-              case 11:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
+    edit_deliverynote: function edit_deliverynote() {
+      this.$router.push("/edit_deliverynote/" + this.$route.params.id);
     },
     generateReport: function generateReport() {
       this.$refs.html2Pdf.generatePdf();
     },
     sendemail: function sendemail() {
-      var _this6 = this;
+      var _this2 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var maildata, response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context.prev = _context.next) {
               case 0:
-                _this6.loading = true;
+                _this2.loading = true;
                 maildata = {};
-                maildata.salesdata = _this6.formdata;
-                maildata.salesdata.salesitem = _this6.formdata.purchaseitem;
-                maildata.companydata = _this6.companydata;
-                maildata.signaturedata = _this6.signaturedata;
-                maildata.customeremail = _this6.formdata.customer_email;
-                maildata.output_tax = _this6.output_tax;
-                maildata.title = 'Purchase Order';
-                _context4.next = 11;
-                return axios.post("send-purchaseemail", maildata).then(function (resp) {
+                maildata.salesdata = _this2.formdata;
+                maildata.customeremail = _this2.formdata.customer_email;
+                maildata.companydata = _this2.companydata;
+                maildata.signaturedata = _this2.signaturedata;
+                maildata.output_tax = _this2.output_tax;
+                _context.next = 9;
+                return axios.post("send-email", maildata).then(function (resp) {
                   if (resp.data.status == "success") {
-                    _this6.loading = false;
+                    _this2.loading = false;
                     var toast = Vue.toasted.show("Email has been sent successfully", {
                       theme: "toasted-success",
                       position: "top-center",
                       duration: 5000
                     });
                   } else {
-                    _this6.loading = false;
+                    _this2.loading = false;
 
-                    var _toast2 = Vue.toasted.show("Something went wrong, Please try again", {
+                    var _toast = Vue.toasted.show("Something went wrong, Please try again", {
                       theme: "toasted-error",
                       position: "top-center",
                       duration: 5000
                     });
                   }
                 })["catch"](function (error) {
-                  _this6.loading = false;
+                  _this2.loading = false;
                   var toast = Vue.toasted.show("Internal error, please try again later", {
                     theme: "toasted-error",
                     position: "top-center",
                     duration: 5000
-                  });
+                  }); //app.$notify(error.response.data.error, "error");
                 });
 
-              case 11:
-                response = _context4.sent;
+              case 9:
+                response = _context.sent;
 
-              case 12:
+              case 10:
               case "end":
-                return _context4.stop();
+                return _context.stop();
             }
           }
-        }, _callee4);
+        }, _callee);
       }))();
     },
     printDiv: function printDiv(divName) {
@@ -16920,66 +922,210 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       document.body.innerHTML = printContents;
       window.print();
       document.body.innerHTML = originalContents;
+    },
+    ondownload: function ondownload() {
+      axios({
+        url: "downloadPdf",
+        method: "GET",
+        responseType: "arraybuffer"
+      }).then(function (response) {
+        var blob = new Blob([response.data], {
+          type: "application/pdf"
+        });
+        var link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = "test.pdf";
+        link.click();
+      });
+    },
+    fetchPo: function fetchPo() {
+      var _this3 = this;
+
+      axios.get("/purchase_details/" + this.purchase_id).then(function (response) {
+        _this3.purchase_amount = response.data.totalamount;
+      });
+    },
+    dateFormateChanger: function dateFormateChanger(d) {
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(d, "YYYY-MM-DD").format("DD MMM YYYY");
+    },
+    gotosales: function gotosales(id) {
+      this.$router.push("/viewsales/" + id);
+    },
+    sidebarToggle: function sidebarToggle() {
+      this.sidebarflag = !this.sidebarflag;
+    },
+    changetype: function changetype(type) {
+      this.customerType = type;
     }
   },
   mounted: function mounted() {
-    var _this7 = this;
+    var _this4 = this;
 
-    axios.get('/saved_companydetails/').then(function (response) {
-      _this7.companydata = response.data;
+    axios.get("/saved_companydetails/").then(function (response) {
+      _this4.companydata = response.data;
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
-    axios.get('/purchase_details/' + this.$route.params.id).then(function (response) {
-      _this7.formdata = response.data;
-      _this7.paymentcount = _this7.formdata.purchasepayments.length;
+    axios.get("/deliverynotes_details/" + this.$route.params.id).then(function (response) {
+      _this4.formdata = response.data;
+      _this4.paymentcount = _this4.formdata.salepayments.length;
 
       if (response.data.payment_due < 0) {
-        _this7.over_paid = response.data.payment_due;
+        _this4.over_paid = response.data.payment_due.toFixed(2);
       }
 
-      _this7.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
+      _this4.due_payment = response.data.payment_due < 0 ? 0 : response.data.payment_due;
+      _this4.due_payment = _this4.due_payment.toFixed(2);
 
-      if (_this7.paymentcount == 0) {
-        _this7.invoice_status = 'UnPaid';
-        _this7.payment_check = 'Yes';
-      } else if (_this7.over_paid < 0) {
-        _this7.invoice_status = 'Over Paid';
-        _this7.payment_check = '';
-      } else if (_this7.due_payment == 0) {
-        _this7.invoice_status = 'Paid';
-        _this7.payment_check = '';
+      if (_this4.paymentcount == 0) {
+        _this4.invoice_status = "UnPaid";
+        _this4.payment_check = "Yes";
+      } else if (_this4.over_paid < 0) {
+        _this4.invoice_status = "Over Paid";
+        _this4.payment_check = "";
+      } else if (_this4.due_payment == 0) {
+        _this4.invoice_status = "Paid";
+        _this4.payment_check = "";
       } else {
-        _this7.invoice_status = 'Partially Paid';
-        _this7.payment_check = 'Yes';
+        _this4.invoice_status = "Partially Paid";
+        _this4.payment_check = "Yes";
       }
 
-      _this7.output_tax = 0;
+      _this4.output_tax = 0;
 
-      for (var j = 0; j < _this7.formdata.purchaseitem.length; j++) {
-        if (empty(_this7.formdata.purchaseitem[j].vat) && _this7.formdata.purchaseitem[j].metal_type == 'gold' && _this7.formdata.customer_type == 'customer_type') {
-          _this7.output_tax += parseFloat(_this7.formdata.purchaseitem[j].invoice_amount) * 20 / 100;
+      for (var j = 0; j < _this4.formdata.deliverynotesitem.length; j++) {
+        if (empty(_this4.formdata.deliverynotesitem[j].vat) && _this4.formdata.deliverynotesitem[j].metal_type == "gold" && _this4.formdata.customer_type == 'customer_type') {
+          _this4.output_tax += parseFloat(_this4.formdata.deliverynotesitem[j].invoice_amount) * 20 / 100;
         }
       }
+
+      console.log(_this4.invoice_status);
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
-    axios.get('/purchase_history/' + this.$route.params.id).then(function (response) {
-      _this7.formdata.purchasehistory = response.data;
+    axios.get("/sales_history/" + this.$route.params.id).then(function (response) {
+      _this4.formdata.saleshistory = response.data;
+    })["catch"](function (error) {});
+    axios.get("/sales_list/").then(function (response) {
+      _this4.sales = response.data;
+    })["catch"](function (error) {});
+    axios.get("/purchase_list/").then(function (response) {
+      _this4.purchases = response.data;
+      _this4.purchases = _this4.purchases.map(function (purchase) {
+        return {
+          value: purchase.id,
+          text: "".concat(moment__WEBPACK_IMPORTED_MODULE_1___default()(purchase.issue_date, "YYYY-MM-DD").format("DD MMM YYYY") || "", " |   ").concat(purchase.invoiceno || "", "  | ").concat(purchase.firstname || "", "  ").concat(purchase.lastname || "", " | \xA3").concat(purchase.totalamount || "", " ")
+        };
+      });
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
-    axios.get('/purchase_list/').then(function (response) {
-      _this7.purchases = response.data;
-      console.log(_this7.purchases);
-    })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
-    });
-    axios.get('/invoice_signature/' + this.$route.params.id).then(function (response) {
-      _this7.signaturedata = response.data;
-      _this7.sign_flag = response.data.signature_filename;
-      _this7.signaturedata.signature_filename = '/uploads/' + response.data.signature_filename;
-      console.log(_this7.signaturedata.signature_filename);
+    axios.get("/fetch_kyc/" + this.$route.params.id).then(function (response) {
+      _this4.kycdocs = response.data;
+      console.log(_this4.kycdocs);
+    })["catch"](function (error) {});
+    axios.get("/invoicesales_signature/" + this.$route.params.id).then(function (response) {
+      _this4.signaturedata = response.data;
+      _this4.sign_flag = response.data.signature_filename;
+      _this4.signaturedata.signature_filename = "/uploads/" + response.data.signature_filename;
     })["catch"](function (error) {//app.$notify(error.response.data.error, "error");
     });
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/object-to-formdata.js":
+/*!********************************************!*\
+  !*** ./resources/js/object-to-formdata.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "objectToFormData": () => (/* binding */ objectToFormData)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function isUndefined(value) {
+  return value === undefined;
+}
+
+function isNull(value) {
+  return value === null;
+}
+
+function isObject(value) {
+  return value === Object(value);
+}
+
+function isArray(value) {
+  return Array.isArray(value);
+}
+
+function isDate(value) {
+  return value instanceof Date;
+}
+
+function isBlob(value) {
+  return value && typeof value.size === 'number' && typeof value.type === 'string' && typeof value.slice === 'function';
+}
+
+function isFile(value) {
+  return isBlob(value) && (_typeof(value.lastModifiedDate) === 'object' || typeof value.lastModified === 'number') && typeof value.name === 'string';
+}
+
+function isFormData(value) {
+  return value instanceof FormData;
+}
+
+var objectToFormData = function objectToFormData(obj, cfg, fd, pre) {
+  if (isFormData(cfg)) {
+    pre = fd;
+    fd = cfg;
+    cfg = null;
+  }
+
+  cfg = cfg || {};
+  cfg.indices = isUndefined(cfg.indices) ? false : cfg.indices;
+  cfg.nulls = isUndefined(cfg.nulls) ? true : cfg.nulls;
+  fd = fd || new FormData();
+
+  if (isUndefined(obj)) {
+    return fd;
+  } else if (isNull(obj)) {
+    if (cfg.nulls) {
+      fd.append(pre, '');
+    }
+  } else if (isArray(obj)) {
+    if (!obj.length) {
+      var key = pre + '[]';
+      fd.append(key, '');
+    } else {
+      obj.forEach(function (value, index) {
+        var key = pre + '[' + (cfg.indices ? index : '') + ']';
+        objectToFormData(value, cfg, fd, key);
+      });
+    }
+  } else if (isDate(obj)) {
+    fd.append(pre, obj.toISOString());
+  } else if (isObject(obj) && !isFile(obj) && !isBlob(obj)) {
+    Object.keys(obj).forEach(function (prop) {
+      var value = obj[prop];
+
+      if (isArray(value)) {
+        while (prop.length > 2 && prop.lastIndexOf('[]') === prop.length - 2) {
+          prop = prop.substring(0, prop.length - 2);
+        }
+      }
+
+      var key = pre ? pre + '[' + prop + ']' : prop;
+      objectToFormData(value, cfg, fd, key);
+    });
+  } else {
+    fd.append(pre, obj);
+  }
+
+  return fd;
+};
 
 /***/ }),
 
@@ -17007,10 +1153,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n.loading-box[data-v-affbc7ee] {\r\n 
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewpurchase.vue?vue&type=style&index=0&id=648549a5&scoped=true&lang=css&":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewpurchase.vue?vue&type=style&index=0&id=648549a5&scoped=true&lang=css& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewdeliverynote.vue?vue&type=style&index=0&id=b04a53ec&scoped=true&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewdeliverynote.vue?vue&type=style&index=0&id=b04a53ec&scoped=true&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -17024,7 +1170,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.pdf_section *[data-v-648549a5] {\n          margin: 0;\n          padding: 0;\n          text-indent: 0;\n}\n#createinvoice-datatable thead[data-v-648549a5] {\n    background: #3376C2;\n    color: #fff;\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-648549a5] {\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-648549a5]\n{\n  font-size: 13px;\n  color: #000;\n}\n.purchasedata[data-v-648549a5]\n{\n  font-size: 13px;\n  color: #000;\n}\n.btn-head[data-v-648549a5]{\n  border-radius: 50%;\n}\n.btn-container[data-v-648549a5]{\n  display: flex;\n  justify-content: space-between !important;\n  width:100% !important;\n}\n.selectedclr[data-v-648549a5]{\n  background-color: #245388 !important;\n  color: #fff !important;\n}\n.cont[data-v-648549a5]{\n   \n  width: auto;\n    font-size: 13px  !important;\n    color: #000;\n    border:none;\n    height: 40px;\n    padding: 5px 20px;\n    border-radius: 5px 5px 0px 0px;\n}\n.viewpurchase-div[data-v-648549a5]\n{\n  background: #fff;\n  padding: 34px 23px 0px 23px;\n  border-radius: 8px;\n  box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-648549a5]\n{\n  font-size: 12px;\n}\n.crt-invoice[data-v-648549a5]\n{\n  padding: 0px 2%;\n  color: #000;\n}\n.dark-theme-btn[data-v-648549a5]\n{\n  background-color: #245388 !important;\n  color: #fff;\n  width: 100px;\n  font-size: 12px !important;\n}\n.light-theme-btn[data-v-648549a5]\n{\n  background-color: #EDF2F6 !important;\n  color: #000;\n  width: 100px;\n  font-size: 12px !important;\n}\n.btn[data-v-648549a5]:focus, .btn.focus[data-v-648549a5]\n{\n  box-shadow: 0 0;\n}\n.table-div[data-v-648549a5]\n{\n  border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-648549a5]\n{\n  border: 1px solid #D6E3F2 !important;\n  height: 40px;\n  border-radius: 5px;\n  width: 100%;\n  font-size: 13px;\n}\n.btn-addwidth[data-v-648549a5]\n{\n  width: 130px;\n}\n.sum-price ul[data-v-648549a5]\n{\n  list-style-type: none;\n}\n.sum-price li[data-v-648549a5]{\n  padding: 5px 0px;\n  font-size: 11px;\n};\n.viewpurchase-div > p[data-v-648549a5] {\n    color: #3376C2;\n    font-size: 12px;\n}\n.viewpurchase-div span[data-v-648549a5] {\n    color: #000;\n    font-size: 13px;\n}\n#purchasehistory-datatable thead[data-v-648549a5]\n{\n    background-color: #3376c2;\n    color: #fff;\n}\n#purchasehistory-datatable thead th[data-v-648549a5]\n{\n    font-weight: 100;\n}\n.red-color[data-v-648549a5]\n{\n    color:red !important;\n}\n#dosign .modal-dialog[data-v-648549a5]\n{\n    max-width: 600px;\n}\n.pdf_section .container[data-v-648549a5] {\n      padding: 0px 6%;\n      margin-top: 0px;\n}\n.pdf_section  .col-sm[data-v-648549a5] {\n      padding: 0 10px;\n}\n.pdf_section .row[data-v-648549a5] {\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n}\n#pdf_section h2[data-v-648549a5] {\n    color: black;\n    font-family: Calibri, sans-serif;\n    font-style: normal;\n    font-weight: bold;\n    text-decoration: none;\n    font-size: 12pt;\n}\n.s1[data-v-648549a5] {\n      color: black;\n      font-family: Calibri, sans-serif;\n      font-style: normal;\n      font-weight: normal;\n          text-decoration: none;\n          font-size: 22pt;\n}\n.s3[data-v-648549a5] {\n          color: black;\n          font-family: Calibri;\n          font-style: normal;\n          font-weight: normal;\n          /* text-decoration: underline; */\n          font-size: 9px;\n}\n.s4[data-v-648549a5],.s5[data-v-648549a5] {\n          color: black;\n          font-family: Calibri;\n          font-style: normal;\n          font-weight: normal;\n          text-decoration: none;\n          font-size: 9px;\n}\n.pdf_cont  th[data-v-648549a5]{\n          border-bottom:1px solid black;\n}\n.flex-parent[data-v-648549a5] {\n    display: flex;\n    /* justify-content: center;\n    align-items: center; */\n}\n.box[data-v-648549a5] {\n    background-color: white;\n    height: 110px;\n    padding: 5px;\n    width: 330px;\n    border: 0.5px solid;\n}\n.box_size[data-v-648549a5] {\n    margin-top: 10px;\n    font-size: 12px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.pdf_section *[data-v-b04a53ec] {\r\n    margin: 0;\r\n    padding: 0;\r\n    text-indent: 0;\n}\n#dosign .modal-dialog[data-v-b04a53ec] {\r\n    max-width: 600px;\n}\n#createinvoice-datatable thead[data-v-b04a53ec] {\r\n    background: #3376c2;\r\n    color: #fff;\r\n    font-size: 13px;\n}\n#createinvoice-datatable thead tr th[data-v-b04a53ec] {\r\n    font-weight: 100 !important;\n}\n#createinvoice-datatable[data-v-b04a53ec] {\r\n    font-size: 13px;\r\n    color: #000;\n}\n.download-containter[data-v-b04a53ec] {\r\n    margin-top: 200px;\r\n    margin-left: 600px;\n}\n.choose-cont[data-v-b04a53ec] {\r\n    display: flex;\r\n    /* justify-content: center; */\n}\n.imagePreview[data-v-b04a53ec] {\r\n    width: 70px;\n}\n.previewContainer[data-v-b04a53ec] {\r\n    position: relative;\n}\n.closeIcon[data-v-b04a53ec] {\r\n    position: absolute;\r\n    top: -15px;\r\n    left: 51px;\r\n    font-size: 20px;\r\n    cursor: pointer;\n}\n.closeIcon i[data-v-b04a53ec] {\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.downloadIcon[data-v-b04a53ec] {\r\n    position: absolute;\r\n    top: -15px;\r\n    left: 30px;\r\n    font-size: 20px;\r\n    cursor: pointer;\n}\n.downloadIcon i[data-v-b04a53ec] {\r\n    font-size: 11px;\r\n    background: #cccccc52;\r\n    padding: 4px;\r\n    border-radius: 50%;\r\n    color: #000;\n}\n.salesdata[data-v-b04a53ec] {\r\n    font-size: 13px;\r\n    color: #000;\n}\n.btn-head[data-v-b04a53ec] {\r\n    border-radius: 50%;\n}\n.btn-container[data-v-b04a53ec] {\r\n    display: flex;\r\n    justify-content: space-between !important;\r\n    width: 100% !important;\n}\n.selectedclr[data-v-b04a53ec] {\r\n    background-color: #245388 !important;\r\n    color: #fff !important;\n}\n.cont[data-v-b04a53ec] {\r\n    width: auto;\r\n    font-size: 13px !important;\r\n    color: #000;\r\n    border: none;\r\n    height: 40px;\r\n    padding: 5px 20px;\r\n    border-radius: 5px 5px 0px 0px;\n}\n.viewsales-div[data-v-b04a53ec] {\r\n    background: #fff;\r\n    padding: 34px 23px 0px 23px;\r\n    border-radius: 8px;\r\n    box-shadow: 0px 10px 10px 0px rgb(0 0 0 / 10%);\n}\n.crt-invoice label[data-v-b04a53ec] {\r\n    font-size: 12px;\n}\n.crt-invoice[data-v-b04a53ec] {\r\n    padding: 0px 2%;\r\n    color: #000;\n}\n.dark-theme-btn[data-v-b04a53ec] {\r\n    background-color: #245388 !important;\r\n    color: #fff;\r\n    width: 100px;\r\n    font-size: 12px !important;\n}\n.light-theme-btn[data-v-b04a53ec] {\r\n    background-color: #edf2f6 !important;\r\n    color: #000;\r\n    width: 100px;\r\n    font-size: 12px !important;\n}\n.btn[data-v-b04a53ec]:focus,\r\n.btn.focus[data-v-b04a53ec] {\r\n    box-shadow: 0 0;\n}\n.table-div[data-v-b04a53ec] {\r\n    border-bottom: 1px solid #ccc;\n}\n.tab-selector[data-v-b04a53ec] {\r\n    border: 1px solid #d6e3f2 !important;\r\n    height: 40px;\r\n    border-radius: 5px;\r\n    width: 100%;\r\n    font-size: 13px;\n}\n.btn-addwidth[data-v-b04a53ec] {\r\n    width: 130px;\n}\n.sum-price ul[data-v-b04a53ec] {\r\n    list-style-type: none;\n}\n.sum-price li[data-v-b04a53ec] {\r\n    padding: 5px 0px;\r\n    font-size: 11px;\n}\n.viewsales-div > p[data-v-b04a53ec] {\r\n    color: #3376c2;\r\n    font-size: 12px;\n}\n.viewsales-div span[data-v-b04a53ec] {\r\n    color: #000;\r\n    font-size: 13px;\n}\n.class_red[data-v-b04a53ec] {\r\n    color: rgb(255 0 0);\n}\n.class_green[data-v-b04a53ec] {\r\n    color: #7adaaa;\n}\n.bold_font[data-v-b04a53ec] {\r\n    font-weight: 600;\n}\n.invoicelist a[data-v-b04a53ec] {\r\n    color: #000;\n}\n#saleshistory-datatable thead[data-v-b04a53ec] {\r\n    background-color: #3376c2;\r\n    color: #fff;\n}\n#saleshistory-datatable thead th[data-v-b04a53ec] {\r\n    font-weight: 100;\n}\n#kyc-datatable[data-v-b04a53ec] {\r\n    font-size: 13px;\n}\n#applycontra .modal-dialog[data-v-b04a53ec] {\r\n    max-width: 700px;\n}\n.red-color[data-v-b04a53ec] {\r\n    color: red !important;\n}\n#pdf_section .container[data-v-b04a53ec] {\r\n    padding: 0px 6%;\r\n    margin-top: 0px;\n}\n#pdf_section .col-sm[data-v-b04a53ec] {\r\n    padding: 0 10px;\n}\n#pdf_section .row[data-v-b04a53ec] {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\n}\n#pdf_section h2[data-v-b04a53ec] {\r\n    color: black;\r\n    font-family: Calibri, sans-serif;\r\n    font-style: normal;\r\n    font-weight: bold;\r\n    text-decoration: none;\r\n    font-size: 12pt;\n}\n.cont2 p[data-v-b04a53ec] {\r\n    color: black;\r\n    font-family: Calibri, sans-serif;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    text-decoration: none;\r\n    font-size: 12pt;\r\n    margin: 0pt;\n}\n.s1[data-v-b04a53ec] {\r\n    color: black;\r\n    font-family: Calibri, sans-serif;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    text-decoration: none;\r\n    font-size: 22pt;\n}\n.s3[data-v-b04a53ec] {\r\n    color: black;\r\n    font-family: Calibri;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    /* text-decoration: underline; */\r\n    font-size: 9px;\n}\n.s4[data-v-b04a53ec],\r\n.s5[data-v-b04a53ec] {\r\n    color: black;\r\n    font-family: Calibri;\r\n    font-style: normal;\r\n    font-weight: normal;\r\n    text-decoration: none;\r\n    font-size: 9px;\n}\nth[data-v-b04a53ec]{\r\n    border-bottom: 1px solid black;\n}\n.flex-parent[data-v-b04a53ec] {\r\n    display: flex;\r\n    /* justify-content: center;\r\n    align-items: center; */\n}\n.box[data-v-b04a53ec] {\r\n    background-color: white;\r\n    height: 110px;\r\n    padding: 5px;\r\n    width: 330px;\r\n    border: 0.5px solid;\n}\n.box_size[data-v-b04a53ec] {\r\n    margin-top: 10px;\r\n    font-size: 12px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -27948,10 +12094,10 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewpurchase.vue?vue&type=style&index=0&id=648549a5&scoped=true&lang=css&":
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewpurchase.vue?vue&type=style&index=0&id=648549a5&scoped=true&lang=css& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewdeliverynote.vue?vue&type=style&index=0&id=b04a53ec&scoped=true&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewdeliverynote.vue?vue&type=style&index=0&id=b04a53ec&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -27961,7 +12107,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_viewpurchase_vue_vue_type_style_index_0_id_648549a5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./viewpurchase.vue?vue&type=style&index=0&id=648549a5&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewpurchase.vue?vue&type=style&index=0&id=648549a5&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_viewdeliverynote_vue_vue_type_style_index_0_id_b04a53ec_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./viewdeliverynote.vue?vue&type=style&index=0&id=b04a53ec&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewdeliverynote.vue?vue&type=style&index=0&id=b04a53ec&scoped=true&lang=css&");
 
             
 
@@ -27970,49 +12116,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_viewpurchase_vue_vue_type_style_index_0_id_648549a5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_viewdeliverynote_vue_vue_type_style_index_0_id_b04a53ec_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_viewpurchase_vue_vue_type_style_index_0_id_648549a5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
-
-/***/ }),
-
-/***/ "./node_modules/to-fast-properties/index.js":
-/*!**************************************************!*\
-  !*** ./node_modules/to-fast-properties/index.js ***!
-  \**************************************************/
-/***/ ((module) => {
-
-"use strict";
-
-
-let fastProto = null;
-
-// Creates an object with permanently fast properties in V8. See Toon Verwaest's
-// post https://medium.com/@tverwaes/setting-up-prototypes-in-v8-ec9c9491dfe2#5f62
-// for more details. Use %HasFastProperties(object) and the Node.js flag
-// --allow-natives-syntax to check whether an object has fast properties.
-function FastObject(o) {
-	// A prototype object will have "fast properties" enabled once it is checked
-	// against the inline property cache of a function, e.g. fastProto.property:
-	// https://github.com/v8/v8/blob/6.0.122/test/mjsunit/fast-prototype.js#L48-L63
-	if (fastProto !== null && typeof fastProto.property) {
-		const result = fastProto;
-		fastProto = FastObject.prototype = null;
-		return result;
-	}
-	fastProto = FastObject.prototype = o == null ? Object.create(null) : o;
-	return new FastObject;
-}
-
-// Initialize the inline property cache of FastObject
-FastObject();
-
-module.exports = function toFastproperties(o) {
-	return FastObject(o);
-};
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_viewdeliverynote_vue_vue_type_style_index_0_id_b04a53ec_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
@@ -28536,10 +12644,10 @@ component.options.__file = "resources/js/components/TheLoader.vue"
 
 /***/ }),
 
-/***/ "./resources/js/views/admin/viewpurchase.vue":
-/*!***************************************************!*\
-  !*** ./resources/js/views/admin/viewpurchase.vue ***!
-  \***************************************************/
+/***/ "./resources/js/views/admin/viewdeliverynote.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/views/admin/viewdeliverynote.vue ***!
+  \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -28547,9 +12655,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _viewpurchase_vue_vue_type_template_id_648549a5_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./viewpurchase.vue?vue&type=template&id=648549a5&scoped=true& */ "./resources/js/views/admin/viewpurchase.vue?vue&type=template&id=648549a5&scoped=true&");
-/* harmony import */ var _viewpurchase_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./viewpurchase.vue?vue&type=script&lang=js& */ "./resources/js/views/admin/viewpurchase.vue?vue&type=script&lang=js&");
-/* harmony import */ var _viewpurchase_vue_vue_type_style_index_0_id_648549a5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./viewpurchase.vue?vue&type=style&index=0&id=648549a5&scoped=true&lang=css& */ "./resources/js/views/admin/viewpurchase.vue?vue&type=style&index=0&id=648549a5&scoped=true&lang=css&");
+/* harmony import */ var _viewdeliverynote_vue_vue_type_template_id_b04a53ec_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./viewdeliverynote.vue?vue&type=template&id=b04a53ec&scoped=true& */ "./resources/js/views/admin/viewdeliverynote.vue?vue&type=template&id=b04a53ec&scoped=true&");
+/* harmony import */ var _viewdeliverynote_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./viewdeliverynote.vue?vue&type=script&lang=js& */ "./resources/js/views/admin/viewdeliverynote.vue?vue&type=script&lang=js&");
+/* harmony import */ var _viewdeliverynote_vue_vue_type_style_index_0_id_b04a53ec_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./viewdeliverynote.vue?vue&type=style&index=0&id=b04a53ec&scoped=true&lang=css& */ "./resources/js/views/admin/viewdeliverynote.vue?vue&type=style&index=0&id=b04a53ec&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -28560,19 +12668,19 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
-  _viewpurchase_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _viewpurchase_vue_vue_type_template_id_648549a5_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
-  _viewpurchase_vue_vue_type_template_id_648549a5_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _viewdeliverynote_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _viewdeliverynote_vue_vue_type_template_id_b04a53ec_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _viewdeliverynote_vue_vue_type_template_id_b04a53ec_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  "648549a5",
+  "b04a53ec",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/admin/viewpurchase.vue"
+component.options.__file = "resources/js/views/admin/viewdeliverynote.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -28593,10 +12701,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/admin/viewpurchase.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/views/admin/viewpurchase.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
+/***/ "./resources/js/views/admin/viewdeliverynote.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/views/admin/viewdeliverynote.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -28604,8 +12712,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_viewpurchase_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./viewpurchase.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewpurchase.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_viewpurchase_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_viewdeliverynote_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./viewdeliverynote.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewdeliverynote.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_viewdeliverynote_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -28622,15 +12730,15 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/admin/viewpurchase.vue?vue&type=style&index=0&id=648549a5&scoped=true&lang=css&":
-/*!************************************************************************************************************!*\
-  !*** ./resources/js/views/admin/viewpurchase.vue?vue&type=style&index=0&id=648549a5&scoped=true&lang=css& ***!
-  \************************************************************************************************************/
+/***/ "./resources/js/views/admin/viewdeliverynote.vue?vue&type=style&index=0&id=b04a53ec&scoped=true&lang=css&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/views/admin/viewdeliverynote.vue?vue&type=style&index=0&id=b04a53ec&scoped=true&lang=css& ***!
+  \****************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_viewpurchase_vue_vue_type_style_index_0_id_648549a5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./viewpurchase.vue?vue&type=style&index=0&id=648549a5&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewpurchase.vue?vue&type=style&index=0&id=648549a5&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_viewdeliverynote_vue_vue_type_style_index_0_id_b04a53ec_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./viewdeliverynote.vue?vue&type=style&index=0&id=b04a53ec&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewdeliverynote.vue?vue&type=style&index=0&id=b04a53ec&scoped=true&lang=css&");
 
 
 /***/ }),
@@ -28652,19 +12760,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/admin/viewpurchase.vue?vue&type=template&id=648549a5&scoped=true&":
-/*!**********************************************************************************************!*\
-  !*** ./resources/js/views/admin/viewpurchase.vue?vue&type=template&id=648549a5&scoped=true& ***!
-  \**********************************************************************************************/
+/***/ "./resources/js/views/admin/viewdeliverynote.vue?vue&type=template&id=b04a53ec&scoped=true&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/views/admin/viewdeliverynote.vue?vue&type=template&id=b04a53ec&scoped=true& ***!
+  \**************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_viewpurchase_vue_vue_type_template_id_648549a5_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_viewpurchase_vue_vue_type_template_id_648549a5_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_viewdeliverynote_vue_vue_type_template_id_b04a53ec_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_viewdeliverynote_vue_vue_type_template_id_b04a53ec_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_viewpurchase_vue_vue_type_template_id_648549a5_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./viewpurchase.vue?vue&type=template&id=648549a5&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewpurchase.vue?vue&type=template&id=648549a5&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_viewdeliverynote_vue_vue_type_template_id_b04a53ec_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./viewdeliverynote.vue?vue&type=template&id=b04a53ec&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewdeliverynote.vue?vue&type=template&id=b04a53ec&scoped=true&");
 
 
 /***/ }),
@@ -28721,10 +12829,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewpurchase.vue?vue&type=template&id=648549a5&scoped=true&":
-/*!*************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewpurchase.vue?vue&type=template&id=648549a5&scoped=true& ***!
-  \*************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewdeliverynote.vue?vue&type=template&id=b04a53ec&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/viewdeliverynote.vue?vue&type=template&id=b04a53ec&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -28742,30 +12850,28 @@ var render = function() {
       ? _c(
           "div",
           { staticClass: "col-1", staticStyle: { "font-size": "12px" } },
-          _vm._l(_vm.purchases, function(purchase) {
+          _vm._l(_vm.sales, function(sale) {
             return _c(
-              "div",
+              "p",
               {
-                key: purchase.id,
+                key: sale.id,
+                staticClass: "invoicelist",
                 class:
-                  purchase.invoiceno == _vm.formdata.invoiceno
-                    ? "bold_font"
-                    : "",
+                  sale.invoiceno == _vm.formdata.invoiceno ? "bold_font" : "",
                 staticStyle: { color: "#000" }
               },
               [
                 _c(
-                  "div",
+                  "router-link",
                   {
-                    on: {
-                      click: function($event) {
-                        return _vm.sideClick(purchase.id)
-                      }
+                    attrs: {
+                      to: { name: "viewsales", params: { id: sale.id } }
                     }
                   },
-                  [_c("b", [_vm._v(_vm._s(purchase.invoiceno))])]
+                  [_c("b", [_vm._v(_vm._s(sale.invoiceno))])]
                 )
-              ]
+              ],
+              1
             )
           }),
           0
@@ -28800,7 +12906,13 @@ var render = function() {
                   staticClass: "h3 mb-0 text-gray-800",
                   staticStyle: { "margin-left": "20px", "margin-right": "20px" }
                 },
-                [_vm._v(_vm._s(_vm.formdata.invoiceno))]
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.formdata.invoiceno) +
+                      "\n                "
+                  )
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -28819,256 +12931,194 @@ var render = function() {
             },
             [
               _c(
-                "VueHtml2pdf",
-                {
-                  ref: "html2Pdf",
-                  attrs: {
-                    "show-layout": false,
-                    "float-layout": true,
-                    "enable-download": true,
-                    "preview-modal": false,
-                    "paginate-elements-by-height": 1400,
-                    filename: _vm.formdata.invoiceno,
-                    "pdf-quality": 2,
-                    "manual-pagination": false,
-                    "pdf-format": "a4",
-                    "pdf-orientation": "portrait",
-                    "pdf-content-width": "800px"
-                  }
-                },
+                "div",
                 [
                   _c(
-                    "section",
+                    "VueHtml2pdf",
                     {
-                      staticClass: "pdf_section",
-                      attrs: { slot: "pdf-content", id: "pdf_section" },
-                      slot: "pdf-content"
+                      ref: "html2Pdf",
+                      attrs: {
+                        "show-layout": false,
+                        "float-layout": true,
+                        "enable-download": true,
+                        "preview-modal": false,
+                        "paginate-elements-by-height": 1400,
+                        filename: _vm.formdata.invoiceno,
+                        "pdf-quality": 2,
+                        "manual-pagination": false,
+                        "pdf-format": "a4",
+                        "pdf-orientation": "portrait",
+                        "pdf-content-width": "800px"
+                      }
                     },
                     [
-                      _c("div", { staticStyle: { padding: "0px 2%" } }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "container",
-                            staticStyle: { padding: "30px 6%" }
-                          },
-                          [
-                            _c("div", { staticClass: "row" }, [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "col-7",
-                                  staticStyle: { "padding-top": "55px" }
-                                },
-                                [
-                                  _c("img", {
-                                    staticStyle: { width: "230px" },
-                                    attrs: { src: "/images/logo.png" }
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "col-5 s3",
-                                  staticStyle: {
-                                    "font-size": "9px",
-                                    "text-align": "left",
-                                    float: "left"
-                                  }
-                                },
-                                [
+                      _c(
+                        "section",
+                        {
+                          staticClass: "pdf_section",
+                          attrs: { slot: "pdf-content", id: "pdf_section" },
+                          slot: "pdf-content"
+                        },
+                        [
+                          _c("div", { staticStyle: { padding: "0px 2%" } }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "container",
+                                staticStyle: { padding: "30px 6%" }
+                              },
+                              [
+                                _c("div", { staticClass: "row" }, [
                                   _c(
-                                    "h2",
+                                    "div",
                                     {
+                                      staticClass: "col-8",
+                                      staticStyle: { "padding-top": "55px" }
+                                    },
+                                    [
+                                      _c("img", {
+                                        staticStyle: { width: "230px" },
+                                        attrs: { src: "/images/logo.png" }
+                                      })
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "col-4 s3",
                                       staticStyle: {
-                                        "padding-top": "45px",
-                                        "padding-left": "13pt",
-                                        "text-indent": "-1pt",
+                                        "font-size": "9px",
                                         "text-align": "left",
-                                        "font-size": "13px",
-                                        "font-weight": "bold"
+                                        float: "left"
                                       }
                                     },
                                     [
-                                      _vm._v(
-                                        "\n          " +
-                                          _vm._s(_vm.companydata.company_name) +
-                                          " "
+                                      _c(
+                                        "h2",
+                                        {
+                                          staticStyle: {
+                                            "padding-top": "45px",
+                                            "padding-left": "13pt",
+                                            "text-indent": "-1pt",
+                                            "text-align": "left",
+                                            "font-size": "13px"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                " +
+                                              _vm._s(
+                                                _vm.companydata.company_name
+                                              ) +
+                                              "\n                                                "
+                                          ),
+                                          _c("br"),
+                                          _vm._v(
+                                            _vm._s(_vm.companydata.address1)
+                                          ),
+                                          _c("br"),
+                                          _vm._v(
+                                            "\n                                                " +
+                                              _vm._s(_vm.companydata.address2) +
+                                              "\n                                            "
+                                          )
+                                        ]
                                       ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "h2",
+                                        {
+                                          staticStyle: {
+                                            padding: "0",
+                                            "padding-left": "13pt",
+                                            "text-indent": "0pt",
+                                            "text-align": "left",
+                                            "font-size": "13px"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                " +
+                                              _vm._s(_vm.companydata.postcode) +
+                                              "\n                                            "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
                                       _c("br"),
-                                      _vm._v(_vm._s(_vm.companydata.address1)),
-                                      _c("br"),
-                                      _vm._v(
-                                        " " + _vm._s(_vm.companydata.address2)
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "h2",
-                                    {
-                                      staticStyle: {
-                                        padding: "0",
-                                        "padding-left": "13pt",
-                                        "text-indent": "0pt",
-                                        "text-align": "left",
-                                        "font-size": "13px",
-                                        "font-weight": "bold"
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n          " +
-                                          _vm._s(_vm.companydata.postcode) +
-                                          "\n          "
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c(
-                                    "h2",
-                                    {
-                                      staticStyle: {
-                                        "padding-left": "13pt",
-                                        "text-indent": "0pt",
-                                        "text-align": "left",
-                                        "font-size": "13px",
-                                        "font-weight": "bold"
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n          Vat No: " +
-                                          _vm._s(_vm.companydata.vat_number) +
-                                          "\n          "
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "h2",
-                                    {
-                                      staticStyle: {
-                                        "padding-left": "13pt",
-                                        "text-indent": "0pt",
-                                        "text-align": "left",
-                                        "font-size": "13px",
-                                        "font-weight": "bold"
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n          t: " +
-                                          _vm._s(
-                                            _vm.companydata.contact_mobile
-                                          ) +
-                                          "\n          "
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "h2",
-                                    {
-                                      staticStyle: {
-                                        "padding-left": "13pt",
-                                        "text-indent": "0pt",
-                                        "text-align": "left",
-                                        "font-size": "13px"
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n          e: " +
-                                          _vm._s(
-                                            _vm.companydata.contact_email
-                                          ) +
-                                          " \n          "
+                                      _vm._v(" "),
+                                      _c(
+                                        "h2",
+                                        {
+                                          staticStyle: {
+                                            "padding-left": "13pt",
+                                            "text-indent": "0pt",
+                                            "text-align": "left",
+                                            "font-size": "13px"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                Vat No:\n                                                " +
+                                              _vm._s(
+                                                _vm.companydata.vat_number
+                                              ) +
+                                              "\n                                            "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "h2",
+                                        {
+                                          staticStyle: {
+                                            "padding-left": "13pt",
+                                            "text-indent": "0pt",
+                                            "text-align": "left",
+                                            "font-size": "13px"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                t:\n                                                " +
+                                              _vm._s(
+                                                _vm.companydata.contact_mobile
+                                              ) +
+                                              "\n                                            "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "h2",
+                                        {
+                                          staticStyle: {
+                                            "padding-left": "13pt",
+                                            "text-indent": "0pt",
+                                            "text-align": "left",
+                                            "font-size": "13px"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            e:\n                                                " +
+                                              _vm._s(
+                                                _vm.companydata.contact_email
+                                              ) +
+                                              "\n                                            "
+                                          )
+                                        ]
                                       )
                                     ]
                                   )
-                                ]
-                              )
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "container" }, [
-                          _c("div", { staticClass: "row" }, [
-                            _c("div", { staticClass: "col-7 cont2" }, [
-                              _c(
-                                "h2",
-                                {
-                                  staticStyle: {
-                                    "padding-left": "12pt",
-                                    "text-indent": "0pt",
-                                    "text-align": "left",
-                                    "font-size": "13px",
-                                    "font-weight": "500"
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                " +
-                                      _vm._s(_vm.formdata.firstname) +
-                                      " " +
-                                      _vm._s(_vm.formdata.lastname) +
-                                      "\n                "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "h2",
-                                {
-                                  staticStyle: {
-                                    "padding-left": "12pt",
-                                    "text-indent": "0pt",
-                                    "text-align": "left",
-                                    "font-size": "13px",
-                                    "font-weight": "500"
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                    " +
-                                      _vm._s(_vm.formdata.billing_address) +
-                                      "\n                "
-                                  )
-                                ]
-                              )
-                            ]),
+                                ])
+                              ]
+                            ),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-5" }, [
-                              _c(
-                                "p",
-                                {
-                                  staticClass: "s1",
-                                  staticStyle: {
-                                    "padding-left": "11pt",
-                                    "text-indent": "0pt",
-                                    "margin-right": "10px",
-                                    "text-align": "left"
-                                  }
-                                },
-                                [_vm._v("PURCHASE INVOICE")]
-                              ),
-                              _vm._v(" "),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticStyle: {
-                                    "font-size": "10px",
-                                    "text-align": "left"
-                                  }
-                                },
-                                [
+                            _c("div", { staticClass: "container" }, [
+                              _c("div", { staticClass: "row" }, [
+                                _c("div", { staticClass: "col-8 cont2" }, [
                                   _c(
                                     "h2",
                                     {
@@ -29076,13 +13126,17 @@ var render = function() {
                                         "padding-left": "12pt",
                                         "text-indent": "0pt",
                                         "text-align": "left",
-                                        "font-size": "12px",
-                                        "font-weight": "bold"
+                                        "font-size": "13px",
+                                        "font-weight": "500"
                                       }
                                     },
                                     [
                                       _vm._v(
-                                        "\n                  Invoice Date\n                  "
+                                        "\n                                                " +
+                                          _vm._s(_vm.formdata.firstname) +
+                                          "\n                                                " +
+                                          _vm._s(_vm.formdata.lastname) +
+                                          "\n                                        "
                                       )
                                     ]
                                   ),
@@ -29091,19 +13145,98 @@ var render = function() {
                                     "h2",
                                     {
                                       staticStyle: {
-                                        "padding-left": "13pt",
+                                        "padding-left": "12pt",
                                         "text-indent": "0pt",
                                         "text-align": "left",
-                                        "font-size": "12px"
+                                        "font-size": "13px",
+                                        "font-weight": "500"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                                " +
+                                          _vm._s(_vm.formdata.billing_address) +
+                                          "\n                                            "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "h2",
+                                    {
+                                      staticStyle: {
+                                        "padding-left": "12pt",
+                                        "text-indent": "0pt",
+                                        "text-align": "left",
+                                        "font-size": "13px",
+                                        "font-weight": "500"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                                VAT: " +
+                                          _vm._s(_vm.formdata.vat) +
+                                          "\n                                        "
+                                      )
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-4" }, [
+                                  _c(
+                                    "p",
+                                    {
+                                      staticClass: "s1",
+                                      staticStyle: {
+                                        "padding-left": "11pt",
+                                        "text-indent": "0pt",
+                                        "margin-right": "10px",
+                                        "text-align": "left"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                                SALES INVOICE\n                                            "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticStyle: {
+                                        "font-size": "10px",
+                                        "text-align": "left"
                                       }
                                     },
                                     [
                                       _c(
-                                        "span",
+                                        "h2",
+                                        {
+                                          staticStyle: {
+                                            "padding-left": "12pt",
+                                            "text-indent": "0pt",
+                                            "text-align": "left",
+                                            "font-size": "12px"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                    Invoice Date\n                                                "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "h2",
                                         {
                                           staticStyle: {
                                             "text-align": "left",
                                             "font-size": "12px",
+                                            "padding-left": "13pt",
+                                            "text-indent": "0pt",
                                             "font-weight": "500"
                                           }
                                         },
@@ -29116,231 +13249,329 @@ var render = function() {
                                             )
                                           )
                                         ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "h2",
-                                    {
-                                      staticStyle: {
-                                        "padding-left": "13pt",
-                                        "text-indent": "0pt",
-                                        "text-align": "left",
-                                        "font-size": "12px",
-                                        "font-weight": "bold"
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                  Invoice Number\n                  "
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "h2",
-                                    {
-                                      staticStyle: {
-                                        "padding-left": "13pt",
-                                        "text-indent": "0pt",
-                                        "text-align": "left",
-                                        "font-size": "12px"
-                                      }
-                                    },
-                                    [
+                                      ),
+                                      _vm._v(" "),
                                       _c(
-                                        "span",
+                                        "h2",
+                                        {
+                                          staticStyle: {
+                                            "padding-left": "13pt",
+                                            "text-indent": "0pt",
+                                            "text-align": "left",
+                                            "font-size": "12px"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                    Invoice Number\n                                                "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "h2",
                                         {
                                           staticStyle: {
                                             "text-align": "left",
                                             "font-size": "12px",
+                                            "padding-left": "13pt",
+                                            "text-indent": "0pt",
                                             "font-weight": "500"
                                           }
                                         },
                                         [_vm._v(_vm._s(_vm.formdata.invoiceno))]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "h2",
-                                    {
-                                      staticStyle: {
-                                        "padding-left": "13pt",
-                                        "text-indent": "0pt",
-                                        "text-align": "left",
-                                        "font-size": "12px",
-                                        "font-weight": "bold"
-                                      }
-                                    },
-                                    [_vm._v("Account\n                  ")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "h2",
-                                    {
-                                      staticStyle: {
-                                        "padding-left": "13pt",
-                                        "text-indent": "0pt",
-                                        "text-align": "left",
-                                        "font-size": "12px",
-                                        "font-weight": "500"
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                  Online OrderVAT Number140187339\n                  "
-                                      )
-                                    ]
-                                  ),
-                                  _c("br"),
-                                  _c("br")
-                                ]
-                              )
-                            ])
-                          ])
-                        ]),
-                        _c("br"),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "container",
-                            staticStyle: { "font-size": "10px" }
-                          },
-                          [
-                            _c(
-                              "table",
-                              {
-                                staticClass: "pdf_cont",
-                                staticStyle: { width: "100%" }
-                              },
-                              [
-                                _c("thead", [
-                                  _c("tr", [
-                                    _c(
-                                      "th",
-                                      {
-                                        staticStyle: {
-                                          width: "350px",
-                                          "font-size": "12px",
-                                          "padding-bottom": "8px"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "h2",
-                                          {
-                                            staticStyle: { "font-size": "14px" }
-                                          },
-                                          [_vm._v("Description")]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "th",
-                                      {
-                                        staticStyle: {
-                                          width: "120px",
-                                          "font-size": "12px",
-                                          "padding-bottom": "8px"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "h2",
-                                          {
-                                            staticStyle: { "font-size": "14px" }
-                                          },
-                                          [_vm._v("Unit Price")]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "th",
-                                      {
-                                        staticStyle: {
-                                          width: "120px",
-                                          "font-size": "12px",
-                                          "padding-bottom": "8px"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "h2",
-                                          {
-                                            staticStyle: { "font-size": "14px" }
-                                          },
-                                          [_vm._v("VAT(%)")]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "th",
-                                      {
-                                        staticStyle: {
-                                          "font-size": "12px",
-                                          "padding-bottom": "8px",
-                                          "text-align": "right"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "h2",
-                                          {
-                                            staticStyle: { "font-size": "14px" }
-                                          },
-                                          [_vm._v("Amount GBP")]
-                                        )
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "tbody",
-                                  [
-                                    _vm._l(_vm.formdata.purchaseitem, function(
-                                      purchaseitem
-                                    ) {
-                                      return _c(
-                                        "tr",
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "h2",
                                         {
-                                          key: purchaseitem.id,
                                           staticStyle: {
-                                            "border-bottom":
-                                              "1px solid #ccc !important"
+                                            "padding-left": "13pt",
+                                            "text-indent": "0pt",
+                                            "text-align": "left",
+                                            "font-size": "12px"
                                           }
                                         },
                                         [
+                                          _vm._v(
+                                            "\n                                                    Account\n                                                "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "h2",
+                                        {
+                                          staticStyle: {
+                                            "text-align": "left",
+                                            "font-size": "12px",
+                                            "padding-left": "13pt",
+                                            "text-indent": "0pt",
+                                            "font-weight": "500"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                    " +
+                                              _vm._s(
+                                                _vm.formdata.company_code
+                                              ) +
+                                              "\n                                                "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("br"),
+                                      _c("br")
+                                    ]
+                                  )
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "container",
+                                staticStyle: { "font-size": "10px" }
+                              },
+                              [
+                                _c(
+                                  "table",
+                                  { staticStyle: { width: "100%" } },
+                                  [
+                                    _c("thead", [
+                                      _c("tr", [
+                                        _c(
+                                          "th",
+                                          {
+                                            staticStyle: {
+                                              width: "350px",
+                                              "font-size": "12px",
+                                              "padding-bottom": "8px"
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "h2",
+                                              {
+                                                staticStyle: {
+                                                  "font-size": "14px"
+                                                }
+                                              },
+                                              [_vm._v("Description")]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "th",
+                                          {
+                                            staticStyle: {
+                                              width: "120px",
+                                              "font-size": "12px",
+                                              "padding-bottom": "8px"
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "h2",
+                                              {
+                                                staticStyle: {
+                                                  "font-size": "14px"
+                                                }
+                                              },
+                                              [_vm._v("Unit Price")]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "th",
+                                          {
+                                            staticStyle: {
+                                              width: "120px",
+                                              "font-size": "12px",
+                                              "padding-bottom": "8px"
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "h2",
+                                              {
+                                                staticStyle: {
+                                                  "font-size": "14px"
+                                                }
+                                              },
+                                              [_vm._v("VAT(%)")]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "th",
+                                          {
+                                            staticStyle: {
+                                              "font-size": "12px",
+                                              "padding-bottom": "8px",
+                                              "text-align": "right"
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "h2",
+                                              {
+                                                staticStyle: {
+                                                  "font-size": "14px"
+                                                }
+                                              },
+                                              [_vm._v("Amount GBP")]
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "tbody",
+                                      [
+                                        _vm._l(
+                                          _vm.formdata.deliverynotesitem,
+                                          function(saleitem) {
+                                            return _c(
+                                              "tr",
+                                              {
+                                                key: saleitem.id,
+                                                staticStyle: {
+                                                  "border-bottom":
+                                                    "1px solid #ccc !important"
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticStyle: {
+                                                      "padding-bottom": "4px",
+                                                      "padding-top": "3px",
+                                                      "font-size": "12px"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                    " +
+                                                        _vm._s(
+                                                          saleitem.quantity
+                                                        ) +
+                                                        "\n                                                    x\n                                                    " +
+                                                        _vm._s(
+                                                          saleitem.typename
+                                                        ) +
+                                                        "\n                                                    " +
+                                                        _vm._s(
+                                                          saleitem.productname
+                                                        ) +
+                                                        "\n                                                    (" +
+                                                        _vm._s(
+                                                          saleitem.weight
+                                                        ) +
+                                                        "g)\n                                                "
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticStyle: {
+                                                      "padding-bottom": "4px",
+                                                      "padding-top": "3px",
+                                                      "font-size": "12px"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                    " +
+                                                        _vm._s(
+                                                          saleitem.unitprice
+                                                        ) +
+                                                        "\n                                                "
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticStyle: {
+                                                      "padding-bottom": "4px",
+                                                      "padding-top": "3px",
+                                                      "font-size": "12px"
+                                                    }
+                                                  },
+                                                  [_vm._v(_vm._s(saleitem.vat))]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticStyle: {
+                                                      "padding-bottom": "4px",
+                                                      "padding-top": "3px",
+                                                      "font-size": "12px",
+                                                      "text-align": "right"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                    " +
+                                                        _vm._s(
+                                                          saleitem.invoice_amount
+                                                        ) +
+                                                        "\n                                                "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          }
+                                        ),
+                                        _vm._v(" "),
+                                        _c("br"),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _c("tr", [
+                                          _c("td", {
+                                            staticStyle: { border: "none" }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("td", {
+                                            staticStyle: {
+                                              "border-bottom": "1px solid black"
+                                            }
+                                          }),
+                                          _vm._v(" "),
                                           _c(
                                             "td",
                                             {
                                               staticStyle: {
-                                                "padding-bottom": "4px",
-                                                "padding-top": "3px",
-                                                "font-size": "12px"
+                                                "font-size": "12px",
+                                                "border-bottom":
+                                                  "1px solid black"
                                               }
                                             },
                                             [
-                                              _vm._v(
-                                                _vm._s(purchaseitem.quantity) +
-                                                  " x " +
-                                                  _vm._s(
-                                                    purchaseitem.typename
-                                                  ) +
-                                                  " " +
-                                                  _vm._s(
-                                                    purchaseitem.productname
-                                                  ) +
-                                                  " (" +
-                                                  _vm._s(purchaseitem.weight) +
-                                                  "g) "
+                                              _c(
+                                                "h2",
+                                                {
+                                                  staticStyle: {
+                                                    "font-size": "12px",
+                                                    "font-weight": "500"
+                                                  }
+                                                },
+                                                [_vm._v("Total No VAT")]
                                               )
                                             ]
                                           ),
@@ -29349,14 +13580,54 @@ var render = function() {
                                             "td",
                                             {
                                               staticStyle: {
-                                                "padding-bottom": "4px",
-                                                "padding-top": "3px",
-                                                "font-size": "12px"
+                                                "font-size": "12px",
+                                                "text-align": "right",
+                                                "border-bottom":
+                                                  "1px solid black"
                                               }
                                             },
                                             [
                                               _vm._v(
-                                                _vm._s(purchaseitem.unitprice)
+                                                "\n                                                    " +
+                                                  _vm._s(
+                                                    _vm.formdata.vattotal
+                                                  ) +
+                                                  "\n                                                "
+                                              )
+                                            ]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("br"),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _c("tr", [
+                                          _c("td", {
+                                            staticStyle: { border: "none" }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("td", {
+                                            staticStyle: { border: "none" }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticStyle: {
+                                                border: "none",
+                                                "font-weight": "bold",
+                                                "font-size": "12px"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "h2",
+                                                {
+                                                  staticStyle: {
+                                                    "font-size": "13px"
+                                                  }
+                                                },
+                                                [_vm._v("Amount Due GBP")]
                                               )
                                             ]
                                           ),
@@ -29365,444 +13636,383 @@ var render = function() {
                                             "td",
                                             {
                                               staticStyle: {
-                                                "padding-bottom": "4px",
-                                                "padding-top": "3px",
-                                                "font-size": "12px"
-                                              }
-                                            },
-                                            [_vm._v(_vm._s(purchaseitem.vat))]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "td",
-                                            {
-                                              staticStyle: {
-                                                "padding-bottom": "4px",
-                                                "padding-top": "3px",
+                                                border: "none",
+                                                "font-weight": "bold",
                                                 "font-size": "12px",
                                                 "text-align": "right"
                                               }
                                             },
                                             [
                                               _vm._v(
-                                                _vm._s(
-                                                  purchaseitem.invoice_amount
-                                                )
+                                                "\n                                                    " +
+                                                  _vm._s(
+                                                    _vm.formdata.totalamount
+                                                  ) +
+                                                  "\n                                                "
                                               )
                                             ]
                                           )
-                                        ]
-                                      )
-                                    }),
-                                    _c("br"),
-                                    _c("br"),
-                                    _vm._v(" "),
-                                    _c("tr", [
-                                      _c("td", {
-                                        staticStyle: { border: "none" }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("td", {
-                                        staticStyle: {
-                                          "border-bottom": "1px solid black"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticStyle: {
-                                            "font-size": "12px",
-                                            "border-bottom": "1px solid black"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "h2",
-                                            {
-                                              staticStyle: {
-                                                "font-size": "12px",
-                                                "font-weight": "500"
-                                              }
-                                            },
-                                            [_vm._v("Total No VAT")]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticStyle: {
-                                            "font-size": "12px",
-                                            "text-align": "right",
-                                            "border-bottom": "1px solid black"
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                      " +
-                                              _vm._s(_vm.formdata.vattotal) +
-                                              "\n                  "
-                                          )
-                                        ]
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("br"),
-                                    _c("br"),
-                                    _vm._v(" "),
-                                    _c("tr", [
-                                      _c("td", {
-                                        staticStyle: { border: "none" }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("td", {
-                                        staticStyle: { border: "none" }
-                                      }),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticStyle: {
-                                            border: "none",
-                                            "font-weight": "bold",
-                                            "font-size": "12px"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "h2",
-                                            {
-                                              staticStyle: {
-                                                "font-size": "13px"
-                                              }
-                                            },
-                                            [_vm._v("Amount Due GBP")]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticStyle: {
-                                            border: "none",
-                                            "font-weight": "bold",
-                                            "font-size": "12px",
-                                            "text-align": "right"
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                      " +
-                                              _vm._s(_vm.formdata.totalamount) +
-                                              "\n                  "
-                                          )
-                                        ]
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("br")
-                                  ],
-                                  2
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("br")
+                                      ],
+                                      2
+                                    )
+                                  ]
                                 )
                               ]
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "container s3" }, [
-                          _c(
-                            "p",
-                            {
-                              staticStyle: {
-                                "text-indent": "0pt",
-                                "text-align": "justify",
-                                "font-size": "12px"
-                              }
-                            },
-                            [_vm._v("Payment Terms:")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            {
-                              staticStyle: {
-                                "text-indent": "0pt",
-                                "text-align": "justify",
-                                "font-size": "12px"
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n            I confirm that i am atleast 18 years of age"
-                              ),
-                              _c("br"),
-                              _vm._v(
-                                "\n            The goods i am selling are owned by me and i have the right to sell them"
-                              ),
-                              _c("br"),
-                              _vm._v(
-                                "\n            The goods i am selling are not subject to any court proceedings and are police safe."
-                              ),
-                              _c("br"),
-                              _vm._v(
-                                "\n            The goods i am selling if indicated as 'scrap' cannot later be returned or refunded"
-                              ),
-                              _c("br"),
-                              _vm._v(
-                                "\n            I am happy with and accept the offer being provided to me by Gold Warehouse Limited.\n          "
-                              )
-                            ]
-                          ),
-                          _c("br"),
-                          _c("br"),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            {
-                              staticStyle: {
-                                "text-indent": "0pt",
-                                "text-align": "left",
-                                "font-size": "12px"
-                              }
-                            },
-                            [
-                              _c("img", {
-                                staticStyle: { height: "100px" },
-                                attrs: {
-                                  src: _vm.signaturedata.signature_filename
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c("span", { staticClass: "ml-3" }, [
-                                _vm._v("Signed By: "),
-                                _c(
-                                  "span",
-                                  { staticStyle: { "font-weight": "600" } },
-                                  [_vm._v(_vm._s(_vm.signaturedata.signed_by))]
-                                )
-                              ])
-                            ]
-                          ),
-                          _c("br")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "container s3",
-                            staticStyle: { "font-size": "11px" }
-                          },
-                          [
-                            _c("div", { staticClass: "flex-parent" }, [
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "container s3" }, [
                               _c(
-                                "div",
+                                "p",
                                 {
-                                  staticClass: "box",
-                                  staticStyle: { width: "100%" }
+                                  staticStyle: {
+                                    "text-indent": "0pt",
+                                    "text-align": "justify",
+                                    "font-size": "12px"
+                                  }
                                 },
                                 [
-                                  _c("p", { staticClass: "box_size" }, [
-                                    _c(
-                                      "span",
-                                      {
-                                        staticStyle: { "font-weight": "bold" }
-                                      },
-                                      [_vm._v("Company Account")]
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("p", { staticClass: "box_size" }, [
-                                    _vm._v(
-                                      "\n                    " +
-                                        _vm._s(_vm.companydata.account_name)
-                                    ),
-                                    _c("br"),
-                                    _vm._v("\n                    Sort code: "),
-                                    _c(
-                                      "span",
-                                      {
-                                        staticStyle: { "font-weight": "bold" }
-                                      },
-                                      [
-                                        _vm._v(
-                                          _vm._s(_vm.companydata.sort_code)
-                                        )
-                                      ]
-                                    ),
-                                    _c("br"),
-                                    _vm._v(
-                                      "\n                    Account No: "
-                                    ),
-                                    _c(
-                                      "span",
-                                      {
-                                        staticStyle: { "font-weight": "bold" }
-                                      },
-                                      [
-                                        _vm._v(
-                                          _vm._s(_vm.companydata.account_number)
-                                        )
-                                      ]
-                                    )
-                                  ])
+                                  _vm._v(
+                                    "\n                                        Payment Terms:\n                                    "
+                                  )
                                 ]
                               ),
                               _vm._v(" "),
                               _c(
-                                "div",
+                                "p",
                                 {
-                                  staticClass: "box",
-                                  staticStyle: { width: "100%" }
+                                  staticStyle: {
+                                    "text-indent": "0pt",
+                                    "text-align": "justify",
+                                    "font-size": "13px",
+                                    "line-height": "1.1"
+                                  }
                                 },
                                 [
-                                  _c("p", { staticClass: "box_size" }, [
+                                  _vm._v(
+                                    "\n                                        Goods supplied by us remain the\n                                        property of Gold Warehouse Limited\n                                        until paid for in full. Interest\n                                        will be charged at 4% per month.\n                                        The person signing for the goods is\n                                        personally responsible for the\n                                        payment of this invoice and for any\n                                        loss or damage however caused.\n                                    "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("br"),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                {
+                                  staticStyle: {
+                                    "text-indent": "0pt",
+                                    "text-align": "left",
+                                    "font-size": "12px"
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    staticStyle: { height: "100px" },
+                                    attrs: {
+                                      src: _vm.signaturedata.signature_filename
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c("span", [
+                                    _vm._v("Signed By: "),
                                     _c(
                                       "span",
-                                      {
-                                        staticStyle: { "font-weight": "bold" }
-                                      },
-                                      [_vm._v("Customer Account")]
+                                      { staticStyle: { "font-weight": "600" } },
+                                      [
+                                        _vm._v(
+                                          _vm._s(_vm.signaturedata.signed_by)
+                                        )
+                                      ]
                                     )
                                   ]),
                                   _vm._v(" "),
-                                  _c("p", { staticClass: "box_size" }, [
-                                    _c(
-                                      "span",
-                                      {
-                                        staticStyle: { "font-weight": "bold" }
-                                      },
-                                      [_vm._v("Account Name: ")]
-                                    ),
-                                    _vm._v(_vm._s(_vm.formdata.account_name)),
-                                    _c("br"),
-                                    _vm._v(" "),
-                                    _c(
-                                      "span",
-                                      {
-                                        staticStyle: { "font-weight": "bold" }
-                                      },
-                                      [_vm._v("Account Number: ")]
-                                    ),
-                                    _vm._v(_vm._s(_vm.formdata.account_number)),
-                                    _c("br"),
-                                    _vm._v(" "),
-                                    _c(
-                                      "span",
-                                      {
-                                        staticStyle: { "font-weight": "bold" }
-                                      },
-                                      [_vm._v("Sort Code: ")]
-                                    ),
-                                    _vm._v(
-                                      _vm._s(_vm.formdata.sort_code) +
-                                        "\n                "
-                                    )
-                                  ])
+                                  _c("br")
                                 ]
                               )
                             ]),
                             _vm._v(" "),
-                            _vm.output_tax
-                              ? _c(
+                            _c("br"),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "container s3",
+                                staticStyle: {
+                                  "font-size": "13px",
+                                  width: "100%"
+                                }
+                              },
+                              [
+                                _c(
                                   "p",
                                   {
                                     staticStyle: {
-                                      "padding-left": "6pt",
                                       "text-indent": "0pt",
-                                      "text-align": "left"
+                                      "text-align": "left",
+                                      "line-height": "1.1"
                                     }
                                   },
                                   [
-                                    _vm._v("\n          The Output Tax Of £ "),
-                                    _c(
-                                      "span",
-                                      { staticStyle: { "font-weight": "600" } },
-                                      [_vm._v(_vm._s(_vm.output_tax))]
-                                    ),
                                     _vm._v(
-                                      " On\n          Supply Of This Gold Is To Be Accounted For By The Buyer To HMRC.\n          "
+                                      "\n                                        Gold Bank is a trading name for Gold\n                                        Warehouse Ltd"
+                                    ),
+                                    _c("br"),
+                                    _vm._v(
+                                      "\n                                        Please make BACS/CHAPS/FASTER\n                                        payments to:"
+                                    ),
+                                    _c("br")
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("br"),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "flex-parent" }, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "box",
+                                      staticStyle: { width: "100%" }
+                                    },
+                                    [
+                                      _c("p", { staticClass: "box_size" }, [
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "bold"
+                                            }
+                                          },
+                                          [_vm._v("GBP Account")]
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("p", { staticClass: "box_size" }, [
+                                        _vm._v(
+                                          "\n                                                " +
+                                            _vm._s(_vm.companydata.account_name)
+                                        ),
+                                        _c("br"),
+                                        _vm._v(
+                                          "\n                                                Sort code: "
+                                        ),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "bold"
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              _vm._s(_vm.companydata.sort_code)
+                                            )
+                                          ]
+                                        ),
+                                        _c("br"),
+                                        _vm._v(
+                                          "\n                                                Account No: "
+                                        ),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "bold"
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              _vm._s(
+                                                _vm.companydata.account_number
+                                              )
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "box",
+                                      staticStyle: { width: "100%" }
+                                    },
+                                    [
+                                      _c("p", { staticClass: "box_size" }, [
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "bold"
+                                            }
+                                          },
+                                          [_vm._v("USD Account")]
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("p", { staticClass: "box_size" }, [
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "bold"
+                                            }
+                                          },
+                                          [_vm._v("Account number: ")]
+                                        ),
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.companydata.usd_account_number
+                                          )
+                                        ),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "bold"
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "Bank code\n                                                    (SWIFT/BIC): "
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(
+                                          _vm._s(_vm.companydata.bank_code)
+                                        ),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "bold"
+                                            }
+                                          },
+                                          [_vm._v("ABA Routing No: ")]
+                                        ),
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.companydata.routing_number
+                                          ) +
+                                            "\n                                            "
+                                        )
+                                      ])
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("br"),
+                                _c("br"),
+                                _vm._v(" "),
+                                _vm.output_tax
+                                  ? _c(
+                                      "p",
+                                      {
+                                        staticStyle: {
+                                          "padding-left": "6pt",
+                                          "text-indent": "0pt",
+                                          "text-align": "left"
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                        The Output Tax Of £\n                                        "
+                                        ),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "font-weight": "600"
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(_vm.output_tax))]
+                                        ),
+                                        _vm._v(
+                                          "\n                                        On Supply Of This Gold Is To Be\n                                        Accounted For By The Buyer To HMRC.\n                                    "
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c("br"),
+                                _c("br"),
+                                _c("br")
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", [
+                            _c(
+                              "p",
+                              {
+                                staticClass: "s4",
+                                staticStyle: {
+                                  "padding-left": "49pt",
+                                  "text-indent": "0pt",
+                                  "text-align": "center",
+                                  "font-size": "10px"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Goldbank T/AS Gold Warehouse Limited,\n                                    215 The Broadway, Southall, Middlesex,\n                                    UB1 1NB. Registered in England Number\n                                    08101794."
+                                ),
+                                _c("br"),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "s5",
+                                    staticStyle: { "font-size": "10px" },
+                                    attrs: {
+                                      href: "mailto:accounts@gold-bank.co.uk",
+                                      target: "_blank"
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        VAT Registration Number 140187339\n                                        Telephone:0203 500 1111 Email:\n                                        accounts@gold-bank.co.uk"
                                     )
                                   ]
                                 )
-                              : _vm._e(),
-                            _c("br"),
-                            _c("br"),
-                            _c("br"),
-                            _c("br")
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", [
-                        _c(
-                          "p",
-                          {
-                            staticClass: "s4",
-                            staticStyle: {
-                              "padding-left": "49pt",
-                              "text-indent": "0pt",
-                              "text-align": "center",
-                              "font-size": "10px"
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n          Company Registration No: 08101794. Registered Office: 215 the broadway, southall, Southall, middlesex, ub1 1nb, United Kingdom"
+                              ]
                             )
-                          ]
-                        )
-                      ])
+                          ])
+                        ]
+                      )
                     ]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              !_vm.sign_flag
-                ? _c(
+                  ),
+                  _vm._v(" "),
+                  _c(
                     "span",
                     {
                       staticClass: "material-symbols-outlined",
                       staticStyle: {
-                        color: "#00AA5B",
+                        color: "#48c6f6",
                         "background-color": "#EDF2F6",
-                        margin: "3% 0% 3% 0%",
+                        margin: "3%",
                         "border-radius": "50%",
-                        padding: "11%",
-                        "font-size": "23px",
+                        padding: "10%",
+                        "font-size": "25px",
+                        "margin-left": "30%",
                         cursor: "pointer"
                       },
-                      attrs: {
-                        title: "Add Signature",
-                        "data-toggle": "modal",
-                        "data-target": "#dosign"
-                      }
+                      on: { click: _vm.generateReport }
                     },
-                    [_vm._v("draw")]
+                    [_vm._v("download")]
                   )
-                : _vm._e(),
-              _vm._v(" "),
-              _c(
-                "span",
-                {
-                  staticClass: "material-symbols-outlined",
-                  staticStyle: {
-                    color: "#48c6f6",
-                    "background-color": "#EDF2F6",
-                    margin: "3%",
-                    "border-radius": "50%",
-                    padding: "10%",
-                    "font-size": "25px",
-                    "margin-left": "30%",
-                    cursor: "pointer"
-                  },
-                  on: { click: _vm.generateReport }
-                },
-                [_vm._v("download")]
+                ],
+                1
               ),
               _vm._v(" "),
               _c("i", {
@@ -29827,9 +14037,8 @@ var render = function() {
                     "background-color": "#EDF2F6",
                     "border-radius": "50%",
                     padding: "15%",
-                    "margin-left": "16%",
+                    "margin-left": "30%",
                     "font-size": "19px",
-                    "margin-right": "20%",
                     cursor: "pointer"
                   },
                   on: { click: _vm.sendemail }
@@ -29847,7 +14056,7 @@ var render = function() {
                     "background-color": "#EDF2F6",
                     "border-radius": "50%",
                     padding: "15%",
-                    "margin-left": "0%",
+                    "margin-left": "30%",
                     cursor: "pointer"
                   },
                   on: {
@@ -29870,18 +14079,6 @@ var render = function() {
               staticStyle: { "margin-left": "-20%" }
             },
             [
-              _c("i", {
-                staticClass: "fas fa-link",
-                staticStyle: {
-                  color: "#48c6f6",
-                  "background-color": "#EDF2F6",
-                  "border-radius": "50%",
-                  padding: "22%",
-                  "margin-right": "35%",
-                  "font-size": "15px"
-                }
-              }),
-              _vm._v(" "),
               _c(
                 "span",
                 {
@@ -29896,7 +14093,7 @@ var render = function() {
                   },
                   attrs: {
                     "data-toggle": "modal",
-                    "data-target": "#deletePurchaseConfirmation"
+                    "data-target": "#deleteInvoiceConfirmation"
                   }
                 },
                 [_vm._v("delete")]
@@ -29914,7 +14111,7 @@ var render = function() {
                   },
                   on: {
                     click: function($event) {
-                      return _vm.edit_invoice()
+                      return _vm.edit_deliverynote()
                     }
                   }
                 },
@@ -29926,7 +14123,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", {}, [
-        _c("div", { staticClass: "col-md-12 viewpurchase-div" }, [
+        _c("div", { staticClass: "col-md-12 viewsales-div" }, [
           _c(
             "div",
             { staticClass: "row", staticStyle: { "padding-bottom": "40px" } },
@@ -29934,20 +14131,24 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "col-md-3",
+                  staticClass: "col-md-4",
                   staticStyle: { "border-right": "0.5px solid #4682B4" }
                 },
                 [
                   _c(
                     "p",
                     { staticStyle: { color: "#4682B4", "font-size": "15px" } },
-                    [_vm._v("Supplier")]
+                    [
+                      _vm._v(
+                        "\n                            Customer\n                        "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c("span", [
                     _vm._v(
                       _vm._s(_vm.formdata.firstname) +
-                        " " +
+                        "\n                            " +
                         _vm._s(_vm.formdata.lastname) +
                         ", "
                     ),
@@ -29960,118 +14161,39 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "col-md-2",
+                  staticClass: "col-md-4",
                   staticStyle: { "border-right": "1px solid #4682B4" }
                 },
                 [
                   _c(
                     "p",
                     { staticStyle: { color: "#4682B4", "font-size": "15px" } },
-                    [_vm._v("Issue Date")]
+                    [
+                      _vm._v(
+                        "\n                            VAT No.\n                        "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
-                  _c("span", [
-                    _vm._v(
-                      _vm._s(_vm.dateFormateChanger(_vm.formdata.issue_date))
-                    )
-                  ])
+                  _c("span", [_vm._v(_vm._s(_vm.formdata.vat))])
                 ]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "col-md-2",
-                  staticStyle: { "border-right": "1px solid #4682B4" }
-                },
-                [
-                  _c(
-                    "p",
-                    { staticStyle: { color: "#4682B4", "font-size": "15px" } },
-                    [_vm._v("Due Date")]
-                  ),
-                  _vm._v(" "),
-                  _c("span", [
-                    _vm._v(
-                      _vm._s(_vm.dateFormateChanger(_vm.formdata.due_date))
-                    )
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "col-md-2",
-                  staticStyle: { "border-right": "1px solid #4682B4" }
-                },
-                [
-                  _c(
-                    "p",
-                    { staticStyle: { color: "#4682B4", "font-size": "15px" } },
-                    [_vm._v("Amount Due")]
-                  ),
-                  _vm._v(" "),
-                  _c("span", [
-                    _c("i", {
-                      staticClass: "fa fa-pound-sign",
-                      staticStyle: {
-                        "font-size": "10px",
-                        "margin-right": "3px"
-                      }
-                    }),
-                    _vm._v(_vm._s(_vm.due_payment))
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-3" }, [
+              _c("div", { staticClass: "col-md-4" }, [
                 _c(
                   "p",
                   { staticStyle: { color: "#4682B4", "font-size": "15px" } },
-                  [_vm._v("Status")]
+                  [
+                    _vm._v(
+                      "\n                            Issue Date\n                        "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c("span", [
-                  _vm.invoice_status != "Paid"
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn table-btn",
-                          staticStyle: {
-                            "margin-left": "auto",
-                            width: "100px"
-                          },
-                          attrs: { type: "button" }
-                        },
-                        [_vm._v(_vm._s(_vm.invoice_status))]
-                      )
-                    : _vm._e(),
-                  _c("br"),
-                  _vm._v(" "),
-                  _vm.over_paid < 0
-                    ? _c("span", [
-                        _vm._v(
-                          " Over Amount: " + _vm._s(Math.abs(_vm.over_paid))
-                        )
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.invoice_status == "Paid"
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn table-btn",
-                          staticStyle: {
-                            "margin-left": "auto",
-                            width: "100px",
-                            "background-color": "#00AA5B !important"
-                          },
-                          attrs: { type: "button" }
-                        },
-                        [_vm._v(_vm._s(_vm.invoice_status) + " ")]
-                      )
-                    : _vm._e()
+                  _vm._v(
+                    _vm._s(_vm.dateFormateChanger(_vm.formdata.issue_date))
+                  )
                 ])
               ])
             ]
@@ -30082,10 +14204,7 @@ var render = function() {
       _c("div", { staticClass: "mt-3" }, [
         _c(
           "div",
-          {
-            staticClass: "viewpurchase-div pb-3",
-            staticStyle: { padding: "0" }
-          },
+          { staticClass: "viewsales-div pb-3", staticStyle: { padding: "0" } },
           [
             _c("div", {}, [
               _c(
@@ -30111,26 +14230,24 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "tbody",
-                        _vm._l(_vm.formdata.purchaseitem, function(
-                          purchaseitem
+                        _vm._l(_vm.formdata.deliverynotesitem, function(
+                          saleitem
                         ) {
-                          return _c("tr", { key: purchaseitem.id }, [
-                            _c("td", [_vm._v(_vm._s(purchaseitem.typename))]),
+                          return _c("tr", { key: saleitem.id }, [
+                            _c("td", [_vm._v(_vm._s(saleitem.typename))]),
                             _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(purchaseitem.productname))
-                            ]),
+                            _c("td", [_vm._v(_vm._s(saleitem.productname))]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(purchaseitem.weight))]),
+                            _c("td", [_vm._v(_vm._s(saleitem.weight))]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(purchaseitem.quantity))]),
+                            _c("td", [_vm._v(_vm._s(saleitem.quantity))]),
                             _vm._v(" "),
                             _c("td", [
                               _c(
                                 "span",
                                 {
                                   class:
-                                    purchaseitem.price_status == "mismatch"
+                                    saleitem.price_status == "mismatch"
                                       ? "red-color"
                                       : "grey-color"
                                 },
@@ -30139,19 +14256,22 @@ var render = function() {
                                     staticClass: "fa fa-pound-sign",
                                     staticStyle: { "font-size": "10px" }
                                   }),
-                                  _vm._v(_vm._s(purchaseitem.unitprice))
+                                  _vm._v(_vm._s(saleitem.unitprice))
                                 ]
                               )
                             ]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(purchaseitem.vat))]),
+                            _c("td", [_vm._v(_vm._s(saleitem.vat))]),
                             _vm._v(" "),
                             _c("td", [
                               _c("i", {
                                 staticClass: "fa fa-pound-sign",
                                 staticStyle: { "font-size": "10px" }
                               }),
-                              _vm._v(_vm._s(purchaseitem.invoice_amount))
+                              _vm._v(
+                                _vm._s(saleitem.invoice_amount) +
+                                  "\n                                    "
+                              )
                             ])
                           ])
                         }),
@@ -30174,7 +14294,7 @@ var render = function() {
                       _c("br"),
                       _vm._v(" "),
                       _c("span", { staticClass: "ml-3" }, [
-                        _vm._v("Signed By: "),
+                        _vm._v("Signed By:\n                                "),
                         _c("span", { staticStyle: { "font-weight": "600" } }, [
                           _vm._v(_vm._s(_vm.signaturedata.signed_by))
                         ])
@@ -30197,7 +14317,10 @@ var render = function() {
                         "margin-right": "3px"
                       }
                     }),
-                    _vm._v(_vm._s(_vm.formdata.subtotal))
+                    _vm._v(
+                      _vm._s(_vm.formdata.subtotal) +
+                        "\n                            "
+                    )
                   ]),
                   _vm._v(" "),
                   _c("li", { staticStyle: { "font-size": "13px" } }, [
@@ -30208,7 +14331,10 @@ var render = function() {
                         "margin-right": "3px"
                       }
                     }),
-                    _vm._v(_vm._s(_vm.formdata.vattotal))
+                    _vm._v(
+                      _vm._s(_vm.formdata.vattotal) +
+                        "\n                            "
+                    )
                   ]),
                   _vm._v(" "),
                   _c("li", { staticStyle: { "font-size": "13px" } }, [
@@ -30225,611 +14351,18 @@ var render = function() {
               ])
             ])
           ]
-        ),
-        _vm._v(" "),
-        _c("div", [
-          _c("div", { staticClass: "mt-4 btn-container" }, [
-            _c("div", [
-              _c(
-                "button",
-                {
-                  staticClass: "cont",
-                  class: { selectedclr: _vm.selectedtab == "payment" },
-                  staticStyle: { "background-color": "#EDF2F6" },
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      return _vm.tabclick("payment")
-                    }
-                  }
-                },
-                [_vm._v("Payment(" + _vm._s(_vm.paymentcount) + ")")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "cont",
-                  class: { selectedclr: _vm.selectedtab == "note" },
-                  staticStyle: { "background-color": "#EDF2F6" },
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      return _vm.tabclick("note")
-                    }
-                  }
-                },
-                [_vm._v("Notes")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "cont",
-                  class: { selectedclr: _vm.selectedtab == "history" },
-                  staticStyle: { "background-color": "#EDF2F6" },
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      return _vm.tabclick("history")
-                    }
-                  }
-                },
-                [_vm._v("History")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", [
-              _c(
-                "button",
-                {
-                  staticClass: "btn admin-btn mobile-mb btn-nwidth",
-                  staticStyle: { "background-color": "#7ADAAA !important" },
-                  attrs: { type: "button" },
-                  on: { click: _vm.addLine }
-                },
-                [
-                  _c("i", {
-                    staticClass: "fas fa-plus",
-                    staticStyle: { "margin-right": "5px" }
-                  }),
-                  _vm._v("Add Payment")
-                ]
-              )
-            ])
-          ])
-        ])
+        )
       ]),
       _vm._v(" "),
-      _vm.selectedtab == "payment"
-        ? _c(
-            "div",
-            {
-              staticClass: "table-div mb-2",
-              staticStyle: {
-                "background-color": "white",
-                "box-shadow": "0px 5px 5px 0px rgb(0 0 0 / 10%)"
-              }
-            },
-            [
-              !_vm.addpayment
-                ? _c(
-                    "table",
-                    {
-                      staticClass: "table purchasedata",
-                      staticStyle: { "margin-bottom": "0" },
-                      attrs: {
-                        id: "showpayment-datatable",
-                        width: "100%",
-                        cellspacing: "0"
-                      }
-                    },
-                    [
-                      _c(
-                        "tbody",
-                        _vm._l(_vm.formdata.purchasepayments, function(
-                          purchasepayment
-                        ) {
-                          return _c("tr", { key: purchasepayment.id }, [
-                            _c("td", [
-                              _vm._v(
-                                _vm._s(
-                                  _vm.dateFormateChanger(
-                                    purchasepayment.payment_date
-                                  )
-                                )
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(purchasepayment.bank))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(purchasepayment.method))]),
-                            _vm._v(" "),
-                            _c("td"),
-                            _vm._v(" "),
-                            _c("td", { staticStyle: { color: "#3376c2" } }, [
-                              _c("i", {
-                                staticClass: "fa fa-pound-sign",
-                                staticStyle: {
-                                  "font-size": "10px",
-                                  "margin-right": "3px"
-                                }
-                              }),
-                              _vm._v(
-                                " " + _vm._s(purchasepayment.totalamount) + " "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td"),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "span",
-                                {
-                                  staticClass: "material-symbols-outlined",
-                                  staticStyle: {
-                                    "margin-right": "10px",
-                                    color: "#3376C2"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.editpayment(purchasepayment)
-                                    }
-                                  }
-                                },
-                                [_vm._v("edit")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "span",
-                                {
-                                  staticClass: "material-symbols-outlined",
-                                  staticStyle: {
-                                    "margin-right": "5px",
-                                    color: "red",
-                                    cursor: "pointer"
-                                  },
-                                  attrs: {
-                                    "data-toggle": "modal",
-                                    "data-target": "#deleteConfirmation"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.selectrecord(
-                                        purchasepayment.id
-                                      )
-                                    }
-                                  }
-                                },
-                                [_vm._v("delete")]
-                              )
-                            ])
-                          ])
-                        }),
-                        0
-                      )
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.addpayment
-                ? _c(
-                    "table",
-                    {
-                      staticClass: "table",
-                      staticStyle: { "margin-bottom": "0" },
-                      attrs: {
-                        id: "createpayment-datatable",
-                        width: "100%",
-                        cellspacing: "0"
-                      }
-                    },
-                    [
-                      _c(
-                        "tbody",
-                        _vm._l(_vm.invoice_items, function(invoice_item, k) {
-                          return _c("tr", { key: k }, [
-                            _c(
-                              "td",
-                              [
-                                _c("Datepicker", {
-                                  staticClass: "datapicker",
-                                  attrs: { id: "mydatepicker" },
-                                  model: {
-                                    value: invoice_item.payment_date,
-                                    callback: function($$v) {
-                                      _vm.$set(
-                                        invoice_item,
-                                        "payment_date",
-                                        $$v
-                                      )
-                                    },
-                                    expression: "invoice_item.payment_date"
-                                  }
-                                })
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c("td", { staticStyle: { width: "130px" } }, [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: invoice_item.totalamount,
-                                    expression: "invoice_item.totalamount"
-                                  }
-                                ],
-                                staticClass: "form-control form-control-user",
-                                attrs: {
-                                  type: "number",
-                                  placeholder: "Amount"
-                                },
-                                domProps: { value: invoice_item.totalamount },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      invoice_item,
-                                      "totalamount",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: invoice_item.bank,
-                                      expression: "invoice_item.bank"
-                                    }
-                                  ],
-                                  staticClass: "form-control form-control-user",
-                                  on: {
-                                    change: [
-                                      function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.$set(
-                                          invoice_item,
-                                          "bank",
-                                          $event.target.multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        )
-                                      },
-                                      function($event) {
-                                        return _vm.dropdownCash(k)
-                                      }
-                                    ]
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "ICIC Bank Accounts" } },
-                                    [_vm._v("ICIC Bank Accounts")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Baroda Bank" } },
-                                    [_vm._v("Baroda Bank")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Cash Account" } },
-                                    [_vm._v("Cash in hand account")]
-                                  )
-                                ]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: invoice_item.method,
-                                      expression: "invoice_item.method"
-                                    }
-                                  ],
-                                  staticClass: "form-control form-control-user",
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        invoice_item,
-                                        "method",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
-                                  }
-                                },
-                                [
-                                  !_vm.cashSelected
-                                    ? _c(
-                                        "option",
-                                        { attrs: { value: "Bank Transfer" } },
-                                        [_vm._v("Bank Transfer")]
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "Cash" } }, [
-                                    _vm._v("Cash")
-                                  ]),
-                                  _vm._v(" "),
-                                  !_vm.cashSelected
-                                    ? _c(
-                                        "option",
-                                        { attrs: { value: "Cheque" } },
-                                        [_vm._v("Cheque")]
-                                      )
-                                    : _vm._e()
-                                ]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: invoice_item.comment,
-                                    expression: "invoice_item.comment"
-                                  }
-                                ],
-                                staticClass: "form-control form-control-user",
-                                attrs: { type: "text", placeholder: "Note" },
-                                domProps: { value: invoice_item.comment },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      invoice_item,
-                                      "comment",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn admin-btn mobile-mb btn-nwidth",
-                                  staticStyle: {
-                                    "background-color": "#EDF2F6 !important",
-                                    float: "right"
-                                  },
-                                  attrs: { type: "button" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.removeLine(k)
-                                    }
-                                  }
-                                },
-                                [_vm._v("Cancel")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn admin-btn mobile-mb btn-nwidth",
-                                  staticStyle: {
-                                    "background-color": "#7ADAAA !important",
-                                    float: "right"
-                                  },
-                                  attrs: { type: "button" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.save_payment(k)
-                                    }
-                                  }
-                                },
-                                [_vm._v("Save")]
-                              )
-                            ])
-                          ])
-                        }),
-                        0
-                      )
-                    ]
-                  )
-                : _vm._e()
-            ]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.selectedtab == "note"
-        ? _c(
-            "div",
-            {
-              staticClass: "table-div mb-2",
-              staticStyle: {
-                "background-color": "white",
-                "box-shadow": "0px 5px 5px 0px rgb(0 0 0 / 10%)"
-              }
-            },
-            [
-              _c(
-                "table",
-                {
-                  staticClass: "table",
-                  staticStyle: { "margin-bottom": "0" },
-                  attrs: {
-                    id: "addnote_table",
-                    width: "100%",
-                    cellspacing: "0"
-                  }
-                },
-                [
-                  _c("tbody", [
-                    _c("tr", [
-                      _c("td", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.note,
-                              expression: "note"
-                            }
-                          ],
-                          staticClass: "form-control form-control-user",
-                          attrs: { type: "text", placeholder: "Add note" },
-                          domProps: { value: _vm.note },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.note = $event.target.value
-                            }
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn admin-btn mobile-mb btn-nwidth",
-                            staticStyle: {
-                              "background-color": "#7ADAAA !important",
-                              float: "right"
-                            },
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.save_note()
-                              }
-                            }
-                          },
-                          [_vm._v("Save")]
-                        )
-                      ])
-                    ])
-                  ])
-                ]
-              )
-            ]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.selectedtab == "history"
-        ? _c(
-            "div",
-            {
-              staticClass: "table-div mb-2",
-              staticStyle: {
-                "background-color": "white",
-                "box-shadow": "0px 5px 5px 0px rgb(0 0 0 / 10%)"
-              }
-            },
-            [
-              _c(
-                "table",
-                {
-                  staticClass: "table purchasedata",
-                  staticStyle: { "margin-bottom": "0" },
-                  attrs: {
-                    id: "purchasehistory-datatable",
-                    width: "100%",
-                    cellspacing: "0"
-                  }
-                },
-                [
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.formdata.purchasehistory, function(
-                      purchasehistory
-                    ) {
-                      return _c("tr", { key: purchasehistory.id }, [
-                        _c("td", [_vm._v(_vm._s(purchasehistory.changes))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(
-                              _vm.dateFormateChanger(purchasehistory.log_date)
-                            )
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(purchasehistory.firstname) +
-                              " " +
-                              _vm._s(purchasehistory.lastname)
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(purchasehistory.comment))])
-                      ])
-                    }),
-                    0
-                  )
-                ]
-              )
-            ]
-          )
-        : _vm._e(),
-      _vm._v(" "),
       _c(
         "div",
         {
           staticClass: "modal fade",
           attrs: {
-            id: "deleteConfirmation",
+            id: "deleteInvoiceConfirmation",
             tabindex: "-1",
             role: "dialog",
-            "aria-labelledby": "deleteConfirmationLabel",
+            "aria-labelledby": "deleteInvoiceConfirmationLabel",
             "aria-hidden": "true"
           }
         },
@@ -30839,10 +14372,10 @@ var render = function() {
             { staticClass: "modal-dialog", attrs: { role: "document" } },
             [
               _c("div", { staticClass: "modal-content" }, [
+                _vm._m(2),
+                _vm._v(" "),
                 _vm._m(3),
                 _vm._v(" "),
-                _vm._m(4),
-                _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(
                     "button",
@@ -30850,7 +14383,11 @@ var render = function() {
                       staticClass: "btn admin-btn mobile-mb",
                       attrs: { type: "button", "data-dismiss": "modal" }
                     },
-                    [_vm._v("Cancel")]
+                    [
+                      _vm._v(
+                        "\n                            Cancel\n                        "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -30864,187 +14401,15 @@ var render = function() {
                       attrs: { type: "button" },
                       on: {
                         click: function($event) {
-                          return _vm.deleteRecord(_vm.paymentid)
+                          return _vm.deleteDeliveryNote()
                         }
                       }
                     },
-                    [_vm._v("Delete")]
-                  )
-                ])
-              ])
-            ]
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "modal fade",
-          attrs: {
-            id: "deletePurchaseConfirmation",
-            tabindex: "-1",
-            role: "dialog",
-            "aria-labelledby": "deletePurchaseConfirmationLabel",
-            "aria-hidden": "true"
-          }
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "modal-dialog", attrs: { role: "document" } },
-            [
-              _c("div", { staticClass: "modal-content" }, [
-                _vm._m(5),
-                _vm._v(" "),
-                _vm._m(6),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-footer" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn admin-btn mobile-mb",
-                      attrs: { type: "button", "data-dismiss": "modal" }
-                    },
-                    [_vm._v("Cancel")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn admin-btn mobile-mb",
-                      staticStyle: {
-                        "background-color": "#ff0000 !important",
-                        color: "#fff"
-                      },
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          return _vm.deletePurchaseOrder()
-                        }
-                      }
-                    },
-                    [_vm._v("Delete")]
-                  )
-                ])
-              ])
-            ]
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "modal fade",
-          attrs: {
-            id: "dosign",
-            tabindex: "-1",
-            role: "dialog",
-            "aria-labelledby": "dosign",
-            "aria-hidden": "true"
-          }
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "modal-dialog", attrs: { role: "document" } },
-            [
-              _c("div", { staticClass: "modal-content" }, [
-                _vm._m(7),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "modal-body" },
-                  [
-                    _c("label", [_vm._v("Signature")]),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("VueSignaturePad", {
-                      ref: "signaturePad",
-                      staticStyle: { border: "1px solid #ccc" },
-                      attrs: {
-                        width: "560px",
-                        height: "250px",
-                        options: {
-                          onBegin: function() {
-                            _vm.$refs.signaturePad.resizeCanvas()
-                          }
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.no_sign
-                      ? _c("span", { staticClass: "text-danger" }, [
-                          _vm._v("Please add signature")
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("label", { staticClass: "required-field" }, [
-                      _vm._v("Signed By")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.signed_by,
-                          expression: "signed_by"
-                        }
-                      ],
-                      staticClass: "form-control form-control-user",
-                      attrs: { type: "text", placeholder: "" },
-                      domProps: { value: _vm.signed_by },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.signed_by = $event.target.value
-                        }
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-footer" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn admin-btn mobile-mb btn-nwidth",
-                      staticStyle: { "background-color": "#7adaaa !important" },
-                      attrs: { type: "button" },
-                      on: { click: _vm.save }
-                    },
-                    [_vm._v("Save")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn admin-btn mobile-mb btn-nwidth",
-                      staticStyle: { "background-color": "#7adaaa !important" },
-                      attrs: { type: "button" },
-                      on: { click: _vm.undo }
-                    },
-                    [_vm._v("Undo")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn admin-btn mobile-mb btn-nwidth",
-                      attrs: {
-                        type: "button",
-                        "data-dismiss": "modal",
-                        "aria-label": "Close"
-                      }
-                    },
-                    [_vm._v("Cancel")]
+                    [
+                      _vm._v(
+                        "\n                            Delete\n                        "
+                      )
+                    ]
                   )
                 ])
               ])
@@ -31096,30 +14461,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { staticStyle: { width: "140px" } }, [_vm._v("Changes")]),
-        _vm._v(" "),
-        _c("th", { staticStyle: { width: "140px" } }, [_vm._v("Date")]),
-        _vm._v(" "),
-        _c("th", { staticStyle: { width: "140px" } }, [_vm._v("User")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Details")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c(
         "h6",
         {
           staticClass: "modal-title",
-          attrs: { id: "deleteConfirmationLabel" }
+          attrs: { id: "deleteInvoiceConfirmationLabel" }
         },
-        [_vm._v("Confirmation")]
+        [
+          _vm._v(
+            "\n                            Confirmation\n                        "
+          )
+        ]
       ),
       _vm._v(" "),
       _c(
@@ -31151,93 +14504,5024 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-body" }, [
       _c("p", { staticStyle: { color: "#000", "font-size": "14px" } }, [
-        _vm._v("Are you sure you want to delete this payment?")
+        _vm._v(
+          "\n                            Are you sure you want to delete this Delivery Note?\n                        "
+        )
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h6",
-        {
-          staticClass: "modal-title",
-          attrs: { id: "deletePurchaseConfirmationLabel" }
-        },
-        [_vm._v("Confirmation")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [
-          _c(
-            "span",
-            {
-              staticStyle: { color: "#fff" },
-              attrs: { "aria-hidden": "true" }
-            },
-            [_vm._v("×")]
-          )
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body" }, [
-      _c("p", { staticStyle: { color: "#000", "font-size": "14px" } }, [
-        _vm._v("Are you sure you want to delete this Purchase Order?")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h6", { staticClass: "modal-title", attrs: { id: "dosignh1" } }, [
-        _vm._v("Add Signature")
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [
-          _c(
-            "span",
-            {
-              staticStyle: { color: "#fff" },
-              attrs: { "aria-hidden": "true" }
-            },
-            [_vm._v("×")]
-          )
-        ]
-      )
     ])
   }
 ]
 render._withStripped = true
 
 
+
+/***/ }),
+
+/***/ "./node_modules/vue-search-select/dist/VueSearchSelect.common.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/vue-search-select/dist/VueSearchSelect.common.js ***!
+  \***********************************************************************/
+/***/ ((module) => {
+
+module.exports =
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __nested_webpack_require_187__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __nested_webpack_require_187__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__nested_webpack_require_187__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__nested_webpack_require_187__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__nested_webpack_require_187__.d = function(exports, name, getter) {
+/******/ 		if(!__nested_webpack_require_187__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__nested_webpack_require_187__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__nested_webpack_require_187__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __nested_webpack_require_187__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__nested_webpack_require_187__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __nested_webpack_require_187__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__nested_webpack_require_187__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__nested_webpack_require_187__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__nested_webpack_require_187__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__nested_webpack_require_187__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __nested_webpack_require_187__(__nested_webpack_require_187__.s = "fae3");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "014b":
+/***/ (function(module, exports, __nested_webpack_require_3663__) {
+
+"use strict";
+
+// ECMAScript 6 symbols shim
+var global = __nested_webpack_require_3663__("e53d");
+var has = __nested_webpack_require_3663__("07e3");
+var DESCRIPTORS = __nested_webpack_require_3663__("8e60");
+var $export = __nested_webpack_require_3663__("63b6");
+var redefine = __nested_webpack_require_3663__("9138");
+var META = __nested_webpack_require_3663__("ebfd").KEY;
+var $fails = __nested_webpack_require_3663__("294c");
+var shared = __nested_webpack_require_3663__("dbdb");
+var setToStringTag = __nested_webpack_require_3663__("45f2");
+var uid = __nested_webpack_require_3663__("62a0");
+var wks = __nested_webpack_require_3663__("5168");
+var wksExt = __nested_webpack_require_3663__("ccb9");
+var wksDefine = __nested_webpack_require_3663__("6718");
+var enumKeys = __nested_webpack_require_3663__("47ee");
+var isArray = __nested_webpack_require_3663__("9003");
+var anObject = __nested_webpack_require_3663__("e4ae");
+var isObject = __nested_webpack_require_3663__("f772");
+var toObject = __nested_webpack_require_3663__("241e");
+var toIObject = __nested_webpack_require_3663__("36c3");
+var toPrimitive = __nested_webpack_require_3663__("1bc3");
+var createDesc = __nested_webpack_require_3663__("aebd");
+var _create = __nested_webpack_require_3663__("a159");
+var gOPNExt = __nested_webpack_require_3663__("0395");
+var $GOPD = __nested_webpack_require_3663__("bf0b");
+var $GOPS = __nested_webpack_require_3663__("9aa9");
+var $DP = __nested_webpack_require_3663__("d9f6");
+var $keys = __nested_webpack_require_3663__("c3a1");
+var gOPD = $GOPD.f;
+var dP = $DP.f;
+var gOPN = gOPNExt.f;
+var $Symbol = global.Symbol;
+var $JSON = global.JSON;
+var _stringify = $JSON && $JSON.stringify;
+var PROTOTYPE = 'prototype';
+var HIDDEN = wks('_hidden');
+var TO_PRIMITIVE = wks('toPrimitive');
+var isEnum = {}.propertyIsEnumerable;
+var SymbolRegistry = shared('symbol-registry');
+var AllSymbols = shared('symbols');
+var OPSymbols = shared('op-symbols');
+var ObjectProto = Object[PROTOTYPE];
+var USE_NATIVE = typeof $Symbol == 'function' && !!$GOPS.f;
+var QObject = global.QObject;
+// Don't use setters in Qt Script, https://github.com/zloirock/core-js/issues/173
+var setter = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
+
+// fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
+var setSymbolDesc = DESCRIPTORS && $fails(function () {
+  return _create(dP({}, 'a', {
+    get: function () { return dP(this, 'a', { value: 7 }).a; }
+  })).a != 7;
+}) ? function (it, key, D) {
+  var protoDesc = gOPD(ObjectProto, key);
+  if (protoDesc) delete ObjectProto[key];
+  dP(it, key, D);
+  if (protoDesc && it !== ObjectProto) dP(ObjectProto, key, protoDesc);
+} : dP;
+
+var wrap = function (tag) {
+  var sym = AllSymbols[tag] = _create($Symbol[PROTOTYPE]);
+  sym._k = tag;
+  return sym;
+};
+
+var isSymbol = USE_NATIVE && typeof $Symbol.iterator == 'symbol' ? function (it) {
+  return typeof it == 'symbol';
+} : function (it) {
+  return it instanceof $Symbol;
+};
+
+var $defineProperty = function defineProperty(it, key, D) {
+  if (it === ObjectProto) $defineProperty(OPSymbols, key, D);
+  anObject(it);
+  key = toPrimitive(key, true);
+  anObject(D);
+  if (has(AllSymbols, key)) {
+    if (!D.enumerable) {
+      if (!has(it, HIDDEN)) dP(it, HIDDEN, createDesc(1, {}));
+      it[HIDDEN][key] = true;
+    } else {
+      if (has(it, HIDDEN) && it[HIDDEN][key]) it[HIDDEN][key] = false;
+      D = _create(D, { enumerable: createDesc(0, false) });
+    } return setSymbolDesc(it, key, D);
+  } return dP(it, key, D);
+};
+var $defineProperties = function defineProperties(it, P) {
+  anObject(it);
+  var keys = enumKeys(P = toIObject(P));
+  var i = 0;
+  var l = keys.length;
+  var key;
+  while (l > i) $defineProperty(it, key = keys[i++], P[key]);
+  return it;
+};
+var $create = function create(it, P) {
+  return P === undefined ? _create(it) : $defineProperties(_create(it), P);
+};
+var $propertyIsEnumerable = function propertyIsEnumerable(key) {
+  var E = isEnum.call(this, key = toPrimitive(key, true));
+  if (this === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key)) return false;
+  return E || !has(this, key) || !has(AllSymbols, key) || has(this, HIDDEN) && this[HIDDEN][key] ? E : true;
+};
+var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key) {
+  it = toIObject(it);
+  key = toPrimitive(key, true);
+  if (it === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key)) return;
+  var D = gOPD(it, key);
+  if (D && has(AllSymbols, key) && !(has(it, HIDDEN) && it[HIDDEN][key])) D.enumerable = true;
+  return D;
+};
+var $getOwnPropertyNames = function getOwnPropertyNames(it) {
+  var names = gOPN(toIObject(it));
+  var result = [];
+  var i = 0;
+  var key;
+  while (names.length > i) {
+    if (!has(AllSymbols, key = names[i++]) && key != HIDDEN && key != META) result.push(key);
+  } return result;
+};
+var $getOwnPropertySymbols = function getOwnPropertySymbols(it) {
+  var IS_OP = it === ObjectProto;
+  var names = gOPN(IS_OP ? OPSymbols : toIObject(it));
+  var result = [];
+  var i = 0;
+  var key;
+  while (names.length > i) {
+    if (has(AllSymbols, key = names[i++]) && (IS_OP ? has(ObjectProto, key) : true)) result.push(AllSymbols[key]);
+  } return result;
+};
+
+// 19.4.1.1 Symbol([description])
+if (!USE_NATIVE) {
+  $Symbol = function Symbol() {
+    if (this instanceof $Symbol) throw TypeError('Symbol is not a constructor!');
+    var tag = uid(arguments.length > 0 ? arguments[0] : undefined);
+    var $set = function (value) {
+      if (this === ObjectProto) $set.call(OPSymbols, value);
+      if (has(this, HIDDEN) && has(this[HIDDEN], tag)) this[HIDDEN][tag] = false;
+      setSymbolDesc(this, tag, createDesc(1, value));
+    };
+    if (DESCRIPTORS && setter) setSymbolDesc(ObjectProto, tag, { configurable: true, set: $set });
+    return wrap(tag);
+  };
+  redefine($Symbol[PROTOTYPE], 'toString', function toString() {
+    return this._k;
+  });
+
+  $GOPD.f = $getOwnPropertyDescriptor;
+  $DP.f = $defineProperty;
+  __nested_webpack_require_3663__("6abf").f = gOPNExt.f = $getOwnPropertyNames;
+  __nested_webpack_require_3663__("355d").f = $propertyIsEnumerable;
+  $GOPS.f = $getOwnPropertySymbols;
+
+  if (DESCRIPTORS && !__nested_webpack_require_3663__("b8e3")) {
+    redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
+  }
+
+  wksExt.f = function (name) {
+    return wrap(wks(name));
+  };
+}
+
+$export($export.G + $export.W + $export.F * !USE_NATIVE, { Symbol: $Symbol });
+
+for (var es6Symbols = (
+  // 19.4.2.2, 19.4.2.3, 19.4.2.4, 19.4.2.6, 19.4.2.8, 19.4.2.9, 19.4.2.10, 19.4.2.11, 19.4.2.12, 19.4.2.13, 19.4.2.14
+  'hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables'
+).split(','), j = 0; es6Symbols.length > j;)wks(es6Symbols[j++]);
+
+for (var wellKnownSymbols = $keys(wks.store), k = 0; wellKnownSymbols.length > k;) wksDefine(wellKnownSymbols[k++]);
+
+$export($export.S + $export.F * !USE_NATIVE, 'Symbol', {
+  // 19.4.2.1 Symbol.for(key)
+  'for': function (key) {
+    return has(SymbolRegistry, key += '')
+      ? SymbolRegistry[key]
+      : SymbolRegistry[key] = $Symbol(key);
+  },
+  // 19.4.2.5 Symbol.keyFor(sym)
+  keyFor: function keyFor(sym) {
+    if (!isSymbol(sym)) throw TypeError(sym + ' is not a symbol!');
+    for (var key in SymbolRegistry) if (SymbolRegistry[key] === sym) return key;
+  },
+  useSetter: function () { setter = true; },
+  useSimple: function () { setter = false; }
+});
+
+$export($export.S + $export.F * !USE_NATIVE, 'Object', {
+  // 19.1.2.2 Object.create(O [, Properties])
+  create: $create,
+  // 19.1.2.4 Object.defineProperty(O, P, Attributes)
+  defineProperty: $defineProperty,
+  // 19.1.2.3 Object.defineProperties(O, Properties)
+  defineProperties: $defineProperties,
+  // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
+  getOwnPropertyDescriptor: $getOwnPropertyDescriptor,
+  // 19.1.2.7 Object.getOwnPropertyNames(O)
+  getOwnPropertyNames: $getOwnPropertyNames,
+  // 19.1.2.8 Object.getOwnPropertySymbols(O)
+  getOwnPropertySymbols: $getOwnPropertySymbols
+});
+
+// Chrome 38 and 39 `Object.getOwnPropertySymbols` fails on primitives
+// https://bugs.chromium.org/p/v8/issues/detail?id=3443
+var FAILS_ON_PRIMITIVES = $fails(function () { $GOPS.f(1); });
+
+$export($export.S + $export.F * FAILS_ON_PRIMITIVES, 'Object', {
+  getOwnPropertySymbols: function getOwnPropertySymbols(it) {
+    return $GOPS.f(toObject(it));
+  }
+});
+
+// 24.3.2 JSON.stringify(value [, replacer [, space]])
+$JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function () {
+  var S = $Symbol();
+  // MS Edge converts symbol values to JSON as {}
+  // WebKit converts symbol values to JSON as null
+  // V8 throws on boxed symbols
+  return _stringify([S]) != '[null]' || _stringify({ a: S }) != '{}' || _stringify(Object(S)) != '{}';
+})), 'JSON', {
+  stringify: function stringify(it) {
+    var args = [it];
+    var i = 1;
+    var replacer, $replacer;
+    while (arguments.length > i) args.push(arguments[i++]);
+    $replacer = replacer = args[1];
+    if (!isObject(replacer) && it === undefined || isSymbol(it)) return; // IE8 returns string on undefined
+    if (!isArray(replacer)) replacer = function (key, value) {
+      if (typeof $replacer == 'function') value = $replacer.call(this, key, value);
+      if (!isSymbol(value)) return value;
+    };
+    args[1] = replacer;
+    return _stringify.apply($JSON, args);
+  }
+});
+
+// 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
+$Symbol[PROTOTYPE][TO_PRIMITIVE] || __nested_webpack_require_3663__("35e8")($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
+// 19.4.3.5 Symbol.prototype[@@toStringTag]
+setToStringTag($Symbol, 'Symbol');
+// 20.2.1.9 Math[@@toStringTag]
+setToStringTag(Math, 'Math', true);
+// 24.3.3 JSON[@@toStringTag]
+setToStringTag(global.JSON, 'JSON', true);
+
+
+/***/ }),
+
+/***/ "01f9":
+/***/ (function(module, exports, __nested_webpack_require_13165__) {
+
+"use strict";
+
+var LIBRARY = __nested_webpack_require_13165__("2d00");
+var $export = __nested_webpack_require_13165__("5ca1");
+var redefine = __nested_webpack_require_13165__("2aba");
+var hide = __nested_webpack_require_13165__("32e9");
+var Iterators = __nested_webpack_require_13165__("84f2");
+var $iterCreate = __nested_webpack_require_13165__("41a0");
+var setToStringTag = __nested_webpack_require_13165__("7f20");
+var getPrototypeOf = __nested_webpack_require_13165__("38fd");
+var ITERATOR = __nested_webpack_require_13165__("2b4c")('iterator');
+var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
+var FF_ITERATOR = '@@iterator';
+var KEYS = 'keys';
+var VALUES = 'values';
+
+var returnThis = function () { return this; };
+
+module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
+  $iterCreate(Constructor, NAME, next);
+  var getMethod = function (kind) {
+    if (!BUGGY && kind in proto) return proto[kind];
+    switch (kind) {
+      case KEYS: return function keys() { return new Constructor(this, kind); };
+      case VALUES: return function values() { return new Constructor(this, kind); };
+    } return function entries() { return new Constructor(this, kind); };
+  };
+  var TAG = NAME + ' Iterator';
+  var DEF_VALUES = DEFAULT == VALUES;
+  var VALUES_BUG = false;
+  var proto = Base.prototype;
+  var $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT];
+  var $default = $native || getMethod(DEFAULT);
+  var $entries = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined;
+  var $anyNative = NAME == 'Array' ? proto.entries || $native : $native;
+  var methods, key, IteratorPrototype;
+  // Fix native
+  if ($anyNative) {
+    IteratorPrototype = getPrototypeOf($anyNative.call(new Base()));
+    if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
+      // Set @@toStringTag to native iterators
+      setToStringTag(IteratorPrototype, TAG, true);
+      // fix for some old engines
+      if (!LIBRARY && typeof IteratorPrototype[ITERATOR] != 'function') hide(IteratorPrototype, ITERATOR, returnThis);
+    }
+  }
+  // fix Array#{values, @@iterator}.name in V8 / FF
+  if (DEF_VALUES && $native && $native.name !== VALUES) {
+    VALUES_BUG = true;
+    $default = function values() { return $native.call(this); };
+  }
+  // Define iterator
+  if ((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+    hide(proto, ITERATOR, $default);
+  }
+  // Plug for library
+  Iterators[NAME] = $default;
+  Iterators[TAG] = returnThis;
+  if (DEFAULT) {
+    methods = {
+      values: DEF_VALUES ? $default : getMethod(VALUES),
+      keys: IS_SET ? $default : getMethod(KEYS),
+      entries: $entries
+    };
+    if (FORCED) for (key in methods) {
+      if (!(key in proto)) redefine(proto, key, methods[key]);
+    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
+  }
+  return methods;
+};
+
+
+/***/ }),
+
+/***/ "02f4":
+/***/ (function(module, exports, __nested_webpack_require_16071__) {
+
+var toInteger = __nested_webpack_require_16071__("4588");
+var defined = __nested_webpack_require_16071__("be13");
+// true  -> String#at
+// false -> String#codePointAt
+module.exports = function (TO_STRING) {
+  return function (that, pos) {
+    var s = String(defined(that));
+    var i = toInteger(pos);
+    var l = s.length;
+    var a, b;
+    if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
+    a = s.charCodeAt(i);
+    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
+      ? TO_STRING ? s.charAt(i) : a
+      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
+  };
+};
+
+
+/***/ }),
+
+/***/ "0390":
+/***/ (function(module, exports, __nested_webpack_require_16784__) {
+
+"use strict";
+
+var at = __nested_webpack_require_16784__("02f4")(true);
+
+ // `AdvanceStringIndex` abstract operation
+// https://tc39.github.io/ecma262/#sec-advancestringindex
+module.exports = function (S, index, unicode) {
+  return index + (unicode ? at(S, index).length : 1);
+};
+
+
+/***/ }),
+
+/***/ "0395":
+/***/ (function(module, exports, __nested_webpack_require_17135__) {
+
+// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
+var toIObject = __nested_webpack_require_17135__("36c3");
+var gOPN = __nested_webpack_require_17135__("6abf").f;
+var toString = {}.toString;
+
+var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
+  ? Object.getOwnPropertyNames(window) : [];
+
+var getWindowNames = function (it) {
+  try {
+    return gOPN(it);
+  } catch (e) {
+    return windowNames.slice();
+  }
+};
+
+module.exports.f = function getOwnPropertyNames(it) {
+  return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(toIObject(it));
+};
+
+
+/***/ }),
+
+/***/ "07e3":
+/***/ (function(module, exports) {
+
+var hasOwnProperty = {}.hasOwnProperty;
+module.exports = function (it, key) {
+  return hasOwnProperty.call(it, key);
+};
+
+
+/***/ }),
+
+/***/ "0a49":
+/***/ (function(module, exports, __nested_webpack_require_18011__) {
+
+// 0 -> Array#forEach
+// 1 -> Array#map
+// 2 -> Array#filter
+// 3 -> Array#some
+// 4 -> Array#every
+// 5 -> Array#find
+// 6 -> Array#findIndex
+var ctx = __nested_webpack_require_18011__("9b43");
+var IObject = __nested_webpack_require_18011__("626a");
+var toObject = __nested_webpack_require_18011__("4bf8");
+var toLength = __nested_webpack_require_18011__("9def");
+var asc = __nested_webpack_require_18011__("cd1c");
+module.exports = function (TYPE, $create) {
+  var IS_MAP = TYPE == 1;
+  var IS_FILTER = TYPE == 2;
+  var IS_SOME = TYPE == 3;
+  var IS_EVERY = TYPE == 4;
+  var IS_FIND_INDEX = TYPE == 6;
+  var NO_HOLES = TYPE == 5 || IS_FIND_INDEX;
+  var create = $create || asc;
+  return function ($this, callbackfn, that) {
+    var O = toObject($this);
+    var self = IObject(O);
+    var f = ctx(callbackfn, that, 3);
+    var length = toLength(self.length);
+    var index = 0;
+    var result = IS_MAP ? create($this, length) : IS_FILTER ? create($this, 0) : undefined;
+    var val, res;
+    for (;length > index; index++) if (NO_HOLES || index in self) {
+      val = self[index];
+      res = f(val, index, O);
+      if (TYPE) {
+        if (IS_MAP) result[index] = res;   // map
+        else if (res) switch (TYPE) {
+          case 3: return true;             // some
+          case 5: return val;              // find
+          case 6: return index;            // findIndex
+          case 2: result.push(val);        // filter
+        } else if (IS_EVERY) return false; // every
+      }
+    }
+    return IS_FIND_INDEX ? -1 : IS_SOME || IS_EVERY ? IS_EVERY : result;
+  };
+};
+
+
+/***/ }),
+
+/***/ "0bfb":
+/***/ (function(module, exports, __nested_webpack_require_19606__) {
+
+"use strict";
+
+// 21.2.5.3 get RegExp.prototype.flags
+var anObject = __nested_webpack_require_19606__("cb7c");
+module.exports = function () {
+  var that = anObject(this);
+  var result = '';
+  if (that.global) result += 'g';
+  if (that.ignoreCase) result += 'i';
+  if (that.multiline) result += 'm';
+  if (that.unicode) result += 'u';
+  if (that.sticky) result += 'y';
+  return result;
+};
+
+
+/***/ }),
+
+/***/ "0d58":
+/***/ (function(module, exports, __nested_webpack_require_20065__) {
+
+// 19.1.2.14 / 15.2.3.14 Object.keys(O)
+var $keys = __nested_webpack_require_20065__("ce10");
+var enumBugKeys = __nested_webpack_require_20065__("e11e");
+
+module.exports = Object.keys || function keys(O) {
+  return $keys(O, enumBugKeys);
+};
+
+
+/***/ }),
+
+/***/ "0fc9":
+/***/ (function(module, exports, __nested_webpack_require_20364__) {
+
+var toInteger = __nested_webpack_require_20364__("3a38");
+var max = Math.max;
+var min = Math.min;
+module.exports = function (index, length) {
+  index = toInteger(index);
+  return index < 0 ? max(index + length, 0) : min(index, length);
+};
+
+
+/***/ }),
+
+/***/ "1169":
+/***/ (function(module, exports, __nested_webpack_require_20674__) {
+
+// 7.2.2 IsArray(argument)
+var cof = __nested_webpack_require_20674__("2d95");
+module.exports = Array.isArray || function isArray(arg) {
+  return cof(arg) == 'Array';
+};
+
+
+/***/ }),
+
+/***/ "11e9":
+/***/ (function(module, exports, __nested_webpack_require_20915__) {
+
+var pIE = __nested_webpack_require_20915__("52a7");
+var createDesc = __nested_webpack_require_20915__("4630");
+var toIObject = __nested_webpack_require_20915__("6821");
+var toPrimitive = __nested_webpack_require_20915__("6a99");
+var has = __nested_webpack_require_20915__("69a8");
+var IE8_DOM_DEFINE = __nested_webpack_require_20915__("c69a");
+var gOPD = Object.getOwnPropertyDescriptor;
+
+exports.f = __nested_webpack_require_20915__("9e1e") ? gOPD : function getOwnPropertyDescriptor(O, P) {
+  O = toIObject(O);
+  P = toPrimitive(P, true);
+  if (IE8_DOM_DEFINE) try {
+    return gOPD(O, P);
+  } catch (e) { /* empty */ }
+  if (has(O, P)) return createDesc(!pIE.f.call(O, P), O[P]);
+};
+
+
+/***/ }),
+
+/***/ "1495":
+/***/ (function(module, exports, __nested_webpack_require_21594__) {
+
+var dP = __nested_webpack_require_21594__("86cc");
+var anObject = __nested_webpack_require_21594__("cb7c");
+var getKeys = __nested_webpack_require_21594__("0d58");
+
+module.exports = __nested_webpack_require_21594__("9e1e") ? Object.defineProperties : function defineProperties(O, Properties) {
+  anObject(O);
+  var keys = getKeys(Properties);
+  var length = keys.length;
+  var i = 0;
+  var P;
+  while (length > i) dP.f(O, P = keys[i++], Properties[P]);
+  return O;
+};
+
+
+/***/ }),
+
+/***/ "1654":
+/***/ (function(module, exports, __nested_webpack_require_22094__) {
+
+"use strict";
+
+var $at = __nested_webpack_require_22094__("71c1")(true);
+
+// 21.1.3.27 String.prototype[@@iterator]()
+__nested_webpack_require_22094__("30f1")(String, 'String', function (iterated) {
+  this._t = String(iterated); // target
+  this._i = 0;                // next index
+// 21.1.5.2.1 %StringIteratorPrototype%.next()
+}, function () {
+  var O = this._t;
+  var index = this._i;
+  var point;
+  if (index >= O.length) return { value: undefined, done: true };
+  point = $at(O, index);
+  this._i += point.length;
+  return { value: point, done: false };
+});
+
+
+/***/ }),
+
+/***/ "1691":
+/***/ (function(module, exports) {
+
+// IE 8- don't enum bug keys
+module.exports = (
+  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
+).split(',');
+
+
+/***/ }),
+
+/***/ "1bc3":
+/***/ (function(module, exports, __nested_webpack_require_22939__) {
+
+// 7.1.1 ToPrimitive(input [, PreferredType])
+var isObject = __nested_webpack_require_22939__("f772");
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+module.exports = function (it, S) {
+  if (!isObject(it)) return it;
+  var fn, val;
+  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+
+
+/***/ }),
+
+/***/ "1ec9":
+/***/ (function(module, exports, __nested_webpack_require_23682__) {
+
+var isObject = __nested_webpack_require_23682__("f772");
+var document = __nested_webpack_require_23682__("e53d").document;
+// typeof document.createElement is 'object' in old IE
+var is = isObject(document) && isObject(document.createElement);
+module.exports = function (it) {
+  return is ? document.createElement(it) : {};
+};
+
+
+/***/ }),
+
+/***/ "20d6":
+/***/ (function(module, exports, __nested_webpack_require_24066__) {
+
+"use strict";
+
+// 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
+var $export = __nested_webpack_require_24066__("5ca1");
+var $find = __nested_webpack_require_24066__("0a49")(6);
+var KEY = 'findIndex';
+var forced = true;
+// Shouldn't skip holes
+if (KEY in []) Array(1)[KEY](function () { forced = false; });
+$export($export.P + $export.F * forced, 'Array', {
+  findIndex: function findIndex(callbackfn /* , that = undefined */) {
+    return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+__nested_webpack_require_24066__("9c6c")(KEY);
+
+
+/***/ }),
+
+/***/ "214f":
+/***/ (function(module, exports, __nested_webpack_require_24700__) {
+
+"use strict";
+
+__nested_webpack_require_24700__("b0c5");
+var redefine = __nested_webpack_require_24700__("2aba");
+var hide = __nested_webpack_require_24700__("32e9");
+var fails = __nested_webpack_require_24700__("79e5");
+var defined = __nested_webpack_require_24700__("be13");
+var wks = __nested_webpack_require_24700__("2b4c");
+var regexpExec = __nested_webpack_require_24700__("520a");
+
+var SPECIES = wks('species');
+
+var REPLACE_SUPPORTS_NAMED_GROUPS = !fails(function () {
+  // #replace needs built-in support for named groups.
+  // #match works fine because it just return the exec results, even if it has
+  // a "grops" property.
+  var re = /./;
+  re.exec = function () {
+    var result = [];
+    result.groups = { a: '7' };
+    return result;
+  };
+  return ''.replace(re, '$<a>') !== '7';
+});
+
+var SPLIT_WORKS_WITH_OVERWRITTEN_EXEC = (function () {
+  // Chrome 51 has a buggy "split" implementation when RegExp#exec !== nativeExec
+  var re = /(?:)/;
+  var originalExec = re.exec;
+  re.exec = function () { return originalExec.apply(this, arguments); };
+  var result = 'ab'.split(re);
+  return result.length === 2 && result[0] === 'a' && result[1] === 'b';
+})();
+
+module.exports = function (KEY, length, exec) {
+  var SYMBOL = wks(KEY);
+
+  var DELEGATES_TO_SYMBOL = !fails(function () {
+    // String methods call symbol-named RegEp methods
+    var O = {};
+    O[SYMBOL] = function () { return 7; };
+    return ''[KEY](O) != 7;
+  });
+
+  var DELEGATES_TO_EXEC = DELEGATES_TO_SYMBOL ? !fails(function () {
+    // Symbol-named RegExp methods call .exec
+    var execCalled = false;
+    var re = /a/;
+    re.exec = function () { execCalled = true; return null; };
+    if (KEY === 'split') {
+      // RegExp[@@split] doesn't call the regex's exec method, but first creates
+      // a new one. We need to return the patched regex when creating the new one.
+      re.constructor = {};
+      re.constructor[SPECIES] = function () { return re; };
+    }
+    re[SYMBOL]('');
+    return !execCalled;
+  }) : undefined;
+
+  if (
+    !DELEGATES_TO_SYMBOL ||
+    !DELEGATES_TO_EXEC ||
+    (KEY === 'replace' && !REPLACE_SUPPORTS_NAMED_GROUPS) ||
+    (KEY === 'split' && !SPLIT_WORKS_WITH_OVERWRITTEN_EXEC)
+  ) {
+    var nativeRegExpMethod = /./[SYMBOL];
+    var fns = exec(
+      defined,
+      SYMBOL,
+      ''[KEY],
+      function maybeCallNative(nativeMethod, regexp, str, arg2, forceStringMethod) {
+        if (regexp.exec === regexpExec) {
+          if (DELEGATES_TO_SYMBOL && !forceStringMethod) {
+            // The native String method already delegates to @@method (this
+            // polyfilled function), leasing to infinite recursion.
+            // We avoid it by directly calling the native @@method method.
+            return { done: true, value: nativeRegExpMethod.call(regexp, str, arg2) };
+          }
+          return { done: true, value: nativeMethod.call(str, regexp, arg2) };
+        }
+        return { done: false };
+      }
+    );
+    var strfn = fns[0];
+    var rxfn = fns[1];
+
+    redefine(String.prototype, KEY, strfn);
+    hide(RegExp.prototype, SYMBOL, length == 2
+      // 21.2.5.8 RegExp.prototype[@@replace](string, replaceValue)
+      // 21.2.5.11 RegExp.prototype[@@split](string, limit)
+      ? function (string, arg) { return rxfn.call(string, this, arg); }
+      // 21.2.5.6 RegExp.prototype[@@match](string)
+      // 21.2.5.9 RegExp.prototype[@@search](string)
+      : function (string) { return rxfn.call(string, this); }
+    );
+  }
+};
+
+
+/***/ }),
+
+/***/ "230e":
+/***/ (function(module, exports, __nested_webpack_require_28157__) {
+
+var isObject = __nested_webpack_require_28157__("d3f4");
+var document = __nested_webpack_require_28157__("7726").document;
+// typeof document.createElement is 'object' in old IE
+var is = isObject(document) && isObject(document.createElement);
+module.exports = function (it) {
+  return is ? document.createElement(it) : {};
+};
+
+
+/***/ }),
+
+/***/ "23c6":
+/***/ (function(module, exports, __nested_webpack_require_28541__) {
+
+// getting tag from 19.1.3.6 Object.prototype.toString()
+var cof = __nested_webpack_require_28541__("2d95");
+var TAG = __nested_webpack_require_28541__("2b4c")('toStringTag');
+// ES3 wrong here
+var ARG = cof(function () { return arguments; }()) == 'Arguments';
+
+// fallback for IE11 Script Access Denied error
+var tryGet = function (it, key) {
+  try {
+    return it[key];
+  } catch (e) { /* empty */ }
+};
+
+module.exports = function (it) {
+  var O, T, B;
+  return it === undefined ? 'Undefined' : it === null ? 'Null'
+    // @@toStringTag case
+    : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
+    // builtinTag case
+    : ARG ? cof(O)
+    // ES3 arguments fallback
+    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+};
+
+
+/***/ }),
+
+/***/ "241e":
+/***/ (function(module, exports, __nested_webpack_require_29363__) {
+
+// 7.1.13 ToObject(argument)
+var defined = __nested_webpack_require_29363__("25eb");
+module.exports = function (it) {
+  return Object(defined(it));
+};
+
+
+/***/ }),
+
+/***/ "25eb":
+/***/ (function(module, exports) {
+
+// 7.2.1 RequireObjectCoercible(argument)
+module.exports = function (it) {
+  if (it == undefined) throw TypeError("Can't call method on  " + it);
+  return it;
+};
+
+
+/***/ }),
+
+/***/ "294c":
+/***/ (function(module, exports) {
+
+module.exports = function (exec) {
+  try {
+    return !!exec();
+  } catch (e) {
+    return true;
+  }
+};
+
+
+/***/ }),
+
+/***/ "2aba":
+/***/ (function(module, exports, __nested_webpack_require_29977__) {
+
+var global = __nested_webpack_require_29977__("7726");
+var hide = __nested_webpack_require_29977__("32e9");
+var has = __nested_webpack_require_29977__("69a8");
+var SRC = __nested_webpack_require_29977__("ca5a")('src');
+var $toString = __nested_webpack_require_29977__("fa5b");
+var TO_STRING = 'toString';
+var TPL = ('' + $toString).split(TO_STRING);
+
+__nested_webpack_require_29977__("8378").inspectSource = function (it) {
+  return $toString.call(it);
+};
+
+(module.exports = function (O, key, val, safe) {
+  var isFunction = typeof val == 'function';
+  if (isFunction) has(val, 'name') || hide(val, 'name', key);
+  if (O[key] === val) return;
+  if (isFunction) has(val, SRC) || hide(val, SRC, O[key] ? '' + O[key] : TPL.join(String(key)));
+  if (O === global) {
+    O[key] = val;
+  } else if (!safe) {
+    delete O[key];
+    hide(O, key, val);
+  } else if (O[key]) {
+    O[key] = val;
+  } else {
+    hide(O, key, val);
+  }
+// add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
+})(Function.prototype, TO_STRING, function toString() {
+  return typeof this == 'function' && this[SRC] || $toString.call(this);
+});
+
+
+/***/ }),
+
+/***/ "2aeb":
+/***/ (function(module, exports, __nested_webpack_require_31151__) {
+
+// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
+var anObject = __nested_webpack_require_31151__("cb7c");
+var dPs = __nested_webpack_require_31151__("1495");
+var enumBugKeys = __nested_webpack_require_31151__("e11e");
+var IE_PROTO = __nested_webpack_require_31151__("613b")('IE_PROTO');
+var Empty = function () { /* empty */ };
+var PROTOTYPE = 'prototype';
+
+// Create object with fake `null` prototype: use iframe Object with cleared prototype
+var createDict = function () {
+  // Thrash, waste and sodomy: IE GC bug
+  var iframe = __nested_webpack_require_31151__("230e")('iframe');
+  var i = enumBugKeys.length;
+  var lt = '<';
+  var gt = '>';
+  var iframeDocument;
+  iframe.style.display = 'none';
+  __nested_webpack_require_31151__("fab2").appendChild(iframe);
+  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
+  // createDict = iframe.contentWindow.Object;
+  // html.removeChild(iframe);
+  iframeDocument = iframe.contentWindow.document;
+  iframeDocument.open();
+  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
+  iframeDocument.close();
+  createDict = iframeDocument.F;
+  while (i--) delete createDict[PROTOTYPE][enumBugKeys[i]];
+  return createDict();
+};
+
+module.exports = Object.create || function create(O, Properties) {
+  var result;
+  if (O !== null) {
+    Empty[PROTOTYPE] = anObject(O);
+    result = new Empty();
+    Empty[PROTOTYPE] = null;
+    // add "__proto__" for Object.getPrototypeOf polyfill
+    result[IE_PROTO] = O;
+  } else result = createDict();
+  return Properties === undefined ? result : dPs(result, Properties);
+};
+
+
+/***/ }),
+
+/***/ "2b4c":
+/***/ (function(module, exports, __nested_webpack_require_32762__) {
+
+var store = __nested_webpack_require_32762__("5537")('wks');
+var uid = __nested_webpack_require_32762__("ca5a");
+var Symbol = __nested_webpack_require_32762__("7726").Symbol;
+var USE_SYMBOL = typeof Symbol == 'function';
+
+var $exports = module.exports = function (name) {
+  return store[name] || (store[name] =
+    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
+};
+
+$exports.store = store;
+
+
+/***/ }),
+
+/***/ "2d00":
+/***/ (function(module, exports) {
+
+module.exports = false;
+
+
+/***/ }),
+
+/***/ "2d95":
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = function (it) {
+  return toString.call(it).slice(8, -1);
+};
+
+
+/***/ }),
+
+/***/ "30f1":
+/***/ (function(module, exports, __nested_webpack_require_33484__) {
+
+"use strict";
+
+var LIBRARY = __nested_webpack_require_33484__("b8e3");
+var $export = __nested_webpack_require_33484__("63b6");
+var redefine = __nested_webpack_require_33484__("9138");
+var hide = __nested_webpack_require_33484__("35e8");
+var Iterators = __nested_webpack_require_33484__("481b");
+var $iterCreate = __nested_webpack_require_33484__("8f60");
+var setToStringTag = __nested_webpack_require_33484__("45f2");
+var getPrototypeOf = __nested_webpack_require_33484__("53e2");
+var ITERATOR = __nested_webpack_require_33484__("5168")('iterator');
+var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
+var FF_ITERATOR = '@@iterator';
+var KEYS = 'keys';
+var VALUES = 'values';
+
+var returnThis = function () { return this; };
+
+module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
+  $iterCreate(Constructor, NAME, next);
+  var getMethod = function (kind) {
+    if (!BUGGY && kind in proto) return proto[kind];
+    switch (kind) {
+      case KEYS: return function keys() { return new Constructor(this, kind); };
+      case VALUES: return function values() { return new Constructor(this, kind); };
+    } return function entries() { return new Constructor(this, kind); };
+  };
+  var TAG = NAME + ' Iterator';
+  var DEF_VALUES = DEFAULT == VALUES;
+  var VALUES_BUG = false;
+  var proto = Base.prototype;
+  var $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT];
+  var $default = $native || getMethod(DEFAULT);
+  var $entries = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined;
+  var $anyNative = NAME == 'Array' ? proto.entries || $native : $native;
+  var methods, key, IteratorPrototype;
+  // Fix native
+  if ($anyNative) {
+    IteratorPrototype = getPrototypeOf($anyNative.call(new Base()));
+    if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
+      // Set @@toStringTag to native iterators
+      setToStringTag(IteratorPrototype, TAG, true);
+      // fix for some old engines
+      if (!LIBRARY && typeof IteratorPrototype[ITERATOR] != 'function') hide(IteratorPrototype, ITERATOR, returnThis);
+    }
+  }
+  // fix Array#{values, @@iterator}.name in V8 / FF
+  if (DEF_VALUES && $native && $native.name !== VALUES) {
+    VALUES_BUG = true;
+    $default = function values() { return $native.call(this); };
+  }
+  // Define iterator
+  if ((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+    hide(proto, ITERATOR, $default);
+  }
+  // Plug for library
+  Iterators[NAME] = $default;
+  Iterators[TAG] = returnThis;
+  if (DEFAULT) {
+    methods = {
+      values: DEF_VALUES ? $default : getMethod(VALUES),
+      keys: IS_SET ? $default : getMethod(KEYS),
+      entries: $entries
+    };
+    if (FORCED) for (key in methods) {
+      if (!(key in proto)) redefine(proto, key, methods[key]);
+    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
+  }
+  return methods;
+};
+
+
+/***/ }),
+
+/***/ "32e9":
+/***/ (function(module, exports, __nested_webpack_require_36390__) {
+
+var dP = __nested_webpack_require_36390__("86cc");
+var createDesc = __nested_webpack_require_36390__("4630");
+module.exports = __nested_webpack_require_36390__("9e1e") ? function (object, key, value) {
+  return dP.f(object, key, createDesc(1, value));
+} : function (object, key, value) {
+  object[key] = value;
+  return object;
+};
+
+
+/***/ }),
+
+/***/ "32fc":
+/***/ (function(module, exports, __nested_webpack_require_36766__) {
+
+var document = __nested_webpack_require_36766__("e53d").document;
+module.exports = document && document.documentElement;
+
+
+/***/ }),
+
+/***/ "335c":
+/***/ (function(module, exports, __nested_webpack_require_36958__) {
+
+// fallback for non-array-like ES3 and non-enumerable old V8 strings
+var cof = __nested_webpack_require_36958__("6b4c");
+// eslint-disable-next-line no-prototype-builtins
+module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
+  return cof(it) == 'String' ? it.split('') : Object(it);
+};
+
+
+/***/ }),
+
+/***/ "355d":
+/***/ (function(module, exports) {
+
+exports.f = {}.propertyIsEnumerable;
+
+
+/***/ }),
+
+/***/ "35e8":
+/***/ (function(module, exports, __nested_webpack_require_37441__) {
+
+var dP = __nested_webpack_require_37441__("d9f6");
+var createDesc = __nested_webpack_require_37441__("aebd");
+module.exports = __nested_webpack_require_37441__("8e60") ? function (object, key, value) {
+  return dP.f(object, key, createDesc(1, value));
+} : function (object, key, value) {
+  object[key] = value;
+  return object;
+};
+
+
+/***/ }),
+
+/***/ "36c3":
+/***/ (function(module, exports, __nested_webpack_require_37817__) {
+
+// to indexed object, toObject with fallback for non-array-like ES3 strings
+var IObject = __nested_webpack_require_37817__("335c");
+var defined = __nested_webpack_require_37817__("25eb");
+module.exports = function (it) {
+  return IObject(defined(it));
+};
+
+
+/***/ }),
+
+/***/ "3846":
+/***/ (function(module, exports, __nested_webpack_require_38130__) {
+
+// 21.2.5.3 get RegExp.prototype.flags()
+if (__nested_webpack_require_38130__("9e1e") && /./g.flags != 'g') __nested_webpack_require_38130__("86cc").f(RegExp.prototype, 'flags', {
+  configurable: true,
+  get: __nested_webpack_require_38130__("0bfb")
+});
+
+
+/***/ }),
+
+/***/ "38fd":
+/***/ (function(module, exports, __nested_webpack_require_38429__) {
+
+// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
+var has = __nested_webpack_require_38429__("69a8");
+var toObject = __nested_webpack_require_38429__("4bf8");
+var IE_PROTO = __nested_webpack_require_38429__("613b")('IE_PROTO');
+var ObjectProto = Object.prototype;
+
+module.exports = Object.getPrototypeOf || function (O) {
+  O = toObject(O);
+  if (has(O, IE_PROTO)) return O[IE_PROTO];
+  if (typeof O.constructor == 'function' && O instanceof O.constructor) {
+    return O.constructor.prototype;
+  } return O instanceof Object ? ObjectProto : null;
+};
+
+
+/***/ }),
+
+/***/ "3a38":
+/***/ (function(module, exports) {
+
+// 7.1.4 ToInteger
+var ceil = Math.ceil;
+var floor = Math.floor;
+module.exports = function (it) {
+  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+};
+
+
+/***/ }),
+
+/***/ "3b2b":
+/***/ (function(module, exports, __nested_webpack_require_39247__) {
+
+var global = __nested_webpack_require_39247__("7726");
+var inheritIfRequired = __nested_webpack_require_39247__("5dbc");
+var dP = __nested_webpack_require_39247__("86cc").f;
+var gOPN = __nested_webpack_require_39247__("9093").f;
+var isRegExp = __nested_webpack_require_39247__("aae3");
+var $flags = __nested_webpack_require_39247__("0bfb");
+var $RegExp = global.RegExp;
+var Base = $RegExp;
+var proto = $RegExp.prototype;
+var re1 = /a/g;
+var re2 = /a/g;
+// "new" creates a new object, old webkit buggy here
+var CORRECT_NEW = new $RegExp(re1) !== re1;
+
+if (__nested_webpack_require_39247__("9e1e") && (!CORRECT_NEW || __nested_webpack_require_39247__("79e5")(function () {
+  re2[__nested_webpack_require_39247__("2b4c")('match')] = false;
+  // RegExp constructor can alter flags and IsRegExp works correct with @@match
+  return $RegExp(re1) != re1 || $RegExp(re2) == re2 || $RegExp(re1, 'i') != '/a/i';
+}))) {
+  $RegExp = function RegExp(p, f) {
+    var tiRE = this instanceof $RegExp;
+    var piRE = isRegExp(p);
+    var fiU = f === undefined;
+    return !tiRE && piRE && p.constructor === $RegExp && fiU ? p
+      : inheritIfRequired(CORRECT_NEW
+        ? new Base(piRE && !fiU ? p.source : p, f)
+        : Base((piRE = p instanceof $RegExp) ? p.source : p, piRE && fiU ? $flags.call(p) : f)
+      , tiRE ? this : proto, $RegExp);
+  };
+  var proxy = function (key) {
+    key in $RegExp || dP($RegExp, key, {
+      configurable: true,
+      get: function () { return Base[key]; },
+      set: function (it) { Base[key] = it; }
+    });
+  };
+  for (var keys = gOPN(Base), i = 0; keys.length > i;) proxy(keys[i++]);
+  proto.constructor = $RegExp;
+  $RegExp.prototype = proto;
+  __nested_webpack_require_39247__("2aba")(global, 'RegExp', $RegExp);
+}
+
+__nested_webpack_require_39247__("7a56")('RegExp');
+
+
+/***/ }),
+
+/***/ "41a0":
+/***/ (function(module, exports, __nested_webpack_require_40985__) {
+
+"use strict";
+
+var create = __nested_webpack_require_40985__("2aeb");
+var descriptor = __nested_webpack_require_40985__("4630");
+var setToStringTag = __nested_webpack_require_40985__("7f20");
+var IteratorPrototype = {};
+
+// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+__nested_webpack_require_40985__("32e9")(IteratorPrototype, __nested_webpack_require_40985__("2b4c")('iterator'), function () { return this; });
+
+module.exports = function (Constructor, NAME, next) {
+  Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
+  setToStringTag(Constructor, NAME + ' Iterator');
+};
+
+
+/***/ }),
+
+/***/ "456d":
+/***/ (function(module, exports, __nested_webpack_require_41611__) {
+
+// 19.1.2.14 Object.keys(O)
+var toObject = __nested_webpack_require_41611__("4bf8");
+var $keys = __nested_webpack_require_41611__("0d58");
+
+__nested_webpack_require_41611__("5eda")('keys', function () {
+  return function keys(it) {
+    return $keys(toObject(it));
+  };
+});
+
+
+/***/ }),
+
+/***/ "4588":
+/***/ (function(module, exports) {
+
+// 7.1.4 ToInteger
+var ceil = Math.ceil;
+var floor = Math.floor;
+module.exports = function (it) {
+  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+};
+
+
+/***/ }),
+
+/***/ "45f2":
+/***/ (function(module, exports, __nested_webpack_require_42153__) {
+
+var def = __nested_webpack_require_42153__("d9f6").f;
+var has = __nested_webpack_require_42153__("07e3");
+var TAG = __nested_webpack_require_42153__("5168")('toStringTag');
+
+module.exports = function (it, tag, stat) {
+  if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
+};
+
+
+/***/ }),
+
+/***/ "4630":
+/***/ (function(module, exports) {
+
+module.exports = function (bitmap, value) {
+  return {
+    enumerable: !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable: !(bitmap & 4),
+    value: value
+  };
+};
+
+
+/***/ }),
+
+/***/ "47ee":
+/***/ (function(module, exports, __nested_webpack_require_42759__) {
+
+// all enumerable object keys, includes symbols
+var getKeys = __nested_webpack_require_42759__("c3a1");
+var gOPS = __nested_webpack_require_42759__("9aa9");
+var pIE = __nested_webpack_require_42759__("355d");
+module.exports = function (it) {
+  var result = getKeys(it);
+  var getSymbols = gOPS.f;
+  if (getSymbols) {
+    var symbols = getSymbols(it);
+    var isEnum = pIE.f;
+    var i = 0;
+    var key;
+    while (symbols.length > i) if (isEnum.call(it, key = symbols[i++])) result.push(key);
+  } return result;
+};
+
+
+/***/ }),
+
+/***/ "481b":
+/***/ (function(module, exports) {
+
+module.exports = {};
+
+
+/***/ }),
+
+/***/ "4917":
+/***/ (function(module, exports, __nested_webpack_require_43403__) {
+
+"use strict";
+
+
+var anObject = __nested_webpack_require_43403__("cb7c");
+var toLength = __nested_webpack_require_43403__("9def");
+var advanceStringIndex = __nested_webpack_require_43403__("0390");
+var regExpExec = __nested_webpack_require_43403__("5f1b");
+
+// @@match logic
+__nested_webpack_require_43403__("214f")('match', 1, function (defined, MATCH, $match, maybeCallNative) {
+  return [
+    // `String.prototype.match` method
+    // https://tc39.github.io/ecma262/#sec-string.prototype.match
+    function match(regexp) {
+      var O = defined(this);
+      var fn = regexp == undefined ? undefined : regexp[MATCH];
+      return fn !== undefined ? fn.call(regexp, O) : new RegExp(regexp)[MATCH](String(O));
+    },
+    // `RegExp.prototype[@@match]` method
+    // https://tc39.github.io/ecma262/#sec-regexp.prototype-@@match
+    function (regexp) {
+      var res = maybeCallNative($match, regexp, this);
+      if (res.done) return res.value;
+      var rx = anObject(regexp);
+      var S = String(this);
+      if (!rx.global) return regExpExec(rx, S);
+      var fullUnicode = rx.unicode;
+      rx.lastIndex = 0;
+      var A = [];
+      var n = 0;
+      var result;
+      while ((result = regExpExec(rx, S)) !== null) {
+        var matchStr = String(result[0]);
+        A[n] = matchStr;
+        if (matchStr === '') rx.lastIndex = advanceStringIndex(S, toLength(rx.lastIndex), fullUnicode);
+        n++;
+      }
+      return n === 0 ? null : A;
+    }
+  ];
+});
+
+
+/***/ }),
+
+/***/ "4bf8":
+/***/ (function(module, exports, __nested_webpack_require_44881__) {
+
+// 7.1.13 ToObject(argument)
+var defined = __nested_webpack_require_44881__("be13");
+module.exports = function (it) {
+  return Object(defined(it));
+};
+
+
+/***/ }),
+
+/***/ "50ed":
+/***/ (function(module, exports) {
+
+module.exports = function (done, value) {
+  return { value: value, done: !!done };
+};
+
+
+/***/ }),
+
+/***/ "5168":
+/***/ (function(module, exports, __nested_webpack_require_45252__) {
+
+var store = __nested_webpack_require_45252__("dbdb")('wks');
+var uid = __nested_webpack_require_45252__("62a0");
+var Symbol = __nested_webpack_require_45252__("e53d").Symbol;
+var USE_SYMBOL = typeof Symbol == 'function';
+
+var $exports = module.exports = function (name) {
+  return store[name] || (store[name] =
+    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
+};
+
+$exports.store = store;
+
+
+/***/ }),
+
+/***/ "520a":
+/***/ (function(module, exports, __nested_webpack_require_45718__) {
+
+"use strict";
+
+
+var regexpFlags = __nested_webpack_require_45718__("0bfb");
+
+var nativeExec = RegExp.prototype.exec;
+// This always refers to the native implementation, because the
+// String#replace polyfill uses ./fix-regexp-well-known-symbol-logic.js,
+// which loads this file before patching the method.
+var nativeReplace = String.prototype.replace;
+
+var patchedExec = nativeExec;
+
+var LAST_INDEX = 'lastIndex';
+
+var UPDATES_LAST_INDEX_WRONG = (function () {
+  var re1 = /a/,
+      re2 = /b*/g;
+  nativeExec.call(re1, 'a');
+  nativeExec.call(re2, 'a');
+  return re1[LAST_INDEX] !== 0 || re2[LAST_INDEX] !== 0;
+})();
+
+// nonparticipating capturing group, copied from es5-shim's String#split patch.
+var NPCG_INCLUDED = /()??/.exec('')[1] !== undefined;
+
+var PATCH = UPDATES_LAST_INDEX_WRONG || NPCG_INCLUDED;
+
+if (PATCH) {
+  patchedExec = function exec(str) {
+    var re = this;
+    var lastIndex, reCopy, match, i;
+
+    if (NPCG_INCLUDED) {
+      reCopy = new RegExp('^' + re.source + '$(?!\\s)', regexpFlags.call(re));
+    }
+    if (UPDATES_LAST_INDEX_WRONG) lastIndex = re[LAST_INDEX];
+
+    match = nativeExec.call(re, str);
+
+    if (UPDATES_LAST_INDEX_WRONG && match) {
+      re[LAST_INDEX] = re.global ? match.index + match[0].length : lastIndex;
+    }
+    if (NPCG_INCLUDED && match && match.length > 1) {
+      // Fix browsers whose `exec` methods don't consistently return `undefined`
+      // for NPCG, like IE8. NOTE: This doesn' work for /(.?)?/
+      // eslint-disable-next-line no-loop-func
+      nativeReplace.call(match[0], reCopy, function () {
+        for (i = 1; i < arguments.length - 2; i++) {
+          if (arguments[i] === undefined) match[i] = undefined;
+        }
+      });
+    }
+
+    return match;
+  };
+}
+
+module.exports = patchedExec;
+
+
+/***/ }),
+
+/***/ "52a7":
+/***/ (function(module, exports) {
+
+exports.f = {}.propertyIsEnumerable;
+
+
+/***/ }),
+
+/***/ "53e2":
+/***/ (function(module, exports, __nested_webpack_require_47651__) {
+
+// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
+var has = __nested_webpack_require_47651__("07e3");
+var toObject = __nested_webpack_require_47651__("241e");
+var IE_PROTO = __nested_webpack_require_47651__("5559")('IE_PROTO');
+var ObjectProto = Object.prototype;
+
+module.exports = Object.getPrototypeOf || function (O) {
+  O = toObject(O);
+  if (has(O, IE_PROTO)) return O[IE_PROTO];
+  if (typeof O.constructor == 'function' && O instanceof O.constructor) {
+    return O.constructor.prototype;
+  } return O instanceof Object ? ObjectProto : null;
+};
+
+
+/***/ }),
+
+/***/ "5537":
+/***/ (function(module, exports, __nested_webpack_require_48245__) {
+
+var core = __nested_webpack_require_48245__("8378");
+var global = __nested_webpack_require_48245__("7726");
+var SHARED = '__core-js_shared__';
+var store = global[SHARED] || (global[SHARED] = {});
+
+(module.exports = function (key, value) {
+  return store[key] || (store[key] = value !== undefined ? value : {});
+})('versions', []).push({
+  version: core.version,
+  mode: __nested_webpack_require_48245__("2d00") ? 'pure' : 'global',
+  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
+});
+
+
+/***/ }),
+
+/***/ "5559":
+/***/ (function(module, exports, __nested_webpack_require_48778__) {
+
+var shared = __nested_webpack_require_48778__("dbdb")('keys');
+var uid = __nested_webpack_require_48778__("62a0");
+module.exports = function (key) {
+  return shared[key] || (shared[key] = uid(key));
+};
+
+
+/***/ }),
+
+/***/ "584a":
+/***/ (function(module, exports) {
+
+var core = module.exports = { version: '2.6.9' };
+if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
+
+
+/***/ }),
+
+/***/ "5b4e":
+/***/ (function(module, exports, __nested_webpack_require_49223__) {
+
+// false -> Array#indexOf
+// true  -> Array#includes
+var toIObject = __nested_webpack_require_49223__("36c3");
+var toLength = __nested_webpack_require_49223__("b447");
+var toAbsoluteIndex = __nested_webpack_require_49223__("0fc9");
+module.exports = function (IS_INCLUDES) {
+  return function ($this, el, fromIndex) {
+    var O = toIObject($this);
+    var length = toLength(O.length);
+    var index = toAbsoluteIndex(fromIndex, length);
+    var value;
+    // Array#includes uses SameValueZero equality algorithm
+    // eslint-disable-next-line no-self-compare
+    if (IS_INCLUDES && el != el) while (length > index) {
+      value = O[index++];
+      // eslint-disable-next-line no-self-compare
+      if (value != value) return true;
+    // Array#indexOf ignores holes, Array#includes - not
+    } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
+      if (O[index] === el) return IS_INCLUDES || index || 0;
+    } return !IS_INCLUDES && -1;
+  };
+};
+
+
+/***/ }),
+
+/***/ "5ca1":
+/***/ (function(module, exports, __nested_webpack_require_50234__) {
+
+var global = __nested_webpack_require_50234__("7726");
+var core = __nested_webpack_require_50234__("8378");
+var hide = __nested_webpack_require_50234__("32e9");
+var redefine = __nested_webpack_require_50234__("2aba");
+var ctx = __nested_webpack_require_50234__("9b43");
+var PROTOTYPE = 'prototype';
+
+var $export = function (type, name, source) {
+  var IS_FORCED = type & $export.F;
+  var IS_GLOBAL = type & $export.G;
+  var IS_STATIC = type & $export.S;
+  var IS_PROTO = type & $export.P;
+  var IS_BIND = type & $export.B;
+  var target = IS_GLOBAL ? global : IS_STATIC ? global[name] || (global[name] = {}) : (global[name] || {})[PROTOTYPE];
+  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
+  var expProto = exports[PROTOTYPE] || (exports[PROTOTYPE] = {});
+  var key, own, out, exp;
+  if (IS_GLOBAL) source = name;
+  for (key in source) {
+    // contains in native
+    own = !IS_FORCED && target && target[key] !== undefined;
+    // export native or passed
+    out = (own ? target : source)[key];
+    // bind timers to global for call from export context
+    exp = IS_BIND && own ? ctx(out, global) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+    // extend global
+    if (target) redefine(target, key, out, type & $export.U);
+    // export
+    if (exports[key] != out) hide(exports, key, exp);
+    if (IS_PROTO && expProto[key] != out) expProto[key] = out;
+  }
+};
+global.core = core;
+// type bitmap
+$export.F = 1;   // forced
+$export.G = 2;   // global
+$export.S = 4;   // static
+$export.P = 8;   // proto
+$export.B = 16;  // bind
+$export.W = 32;  // wrap
+$export.U = 64;  // safe
+$export.R = 128; // real proto method for `library`
+module.exports = $export;
+
+
+/***/ }),
+
+/***/ "5d58":
+/***/ (function(module, exports, __nested_webpack_require_51959__) {
+
+module.exports = __nested_webpack_require_51959__("d8d6");
+
+/***/ }),
+
+/***/ "5dbc":
+/***/ (function(module, exports, __nested_webpack_require_52088__) {
+
+var isObject = __nested_webpack_require_52088__("d3f4");
+var setPrototypeOf = __nested_webpack_require_52088__("8b97").set;
+module.exports = function (that, target, C) {
+  var S = target.constructor;
+  var P;
+  if (S !== C && typeof S == 'function' && (P = S.prototype) !== C.prototype && isObject(P) && setPrototypeOf) {
+    setPrototypeOf(that, P);
+  } return that;
+};
+
+
+/***/ }),
+
+/***/ "5eda":
+/***/ (function(module, exports, __nested_webpack_require_52517__) {
+
+// most Object methods by ES6 should accept primitives
+var $export = __nested_webpack_require_52517__("5ca1");
+var core = __nested_webpack_require_52517__("8378");
+var fails = __nested_webpack_require_52517__("79e5");
+module.exports = function (KEY, exec) {
+  var fn = (core.Object || {})[KEY] || Object[KEY];
+  var exp = {};
+  exp[KEY] = exec(fn);
+  $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
+};
+
+
+/***/ }),
+
+/***/ "5f1b":
+/***/ (function(module, exports, __nested_webpack_require_52995__) {
+
+"use strict";
+
+
+var classof = __nested_webpack_require_52995__("23c6");
+var builtinExec = RegExp.prototype.exec;
+
+ // `RegExpExec` abstract operation
+// https://tc39.github.io/ecma262/#sec-regexpexec
+module.exports = function (R, S) {
+  var exec = R.exec;
+  if (typeof exec === 'function') {
+    var result = exec.call(R, S);
+    if (typeof result !== 'object') {
+      throw new TypeError('RegExp exec method returned something other than an Object or null');
+    }
+    return result;
+  }
+  if (classof(R) !== 'RegExp') {
+    throw new TypeError('RegExp#exec called on incompatible receiver');
+  }
+  return builtinExec.call(R, S);
+};
+
+
+/***/ }),
+
+/***/ "613b":
+/***/ (function(module, exports, __nested_webpack_require_53701__) {
+
+var shared = __nested_webpack_require_53701__("5537")('keys');
+var uid = __nested_webpack_require_53701__("ca5a");
+module.exports = function (key) {
+  return shared[key] || (shared[key] = uid(key));
+};
+
+
+/***/ }),
+
+/***/ "626a":
+/***/ (function(module, exports, __nested_webpack_require_53961__) {
+
+// fallback for non-array-like ES3 and non-enumerable old V8 strings
+var cof = __nested_webpack_require_53961__("2d95");
+// eslint-disable-next-line no-prototype-builtins
+module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
+  return cof(it) == 'String' ? it.split('') : Object(it);
+};
+
+
+/***/ }),
+
+/***/ "62a0":
+/***/ (function(module, exports) {
+
+var id = 0;
+var px = Math.random();
+module.exports = function (key) {
+  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
+};
+
+
+/***/ }),
+
+/***/ "63b6":
+/***/ (function(module, exports, __nested_webpack_require_54569__) {
+
+var global = __nested_webpack_require_54569__("e53d");
+var core = __nested_webpack_require_54569__("584a");
+var ctx = __nested_webpack_require_54569__("d864");
+var hide = __nested_webpack_require_54569__("35e8");
+var has = __nested_webpack_require_54569__("07e3");
+var PROTOTYPE = 'prototype';
+
+var $export = function (type, name, source) {
+  var IS_FORCED = type & $export.F;
+  var IS_GLOBAL = type & $export.G;
+  var IS_STATIC = type & $export.S;
+  var IS_PROTO = type & $export.P;
+  var IS_BIND = type & $export.B;
+  var IS_WRAP = type & $export.W;
+  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
+  var expProto = exports[PROTOTYPE];
+  var target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE];
+  var key, own, out;
+  if (IS_GLOBAL) source = name;
+  for (key in source) {
+    // contains in native
+    own = !IS_FORCED && target && target[key] !== undefined;
+    if (own && has(exports, key)) continue;
+    // export native or passed
+    out = own ? target[key] : source[key];
+    // prevent global pollution for namespaces
+    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
+    // bind timers to global for call from export context
+    : IS_BIND && own ? ctx(out, global)
+    // wrap global constructors for prevent change them in library
+    : IS_WRAP && target[key] == out ? (function (C) {
+      var F = function (a, b, c) {
+        if (this instanceof C) {
+          switch (arguments.length) {
+            case 0: return new C();
+            case 1: return new C(a);
+            case 2: return new C(a, b);
+          } return new C(a, b, c);
+        } return C.apply(this, arguments);
+      };
+      F[PROTOTYPE] = C[PROTOTYPE];
+      return F;
+    // make static versions for prototype methods
+    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
+    if (IS_PROTO) {
+      (exports.virtual || (exports.virtual = {}))[key] = out;
+      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
+      if (type & $export.R && expProto && !expProto[key]) hide(expProto, key, out);
+    }
+  }
+};
+// type bitmap
+$export.F = 1;   // forced
+$export.G = 2;   // global
+$export.S = 4;   // static
+$export.P = 8;   // proto
+$export.B = 16;  // bind
+$export.W = 32;  // wrap
+$export.U = 64;  // safe
+$export.R = 128; // real proto method for `library`
+module.exports = $export;
+
+
+/***/ }),
+
+/***/ "6718":
+/***/ (function(module, exports, __nested_webpack_require_57047__) {
+
+var global = __nested_webpack_require_57047__("e53d");
+var core = __nested_webpack_require_57047__("584a");
+var LIBRARY = __nested_webpack_require_57047__("b8e3");
+var wksExt = __nested_webpack_require_57047__("ccb9");
+var defineProperty = __nested_webpack_require_57047__("d9f6").f;
+module.exports = function (name) {
+  var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
+  if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty($Symbol, name, { value: wksExt.f(name) });
+};
+
+
+/***/ }),
+
+/***/ "67bb":
+/***/ (function(module, exports, __nested_webpack_require_57580__) {
+
+module.exports = __nested_webpack_require_57580__("f921");
+
+/***/ }),
+
+/***/ "6821":
+/***/ (function(module, exports, __nested_webpack_require_57709__) {
+
+// to indexed object, toObject with fallback for non-array-like ES3 strings
+var IObject = __nested_webpack_require_57709__("626a");
+var defined = __nested_webpack_require_57709__("be13");
+module.exports = function (it) {
+  return IObject(defined(it));
+};
+
+
+/***/ }),
+
+/***/ "69a8":
+/***/ (function(module, exports) {
+
+var hasOwnProperty = {}.hasOwnProperty;
+module.exports = function (it, key) {
+  return hasOwnProperty.call(it, key);
+};
+
+
+/***/ }),
+
+/***/ "69d3":
+/***/ (function(module, exports, __nested_webpack_require_58205__) {
+
+__nested_webpack_require_58205__("6718")('asyncIterator');
+
+
+/***/ }),
+
+/***/ "6a99":
+/***/ (function(module, exports, __nested_webpack_require_58335__) {
+
+// 7.1.1 ToPrimitive(input [, PreferredType])
+var isObject = __nested_webpack_require_58335__("d3f4");
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+module.exports = function (it, S) {
+  if (!isObject(it)) return it;
+  var fn, val;
+  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+
+
+/***/ }),
+
+/***/ "6abf":
+/***/ (function(module, exports, __nested_webpack_require_59078__) {
+
+// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
+var $keys = __nested_webpack_require_59078__("e6f3");
+var hiddenKeys = __nested_webpack_require_59078__("1691").concat('length', 'prototype');
+
+exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
+  return $keys(O, hiddenKeys);
+};
+
+
+/***/ }),
+
+/***/ "6b4c":
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = function (it) {
+  return toString.call(it).slice(8, -1);
+};
+
+
+/***/ }),
+
+/***/ "6b54":
+/***/ (function(module, exports, __nested_webpack_require_59612__) {
+
+"use strict";
+
+__nested_webpack_require_59612__("3846");
+var anObject = __nested_webpack_require_59612__("cb7c");
+var $flags = __nested_webpack_require_59612__("0bfb");
+var DESCRIPTORS = __nested_webpack_require_59612__("9e1e");
+var TO_STRING = 'toString';
+var $toString = /./[TO_STRING];
+
+var define = function (fn) {
+  __nested_webpack_require_59612__("2aba")(RegExp.prototype, TO_STRING, fn, true);
+};
+
+// 21.2.5.14 RegExp.prototype.toString()
+if (__nested_webpack_require_59612__("79e5")(function () { return $toString.call({ source: 'a', flags: 'b' }) != '/a/b'; })) {
+  define(function toString() {
+    var R = anObject(this);
+    return '/'.concat(R.source, '/',
+      'flags' in R ? R.flags : !DESCRIPTORS && R instanceof RegExp ? $flags.call(R) : undefined);
+  });
+// FF44- RegExp#toString has a wrong name
+} else if ($toString.name != TO_STRING) {
+  define(function toString() {
+    return $toString.call(this);
+  });
+}
+
+
+/***/ }),
+
+/***/ "6c1c":
+/***/ (function(module, exports, __nested_webpack_require_60548__) {
+
+__nested_webpack_require_60548__("c367");
+var global = __nested_webpack_require_60548__("e53d");
+var hide = __nested_webpack_require_60548__("35e8");
+var Iterators = __nested_webpack_require_60548__("481b");
+var TO_STRING_TAG = __nested_webpack_require_60548__("5168")('toStringTag');
+
+var DOMIterables = ('CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,' +
+  'DOMTokenList,DataTransferItemList,FileList,HTMLAllCollection,HTMLCollection,HTMLFormElement,HTMLSelectElement,' +
+  'MediaList,MimeTypeArray,NamedNodeMap,NodeList,PaintRequestList,Plugin,PluginArray,SVGLengthList,SVGNumberList,' +
+  'SVGPathSegList,SVGPointList,SVGStringList,SVGTransformList,SourceBufferList,StyleSheetList,TextTrackCueList,' +
+  'TextTrackList,TouchList').split(',');
+
+for (var i = 0; i < DOMIterables.length; i++) {
+  var NAME = DOMIterables[i];
+  var Collection = global[NAME];
+  var proto = Collection && Collection.prototype;
+  if (proto && !proto[TO_STRING_TAG]) hide(proto, TO_STRING_TAG, NAME);
+  Iterators[NAME] = Iterators.Array;
+}
+
+
+/***/ }),
+
+/***/ "71c1":
+/***/ (function(module, exports, __nested_webpack_require_61627__) {
+
+var toInteger = __nested_webpack_require_61627__("3a38");
+var defined = __nested_webpack_require_61627__("25eb");
+// true  -> String#at
+// false -> String#codePointAt
+module.exports = function (TO_STRING) {
+  return function (that, pos) {
+    var s = String(defined(that));
+    var i = toInteger(pos);
+    var l = s.length;
+    var a, b;
+    if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
+    a = s.charCodeAt(i);
+    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
+      ? TO_STRING ? s.charAt(i) : a
+      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
+  };
+};
+
+
+/***/ }),
+
+/***/ "7514":
+/***/ (function(module, exports, __nested_webpack_require_62340__) {
+
+"use strict";
+
+// 22.1.3.8 Array.prototype.find(predicate, thisArg = undefined)
+var $export = __nested_webpack_require_62340__("5ca1");
+var $find = __nested_webpack_require_62340__("0a49")(5);
+var KEY = 'find';
+var forced = true;
+// Shouldn't skip holes
+if (KEY in []) Array(1)[KEY](function () { forced = false; });
+$export($export.P + $export.F * forced, 'Array', {
+  find: function find(callbackfn /* , that = undefined */) {
+    return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+__nested_webpack_require_62340__("9c6c")(KEY);
+
+
+/***/ }),
+
+/***/ "765d":
+/***/ (function(module, exports, __nested_webpack_require_62954__) {
+
+__nested_webpack_require_62954__("6718")('observable');
+
+
+/***/ }),
+
+/***/ "7726":
+/***/ (function(module, exports) {
+
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self
+  // eslint-disable-next-line no-new-func
+  : Function('return this')();
+if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
+
+
+/***/ }),
+
+/***/ "77f1":
+/***/ (function(module, exports, __nested_webpack_require_63513__) {
+
+var toInteger = __nested_webpack_require_63513__("4588");
+var max = Math.max;
+var min = Math.min;
+module.exports = function (index, length) {
+  index = toInteger(index);
+  return index < 0 ? max(index + length, 0) : min(index, length);
+};
+
+
+/***/ }),
+
+/***/ "794b":
+/***/ (function(module, exports, __nested_webpack_require_63823__) {
+
+module.exports = !__nested_webpack_require_63823__("8e60") && !__nested_webpack_require_63823__("294c")(function () {
+  return Object.defineProperty(__nested_webpack_require_63823__("1ec9")('div'), 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+
+/***/ "79aa":
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+
+/***/ }),
+
+/***/ "79e5":
+/***/ (function(module, exports) {
+
+module.exports = function (exec) {
+  try {
+    return !!exec();
+  } catch (e) {
+    return true;
+  }
+};
+
+
+/***/ }),
+
+/***/ "7a56":
+/***/ (function(module, exports, __nested_webpack_require_64474__) {
+
+"use strict";
+
+var global = __nested_webpack_require_64474__("7726");
+var dP = __nested_webpack_require_64474__("86cc");
+var DESCRIPTORS = __nested_webpack_require_64474__("9e1e");
+var SPECIES = __nested_webpack_require_64474__("2b4c")('species');
+
+module.exports = function (KEY) {
+  var C = global[KEY];
+  if (DESCRIPTORS && C && !C[SPECIES]) dP.f(C, SPECIES, {
+    configurable: true,
+    get: function () { return this; }
+  });
+};
+
+
+/***/ }),
+
+/***/ "7e90":
+/***/ (function(module, exports, __nested_webpack_require_64941__) {
+
+var dP = __nested_webpack_require_64941__("d9f6");
+var anObject = __nested_webpack_require_64941__("e4ae");
+var getKeys = __nested_webpack_require_64941__("c3a1");
+
+module.exports = __nested_webpack_require_64941__("8e60") ? Object.defineProperties : function defineProperties(O, Properties) {
+  anObject(O);
+  var keys = getKeys(Properties);
+  var length = keys.length;
+  var i = 0;
+  var P;
+  while (length > i) dP.f(O, P = keys[i++], Properties[P]);
+  return O;
+};
+
+
+/***/ }),
+
+/***/ "7f20":
+/***/ (function(module, exports, __nested_webpack_require_65441__) {
+
+var def = __nested_webpack_require_65441__("86cc").f;
+var has = __nested_webpack_require_65441__("69a8");
+var TAG = __nested_webpack_require_65441__("2b4c")('toStringTag');
+
+module.exports = function (it, tag, stat) {
+  if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
+};
+
+
+/***/ }),
+
+/***/ "7f7f":
+/***/ (function(module, exports, __nested_webpack_require_65811__) {
+
+var dP = __nested_webpack_require_65811__("86cc").f;
+var FProto = Function.prototype;
+var nameRE = /^\s*function ([^ (]*)/;
+var NAME = 'name';
+
+// 19.2.4.2 name
+NAME in FProto || __nested_webpack_require_65811__("9e1e") && dP(FProto, NAME, {
+  configurable: true,
+  get: function () {
+    try {
+      return ('' + this).match(nameRE)[1];
+    } catch (e) {
+      return '';
+    }
+  }
+});
+
+
+/***/ }),
+
+/***/ "8378":
+/***/ (function(module, exports) {
+
+var core = module.exports = { version: '2.6.9' };
+if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
+
+
+/***/ }),
+
+/***/ "8436":
+/***/ (function(module, exports) {
+
+module.exports = function () { /* empty */ };
+
+
+/***/ }),
+
+/***/ "84f2":
+/***/ (function(module, exports) {
+
+module.exports = {};
+
+
+/***/ }),
+
+/***/ "86cc":
+/***/ (function(module, exports, __nested_webpack_require_66634__) {
+
+var anObject = __nested_webpack_require_66634__("cb7c");
+var IE8_DOM_DEFINE = __nested_webpack_require_66634__("c69a");
+var toPrimitive = __nested_webpack_require_66634__("6a99");
+var dP = Object.defineProperty;
+
+exports.f = __nested_webpack_require_66634__("9e1e") ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+  anObject(O);
+  P = toPrimitive(P, true);
+  anObject(Attributes);
+  if (IE8_DOM_DEFINE) try {
+    return dP(O, P, Attributes);
+  } catch (e) { /* empty */ }
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
+  if ('value' in Attributes) O[P] = Attributes.value;
+  return O;
+};
+
+
+/***/ }),
+
+/***/ "8b97":
+/***/ (function(module, exports, __nested_webpack_require_67324__) {
+
+// Works with __proto__ only. Old v8 can't work with null proto objects.
+/* eslint-disable no-proto */
+var isObject = __nested_webpack_require_67324__("d3f4");
+var anObject = __nested_webpack_require_67324__("cb7c");
+var check = function (O, proto) {
+  anObject(O);
+  if (!isObject(proto) && proto !== null) throw TypeError(proto + ": can't set as prototype!");
+};
+module.exports = {
+  set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
+    function (test, buggy, set) {
+      try {
+        set = __nested_webpack_require_67324__("9b43")(Function.call, __nested_webpack_require_67324__("11e9").f(Object.prototype, '__proto__').set, 2);
+        set(test, []);
+        buggy = !(test instanceof Array);
+      } catch (e) { buggy = true; }
+      return function setPrototypeOf(O, proto) {
+        check(O, proto);
+        if (buggy) O.__proto__ = proto;
+        else set(O, proto);
+        return O;
+      };
+    }({}, false) : undefined),
+  check: check
+};
+
+
+/***/ }),
+
+/***/ "8e60":
+/***/ (function(module, exports, __nested_webpack_require_68334__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__nested_webpack_require_68334__("294c")(function () {
+  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+
+/***/ "8f60":
+/***/ (function(module, exports, __nested_webpack_require_68610__) {
+
+"use strict";
+
+var create = __nested_webpack_require_68610__("a159");
+var descriptor = __nested_webpack_require_68610__("aebd");
+var setToStringTag = __nested_webpack_require_68610__("45f2");
+var IteratorPrototype = {};
+
+// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+__nested_webpack_require_68610__("35e8")(IteratorPrototype, __nested_webpack_require_68610__("5168")('iterator'), function () { return this; });
+
+module.exports = function (Constructor, NAME, next) {
+  Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
+  setToStringTag(Constructor, NAME + ' Iterator');
+};
+
+
+/***/ }),
+
+/***/ "9003":
+/***/ (function(module, exports, __nested_webpack_require_69236__) {
+
+// 7.2.2 IsArray(argument)
+var cof = __nested_webpack_require_69236__("6b4c");
+module.exports = Array.isArray || function isArray(arg) {
+  return cof(arg) == 'Array';
+};
+
+
+/***/ }),
+
+/***/ "9093":
+/***/ (function(module, exports, __nested_webpack_require_69477__) {
+
+// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
+var $keys = __nested_webpack_require_69477__("ce10");
+var hiddenKeys = __nested_webpack_require_69477__("e11e").concat('length', 'prototype');
+
+exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
+  return $keys(O, hiddenKeys);
+};
+
+
+/***/ }),
+
+/***/ "9138":
+/***/ (function(module, exports, __nested_webpack_require_69842__) {
+
+module.exports = __nested_webpack_require_69842__("35e8");
+
+
+/***/ }),
+
+/***/ "9910":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "9aa9":
+/***/ (function(module, exports) {
+
+exports.f = Object.getOwnPropertySymbols;
+
+
+/***/ }),
+
+/***/ "9b43":
+/***/ (function(module, exports, __nested_webpack_require_70200__) {
+
+// optional / simple context binding
+var aFunction = __nested_webpack_require_70200__("d8e8");
+module.exports = function (fn, that, length) {
+  aFunction(fn);
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
+      return fn.call(that, a);
+    };
+    case 2: return function (a, b) {
+      return fn.call(that, a, b);
+    };
+    case 3: return function (a, b, c) {
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function (/* ...args */) {
+    return fn.apply(that, arguments);
+  };
+};
+
+
+/***/ }),
+
+/***/ "9c6c":
+/***/ (function(module, exports, __nested_webpack_require_70807__) {
+
+// 22.1.3.31 Array.prototype[@@unscopables]
+var UNSCOPABLES = __nested_webpack_require_70807__("2b4c")('unscopables');
+var ArrayProto = Array.prototype;
+if (ArrayProto[UNSCOPABLES] == undefined) __nested_webpack_require_70807__("32e9")(ArrayProto, UNSCOPABLES, {});
+module.exports = function (key) {
+  ArrayProto[UNSCOPABLES][key] = true;
+};
+
+
+/***/ }),
+
+/***/ "9def":
+/***/ (function(module, exports, __nested_webpack_require_71207__) {
+
+// 7.1.15 ToLength
+var toInteger = __nested_webpack_require_71207__("4588");
+var min = Math.min;
+module.exports = function (it) {
+  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+};
+
+
+/***/ }),
+
+/***/ "9e1e":
+/***/ (function(module, exports, __nested_webpack_require_71509__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__nested_webpack_require_71509__("79e5")(function () {
+  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+
+/***/ "a159":
+/***/ (function(module, exports, __nested_webpack_require_71785__) {
+
+// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
+var anObject = __nested_webpack_require_71785__("e4ae");
+var dPs = __nested_webpack_require_71785__("7e90");
+var enumBugKeys = __nested_webpack_require_71785__("1691");
+var IE_PROTO = __nested_webpack_require_71785__("5559")('IE_PROTO');
+var Empty = function () { /* empty */ };
+var PROTOTYPE = 'prototype';
+
+// Create object with fake `null` prototype: use iframe Object with cleared prototype
+var createDict = function () {
+  // Thrash, waste and sodomy: IE GC bug
+  var iframe = __nested_webpack_require_71785__("1ec9")('iframe');
+  var i = enumBugKeys.length;
+  var lt = '<';
+  var gt = '>';
+  var iframeDocument;
+  iframe.style.display = 'none';
+  __nested_webpack_require_71785__("32fc").appendChild(iframe);
+  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
+  // createDict = iframe.contentWindow.Object;
+  // html.removeChild(iframe);
+  iframeDocument = iframe.contentWindow.document;
+  iframeDocument.open();
+  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
+  iframeDocument.close();
+  createDict = iframeDocument.F;
+  while (i--) delete createDict[PROTOTYPE][enumBugKeys[i]];
+  return createDict();
+};
+
+module.exports = Object.create || function create(O, Properties) {
+  var result;
+  if (O !== null) {
+    Empty[PROTOTYPE] = anObject(O);
+    result = new Empty();
+    Empty[PROTOTYPE] = null;
+    // add "__proto__" for Object.getPrototypeOf polyfill
+    result[IE_PROTO] = O;
+  } else result = createDict();
+  return Properties === undefined ? result : dPs(result, Properties);
+};
+
+
+/***/ }),
+
+/***/ "a481":
+/***/ (function(module, exports, __nested_webpack_require_73396__) {
+
+"use strict";
+
+
+var anObject = __nested_webpack_require_73396__("cb7c");
+var toObject = __nested_webpack_require_73396__("4bf8");
+var toLength = __nested_webpack_require_73396__("9def");
+var toInteger = __nested_webpack_require_73396__("4588");
+var advanceStringIndex = __nested_webpack_require_73396__("0390");
+var regExpExec = __nested_webpack_require_73396__("5f1b");
+var max = Math.max;
+var min = Math.min;
+var floor = Math.floor;
+var SUBSTITUTION_SYMBOLS = /\$([$&`']|\d\d?|<[^>]*>)/g;
+var SUBSTITUTION_SYMBOLS_NO_NAMED = /\$([$&`']|\d\d?)/g;
+
+var maybeToString = function (it) {
+  return it === undefined ? it : String(it);
+};
+
+// @@replace logic
+__nested_webpack_require_73396__("214f")('replace', 2, function (defined, REPLACE, $replace, maybeCallNative) {
+  return [
+    // `String.prototype.replace` method
+    // https://tc39.github.io/ecma262/#sec-string.prototype.replace
+    function replace(searchValue, replaceValue) {
+      var O = defined(this);
+      var fn = searchValue == undefined ? undefined : searchValue[REPLACE];
+      return fn !== undefined
+        ? fn.call(searchValue, O, replaceValue)
+        : $replace.call(String(O), searchValue, replaceValue);
+    },
+    // `RegExp.prototype[@@replace]` method
+    // https://tc39.github.io/ecma262/#sec-regexp.prototype-@@replace
+    function (regexp, replaceValue) {
+      var res = maybeCallNative($replace, regexp, this, replaceValue);
+      if (res.done) return res.value;
+
+      var rx = anObject(regexp);
+      var S = String(this);
+      var functionalReplace = typeof replaceValue === 'function';
+      if (!functionalReplace) replaceValue = String(replaceValue);
+      var global = rx.global;
+      if (global) {
+        var fullUnicode = rx.unicode;
+        rx.lastIndex = 0;
+      }
+      var results = [];
+      while (true) {
+        var result = regExpExec(rx, S);
+        if (result === null) break;
+        results.push(result);
+        if (!global) break;
+        var matchStr = String(result[0]);
+        if (matchStr === '') rx.lastIndex = advanceStringIndex(S, toLength(rx.lastIndex), fullUnicode);
+      }
+      var accumulatedResult = '';
+      var nextSourcePosition = 0;
+      for (var i = 0; i < results.length; i++) {
+        result = results[i];
+        var matched = String(result[0]);
+        var position = max(min(toInteger(result.index), S.length), 0);
+        var captures = [];
+        // NOTE: This is equivalent to
+        //   captures = result.slice(1).map(maybeToString)
+        // but for some reason `nativeSlice.call(result, 1, result.length)` (called in
+        // the slice polyfill when slicing native arrays) "doesn't work" in safari 9 and
+        // causes a crash (https://pastebin.com/N21QzeQA) when trying to debug it.
+        for (var j = 1; j < result.length; j++) captures.push(maybeToString(result[j]));
+        var namedCaptures = result.groups;
+        if (functionalReplace) {
+          var replacerArgs = [matched].concat(captures, position, S);
+          if (namedCaptures !== undefined) replacerArgs.push(namedCaptures);
+          var replacement = String(replaceValue.apply(undefined, replacerArgs));
+        } else {
+          replacement = getSubstitution(matched, S, position, captures, namedCaptures, replaceValue);
+        }
+        if (position >= nextSourcePosition) {
+          accumulatedResult += S.slice(nextSourcePosition, position) + replacement;
+          nextSourcePosition = position + matched.length;
+        }
+      }
+      return accumulatedResult + S.slice(nextSourcePosition);
+    }
+  ];
+
+    // https://tc39.github.io/ecma262/#sec-getsubstitution
+  function getSubstitution(matched, str, position, captures, namedCaptures, replacement) {
+    var tailPos = position + matched.length;
+    var m = captures.length;
+    var symbols = SUBSTITUTION_SYMBOLS_NO_NAMED;
+    if (namedCaptures !== undefined) {
+      namedCaptures = toObject(namedCaptures);
+      symbols = SUBSTITUTION_SYMBOLS;
+    }
+    return $replace.call(replacement, symbols, function (match, ch) {
+      var capture;
+      switch (ch.charAt(0)) {
+        case '$': return '$';
+        case '&': return matched;
+        case '`': return str.slice(0, position);
+        case "'": return str.slice(tailPos);
+        case '<':
+          capture = namedCaptures[ch.slice(1, -1)];
+          break;
+        default: // \d\d?
+          var n = +ch;
+          if (n === 0) return match;
+          if (n > m) {
+            var f = floor(n / 10);
+            if (f === 0) return match;
+            if (f <= m) return captures[f - 1] === undefined ? ch.charAt(1) : captures[f - 1] + ch.charAt(1);
+            return match;
+          }
+          capture = captures[n - 1];
+      }
+      return capture === undefined ? '' : capture;
+    });
+  }
+});
+
+
+/***/ }),
+
+/***/ "aa77":
+/***/ (function(module, exports, __nested_webpack_require_78142__) {
+
+var $export = __nested_webpack_require_78142__("5ca1");
+var defined = __nested_webpack_require_78142__("be13");
+var fails = __nested_webpack_require_78142__("79e5");
+var spaces = __nested_webpack_require_78142__("fdef");
+var space = '[' + spaces + ']';
+var non = '\u200b\u0085';
+var ltrim = RegExp('^' + space + space + '*');
+var rtrim = RegExp(space + space + '*$');
+
+var exporter = function (KEY, exec, ALIAS) {
+  var exp = {};
+  var FORCE = fails(function () {
+    return !!spaces[KEY]() || non[KEY]() != non;
+  });
+  var fn = exp[KEY] = FORCE ? exec(trim) : spaces[KEY];
+  if (ALIAS) exp[ALIAS] = fn;
+  $export($export.P + $export.F * FORCE, 'String', exp);
+};
+
+// 1 -> String#trimLeft
+// 2 -> String#trimRight
+// 3 -> String#trim
+var trim = exporter.trim = function (string, TYPE) {
+  string = String(defined(string));
+  if (TYPE & 1) string = string.replace(ltrim, '');
+  if (TYPE & 2) string = string.replace(rtrim, '');
+  return string;
+};
+
+module.exports = exporter;
+
+
+/***/ }),
+
+/***/ "aae3":
+/***/ (function(module, exports, __nested_webpack_require_79150__) {
+
+// 7.2.8 IsRegExp(argument)
+var isObject = __nested_webpack_require_79150__("d3f4");
+var cof = __nested_webpack_require_79150__("2d95");
+var MATCH = __nested_webpack_require_79150__("2b4c")('match');
+module.exports = function (it) {
+  var isRegExp;
+  return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : cof(it) == 'RegExp');
+};
+
+
+/***/ }),
+
+/***/ "ac6a":
+/***/ (function(module, exports, __nested_webpack_require_79547__) {
+
+var $iterators = __nested_webpack_require_79547__("cadf");
+var getKeys = __nested_webpack_require_79547__("0d58");
+var redefine = __nested_webpack_require_79547__("2aba");
+var global = __nested_webpack_require_79547__("7726");
+var hide = __nested_webpack_require_79547__("32e9");
+var Iterators = __nested_webpack_require_79547__("84f2");
+var wks = __nested_webpack_require_79547__("2b4c");
+var ITERATOR = wks('iterator');
+var TO_STRING_TAG = wks('toStringTag');
+var ArrayValues = Iterators.Array;
+
+var DOMIterables = {
+  CSSRuleList: true, // TODO: Not spec compliant, should be false.
+  CSSStyleDeclaration: false,
+  CSSValueList: false,
+  ClientRectList: false,
+  DOMRectList: false,
+  DOMStringList: false,
+  DOMTokenList: true,
+  DataTransferItemList: false,
+  FileList: false,
+  HTMLAllCollection: false,
+  HTMLCollection: false,
+  HTMLFormElement: false,
+  HTMLSelectElement: false,
+  MediaList: true, // TODO: Not spec compliant, should be false.
+  MimeTypeArray: false,
+  NamedNodeMap: false,
+  NodeList: true,
+  PaintRequestList: false,
+  Plugin: false,
+  PluginArray: false,
+  SVGLengthList: false,
+  SVGNumberList: false,
+  SVGPathSegList: false,
+  SVGPointList: false,
+  SVGStringList: false,
+  SVGTransformList: false,
+  SourceBufferList: false,
+  StyleSheetList: true, // TODO: Not spec compliant, should be false.
+  TextTrackCueList: false,
+  TextTrackList: false,
+  TouchList: false
+};
+
+for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++) {
+  var NAME = collections[i];
+  var explicit = DOMIterables[NAME];
+  var Collection = global[NAME];
+  var proto = Collection && Collection.prototype;
+  var key;
+  if (proto) {
+    if (!proto[ITERATOR]) hide(proto, ITERATOR, ArrayValues);
+    if (!proto[TO_STRING_TAG]) hide(proto, TO_STRING_TAG, NAME);
+    Iterators[NAME] = ArrayValues;
+    if (explicit) for (key in $iterators) if (!proto[key]) redefine(proto, key, $iterators[key], true);
+  }
+}
+
+
+/***/ }),
+
+/***/ "aebd":
+/***/ (function(module, exports) {
+
+module.exports = function (bitmap, value) {
+  return {
+    enumerable: !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable: !(bitmap & 4),
+    value: value
+  };
+};
+
+
+/***/ }),
+
+/***/ "b0c5":
+/***/ (function(module, exports, __nested_webpack_require_81710__) {
+
+"use strict";
+
+var regexpExec = __nested_webpack_require_81710__("520a");
+__nested_webpack_require_81710__("5ca1")({
+  target: 'RegExp',
+  proto: true,
+  forced: regexpExec !== /./.exec
+}, {
+  exec: regexpExec
+});
+
+
+/***/ }),
+
+/***/ "b447":
+/***/ (function(module, exports, __nested_webpack_require_81982__) {
+
+// 7.1.15 ToLength
+var toInteger = __nested_webpack_require_81982__("3a38");
+var min = Math.min;
+module.exports = function (it) {
+  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+};
+
+
+/***/ }),
+
+/***/ "b8e3":
+/***/ (function(module, exports) {
+
+module.exports = true;
+
+
+/***/ }),
+
+/***/ "be13":
+/***/ (function(module, exports) {
+
+// 7.2.1 RequireObjectCoercible(argument)
+module.exports = function (it) {
+  if (it == undefined) throw TypeError("Can't call method on  " + it);
+  return it;
+};
+
+
+/***/ }),
+
+/***/ "bf0b":
+/***/ (function(module, exports, __nested_webpack_require_82595__) {
+
+var pIE = __nested_webpack_require_82595__("355d");
+var createDesc = __nested_webpack_require_82595__("aebd");
+var toIObject = __nested_webpack_require_82595__("36c3");
+var toPrimitive = __nested_webpack_require_82595__("1bc3");
+var has = __nested_webpack_require_82595__("07e3");
+var IE8_DOM_DEFINE = __nested_webpack_require_82595__("794b");
+var gOPD = Object.getOwnPropertyDescriptor;
+
+exports.f = __nested_webpack_require_82595__("8e60") ? gOPD : function getOwnPropertyDescriptor(O, P) {
+  O = toIObject(O);
+  P = toPrimitive(P, true);
+  if (IE8_DOM_DEFINE) try {
+    return gOPD(O, P);
+  } catch (e) { /* empty */ }
+  if (has(O, P)) return createDesc(!pIE.f.call(O, P), O[P]);
+};
+
+
+/***/ }),
+
+/***/ "c207":
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "c366":
+/***/ (function(module, exports, __nested_webpack_require_83337__) {
+
+// false -> Array#indexOf
+// true  -> Array#includes
+var toIObject = __nested_webpack_require_83337__("6821");
+var toLength = __nested_webpack_require_83337__("9def");
+var toAbsoluteIndex = __nested_webpack_require_83337__("77f1");
+module.exports = function (IS_INCLUDES) {
+  return function ($this, el, fromIndex) {
+    var O = toIObject($this);
+    var length = toLength(O.length);
+    var index = toAbsoluteIndex(fromIndex, length);
+    var value;
+    // Array#includes uses SameValueZero equality algorithm
+    // eslint-disable-next-line no-self-compare
+    if (IS_INCLUDES && el != el) while (length > index) {
+      value = O[index++];
+      // eslint-disable-next-line no-self-compare
+      if (value != value) return true;
+    // Array#indexOf ignores holes, Array#includes - not
+    } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
+      if (O[index] === el) return IS_INCLUDES || index || 0;
+    } return !IS_INCLUDES && -1;
+  };
+};
+
+
+/***/ }),
+
+/***/ "c367":
+/***/ (function(module, exports, __nested_webpack_require_84348__) {
+
+"use strict";
+
+var addToUnscopables = __nested_webpack_require_84348__("8436");
+var step = __nested_webpack_require_84348__("50ed");
+var Iterators = __nested_webpack_require_84348__("481b");
+var toIObject = __nested_webpack_require_84348__("36c3");
+
+// 22.1.3.4 Array.prototype.entries()
+// 22.1.3.13 Array.prototype.keys()
+// 22.1.3.29 Array.prototype.values()
+// 22.1.3.30 Array.prototype[@@iterator]()
+module.exports = __nested_webpack_require_84348__("30f1")(Array, 'Array', function (iterated, kind) {
+  this._t = toIObject(iterated); // target
+  this._i = 0;                   // next index
+  this._k = kind;                // kind
+// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
+}, function () {
+  var O = this._t;
+  var kind = this._k;
+  var index = this._i++;
+  if (!O || index >= O.length) {
+    this._t = undefined;
+    return step(1);
+  }
+  if (kind == 'keys') return step(0, index);
+  if (kind == 'values') return step(0, O[index]);
+  return step(0, [index, O[index]]);
+}, 'values');
+
+// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
+Iterators.Arguments = Iterators.Array;
+
+addToUnscopables('keys');
+addToUnscopables('values');
+addToUnscopables('entries');
+
+
+/***/ }),
+
+/***/ "c3a1":
+/***/ (function(module, exports, __nested_webpack_require_85557__) {
+
+// 19.1.2.14 / 15.2.3.14 Object.keys(O)
+var $keys = __nested_webpack_require_85557__("e6f3");
+var enumBugKeys = __nested_webpack_require_85557__("1691");
+
+module.exports = Object.keys || function keys(O) {
+  return $keys(O, enumBugKeys);
+};
+
+
+/***/ }),
+
+/***/ "c5f6":
+/***/ (function(module, exports, __nested_webpack_require_85856__) {
+
+"use strict";
+
+var global = __nested_webpack_require_85856__("7726");
+var has = __nested_webpack_require_85856__("69a8");
+var cof = __nested_webpack_require_85856__("2d95");
+var inheritIfRequired = __nested_webpack_require_85856__("5dbc");
+var toPrimitive = __nested_webpack_require_85856__("6a99");
+var fails = __nested_webpack_require_85856__("79e5");
+var gOPN = __nested_webpack_require_85856__("9093").f;
+var gOPD = __nested_webpack_require_85856__("11e9").f;
+var dP = __nested_webpack_require_85856__("86cc").f;
+var $trim = __nested_webpack_require_85856__("aa77").trim;
+var NUMBER = 'Number';
+var $Number = global[NUMBER];
+var Base = $Number;
+var proto = $Number.prototype;
+// Opera ~12 has broken Object#toString
+var BROKEN_COF = cof(__nested_webpack_require_85856__("2aeb")(proto)) == NUMBER;
+var TRIM = 'trim' in String.prototype;
+
+// 7.1.3 ToNumber(argument)
+var toNumber = function (argument) {
+  var it = toPrimitive(argument, false);
+  if (typeof it == 'string' && it.length > 2) {
+    it = TRIM ? it.trim() : $trim(it, 3);
+    var first = it.charCodeAt(0);
+    var third, radix, maxCode;
+    if (first === 43 || first === 45) {
+      third = it.charCodeAt(2);
+      if (third === 88 || third === 120) return NaN; // Number('+0x1') should be NaN, old V8 fix
+    } else if (first === 48) {
+      switch (it.charCodeAt(1)) {
+        case 66: case 98: radix = 2; maxCode = 49; break; // fast equal /^0b[01]+$/i
+        case 79: case 111: radix = 8; maxCode = 55; break; // fast equal /^0o[0-7]+$/i
+        default: return +it;
+      }
+      for (var digits = it.slice(2), i = 0, l = digits.length, code; i < l; i++) {
+        code = digits.charCodeAt(i);
+        // parseInt parses a string to a first unavailable symbol
+        // but ToNumber should return NaN if a string contains unavailable symbols
+        if (code < 48 || code > maxCode) return NaN;
+      } return parseInt(digits, radix);
+    }
+  } return +it;
+};
+
+if (!$Number(' 0o1') || !$Number('0b1') || $Number('+0x1')) {
+  $Number = function Number(value) {
+    var it = arguments.length < 1 ? 0 : value;
+    var that = this;
+    return that instanceof $Number
+      // check on 1..constructor(foo) case
+      && (BROKEN_COF ? fails(function () { proto.valueOf.call(that); }) : cof(that) != NUMBER)
+        ? inheritIfRequired(new Base(toNumber(it)), that, $Number) : toNumber(it);
+  };
+  for (var keys = __nested_webpack_require_85856__("9e1e") ? gOPN(Base) : (
+    // ES3:
+    'MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,' +
+    // ES6 (in case, if modules with ES6 Number statics required before):
+    'EPSILON,isFinite,isInteger,isNaN,isSafeInteger,MAX_SAFE_INTEGER,' +
+    'MIN_SAFE_INTEGER,parseFloat,parseInt,isInteger'
+  ).split(','), j = 0, key; keys.length > j; j++) {
+    if (has(Base, key = keys[j]) && !has($Number, key)) {
+      dP($Number, key, gOPD(Base, key));
+    }
+  }
+  $Number.prototype = proto;
+  proto.constructor = $Number;
+  __nested_webpack_require_85856__("2aba")(global, NUMBER, $Number);
+}
+
+
+/***/ }),
+
+/***/ "c69a":
+/***/ (function(module, exports, __nested_webpack_require_88781__) {
+
+module.exports = !__nested_webpack_require_88781__("9e1e") && !__nested_webpack_require_88781__("79e5")(function () {
+  return Object.defineProperty(__nested_webpack_require_88781__("230e")('div'), 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+
+/***/ "ca5a":
+/***/ (function(module, exports) {
+
+var id = 0;
+var px = Math.random();
+module.exports = function (key) {
+  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
+};
+
+
+/***/ }),
+
+/***/ "cadf":
+/***/ (function(module, exports, __nested_webpack_require_89302__) {
+
+"use strict";
+
+var addToUnscopables = __nested_webpack_require_89302__("9c6c");
+var step = __nested_webpack_require_89302__("d53b");
+var Iterators = __nested_webpack_require_89302__("84f2");
+var toIObject = __nested_webpack_require_89302__("6821");
+
+// 22.1.3.4 Array.prototype.entries()
+// 22.1.3.13 Array.prototype.keys()
+// 22.1.3.29 Array.prototype.values()
+// 22.1.3.30 Array.prototype[@@iterator]()
+module.exports = __nested_webpack_require_89302__("01f9")(Array, 'Array', function (iterated, kind) {
+  this._t = toIObject(iterated); // target
+  this._i = 0;                   // next index
+  this._k = kind;                // kind
+// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
+}, function () {
+  var O = this._t;
+  var kind = this._k;
+  var index = this._i++;
+  if (!O || index >= O.length) {
+    this._t = undefined;
+    return step(1);
+  }
+  if (kind == 'keys') return step(0, index);
+  if (kind == 'values') return step(0, O[index]);
+  return step(0, [index, O[index]]);
+}, 'values');
+
+// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
+Iterators.Arguments = Iterators.Array;
+
+addToUnscopables('keys');
+addToUnscopables('values');
+addToUnscopables('entries');
+
+
+/***/ }),
+
+/***/ "cb7c":
+/***/ (function(module, exports, __nested_webpack_require_90511__) {
+
+var isObject = __nested_webpack_require_90511__("d3f4");
+module.exports = function (it) {
+  if (!isObject(it)) throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+
+/***/ }),
+
+/***/ "ccb9":
+/***/ (function(module, exports, __nested_webpack_require_90753__) {
+
+exports.f = __nested_webpack_require_90753__("5168");
+
+
+/***/ }),
+
+/***/ "cd1c":
+/***/ (function(module, exports, __nested_webpack_require_90878__) {
+
+// 9.4.2.3 ArraySpeciesCreate(originalArray, length)
+var speciesConstructor = __nested_webpack_require_90878__("e853");
+
+module.exports = function (original, length) {
+  return new (speciesConstructor(original))(length);
+};
+
+
+/***/ }),
+
+/***/ "ce10":
+/***/ (function(module, exports, __nested_webpack_require_91173__) {
+
+var has = __nested_webpack_require_91173__("69a8");
+var toIObject = __nested_webpack_require_91173__("6821");
+var arrayIndexOf = __nested_webpack_require_91173__("c366")(false);
+var IE_PROTO = __nested_webpack_require_91173__("613b")('IE_PROTO');
+
+module.exports = function (object, names) {
+  var O = toIObject(object);
+  var i = 0;
+  var result = [];
+  var key;
+  for (key in O) if (key != IE_PROTO) has(O, key) && result.push(key);
+  // Don't enum bug & hidden keys
+  while (names.length > i) if (has(O, key = names[i++])) {
+    ~arrayIndexOf(result, key) || result.push(key);
+  }
+  return result;
+};
+
+
+/***/ }),
+
+/***/ "d3f4":
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+
+/***/ }),
+
+/***/ "d53b":
+/***/ (function(module, exports) {
+
+module.exports = function (done, value) {
+  return { value: value, done: !!done };
+};
+
+
+/***/ }),
+
+/***/ "d864":
+/***/ (function(module, exports, __nested_webpack_require_92131__) {
+
+// optional / simple context binding
+var aFunction = __nested_webpack_require_92131__("79aa");
+module.exports = function (fn, that, length) {
+  aFunction(fn);
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
+      return fn.call(that, a);
+    };
+    case 2: return function (a, b) {
+      return fn.call(that, a, b);
+    };
+    case 3: return function (a, b, c) {
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function (/* ...args */) {
+    return fn.apply(that, arguments);
+  };
+};
+
+
+/***/ }),
+
+/***/ "d8d6":
+/***/ (function(module, exports, __nested_webpack_require_92738__) {
+
+__nested_webpack_require_92738__("1654");
+__nested_webpack_require_92738__("6c1c");
+module.exports = __nested_webpack_require_92738__("ccb9").f('iterator');
+
+
+/***/ }),
+
+/***/ "d8e8":
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+
+/***/ }),
+
+/***/ "d9f6":
+/***/ (function(module, exports, __nested_webpack_require_93128__) {
+
+var anObject = __nested_webpack_require_93128__("e4ae");
+var IE8_DOM_DEFINE = __nested_webpack_require_93128__("794b");
+var toPrimitive = __nested_webpack_require_93128__("1bc3");
+var dP = Object.defineProperty;
+
+exports.f = __nested_webpack_require_93128__("8e60") ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+  anObject(O);
+  P = toPrimitive(P, true);
+  anObject(Attributes);
+  if (IE8_DOM_DEFINE) try {
+    return dP(O, P, Attributes);
+  } catch (e) { /* empty */ }
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
+  if ('value' in Attributes) O[P] = Attributes.value;
+  return O;
+};
+
+
+/***/ }),
+
+/***/ "dbdb":
+/***/ (function(module, exports, __nested_webpack_require_93818__) {
+
+var core = __nested_webpack_require_93818__("584a");
+var global = __nested_webpack_require_93818__("e53d");
+var SHARED = '__core-js_shared__';
+var store = global[SHARED] || (global[SHARED] = {});
+
+(module.exports = function (key, value) {
+  return store[key] || (store[key] = value !== undefined ? value : {});
+})('versions', []).push({
+  version: core.version,
+  mode: __nested_webpack_require_93818__("b8e3") ? 'pure' : 'global',
+  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
+});
+
+
+/***/ }),
+
+/***/ "e11e":
+/***/ (function(module, exports) {
+
+// IE 8- don't enum bug keys
+module.exports = (
+  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
+).split(',');
+
+
+/***/ }),
+
+/***/ "e4ae":
+/***/ (function(module, exports, __nested_webpack_require_94574__) {
+
+var isObject = __nested_webpack_require_94574__("f772");
+module.exports = function (it) {
+  if (!isObject(it)) throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+
+/***/ }),
+
+/***/ "e53d":
+/***/ (function(module, exports) {
+
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self
+  // eslint-disable-next-line no-new-func
+  : Function('return this')();
+if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
+
+
+/***/ }),
+
+/***/ "e6f3":
+/***/ (function(module, exports, __nested_webpack_require_95248__) {
+
+var has = __nested_webpack_require_95248__("07e3");
+var toIObject = __nested_webpack_require_95248__("36c3");
+var arrayIndexOf = __nested_webpack_require_95248__("5b4e")(false);
+var IE_PROTO = __nested_webpack_require_95248__("5559")('IE_PROTO');
+
+module.exports = function (object, names) {
+  var O = toIObject(object);
+  var i = 0;
+  var result = [];
+  var key;
+  for (key in O) if (key != IE_PROTO) has(O, key) && result.push(key);
+  // Don't enum bug & hidden keys
+  while (names.length > i) if (has(O, key = names[i++])) {
+    ~arrayIndexOf(result, key) || result.push(key);
+  }
+  return result;
+};
+
+
+/***/ }),
+
+/***/ "e853":
+/***/ (function(module, exports, __nested_webpack_require_95884__) {
+
+var isObject = __nested_webpack_require_95884__("d3f4");
+var isArray = __nested_webpack_require_95884__("1169");
+var SPECIES = __nested_webpack_require_95884__("2b4c")('species');
+
+module.exports = function (original) {
+  var C;
+  if (isArray(original)) {
+    C = original.constructor;
+    // cross-realm fallback
+    if (typeof C == 'function' && (C === Array || isArray(C.prototype))) C = undefined;
+    if (isObject(C)) {
+      C = C[SPECIES];
+      if (C === null) C = undefined;
+    }
+  } return C === undefined ? Array : C;
+};
+
+
+/***/ }),
+
+/***/ "ebfd":
+/***/ (function(module, exports, __nested_webpack_require_96462__) {
+
+var META = __nested_webpack_require_96462__("62a0")('meta');
+var isObject = __nested_webpack_require_96462__("f772");
+var has = __nested_webpack_require_96462__("07e3");
+var setDesc = __nested_webpack_require_96462__("d9f6").f;
+var id = 0;
+var isExtensible = Object.isExtensible || function () {
+  return true;
+};
+var FREEZE = !__nested_webpack_require_96462__("294c")(function () {
+  return isExtensible(Object.preventExtensions({}));
+});
+var setMeta = function (it) {
+  setDesc(it, META, { value: {
+    i: 'O' + ++id, // object ID
+    w: {}          // weak collections IDs
+  } });
+};
+var fastKey = function (it, create) {
+  // return primitive with prefix
+  if (!isObject(it)) return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
+  if (!has(it, META)) {
+    // can't set metadata to uncaught frozen object
+    if (!isExtensible(it)) return 'F';
+    // not necessary to add metadata
+    if (!create) return 'E';
+    // add missing metadata
+    setMeta(it);
+  // return object ID
+  } return it[META].i;
+};
+var getWeak = function (it, create) {
+  if (!has(it, META)) {
+    // can't set metadata to uncaught frozen object
+    if (!isExtensible(it)) return true;
+    // not necessary to add metadata
+    if (!create) return false;
+    // add missing metadata
+    setMeta(it);
+  // return hash weak collections IDs
+  } return it[META].w;
+};
+// add metadata on freeze-family methods calling
+var onFreeze = function (it) {
+  if (FREEZE && meta.NEED && isExtensible(it) && !has(it, META)) setMeta(it);
+  return it;
+};
+var meta = module.exports = {
+  KEY: META,
+  NEED: false,
+  fastKey: fastKey,
+  getWeak: getWeak,
+  onFreeze: onFreeze
+};
+
+
+/***/ }),
+
+/***/ "f6fd":
+/***/ (function(module, exports) {
+
+// document.currentScript polyfill by Adam Miller
+
+// MIT license
+
+(function(document){
+  var currentScript = "currentScript",
+      scripts = document.getElementsByTagName('script'); // Live NodeList collection
+
+  // If browser needs currentScript polyfill, add get currentScript() to the document object
+  if (!(currentScript in document)) {
+    Object.defineProperty(document, currentScript, {
+      get: function(){
+
+        // IE 6-10 supports script readyState
+        // IE 10+ support stack trace
+        try { throw new Error(); }
+        catch (err) {
+
+          // Find the second match for the "at" string to get file src url from stack.
+          // Specifically works with the format of stack traces in IE.
+          var i, res = ((/.*at [^\(]*\((.*):.+:.+\)$/ig).exec(err.stack) || [false])[1];
+
+          // For all scripts on the page, if src matches or if ready state is interactive, return the script tag
+          for(i in scripts){
+            if(scripts[i].src == res || scripts[i].readyState == "interactive"){
+              return scripts[i];
+            }
+          }
+
+          // If no match, return null
+          return null;
+        }
+      }
+    });
+  }
+})(document);
+
+
+/***/ }),
+
+/***/ "f772":
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+
+/***/ }),
+
+/***/ "f921":
+/***/ (function(module, exports, __nested_webpack_require_99575__) {
+
+__nested_webpack_require_99575__("014b");
+__nested_webpack_require_99575__("c207");
+__nested_webpack_require_99575__("69d3");
+__nested_webpack_require_99575__("765d");
+module.exports = __nested_webpack_require_99575__("584a").Symbol;
+
+
+/***/ }),
+
+/***/ "fa5b":
+/***/ (function(module, exports, __nested_webpack_require_99828__) {
+
+module.exports = __nested_webpack_require_99828__("5537")('native-function-to-string', Function.toString);
+
+
+/***/ }),
+
+/***/ "fab2":
+/***/ (function(module, exports, __nested_webpack_require_100006__) {
+
+var document = __nested_webpack_require_100006__("7726").document;
+module.exports = document && document.documentElement;
+
+
+/***/ }),
+
+/***/ "fae3":
+/***/ (function(module, __webpack_exports__, __nested_webpack_require_100210__) {
+
+"use strict";
+__nested_webpack_require_100210__.r(__webpack_exports__);
+
+// CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
+// This file is imported into lib/wc client bundles.
+
+if (typeof window !== 'undefined') {
+  if (true) {
+    __nested_webpack_require_100210__("f6fd")
+  }
+
+  var i
+  if ((i = window.document.currentScript) && (i = i.src.match(/(.+\/)[^/]+\.js(\?.*)?$/))) {
+    __nested_webpack_require_100210__.p = i[1] // eslint-disable-line
+  }
+}
+
+// Indicate to webpack that this file can be concatenated
+/* harmony default export */ var setPublicPath = (null);
+
+// EXTERNAL MODULE: ./src/assets/lib/lib.scss
+var lib = __nested_webpack_require_100210__("9910");
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1cd3f134-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/lib/BasicSelect.vue?vue&type=template&id=b48f2398&
+var BasicSelectvue_type_template_id_b48f2398_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui fluid search selection dropdown",class:{ 'active visible':_vm.showMenu, 'error': _vm.isError, 'disabled': _vm.isDisabled },on:{"click":_vm.openOptions,"focus":_vm.openOptions}},[_c('i',{staticClass:"dropdown icon"}),_c('input',{ref:"input",staticClass:"search",attrs:{"autocomplete":"off","tabindex":_vm.isDisabled ? -1 : 0,"id":_vm.id,"name":_vm.name},domProps:{"value":_vm.searchText},on:{"input":function($event){_vm.searchText = $event.target.value},"focus":function($event){$event.preventDefault();return _vm.openOptions($event)},"keyup":[function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"esc",27,$event.key,["Esc","Escape"])){ return null; }return _vm.closeOptions($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }$event.preventDefault();return _vm.enterItem($event)}],"blur":_vm.blurInput,"keydown":[function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"up",38,$event.key,["Up","ArrowUp"])){ return null; }return _vm.prevItem($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"down",40,$event.key,["Down","ArrowDown"])){ return null; }return _vm.nextItem($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }$event.preventDefault();},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"delete",[8,46],$event.key,["Backspace","Delete","Del"])){ return null; }return _vm.deleteTextOrItem($event)}]}}),_c('div',{staticClass:"text",class:_vm.textClass,attrs:{"data-vss-custom-attr":_vm.searchTextCustomAttr}},[_vm._v(_vm._s(_vm.inputText)+"\n  ")]),_c('div',{ref:"menu",staticClass:"menu",class:_vm.menuClass,style:(_vm.menuStyle),attrs:{"tabindex":"-1"},on:{"mousedown":function($event){$event.preventDefault();}}},_vm._l((_vm.filteredOptions),function(option,idx){return _c('div',{key:idx,staticClass:"item",class:{ 'selected': option.selected || _vm.pointer === idx },attrs:{"data-vss-custom-attr":_vm.customAttrs[idx] ? _vm.customAttrs[idx] : ''},on:{"click":function($event){$event.stopPropagation();return _vm.selectItem(option)},"mousedown":_vm.mousedownItem,"mouseenter":function($event){return _vm.pointerSet(idx)}}},[_vm._v("\n      "+_vm._s(option.text)+"\n    ")])}),0)])}
+var staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/lib/BasicSelect.vue?vue&type=template&id=b48f2398&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.find-index.js
+var es6_array_find_index = __nested_webpack_require_100210__("20d6");
+
+// CONCATENATED MODULE: ./src/lib/common.js
+/* harmony default export */ var common = ({
+  // cursor on input
+  openOptions: function openOptions(self) {
+    self.$refs.input.focus();
+    self.showMenu = true;
+    self.mousedownState = false;
+  },
+  blurInput: function blurInput(self) {
+    if (!self.mousedownState) {
+      self.searchText = '';
+      self.closeOptions();
+    }
+
+    self.$emit('blur');
+  },
+  closeOptions: function closeOptions(self) {
+    self.showMenu = false;
+  },
+
+  /**
+   * up arrow key
+   * 上の移動するときには新しいscroll位置を毎回セットする
+   * Always scroll move, when "up arrow key" entered
+   */
+  prevItem: function prevItem(self) {
+    // set pointer
+    var prevIndex = self.pointer - 1;
+    var prevIndexScrollTop = self.$el.offsetHeight * prevIndex;
+
+    if (prevIndex >= 0) {
+      self.pointer = prevIndex;
+    } // move scroll
+
+
+    self.$refs.menu.scrollTop = prevIndexScrollTop;
+  },
+
+  /**
+   *
+   * down arrow key
+   * ページsizeを計算してずれたらmove
+   * calculate page size. If different between itemPage and currentPage move scroll
+   */
+  nextItem: function nextItem(self) {
+    // set pointer
+    var nextIndex = self.pointer + 1;
+    var nextIndexScrollTop = self.$el.offsetHeight * nextIndex;
+
+    if (nextIndex <= self.filteredOptions.length - 1) {
+      self.pointer = nextIndex;
+    } // move scroll
+    // const totalHeight = self.filteredOptions.length * self.$el.offsetHeight
+    // const totalPage = Math.ceil(totalHeight / pageSizeHeight)
+
+
+    var currentMenuHeight = self.$refs.menu.offsetHeight;
+    var currentPage = Math.ceil((self.$refs.menu.scrollTop + self.$el.offsetHeight) / currentMenuHeight);
+    var itemPage = Math.ceil(nextIndexScrollTop / currentMenuHeight);
+
+    if (currentPage !== itemPage) {
+      self.$refs.menu.scrollTop = (itemPage - 1) * self.$refs.menu.offsetHeight;
+    }
+  },
+  // down enter key
+  enterItem: function enterItem(self) {
+    var currentItem = self.filteredOptions[self.pointer];
+
+    if (currentItem) {
+      self.selectItem(currentItem);
+    }
+  },
+  // mouse enter event on item
+  pointerSet: function pointerSet(self, index) {
+    self.pointer = index;
+  },
+  pointerAdjust: function pointerAdjust(self) {
+    if (self.pointer >= self.filteredOptions.length - 1) {
+      self.pointer = self.filteredOptions.length ? self.filteredOptions.length - 1 : 0;
+    }
+  },
+  mousedownItem: function mousedownItem(self) {
+    self.mousedownState = true;
+  }
+});
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.match.js
+var es6_regexp_match = __nested_webpack_require_100210__("4917");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.replace.js
+var es6_regexp_replace = __nested_webpack_require_100210__("a481");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.constructor.js
+var es6_regexp_constructor = __nested_webpack_require_100210__("3b2b");
+
+// CONCATENATED MODULE: ./src/lib/utils.js
+
+
+
+/**
+ * for RegExp escape
+ *
+ * @param str
+ */
+function escapedRegExp(str) {
+  return new RegExp(str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
+}
+// CONCATENATED MODULE: ./src/lib/mixins/commonMixin.js
+
+
+/* mixin for all */
+
+/* harmony default export */ var commonMixin = ({
+  props: {
+    id: {
+      default: null
+    },
+    name: {
+      type: String,
+      default: ''
+    },
+    isError: {
+      type: Boolean,
+      default: false
+    },
+    customAttr: {
+      type: Function,
+      default: function _default() {
+        return '';
+      }
+    },
+    isDisabled: {
+      type: Boolean,
+      default: false
+    },
+    placeholder: {
+      type: String,
+      default: ''
+    },
+    filterPredicate: {
+      type: Function,
+      default: function _default(text, inputText) {
+        return text.match(escapedRegExp(inputText));
+      }
+    }
+  }
+});
+// CONCATENATED MODULE: ./src/lib/mixins/baseMixin.js
+/* mixin for base component */
+/* harmony default export */ var baseMixin = ({
+  watch: {
+    filteredOptions: function filteredOptions() {
+      this.pointerAdjust();
+    },
+    searchText: function searchText() {
+      this.$emit('searchchange', this.searchText);
+    }
+  }
+});
+// CONCATENATED MODULE: ./src/lib/mixins/optionAwareMixin.js
+/* harmony default export */ var optionAwareMixin = ({
+  props: {
+    customAttr: {
+      type: Function,
+      default: function _default() {
+        return '';
+      }
+    },
+    options: {
+      type: Array
+    }
+  }
+});
+// CONCATENATED MODULE: ./src/lib/mixins/index.js
+
+
+
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/lib/BasicSelect.vue?vue&type=script&lang=js&
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ var BasicSelectvue_type_script_lang_js_ = ({
+  name: 'BasicSelect',
+  mixins: [baseMixin, commonMixin, optionAwareMixin],
+  props: {
+    selectedOption: {
+      type: Object,
+      default: function _default() {
+        return {
+          value: '',
+          text: ''
+        };
+      }
+    }
+  },
+  data: function data() {
+    return {
+      showMenu: false,
+      searchText: '',
+      mousedownState: false,
+      // mousedown on option menu
+      pointer: -1
+    };
+  },
+  watch: {
+    selectedOption: function selectedOption(newValue) {
+      if (newValue && newValue.value) {
+        this.pointer = this.filteredOptions.findIndex(function (option) {
+          return option.value === newValue.value;
+        });
+      } else {
+        this.pointer = -1;
+      }
+    }
+  },
+  computed: {
+    searchTextCustomAttr: function searchTextCustomAttr() {
+      if (this.selectedOption && this.selectedOption.value) {
+        return this.customAttr(this.selectedOption);
+      }
+
+      return '';
+    },
+    inputText: function inputText() {
+      if (this.searchText) {
+        return '';
+      } else {
+        var text = this.placeholder;
+
+        if (this.selectedOption.text) {
+          text = this.selectedOption.text;
+        }
+
+        return text;
+      }
+    },
+    customAttrs: function customAttrs() {
+      var _this = this;
+
+      try {
+        if (Array.isArray(this.options)) {
+          return this.options.map(function (o) {
+            return _this.customAttr(o);
+          });
+        }
+      } catch (e) {// if there is an error, just return an empty array
+      }
+
+      return [];
+    },
+    textClass: function textClass() {
+      if (!this.selectedOption.text && this.placeholder) {
+        return 'default';
+      } else {
+        return '';
+      }
+    },
+    menuClass: function menuClass() {
+      return {
+        visible: this.showMenu,
+        hidden: !this.showMenu
+      };
+    },
+    menuStyle: function menuStyle() {
+      return {
+        display: this.showMenu ? 'block' : 'none'
+      };
+    },
+    filteredOptions: function filteredOptions() {
+      var _this2 = this;
+
+      if (this.searchText) {
+        return this.options.filter(function (option) {
+          try {
+            return _this2.filterPredicate(option.text, _this2.searchText);
+          } catch (e) {
+            return true;
+          }
+        });
+      } else {
+        return this.options;
+      }
+    }
+  },
+  methods: {
+    deleteTextOrItem: function deleteTextOrItem() {
+      if (!this.searchText && this.selectedOption) {
+        this.selectItem({});
+        this.openOptions();
+      }
+    },
+    openOptions: function openOptions() {
+      common.openOptions(this);
+    },
+    blurInput: function blurInput() {
+      common.blurInput(this);
+    },
+    closeOptions: function closeOptions() {
+      common.closeOptions(this);
+    },
+    prevItem: function prevItem() {
+      common.prevItem(this);
+    },
+    nextItem: function nextItem() {
+      common.nextItem(this);
+    },
+    enterItem: function enterItem() {
+      common.enterItem(this);
+    },
+    pointerSet: function pointerSet(index) {
+      common.pointerSet(this, index);
+    },
+    pointerAdjust: function pointerAdjust() {
+      common.pointerAdjust(this);
+    },
+    mousedownItem: function mousedownItem() {
+      common.mousedownItem(this);
+    },
+    selectItem: function selectItem(option) {
+      this.searchText = ''; // reset text when select item
+
+      this.closeOptions();
+      this.$emit('select', option);
+
+      if (option.value === option.text) {
+        this.searchText = option.value;
+      }
+    }
+  }
+});
+// CONCATENATED MODULE: ./src/lib/BasicSelect.vue?vue&type=script&lang=js&
+ /* harmony default export */ var lib_BasicSelectvue_type_script_lang_js_ = (BasicSelectvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+// CONCATENATED MODULE: ./src/lib/BasicSelect.vue
+
+
+
+
+
+/* normalize component */
+
+var component = normalizeComponent(
+  lib_BasicSelectvue_type_script_lang_js_,
+  BasicSelectvue_type_template_id_b48f2398_render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var BasicSelect = (component.exports);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.find.js
+var es6_array_find = __nested_webpack_require_100210__("7514");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
+var web_dom_iterable = __nested_webpack_require_100210__("ac6a");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.iterator.js
+var es6_array_iterator = __nested_webpack_require_100210__("cadf");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.keys.js
+var es6_object_keys = __nested_webpack_require_100210__("456d");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
+var es6_function_name = __nested_webpack_require_100210__("7f7f");
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/lib/ListSelect.vue?vue&type=script&lang=js&
+
+
+
+
+
+
+/* wrap basic component */
+
+
+/* harmony default export */ var ListSelectvue_type_script_lang_js_ = ({
+  name: 'ListSelect',
+  mixins: [commonMixin],
+  render: function render(createElement) {
+    var _this = this;
+
+    return createElement(BasicSelect, {
+      props: {
+        id: this.id,
+        name: this.name,
+        options: this.options,
+        selectedOption: this.item,
+        isError: this.isError,
+        isDisabled: this.isDisabled,
+        placeholder: this.placeholder,
+        filterPredicate: this.filterPredicate
+      },
+      on: {
+        select: this.onSelect,
+        searchchange: function searchchange(searchText) {
+          return _this.$emit('searchchange', searchText);
+        }
+      }
+    });
+  },
+  props: {
+    list: {
+      type: Array
+    },
+    optionValue: {
+      type: String
+    },
+    optionText: {
+      type: String
+    },
+    customText: {
+      type: Function
+    },
+    selectedItem: {
+      type: Object
+    }
+  },
+  computed: {
+    options: function options() {
+      var _this2 = this;
+
+      return this.list.map(function (e, i) {
+        return {
+          value: e[_this2.optionValue],
+          text: _this2.buildText(e)
+        };
+      });
+    },
+    item: function item() {
+      if (this.selectedItem) {
+        return {
+          value: this.selectedItem[this.optionValue],
+          text: this.buildText(this.selectedItem)
+        };
+      } else {
+        return {
+          value: '',
+          text: ''
+        };
+      }
+    }
+  },
+  methods: {
+    buildText: function buildText(e) {
+      if (e[this.optionValue] !== undefined) {
+        if (this.customText) {
+          return this.customText(e);
+        } else {
+          return e[this.optionText];
+        }
+      } else {
+        return '';
+      }
+    },
+    onSelect: function onSelect(option) {
+      var _this3 = this;
+
+      if (Object.keys(option).length === 0 && option.constructor === Object) {
+        this.$emit('select', option);
+      } else {
+        var item = this.list.find(function (e, i) {
+          return e[_this3.optionValue] === option.value;
+        });
+        this.$emit('select', item);
+      }
+    }
+  },
+  components: {
+    BasicSelect: BasicSelect
+  }
+});
+// CONCATENATED MODULE: ./src/lib/ListSelect.vue?vue&type=script&lang=js&
+ /* harmony default export */ var lib_ListSelectvue_type_script_lang_js_ = (ListSelectvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/lib/ListSelect.vue
+var ListSelect_render, ListSelect_staticRenderFns
+
+
+
+
+/* normalize component */
+
+var ListSelect_component = normalizeComponent(
+  lib_ListSelectvue_type_script_lang_js_,
+  ListSelect_render,
+  ListSelect_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var ListSelect = (ListSelect_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1cd3f134-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/lib/MultiSelect.vue?vue&type=template&id=10b1b87d&
+var MultiSelectvue_type_template_id_10b1b87d_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui fluid search dropdown selection multiple",class:{ 'active visible':_vm.showMenu, 'error': _vm.isError, 'disabled': _vm.isDisabled },on:{"click":_vm.openOptions,"focus":_vm.openOptions}},[_c('i',{staticClass:"dropdown icon"}),(!_vm.hideSelectedOptions)?_vm._l((_vm.selectedOptions),function(option,idx){return _c('a',{key:idx,staticClass:"ui label transition visible",staticStyle:{"display":"inline-block !important"},attrs:{"data-vss-custom-attr":_vm.customAttr(option)}},[_vm._v("\n      "+_vm._s(option.text)),_c('i',{staticClass:"delete icon",on:{"click":function($event){return _vm.deleteItem(option)}}})])}):_vm._e(),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.searchText),expression:"searchText"}],ref:"input",staticClass:"search",style:(_vm.inputWidth),attrs:{"autocomplete":"off","tabindex":_vm.isDisabled ? -1 : 0,"id":_vm.id,"name":_vm.name},domProps:{"value":(_vm.searchText)},on:{"focus":function($event){$event.preventDefault();return _vm.openOptions($event)},"keyup":[function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"esc",27,$event.key,["Esc","Escape"])){ return null; }return _vm.closeOptions($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }$event.preventDefault();return _vm.enterItem($event)}],"blur":_vm.blurInput,"keydown":[function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"up",38,$event.key,["Up","ArrowUp"])){ return null; }return _vm.prevItem($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"down",40,$event.key,["Down","ArrowDown"])){ return null; }return _vm.nextItem($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }$event.preventDefault();},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"delete",[8,46],$event.key,["Backspace","Delete","Del"])){ return null; }return _vm.deleteTextOrLastItem($event)}],"input":function($event){if($event.target.composing){ return; }_vm.searchText=$event.target.value}}}),_c('div',{staticClass:"text",class:_vm.textClass},[_vm._v(_vm._s(_vm.inputText)+"\n  ")]),_c('div',{ref:"menu",staticClass:"menu",class:_vm.menuClass,style:(_vm.menuStyle),attrs:{"tabindex":"-1"},on:{"mousedown":function($event){$event.preventDefault();}}},[_vm._l((_vm.filteredOptions),function(option,idx){return [_c('div',{key:idx,staticClass:"item",class:{ 'selected': option.selected || _vm.pointer === idx },attrs:{"data-vss-custom-attr":_vm.customAttr(option)},on:{"click":function($event){$event.stopPropagation();return _vm.selectItem(option)},"mousedown":_vm.mousedownItem,"mouseenter":function($event){return _vm.pointerSet(idx)}}},[_vm._v("\n        "+_vm._s(option.text)+"\n      ")])]})],2)],2)}
+var MultiSelectvue_type_template_id_10b1b87d_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/lib/MultiSelect.vue?vue&type=template&id=10b1b87d&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.to-string.js
+var es6_regexp_to_string = __nested_webpack_require_100210__("6b54");
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/lib/MultiSelect.vue?vue&type=script&lang=js&
+
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ var MultiSelectvue_type_script_lang_js_ = ({
+  name: 'MultiSelect',
+  mixins: [baseMixin, commonMixin, optionAwareMixin],
+  props: {
+    selectedOptions: {
+      type: Array
+    },
+    cleanSearch: {
+      type: Boolean,
+      default: true
+    },
+    hideSelectedOptions: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data: function data() {
+    return {
+      showMenu: false,
+      searchText: '',
+      mousedownState: false,
+      // mousedown on option menu
+      pointer: -1
+    };
+  },
+  watch: {
+    selectedOptions: function selectedOptions() {
+      this.pointer = -1;
+    }
+  },
+  computed: {
+    inputText: function inputText() {
+      if (this.searchText) {
+        return '';
+      } else {
+        return this.placeholder;
+      }
+    },
+    textClass: function textClass() {
+      if (this.placeholder) {
+        return 'default';
+      } else {
+        return '';
+      }
+    },
+    inputWidth: function inputWidth() {
+      return {
+        width: (this.searchText.length + 1) * 8 + 20 + 'px'
+      };
+    },
+    menuClass: function menuClass() {
+      return {
+        visible: this.showMenu,
+        hidden: !this.showMenu
+      };
+    },
+    menuStyle: function menuStyle() {
+      return {
+        display: this.showMenu ? 'block' : 'none'
+      };
+    },
+    nonSelectOptions: function nonSelectOptions() {
+      var _this = this;
+
+      return this.options.filter(function (el) {
+        return _this.selectedOptions.findIndex(function (o) {
+          return o.value === el.value;
+        }) === -1;
+      });
+    },
+    filteredOptions: function filteredOptions() {
+      var _this2 = this;
+
+      if (this.searchText) {
+        return this.nonSelectOptions.filter(function (option) {
+          try {
+            if (_this2.cleanSearch) {
+              return _this2.filterPredicate(_this2.accentsTidy(option.text), _this2.searchText);
+            } else {
+              return _this2.filterPredicate(option.text, _this2.searchText);
+            }
+          } catch (e) {
+            return true;
+          }
+        });
+      } else {
+        return this.nonSelectOptions;
+      }
+    }
+  },
+  methods: {
+    deleteTextOrLastItem: function deleteTextOrLastItem() {
+      if (!this.searchText && this.selectedOptions.length > 0) {
+        this.deleteItem(this.selectedOptions[this.selectedOptions.length - 1]);
+      }
+    },
+    openOptions: function openOptions() {
+      common.openOptions(this);
+    },
+    blurInput: function blurInput() {
+      common.blurInput(this);
+    },
+    closeOptions: function closeOptions() {
+      common.closeOptions(this);
+    },
+    prevItem: function prevItem() {
+      common.prevItem(this);
+      this.closeOptions();
+      this.openOptions();
+    },
+    nextItem: function nextItem() {
+      common.nextItem(this);
+      this.closeOptions();
+      this.openOptions();
+    },
+    enterItem: function enterItem() {
+      common.enterItem(this);
+    },
+    pointerSet: function pointerSet(index) {
+      common.pointerSet(this, index);
+    },
+    pointerAdjust: function pointerAdjust() {
+      common.pointerAdjust(this);
+    },
+    mousedownItem: function mousedownItem() {
+      common.mousedownItem(this);
+    },
+    selectItem: function selectItem(option) {
+      var tempSelectedOptions = this.selectedOptions.concat(option);
+      var selectedOptions = tempSelectedOptions.filter(function (el, idx) {
+        return tempSelectedOptions.indexOf(el) === idx;
+      });
+      this.closeOptions();
+      this.searchText = '';
+      this.$emit('select', selectedOptions, option, 'insert');
+    },
+    deleteItem: function deleteItem(option) {
+      var selectedOptions = this.selectedOptions.filter(function (o) {
+        return o.value !== option.value;
+      });
+      this.$emit('select', selectedOptions, option, 'delete');
+    },
+    accentsTidy: function accentsTidy(s) {
+      var r = s.toString().toLowerCase();
+      r = r.replace(new RegExp('[àáâãäå]', 'g'), 'a');
+      r = r.replace(new RegExp('æ', 'g'), 'ae');
+      r = r.replace(new RegExp('ç', 'g'), 'c');
+      r = r.replace(new RegExp('[èéêë]', 'g'), 'e');
+      r = r.replace(new RegExp('[ìíîï]', 'g'), 'i');
+      r = r.replace(new RegExp('ñ', 'g'), 'n');
+      r = r.replace(new RegExp('[òóôõö]', 'g'), 'o');
+      r = r.replace(new RegExp('œ', 'g'), 'oe');
+      r = r.replace(new RegExp('[ùúûü]', 'g'), 'u');
+      r = r.replace(new RegExp('[ýÿ]', 'g'), 'y');
+      return r;
+    }
+  }
+});
+// CONCATENATED MODULE: ./src/lib/MultiSelect.vue?vue&type=script&lang=js&
+ /* harmony default export */ var lib_MultiSelectvue_type_script_lang_js_ = (MultiSelectvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/lib/MultiSelect.vue
+
+
+
+
+
+/* normalize component */
+
+var MultiSelect_component = normalizeComponent(
+  lib_MultiSelectvue_type_script_lang_js_,
+  MultiSelectvue_type_template_id_10b1b87d_render,
+  MultiSelectvue_type_template_id_10b1b87d_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var MultiSelect = (MultiSelect_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/lib/MultiListSelect.vue?vue&type=script&lang=js&
+
+
+
+
+
+
+
+/* harmony default export */ var MultiListSelectvue_type_script_lang_js_ = ({
+  name: 'MultiListSelect',
+  mixins: [commonMixin],
+  render: function render(createElement) {
+    var _this = this;
+
+    return createElement(MultiSelect, {
+      props: {
+        id: this.id,
+        name: this.name,
+        options: this.options,
+        selectedOptions: this.items,
+        isError: this.isError,
+        isDisabled: this.isDisabled,
+        placeholder: this.placeholder,
+        filterPredicate: this.filterPredicate
+      },
+      on: {
+        select: this.onSelect,
+        searchchange: function searchchange(searchText) {
+          return _this.$emit('searchchange', searchText);
+        }
+      }
+    });
+  },
+  props: {
+    list: {
+      type: Array
+    },
+    optionValue: {
+      type: String
+    },
+    optionText: {
+      type: String
+    },
+    customText: {
+      type: Function
+    },
+    selectedItems: {
+      type: Array
+    }
+  },
+  computed: {
+    options: function options() {
+      var _this2 = this;
+
+      return this.list.map(function (e) {
+        return {
+          value: e[_this2.optionValue],
+          text: _this2.buildText(e)
+        };
+      });
+    },
+    items: function items() {
+      var _this3 = this;
+
+      return this.selectedItems.map(function (e) {
+        return {
+          value: e[_this3.optionValue],
+          text: _this3.buildText(e)
+        };
+      });
+    }
+  },
+  methods: {
+    buildText: function buildText(e) {
+      if (e[this.optionValue] !== undefined) {
+        if (this.customText) {
+          return this.customText(e);
+        } else {
+          return e[this.optionText];
+        }
+      } else {
+        return '';
+      }
+    },
+    onSelect: function onSelect(options, option) {
+      var _this4 = this;
+
+      if (Object.keys(option).length === 0 && option.constructor === Object) {
+        this.$emit('select', options, option);
+      } else {
+        var items = this.list.filter(function (e, i) {
+          return options.find(function (o, i) {
+            return e[_this4.optionValue] === o.value;
+          });
+        });
+        var item = this.list.find(function (e) {
+          return e[_this4.optionValue] === option.value;
+        });
+        this.$emit('select', items, item);
+      }
+    }
+  },
+  components: {
+    MultiSelect: MultiSelect
+  }
+});
+// CONCATENATED MODULE: ./src/lib/MultiListSelect.vue?vue&type=script&lang=js&
+ /* harmony default export */ var lib_MultiListSelectvue_type_script_lang_js_ = (MultiListSelectvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/lib/MultiListSelect.vue
+var MultiListSelect_render, MultiListSelect_staticRenderFns
+
+
+
+
+/* normalize component */
+
+var MultiListSelect_component = normalizeComponent(
+  lib_MultiListSelectvue_type_script_lang_js_,
+  MultiListSelect_render,
+  MultiListSelect_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var MultiListSelect = (MultiListSelect_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"1cd3f134-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/lib/ModelSelect.vue?vue&type=template&id=6d932d12&
+var ModelSelectvue_type_template_id_6d932d12_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ui fluid search selection dropdown",class:{ 'active visible':_vm.showMenu, 'error': _vm.isError, 'disabled': _vm.isDisabled },on:{"click":_vm.openOptions,"focus":_vm.openOptions}},[_c('i',{staticClass:"dropdown icon"}),_c('input',{ref:"input",staticClass:"search",attrs:{"autocomplete":"off","tabindex":_vm.isDisabled ? -1 : 0,"id":_vm.id,"name":_vm.name},domProps:{"value":_vm.searchText},on:{"input":function($event){_vm.searchText = $event.target.value},"focus":function($event){$event.preventDefault();return _vm.openOptions($event)},"keyup":[function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"esc",27,$event.key,["Esc","Escape"])){ return null; }return _vm.closeOptions($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }$event.preventDefault();return _vm.enterItem($event)}],"blur":_vm.blurInput,"keydown":[function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"up",38,$event.key,["Up","ArrowUp"])){ return null; }return _vm.prevItem($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"down",40,$event.key,["Down","ArrowDown"])){ return null; }return _vm.nextItem($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }$event.preventDefault();},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"delete",[8,46],$event.key,["Backspace","Delete","Del"])){ return null; }return _vm.deleteTextOrItem($event)}]}}),_c('div',{staticClass:"text",class:_vm.textClass,attrs:{"data-vss-custom-attr":_vm.searchTextCustomAttr}},[_vm._v(_vm._s(_vm.inputText)+"\n  ")]),_c('div',{ref:"menu",staticClass:"menu",class:_vm.menuClass,style:(_vm.menuStyle),attrs:{"tabindex":"-1"},on:{"mousedown":function($event){$event.preventDefault();}}},_vm._l((_vm.filteredOptions),function(option,idx){return _c('div',{key:idx,staticClass:"item",class:{ 'selected': option.selected || _vm.pointer === idx },attrs:{"data-vss-custom-attr":_vm.customAttrs[idx] ? _vm.customAttrs[idx] : ''},on:{"click":function($event){$event.stopPropagation();return _vm.selectItem(option)},"mousedown":_vm.mousedownItem,"mouseenter":function($event){return _vm.pointerSet(idx)}}},[_vm._v("\n      "+_vm._s(option.text)+"\n    ")])}),0)])}
+var ModelSelectvue_type_template_id_6d932d12_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/lib/ModelSelect.vue?vue&type=template&id=6d932d12&
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js
+var iterator = __nested_webpack_require_100210__("5d58");
+var iterator_default = /*#__PURE__*/__nested_webpack_require_100210__.n(iterator);
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/symbol.js
+var symbol = __nested_webpack_require_100210__("67bb");
+var symbol_default = /*#__PURE__*/__nested_webpack_require_100210__.n(symbol);
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/typeof.js
+
+
+
+function typeof_typeof2(obj) { if (typeof symbol_default.a === "function" && typeof iterator_default.a === "symbol") { typeof_typeof2 = function _typeof2(obj) { return typeof obj; }; } else { typeof_typeof2 = function _typeof2(obj) { return obj && typeof symbol_default.a === "function" && obj.constructor === symbol_default.a && obj !== symbol_default.a.prototype ? "symbol" : typeof obj; }; } return typeof_typeof2(obj); }
+
+function typeof_typeof(obj) {
+  if (typeof symbol_default.a === "function" && typeof_typeof2(iterator_default.a) === "symbol") {
+    typeof_typeof = function _typeof(obj) {
+      return typeof_typeof2(obj);
+    };
+  } else {
+    typeof_typeof = function _typeof(obj) {
+      return obj && typeof symbol_default.a === "function" && obj.constructor === symbol_default.a && obj !== symbol_default.a.prototype ? "symbol" : typeof_typeof2(obj);
+    };
+  }
+
+  return typeof_typeof(obj);
+}
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
+var es6_number_constructor = __nested_webpack_require_100210__("c5f6");
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/lib/ModelSelect.vue?vue&type=script&lang=js&
+
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ var ModelSelectvue_type_script_lang_js_ = ({
+  name: 'ModelSelect',
+  mixins: [baseMixin, commonMixin, optionAwareMixin],
+  props: {
+    value: {
+      type: [String, Number, Object, Boolean]
+    }
+  },
+  data: function data() {
+    return {
+      showMenu: false,
+      searchText: '',
+      mousedownState: false,
+      // mousedown on option menu
+      pointer: -1
+    };
+  },
+  watch: {
+    value: function value(newValue) {
+      var _this = this;
+
+      this.pointer = this.filteredOptions.findIndex(function (option) {
+        return option.value === _this.optionValue(newValue);
+      });
+    }
+  },
+  computed: {
+    searchTextCustomAttr: function searchTextCustomAttr() {
+      if (this.selectedOption && this.selectedOption.value) {
+        return this.customAttr(this.selectedOption);
+      }
+
+      return '';
+    },
+    inputText: function inputText() {
+      if (this.searchText) {
+        return '';
+      } else {
+        var text = this.placeholder;
+
+        if (this.selectedOption) {
+          text = this.selectedOption.text;
+        }
+
+        return text;
+      }
+    },
+    customAttrs: function customAttrs() {
+      var _this2 = this;
+
+      try {
+        if (Array.isArray(this.options)) {
+          return this.options.map(function (o) {
+            return _this2.customAttr(o);
+          });
+        }
+      } catch (e) {// if there is an error, just return an empty array
+      }
+
+      return [];
+    },
+    textClass: function textClass() {
+      if (!this.selectedOption && this.placeholder) {
+        return 'default';
+      } else {
+        return '';
+      }
+    },
+    menuClass: function menuClass() {
+      return {
+        visible: this.showMenu,
+        hidden: !this.showMenu
+      };
+    },
+    menuStyle: function menuStyle() {
+      return {
+        display: this.showMenu ? 'block' : 'none'
+      };
+    },
+    filteredOptions: function filteredOptions() {
+      var _this3 = this;
+
+      if (this.searchText) {
+        return this.options.filter(function (option) {
+          try {
+            return _this3.filterPredicate(option.text, _this3.searchText);
+          } catch (e) {
+            return true;
+          }
+        });
+      } else {
+        return this.options;
+      }
+    },
+    selectedOption: function selectedOption() {
+      var _this4 = this;
+
+      return this.options.find(function (option) {
+        return option.value === _this4.optionValue(_this4.value);
+      });
+    }
+  },
+  methods: {
+    deleteTextOrItem: function deleteTextOrItem() {
+      if (!this.searchText && this.value) {
+        this.selectItem({});
+        this.openOptions();
+      }
+    },
+    openOptions: function openOptions() {
+      common.openOptions(this);
+    },
+    blurInput: function blurInput() {
+      common.blurInput(this);
+    },
+    closeOptions: function closeOptions() {
+      common.closeOptions(this);
+    },
+    prevItem: function prevItem() {
+      common.prevItem(this);
+    },
+    nextItem: function nextItem() {
+      common.nextItem(this);
+    },
+    enterItem: function enterItem() {
+      common.enterItem(this);
+    },
+    pointerSet: function pointerSet(index) {
+      common.pointerSet(this, index);
+    },
+    pointerAdjust: function pointerAdjust() {
+      common.pointerAdjust(this);
+    },
+    mousedownItem: function mousedownItem() {
+      common.mousedownItem(this);
+    },
+    selectItem: function selectItem(option) {
+      this.searchText = '';
+      this.closeOptions();
+
+      if (typeof_typeof(this.value) === 'object' && this.value) {
+        this.$emit('input', option);
+      } else {
+        this.$emit('input', option.value);
+
+        if (option.value === option.text) {
+          this.searchText = option.value;
+        }
+      }
+    },
+    optionValue: function optionValue(value) {
+      if (typeof_typeof(value) === 'object' && value !== null) {
+        return value.value;
+      } else {
+        return value;
+      }
+    }
+  }
+});
+// CONCATENATED MODULE: ./src/lib/ModelSelect.vue?vue&type=script&lang=js&
+ /* harmony default export */ var lib_ModelSelectvue_type_script_lang_js_ = (ModelSelectvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/lib/ModelSelect.vue
+
+
+
+
+
+/* normalize component */
+
+var ModelSelect_component = normalizeComponent(
+  lib_ModelSelectvue_type_script_lang_js_,
+  ModelSelectvue_type_template_id_6d932d12_render,
+  ModelSelectvue_type_template_id_6d932d12_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var ModelSelect = (ModelSelect_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/lib/ModelListSelect.vue?vue&type=script&lang=js&
+
+
+
+
+
+
+
+
+/* wrap basic component */
+
+
+/* harmony default export */ var ModelListSelectvue_type_script_lang_js_ = ({
+  name: 'ModelListSelect',
+  mixins: [commonMixin],
+  render: function render(createElement) {
+    var _this = this;
+
+    return createElement(ModelSelect, {
+      props: {
+        id: this.id,
+        name: this.name,
+        options: this.options,
+        value: this.innerValue,
+        isError: this.isError,
+        isDisabled: this.isDisabled,
+        placeholder: this.placeholder,
+        filterPredicate: this.filterPredicate
+      },
+      on: {
+        input: this.onInput,
+        searchchange: function searchchange(searchText) {
+          return _this.$emit('searchchange', searchText);
+        }
+      }
+    });
+  },
+  props: {
+    list: {
+      type: Array
+    },
+    optionValue: {
+      type: String
+    },
+    optionText: {
+      type: String
+    },
+    customText: {
+      type: Function
+    },
+
+    /* null also object */
+    value: {
+      type: [String, Number, Object, Boolean]
+    }
+  },
+  computed: {
+    options: function options() {
+      var _this2 = this;
+
+      return this.list.map(function (e) {
+        return {
+          value: e[_this2.optionValue],
+          text: _this2.buildText(e)
+        };
+      });
+    },
+    innerValue: function innerValue() {
+      if (!this.value) {
+        // If js Falsy, type can not judge type. Send value to child directly
+        return this.value;
+      } else if (typeof_typeof(this.value) === 'object') {
+        if (this.value) {
+          return {
+            value: this.value[this.optionValue],
+            text: this.buildText(this.value)
+          };
+        } else {
+          return {
+            value: '',
+            text: ''
+          };
+        }
+      } else {
+        return this.value;
+      }
+    }
+  },
+  methods: {
+    buildText: function buildText(e) {
+      if (e[this.optionValue] !== undefined) {
+        if (this.customText) {
+          return this.customText(e);
+        } else {
+          return e[this.optionText];
+        }
+      } else {
+        return '';
+      }
+    },
+    onInput: function onInput(option) {
+      var _this3 = this;
+
+      if (option === undefined) {
+        return this.$emit('input', '');
+      }
+
+      if (Object.keys(option).length === 0 && option.constructor === Object) {
+        this.$emit('input', option);
+      } else if (typeof_typeof(option) === 'object') {
+        var item = this.list.find(function (e) {
+          return e[_this3.optionValue] === option.value;
+        });
+        this.$emit('input', item);
+      } else {
+        this.$emit('input', option);
+      }
+    }
+  },
+  components: {
+    ModelSelect: ModelSelect
+  }
+});
+// CONCATENATED MODULE: ./src/lib/ModelListSelect.vue?vue&type=script&lang=js&
+ /* harmony default export */ var lib_ModelListSelectvue_type_script_lang_js_ = (ModelListSelectvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/lib/ModelListSelect.vue
+var ModelListSelect_render, ModelListSelect_staticRenderFns
+
+
+
+
+/* normalize component */
+
+var ModelListSelect_component = normalizeComponent(
+  lib_ModelListSelectvue_type_script_lang_js_,
+  ModelListSelect_render,
+  ModelListSelect_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var ModelListSelect = (ModelListSelect_component.exports);
+// CONCATENATED MODULE: ./src/lib/index.js
+
+
+
+
+
+
+
+
+// CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib-no-default.js
+/* concated harmony reexport BasicSelect */__nested_webpack_require_100210__.d(__webpack_exports__, "BasicSelect", function() { return BasicSelect; });
+/* concated harmony reexport MultiSelect */__nested_webpack_require_100210__.d(__webpack_exports__, "MultiSelect", function() { return MultiSelect; });
+/* concated harmony reexport ListSelect */__nested_webpack_require_100210__.d(__webpack_exports__, "ListSelect", function() { return ListSelect; });
+/* concated harmony reexport MultiListSelect */__nested_webpack_require_100210__.d(__webpack_exports__, "MultiListSelect", function() { return MultiListSelect; });
+/* concated harmony reexport ModelSelect */__nested_webpack_require_100210__.d(__webpack_exports__, "ModelSelect", function() { return ModelSelect; });
+/* concated harmony reexport ModelListSelect */__nested_webpack_require_100210__.d(__webpack_exports__, "ModelListSelect", function() { return ModelListSelect; });
+
+
+
+
+/***/ }),
+
+/***/ "fdef":
+/***/ (function(module, exports) {
+
+module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
+  '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
+
+
+/***/ })
+
+/******/ });
+//# sourceMappingURL=VueSearchSelect.common.js.map
 
 /***/ }),
 

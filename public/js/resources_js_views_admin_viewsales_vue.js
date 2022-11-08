@@ -1913,6 +1913,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       axios.get("/delete_salesinvoice/" + this.$route.params.id).then(function (resp) {
         _this.$router.push("/sales");
+
+        _this.$router.go();
       })["catch"](function (error) {
         var message = "Something went wrong, Please try again";
         var toast = Vue.toasted.show(message, {

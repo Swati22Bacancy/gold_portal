@@ -168,4 +168,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('get_note_key', [Api\DeliveryNotesController::class, 'getinvoicekey']);
     Route::get('deliverynotes_list', [Api\DeliveryNotesController::class, 'deliverynoteslist']);
     Route::get('deliverynotes_details/{id}', [Api\DeliveryNotesController::class, 'deliverynotesdetails']);
+    Route::post('edit_deliverynote',[Api\DeliveryNotesController::class, 'editdeliverynote']);
+    Route::get('delete_deliverynote/{id}', [Api\DeliveryNotesController::class, 'deletedeliverynote']);
 });

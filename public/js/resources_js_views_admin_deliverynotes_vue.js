@@ -129,7 +129,7 @@ __webpack_require__.r(__webpack_exports__);
       return moment__WEBPACK_IMPORTED_MODULE_0___default()(d, 'YYYY-MM-DD').format('DD MMM YYYY');
     },
     gotodeliverynotes: function gotodeliverynotes(id) {
-      this.$router.push("/viewdeliverynotes/" + id);
+      this.$router.push("/view_deliverynote/" + id);
     },
     getDeliverynotes: function getDeliverynotes() {
       var _this2 = this;

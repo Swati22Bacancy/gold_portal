@@ -570,7 +570,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
 
               case 22:
                 response = _context.sent;
-                message = "Sales Invoice has been successfully created.";
+                message = "Sales Invoice has been successfully updated.";
                 _toast = Vue.toasted.show(message, {
                   theme: "toasted-success",
                   position: "top-center",
@@ -622,7 +622,7 @@ var isName = vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.regex
 
               case 49:
                 _response = _context.sent;
-                _message2 = "Sales Invoice has been successfully created.";
+                _message2 = "Sales Invoice has been successfully updated.";
                 _toast3 = Vue.toasted.show(_message2, {
                   theme: "toasted-success",
                   position: "top-center",

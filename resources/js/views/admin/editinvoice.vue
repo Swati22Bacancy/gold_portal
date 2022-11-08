@@ -532,7 +532,7 @@ export default {
           
           const response = await axios.post("edit_invoice", this.postdata);
           let message =
-              "Sales Invoice has been successfully created.";
+              "Sales Invoice has been successfully updated.";
             let toast = Vue.toasted.show(message, {
               theme: "toasted-success",
               position: "top-center",
@@ -570,7 +570,7 @@ export default {
           
           const response = await axios.post("edit_invoice", this.postdata);
           let message =
-              "Sales Invoice has been successfully created.";
+              "Sales Invoice has been successfully updated.";
             let toast = Vue.toasted.show(message, {
               theme: "toasted-success",
               position: "top-center",

@@ -734,6 +734,7 @@ export default {
       axios.get('/delete_purchaseorder/'+this.$route.params.id)
         .then(resp => {
           this.$router.push("/purchase");
+          this.$router.go();
         })
         .catch(error => {
           let message = 'Something went wrong, Please try again';

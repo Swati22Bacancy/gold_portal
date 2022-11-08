@@ -84,41 +84,21 @@ class DeliveryNotesController extends Controller
         return response()->json($deliverynotes);
     }
 
-    public function salesdetails($id)
+    public function deliverynotesdetails($id)
     {
-        $sales = DeliveryNotes::leftjoin('customers', 'customers.id', '=', 'sales_invoice.customer_id')->select('sales_invoice.*','customers.first_name as firstname','customers.last_name as lastname','customers.vat as vat','customers.email as customer_email','customers.company_code as company_code','customers.customer_type as customer_type')->where('sales_invoice.id',$id)->orderBy('sales_invoice.id', 'DESC')->first();
+        $deliverynotes = DeliveryNotes::leftjoin('customers', 'customers.id', '=', 'delivery_notes.customer_id')->select('delivery_notes.*','customers.first_name as firstname','customers.last_name as lastname','customers.vat as vat','customers.email as customer_email','customers.company_code as company_code','customers.customer_type as customer_type')->where('delivery_notes.id',$id)->orderBy('delivery_notes.id', 'DESC')->first();
 
-        $saleitems = SalesItems::leftjoin('producttypes', 'producttypes.id', '=', 'sales_items.producttype_id')->leftjoin('products', 'products.id', '=', 'sales_items.product_id')->select('sales_items.*','producttypes.name as typename','producttypes.metal_type as metal_type','products.name as productname')->where('sales_id',$id)->get();
+        $deliverynotesitems = DeliveryNotesItems::leftjoin('producttypes', 'producttypes.id', '=', 'delivery_notes_items.producttype_id')->leftjoin('products', 'products.id', '=', 'delivery_notes_items.product_id')->select('delivery_notes_items.*','producttypes.name as typename','producttypes.metal_type as metal_type','products.name as productname')->where('deliverynotes_id',$id)->get();
 
-        foreach($saleitems as $index => $saleitem)
+        foreach($deliverynotesitems as $index => $deliverynotesitem)
         {
-            $saleitems[$index]->invoice_type = $saleitem->typename;
-            $saleitems[$index]->invoice_typeid = $saleitem->producttype_id;
-            $saleitems[$index]->invoice_product = $saleitem->product_id;
+            $deliverynotesitems[$index]->invoice_type = $deliverynotesitem->typename;
+            $deliverynotesitems[$index]->invoice_typeid = $deliverynotesitem->producttype_id;
+            $deliverynotesitems[$index]->invoice_product = $deliverynotesitem->product_id;
         }
 
-        $salepayments = SalesPayments::where('sales_id',$id)->orderBy('id', 'DESC')->get();
-
-        $refund = SalesPayments::select(DB::raw("SUM(totalamount) as refundamount"))->where('action', 'Refund')->where('sales_id',$id)->first();
-        $paid = SalesPayments::select(DB::raw("SUM(totalamount) as paidamount"))->whereIn('action', array('Receive', 'Exchange'))->where('sales_id',$id)->first();
-
-        $sales->salesitem = $saleitems;
-        $sales->salepayments = $salepayments;
-        
-        $payment_received=0;
-        if(!empty($salepayments))
-        {
-            foreach($salepayments as $payment)
-            {
-                $payment_received += $payment->totalamount;
-            }
-        }
-        
-        $sales->payment_received = $payment_received;
-        $sales->payment_due = $sales->totalamount - $paid->paidamount;
-        $sales->payment_due = $sales->payment_due + $refund->refundamount;
-        
-        return response()->json($sales);
+        $deliverynotes->deliverynotesitem = $deliverynotesitems;
+        return response()->json($deliverynotes);
     }
 
     public function getinvoicekey()
@@ -156,37 +136,33 @@ class DeliveryNotesController extends Controller
         return response()->json($sales);
     }
 
-    public function editinvoice(Request $request)
+    public function editdeliverynote(Request $request)
     {
         try {
             
-            $salesdata = DeliveryNotes::where('id', $request->input('s_id'))->update([
+            $deliverynotesdata = DeliveryNotes::where('id', $request->input('s_id'))->update([
                 'customer_id' => $request->input('formfields.customer_id'),
                 'billing_address' => $request->input('formfields.billing_address'),
                 'reference' => $request->input('formfields.reference'),
-                'currency_id' => $request->input('formfields.currency_id'),
-                'recurring_invoice' => $request->input('formfields.recurring_invoice'),
                 'subtotal' => $request->input('formfields.subtotal'),
                 'vattotal' => $request->input('formfields.vattotal'),
                 'totalamount' => $request->input('formfields.totalamount'),
                 'issue_date' => date("Y-m-d", strtotime($request->input('formfields.issue_date'))),
-                'due_date' => date("Y-m-d", strtotime($request->input('formfields.due_date'))),
                 'comment' => $request->input('formfields.comment'),
-                'price_status' => ($request->input('formfields.price_difference_count')==0)?'match':'mismatch',
-                'status' => 'UnPaid'
+                'price_status' => ($request->input('formfields.price_difference_count')==0)?'match':'mismatch'
              ]);
 
-            $sales = DeliveryNotes::where('id',$request->input('s_id'))->first();
+            $deliverynotes = DeliveryNotes::where('id',$request->input('s_id'))->first();
 
 
-            $items_sales = SalesItems::where('sales_id', $request->input('s_id'))->delete();
+            $items_deliverynotes = DeliveryNotesItems::where('deliverynotes_id', $request->input('s_id'))->delete();
 
             if(!empty($request->input('itemfields')))
             {
                 foreach($request->input('itemfields') as $itemfield)
                 {
-                    $salesitems = SalesItems::create([
-                        'sales_id' => $sales->id,
+                    $deliverynotesitems = DeliveryNotesItems::create([
+                        'deliverynotes_id' => $deliverynotes->id,
                         'producttype_id' => $itemfield['invoice_typeid'],
                         'product_id' => $itemfield['invoice_product'],
                         'weight' => $itemfield['weight'],
@@ -199,26 +175,7 @@ class DeliveryNotesController extends Controller
                 }
             }
 
-            $saleshistory = SalesHistory::create([
-                'sales_id' => $sales->id,
-                'amount' => $request->input('formfields.totalamount'),
-                'log_date' => date("Y-m-d"),
-                'category' =>'invoice',
-                'user_id' => Auth::user()->id,
-                'changes' => $sales->invoiceno.' '.'created',
-                'comment' => 'Invoice '.$sales->invoiceno.' of £'.$request->input("formfields.totalamount"). 'has been edited by '.Auth::user()->first_name.' '.Auth::user()->last_name.'.'
-            ]);
-
-            $customertransaction = CustomerTransaction::create([
-                'sales_id' => $sales->id,
-                'customer_id' => $request->input('formfields.customer_id'),
-                'amount' => $request->input('formfields.totalamount'),
-                'amount_due' => $request->input('formfields.totalamount'),
-                'activity' => 'Invoice '.$sales->invoiceno,
-                'sales_history_id' => $saleshistory->id,
-            ]);
-
-            return response()->json($sales);
+            return response()->json($deliverynotes);
         } 
         catch (\Exception $e) {
             return response([
@@ -227,21 +184,16 @@ class DeliveryNotesController extends Controller
         }
     }
 
-    public function deletesalesinvoice($id){
-        $delete_transaction = CustomerTransaction::where('sales_id', $id)->delete();
-        $delete_history = SalesHistory::where('sales_id', $id)->delete();
-        $delete_payments = SalesPayments::where('sales_id', $id)->delete();
-        $delete_items = SalesItems::where('sales_id', $id)->delete();
-        $delete_notes = SalesNotes::where('sales_id', $id)->delete();
-        $invoice_kyc = InvoiceKyc::where('sales_id', $id)->delete();
+    public function deletedeliverynote($id){
+        $delete_items = DeliveryNotesItems::where('deliverynotes_id', $id)->delete();
         
-        $delete_sales = DeliveryNotes::find($id);
-            if($delete_sales){
-                $delete_sales->delete();
+        $delete_deliverynote = DeliveryNotes::find($id);
+            if($delete_deliverynote){
+                $delete_deliverynote->delete();
                 return response()->json(
                     [
                         'status' => 'success',
-                        'msg' => 'Sales Invoice deleted successfully'
+                        'msg' => 'Delivery note deleted successfully'
                     ],
                     200
                 );
