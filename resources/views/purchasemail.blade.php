@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Laravel 8 Generate PDF And Attach To Email Example - NiceSnippets.com</title>
+    <title>Purchase Invoice</title>
 </head>
 <style>
 .pdf_section * {

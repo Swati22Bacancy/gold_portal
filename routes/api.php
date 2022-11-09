@@ -170,4 +170,5 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('deliverynotes_details/{id}', [Api\DeliveryNotesController::class, 'deliverynotesdetails']);
     Route::post('edit_deliverynote',[Api\DeliveryNotesController::class, 'editdeliverynote']);
     Route::get('delete_deliverynote/{id}', [Api\DeliveryNotesController::class, 'deletedeliverynote']);
+    Route::post('send-deliverynoteemail', [Api\DeliveryNotesController::class, 'sendMailWithPDF']);
 });

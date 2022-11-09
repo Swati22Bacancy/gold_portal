@@ -152,7 +152,7 @@
                                                     class="s1"
                                                     style="padding-left: 11pt; text-indent: 0pt; margin-right: 10px; text-align: left"
                                                 >
-                                                    SALES INVOICE
+                                                    Delivery Note
                                                 </p>
                                                 <br>
                                                 <div
@@ -161,7 +161,7 @@
                                                     <h2
                                                         style="padding-left: 12pt; text-indent: 0pt; text-align: left; font-size:12px;"
                                                     >
-                                                        Invoice Date
+                                                        Date
                                                     </h2>
                                                     <h2
                                                             style="text-align: left; font-size:12px;padding-left: 13pt; text-indent: 0pt;font-weight: 500;"
@@ -176,7 +176,7 @@
                                                     <h2
                                                         style="padding-left: 13pt; text-indent: 0pt; text-align: left; font-size:12px;"
                                                     >
-                                                        Invoice Number
+                                                        Delivery Note Number
                                                     </h2>
                                                     <h2
                                                         style="text-align: left; font-size:12px;padding-left: 13pt; text-indent: 0pt;font-weight: 500;"
@@ -222,27 +222,27 @@
                                             </thead>
                                             <tbody>
                                                 <tr
-                                                    v-for="saleitem in formdata.deliverynotesitem"
-                                                    :key="saleitem.id" style="border-bottom:1px solid #ccc !important;"
+                                                    v-for="deliverynoteitem in formdata.deliverynotesitem"
+                                                    :key="deliverynoteitem.id" style="border-bottom:1px solid #ccc !important;"
                                                 >
                                                     <td style="padding-bottom:4px;padding-top:3px;font-size: 12px;">
                                                         {{
-                                                            saleitem.quantity
+                                                            deliverynoteitem.quantity
                                                         }}
                                                         x
-                                                        {{ saleitem.typename }}
+                                                        {{ deliverynoteitem.typename }}
                                                         {{
-                                                            saleitem.productname
+                                                            deliverynoteitem.productname
                                                         }}
-                                                        ({{ saleitem.weight }}g)
+                                                        ({{ deliverynoteitem.weight }}g)
                                                     </td>
                                                     <td style="padding-bottom:4px;padding-top:3px;font-size: 12px;">
-                                                        {{ saleitem.unitprice }}
+                                                        {{ deliverynoteitem.unitprice }}
                                                     </td>
-                                                    <td style="padding-bottom:4px;padding-top:3px;font-size: 12px;">{{ saleitem.vat }}</td>
+                                                    <td style="padding-bottom:4px;padding-top:3px;font-size: 12px;">{{ deliverynoteitem.vat }}</td>
                                                     <td style="padding-bottom:4px;padding-top:3px;font-size: 12px;text-align: right;">
                                                         {{
-                                                            saleitem.invoice_amount
+                                                            deliverynoteitem.invoice_amount
                                                         }}
                                                     </td>
                                                 </tr>
@@ -278,98 +278,9 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <!-- ------------------------ -->
-                                    <div class="container s3">
-                                        <p
-                                            style="text-indent: 0pt;text-align: justify;font-size: 12px;"
-                                        >
-                                            Payment Terms:
-                                        </p>
-                                        <p style=" text-indent: 0pt; text-align: justify; font-size: 13px;line-height:1.1">
-                                            Goods supplied by us remain the
-                                            property of Gold Warehouse Limited
-                                            until paid for in full. Interest
-                                            will be charged at 4% per month.
-                                            The person signing for the goods is
-                                            personally responsible for the
-                                            payment of this invoice and for any
-                                            loss or damage however caused.
-                                        </p>
-                                        <br /><br />
-                                        <p
-                                            style=" text-indent: 0pt; text-align: left; font-size: 12px;"
-                                        >
-                                            <img
-                                                :src="
-                                                    signaturedata.signature_filename
-                                                "
-                                                style="height:100px;"
-                                            />
-                                            <br>
-                                            <span>Signed By: <span style="font-weight:600;">{{signaturedata.signed_by}}</span></span>
-                                            <br />
-                                        </p>
-                                    </div>
+                                    
                                     <br />
-                                    <div
-                                        class="container s3"
-                                        style="font-size:13px;width:100%"
-                                    >
-                                        <p
-                                            style="text-indent: 0pt; text-align: left;line-height:1.1"
-                                        >
-                                            Gold Bank is a trading name for Gold
-                                            Warehouse Ltd<br />
-                                            Please make BACS/CHAPS/FASTER
-                                            payments to:<br />
-                                        </p>
-                                        <br />
-
-                                        <div class="flex-parent">
-                                            <div class="box" style="width:100%">
-                                                <p class="box_size">
-                                                    <span
-                                                        style="font-weight:bold"
-                                                        >GBP Account</span
-                                                    >
-                                                </p>
-                                                <p class="box_size">
-                                                    {{companydata.account_name}}<br />
-                                                    Sort code: <span
-                                                        style="font-weight:bold"
-                                                        >{{companydata.sort_code}}</span
-                                                    ><br />
-                                                    Account No: <span
-                                                        style="font-weight:bold"
-                                                        >{{companydata.account_number}}</span
-                                                    >
-                                                </p>
-                                            </div>
-
-                                            <div class="box" style="width:100%">
-                                                <p class="box_size">
-                                                    <span style="font-weight:bold">USD Account</span>
-                                                </p>
-                                                <p class="box_size">
-                                                    <span style="font-weight:bold">Account number: </span>{{companydata.usd_account_number}}<br />
-                                                    <span style="font-weight:bold">Bank code
-                                                        (SWIFT/BIC): </span>{{companydata.bank_code}}<br />
-                                                    <span style="font-weight:bold">ABA Routing No: </span>{{companydata.routing_number}}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <br /><br />
-
-                                        <p style="padding-left: 6pt; text-indent: 0pt; text-align: left" v-if="output_tax">
-                                            The Output Tax Of £
-                                            <span style="font-weight:600;">{{
-                                                output_tax
-                                            }}</span>
-                                            On Supply Of This Gold Is To Be
-                                            Accounted For By The Buyer To HMRC.
-                                        </p>
-                                        <br /><br /><br />
-                                    </div>
+                                    
                                 </div>
                                 <div>
                                     <p
@@ -511,17 +422,17 @@
                                 </thead>
                                 <tbody>
                                     <tr
-                                        v-for="saleitem in formdata.deliverynotesitem"
-                                        :key="saleitem.id"
+                                        v-for="deliverynoteitem in formdata.deliverynotesitem"
+                                        :key="deliverynoteitem.id"
                                     >
-                                        <td>{{ saleitem.typename }}</td>
-                                        <td>{{ saleitem.productname }}</td>
-                                        <td>{{ saleitem.weight }}</td>
-                                        <td>{{ saleitem.quantity }}</td>
+                                        <td>{{ deliverynoteitem.typename }}</td>
+                                        <td>{{ deliverynoteitem.productname }}</td>
+                                        <td>{{ deliverynoteitem.weight }}</td>
+                                        <td>{{ deliverynoteitem.quantity }}</td>
                                         <td>
                                             <span
                                                 :class="
-                                                    saleitem.price_status ==
+                                                    deliverynoteitem.price_status ==
                                                     'mismatch'
                                                         ? 'red-color'
                                                         : 'grey-color'
@@ -530,16 +441,16 @@
                                                     class="fa fa-pound-sign"
                                                     style="font-size:10px;"
                                                 ></i
-                                                >{{ saleitem.unitprice }}</span
+                                                >{{ deliverynoteitem.unitprice }}</span
                                             >
                                         </td>
-                                        <td>{{ saleitem.vat }}</td>
+                                        <td>{{ deliverynoteitem.vat }}</td>
                                         <td>
                                             <i
                                                 class="fa fa-pound-sign"
                                                 style="font-size:10px;"
                                             ></i
-                                            >{{ saleitem.invoice_amount }}
+                                            >{{ deliverynoteitem.invoice_amount }}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -797,7 +708,7 @@ export default {
             maildata.companydata = this.companydata;
             maildata.signaturedata = this.signaturedata;
             maildata.output_tax = this.output_tax;
-            const response = await axios.post("send-email", maildata).then(resp => {
+            const response = await axios.post("send-deliverynoteemail", maildata).then(resp => {
                     if (resp.data.status == "success") {
                         this.loading = false;
                         let toast = Vue.toasted.show(

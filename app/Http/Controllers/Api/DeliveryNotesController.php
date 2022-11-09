@@ -212,14 +212,14 @@ class DeliveryNotesController extends Controller
         $data["companydata"] = $request->input('companydata');
         $data["signaturedata"] = $request->input('signaturedata');
         $data["output_tax"] = $request->input('output_tax');
-        $data["invoicetitle"] = ($request->input('title')=='Purchase Order')?$request->input('title'):'Sales Invoice';
-        $data["title"] = 'Invoice '.$data["salesdata"]['invoiceno'].' from Gold Bank for '.$data["salesdata"]['firstname'].' '.$data["salesdata"]['lastname'];
+        $data["invoicetitle"] = 'Delivery Note';
+        $data["title"] = 'Delivery Note '.$data["salesdata"]['invoiceno'].' from Gold Bank for '.$data["salesdata"]['firstname'].' '.$data["salesdata"]['lastname'];
         //$pdfname = ($request->input('title')=='Purchase Order')?"Purchase Order.pdf":"Sales Invoice.pdf";
-        $pdfname = 'Invoice '.$data["salesdata"]['invoiceno'].'.pdf';
-        $pdf = PDF::loadView('mail', $data);
+        $pdfname = 'Delivery Note '.$data["salesdata"]['invoiceno'].'.pdf';
+        $pdf = PDF::loadView('deliverynotemail', $data);
 
         try {
-            Mail::send('Mails.invoice', $data, function ($message) use ($data, $pdf, $pdfname) {
+            Mail::send('Mails.deliverynote', $data, function ($message) use ($data, $pdf, $pdfname) {
                 $message->to($data["email"], $data["email"])
                     ->subject($data["title"])
                     ->attachData($pdf->output(), $pdfname);

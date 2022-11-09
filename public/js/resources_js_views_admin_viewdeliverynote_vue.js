@@ -653,95 +653,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -879,7 +790,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 maildata.signaturedata = _this2.signaturedata;
                 maildata.output_tax = _this2.output_tax;
                 _context.next = 9;
-                return axios.post("send-email", maildata).then(function (resp) {
+                return axios.post("send-deliverynoteemail", maildata).then(function (resp) {
                   if (resp.data.status == "success") {
                     _this2.loading = false;
                     var toast = Vue.toasted.show("Email has been sent successfully", {
@@ -13196,7 +13107,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                                                SALES INVOICE\n                                            "
+                                        "\n                                                Delivery Note\n                                            "
                                       )
                                     ]
                                   ),
@@ -13224,7 +13135,7 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                                                    Invoice Date\n                                                "
+                                            "\n                                                    Date\n                                                "
                                           )
                                         ]
                                       ),
@@ -13263,7 +13174,7 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                                                    Invoice Number\n                                                "
+                                            "\n                                                    Delivery Note Number\n                                                "
                                           )
                                         ]
                                       ),
@@ -13439,11 +13350,11 @@ var render = function() {
                                       [
                                         _vm._l(
                                           _vm.formdata.deliverynotesitem,
-                                          function(saleitem) {
+                                          function(deliverynoteitem) {
                                             return _c(
                                               "tr",
                                               {
-                                                key: saleitem.id,
+                                                key: deliverynoteitem.id,
                                                 staticStyle: {
                                                   "border-bottom":
                                                     "1px solid #ccc !important"
@@ -13463,19 +13374,19 @@ var render = function() {
                                                     _vm._v(
                                                       "\n                                                    " +
                                                         _vm._s(
-                                                          saleitem.quantity
+                                                          deliverynoteitem.quantity
                                                         ) +
                                                         "\n                                                    x\n                                                    " +
                                                         _vm._s(
-                                                          saleitem.typename
+                                                          deliverynoteitem.typename
                                                         ) +
                                                         "\n                                                    " +
                                                         _vm._s(
-                                                          saleitem.productname
+                                                          deliverynoteitem.productname
                                                         ) +
                                                         "\n                                                    (" +
                                                         _vm._s(
-                                                          saleitem.weight
+                                                          deliverynoteitem.weight
                                                         ) +
                                                         "g)\n                                                "
                                                     )
@@ -13495,7 +13406,7 @@ var render = function() {
                                                     _vm._v(
                                                       "\n                                                    " +
                                                         _vm._s(
-                                                          saleitem.unitprice
+                                                          deliverynoteitem.unitprice
                                                         ) +
                                                         "\n                                                "
                                                     )
@@ -13511,7 +13422,13 @@ var render = function() {
                                                       "font-size": "12px"
                                                     }
                                                   },
-                                                  [_vm._v(_vm._s(saleitem.vat))]
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        deliverynoteitem.vat
+                                                      )
+                                                    )
+                                                  ]
                                                 ),
                                                 _vm._v(" "),
                                                 _c(
@@ -13528,7 +13445,7 @@ var render = function() {
                                                     _vm._v(
                                                       "\n                                                    " +
                                                         _vm._s(
-                                                          saleitem.invoice_amount
+                                                          deliverynoteitem.invoice_amount
                                                         ) +
                                                         "\n                                                "
                                                     )
@@ -13663,292 +13580,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _c("div", { staticClass: "container s3" }, [
-                              _c(
-                                "p",
-                                {
-                                  staticStyle: {
-                                    "text-indent": "0pt",
-                                    "text-align": "justify",
-                                    "font-size": "12px"
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                        Payment Terms:\n                                    "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "p",
-                                {
-                                  staticStyle: {
-                                    "text-indent": "0pt",
-                                    "text-align": "justify",
-                                    "font-size": "13px",
-                                    "line-height": "1.1"
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                        Goods supplied by us remain the\n                                        property of Gold Warehouse Limited\n                                        until paid for in full. Interest\n                                        will be charged at 4% per month.\n                                        The person signing for the goods is\n                                        personally responsible for the\n                                        payment of this invoice and for any\n                                        loss or damage however caused.\n                                    "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("br"),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c(
-                                "p",
-                                {
-                                  staticStyle: {
-                                    "text-indent": "0pt",
-                                    "text-align": "left",
-                                    "font-size": "12px"
-                                  }
-                                },
-                                [
-                                  _c("img", {
-                                    staticStyle: { height: "100px" },
-                                    attrs: {
-                                      src: _vm.signaturedata.signature_filename
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c("span", [
-                                    _vm._v("Signed By: "),
-                                    _c(
-                                      "span",
-                                      { staticStyle: { "font-weight": "600" } },
-                                      [
-                                        _vm._v(
-                                          _vm._s(_vm.signaturedata.signed_by)
-                                        )
-                                      ]
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("br")
-                                ]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass: "container s3",
-                                staticStyle: {
-                                  "font-size": "13px",
-                                  width: "100%"
-                                }
-                              },
-                              [
-                                _c(
-                                  "p",
-                                  {
-                                    staticStyle: {
-                                      "text-indent": "0pt",
-                                      "text-align": "left",
-                                      "line-height": "1.1"
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                        Gold Bank is a trading name for Gold\n                                        Warehouse Ltd"
-                                    ),
-                                    _c("br"),
-                                    _vm._v(
-                                      "\n                                        Please make BACS/CHAPS/FASTER\n                                        payments to:"
-                                    ),
-                                    _c("br")
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("br"),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "flex-parent" }, [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass: "box",
-                                      staticStyle: { width: "100%" }
-                                    },
-                                    [
-                                      _c("p", { staticClass: "box_size" }, [
-                                        _c(
-                                          "span",
-                                          {
-                                            staticStyle: {
-                                              "font-weight": "bold"
-                                            }
-                                          },
-                                          [_vm._v("GBP Account")]
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("p", { staticClass: "box_size" }, [
-                                        _vm._v(
-                                          "\n                                                " +
-                                            _vm._s(_vm.companydata.account_name)
-                                        ),
-                                        _c("br"),
-                                        _vm._v(
-                                          "\n                                                Sort code: "
-                                        ),
-                                        _c(
-                                          "span",
-                                          {
-                                            staticStyle: {
-                                              "font-weight": "bold"
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              _vm._s(_vm.companydata.sort_code)
-                                            )
-                                          ]
-                                        ),
-                                        _c("br"),
-                                        _vm._v(
-                                          "\n                                                Account No: "
-                                        ),
-                                        _c(
-                                          "span",
-                                          {
-                                            staticStyle: {
-                                              "font-weight": "bold"
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              _vm._s(
-                                                _vm.companydata.account_number
-                                              )
-                                            )
-                                          ]
-                                        )
-                                      ])
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass: "box",
-                                      staticStyle: { width: "100%" }
-                                    },
-                                    [
-                                      _c("p", { staticClass: "box_size" }, [
-                                        _c(
-                                          "span",
-                                          {
-                                            staticStyle: {
-                                              "font-weight": "bold"
-                                            }
-                                          },
-                                          [_vm._v("USD Account")]
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("p", { staticClass: "box_size" }, [
-                                        _c(
-                                          "span",
-                                          {
-                                            staticStyle: {
-                                              "font-weight": "bold"
-                                            }
-                                          },
-                                          [_vm._v("Account number: ")]
-                                        ),
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm.companydata.usd_account_number
-                                          )
-                                        ),
-                                        _c("br"),
-                                        _vm._v(" "),
-                                        _c(
-                                          "span",
-                                          {
-                                            staticStyle: {
-                                              "font-weight": "bold"
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "Bank code\n                                                    (SWIFT/BIC): "
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(
-                                          _vm._s(_vm.companydata.bank_code)
-                                        ),
-                                        _c("br"),
-                                        _vm._v(" "),
-                                        _c(
-                                          "span",
-                                          {
-                                            staticStyle: {
-                                              "font-weight": "bold"
-                                            }
-                                          },
-                                          [_vm._v("ABA Routing No: ")]
-                                        ),
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm.companydata.routing_number
-                                          ) +
-                                            "\n                                            "
-                                        )
-                                      ])
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("br"),
-                                _c("br"),
-                                _vm._v(" "),
-                                _vm.output_tax
-                                  ? _c(
-                                      "p",
-                                      {
-                                        staticStyle: {
-                                          "padding-left": "6pt",
-                                          "text-indent": "0pt",
-                                          "text-align": "left"
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                        The Output Tax Of £\n                                        "
-                                        ),
-                                        _c(
-                                          "span",
-                                          {
-                                            staticStyle: {
-                                              "font-weight": "600"
-                                            }
-                                          },
-                                          [_vm._v(_vm._s(_vm.output_tax))]
-                                        ),
-                                        _vm._v(
-                                          "\n                                        On Supply Of This Gold Is To Be\n                                        Accounted For By The Buyer To HMRC.\n                                    "
-                                        )
-                                      ]
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _c("br"),
-                                _c("br"),
-                                _c("br")
-                              ]
-                            )
+                            _c("br")
                           ]),
                           _vm._v(" "),
                           _c("div", [
@@ -14231,23 +13863,29 @@ var render = function() {
                       _c(
                         "tbody",
                         _vm._l(_vm.formdata.deliverynotesitem, function(
-                          saleitem
+                          deliverynoteitem
                         ) {
-                          return _c("tr", { key: saleitem.id }, [
-                            _c("td", [_vm._v(_vm._s(saleitem.typename))]),
+                          return _c("tr", { key: deliverynoteitem.id }, [
+                            _c("td", [
+                              _vm._v(_vm._s(deliverynoteitem.typename))
+                            ]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(saleitem.productname))]),
+                            _c("td", [
+                              _vm._v(_vm._s(deliverynoteitem.productname))
+                            ]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(saleitem.weight))]),
+                            _c("td", [_vm._v(_vm._s(deliverynoteitem.weight))]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(saleitem.quantity))]),
+                            _c("td", [
+                              _vm._v(_vm._s(deliverynoteitem.quantity))
+                            ]),
                             _vm._v(" "),
                             _c("td", [
                               _c(
                                 "span",
                                 {
                                   class:
-                                    saleitem.price_status == "mismatch"
+                                    deliverynoteitem.price_status == "mismatch"
                                       ? "red-color"
                                       : "grey-color"
                                 },
@@ -14256,12 +13894,12 @@ var render = function() {
                                     staticClass: "fa fa-pound-sign",
                                     staticStyle: { "font-size": "10px" }
                                   }),
-                                  _vm._v(_vm._s(saleitem.unitprice))
+                                  _vm._v(_vm._s(deliverynoteitem.unitprice))
                                 ]
                               )
                             ]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(saleitem.vat))]),
+                            _c("td", [_vm._v(_vm._s(deliverynoteitem.vat))]),
                             _vm._v(" "),
                             _c("td", [
                               _c("i", {
@@ -14269,7 +13907,7 @@ var render = function() {
                                 staticStyle: { "font-size": "10px" }
                               }),
                               _vm._v(
-                                _vm._s(saleitem.invoice_amount) +
+                                _vm._s(deliverynoteitem.invoice_amount) +
                                   "\n                                    "
                               )
                             ])

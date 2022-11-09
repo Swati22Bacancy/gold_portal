@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sales Invoice</title>
+    <title>Delivery Note</title>
 </head>
 <style>
 .pdf_section * {
@@ -146,13 +146,13 @@
                         <div style="font-size:10px;  text-align: left;">
                         <h2
                         style=" text-align: left; font-size:11px;">
-                        Invoice Date
+                        Date
                         </h2>
                         <p style=" text-align: left; font-size:11px;">
                         <span style="text-align: left; font-size:11px;">{{ $salesdata['issue_date'] }}</span></p>
                         
                         <h2 style=" text-align: left; font-size:11px;">
-                        Invoice Number
+                        Delivery Note Number
                         </h2>
                         <p style=" text-align: left; font-size:11px; ">
                             <span style="text-align: left; font-size:11px;">{{ $salesdata['invoiceno']  }}</span>
@@ -178,7 +178,7 @@
             </tr>
             </thead>
             <tbody style="width:100%;text-align: center; font-family: Calibri;">
-                @foreach ($salesdata['salesitem'] as $sale)
+                @foreach ($salesdata['deliverynotesitem'] as $sale)
                 <tr>
                     <td style="padding-bottom:6px;padding-top:5px;font-size: 12px;text-align:left;">{{ $sale['quantity'] }} x {{ $sale['typename'] }} {{ $sale['productname'] }} ({{ $sale['weight'] }}g) </td>
                     <td style="padding-bottom:6px;padding-top:5px;font-size: 12px;text-align:left;">{{ $sale['unitprice'] }}</td>
@@ -202,72 +202,8 @@
         </table>
     </div>
         <!-- ------------------------ -->
-        <div class="container1 s3">
-            <p style="text-align: justify;font-size: 13px; font-family: Georgia;">Payment Terms:</p>
-            <p style=" text-align: justify; font-size: 13px;">
-            Goods supplied by us remain the property of Gold Warehouse Limited until
-        paid for in full. Interest will be charged at 4% per month. The person
-        signing for the goods is personally responsible for the payment of this
-        invoice and for any loss or damage however caused.
-            </p><br><br><br><br>
-            @if(!empty($signaturedata['id'])) 
-            <p style=" text-align: left; font-size: 11px;">
-            <img src="{{ public_path($signaturedata['signature_filename']) }}" style="height: 70px;">
-            <br>
-            <span class="ml-3">
-            Signed By: <span style="font-weight:600; font-family: Georgia;">{{$signaturedata['signed_by']}}</span>
-            </span><br>
-            </p>
-            @endif
-            <br>
-        </div>
-        <div class="container1 s3" style="font-size:12px; font-family:Calibri">
-            <p style="text-align: left;">
-                Gold Bank is a trading name for Gold
-                Warehouse Ltd<br />
-                Please make BACS/CHAPS/FASTER
-                payments to:<br />
-            </p><br>
-            @if($output_tax)
-            <p style="padding-left: 6px; text-align: left; font-family:Calibri">
-            The Output Tax Of £ <span style="font-weight:600;"> {{$output_tax}} </span> On
-            Supply Of This Gold Is To Be Accounted For By The Buyer To HMRC.
-            </p>
-            @endif
-        </div>
-        <div class="flex-parent">
-            <div class="box" style="padding-top:10px;padding-left:10px;">
-                <p class="box_size" style="padding-bottom:12px;">
-                    <span
-                        style="font-weight:bold"
-                        >GBP Account</span
-                    >
-                </p>
-                <p class="box_size">
-                    {{$companydata['account_name']}}<br />
-                    Sort code: <span
-                        style="font-weight:bold"
-                        >{{$companydata['sort_code']}}</span
-                    ><br />
-                    Account No: <span
-                        style="font-weight:bold"
-                        >{{$companydata['account_number']}}</span
-                    >
-                </p>
-            </div>
-
-            <div class="box" style="padding-top:10px;padding-left:10px;float:right">
-                <p class="box_size" style="padding-bottom:12px;">
-                    <span style="font-weight:bold">USD Account</span>
-                </p>
-                <p class="box_size">
-                    <span style="font-weight:bold">Account number: </span>{{$companydata['usd_account_number']}}<br />
-                    <span style="font-weight:bold">Bank code
-                        (SWIFT/BIC): </span>{{$companydata['bank_code']}}<br />
-                    <span style="font-weight:bold">ABA Routing No: </span>{{$companydata['routing_number']}}
-                </p>
-            </div>
-        </div>
+        
+        
     </div> 
     <div style="margin-top:180px;">
         <p class="s4" style="padding-left: 49px; text-align: center">
