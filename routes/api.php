@@ -171,4 +171,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('edit_deliverynote',[Api\DeliveryNotesController::class, 'editdeliverynote']);
     Route::get('delete_deliverynote/{id}', [Api\DeliveryNotesController::class, 'deletedeliverynote']);
     Route::post('send-deliverynoteemail', [Api\DeliveryNotesController::class, 'sendMailWithPDF']);
+
+    // Bank Account Routes (Nordigen) 
+    Route::get('fetchaccountfeeds', [Api\BankAccountController::class, 'fetchaccountfeeds']);
 });

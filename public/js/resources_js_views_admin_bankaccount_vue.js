@@ -258,9 +258,17 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {};
   },
+  mounted: function mounted() {
+    this.getAccounts();
+  },
   methods: {
     clickAccount: function clickAccount() {
       this.$router.push('/clickbankaccount');
+    },
+    getAccounts: function getAccounts() {
+      return axios.get("fetchaccountfeeds").then(function (response) {
+        console.log(response);
+      });
     }
   }
 });

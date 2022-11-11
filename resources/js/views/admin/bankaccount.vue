@@ -249,10 +249,19 @@ export default {
         }
 
     },
+    mounted()
+    {
+        this.getAccounts();
+    },
     methods:{
         clickAccount(){
             this.$router.push('/clickbankaccount')
-        }
+        },
+        getAccounts() {
+            return axios.get("fetchaccountfeeds").then(response => {
+                console.log(response);
+            });
+        },
     }
 }
 </script>
