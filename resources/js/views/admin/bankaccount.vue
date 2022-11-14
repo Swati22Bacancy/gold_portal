@@ -4,80 +4,23 @@
             <h1 class="h3 mb-0 text-gray-800">Bank Accounts</h1>
         </div>
         <div class="row">
-            <div class="col-md-4" @click="clickAccount">
+            <div class="col-md-4" @click="clickAccount" v-for="account in accounts"  :key="account.id">
                 <div style="border-radius: 5px 5px 0px 0px; border: 1px solid #B0E0E6; background-color: white;">
                   <div class="col-md-12">
                     <div class="col-md-8 dash-divs">
                         <h4 class="h3" style="margin-bottom:0; color:#3376C2;font-weight: 700;font-family: Titillium-Web-Bold;font-size: 23px;">
-                            ICIC Bank Account
+                            {{account.title}}
                         </h4>
-                        <span style="color:black">23-05-80 30552972</span><br>
+                        <span style="color:black">{{account.account_no}}</span><br>
                         <div class="dash-label" style="color:black">Recent Transactions</div>
                     </div>
                     <div class=""></div>
                     <div class="col-md-4"></div>
                 </div>
                 <div class="">
-            <div>
-              
-            </div>
-          </div>
-                <div class="dash-table">
-                    <div class="table-responsive">
-                        <table
-                            class="table"
-                            id="dash-datatable"
-                            width="100%"
-                            cellspacing="0"
-                        >
-                            <tbody>
-                                <tr>
-                                    <td>ABC Jewellers</td>
-                                    <td>
-                                        <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>2000
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>ABC Jewellers</td>
-                                    <td>
-                                        <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>2000
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>ABC Jewellers</td>
-                                    <td>
-                                        <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>2000
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div>
+                    
                     </div>
-                </div>
-                <div class="col-md-12" style="border-radius: 0px 0px 5px 5px;">
-                    <div class="col-md-8 dash-divs">
-                        <h4 style="margin-bottom:0; color: black;">
-                            <b><i class="fa fa-pound-sign" style="font-size:20px;margin-right:6px; color: black;"></i>168,343.66</b>
-                        </h4>
-                    </div>
-                    <div class=""></div>
-                    <div class="col-md-4"></div>
-                </div>
-                </div>
-                
-            </div>
-
-            <div class="col-md-4" @click="clickAccount">
-                <div style="border-radius: 5px 5px 0px 0px; border: 1px solid #B0E0E6; background-color: white;">
-                  <div class="col-md-12">
-                    <div class="col-md-8 dash-divs">
-                        <h4 class="h3" style="margin-bottom:0; color:#3376C2;font-weight: 700;font-family: Titillium-Web-Bold;font-size: 23px;">
-                            Barkleys Bank Account
-                        </h4>
-                        <span style="color:black"><b>23-05-80 30552972</b></span><br />
-                        <div class="dash-label" style="color:black">Recent Transactions</div>
-                    </div>
-                    <div class=""></div>
-                    <div class="col-md-4"></div>
                 </div>
                 <div class="dash-table">
                     <div class="table-responsive">
@@ -88,24 +31,15 @@
                             cellspacing="0"
                         >
                             <tbody>
-                                <tr>
-                                    <td>ABC Jewellers</td>
+                                <tr v-for="transaction in account.transactions" :key="transaction.transactionId">
+                                    <td>{{transaction.creditorName}}{{transaction.debtorName}}</td>
                                     <td>
-                                        <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>2000
+                                        <i v-if="transaction.transactionAmount.currency=='GBP'" class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>
+                                        <i v-if="transaction.transactionAmount.currency=='USD'" class="fa fa-dollar-sign" style="font-size:10px;margin-right:3px;"></i>
+                                        {{transaction.transactionAmount.amount}}
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>ABC Jewellers</td>
-                                    <td>
-                                        <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>2000
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>ABC Jewellers</td>
-                                    <td>
-                                        <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>2000
-                                    </td>
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>
@@ -113,7 +47,7 @@
                 <div class="col-md-12" style="border-radius: 0px 0px 5px 5px;">
                     <div class="col-md-8 dash-divs">
                         <h4 style="margin-bottom:0; color: black;">
-                            <b><i class="fa fa-pound-sign" style="font-size:20px;margin-right:6px; color: black;"></i>168,343.66</b>
+                            <b><i v-if="account.currency=='GBP'" class="fa fa-pound-sign" style="font-size:20px;margin-right:6px; color: black;"></i><i v-if="account.currency=='USD'" class="fa fa-dollar-sign" style="font-size:20px;margin-right:6px; color: black;"></i>{{account.balance}}</b>
                         </h4>
                     </div>
                     <div class=""></div>
@@ -123,129 +57,16 @@
                 
             </div>
 
-            <div class="col-md-4" @click="clickAccount">
-                <div style="border-radius: 5px 5px 0px 0px; border: 1px solid #B0E0E6; background-color: white;">
-                  <div class="col-md-12">
-                    <div class="col-md-8 dash-divs">
-                        <h4 class="h3" style="margin-bottom:0; color:#3376C2;font-weight: 700;font-family: Titillium-Web-Bold;font-size: 23px;">
-                            AMEX Bank Account
-                        </h4>
-                        <span style="color:black">23-05-80 30552972</span><br />
-                        <div class="dash-label" style="color:black">Recent Transactions</div>
-                    </div>
-                    <div class=""></div>
-                    <div class="col-md-4"></div>
-                </div>
-                <div class="dash-table">
-                    <div class="table-responsive">
-                        <table
-                            class="table"
-                            id="dash-datatable"
-                            width="100%"
-                            cellspacing="0"
-                        >
-                            <tbody>
-                                <tr>
-                                    <td>ABC Jewellers</td>
-                                    <td>
-                                        <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>2000
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>ABC Jewellers</td>
-                                    <td>
-                                        <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>2000
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>ABC Jewellers</td>
-                                    <td>
-                                        <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>2000
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-md-12" style="border-radius: 0px 0px 5px 5px;">
-                    <div class="col-md-8 dash-divs">
-                        <h4 style="margin-bottom:0; color: black;">
-                            <b><i class="fa fa-pound-sign" style="font-size:20px;margin-right:6px; color: black;"></i>168,343.66</b>
-                        </h4>
-                    </div>
-                    <div class=""></div>
-                    <div class="col-md-4"></div>
-                </div>
-                </div>
-                
-            </div>
-
+           
         </div>
-        <div class="row" style="margin-top:20px">
-  <div class="col-md-4" @click="clickAccount">
-                <div style="border-radius: 5px 5px 0px 0px; border: 1px solid #B0E0E6; background-color: white;">
-                  <div class="col-md-12">
-                    <div class="col-md-8 dash-divs">
-                        <h4 class="h3" style="margin-bottom:0; color:#3376C2;font-weight: 700;font-family: Titillium-Web-Bold;font-size: 23px;">
-                            Cash-in-hand Account
-                        </h4>
-                        <span style="color:black">23-05-80 30552972</span><br />
-                        <div class="dash-label" style="color:black">Recent Transactions</div>
-                    </div>
-                    <div class=""></div>
-                    <div class="col-md-4"></div>
-                </div>
-                <div class="dash-table">
-                    <div class="table-responsive">
-                        <table
-                            class="table"
-                            id="dash-datatable"
-                            width="100%"
-                            cellspacing="0"
-                        >
-                            <tbody>
-                                <tr>
-                                    <td>ABC Jewellers</td>
-                                    <td>
-                                        <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>2000
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>ABC Jewellers</td>
-                                    <td>
-                                        <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>2000
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>ABC Jewellers</td>
-                                    <td>
-                                        <i class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>2000
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-md-12" style="border-radius: 0px 0px 5px 5px;">
-                    <div class="col-md-8 dash-divs">
-                        <h4 style="margin-bottom:0; color: black;">
-                            <b><i class="fa fa-pound-sign" style="font-size:20px;margin-right:6px; color: black;"></i>168,343.66</b>
-                        </h4>
-                    </div>
-                    <div class=""></div>
-                    <div class="col-md-4"></div>
-                </div>
-                </div>
-                
-            </div>
-</div>
+        
     </div>
 </template>
 <script>
 export default {
     data(){
         return{
-
+            accounts:[],
         }
 
     },
@@ -259,6 +80,7 @@ export default {
         },
         getAccounts() {
             return axios.get("fetchaccountfeeds").then(response => {
+                this.accounts = response.data;
                 console.log(response);
             });
         },
