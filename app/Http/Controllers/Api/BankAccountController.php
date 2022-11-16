@@ -52,7 +52,7 @@ class BankAccountController extends Controller
                             'authorization' => 'Bearer '.nordigenToken(),
                         ]]);
                     $res_accountdata = json_decode($responseaccount->getBody());
-                    $accounts[$key]['balance'] = $res_accountdata->balances[0]->balanceAmount->amount;
+                    $accounts[$key]['balance'] = number_format($res_accountdata->balances[0]->balanceAmount->amount, 2, '.', ',');
                     $accounts[$key]['currency'] = $res_accountdata->balances[0]->balanceAmount->currency;
                     $accounts[$key]['title'] = ($res_accountdata->balances[0]->balanceAmount->currency=='USD')?'Wise Bank (USD)':'Wise Bank (GBP)';
                     // Account Transactions
@@ -64,9 +64,73 @@ class BankAccountController extends Controller
                     $res_transactiondata = json_decode($responsetransaction->getBody());
                     
                     $accounts[$key]['transactions'] = array_slice($res_transactiondata->transactions->booked, 0, 5);
+
+                    foreach ($accounts[$key]['transactions'] as $index => $transaction)
+                    {
+                        if($transaction->transactionAmount->amount<0)
+                        {   $outamount= abs($transaction->transactionAmount->amount);
+                            $accounts[$key]['transactions'][$index]->outamount = number_format($outamount, 2, '.', ',');
+                        }
+                        else
+                        {
+                            $accounts[$key]['transactions'][$index]->inamount = number_format($transaction->transactionAmount->amount, 2, '.', ',');
+                        }
+                        if(!isset($transaction->debtorName) && !isset($transaction->creditorName))
+                        {
+                            $accounts[$key]['transactions'][$index]->payee = substr(strstr($transaction->remittanceInformationUnstructured," "), 1); 
+                        }
+                    }
                 }
             }
         }
+        return response()->json($accounts);
+    }
+
+    public function accounttransactions($id,$currencyid)
+    {
+        $accounts=array();
+        $client = new Client();
+        $responsetransaction = $client->request('GET', config('constants.authernticationApiUrl').'/api/v2/accounts/'.$id.'/transactions',[
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'authorization' => 'Bearer '.nordigenToken(),
+            ]]);
+        $res_transactiondata = json_decode($responsetransaction->getBody());
+
+        $responseaccount = $client->request('GET', config('constants.authernticationApiUrl').'/api/v2/accounts/'.$id.'/balances',[
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'authorization' => 'Bearer '.nordigenToken(),
+            ]]);
+        $res_accountdata = json_decode($responseaccount->getBody());
+        $accounts['balance'] = number_format($res_accountdata->balances[0]->balanceAmount->amount, 2, '.', ',');
+        
+        $accounts['transactions'] = $res_transactiondata->transactions->booked;
+        foreach ($res_transactiondata->transactions->booked as $index => $transaction)
+        {
+            if(isset($res_transactiondata->transactions->booked[$index]->proprietaryBankTransactionCode))
+            {
+                $res_transactiondata->transactions->booked[$index]->proprietaryBankTransactionCode = ($transaction->proprietaryBankTransactionCode=='CARD_TRANSACTION')?'CARD':$transaction->proprietaryBankTransactionCode;
+            }
+            else
+            {
+                $res_transactiondata->transactions->booked[$index]->proprietaryBankTransactionCode = 'TRANSFER';
+            }
+            if($transaction->transactionAmount->amount<0)
+            {
+                $res_transactiondata->transactions->booked[$index]->outamount = number_format($transaction->transactionAmount->amount, 2, '.', ',');
+            }
+            else
+            {
+                $res_transactiondata->transactions->booked[$index]->inamount = number_format($transaction->transactionAmount->amount, 2, '.', ',');
+            }
+            if(!isset($transaction->debtorName) && !isset($transaction->creditorName))
+            {
+                $res_transactiondata->transactions->booked[$index]->payee = substr(strstr($transaction->remittanceInformationUnstructured," "), 1); 
+            }
+        }
+        $accounts['title'] = ($currencyid=='1')?'Wise Bank (USD)':'Wise Bank (GBP)';
+        $accounts['currency'] = ($currencyid=='1')?'USD':'GBP';
         return response()->json($accounts);
     }
 }

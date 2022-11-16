@@ -4,10 +4,10 @@
             <h1 class="h3 mb-0 text-gray-800">Bank Accounts</h1>
         </div>
         <div class="row">
-            <div class="col-md-4" @click="clickAccount" v-for="account in accounts"  :key="account.id">
+            <div class="col-md-4" v-for="account in accounts"  :key="account.id">
                 <div style="border-radius: 5px 5px 0px 0px; border: 1px solid #B0E0E6; background-color: white;">
                   <div class="col-md-12">
-                    <div class="col-md-8 dash-divs">
+                    <div class="col-md-8 dash-divs" style="cursor:pointer;" @click="clickAccount(account.id,account.currency)">
                         <h4 class="h3" style="margin-bottom:0; color:#3376C2;font-weight: 700;font-family: Titillium-Web-Bold;font-size: 23px;">
                             {{account.title}}
                         </h4>
@@ -32,11 +32,18 @@
                         >
                             <tbody>
                                 <tr v-for="transaction in account.transactions" :key="transaction.transactionId">
-                                    <td>{{transaction.creditorName}}{{transaction.debtorName}}</td>
+                                    <td>{{transaction.creditorName}}{{transaction.debtorName}}{{transaction.payee}}</td>
                                     <td>
-                                        <i v-if="transaction.transactionAmount.currency=='GBP'" class="fa fa-pound-sign" style="font-size:10px;margin-right:3px;"></i>
-                                        <i v-if="transaction.transactionAmount.currency=='USD'" class="fa fa-dollar-sign" style="font-size:10px;margin-right:3px;"></i>
-                                        {{transaction.transactionAmount.amount}}
+                                        <span v-if="transaction.inamount">
+                                            <i v-if="transaction.transactionAmount.currency=='GBP'" class="fa fa-pound-sign" style="font-size:10px;"></i>
+                                            <i v-if="transaction.transactionAmount.currency=='USD'" class="fa fa-dollar-sign" style="font-size:10px;"></i>
+                                        </span>
+                                        <span v-if="transaction.outamount" style="color:red">-
+                                            <i v-if="transaction.transactionAmount.currency=='GBP'" class="fa fa-pound-sign" style="font-size:10px;"></i>
+                                            <i v-if="transaction.transactionAmount.currency=='USD'" class="fa fa-dollar-sign" style="font-size:10px;"></i>
+                                        </span>
+                                        <span v-if="transaction.inamount">{{transaction.inamount}}</span>
+                                        <span v-if="transaction.outamount" style="color:red">{{transaction.outamount}}</span>
                                     </td>
                                 </tr>
                                 
@@ -75,8 +82,9 @@ export default {
         this.getAccounts();
     },
     methods:{
-        clickAccount(){
-            this.$router.push('/clickbankaccount')
+        clickAccount(accountid,currency){
+            var currencyid= (currency=='USD')?'1':'2';
+            this.$router.push('/accountdetails/'+accountid+'/'+currencyid)
         },
         getAccounts() {
             return axios.get("fetchaccountfeeds").then(response => {

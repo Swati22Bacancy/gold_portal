@@ -75,6 +75,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -85,8 +92,9 @@ __webpack_require__.r(__webpack_exports__);
     this.getAccounts();
   },
   methods: {
-    clickAccount: function clickAccount() {
-      this.$router.push('/clickbankaccount');
+    clickAccount: function clickAccount(accountid, currency) {
+      var currencyid = currency == 'USD' ? '1' : '2';
+      this.$router.push('/accountdetails/' + accountid + '/' + currencyid);
     },
     getAccounts: function getAccounts() {
       var _this = this;
@@ -265,26 +273,30 @@ var render = function() {
       "div",
       { staticClass: "row" },
       _vm._l(_vm.accounts, function(account) {
-        return _c(
-          "div",
-          {
-            key: account.id,
-            staticClass: "col-md-4",
-            on: { click: _vm.clickAccount }
-          },
-          [
-            _c(
-              "div",
-              {
-                staticStyle: {
-                  "border-radius": "5px 5px 0px 0px",
-                  border: "1px solid #B0E0E6",
-                  "background-color": "white"
-                }
-              },
-              [
-                _c("div", { staticClass: "col-md-12" }, [
-                  _c("div", { staticClass: "col-md-8 dash-divs" }, [
+        return _c("div", { key: account.id, staticClass: "col-md-4" }, [
+          _c(
+            "div",
+            {
+              staticStyle: {
+                "border-radius": "5px 5px 0px 0px",
+                border: "1px solid #B0E0E6",
+                "background-color": "white"
+              }
+            },
+            [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "col-md-8 dash-divs",
+                    staticStyle: { cursor: "pointer" },
+                    on: {
+                      click: function($event) {
+                        return _vm.clickAccount(account.id, account.currency)
+                      }
+                    }
+                  },
+                  [
                     _c(
                       "h4",
                       {
@@ -319,132 +331,159 @@ var render = function() {
                       },
                       [_vm._v("Recent Transactions")]
                     )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", {}),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" })
+              ]),
+              _vm._v(" "),
+              _vm._m(1, true),
+              _vm._v(" "),
+              _c("div", { staticClass: "dash-table" }, [
+                _c("div", { staticClass: "table-responsive" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass: "table",
+                      attrs: {
+                        id: "dash-datatable",
+                        width: "100%",
+                        cellspacing: "0"
+                      }
+                    },
+                    [
+                      _c(
+                        "tbody",
+                        _vm._l(account.transactions, function(transaction) {
+                          return _c("tr", { key: transaction.transactionId }, [
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(transaction.creditorName) +
+                                  _vm._s(transaction.debtorName) +
+                                  _vm._s(transaction.payee)
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              transaction.inamount
+                                ? _c("span", [
+                                    transaction.transactionAmount.currency ==
+                                    "GBP"
+                                      ? _c("i", {
+                                          staticClass: "fa fa-pound-sign",
+                                          staticStyle: { "font-size": "10px" }
+                                        })
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    transaction.transactionAmount.currency ==
+                                    "USD"
+                                      ? _c("i", {
+                                          staticClass: "fa fa-dollar-sign",
+                                          staticStyle: { "font-size": "10px" }
+                                        })
+                                      : _vm._e()
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              transaction.outamount
+                                ? _c(
+                                    "span",
+                                    { staticStyle: { color: "red" } },
+                                    [
+                                      _vm._v(
+                                        "-\n                                        "
+                                      ),
+                                      transaction.transactionAmount.currency ==
+                                      "GBP"
+                                        ? _c("i", {
+                                            staticClass: "fa fa-pound-sign",
+                                            staticStyle: { "font-size": "10px" }
+                                          })
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      transaction.transactionAmount.currency ==
+                                      "USD"
+                                        ? _c("i", {
+                                            staticClass: "fa fa-dollar-sign",
+                                            staticStyle: { "font-size": "10px" }
+                                          })
+                                        : _vm._e()
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              transaction.inamount
+                                ? _c("span", [
+                                    _vm._v(_vm._s(transaction.inamount))
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              transaction.outamount
+                                ? _c(
+                                    "span",
+                                    { staticStyle: { color: "red" } },
+                                    [_vm._v(_vm._s(transaction.outamount))]
+                                  )
+                                : _vm._e()
+                            ])
+                          ])
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "col-md-12",
+                  staticStyle: { "border-radius": "0px 0px 5px 5px" }
+                },
+                [
+                  _c("div", { staticClass: "col-md-8 dash-divs" }, [
+                    _c(
+                      "h4",
+                      { staticStyle: { "margin-bottom": "0", color: "black" } },
+                      [
+                        _c("b", [
+                          account.currency == "GBP"
+                            ? _c("i", {
+                                staticClass: "fa fa-pound-sign",
+                                staticStyle: {
+                                  "font-size": "20px",
+                                  "margin-right": "6px",
+                                  color: "black"
+                                }
+                              })
+                            : _vm._e(),
+                          account.currency == "USD"
+                            ? _c("i", {
+                                staticClass: "fa fa-dollar-sign",
+                                staticStyle: {
+                                  "font-size": "20px",
+                                  "margin-right": "6px",
+                                  color: "black"
+                                }
+                              })
+                            : _vm._e(),
+                          _vm._v(_vm._s(account.balance))
+                        ])
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", {}),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-4" })
-                ]),
-                _vm._v(" "),
-                _vm._m(1, true),
-                _vm._v(" "),
-                _c("div", { staticClass: "dash-table" }, [
-                  _c("div", { staticClass: "table-responsive" }, [
-                    _c(
-                      "table",
-                      {
-                        staticClass: "table",
-                        attrs: {
-                          id: "dash-datatable",
-                          width: "100%",
-                          cellspacing: "0"
-                        }
-                      },
-                      [
-                        _c(
-                          "tbody",
-                          _vm._l(account.transactions, function(transaction) {
-                            return _c(
-                              "tr",
-                              { key: transaction.transactionId },
-                              [
-                                _c("td", [
-                                  _vm._v(
-                                    _vm._s(transaction.creditorName) +
-                                      _vm._s(transaction.debtorName)
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  transaction.transactionAmount.currency ==
-                                  "GBP"
-                                    ? _c("i", {
-                                        staticClass: "fa fa-pound-sign",
-                                        staticStyle: {
-                                          "font-size": "10px",
-                                          "margin-right": "3px"
-                                        }
-                                      })
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  transaction.transactionAmount.currency ==
-                                  "USD"
-                                    ? _c("i", {
-                                        staticClass: "fa fa-dollar-sign",
-                                        staticStyle: {
-                                          "font-size": "10px",
-                                          "margin-right": "3px"
-                                        }
-                                      })
-                                    : _vm._e(),
-                                  _vm._v(
-                                    "\n                                    " +
-                                      _vm._s(
-                                        transaction.transactionAmount.amount
-                                      ) +
-                                      "\n                                "
-                                  )
-                                ])
-                              ]
-                            )
-                          }),
-                          0
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "col-md-12",
-                    staticStyle: { "border-radius": "0px 0px 5px 5px" }
-                  },
-                  [
-                    _c("div", { staticClass: "col-md-8 dash-divs" }, [
-                      _c(
-                        "h4",
-                        {
-                          staticStyle: { "margin-bottom": "0", color: "black" }
-                        },
-                        [
-                          _c("b", [
-                            account.currency == "GBP"
-                              ? _c("i", {
-                                  staticClass: "fa fa-pound-sign",
-                                  staticStyle: {
-                                    "font-size": "20px",
-                                    "margin-right": "6px",
-                                    color: "black"
-                                  }
-                                })
-                              : _vm._e(),
-                            account.currency == "USD"
-                              ? _c("i", {
-                                  staticClass: "fa fa-dollar-sign",
-                                  staticStyle: {
-                                    "font-size": "20px",
-                                    "margin-right": "6px",
-                                    color: "black"
-                                  }
-                                })
-                              : _vm._e(),
-                            _vm._v(_vm._s(account.balance))
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", {}),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" })
-                  ]
-                )
-              ]
-            )
-          ]
-        )
+                ]
+              )
+            ]
+          )
+        ])
       }),
       0
     )

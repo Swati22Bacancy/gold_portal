@@ -253,9 +253,9 @@ let router = new Router({
             }
         },
         {
-            path: "/clickbankaccount",
-            name: "clickbankaccount",
-            component: () => import("./views/admin/clickbankaccount.vue"),
+            path: "/accountdetails/:id/:currencyid",
+            name: "accountdetails",
+            component: () => import("./views/admin/accountdetails.vue"),
             meta: {
                 requiresAuth: true,
                 layout: AdminLayout

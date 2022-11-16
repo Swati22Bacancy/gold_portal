@@ -5,7 +5,7 @@
         <div class="col-md-6">
           <div class="row">
             <div class="col-md-8 mobile-mb">
-              <h1 class="h3 mb-0 text-gray-800">ICIC Bank Account</h1>
+              <h1 class="h3 mb-0 text-gray-800">{{details['title']}}</h1>
             </div>
             
           </div>
@@ -23,7 +23,7 @@
   
       <div class="search-cstm">
         <div class="col-md-12 Container-date">
-              <input type="text" class="form-control bg-light border-0 small table-search" placeholder="Search" style="background-color:#FFFFFF !important;margin-right:5px;"/>
+              <input type="text" class="form-control bg-light border-0 small table-search searchbox" placeholder="Search" style="background-color:#FFFFFF !important;margin-right:5px;"/>
               
               <div class="Container-date">
            <p>Date Range</p> <Datepicker v-model="issue_date" class="date-cont"></Datepicker>
@@ -37,7 +37,7 @@
         <div class="mt-2 mb-4">
             <div class="">
                 <div class="table-responsive">
-                    <table class="table" id="clickbankaccount-datatable" width="100%" cellspacing="0">
+                    <table class="table" id="accountdetails-datatable" width="100%" cellspacing="0">
                        <thead>
                         <tr>
                             <th><input type="checkbox" class="custom-check-input"></th>
@@ -45,49 +45,26 @@
                             <th>payer/payee</th>
                             <th>Ref</th>
                             <th>Type</th>
-                            <th>In( <i class="fa fa-pound-sign" style="font-size: 9px;"></i> )</th>
-                            <th>Out( <i class="fa fa-pound-sign" style="font-size: 9px;"></i> )</th>
+                            <th>In( <i v-if="details['currency']=='GBP'" class="fa fa-pound-sign" style="font-size: 9px;"></i> <i v-if="details['currency']=='USD'" class="fa fa-dollar-sign" style="font-size: 9px;"></i> )</th>
+                            <th>Out( <i v-if="details['currency']=='GBP'" class="fa fa-pound-sign" style="font-size: 9px;"></i> <i v-if="details['currency']=='USD'" class="fa fa-dollar-sign" style="font-size: 9px;"></i> )</th>
                             <th>Balance</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                 <tbody>
-                    <tr>
+                    <tr v-for="detail in details['transactions']" :key="detail.id">
                           <td><input type="checkbox" class="custom-check-input"></td>
-                          <td>2/12/21</td>
-                          <td>ABC Jewellers Ltd.</td>
-                          <td>INV-22323</td>
-                          <td>Faster Payment</td>
-                          <td>2000.40</td>
+                          <td>{{dateFormateChanger(detail.bookingDate)}}</td>
+                          <td>{{detail.creditorName}}{{detail.debtorName}}{{detail.payee}}</td>
                           <td></td>
-                          <td>168232.62</td>
+                          <td>{{detail.proprietaryBankTransactionCode}}</td>
+                          <td>{{detail.inamount}}</td>
+                          <td style="color:red;">{{detail.outamount}}</td>
+                          <td>{{details['balance']}}</td>
                           <td><button type="button" class="btn-container" style="background-color: #7ADAAA !important;margin-left: auto;width: 150px;">Assigned INV-22323</button>
-                            <i class="fas fa-pencil-alt" style="margin-left:15px; font-size: 15px; color:green"></i><i class="fa fa-trash" style="margin-left:30px; color:red"></i></td>
+                            <i class="fas fa-pencil-alt" style="margin-left:15px; font-size: 15px; color:green"></i></td>
                     </tr>
-                    <tr>
-                          <td><input type="checkbox" class="custom-check-input"></td>
-                          <td>2/12/21</td>
-                          <td>XYZ Jewellers Ltd.</td>
-                          <td></td>
-                          <td>Faster Payment</td>
-                          <td></td>
-                          <td style="color:red">-300</td>
-                          <td>166232.62</td>
-                          <td><button type="button" class="btn-container" style="background-color: #CCCCFF !important;margin-left: auto;width: 150px;">Assigned PO-10003</button>
-                            <i class="fas fa-pencil-alt" style="margin-left:15px; font-size: 15px; color:green"></i><i class="fa fa-trash" style="margin-left:30px; color:red"></i></td>
-                    </tr>
-                    <tr>
-                          <td><input type="checkbox" class="custom-check-input"></td>
-                          <td>2/12/21</td>
-                          <td>ABC Jewellers Ltd.</td>
-                          <td></td>
-                          <td>Cash Deposite</td>
-                          <td>2000.40</td>
-                          <td></td>
-                          <td>169232.62</td>
-                          <td><i class="fas fa-pencil-alt" style="margin-left:165px; font-size: 15px; color:green"></i><i class="fa fa-trash" style="margin-left:35px; color:red"></i></td>
-                    </tr>
-                     </tbody>
+                    </tbody>
                   </table>
                </div>
            </div>
@@ -97,19 +74,75 @@
 </div>
  </div>
   </template>
-  <<script>
+  <script>
     import Datepicker from 'vuejs-datepicker';
-  export default {
-    components: {
-      Datepicker,
-    },
-    data() {
-    return {
-      issue_date:Date.now(),
-      due_date:Date.now(),
-    };
-  },
-  }
+    import moment from 'moment';
+    import "datatables.net-dt/js/dataTables.dataTables"
+    import "datatables.net-dt/css/jquery.dataTables.min.css"
+    export default {
+      name: "AccountDetails",
+      components: {
+        Datepicker,
+        moment
+      },
+      props: ['details'],
+      data() {
+        return {
+          issue_date:Date.now(),
+          due_date:Date.now(),
+        };
+      },
+      mounted()
+      {
+          this.getAccountDetails();
+          $.fn.textWidth = function(){
+          var html_org = $(this).html();
+          var html_calc = '<span>' + html_org + '</span>';
+          $(this).html(html_calc);
+          var width = $(this).find('span:first').width();
+          $(this).html(html_org);
+          return width;
+        };
+        $('#accountdetails-datatable').on( 'draw.dt', function (e) {
+          $('#accountdetails-datatable thead tr th').each(function(idx, ele) {
+            var xPos = parseInt((($(ele).textWidth()))+12);
+            $(ele).css('background-position-x',  xPos + 'px')
+          })
+        });
+        const unwatch = this.$watch('sales', (sales) => {
+          if (!Array.isArray(sales) || sales.length === 0) {
+              return;
+          }
+          unwatch();
+          this.$nextTick(() => {
+                const table = $('#accountdetails-datatable').DataTable({
+                "bLengthChange": false,
+                "columnDefs": [
+                  { "targets": [0,9], "searchable": false, "orderable": false }
+                ]
+              });
+              $(".searchbox").keyup(function() {
+                table.search(this.value).draw();
+              }); 
+              this.$once('hook:beforeDestroy', function () {
+                  table.destroy();
+              });
+              
+          }, {immediate: true});
+        });
+      },
+      methods:{
+        getAccountDetails() {
+            return axios.get("/account_transactions/" + this.$route.params.id+"/"+this.$route.params.currencyid).then(response => {
+                this.details = response.data;
+                console.log(response);
+            });
+        },
+        dateFormateChanger(d){
+          return moment(d,'YYYY-MM-DD').format('DD MMM YYYY')
+        },
+      }
+    }
   </script>
  
     
@@ -161,7 +194,7 @@
     opacity: 0.4;
     font-size: 11px;
   }
-  #clickbankaccount-datatable thead
+  #accountdetails-datatable thead
   {
     background: #3376C2;
     color: #fff;
@@ -171,7 +204,7 @@
     color: #3377c2;
     font-size: 13px;
   }
-  #clickbankaccount-datatable
+  #accountdetails-datatable
   {
     color: #000;
     font-size: 13px;
@@ -190,7 +223,7 @@
   {
     padding: 0.3em 0.8em;
   }
-  #clickbankaccount-datatable thead tr th 
+  #accountdetails-datatable thead tr th 
   {
     font-weight: 100 !important;
   }

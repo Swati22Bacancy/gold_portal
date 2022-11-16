@@ -174,4 +174,5 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     // Bank Account Routes (Nordigen) 
     Route::get('fetchaccountfeeds', [Api\BankAccountController::class, 'fetchaccountfeeds']);
+    Route::get('account_transactions/{id}/{currencyid}', [Api\BankAccountController::class, 'accounttransactions']);
 });
