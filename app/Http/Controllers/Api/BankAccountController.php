@@ -133,4 +133,52 @@ class BankAccountController extends Controller
         $accounts['currency'] = ($currencyid=='1')?'USD':'GBP';
         return response()->json($accounts);
     }
+
+    public function fetchaccountfeedswithid($id)
+    {
+        $data=array();
+        $data['headers'] = array(
+            'Content-Type' => 'application/json',
+            'authorization' => 'Bearer '.nordigenToken(),
+        );
+        
+        $client = new Client();
+        $accounts=array();
+        // Account Balance
+        $responseaccount = $client->request('GET', config('constants.authernticationApiUrl').'/api/v2/accounts/'.$id.'/balances',[
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'authorization' => 'Bearer '.nordigenToken(),
+            ]]);
+        $res_accountdata = json_decode($responseaccount->getBody());
+        $accounts['balance'] = number_format($res_accountdata->balances[0]->balanceAmount->amount, 2, '.', ',');
+        $accounts['currency'] = $res_accountdata->balances[0]->balanceAmount->currency;
+        $accounts['title'] = ($res_accountdata->balances[0]->balanceAmount->currency=='USD')?'Wise Bank (USD)':'Wise Bank (GBP)';
+        // Account Transactions
+        $responsetransaction = $client->request('GET', config('constants.authernticationApiUrl').'/api/v2/accounts/'.$id.'/transactions',[
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'authorization' => 'Bearer '.nordigenToken(),
+            ]]);
+        $res_transactiondata = json_decode($responsetransaction->getBody());
+        
+        $accounts['transactions'] = array_slice($res_transactiondata->transactions->booked, 0, 5);
+
+        foreach ($accounts['transactions'] as $index => $transaction)
+        {
+            if($transaction->transactionAmount->amount<0)
+            {   $outamount= abs($transaction->transactionAmount->amount);
+                $accounts['transactions'][$index]->outamount = number_format($outamount, 2, '.', ',');
+            }
+            else
+            {
+                $accounts['transactions'][$index]->inamount = number_format($transaction->transactionAmount->amount, 2, '.', ',');
+            }
+            if(!isset($transaction->debtorName) && !isset($transaction->creditorName))
+            {
+                $accounts['transactions'][$index]->payee = substr(strstr($transaction->remittanceInformationUnstructured," "), 1); 
+            }
+        }
+        return response()->json($accounts);
+    }
 }
