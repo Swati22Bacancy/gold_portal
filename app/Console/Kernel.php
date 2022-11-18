@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\DemoCron::class,
         Commands\WiseAccounts::class,
+        Commands\WiseTransactions::class,
     ];
 
     /**
@@ -26,8 +27,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('demo:cron')
-                 ->everyFiveMinutes();
+        // $schedule->command('demo:cron')
+        //          ->everyFiveMinutes();
+        $schedule->command('wise:accounts')
+        ->everyMinute();
+        $schedule->command('wise:transactions')
+        ->everyMinute();
     }
 
     /**
