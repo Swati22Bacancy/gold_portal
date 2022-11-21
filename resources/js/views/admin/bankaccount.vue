@@ -8,7 +8,7 @@
             <div class="col-md-4">
                 <div style="border-radius: 5px 5px 0px 0px; border: 1px solid #B0E0E6; background-color: white;">
                   <div class="col-md-12">
-                    <div class="col-md-8 dash-divs" style="cursor:pointer;" @click="clickAccount('4dae8287-51f7-4277-b556-f6409f8c4982','USD')">
+                    <div class="col-md-8 dash-divs" style="cursor:pointer;" @click="clickAccount(1,'USD')">
                         <h4 class="h3" style="margin-bottom:0; color:#3376C2;font-weight: 700;font-family: Titillium-Web-Bold;font-size: 23px;">
                             Wise Bank (USD)
                         </h4>
@@ -32,19 +32,19 @@
                             cellspacing="0"
                         >
                             <tbody>
-                                <tr v-for="transaction in accountsusd.transactions" :key="transaction.transactionId">
-                                    <td>{{transaction.creditorName}}{{transaction.debtorName}}{{transaction.payee}}</td>
+                                <tr v-for="transaction in accountsusd" :key="transaction.transactionId">
+                                    <td>{{transaction.payee_name}}</td>
                                     <td>
-                                        <span v-if="transaction.inamount">
-                                            <i v-if="transaction.transactionAmount.currency=='GBP'" class="fa fa-pound-sign" style="font-size:10px;"></i>
-                                            <i v-if="transaction.transactionAmount.currency=='USD'" class="fa fa-dollar-sign" style="font-size:10px;"></i>
+                                        <span v-if="transaction.remark=='inamount'">
+                                            <i v-if="transaction.currency=='GBP'" class="fa fa-pound-sign" style="font-size:10px;"></i>
+                                            <i v-if="transaction.currency=='USD'" class="fa fa-dollar-sign" style="font-size:10px;"></i>
                                         </span>
-                                        <span v-if="transaction.outamount" style="color:red">-
-                                            <i v-if="transaction.transactionAmount.currency=='GBP'" class="fa fa-pound-sign" style="font-size:10px;"></i>
-                                            <i v-if="transaction.transactionAmount.currency=='USD'" class="fa fa-dollar-sign" style="font-size:10px;"></i>
+                                        <span v-if="transaction.remark=='outamount'" style="color:red">-
+                                            <i v-if="transaction.currency=='GBP'" class="fa fa-pound-sign" style="font-size:10px;"></i>
+                                            <i v-if="transaction.currency=='USD'" class="fa fa-dollar-sign" style="font-size:10px;"></i>
                                         </span>
-                                        <span v-if="transaction.inamount">{{transaction.inamount}}</span>
-                                        <span v-if="transaction.outamount" style="color:red">{{transaction.outamount}}</span>
+                                        <span v-if="transaction.remark=='inamount'">{{transaction.transactionAmount}}</span>
+                                        <span v-if="transaction.remark=='outamount'" style="color:red">{{transaction.transactionAmount}}</span>
                                     </td>
                                 </tr>
                                 
@@ -55,7 +55,7 @@
                 <div class="col-md-12" style="border-radius: 0px 0px 5px 5px;">
                     <div class="col-md-8 dash-divs">
                         <h4 style="margin-bottom:0; color: black;">
-                            <b><i v-if="accountsusd.currency=='GBP'" class="fa fa-pound-sign" style="font-size:20px;color: black;"></i><i v-if="accountsusd.currency=='USD'" class="fa fa-dollar-sign" style="font-size:20px; color: black;"></i>{{accountsusd.balance}}</b>
+                            <b><i class="fa fa-dollar-sign" style="font-size:20px; color: black;"></i>{{balanceusd}}</b>
                         </h4>
                     </div>
                     <div class=""></div>
@@ -68,7 +68,7 @@
             <div class="col-md-4">
                 <div style="border-radius: 5px 5px 0px 0px; border: 1px solid #B0E0E6; background-color: white;">
                   <div class="col-md-12">
-                    <div class="col-md-8 dash-divs" style="cursor:pointer;" @click="clickAccount('ba3216c3-007d-44c4-963c-5e46a4ed70f5','GBP')">
+                    <div class="col-md-8 dash-divs" style="cursor:pointer;" @click="clickAccount(2,'GBP')">
                         <h4 class="h3" style="margin-bottom:0; color:#3376C2;font-weight: 700;font-family: Titillium-Web-Bold;font-size: 23px;">
                             Wise Bank (GBP)
                         </h4>
@@ -92,19 +92,19 @@
                             cellspacing="0"
                         >
                             <tbody>
-                                <tr v-for="transaction in accountsgbp.transactions" :key="transaction.transactionId">
-                                    <td>{{transaction.creditorName}}{{transaction.debtorName}}{{transaction.payee}}</td>
+                                <tr v-for="transaction in accountsgbp" :key="transaction.transactionId">
+                                    <td>{{transaction.payee_name}}</td>
                                     <td>
-                                        <span v-if="transaction.inamount">
-                                            <i v-if="transaction.transactionAmount.currency=='GBP'" class="fa fa-pound-sign" style="font-size:10px;"></i>
-                                            <i v-if="transaction.transactionAmount.currency=='USD'" class="fa fa-dollar-sign" style="font-size:10px;"></i>
+                                        <span v-if="transaction.remark=='inamount'">
+                                            <i v-if="transaction.currency=='GBP'" class="fa fa-pound-sign" style="font-size:10px;"></i>
+                                            <i v-if="transaction.currency=='USD'" class="fa fa-dollar-sign" style="font-size:10px;"></i>
                                         </span>
-                                        <span v-if="transaction.outamount" style="color:red">-
-                                            <i v-if="transaction.transactionAmount.currency=='GBP'" class="fa fa-pound-sign" style="font-size:10px;"></i>
-                                            <i v-if="transaction.transactionAmount.currency=='USD'" class="fa fa-dollar-sign" style="font-size:10px;"></i>
+                                        <span v-if="transaction.remark=='outamount'" style="color:red">-
+                                            <i v-if="transaction.currency=='GBP'" class="fa fa-pound-sign" style="font-size:10px;"></i>
+                                            <i v-if="transaction.currency=='USD'" class="fa fa-dollar-sign" style="font-size:10px;"></i>
                                         </span>
-                                        <span v-if="transaction.inamount">{{transaction.inamount}}</span>
-                                        <span v-if="transaction.outamount" style="color:red">{{transaction.outamount}}</span>
+                                        <span v-if="transaction.remark=='inamount'">{{transaction.transactionAmount}}</span>
+                                        <span v-if="transaction.remark=='outamount'" style="color:red">{{transaction.transactionAmount}}</span>
                                     </td>
                                 </tr>
                                 
@@ -115,7 +115,7 @@
                 <div class="col-md-12" style="border-radius: 0px 0px 5px 5px;">
                     <div class="col-md-8 dash-divs">
                         <h4 style="margin-bottom:0; color: black;">
-                            <b><i v-if="accountsgbp.currency=='GBP'" class="fa fa-pound-sign" style="font-size:20px;color: black;"></i><i v-if="accountsgbp.currency=='USD'" class="fa fa-dollar-sign" style="font-size:20px; color: black;"></i>{{accountsgbp.balance}}</b>
+                            <b><i class="fa fa-pound-sign" style="font-size:20px;color: black;"></i>{{balancegbp}}</b>
                         </h4>
                     </div>
                     <div class=""></div>
@@ -136,32 +136,41 @@ export default {
             accounts:[],
             accountsgbp:[],
             accountsusd:[],
+            balanceusd:'',
+            balancegbp:'',
         }
     },
     mounted()
     {
-        
         // this.getAccounts();
         this.getAccountsgbp();
         this.getAccountsusd();
+        this.getAccountsBalancegbp();
+        this.getAccountsBalanceusd();
     },
     methods:{
         clickAccount(accountid,currency){
             var currencyid= (currency=='USD')?'1':'2';
             this.$router.push('/accountdetails/'+accountid+'/'+currencyid)
         },
-        async getAccountsgbp() {
-            console.log('in');
-            return await axios.get("fetchaccountfeedswithid/ba3216c3-007d-44c4-963c-5e46a4ed70f5").then(response => {
+        getAccountsgbp() {
+            return axios.get("fetchaccountfeedswithid/2").then(response => {
                 this.accountsgbp = response.data;
-                console.log(response);
             });
         },
         getAccountsusd() {
-            console.log('in1');
-            return axios.get("fetchaccountfeedswithid/4dae8287-51f7-4277-b556-f6409f8c4982").then(response => {
+            return axios.get("fetchaccountfeedswithid/1").then(response => {
                 this.accountsusd = response.data;
-                console.log(response);
+            });
+        },
+        getAccountsBalancegbp() {
+            return axios.get("fetchaccountbalancewithid/2").then(response => {
+                this.balancegbp = response.data.balance;
+            });
+        },
+        getAccountsBalanceusd() {
+            return axios.get("fetchaccountbalancewithid/1").then(response => {
+                this.balanceusd = response.data.balance;
             });
         },
         getAccounts() {

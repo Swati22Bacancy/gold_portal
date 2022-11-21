@@ -27,12 +27,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        // $schedule->command('demo:cron')
+        // $schedule->command('inspire:cron')
         //          ->everyFiveMinutes();
         $schedule->command('wise:accounts')
         ->everyMinute();
         $schedule->command('wise:transactions')
-        ->everyMinute();
+        ->everyMinute()->appendOutputTo(storage_path('logs/inspire.log'));
     }
 
     /**

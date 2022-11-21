@@ -107,13 +107,15 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       issue_date: Date.now(),
-      due_date: Date.now()
+      due_date: Date.now(),
+      accdetails: []
     };
   },
   mounted: function mounted() {
     var _this = this;
 
     this.getAccountDetails();
+    this.getAccountTransactions();
 
     $.fn.textWidth = function () {
       var html_org = $(this).html();
@@ -130,8 +132,8 @@ __webpack_require__.r(__webpack_exports__);
         $(ele).css('background-position-x', xPos + 'px');
       });
     });
-    var unwatch = this.$watch('sales', function (sales) {
-      if (!Array.isArray(sales) || sales.length === 0) {
+    var unwatch = this.$watch('details', function (details) {
+      if (!Array.isArray(details) || details.length === 0) {
         return;
       }
 
@@ -141,7 +143,7 @@ __webpack_require__.r(__webpack_exports__);
         var table = $('#accountdetails-datatable').DataTable({
           "bLengthChange": false,
           "columnDefs": [{
-            "targets": [0, 9],
+            "targets": [0],
             "searchable": false,
             "orderable": false
           }]
@@ -162,9 +164,15 @@ __webpack_require__.r(__webpack_exports__);
     getAccountDetails: function getAccountDetails() {
       var _this2 = this;
 
+      return axios.get("/account_details/" + this.$route.params.id + "/" + this.$route.params.currencyid).then(function (response) {
+        _this2.accdetails = response.data; //this.transactiondetails = response.data.transactions;
+      });
+    },
+    getAccountTransactions: function getAccountTransactions() {
+      var _this3 = this;
+
       return axios.get("/account_transactions/" + this.$route.params.id + "/" + this.$route.params.currencyid).then(function (response) {
-        _this2.details = response.data;
-        console.log(response);
+        _this3.details = response.data; //this.transactiondetails = response.data.transactions;
       });
     },
     dateFormateChanger: function dateFormateChanger(d) {
@@ -15933,7 +15941,7 @@ var render = function() {
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-8 mobile-mb" }, [
               _c("h1", { staticClass: "h3 mb-0 text-gray-800" }, [
-                _vm._v(_vm._s(_vm.details["title"]))
+                _vm._v(_vm._s(_vm.accdetails["title"]))
               ])
             ])
           ])
@@ -16041,14 +16049,14 @@ var render = function() {
                         _vm._v(" "),
                         _c("th", [
                           _vm._v("In( "),
-                          _vm.details["currency"] == "GBP"
+                          _vm.accdetails["currency"] == "GBP"
                             ? _c("i", {
                                 staticClass: "fa fa-pound-sign",
                                 staticStyle: { "font-size": "9px" }
                               })
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.details["currency"] == "USD"
+                          _vm.accdetails["currency"] == "USD"
                             ? _c("i", {
                                 staticClass: "fa fa-dollar-sign",
                                 staticStyle: { "font-size": "9px" }
@@ -16059,14 +16067,14 @@ var render = function() {
                         _vm._v(" "),
                         _c("th", [
                           _vm._v("Out( "),
-                          _vm.details["currency"] == "GBP"
+                          _vm.accdetails["currency"] == "GBP"
                             ? _c("i", {
                                 staticClass: "fa fa-pound-sign",
                                 staticStyle: { "font-size": "9px" }
                               })
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.details["currency"] == "USD"
+                          _vm.accdetails["currency"] == "USD"
                             ? _c("i", {
                                 staticClass: "fa fa-dollar-sign",
                                 staticStyle: { "font-size": "9px" }
@@ -16083,7 +16091,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "tbody",
-                      _vm._l(_vm.details["transactions"], function(detail) {
+                      _vm._l(_vm.details, function(detail) {
                         return _c("tr", { key: detail.id }, [
                           _vm._m(2, true),
                           _vm._v(" "),
@@ -16093,13 +16101,7 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              _vm._s(detail.creditorName) +
-                                _vm._s(detail.debtorName) +
-                                _vm._s(detail.payee)
-                            )
-                          ]),
+                          _c("td", [_vm._v(_vm._s(detail.payee_name))]),
                           _vm._v(" "),
                           _c("td"),
                           _vm._v(" "),
@@ -16109,13 +16111,23 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(detail.inamount))]),
-                          _vm._v(" "),
-                          _c("td", { staticStyle: { color: "red" } }, [
-                            _vm._v(_vm._s(detail.outamount))
+                          _c("td", [
+                            detail.remark == "inamount"
+                              ? _c("span", [
+                                  _vm._v(_vm._s(detail.transactionAmount))
+                                ])
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(_vm.details["balance"]))]),
+                          _c("td", { staticStyle: { color: "red" } }, [
+                            detail.remark == "outamount"
+                              ? _c("span", [
+                                  _vm._v(_vm._s(detail.transactionAmount))
+                                ])
+                              : _vm._e()
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(_vm.accdetails["balance"]))]),
                           _vm._v(" "),
                           _vm._m(3, true)
                         ])

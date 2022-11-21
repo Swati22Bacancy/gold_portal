@@ -5,7 +5,7 @@
         <div class="col-md-6">
           <div class="row">
             <div class="col-md-8 mobile-mb">
-              <h1 class="h3 mb-0 text-gray-800">{{details['title']}}</h1>
+              <h1 class="h3 mb-0 text-gray-800">{{accdetails['title']}}</h1>
             </div>
             
           </div>
@@ -45,22 +45,22 @@
                             <th>payer/payee</th>
                             <th>Ref</th>
                             <th>Type</th>
-                            <th>In( <i v-if="details['currency']=='GBP'" class="fa fa-pound-sign" style="font-size: 9px;"></i> <i v-if="details['currency']=='USD'" class="fa fa-dollar-sign" style="font-size: 9px;"></i> )</th>
-                            <th>Out( <i v-if="details['currency']=='GBP'" class="fa fa-pound-sign" style="font-size: 9px;"></i> <i v-if="details['currency']=='USD'" class="fa fa-dollar-sign" style="font-size: 9px;"></i> )</th>
+                            <th>In( <i v-if="accdetails['currency']=='GBP'" class="fa fa-pound-sign" style="font-size: 9px;"></i> <i v-if="accdetails['currency']=='USD'" class="fa fa-dollar-sign" style="font-size: 9px;"></i> )</th>
+                            <th>Out( <i v-if="accdetails['currency']=='GBP'" class="fa fa-pound-sign" style="font-size: 9px;"></i> <i v-if="accdetails['currency']=='USD'" class="fa fa-dollar-sign" style="font-size: 9px;"></i> )</th>
                             <th>Balance</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                 <tbody>
-                    <tr v-for="detail in details['transactions']" :key="detail.id">
+                    <tr v-for="detail in details" :key="detail.id">
                           <td><input type="checkbox" class="custom-check-input"></td>
                           <td>{{dateFormateChanger(detail.bookingDate)}}</td>
-                          <td>{{detail.creditorName}}{{detail.debtorName}}{{detail.payee}}</td>
+                          <td>{{detail.payee_name}}</td>
                           <td></td>
                           <td>{{detail.proprietaryBankTransactionCode}}</td>
-                          <td>{{detail.inamount}}</td>
-                          <td style="color:red;">{{detail.outamount}}</td>
-                          <td>{{details['balance']}}</td>
+                          <td><span v-if="detail.remark=='inamount'">{{detail.transactionAmount}}</span></td>
+                          <td style="color:red;"><span v-if="detail.remark=='outamount'">{{detail.transactionAmount}}</span></td>
+                          <td>{{accdetails['balance']}}</td>
                           <td><button type="button" class="btn-container" style="background-color: #7ADAAA !important;margin-left: auto;width: 150px;">Assigned INV-22323</button>
                             <i class="fas fa-pencil-alt" style="margin-left:15px; font-size: 15px; color:green"></i></td>
                     </tr>
@@ -90,11 +90,13 @@
         return {
           issue_date:Date.now(),
           due_date:Date.now(),
+          accdetails:[]
         };
       },
       mounted()
       {
           this.getAccountDetails();
+          this.getAccountTransactions();
           $.fn.textWidth = function(){
           var html_org = $(this).html();
           var html_calc = '<span>' + html_org + '</span>';
@@ -109,8 +111,8 @@
             $(ele).css('background-position-x',  xPos + 'px')
           })
         });
-        const unwatch = this.$watch('sales', (sales) => {
-          if (!Array.isArray(sales) || sales.length === 0) {
+        const unwatch = this.$watch('details', (details) => {
+          if (!Array.isArray(details) || details.length === 0) {
               return;
           }
           unwatch();
@@ -118,7 +120,7 @@
                 const table = $('#accountdetails-datatable').DataTable({
                 "bLengthChange": false,
                 "columnDefs": [
-                  { "targets": [0,9], "searchable": false, "orderable": false }
+                  { "targets": [0], "searchable": false, "orderable": false }
                 ]
               });
               $(".searchbox").keyup(function() {
@@ -133,9 +135,17 @@
       },
       methods:{
         getAccountDetails() {
+            return axios.get("/account_details/" + this.$route.params.id+"/"+this.$route.params.currencyid).then(response => {
+                this.accdetails = response.data;
+                //this.transactiondetails = response.data.transactions;
+                
+            });
+        },
+        getAccountTransactions() {
             return axios.get("/account_transactions/" + this.$route.params.id+"/"+this.$route.params.currencyid).then(response => {
                 this.details = response.data;
-                console.log(response);
+                //this.transactiondetails = response.data.transactions;
+                
             });
         },
         dateFormateChanger(d){

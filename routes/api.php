@@ -176,5 +176,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('fetchaccountfeeds', [Api\BankAccountController::class, 'fetchaccountfeeds']);
     Route::get('account_transactions/{id}/{currencyid}', [Api\BankAccountController::class, 'accounttransactions']);
     Route::get('fetchaccountfeedswithid/{id}', [Api\BankAccountController::class, 'fetchaccountfeedswithid']);
-    
+    Route::get('fetchaccountbalancewithid/{id}', [Api\BankAccountController::class, 'fetchaccountbalancewithid']);
+    Route::get('account_details/{id}/{currencyid}', [Api\BankAccountController::class, 'accountdetails']);
 });
