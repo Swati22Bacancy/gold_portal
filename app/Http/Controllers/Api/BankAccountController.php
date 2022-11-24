@@ -93,7 +93,7 @@ class BankAccountController extends Controller
         $accounts=array();
 
         $accountdetails = WiseAccount::where('id',$id)->first();
-        $accounts['balance'] = $accountdetails->balance;
+        $accounts['balance'] = number_format($accountdetails->balance, 2, '.', ',');
         $accounts['title'] = ($currencyid=='1')?'Wise Bank (USD)':'Wise Bank (GBP)';
         $accounts['currency'] = ($currencyid=='1')?'USD':'GBP';
         
@@ -103,6 +103,10 @@ class BankAccountController extends Controller
     public function accounttransactions($id,$currencyid)
     {
         $accounts = WiseTransaction::where('account_id',$id)->get();
+        foreach($accounts as $key => $account)
+        {
+            $accounts[$key]->transactionAmount = number_format($account->transactionAmount, 2, '.', ',');
+        }
         
         return response()->json($accounts);
         exit;
@@ -202,6 +206,10 @@ class BankAccountController extends Controller
     public function fetchaccountfeedswithid($id)
     {
         $accounts = WiseTransaction::where('account_id',$id)->latest()->take(5)->get();
+        foreach($accounts as $key => $account)
+        {
+            $accounts[$key]->transactionAmount = number_format($account->transactionAmount, 2, '.', ',');
+        }
         // $data=array();
         // $data['headers'] = array(
         //     'Content-Type' => 'application/json',
@@ -251,6 +259,8 @@ class BankAccountController extends Controller
     public function fetchaccountbalancewithid($id)
     {
         $accounts = WiseAccount::where('id',$id)->first();
+        $accounts->balance = number_format($accounts->balance, 2, '.', ',');
+        
         return response()->json($accounts);
     }
 }

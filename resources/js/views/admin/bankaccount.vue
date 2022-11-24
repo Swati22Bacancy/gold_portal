@@ -1,8 +1,131 @@
 <template>
     <div>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Bank Accounts</h1>
-            <button ref="Btn" @click="getAccountsgbp">Click</button>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-8 mobile-mb">
+                        <h1 class="h3 mb-0 text-gray-800">Bank Accounts</h1>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-md-6" style="text-align:right">
+                <router-link to="/defaultbankrule">
+                    <button type="button" class="btn admin-btn mobile-mb">Default Bank Rule</button>
+                </router-link>
+                <button type="button" class="btn admin-btn mobile-mb btn-modal" data-toggle="modal" data-target="#addbankrule"><i class="fas fa-plus" style="margin-right: 5px;"></i>Create Bank Rule</button>
+                <button type="button" class="btn admin-btn mobile-mb" style="background-color: #7ADAAA !important;">Bank Rules</button>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="addbankrule" tabindex="-1" role="dialog" aria-labelledby="addbankrule" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="addbankrule">Create Bank Rule</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="color: #fff">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label class="required-field">Rule Name</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group customer-input">
+                                    <div class="form-group col-md-12">
+                                        <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.rule_name"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label class="required-field">When I have</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group customer-input">
+                                    <div class="form-group col-md-12">
+                                        <input type="checkbox" id="product_moneyin" name="moneyin" v-model="formdata.moneyin" value="moneyin">
+                                        <label class="radio-label" for="product_moneyin">Money In</label>
+                                        <input type="checkbox" id="product_moneyout" name="moneyout" v-model="formdata.moneyout" value="moneyout">
+                                        <label class="radio-label" for="product_moneyout">Money Out</label>
+                                        <input type="checkbox" id="product_both" name="both" v-model="formdata.both" value="both">
+                                        <label class="radio-label" for="product_both">Both</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label class="required-field">Keyword</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group customer-input">
+                                    <div class="form-group col-md-12">
+                                        <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.search_keyword"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label class="required-field">Then create a</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group customer-input">
+                                    <div class="form-group col-md-12">
+                                        <input type="radio" id="product_salesinvoice" name="create_type" v-model="formdata.create_type" value="salesinvoice">
+                                        <label class="radio-label" for="product_salesinvoice">Sales Invoice</label>
+                                        <input type="radio" id="product_purchase" name="create_type" v-model="formdata.create_type" value="purchase">
+                                        <label class="radio-label" for="product_purchase">Purchase</label>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label class="required-field">Customer</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group customer-input">
+                                    <div class="form-group col-md-12">
+                                        <model-select class="modal-selection" :options="customers" v-model="formdata.customer_id" placeholder="Select Customer"></model-select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label class="required-field">Enable Rule</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group customer-input">
+                                    <div class="form-group col-md-12">
+                                        <div class="custom-checkbox small check-position vat_checkbox mb-2">
+                                            <label></label>
+                                            <input type="checkbox" class="custom-control-input" id="enable_rule" v-model="formdata.enable_rule"/>
+                                            <label class="custom-control-label" for="enable_rule" style="color:#000;font-weight:700;"
+                                            ></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" @click="add_bankrule()" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7adaaa !important">Save</button>
+                        <button type="button" data-dismiss="modal"
+                        aria-label="Close" class="btn admin-btn mobile-mb btn-nwidth">Cancel</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-4">
@@ -34,17 +157,11 @@
                             <tbody>
                                 <tr v-for="transaction in accountsusd" :key="transaction.transactionId">
                                     <td>{{transaction.payee_name}}</td>
-                                    <td>
-                                        <span v-if="transaction.remark=='inamount'">
-                                            <i v-if="transaction.currency=='GBP'" class="fa fa-pound-sign" style="font-size:10px;"></i>
-                                            <i v-if="transaction.currency=='USD'" class="fa fa-dollar-sign" style="font-size:10px;"></i>
-                                        </span>
-                                        <span v-if="transaction.remark=='outamount'" style="color:red">-
-                                            <i v-if="transaction.currency=='GBP'" class="fa fa-pound-sign" style="font-size:10px;"></i>
-                                            <i v-if="transaction.currency=='USD'" class="fa fa-dollar-sign" style="font-size:10px;"></i>
-                                        </span>
-                                        <span v-if="transaction.remark=='inamount'">{{transaction.transactionAmount}}</span>
-                                        <span v-if="transaction.remark=='outamount'" style="color:red">{{transaction.transactionAmount}}</span>
+                                    <td v-if="transaction.remark=='inamount'">
+                                        <i class="fa fa-dollar-sign" style="font-size:10px;"></i>{{transaction.transactionAmount.replace(/\s/g, "")}}
+                                    </td>
+                                    <td v-if="transaction.remark=='outamount'" style="color:red">-
+                                        <i class="fa fa-dollar-sign" style="font-size:10px;"></i>{{transaction.transactionAmount.replace(/\s/g, "")}}
                                     </td>
                                 </tr>
                                 
@@ -94,17 +211,11 @@
                             <tbody>
                                 <tr v-for="transaction in accountsgbp" :key="transaction.transactionId">
                                     <td>{{transaction.payee_name}}</td>
-                                    <td>
-                                        <span v-if="transaction.remark=='inamount'">
-                                            <i v-if="transaction.currency=='GBP'" class="fa fa-pound-sign" style="font-size:10px;"></i>
-                                            <i v-if="transaction.currency=='USD'" class="fa fa-dollar-sign" style="font-size:10px;"></i>
-                                        </span>
-                                        <span v-if="transaction.remark=='outamount'" style="color:red">-
-                                            <i v-if="transaction.currency=='GBP'" class="fa fa-pound-sign" style="font-size:10px;"></i>
-                                            <i v-if="transaction.currency=='USD'" class="fa fa-dollar-sign" style="font-size:10px;"></i>
-                                        </span>
-                                        <span v-if="transaction.remark=='inamount'">{{transaction.transactionAmount}}</span>
-                                        <span v-if="transaction.remark=='outamount'" style="color:red">{{transaction.transactionAmount}}</span>
+                                    <td v-if="transaction.remark=='inamount'">
+                                        <i class="fa fa-pound-sign" style="font-size:10px;"></i>{{transaction.transactionAmount.replace(/\s/g, "")}}
+                                    </td>
+                                    <td v-if="transaction.remark=='outamount'" style="color:red">-
+                                        <i class="fa fa-pound-sign" style="font-size:10px;"></i>{{transaction.transactionAmount.replace(/\s/g, "")}}
                                     </td>
                                 </tr>
                                 
@@ -130,7 +241,13 @@
     </div>
 </template>
 <script>
+import { ModelSelect } from 'vue-search-select'
+
 export default {
+    name: "BankAccount",
+    components: {
+        ModelSelect
+    },
     data(){
         return{
             accounts:[],
@@ -138,6 +255,8 @@ export default {
             accountsusd:[],
             balanceusd:'',
             balancegbp:'',
+            formdata:{},
+            customers: [],
         }
     },
     mounted()
@@ -147,6 +266,7 @@ export default {
         this.getAccountsusd();
         this.getAccountsBalancegbp();
         this.getAccountsBalanceusd();
+        this.getCustomers();
     },
     methods:{
         clickAccount(accountid,currency){
@@ -177,6 +297,17 @@ export default {
             return axios.get("fetchaccountfeeds").then(response => {
                 this.accounts = response.data;
                 console.log(response);
+            });
+        },
+        getCustomers() {
+            return axios.get("customerlist/all").then(response => {
+                this.customers = response.data;
+                this.customers = this.customers.map(customer => {
+                return {
+                    value: customer.id,
+                    text: `${customer.first_name || ""} ${customer.last_name || ""} `,
+                  } 
+                })
             });
         },
     }
@@ -211,5 +342,12 @@ export default {
     font-size: 13px;
     color: #000;
 }
-
+#addbankrule .modal-dialog
+{
+    max-width: 700px;
+}
+.check-position
+{
+  margin-left: 5%;
+}
 </style>

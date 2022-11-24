@@ -271,6 +271,15 @@ let router = new Router({
             }
         },
         {
+            path: "/defaultbankrule/",
+            name: "defaultbankrule",
+            component: () => import("./views/admin/defaultbankrule.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/settings",
             name: "settings",
             component: () => import("./views/admin/settings.vue"),

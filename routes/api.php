@@ -178,4 +178,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('fetchaccountfeedswithid/{id}', [Api\BankAccountController::class, 'fetchaccountfeedswithid']);
     Route::get('fetchaccountbalancewithid/{id}', [Api\BankAccountController::class, 'fetchaccountbalancewithid']);
     Route::get('account_details/{id}/{currencyid}', [Api\BankAccountController::class, 'accountdetails']);
+
+    // Default Bank Rules Routes
+    Route::post('store_defaultbankrule',[Api\DefaultBankRuleController::class, 'storedefaultbankrule']);
+    Route::get('saved_defaultbankrule',[Api\DefaultBankRuleController::class, 'saveddefaultbankrule']);
+    Route::post('update_defaultbankrule',[Api\DefaultBankRuleController::class, 'updatedefaultbankrule']);
 });
