@@ -496,6 +496,33 @@ let router = new Router({
             }
         },
         {
+            path: "/payment-categories",
+            name: "paymentcategories",
+            component: () => import("./views/admin/paymentcategories.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/create-paymentcategory",
+            name: "createpaymentcategory",
+            component: () => import("./views/admin/createpaymentcategory.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
+            path: "/edit-paymentcategory/:id",
+            name: "editpaymentcategory",
+            component: () => import("./views/admin/editpaymentcategory.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+        {
             path: "/invoice-options",
             name: "invoiceoptions",
             component: () => import("./views/admin/invoiceoptions.vue"),

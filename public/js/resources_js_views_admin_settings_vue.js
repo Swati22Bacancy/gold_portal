@@ -189,6 +189,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Settings",
@@ -248,6 +270,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     goto_vatsettings: function goto_vatsettings() {
       this.$router.push({
         name: 'vatsettings'
+      });
+    },
+    goto_categories: function goto_categories() {
+      this.$router.push({
+        name: 'paymentcategories'
+      });
+    },
+    goto_bankrules: function goto_bankrules() {
+      this.$router.push({
+        name: 'defaultbankrule'
       });
     },
     is_super_admin: function is_super_admin() {
@@ -615,6 +647,38 @@ var render = function() {
               }
             },
             [_vm._m(17)]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.is_super_admin()
+        ? _c(
+            "div",
+            {
+              staticClass: "col-md-4",
+              staticStyle: { cursor: "pointer" },
+              on: {
+                click: function($event) {
+                  return _vm.goto_categories()
+                }
+              }
+            },
+            [_vm._m(18)]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.is_super_admin()
+        ? _c(
+            "div",
+            {
+              staticClass: "col-md-4",
+              staticStyle: { cursor: "pointer" },
+              on: {
+                click: function($event) {
+                  return _vm.goto_bankrules()
+                }
+              }
+            },
+            [_vm._m(19)]
           )
         : _vm._e()
     ])
@@ -1000,6 +1064,60 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("span", { staticStyle: { "font-size": "12px" } }, [
           _vm._v("Manage your industry sectors here.")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-3" }, [
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: { "font-size": "80px", color: "#595959" }
+          },
+          [_vm._v("category")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-9" }, [
+        _c("h6", { staticClass: "setting-subheading" }, [
+          _vm._v("Payment Categories")
+        ]),
+        _vm._v(" "),
+        _c("span", { staticStyle: { "font-size": "12px" } }, [
+          _vm._v("Manage your payment categories here.")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-3" }, [
+        _c(
+          "span",
+          {
+            staticClass: "material-symbols-outlined",
+            staticStyle: { "font-size": "80px", color: "#595959" }
+          },
+          [_vm._v(" account_balance")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-9" }, [
+        _c("h6", { staticClass: "setting-subheading" }, [
+          _vm._v("Default Bank Rule")
+        ]),
+        _vm._v(" "),
+        _c("span", { staticStyle: { "font-size": "12px" } }, [
+          _vm._v("Manage your default bank rule here.")
         ])
       ])
     ])

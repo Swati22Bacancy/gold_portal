@@ -183,4 +183,11 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('store_defaultbankrule',[Api\DefaultBankRuleController::class, 'storedefaultbankrule']);
     Route::get('saved_defaultbankrule',[Api\DefaultBankRuleController::class, 'saveddefaultbankrule']);
     Route::post('update_defaultbankrule',[Api\DefaultBankRuleController::class, 'updatedefaultbankrule']);
+
+    // Payment Category Routes
+    Route::post('create_paymentcategory', [Api\PaymentCategoryController::class, 'createpaymentcategory']);
+    Route::get('paymentcategory_list', [Api\PaymentCategoryController::class, 'paymentcategorylist']);
+    Route::get('delete_paymentcategory/{id}', [Api\PaymentCategoryController::class, 'deletepaymentcategory']);
+    Route::get('paymentcategory_details/{id}', [Api\PaymentCategoryController::class, 'paymentcategorydetails']);
+    Route::post('update_paymentcategory', [Api\PaymentCategoryController::class, 'updatepaymentcategory']);
 });

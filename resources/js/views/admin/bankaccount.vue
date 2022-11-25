@@ -43,49 +43,91 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-md-4">
-                                <label class="required-field">When I have</label>
+                                <label class="required-field">Apply this to transactions that are</label>
                             </div>
                             <div class="col-md-8">
-                                <div class="form-group customer-input">
-                                    <div class="form-group col-md-12">
-                                        <input type="checkbox" id="product_moneyin" name="moneyin" v-model="formdata.moneyin" value="moneyin">
-                                        <label class="radio-label" for="product_moneyin">Money In</label>
-                                        <input type="checkbox" id="product_moneyout" name="moneyout" v-model="formdata.moneyout" value="moneyout">
-                                        <label class="radio-label" for="product_moneyout">Money Out</label>
-                                        <input type="checkbox" id="product_both" name="both" v-model="formdata.both" value="both">
-                                        <label class="radio-label" for="product_both">Both</label>
+                                <div class="row form-group customer-input pr-3 pl-3">
+                                    <div class="form-group col-md-5">
+                                        <select class="form-control form-control-user" v-model="formdata.money_type">
+                                            <option value="money_out">Money Out</option>
+                                            <option value="money_in">Money In</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2" style="text-align:center">
+                                        In
+                                    </div>
+                                    <div class="col-md-5">
+                                        <select class="form-control form-control-user" v-model="formdata.account_type">
+                                            <option value="all_accounts">All Bank Accounts</option>
+                                            <option value="wisebank_usd">Wise Bank (USD)</option>
+                                            <option value="wisebank_gbp">Wise Bank (GBP)</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row mb-4">
                             <div class="col-md-4">
-                                <label class="required-field">Keyword</label>
+                                <label class="required-field">And Include the following:</label>
                             </div>
                             <div class="col-md-8">
-                                <div class="form-group customer-input">
+                                <div class="row form-group customer-input pr-3 pl-3">
                                     <div class="form-group col-md-12">
-                                        <input type="text" class="form-control form-control-user" placeholder="" v-model="formdata.search_keyword"/>
+                                        <select class="form-control form-control-user" v-model="formdata.include_condition">
+                                            <option value="all">All</option>
+                                            <option value="1">1 of them</option>
+                                            <option value="2">2 of them</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <button type="button" class="btn admin-btn mobile-mb btn-nwidth" style="background-color: #7ADAAA !important;width: 8%;float: right;" @click="addLine()">
+                                <i class="fas fa-plus"  style="margin-right: 5px;"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <label>Conditions:</label>
+                        </div>
+                        
+                        <div class="row mb-4 mt-4" v-for="(condition_item, k) in condition_items" :key="k">
+                            <div class="col-md-4">
+                                <select class="form-control form-control-user" v-model="condition_item.condition_field">
+                                    <option value="description">Description</option>
+                                    <option value="banktext">Bank Text</option>
+                                    <option value="amount">Amount</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control form-control-user" v-model="condition_item.condition_criteria">
+                                    <option value="contains">Contains</option>
+                                    <option value="notcontains">Doesn't contain</option>
+                                    <option value="exactly">Is Exactly</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control form-control-user" placeholder="Enter Text" v-model="condition_item.condition_keyword"/>
+                            </div>
+                            <div class="col-md-1">
+                                <i class="fas fa-trash"  style="margin-right: 5px;color: red;" @click="removeLine(k)"></i>
+                                
+                            </div>
+                        </div>
+                        
                         <div class="row mb-4">
                             <div class="col-md-4">
-                                <label class="required-field">Then create a</label>
+                                <label class="required-field">Category</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group customer-input">
                                     <div class="form-group col-md-12">
-                                        <input type="radio" id="product_salesinvoice" name="create_type" v-model="formdata.create_type" value="salesinvoice">
-                                        <label class="radio-label" for="product_salesinvoice">Sales Invoice</label>
-                                        <input type="radio" id="product_purchase" name="create_type" v-model="formdata.create_type" value="purchase">
-                                        <label class="radio-label" for="product_purchase">Purchase</label>
-                                        
+                                        <model-select class="modal-selection" :options="categories" v-model="formdata.category_id" placeholder="Select Category"></model-select>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="row mb-4">
                             <div class="col-md-4">
                                 <label class="required-field">Customer</label>
@@ -255,8 +297,20 @@ export default {
             accountsusd:[],
             balanceusd:'',
             balancegbp:'',
-            formdata:{},
+            formdata:{
+                money_type:"money_out",
+                account_type:"all_accounts",
+                include_condition:"all"
+            },
             customers: [],
+            categories: [],
+            condition_items: [
+                {
+                    condition_field: "description",
+                    condition_criteria: "contains",
+                    condition_keyword: ""
+                }
+            ],
         }
     },
     mounted()
@@ -267,6 +321,7 @@ export default {
         this.getAccountsBalancegbp();
         this.getAccountsBalanceusd();
         this.getCustomers();
+        this.getCategories();
     },
     methods:{
         clickAccount(accountid,currency){
@@ -309,6 +364,41 @@ export default {
                   } 
                 })
             });
+        },
+        getCategories() {
+            return axios.get("paymentcategory_list").then(response => {
+                this.categories = response.data;
+                this.categories = this.categories.map(category => {
+                return {
+                    value: category.id,
+                    text: `${category.name}`,
+                  } 
+                })
+            });
+        },
+        addLine() {
+            this.condition_items.push({
+                condition_field: "description",
+                condition_criteria: "contains",
+                condition_keyword: ""
+            });
+        },
+        removeLine(index) {
+            this.condition_items.splice(index,1);
+        },
+        async add_bankrule()
+        {
+            this.$v.formdata.$touch();
+            if (this.$v.formdata.$error) {
+                return;
+            }
+            const response = await axios.post("create_bankrule", {
+                first_name: this.customerdata.first_name,
+                last_name: this.customerdata.last_name,
+                email: this.customerdata.email,
+                registered_address: this.customerdata.registered_address,
+                customertype: this.customerType
+                });
         },
     }
 }

@@ -165,6 +165,28 @@
           </div>
         </div>
       </div>
+      <div class="col-md-4" v-if="is_super_admin()" v-on:click="goto_categories()" style="cursor:pointer;">
+        <div class="row">
+          <div class="col-md-3">
+            <span class="material-symbols-outlined" style="font-size:80px;color: #595959;">category</span>
+          </div>
+          <div class="col-md-9">
+            <h6 class="setting-subheading">Payment Categories</h6>
+            <span style="font-size: 12px;">Manage your payment categories here.</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" v-if="is_super_admin()" v-on:click="goto_bankrules()" style="cursor:pointer;">
+        <div class="row">
+          <div class="col-md-3">
+            <span class="material-symbols-outlined" style="font-size:80px;color: #595959;"> account_balance</span>
+          </div>
+          <div class="col-md-9">
+            <h6 class="setting-subheading">Default Bank Rule</h6>
+            <span style="font-size: 12px;">Manage your default bank rule here.</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -223,6 +245,14 @@ export default {
     goto_vatsettings()
     {
       this.$router.push({ name: 'vatsettings' });
+    },
+    goto_categories()
+    {
+      this.$router.push({ name: 'paymentcategories' });
+    },
+    goto_bankrules()
+    {
+      this.$router.push({ name: 'defaultbankrule' });
     },
     is_super_admin(){
       if(this.user)
